@@ -1,0 +1,1 @@
+    $(document).snow({ SnowImage: "snow.gif" });

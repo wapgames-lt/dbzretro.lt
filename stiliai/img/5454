@@ -1,0 +1,137 @@
+body{
+background-image: url(back.png);
+font-size: 13px;
+font-family: Verdana, Arial, Helvetica, sans-serif;
+margin: auto;
+color: #000000;
+max-width: 650px;
+
+text-align: center;
+color:000000;
+//text-shadow:#665544 1 -1px 1px;
+}
+	
+    .in{
+margin: 0;
+background-color:#f2e2be;
+padding: 0;
+text-align: center;
+
+border-radius: 0px 0px 10px 10px;		
+	    border: 1px solid #8c8b88;
+}
+		
+	.ab{
+	
+        font-size: 10px;
+		color: white;
+        text-align: left;
+        background: url(img/blue_h.png) repeat-x top #455059;
+        border-bottom: 1px solid #0f1316;
+        padding: 3px; 
+        padding-left: 6px;
+}
+    .logo{
+	background-image: url(img/blue_h.png);
+	background-color:#3300ff;
+	    padding: 7px 0 7px 0;
+	    text-align: left;
+	    margin: 0;
+	    border: 1px solid #000000;
+	   
+		    color: #ffffff;
+    }
+	
+    .line{
+border-top:#3e3d36 solid 1px;
+margin:1;
+padding:0;
+						border-radius: 1px 1px 1px 1px;
+    }
+	
+    .meniu{
+	
+    	margin: 2px 0 2px 0px;
+	padding: 3px;
+	text-align: left;
+background-color: #adc4ff;
+	border:#3333ff solid 1px;
+						border-radius: 3px 3px 3px 3px;
+    }
+    .meniuc{
+	background-color: #adc4ff;
+    	margin: 2px 0 2px 0px;
+	padding: 3px;
+	text-align: center;
+
+	border:#3333ff solid 1px;
+						border-radius: 3px 3px 3px 3px;
+    }
+	
+    .foot{
+background-color:#3300cc;
+padding: 3px 2px;
+margin: 0;
+color: #3300cc;
+text-align: center;
+
+ background-image: url(img/blue_f.png);
+        background-repeat: repeat-x;
+
+	max-height: 30px;
+			    color: #ffffff;
+
+	
+		border-radius: 0px 0px 10px 10px;		   
+		color: #000000;
+}
+	
+    .end{
+	background-color:#3300cc;
+padding: 3px 2px;
+margin: 0;
+color: #3300cc;
+text-align: center;
+	
+border: 1px solid #3300cc;
+	max-height: 30px;
+			    color: #ffffff;
+	}
+	
+    .balta{color: #ffffff;}
+    .index{color: #446320;}
+    .raudona{color: #3300cc;}
+    .raudona2{color: #ed2e2e;}
+    .melyna{color: #0000ff;}
+    .zalia{color: #00ff00;}
+    .zalia2{color: #168a07;}
+    .geltona{color: #ffff00;}
+    .geltona2{color: #bfb513;}
+    .pilka{color: #959090;}
+.on{color: #d84106;}
+.players{color: #47b2ff;}
+.maxon{color: #66ff66;}	
+
+
+	
+	
+	
+a {
+text-decoration:underline;
+color:#4d3631;
+outline:none;
+}
+
+
+
+    a:hover{color: #3300cc; text-decoration: BOLD; font-size: 15px;}
+    a.rekl{color: #3300cc; text-decoration: none;}
+    a.rekl:hover{color: #3300cc; font-size: 15px;}
+	
+	
+.head a, .end a, .info a {
+text-decoration:underline;
+color:#3300cc;
+outline:none;
+
+}

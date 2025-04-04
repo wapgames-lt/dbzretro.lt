@@ -1,0 +1,18 @@
+<?php
+ob_start();
+include_once("cfg/sql.php");
+
+
+$sk = mysql_num_rows(mysql_query("SELECT * FROM zaidejai"));
+$on_viso = mysql_num_rows(mysql_query("SELECT * FROM zaidejai"));
+header("Content-type:image/gif"); 
+$image = imagecreatefromgif("img/auros/1.gif"); 
+
+$color = imagecolorallocate($image,0,0,0); 
+imagestring($image, 4, 121, 8, $sk, $color); 
+imagestring($image, 4, 121, 24, $on_viso, $color); 
+imagegif($image); 
+imagedestroy($image); 
+
+
+?>

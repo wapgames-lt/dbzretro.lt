@@ -1,0 +1,46 @@
+networks:
+  dragon-ball-game:
+
+services:
+  apache:
+    build:
+      context: apache
+      dockerfile: Dockerfile
+    container_name: apache
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - ../:/var/www/html
+    networks:
+      - dragon-ball-game
+
+  mysql:
+    image: mysql:5.7
+    command: --default-authentication-plugin=mysql_native_password
+    container_name: mysql
+    restart: unless-stopped
+    tty: true
+    environment:
+      MYSQL_DATABASE: kindred
+      MYSQL_USER: kindred
+      MYSQL_PASSWORD: kindred
+      MYSQL_ROOT_PASSWORD: kindred
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    networks:
+      - dragon-ball-game
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    container_name: phpmyadmin
+    depends_on:
+      - mysql
+    ports:
+      - "81:80"
+    environment:
+      PMA_HOST: mysql
+      UPLOAD_LIMIT: 64M
+    networks:
+      - dragon-ball-game

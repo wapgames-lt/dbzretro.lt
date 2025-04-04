@@ -1,0 +1,27 @@
+{
+  "name": "kinderedlamar/legacydbz",
+  "description": "Old gay dbz",
+  "type": "project",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Kindred Lamar",
+      "email": "info@wapgames.lt"
+    }
+  ],
+  "require": {
+    "php": "5.6.*",
+    "monolog/monolog": "^1.27"
+  },
+  "autoload": {
+    "psr-4": {
+      "LegacyDbz\\": "src/"
+    }
+  },
+  "scripts": {
+    "post-install-cmd": [
+    ],
+    "post-update-cmd": [
+    ]
+  }
+}
