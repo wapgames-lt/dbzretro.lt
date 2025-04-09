@@ -1,5 +1,7 @@
 <?php
 
+use LegacyDbz\Players\Services\CurrentPlayer;
+
 include_once 'sql.php';
 require_once __DIR__ . '/../vendor/autoload.php';
 
@@ -12,6 +14,7 @@ $_COOKIE['vardas'] = htmlentities($_COOKIE['vardas'], ENT_QUOTES);
 $_COOKIE['pass'] = htmlentities($_COOKIE['pass'], ENT_QUOTES);
 $cookis = isset($_COOKIE['vardas']) ? $_COOKIE['vardas'] : null;
 $nick = $cookis;
+setCurrentPlayer($nick);
 
 $cookis2 = isset($_COOKIE['pass']) ? $_COOKIE['pass'] : null;
 $pass = $cookis2;  
@@ -3022,6 +3025,12 @@ function sendDiscordMessage($message)
     return true;
 }
 
+function setCurrentPlayer($nick)
+{
+    $playersRepository = new \LegacyDbz\Players\Repositories\PlayersRepository();
+    $currentPlayer = $playersRepository->findByNick($nick);
 
+    CurrentPlayer::set($currentPlayer);
+}
 
 ?>

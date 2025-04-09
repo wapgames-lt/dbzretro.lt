@@ -2,8 +2,12 @@
 
 namespace LegacyDbz\Players\DTO;
 
+use LegacyDbz\Characters\Traits\CharacterTrait;
+
 class Player
 {
+    use CharacterTrait;
+
     private $id;
 
     private $username;

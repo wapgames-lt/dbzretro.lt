@@ -5,6 +5,7 @@
  */
 
 use LegacyDbz\LegendaryBosses\DTO\LegendaryBoss;
+use LegacyDbz\Players\Services\CurrentPlayer;
 
 include_once 'parts/head.php';
 
@@ -996,25 +997,25 @@ if ($id === 'attack') {
             }
         }
 
-        if (!$isBossBlockedAttack && $apie['veikejas'] === 'Gokas SSJGB Kaioken 20x') {
+        if (!$isBossBlockedAttack && CurrentPlayer::get()->isGokasKaioken20x()) {
             $playerDamage *= 2;
             echo $warningIcon;
             echo '<font color="#9370db"><b>Jūsų veikėjas Gokas SSJGB Kaioken 20x padidino žąlą bosui.</b></font><br><br>';
         }
 
-        if (!$isBossBlockedAttack && $apie['veikejas'] === 'Gokas Mastered Ultra Instinct') {
+        if (!$isBossBlockedAttack && CurrentPlayer::get()->isGokasMasteredUltraInstinct()) {
             $playerDamage *= 2;
             echo $warningIcon;
             echo '<font color="#9370db"><b>Jūsų veikėjas Gokas Mastered Ultra Instinct padidino žąlą bosui.</b></font><br><br>';
         }
 
-        if (!$isBossBlockedAttack && $apie['veikejas'] === 'Gohanas Ultra Instinct') {
+        if (!$isBossBlockedAttack && CurrentPlayer::get()->isGohanasUltraInstinct()) {
             $playerDamage *= 3;
             echo $warningIcon;
             echo '<font color="#9370db"><b>Jūsų veikėjas Gohanas Ultra Instinct padidino žąlą bosui.</b></font><br><br>';
         }
 
-        if (!$isBossBlockedAttack && $apie['veikejas'] === 'Kefla') {
+        if (!$isBossBlockedAttack && CurrentPlayer::get()->isKefla()) {
             $playerDamage *= 4;
             echo $warningIcon;
             echo '<font color="#9370db"><b>Jūsų veikėjas Kefla padidino žąlą bosui.</b></font><br><br>';
