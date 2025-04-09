@@ -18,30 +18,36 @@ $partyInvitesRepository = new PartyInvitesRepository();
 $partyInvitesRepository->deleteExpired();
 $currentPlayer = CurrentPlayer::get();
 
-switch ($id) {
-    case 'create':
-        createPartyInvite();
-        break;
 
-    case 'createPartyInvite':
-        validateAndSavePartyInvite();
-        break;
+render($id);
 
-    case 'inviteeInvites':
-        inviteeInvites();
-        break;
+function render($id)
+{
+    switch ($id) {
+        case 'create':
+            createPartyInvite();
+            break;
 
-    case 'acceptInvite':
-        acceptInvite();
-        break;
+        case 'createPartyInvite':
+            validateAndSavePartyInvite();
+            break;
 
-    case 'declineInvite':
-        declineInvite();
-        break;
+        case 'inviteeInvites':
+            inviteeInvites();
+            break;
 
-    default:
-        renderIndex();
-        break;
+        case 'acceptInvite':
+            acceptInvite();
+            break;
+
+        case 'declineInvite':
+            declineInvite();
+            break;
+
+        default:
+            renderIndex();
+            break;
+    }
 }
 
 function renderIndex()
