@@ -175,7 +175,7 @@ $dtop2 = mysql_fetch_assoc(mysql_query("SELECT * FROM dtop WHERE nick='$nick'"))
   $misijos2 = mysql_fetch_assoc(mysql_query("SELECT * FROM misijos2 WHERE id='$ID'"));  
   $psk2 = mysql_fetch_assoc(mysql_query("SELECT * FROM pasiekimai2 WHERE id='$ID'"));  
   $psk3 = mysql_fetch_assoc(mysql_query("SELECT * FROM pasiek2 WHERE id='$ID'"));  
-$p4 = mysql_fetch_assoc(mysql_query("SELECT * FROM pasiek2 WHERE name='$nick'"));
+$p4 = mysql_fetch_assoc(mysql_query("SELECT * FROM pasiek2 WHERE name='$name'"));
 $user = mysql_fetch_assoc(mysql_query("SELECT * FROM user WHERE nick='$nick'"));
 $nust = mysql_fetch_assoc(mysql_query("SELECT * FROM nustatymai "));
 $user2 = mysql_fetch_assoc(mysql_query("SELECT * FROM user WHERE iki_algos2='$nick'"));
@@ -360,18 +360,22 @@ function autoReset($level)
 
 function head2(){
 global $nust, $css, $new_pm, $viso_pm, $fusion, $apie_kita, $taskai,$user;
-echo '<!DOCTYPE html>
-<html lang="lt">
-
-<head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+echo'<?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//Lithuania" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta name="verify-paysera" content="3bf388908c8f221ed30d5b458e2a61e1">
 <meta http-equiv="Content-Style-Type" content="text/css"/>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <meta http-equiv="Cache-Control" content="no-cache"/>
 <title>dbzretro.lt - Drakonu Kovos!</title>
 <link rel="shortcut icon" href="img/ico.ico" type="image/x-icon"/>
 <link href="/stiliai/'.$css.'.css" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/all.css"> 
+<link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/sharp-solid.css">
+<link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/sharp-regular.css">
+<link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/sharp-light.css">
+<link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/duotone.css">
+<link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.7.2/css/brands.css">
 </head>
 
 ';
@@ -1526,31 +1530,140 @@ if($apie['trans'] == 7){
 if($user['greitas4'] == '-'){ 
 
 }
-else{
-
-echo'<div class="meniuc"><div class="topbar">';if($user['greitas']== 'Pradžia'){echo' <a href="/pagrindinis.php?id=">Pradžia</a>';} if($user['greitas']== 'Kovu zona'){echo' <a href="/fight.php?id=">Kovų zona</a>';}if($user['greitas2'] == 'Miestas'){ echo' <a href="/miestas.php?id=">Miestas</a>';}if($user['greitas2'] == 'Bosai'){ echo'<a href="/bosai.php?id=">Bosai</a>';}
-if($user['greitas2'] == 'Inventorius'){ echo' <a href="/inv.php?id=">Inventorius</a>';}
-if($user['greitas2'] == 'Apie mane'){ echo' <a href="/pagrindinis.php?id=apie">Apie mane</a>';}
-if($user['greitas2'] == 'Misijos'){ echo' <a href="/misijos.php?id=">Misijos</a>';}
-if($user['greitas3'] == 'Pasiekimai'){ echo' <a href="/pasiekimai.php?id=">Pasiekimai</a>';}if($user['greitas3'] == 'Meniu'){ echo' <a href="/meniu.php?id=">Mano meniu</a>';}
-if($user['greitas3'] == 'Mano skill'){ echo' <a href="/skill.php?id=">Mano skill</a>';}
-if($user['greitas3'] == 'PM dezute'){ echo' <a href="/pm.php?id=">PM dėžutė</a>';}
-if($user['greitas3'] == 'Eurai'){ echo' <a href="/eurai.php?id=">Eurai</a>';}
-    $newMissions = mysql_num_rows(mysql_query("SELECT * FROM user_daily_mission WHERE user_id = $apie[id] AND status='new' AND DATE(created_at) = '$date'"));
-    if ($newMissions) {
-        echo ' <a href="/mission/daily/view/index.php">Misija</a>';
+    else {
+        echo '
+    <style>
+    .menu-bar {
+        display: flex;
+        justify-content: center;
+        gap: 2px;
+        margin: 20px auto;
+        max-width: 600px;
     }
-
-echo'  </div></div>';
-}
+    .menu-bar a {
+        flex: 1;
+        text-align: center;
+        padding: 10px 0;
+        border: 2px solid #aaa;
+        color: #aaa;
+        font-weight: bold;
+        font-size: 14px;
+        background-color: transparent;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transition: all 0.3s ease;
+    }
+    .menu-bar a .icon {
+        font-size: 20px;
+        margin-bottom: 5px;
+    }
+    .menu-bar a:hover {
+        background-color: #333;
+        color: #fff;
+        border-color: #fff;
+    }
+    .menu-bar a.active {
+        background-color: #555;
+        color: #fff;
+        border-color: #fff;
+    }
+    </style>
+    <div class="meniuc">
+    <div class="menu-bar">
+    ';
+    
+    if ($user['greitas'] == 'Pradžia') {
+        echo '<a href="/pagrindinis.php?id=">
+                <div class="icon"><i class="fa-duotone fa-house"></i></div>Pradžia
+              </a>';
+    }
+    if ($user['greitas'] == 'Kovu zona') {
+        echo '<a href="/fight.php?id=">
+                <div class="icon"><i class="fa-duotone fa-swords"></i></div>Kovų zona
+              </a>';
+    }
+    if ($user['greitas2'] == 'Miestas') {
+        echo '<a href="/miestas.php?id=">
+                <div class="icon"><i class="fa-duotone fa-city icon-city"></i></div>Miestas
+              </a>';
+    }
+    if ($user['greitas2'] == 'Bosai') {
+        echo '<a href="/bosai.php?id=">
+                <div class="icon"><i class="fa-duotone fa-skull-crossbones"></i></div>Bosai
+              </a>';
+    }
+    if ($user['greitas2'] == 'Inventorius') {
+        echo '<a href="/inv.php?id=">
+                <div class="icon"><i class="fa-duotone fa-backpack"></i></div>Inventorius
+              </a>';
+    }
+    if ($user['greitas2'] == 'Apie mane') {
+        echo '<a href="/pagrindinis.php?id=apie">
+                <div class="icon"><i class="fa-duotone fa-user"></i></div>Apie mane
+              </a>';
+    }
+    if ($user['greitas2'] == 'Misijos') {
+        echo '<a href="/misijos.php?id=">
+                <div class="icon"><i class="fa-duotonefa-map"></i></div>Misijos
+              </a>';
+    }
+    if ($user['greitas3'] == 'Pasiekimai') {
+        echo '<a href="/pasiekimai.php?id=">
+                <div class="icon"><i class="fa-duotone fa-trophy"></i></div>Pasiekimai
+              </a>';
+    }
+    if ($user['greitas3'] == 'Meniu') {
+        echo '<a href="/meniu.php?id=">
+                <div class="icon"><i class="fa-duotone fa-bars"></i></div>Mano meniu
+              </a>';
+    }
+    if ($user['greitas3'] == 'Mano skill') {
+        echo '<a href="/skill.php?id=">
+                <div class="icon"><i class="fa-duotonefa-dumbbell"></i></div>Mano skill
+              </a>';
+    }
+    if ($user['greitas3'] == 'PM dezute') {
+        echo '<a href="/pm.php?id=">
+                <div class="icon"><i class="fa-duotone fa-envelope"></i></div>PM dėžutė
+              </a>';
+    }
+    if ($user['greitas3'] == 'Eurai') {
+        echo '<a href="/eurai.php?id=">
+                <div class="icon"><i class="fa-duotone fa-coins"></i></div>Eurai
+              </a>';
+    }
+        $newMissions = mysql_num_rows(
+            mysql_query(
+                "SELECT * FROM user_daily_mission WHERE user_id = $apie[id] AND status='new' AND DATE(created_at) = '$date'"
+            )
+        );
+        if ($newMissions) {
+            echo '<a href="/mission/daily/view/index.php"><div class="icon"><i class="fa-duotone fa-scroll-old icon-mission"></i></div>Misija</a>';
+        }
+    
+        echo '</div></div>';
+    }
 
 	echo' '.pm().'';
 }
 
+ 
+ function baneris(){
 
-function baneris()
-{
-    echo '<div class="head"><img src="/img/logo.webp"/></div>';
+echo'
+
+<div class="header">
+  <img
+    src="/img/logo.webp"
+    style="
+      max-width: 150px;
+      max-height: 150px;
+      display: block;
+      margin: 0 auto;
+    "
+  />
+</div>';
 }
  
 $ipx = $_SERVER['REMOTE_ADDR'];
@@ -2908,5 +3021,7 @@ function sendDiscordMessage($message)
     fclose($fp);
     return true;
 }
+
+
 
 ?>

@@ -7,9 +7,6 @@ use LegacyDbz\Players\Repositories\PlayersRepository;
 
 ob_start();
 
-echo "<!DOCTYPE html PUBLIC '-//WAPFORUM//DTD XHTML Mobile 1.0//EN' 'http://www.wapforum.org/DTD/xhtml-mobile10.dtd'>
-<html xmlns='http://www.w3.org/1999/xhtml' xml:lang='lt'>";
-
 include_once 'cfg/sql.php';
 include_once 'cfg/funkcijos.php';
 // wap gay protection
@@ -29,7 +26,20 @@ if ($nust['new_time'] - time() > 0) {
     $q = mysql_query("SELECT * FROM news ORDER BY id DESC LIMIT 1");
 
     while ($row = mysql_fetch_assoc($q)) {
-        echo '<div class="meniuc">Padarytas atnaujinimas: ' . $row[name] . '</div>';
+        echo '<div class="notification-card">
+            <div class="notification-header">
+                <i class="fa-duotone fa-newspaper"></i> Atnaujinimas
+            </div>
+            <div class="notification-body">
+                <div class="notification-icon">
+                    <i class="fa-duotone fa-code-branch icon-info"></i>
+                </div>
+                <div class="notification-content">
+                    <div class="notification-title">Padarytas atnaujinimas:</div>
+                    ' . $row['name'] . '
+                </div>
+            </div>
+        </div>';
 
         unset($row);
     }
@@ -42,31 +52,56 @@ $partyInvitesRepository = new PartyInvitesRepository();
 /** @var PartyInvite|null $firstPendingInvite */
 $firstPendingInvite = $partyInvitesRepository->findByIniteeIdAndStatus($apie['id'], PartyInvite::STATUS_PENDING)->first();
 if ($firstPendingInvite) {
-    echo '<div class="meniuc">';
     $partyRepository = new PartyRepository();
     $party = $partyRepository->findById($firstPendingInvite->partyId());
     $playerRepository = new PlayersRepository();
     $partyLeader = $playerRepository->findById($party->leaderId());
-    echo 'Gavote pakvietimą į party: ' . $party->name() . ', lyderis: ' . $partyLeader->username();
-    echo '<br>';
-    echo '<a href="/Dungeons/view/parties/party_invites.php?id=inviteeInvites">Peržiūrėti</a>';
-    echo '</div>';
+    
+    echo '<div class="notification-card">
+        <div class="notification-header">
+            <i class="fa-duotone fa-users-viewfinder"></i> Party Kvietimas
+        </div>
+        <div class="notification-body">
+            <div class="notification-icon">
+                <i class="fa-duotone fa-user-group icon-team"></i>
+            </div>
+            <div class="notification-content">
+                <div class="notification-title">Gavote pakvietimą į party:</div>
+                ' . $party->name() . ', lyderis: ' . $partyLeader->username() . '
+                <div class="notification-actions">
+                    <a href="/Dungeons/view/parties/party_invites.php?id=inviteeInvites" class="action-button">
+                        <i class="fa-duotone fa-eye"></i> Peržiūrėti
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>';
 }
-
-
-
-echo '<div class="meniuc">';
-echo '<a href="https://discord.gg/rHHyjVJr">Mūsų Discord</a>';
-echo '</div>';
 
 $repository = new \LegacyDbz\WorldBosses\Repositories\WorldBossRepository();
 $service = new \LegacyDbz\WorldBosses\Services\WorldBossService($repository);
 $boss = $service->get();
 if ($boss) {
     $bossConfig = $service->getBossConfig($boss->getBossId());
-    echo '<div class="meniuc">';
-    echo '<a href="worldbosses/view/index.php"><font color="red">World Boss: <b>' . $bossConfig['name'] . '</b></font></a>';
-    echo '</div>';
+    echo '<div class="notification-card boss-alert" style="margin: 0 auto; text-align: center;">
+        <div class="notification-header">
+            <i class="fa-duotone fa-skull-crossbones"></i> World Boss Alert
+        </div>
+        <div class="notification-body" style="display: flex; flex-direction: column; align-items: center;">
+            <div class="notification-icon">
+                <i class="fa-duotone fa-dragon icon-worldboss"></i>
+            </div>
+            <div class="notification-content">
+                <div class="notification-title">World Boss pasirodė!</div>
+                <span class="highlight">' . $bossConfig['name'] . '</span> laukia kovos
+                <div class="notification-actions" style="justify-content: center;">
+                    <a href="worldbosses/view/index.php" class="action-button" style="margin: 0 auto;">
+                        <i class="fa-duotone fa-sword"></i> Pulti bosą
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>';
 } else {
     $worldBossSpawnDate = $service->whenBossWillSpawn();
     $currentDate = new DateTime();
@@ -74,9 +109,24 @@ if ($boss) {
     $timeDifference = $currentDate->diff($endDateObject);
     $remainingTime = $timeDifference->format('%h h %i min %s sec');
 
-    echo '<div class="meniuc">';
-    echo '<font color="red"><b>World boss atvyks po: </b></font>' . $remainingTime;
-    echo '</div>';
+    echo '
+    <div class="notification-card" style="margin: 0 auto; text-align: center;">
+        <div class="notification-header">
+            <i class="fa-duotone fa-timer"></i> World Boss Atvykimas
+        </div>
+        <div class="notification-body" style="display: flex; flex-direction: column; align-items: center;">
+            <div class="notification-icon">
+                <i class="fa-duotone fa-clock icon-timer"></i>
+            </div>
+            <div class="notification-content">
+                <div class="notification-title">World boss greitai pasirodys:</div>
+                <div class="countdown">
+                    <i class="fa-duotone fa-hourglass-half"></i> ' . $remainingTime . '
+                </div>
+            </div>
+        </div>
+    </div>';
+    
 }
 
 $legendaryBossRepository = new \LegacyDbz\LegendaryBosses\Repositories\LegendaryBossRepository();
@@ -84,470 +134,1009 @@ $legendaryBoss = $legendaryBossRepository->findAliveAndStarted();
 if ($legendaryBoss) {
     $legendaryBossService = new \LegacyDbz\LegendaryBosses\Services\LegendaryBossService($legendaryBossRepository);
     $legendaryBossConfig = $legendaryBossService->getBossConfig($legendaryBoss->getBossId());
-    echo '<div class="meniuc">';
-    echo '<a href="LegendaryBosses/view/index.php"><font color="red">Legendary Boss: <b>' . $legendaryBossConfig['name'] . '</b></font></a>';
-    echo '</div>';
+    
+    echo '<div class="notification-card boss-alert" style="margin: 0 auto; text-align: center;">
+        <div class="notification-header">
+            <i class="fa-duotone fa-crown"></i> Legendary Boss Alert
+        </div>
+        <div class="notification-body" style="display: flex; flex-direction: column; align-items: center;">
+            <div class="notification-icon">
+                <i class="fa-duotone fa-dragon icon-legendary"></i>
+            </div>
+            <div class="notification-content">
+                <div class="notification-title">Legendary Boss pasirodė!</div>
+                <span class="highlight">' . $legendaryBossConfig['name'] . '</span> laukia kovos
+                <div class="notification-actions" style="justify-content: center;">
+                    <a href="LegendaryBosses/view/index.php" class="action-button">
+                        <i class="fa-duotone fa-sword"></i> Pulti bosą
+                    </a>
+                 </div>
+        </div>
+    </div>
+</div>';
+    
     echo '<script>
-             let audio = new Audio("LegendaryBosses/assets/sounds/boss_spawned.mp3");
-            audio.play();
-            </script>';
+        let audio = new Audio("LegendaryBosses/assets/sounds/boss_spawned.mp3");
+        audio.play();
+    </script>';
 }
-
 
 $newMissions = mysql_num_rows(mysql_query("SELECT * FROM user_daily_mission WHERE user_id = $apie[id] AND status='new' AND DATE(created_at) = '$date'"));
 if (!$newMissions) {
-
-    echo '<div class="meniuc">';
-    echo $dailypp . ' <a href="mission/daily/view/index.php?id=getMission"><font color="red"><b>Gauti dienos misiją</b></font></a>';
-    echo '</div>';
+    echo '<div class="notification-card" style="text-align: center;">
+        <div class="notification-header">
+            <i class="fa-duotone fa-scroll-old"></i> Dienos Misija
+        </div>
+        <div class="notification-body" style="display: flex; flex-direction: column; align-items: center;">
+            <div class="notification-icon">
+                <i class="fa-duotone fa-scroll icon-mission"></i>
+            </div>
+            <div class="notification-content">
+                <div class="notification-title">Nauja dienos misija laukia tavęs!</div>
+                Įvykdyk misiją ir gauk apdovanojimą
+                <div class="notification-actions">
+                    <a href="mission/daily/view/index.php?id=getMission" class="action-button" style="margin: 0 auto;">
+                        <i class="fa-duotone fa-pen-to-square"></i> Gauti misiją
+                    </a>
+                </div>
+        </div>
+    </div>
+</div>    </div>
+        </div>
+    </div>
+</div>';
 }
 
 $chests = mysql_num_rows(mysql_query("SELECT * FROM player_chest_drops WHERE player_id = '$apie[id]' AND opened_at IS NULL AND expires_at > NOW()"));
 if ($chests) {
-
-    echo '<div class="meniuc">';
-    echo $chest . ' <a href="pagrindinis.php?id=chests"><font color="red"><b>Turite neatidarytų skrynių</b></font></a>';
-    echo '</div>';
+    echo '<div class="notification-card" style="text-align: center;">
+        <div class="notification-header">
+            <i class="fa-duotone fa-treasure-chest"></i> Neatidaryta Skrynia
+        </div>
+        <div class="notification-body" style="display: flex; flex-direction: column; align-items: center;">
+            <div class="notification-icon">
+                <i class="fa-duotone fa-chest icon-chest"></i>
+            </div>
+            <div class="notification-content">
+                <div class="notification-title">Turite neatidarytų skrynių!</div>
+                Atidaryk skrynią ir atrask lobį viduje
+                <div class="notification-actions">
+                    <a href="pagrindinis.php?id=chests" class="action-button" style="margin: 0 auto;">
+                        <i class="fa-duotone fa-key"></i> Atidaryti skrynias
+                    </a>
+                </div>
+            </div>
+        </br>
+    </div>';
 }
 
+if (mysql_num_rows(mysql_query("SELECT * FROM kvietimai_i_komanda WHERE nick2='$nick'")) > 0) {
+    $team_pakv = mysql_fetch_assoc(mysql_query("SELECT * FROM kvietimai_i_komanda WHERE nick2='$nick'"));
+    
+    echo '<div class="notification-card" style="text-align: center;">
+        <div class="notification-header">
+            <i class="fa-duotone fa-users"></i> Komandos Kvietimas
+        </div>
+        <div class="notification-body" style="display: flex; flex-direction: column; align-items: center;">
+            <div class="notification-icon" style="margin: 0 auto;">
+                <i class="fa-duotone fa-people-group icon-team"></i>
+            </div>
+            <div class="notification-content"  style="text-align: center;">
+                <div class="notification-title">Esi kviečiamas į komandą!</div>
+                Komanda: <span class="highlight">' . $team_pakv['team'] . '</span>
+                <div class="notification-actions" style="justify-content: center;">
+                    <a href="komanda.php?id=priimti&ka=' . $team_pakv['team'] . '" class="action-button accept">
+                        <i class="fa-duotone fa-check"></i> Priimti
+                    </a>
+                    <a href="komanda.php?id=atmesti&ka=' . $team_pakv['team'] . '" class="action-button reject">
+                        <i class="fa-duotone fa-xmark"></i> Atmesti
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>';
+}
 
-if (mysql_num_rows(mysql_query("SELECT * FROM kvietimai_i_komanda WHERE nick2='$nick'")) == true) {
-    echo "<div class='meniuc'><font color='red'>Dėmesio! Tu kviečiamas į " . $team_pakv['team'] . " komandą!</font><br>
-	<a href='komanda.php?id=atmesti&ka=" . $team_pakv['team'] . "'>Atmesti</a> <a href='komanda.php?id=priimti&ka=" . $team_pakv['team'] . "'>Priimti</a>
-	</div>";
-}
-if ($nust[moddalybos] != '+') {
-    $sajanas = mysql_fetch_assoc(mysql_query("SELECT * FROM legendinis_sajanas"));
-    if ($sajanas[prisikels] - time() > 0) {
-        $timestamp = $sajanas[prisikels];
-        $dt = new DateTime("@$timestamp");
-        $timezone = new DateTimeZone('Europe/Vilnius');
-        $dt->setTimezone($timezone);
-        echo '<div class="meniuc">';
-        echo 'Cumber prisikels: ';
-        echo $dt->format('m-d H:i');
-        echo '</div>';
-    } else {
-        echo '<div class="meniuc">';
-        echo '<a href="cumber.php"><font color="red"><b>Cumber atvyko į žemę, skubėk nukauti!!!</b></font></a>';
-        echo '</div>';
-    }
-}
 $voteCount = mysql_result(mysql_query("SELECT COUNT(*) FROM bals"), 0);
 if ($voteCount && mysql_num_rows(mysql_query("SELECT * FROM b_rez WHERE nick ='$nick' && bals_id ='1'")) == 0) {
-    echo '<div class="meniuc">';
-    echo '<a href="balsavimai.php"><b>Naujas balsavimas kuriame nebalsavai!</b></a>';
-    echo '</div>';
-}
-if (empty($apie['vardas'])) {
-    $error = '<a href="?id=keistiinf">Nusistatyk anketa</a>';
-}
-if (empty($apie['k_dovana'])) {
-
-    $error = '<a href="?id=dovana"><b>Pasiimti naujoko dovaną</b></a>';
-
-}
-if (empty($apie['litis'])) {
-    $error = '<a href="?id=litis">Nusistatyk lyti</a>';
-}
-
-if (empty($apie['email'])) {
-    $error = '<a href="meniu.php?id=email">Nusistatyk email slaptažodžio priminimui</a>';
-}
-if ($apie[daily] != '+') {
-    $error = '<a href="?id=daily">Pasiimk dienos prizą</a>';
-
-}
-
-if (isset($error)) {
-
-    echo '<div class="meniuc">' . $error . '</div>';
+    echo '<div class="notification-card" style="text-align: center;">
+        <div class="notification-header">
+            <i class="fa-duotone fa-ballot-check"></i> Balsavimas
+        </div>
+        <div class="notification-body" style="display: flex; flex-direction: column; align-items: center;">
+            <div class="notification-icon" style="margin: 0 auto;">
+                <i class="fa-duotone fa-vote-yea icon-vote"></i>
+            </div>
+            <div class="notification-content">
+                <div class="notification-title">Naujas balsavimas!</div>
+                Tavo balsas svarbus bendruomenei
+                <div class="notification-actions" style="justify-content: center;">
+                    <a href="balsavimai.php" class="action-button" style="margin: 0 auto;">
+                        <i class="fa-duotone fa-ballot"></i> Balsuoti
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>';
 }
 
 $pakvietimai = mysql_fetch_assoc(mysql_query("SELECT * FROM pakvietimai WHERE nick='$nick'"));
 if ($pakvietimai > 0 ? $pakvietimai : 0) {
-    echo '<div class="meniuc">' . statusas($pakvietimai[kviecia]) . ' Kviečia i draugus !<br/>
-    <a href="pagrindinis.php?id=priimti&ID=' . $pakvietimai['kviecia'] . '">Priimti</a> | <a href="pagrindinis.php?id=atmesti&ID=' . $pakvietimai['kviecia'] . '">Atmesti</a> 
-  
-  
-  
-  </div>';
-
+    echo '<div class="notification-card" style="text-align: center;">
+        <div class="notification-header">
+            <i class="fa-duotone fa-user-plus"></i> Draugystės Kvietimas
+        </div>
+        <div class="notification-body" style="display: flex; flex-direction: column; align-items: center;">
+            <div class="notification-icon" style="margin: 0 auto;">
+                <i class="fa-duotone fa-handshake icon-friend"></i>
+            </div>
+            <div class="notification-content" style="text-align: center;">
+                <div class="notification-title">' . statusas($pakvietimai['kviecia']) . ' kviečia į draugus!</div>
+                <div class="notification-actions" style="justify-content: center; display:flex;">
+                    <a href="pagrindinis.php?id=priimti&ID=' . $pakvietimai['kviecia'] . '" class="action-button accept" style="margin: 0 auto;">
+                        <i class="fa-duotone fa-check"></i> Priimti
+                    </a>
+                    <a href="pagrindinis.php?id=atmesti&ID=' . $pakvietimai['kviecia'] . '" class="action-button reject" style="margin: 0 auto;">
+                        <i class="fa-duotone fa-xmark"></i> Atmesti
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>';
 }
-/// team pakvietims ++
+
+// Team leader notifications
 $mano_team = mysql_fetch_assoc(mysql_query("SELECT * FROM team WHERE vadas='$nick'"));
 $kvietimas_i_komanda = mysql_fetch_assoc(mysql_query("SELECT * FROM prasosi_i_komanda WHERE komanda='$mano_team[pavadinimas]'"));
 if ($kvietimas_i_komanda > 0) {
-    echo '<div class="meniuc">' . statusas($kvietimas_i_komanda[nick]) . ' Nori i jūsų komanda<br/>
-   
-  	<a href="komanda.php?id=atmesti_kv&co=' . $kvietimas_i_komanda['nick'] . '"><font color="red">Atmesti</font></a> <a href="komanda.php?id=priimti_kv&co=' . $kvietimas_i_komanda[nick] . '"><font color="blue">Priimti</font></a>
-  
-  
-  </div>';
-
+    echo '<div class="notification-card" style="text-align: center;">
+        <div class="notification-header">
+            <i class="fa-duotone fa-users-medical"></i> Prašymas į Komandą
+        </div>
+        <div class="notification-body" style="display: flex; flex-direction: column; align-items: center;">
+            <div class="notification-icon" style="margin: 0 auto;">
+                <i class="fa-duotone fa-user-plus icon-team"></i>
+            </div>
+            <div class="notification-content" style="text-align: center;">
+                <div class="notification-title">' . statusas($kvietimas_i_komanda['nick']) . ' nori į jūsų komandą</div>
+                <div class="notification-actions" style="justify-content: center;  display:flex;">
+                    <a href="komanda.php?id=priimti_kv&co=' . $kvietimas_i_komanda['nick'] . '" class="action-button accept" style="margin: 0 auto;">
+                        <i class="fa-duotone fa-check"></i> Priimti
+                    </a>
+                    <a href="komanda.php?id=atmesti_kv&co=' . $kvietimas_i_komanda['nick'] . '" class="action-button reject" style="margin: 0 auto;">
+                        <i class="fa-duotone fa-xmark"></i> Atmesti
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>';
 }
+
+// Friend status change requests
 if (mysql_num_rows(mysql_query("SELECT * FROM statusai WHERE kam='$nick'")) == true) {
     $st = mysql_fetch_assoc(mysql_query("SELECT * FROM statusai WHERE kam='$nick'"));
-
-    echo '<div class="meniuc">' . statusas($st[nick]) . ' Nori pakeisti draugystės statusas į ' . $st['stats'] . '<br/>
-	  
-	  <a href="?id=stt_n&ka=' . $st[nick] . '&ID=' . $st[id] . '"><font color="red">Nesutinku</font></a> <a href="?id=stt_p&ka=' . $st[nick] . '&ID=' . $st[id] . '"><font color="blue">Sutinku</font></a>
-	  <br/>
-	
-</div>	';
-
+    
+    echo '<div class="notification-card">
+        <div class="notification-header">
+            <i class="fa-duotone fa-tag"></i> Draugystės Statusas
+        </div>
+        <div class="notification-body" style="flex-direction: column; align-items: center; text-align: center;">
+            <div class="notification-icon" style="margin-bottom: 10px;">
+                <i class="fa-duotone fa-tags icon-friend"></i>
+            </div>
+            <div class="notification-content">
+                <div class="notification-title">' . statusas($st['nick']) . ' nori pakeisti draugystės statusą</div>
+                Naujas statusas: <span class="highlight">' . $st['stats'] . '</span>
+                <div class="notification-actions" style="justify-content: center; margin-top: 10px;">
+                    <a href="?id=stt_p&ka=' . $st['nick'] . '&ID=' . $st['id'] . '" class="action-button accept">
+                        <i class="fa-duotone fa-check"></i> Sutinku
+                    </a>
+                    <a href="?id=stt_n&ka=' . $st['nick'] . '&ID=' . $st['id'] . '" class="action-button reject">
+                        <i class="fa-duotone fa-xmark"></i> Nesutinku
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>';
 }
 
+// Moderator notifications
 $stt = array("Admin", "Mod4", "Mod3", "Mod2", "Mod");
-if (in_array($apie[statusas], $stt) && mysql_num_rows(mysql_query("SELECT * FROM foto WHERE ar_patvirtinta='ne'")) > 0) {
-
-    echo '<div class="meniuc"> <a href="meniu.php?id=mod&ka=ft_tikrinimas">Nauja nepatvirtinta nuotrauka</a></div>';
-
+if (in_array($apie['statusas'], $stt) && mysql_num_rows(mysql_query("SELECT * FROM foto WHERE ar_patvirtinta='ne'")) > 0) {
+    echo '<div class="notification-card">
+        <div class="notification-header">
+            <i class="fa-duotone fa-user-shield"></i> Moderatoriaus Pranešimas
+        </div>
+        <div class="notification-body" style="flex-direction: column; align-items: center; text-align: center;">
+            <div class="notification-icon" style="margin-bottom: 10px;">
+                <i class="fa-duotone fa-camera icon-info"></i>
+            </div>
+            <div class="notification-content">
+                <div class="notification-title">Nauja nepatvirtinta nuotrauka</div>
+                <div class="notification-actions" style="justify-content: center; margin-top: 10px;">
+                    <a href="meniu.php?id=mod&ka=ft_tikrinimas" class="action-button">
+                        <i class="fa-duotone fa-eye"></i> Peržiūrėti
+                    </a>
+</div> </div>
+        </div>';
 }
 
-if ($user[kovu_trn] != '+' && $nst[trn_busena] == 0 && $user[rodyti_turnyra] == 1) {
-
-    echo '<div class="meniuc"><b><font color="red">!!!</font> Registracija į turnyrą prasidėjo <font color="red">!!!</font><br/> >>> <a href="trn.php?id=reg">Registruotis</a> <<< </b></div>';
-}
-$sajanas = mysql_fetch_assoc(mysql_query("SELECT * FROM legendinis_sajanas"));
-if ($sajanas[prisikels] - time < 0) {
-    echo '<div class="meniuc"><b><a href="legendinis_sajanas.php"><font color="red">Legendinis sajanas prisikėlė</font></a></div>';
+// Tournament registration
+if ($user['kovu_trn'] != '+' && $nst['trn_busena'] == 0 && $user['rodyti_turnyra'] == 1) {
+    echo '<div class="notification-card boss-alert">
+        <div class="notification-header">
+            <i class="fa-duotone fa-trophy-star"></i> Turnyro Pranešimas
+        </div>
+        <div class="notification-body" style="flex-direction: column; align-items: center; text-align: center;">
+            <div class="notification-icon" style="margin-bottom: 10px;">
+                <i class="fa-duotone fa-trophy icon-legendary"></i>
+            </div>
+            <div class="notification-content">
+                <div class="notification-title">Registracija į turnyrą prasidėjo!</div>
+                Užsiregistruok ir įrodyk, kad esi stipriausias
+                <div class="notification-actions" style="justify-content: center; margin-top: 10px;">
+                    <a href="trn.php?id=reg" class="action-button">
+                        <i class="fa-duotone fa-pen-to-square"></i> Registruotis
+                    </a>
+</div> </div>
+        </div>';
 }
 
 
 if ($id == "") {
     online('Pagrindiniame puslapyje');
 
-
+    // Tournament section with better design
     if ($nst['trn_busena'] == 0 and mysql_num_rows(mysql_query("SELECT * FROM user WHERE kovu_trn='+'")) < 8) {
-        echo '
-				  <div class="meniuc"><b>Iki turnyro pradžios trūksta <font color="red">' . (8 - mysql_num_rows(mysql_query("SELECT * FROM user WHERE kovu_trn='+'"))) . '</font> dalyvių</b><br>
-<a href="trn.php?id=reg"><font color="red"><b>Registruotis į turnyrą</b></font></a>
-</div>
-				  ';
+        echo '<div class="tournament-card">
+            <div class="tournament-header">
+                <i class="fa-duotone fa-trophy-star"></i>
+                <span>Kovų turnyras</span>
+            </div>
+            <div class="tournament-body">
+                <div class="tournament-status">
+                    <i class="fa-duotone fa-users"></i>
+                    <div class="status-text">
+                        <span>Iki turnyro pradžios trūksta</span>
+                        <div class="missing-count">' . (8 - mysql_num_rows(mysql_query("SELECT * FROM user WHERE kovu_trn='+'"))) . ' dalyvių</div>
+                    </div>
+                </div>
+                <a href="trn.php?id=reg" class="tournament-button">
+                    <i class="fa-duotone fa-pen-to-square"></i> Registruotis į turnyrą
+                </a>
+              </div>
+            </div>
+        </div>
+    </div>';
     } elseif ($nst['trn_busena'] == 1) {
-        echo '
-				  <div class="meniuc"><b>Turnyras prasidės už <font color="red">' . laikas($nst['trn_time'] - time(), 1) . '</font></b></div>
-				  ';
+        echo '<div class="tournament-card">
+            <div class="tournament-header">
+                <i class="fa-duotone fa-trophy-star"></i>
+                <span>Kovų turnyras</span>
+            </div>
+            <div class="tournament-body">
+                <div class="tournament-countdown">
+                    <i class="fa-duotone fa-clock"></i>
+                    <div class="countdown-text">
+                        <span>Turnyras prasidės už</span>
+                        <div class="time-remaining">' . laikas($nst['trn_time'] - time(), 1) . '</div>
+                       </div>
+            </div>
+        </div>
+    </div>';
     } elseif ($nst['trn_busena'] == 2) {
-        echo '
-				  <div class="meniuc"><b>Iki pirmojo turnyro etapo pabaigos liko <font color="red">' . laikas($nst['trn_time'] - time(), 1) . '</font></b></div>
-				  ';
+        echo '<div class="tournament-card">
+            <div class="tournament-header">
+                <i class="fa-duotone fa-trophy-star"></i>
+                <span>Kovų turnyras</span>
+            </div>
+            <div class="tournament-body">
+                <div class="tournament-countdown">
+                    <i class="fa-duotone fa-stopwatch"></i>
+                    <div class="countdown-text">
+                        <span>Iki pirmojo etapo pabaigos liko</span>
+                        <div class="time-remaining">' . laikas($nst['trn_time'] - time(), 1) . '</div>
+                       </div>
+            </div>
+        </div>
+    </div>';
     } elseif ($nst['trn_busena'] == 3) {
-        echo '
-				  <div class="meniuc"><b>Iki ketvirtfinalio turnyro pabaigos liko <font color="red">' . laikas($nst['trn_time'] - time(), 1) . '</font></b></div>
-				  ';
+        echo '<div class="tournament-card">
+            <div class="tournament-header">
+                <i class="fa-duotone fa-trophy-star"></i>
+                <span>Kovų turnyras</span>
+            </div>
+            <div class="tournament-body">
+                <div class="tournament-countdown">
+                    <i class="fa-duotone fa-stopwatch"></i>
+                    <div class="countdown-text">
+                        <span>Iki ketvirtfinalio pabaigos liko</span>
+                        <div class="time-remaining">' . laikas($nst['trn_time'] - time(), 1) . '</div>
+                        </div>
+            </div>
+        </div>
+    </div>';
     } elseif ($nst['trn_busena'] == 4) {
-        echo '
-				  <div class="meniuc"><b>Iki pusfinalio turnyro pabaigos liko <font color="red">' . laikas($nst['trn_time'] - time(), 1) . '</font></b></div>
-				  ';
+        echo '<div class="tournament-card">
+            <div class="tournament-header">
+                <i class="fa-duotone fa-trophy-star"></i>
+                <span>Kovų turnyras</span>
+            </div>
+            <div class="tournament-body">
+                <div class="tournament-countdown">
+                    <i class="fa-duotone fa-stopwatch"></i>
+                    <div class="countdown-text">
+                        <span>Iki pusfinalio pabaigos liko</span>
+                        <div class="time-remaining">' . laikas($nst['trn_time'] - time(), 1) . '</div>
+                     </div>
+            </div>
+        </div>
+    </div>
+            ';
     } elseif ($nst['trn_busena'] == 5) {
-        echo '
-				  <div class="meniuc"><b>Iki finalo turnyro pabaigos liko <font color="red">' . laikas($nst['trn_time'] - time(), 1) . '</font></b></div>
-				  ';
+        echo '<div class="tournament-card">
+            <div class="tournament-header">
+                <i class="fa-duotone fa-trophy-star"></i>
+                <span>Kovų turnyras</span>
+            </div>
+            <div class="tournament-body">
+                <div class="tournament-countdown final">
+                    <i class="fa-duotone fa-stopwatch"></i>
+                    <div class="countdown-text">
+                        <span>Iki finalo pabaigos liko</span>
+                        <div class="time-remaining">' . laikas($nst['trn_time'] - time(), 1) . '</div>
+                        </div>
+            </div>
+        </div>
+    </div>';
     }
+    
     if ($user['kovu_trn'] == '+') {
-        echo '
-		    <div class="meniuc"> Tu dalyvauji <b>Kovų turnyre!<br>Esi laimėjęs kovų: <b>' . $user['kiek_trn'] . ' kovų</b></div>
-		    ';
+        echo '<div class="tournament-participation">
+            <div class="participation-icon">
+                <i class="fa-duotone fa-user-crown"></i>
+            </div>
+            <div class="participation-info">
+                <div class="participation-title">Tu dalyvauji kovų turnyre!</div>
+                <div class="participation-stats">
+                    <i class="fa-duotone fa-sword"></i> Laimėta kovų: 
+                    <span class="win-count">' . $user['kiek_trn'] . '</span>
+                </div>
+            </div>
+        </div>
+    </div>';
     }
 
-//echo' <div class="meniuc"><img src="img/imgg/botasm2.png" /></div>';
+    // Admin and mod messages with improved design
+    echo '<div class="message-card admin">
+        <div class="message-header">
+            <i class="fa-duotone fa-crown"></i>
+            <span>ADMIN pranešimas</span>
+        </div>
+        <div class="message-body" style="text-align:center; display:flex; flex-direction:column; align-items:center;">
+            <div class="message-content">' . smile($nust['admin_topic']) . '</div>
+            <div class="message-meta" style="justify-content:center;">
+                <div class="message-time">
+                    <i class="fa-duotone fa-clock"></i> ' . laikas($nust['admin_time']) . '
+                </div>
+                <div class="message-author">
+                    <i class="fa-duotone fa-user"></i> 
+                    <a href="?id=apie&ka=' . $nust['admin_kas'] . '">' . statusas($nust['admin_kas']) . '</a>
+                </div>
+            </div>
+        </div>
+    </div>';
 
+    echo '<div class="message-card mod">
+        <div class="message-header">
+            <i class="fa-duotone fa-shield"></i>
+            <span>MOD pranešimas</span>
+        </div>
+        <div class="message-body" style="text-align:center; display:flex; flex-direction:column; align-items:center;">
+            <div class="message-content">' . smile($nust['mod_topic']) . '</div>
+            <div class="message-meta" style="justify-content:center;">
+                <div class="message-time">
+                    <i class="fa-duotone fa-clock"></i> ' . laikas($nust['mod_time']) . '
+                </div>
+                <div class="message-author">
+                    <i class="fa-duotone fa-user"></i> 
+                    <a href="?id=apie&ka=' . $nust['mod_kas'] . '">' . statusas($nust['mod_kas']) . '</a>
+                </div>
+            </div>
+        </div>
+    </div>';
 
-    echo '<div class="up">ADMIN pranešimas</div><div class="meniuc"><b></b><font color="RED">' . smile($nust['admin_topic']) . '</font><small><b>(' . laikas($nust['admin_time']) . '</b>)</small><br/>  (<b><a href="?id=apie&ka=' . $nust['admin_kas'] . '">' . statusas($nust['admin_kas']) . '</b>)</a><br/></div>';
+    // Topic section with improved design
+    echo '<div class="topics-container">
+        <div class="topics-header">
+            <i class="fa-duotone fa-comment-dots"></i>
+            <span>Tema</span>
+        </div>';
 
-    echo '<div class="up">MOD pranešimas</div><div class="meniuc"><b></b><font color="green"><b>' . smile($nust['mod_topic']) . '</b></font> <small><b>(' . laikas($nust['mod_time']) . '</b>)</small><br/>  (<b><a href="?id=apie&ka=' . $nust['mod_kas'] . '">' . statusas($nust['mod_kas']) . '</b>)</a><br/></div>';
-
-
-    echo '<div class="up">Topic</div>';
     if ($nust['topic'] == "-") {
-
-        echo '<div class="meniuc"><b>Topic rašymas išjungtas!</br></div>';
-
+        echo '<div class="topics-disabled">
+            <i class="fa-duotone fa-comment-slash"></i>
+            <span>Topic rašymas išjungtas!</span>
+        </div>';
     } else {
+        echo '<div class="topics-list" style="text-align:center;">';
         $q = mysql_query("SELECT * FROM topic ORDER BY id DESC LIMIT 3");
-
         while ($rr = mysql_fetch_assoc($q)) {
             $nr++;
+            $goott = '';
             if ($apie[statusas] == 'Admin' or $apie[statusas] == 'Mod' or $apie[statusas] == 'Mod2' or $apie[statusas] == 'Mod3' or $apie[statusas] == 'Mod4') {
-                $goott = '<a href="?id=exit&ka=' . $rr['id'] . '"><small>[x]</small></a>';
+                $goott = '<a href="?id=exit&ka=' . $rr['id'] . '" class="delete-topic"><i class="fa-duotone fa-trash-can"></i></a>';
             }
-
-            $dateFormat = 'm-d H:i';
-            $topicDate = date($dateFormat, $rr['time']);
-            echo ' <div class="meniuc">  ' . smile($rr['message']) . '(<a href="?id=apie&ka=' . $rr['kas'] . '">' . statusas($rr['kas']) . '</a>) <small>(' . $topicDate . ')' . $goott . '</small>';
-            if ($rr['nick'] != $nick && $rr['nick'] != 'SISTEMA') echo ' <a href="?id=&ka=' . $rr['nick'] . '#"></a><br />'; else echo '<br /><left>';
-            echo '</div>';
+            $topicDate = date('m-d H:i', $rr['time']);
+            echo '<div class="topic-item" style="text-align:center;">
+                <div class="topic-content">' . smile($rr['message']) . '</div>
+                <div class="topic-meta" style="justify-content:center;">
+                    <div class="topic-author">
+                        <i class="fa-duotone fa-user"></i>
+                        <a href="?id=apie&ka=' . $rr['kas'] . '">' . statusas($rr['kas']) . '</a>
+                    </div>
+                    <div class="topic-time">
+                        <i class="fa-duotone fa-clock"></i> ' . $topicDate . '
+                    </div>
+                    ' . $goott . '
+                </div>
+            </div>';
         }
         unset($nr);
-
-        echo '<div class="meniuc">	<a href="pagrindinis.php?id=keisti">Keisti</a></font></a> <a href="pagrindinis.php?id=history"> Istorija</a><br/>  </div>';
+        echo '</div>
+        <div class="topics-actions" style="justify-content:center;">
+            <a href="pagrindinis.php?id=keisti" class="action-button">
+                <i class="fa-duotone fa-pen-to-square"></i> Keisti
+            </a>
+            <a href="pagrindinis.php?id=history" class="action-button">
+                <i class="fa-duotone fa-history"></i> Istorija
+            </a>
+        </div>';
     }
+    echo '</div>';
 
+    // News section with improved design
     $newsCount = mysql_result(mysql_query("SELECT COUNT(*) FROM news"), 0);
     if ($newsCount) {
-        echo '	 <div class="up">Naujienos</div>';
-        echo '<div class="titlec">
- <a href="?id=news">[Atnaujinimai]</a> [' . laikas($new['data']) . '] [' . kiek('news') . '+<font color="red"><b>' . $nust['sndnew'] . '</b></font>]</div>';
+        echo '<div class="news-container">
+            <div class="news-header">
+                <i class="fa-duotone fa-newspaper"></i>
+                <span>Naujienos</span>
+            </div>
+            <div class="news-body" style="justify-content:center; text-align:center;">
+                <a href="?id=news" class="news-link">
+                    <i class="fa-duotone fa-sparkles"></i>
+                    <span>Atnaujinimai</span>
+                </a>
+                <div class="news-meta" style="justify-content:center;">
+                    <div class="news-time">
+                        <i class="fa-duotone fa-clock"></i> ' . laikas($new['data']) . '
+                    </div>
+                    <div class="news-count">
+                        <i class="fa-duotone fa-newspaper"></i> ' . kiek('news') . '+<span class="highlight">' . $nust['sndnew'] . '</span>
+                    </div>
+                </div>
+            </div>
+        </div>';
     }
-    echo '<div class="up">Valiutos</div>';
-    echo '<div class="meniuc">
- <a href="valiutos.php?id=">Jūsų turimos valiutos</a> <b> | </b>
- <a href="valiutos.php?id=pasl">Jūsų įsigytos paslaugos</a>
- 
- 
 
+    // Currency section with improved design
+echo '
+<div class="currency-container">
+<div class="currency-header">
+    <i class="fa-duotone fa-coins"></i>
+    <span>Valiutos</span>
 </div>
- 
-';
-
-    if ($apie['bts'] - time() > 0) {
-        echo ' <div class="meniuc">	
-<a href="bitcoin.php?id=">BitCoin </a></b></font>[<b>' . sk($apie['bitcoin']) . ' <img src="img/bicons/bitcoin.png" /></b>]</div>';
-    }
-
-    if ($apie['pliusaib'] - time() > 0) {
-        echo ' <div class="meniuc">	
-<a href="pliusai.php?id=">Pliusai</a></b></font>[<b>' . sk($apie['pliusai']) . ' <img src="img/bicons/pliusai.png" /></b>]</div>';
-    }
-    echo ' <div class="meniuc">	
-<a href="botas.php?id=">Vegita Cash</a></b></font>[<b>' . sk($apie['botas']) . ' <img src="img/bicons/cash.png" /></b>]</div>';
-
-    echo '<div class="up">Dienos varžybos</div>
-
-<div class="meniu">
-
- <img src="img/trophy.png" /> <a href="?id=dtop">Veiksmų TOP iš <b><font color ="green">' . sk($nust['dtop_priz']) . '</b></font>  <img src="img/bicons/vipt.png" />  </a><br/>
-';
-
-    echo '<img src="img/trophy.png" /> ';
-    echo " <a href='s_top.php'>Savaitės veiksmų TOP iš <b><font color ='red'>" . sk($nust['savdtop_priz']) . "</b></font>  <img src='img/bicons/euro.png' /> ir <b><font color ='red'>" . sk($nust['savdtop_priz2']) . "</b></font>" . $vipt . "</a><br>";
-
-
-    echo '<img src="img/trophy.png" /> 
-<a href="bendravimo.php">Bendravimo TOP  iš <b><font color ="red">' . sk($nust['bendravimo_priz']) . '</b></font>' . $eurui . ' ir <font color ="red"><b>' . sk($nust['bendravimo_priz2']) . '</b></font>' . $vipt . '</a><br>';
-    echo '<img src="img/trophy.png" /> <a href="kasimotop.php">Kasimo TOP  iš <b><font color ="red">' . sk($nust['kasimo_priz']) . '</b></font><b> Kasimo LVL</b></a><br>';
-    echo '<img src="img/trophy.png" /> <a href="playerDailyMissionTop.php">Legendinių misijų TOP iš <b><font color ="red">' . sk($nust['daily_mission_reward']) . '</b></font><b> ' . $botas . '</b></a>';
-    echo '<br><img src="img/trophy.png" /> <a href="pintop.php?id=">Surinktų pinigų TOP</a><br>';
-    echo '</div>
-';
-
-    if ($nust[diena] == 1) {
-        $day = Pinigų;
-        $n1 = ' gausite 10 % daugiau <img src="img/bicons/pinigai.png" />  ';
-    } elseif ($nust[diena] == 2) {
-        $day = Exp;
-        $n1 = 'gausite 15 % daugiau <img src="img/bicons/exp.png" />     ';
-    } elseif ($nust[diena] == 3) {
-        $day = Daigtų;
-        $n1 = 'gausite 10 % didesni šansą rasti daigtus';
-    } elseif ($nust[diena] == 4) {
-        $day = Paprasta;
-        $n1 = 'negausite nieko';
-    } elseif ($nust[diena] == 5) {
-        $day = Euru;
-        $n1 = 'Gausite iš kovų po 0.2 euro!';
-    } elseif ($nust[diena] == 6) {
-        $day = Kreditu;
-        $n1 = 'Gausite iš kovų po 2 kredus!';
-    } elseif ($nust[diena] == 7) {
-        $day = Auksiniu;
-        $n1 = 'Gausite iš kovų po 2 auksinius!';
-    }
-
-    top('Žaidimo dienos');
-
-    echo '<div class="meniu">
-Šiandien yra <b>' . $day . '</b> diena !<br/>
-Per šia dieną jūs <b>' . $n1 . '</b></div>';
-
-    /*echo'
-<div class="up">
-<b>Trumpa informacija:</b>
-
-</div><div class="meniuc">Išbuvote prisijunges  '.ar_on($onn['nick'], 1).' <br/> <b>5</b> kreditus gausite po '.laikas($onn[gausite]-time(),1).'</span></div>
-
-';
-  * /*/
-    echo '
-  
-<div class="up">
-<b>Trumpai apie save:</b>
+<div class="currency-body" style="flex-direction: column; align-items: center;">
+    <a href="valiutos.php?id=" class="currency-link" style="justify-content: center;">
+        <i class="fa-duotone fa-sack-dollar"></i>
+        <span>Jūsų turimos valiutos</span>
+    </a>
+    <div class="currency-divider" style="width: 80%; height: 1px; margin: 10px 0;"></div>
+    <a href="valiutos.php?id=pasl" class="currency-link" style="justify-content: center;">
+        <i class="fa-duotone fa-credit-card"></i>
+        <span>Jūsų įsigytos paslaugos</span>
+    </a>
 </div>
-';
-    echo '
-
-	<div class="meniuc" >
-		<table>
-
-		<center>
-	
-		<td>
-
-<a href="pagrindinis.php?id=apie&ka=' . $nick . '"><img src="img/veikejai/' . $apie['veikejas'] . '-' . $apie[trans] . '.png" alt="IMG" ></a>
-
-
- 
-	</td><td><small>
-Jūsų lygis - <b>' . skaicius($apie['lygis']) . '</b><br>
-Jūsų saskaitoje -  <b> <a href="eurai.php?id=">   ' . skaicius($apie['sms_litai'], 2) . ' </b><img src="img/bicons/euro.png"/> </a> <br>
-Turimi kreditai - <b><a href="kreditai.php?id=">    ' . skaicius($apie['kred']) . ' </b><img src="img/bicons/credit.png"/> </a> <br>
-  Turimi auksiniai - <b><a href="auksiniai.php?id=">    ' . skaicius($apie['auksiniai']) . ' </b><img src="img/bicons/auxo.png"/> </a> <br>
-Turimi pinigai - <b>   ' . skaicius($apie['litai']) . ' </b><img src="img/bicons/pinigai.png" /> <br>
-Turite EXP - <b> ' . skaicius($apie['exp']) . ' </b><img src="img/bicons/exp.png"/> <br />
-Trūksta EXP - <b>' . skaicius($apie['expl'] * 4.95 - $apie['exp']) . ' </b><img src="img/bicons/exp.png"/></small> <br />
-			<td>
-		</center>
-		</table>
-
-	
-	
-	
 </div>';
 
 
-    echo '
-  
-<div class="up">
-<b>Jūsų informacija:</b>
-</div>
-';
+    // Resource section with improved design
+    if ($apie['bts'] - time() > 0) {
+        echo '<div class="resource-card bitcoin" style="justify-content:center; text-align:center;">
+            <div class="resource-icon"><i class="fa-duotone fa-bitcoin-sign"></i></div>
+            <div class="resource-content">
+                <a href="bitcoin.php?id=">BitCoin</a>
+                <div class="resource-count"><b>' . sk($apie['bitcoin']) . '</b> <img src="img/bicons/bitcoin.png" /></div>
+            </div>
+        </div>';
+    }
 
+    if ($apie['pliusaib'] - time() > 0) {
+        echo '<div class="resource-card plus" style="justify-content:center; text-align:center;">
+            <div class="resource-icon"><i class="fa-duotone fa-plus"></i></div>
+            <div class="resource-content">
+                <a href="pliusai.php?id=">Pliusai</a>
+                <div class="resource-count"><b>' . sk($apie['pliusai']) . '</b> <img src="img/bicons/pliusai.png" /></div>
+            </div>
+        </div>';
+    }
 
-    echo '
-<div class="meniu">
-<img src="img/aicon/apie.png" /><a href="pagrindinis.php?id=apie&ka=' . $nick . '">Apie <b>' . statusas($nick) . '</b></a><br/>
-
-<img src="img/aicon/meniu.gif" /><a href="meniu.php?id=">Mano meniu</b></a><br/>
-<img src="img/bicons/saugykla.png" /><a href="vsaugykla.php?id="><font color="red"><b>Veikėjų saugykla</a></b></font>(<b>' . $apie['kiek_unikaliu'] . '</b>/<font color="red">41</font>)<br/>
-<img src="img/aicon/sword.png" /><a href="skill.php?id=">Mano skillai</b></a><br/>
-<img src="img/aicon/bag.png" /><a href="inv.php?id=">Inventorius</b></a><br/>
-
-<img src="img/aicon/sms.png" /><a href="pm.php?id=">Pm dežutė</b></a><br/>';
-    if ($apie['majin'] - time() > 0) {
-        echo '
-<img src="img/aicon/majin.png" />Majin Karys ';
-        if ($apie['majin'] - time() > 0) {
-            echo '
-(<font color="green"><b>' . laikas($apie["majin"] - time(), 1) . '</b></font>)<br>';
+    echo '<div class="competition-section">
+        <div class="competition-header">
+            <i class="fa-duotone fa-trophy-star"></i>
+            <span>Dienos varžybos</span>
+        </div>
+        <div class="competition-items">';
+    $compItems = [
+        ['?id=dtop', 'fa-trophy', 'Veiksmų TOP', sk($nust['dtop_priz']) . ' <img src="img/bicons/vipt.png" />'],
+        ['s_top.php', 'fa-trophy-star', 'Savaitės veiksmų TOP', sk($nust['savdtop_priz']) . ' <img src="img/bicons/euro.png" /> ir ' . sk($nust['savdtop_priz2']) . ' <img src="img/bicons/vipt.png" />'],
+        ['bendravimo.php', 'fa-comments', 'Bendravimo TOP', sk($nust['bendravimo_priz']) . ' <img src="img/bicons/euro.png" /> ir ' . sk($nust['bendravimo_priz2']) . ' <img src="img/bicons/vipt.png" />'],
+        ['kasimotop.php', 'fa-pickaxe', 'Kasimo TOP', sk($nust['kasimo_priz']) . ' Kasimo LVL'],
+        ['playerDailyMissionTop.php', 'fa-scroll-old', 'Legendinių misijų TOP', sk($nust['daily_mission_reward']) . ' <img src="img/bicons/cash.png" />'],
+        ['pintop.php?id=', 'fa-coins', 'Surinktų pinigų TOP', '']
+    ];
+    foreach ($compItems as $item) {
+        echo '<a href="' . $item[0] . '" class="competition-item" style="justify-content:center; flex-direction:column; text-align:center;">
+            <div class="competition-icon"><i class="fa-duotone ' . $item[1] . '"></i></div>
+            <div class="competition-content">
+                <div class="competition-title">' . $item[2] . '</div>';
+        if ($item[3]) {
+            echo '<div class="competition-prize">' . $item[3] . '</div>';
         }
+        echo '</div></a>';
     }
-    if ($apie['majin'] - time() < 0) {
-        echo '
-<img src="img/aicon/majin.png" /> <a href="majin.php?id=">Majin Karys</a>(<font color="red"><b>Neužsakyta</b></font>)<br>';
+    echo '</div></div>';
 
+    if ($nust[diena] == 1) {
+        $day = "Pinigų";
+        $n1 = 'gausite 10% daugiau <img src="img/bicons/pinigai.png" /> pinigų';
+    } elseif ($nust[diena] == 2) {
+        $day = "Exp";
+        $n1 = 'gausite 15% daugiau <img src="img/bicons/exp.png" /> patirties';
+    } elseif ($nust[diena] == 3) {
+        $day = "Daigtų";
+        $n1 = 'gausite 10% didesnį šansą rasti daiktus';
+    } elseif ($nust[diena] == 4) {
+        $day = "Paprasta";
+        $n1 = 'šiandien nėra specialių bonusų';
+    } elseif ($nust[diena] == 5) {
+        $day = "Euru";
+        $n1 = 'gausite iš kovų po 0.2 euro!';
+    } elseif ($nust[diena] == 6) {
+        $day = "Kreditu";
+        $n1 = 'gausite iš kovų po 2 kreditus!';
+    } elseif ($nust[diena] == 7) {
+        $day = "Auksiniu";
+        $n1 = 'gausite iš kovų po 2 auksinius!';
     }
+    echo '
+    <div class="game-day-container">
+        <div class="game-day-card">
+            <div class="game-day-header" style="text-align: center; justify-content: center;">
+                <i class="fa-duotone fa-calendar-day"></i>
+                <span>Žaidimo diena</span>
+            </div>
+            <div class="game-day-content" style="text-align: center;">
+                <div class="day-info" style="justify-content: center;">
+                    <div class="day-label">Šiandien yra:</div>
+                    <div class="day-value">' . $day . ' diena</div>
+                </div>
+                <div class="bonus-info" style="justify-content: center;">
+                    <div class="bonus-icon" style="margin: 0 auto;">
+                        <i class="fa-duotone fa-gift"></i>
+                    </div>
+                    <div class="bonus-text">' . $n1 . '</div>
+                </div>
+            </div>
+        </div>';
+    
+echo '
+<div class="player-profile">
+    <div class="profile-header">
+        <i class="fa-solid fa-user-circle"></i> Trumpai apie save
+    </div>
+    
+    <div class="profile-content">
+        <div class="character-section">
+            <a href="pagrindinis.php?id=apie&ka=' . $nick . '">
+                <div class="character-frame">
+                    <img src="img/veikejai/' . $apie['veikejas'] . '-' . $apie[trans] . '.png" alt="IMG">
+                    <div class="level-badge"><i class="fa-solid fa-star"></i> LV. ' . skaicius($apie['lygis']) . '</div>
+                </div>
+            </a>
+            
+            <div class="exp-section">
+                <div class="exp-info">
+                    <div class="exp-current">
+                        <i class="fa-solid fa-bolt"></i> ' . skaicius($apie['exp']) . '
+                    </div>
+                    <div class="exp-needed">
+                        <i class="fa-solid fa-bolt"></i> ' . skaicius($apie['expl'] * 4.95) . '
+                    </div>
+                </div>
+                
+                <div class="exp-progress-wrapper">
+                    <div class="exp-progress-container">
+                        <div class="exp-progress-bar" style="width: ' . min(100, ($apie['exp'] / ($apie['expl'] * 4.95) * 100)) . '%">
+                            <div class="exp-lightning-effect"></div>
+                        </div>
+                        <div class="exp-percentage">' . round(min(100, ($apie['exp'] / ($apie['expl'] * 4.95) * 100))) . '%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="stats-section">
+            <div class="stat-item currency">
+                <div class="stat-icon"><i class="fa-solid fa-euro-sign"></i></div>
+                <div class="stat-info">
+                    <div class="stat-label">Sąskaita</div>
+                    <div class="stat-value"><a href="eurai.php?id=">' . skaicius($apie['sms_litai'], 2) . '</a></div>
+                </div>
+            </div>
+            
+            <div class="stat-item credits">
+                <div class="stat-icon"><i class="fa-solid fa-coins"></i></div>
+                <div class="stat-info">
+                    <div class="stat-label">Kreditai</div>
+                    <div class="stat-value"><a href="kreditai.php?id=">' . skaicius($apie['kred']) . '</a></div>
+                </div>
+            </div>
+            
+            <div class="stat-item gold">
+                <div class="stat-icon"><i class="fa-solid fa-medal"></i></div>
+                <div class="stat-info">
+                    <div class="stat-label">Auksiniai</div>
+                    <div class="stat-value"><a href="auksiniai.php?id=">' . skaicius($apie['auksiniai']) . '</a></div>
+                </div>
+            </div>
+            
+            <div class="stat-item money">
+                <div class="stat-icon"><i class="fa-solid fa-sack-dollar"></i></div>
+                <div class="stat-info">
+                    <div class="stat-label">Pinigai</div>
+                    <div class="stat-value">' . skaicius($apie['litai']) . '</div>
+                </div>
+            </div>
+        </div>
+    </div>';
+echo '
+    <div class="info-header">
+        <i class="fa-duotone fa-user"></i> Jūsų informacija:
+    </div>
 
-    if ($invis['viplvl'] > 0) {
-        echo '' . $ico2 . ' VIP: <b>' . $invis['viplvl'] . '</b></br>';
-    }
+    <div class="info-content">
+        <div class="info-column">
+            <div class="info-item">
+                <a href="pagrindinis.php?id=apie&ka=' . $nick . '"></a>
+                <i class="fa-duotone fa-circle-info icon-info"></i>
+                <div class="info-item-text">Apie <b>' . statusas($nick) . '</b></div>
+            </div>
+            
+            <div class="info-item">
+                <a href="meniu.php?id="></a>
+                <i class="fa-duotone fa-bars icon-menu"></i>
+                <div class="info-item-text">Mano meniu</div>
+            </div>
+            
+            <div class="info-item">
+                <a href="vsaugykla.php?id="></a>
+                <i class="fa-duotone fa-vault icon-vault"></i>
+                <div class="info-item-text"><b>Veikėjų saugykla</b></div>
+                <div class="badge">' . $apie['kiek_unikaliu'] . '/41</div>
+            </div>
+            
+            <div class="info-item">
+                <a href="skill.php?id="></a>
+                <i class="fa-duotone fa-sword icon-skills"></i>
+                <div class="info-item-text">Mano skillai</div>
+            </div>
+            
+            <div class="info-item">
+                <a href="inv.php?id="></a>
+                <i class="fa-duotone fa-bag-shopping icon-inventory"></i>
+                <div class="info-item-text">Inventorius</div>
+            </div>
+        </div>
+        
+        <div class="info-column">
+            <div class="info-item">
+                <a href="pm.php?id="></a>
+                <i class="fa-duotone fa-envelope icon-messages"></i>
+                <div class="info-item-text">Pm dežutė</div>
+            </div>';
+            
+if ($apie['majin'] - time() > 0) {
+    echo '
+            <div class="info-item">
+                <a href="majin.php?id="></a>
+                <i class="fa-duotone fa-dragon icon-majin"></i>
+                <div class="info-item-text">Majin Karys</div>
+                <div class="time-left">' . laikas($apie["majin"] - time(), 1) . '</div>
+            </div>';
+} else {
+    echo '
+            <div class="info-item">
+                <a href="majin.php?id="></a>
+                <i class="fa-duotone fa-dragon icon-majin"></i>
+                <div class="info-item-text">Majin Karys</div>
+                <div class="not-ordered">Neužsakyta</div>
+            </div>';
+}
+            
+if ($invis['viplvl'] > 0) {
+    echo '
+            <div class="info-item">
+                <a href="#"></a>
+                <i class="fa-duotone fa-gem icon-vip"></i>
+                <div class="info-item-text">VIP</div>
+                <div class="badge">' . $invis['viplvl'] . ' lygis</div>
+            </div>';
+}
+            
+echo '
+            <div class="info-item">
+                <a href="?id=great"></a>
+                <i class="fa-duotone fa-solid fa-star"></i>
+                <div class="info-item-text">Great ape</div>
+            </div>
+            
+            <div class="info-item">
+                <a href="vipas.php?id="></a>
+                <i class="fa-duotone fa-crown icon-crown"></i>
+                <div class="info-item-text">VIP Privilegija</div>';
+                
+if ($inv['viplvl'] > 0) {
+    echo '
+                <div class="badge">' . $inv['viplvl'] . ' lygis</div>';
+}
+            
+echo '
+            </div>
+            
+            <div class="info-item">
+                <a href="#"></a>
+                <i class="fa-duotone fa-ticket-simple icon-ticket"></i>
+                <div class="info-item-text">VIP Tickets</div>
+                <div class="badge">' . sk($apie['vipticket']) . '</div>
+            </div>
+        </div>
+</div>';
+    
+    // Planetų meniu
+    echo '
+        <div class="planets-header">
+            <i class="fa-duotone fa-earth-oceania"></i> Planetos:
+        </div>
+    
+        <div class="planets-content">
+            <div class="planet-column">
+                <div class="planet-item">
+                    <a href="namek.php?id=">
+                        <i class="fa-duotone fa-globe icon-namek"></i>
+                        <span>Namek planeta</span>
+                    </a>
+                </div>
+                
+                <div class="planet-item">
+                    <a href="kio.php?id=">
+                        <i class="fa-duotone fa-planet-ringed icon-kaju"></i>
+                        <span>Kajų planeta</span>
+                    </a>
+                </div>
+                
+                <div class="planet-item">
+                    <a href="juodap.php?id=">
+                        <i class="fa-duotone fa-meteor icon-black"></i>
+                        <span><b>Juodoji planeta</b></span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="planet-column">
+                <div class="planet-item">
+                    <a href="tuffle.php?id=">
+                        <i class="fa-duotone fa-galaxy icon-tuffle"></i>
+                        <span><b>Tuffle planeta</b></span>
+                    </a>
+                </div>
+                
+                <div class="planet-item">
+                    <a href="pomirtinis.php?id=">
+                        <i class="fa-duotone fa-skull-crossbones"></i>
+                        <span>Pomirtinis pasaulis</span>
+                    </a>
+                </div>
+            </div>
+        </div>';
+    
+    // Vietovių meniu
+    echo '
+        <div class="locations-header">
+            <i class="fa-duotone fa-map-location-dot"></i> Vietovės:
+        </div>
+    
+        <div class="locations-content">
+            <div class="location-column">
+                <div class="location-item">
+                    <a href="miestas.php?id=">
+                        <i class="fa-duotone fa-city icon-city"></i>
+                        <span>Vakarų miestas</span>
+                    </a>
+                </div>
+                
+                <div class="location-item">
+                    <a href="karinas.php?id=">
+                        <i class="fa-duotone fa-chess-rook icon-tower"></i>
+                        <span>Karino bokštas</span>
+                    </a>
+                </div>
+                
+                <div class="location-item">
+                    <a href="labaratory.php?id=">
+                        <i class="fa-duotone fa-flask-potion icon-lab"></i>
+                        <span>Gero labaratorija</span>
+                    </a>
+                </div>
+                
+                <div class="location-item">
+                    <a href="isbarstyti.php?id=">
+                        <i class="fa-duotone fa-ball-pile icon-balls"></i>
+                        <span>Išbarstyti rutuliai</span>
+                    </a>
+                </div>
+                
+                <div class="location-item">
+                    <a href="fight.php?id=">
+                        <i class="fa-duotone fa-swords icon-combat"></i>
+                        <span><b>Kovų zona</b></span>
+                    </a>
+                </div>
+                
+                <div class="location-item">
+                    <a href="miskas.php?id=">
+                        <i class="fa-duotone fa-trees icon-forest"></i>
+                        <span>Miškas</span>
+                    </a>
+                </div>
+                
+                <div class="location-item">
+                    <a href="misijos.php?id=">
+                        <i class="fa-duotone fa-scroll-old icon-mission"></i>
+                        <span><b>Misijos</b></span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="location-column">      
+                <div class="location-item">
+                    <a href="gravitacija.php?id=">
+                        <i class="fa-duotone fa-earth-europe icon-gravity"></i>
+                        <span>Gravitacijos kambarys</span>
+                    </a>
+                </div>
+                
+                <div class="location-item">
+                    <a href="dievas.php?id=">
+                        <i class="fa-duotone fa-church icon-god"></i>
+                        <span>Dievo namai</span>
+                    </a>
+                </div>
+                
+                <div class="location-item">
+                    <a href="kame.php?id=">
+                        <i class="fa-duotone fa-island-tropical icon-island"></i>
+                        <span>Džino vėžlio sala</span>
+                    </a>
+                </div>
+                
+                <div class="location-item">
+                    <a href="arena.php?id=">
+                        <i class="fa-duotone fa-skull-crossbones icon-arena"></i>
+                        <span>Kovų arena (' . mysql_num_rows(mysql_query("SELECT * FROM online WHERE vieta=\'Arenoje\'")) . ')</span>
+                    </a>
+                </div>
+                
+                <div class="location-item">
+                    <a href="corp.php?id=">
+                        <i class="fa-duotone fa-building-columns icon-corp"></i>
+                        <span>Kapsulių korporacija</span>
+                    </a>
+                </div>
+                
+                <div class="location-item">
+                    <a href="kasimas.php?id=">
+                        <i class="fa-duotone fa-pickaxe icon-mine"></i>
+                        <span><b>Rūdų kasykla</b></span>
+                    </a>
+                </div>
+                
+                <div class="location-item">
+                    <a href="komanda.php?id=">
+                        <i class="fa-duotone fa-people-group icon-team"></i>
+                        <span>Komandos</span>
+                    </a>
+                </div>
+            </div>
+        </div>';
+    
+    // Papildomų funkcijų meniu
+    echo '
+        <div class="extra-header">
+            <i class="fa-duotone fa-ellipsis"></i> Papildoma:
+        </div>
+        <div class="extra-content">
+            <div class="extra-column">
+                <div class="extra-item">
+                    <a href="pasiulymai.php">
+                        <i class="fa-duotone fa-lightbulb icon-suggestions"></i>
+                        <span>Pasiūlymai (<font color="red"><b>' . $ii . '</b></font>/<font color="green"><b>' . $i . '</b></font>)</span>
+                    </a>
+                </div>
 
+<div class="extra-item">
+                    <a href="event.php?id=">
+                        <i class="fa-duotone fa-sun-bright icon-event"></i>
+                        <span>Vasaros Event</span>
+                    </a>
+                </div>
+
+                
+                <div class="extra-item">
+                    <a href="informacija.php?id=">
+                        <i class="fa-duotone fa-circle-info icon-info"></i>
+                        <span>Informacija</span>
+                    </a>
+                </div>
+            
+
+                    <div class="extra-item">
+                    <a href="prisijunge.php?id=">
+                        <i class="fa-duotone fa-user-check icon-online"></i>
+                        <span>Prisijungusių: <span class="online-count">' . kiek('online') . '</span></span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="extra-column">
+                <div class="extra-item">
+                    <a href="pokalbiai.php?id=">
+                        <i class="fa-duotone fa-message-captions icon-chat"></i>
+                        <span>Pokalbiai</span>
+                    </a>
+                </div>
+                
+                    <div class="extra-item">
+                    <a href="viktorina.php?id=">
+                        <i class="fa-duotone fa-brain icon-quiz"></i>
+                        <span>Viktorina</span>
+                    </a>
+                    </div>
+                        <div class="extra-item">
+                    <a href="forumas.php?id=">
+                        <i class="fa-duotone fa-comments icon-forum"></i>
+                        <span>Forumas</span>
+                    </a>
+                </div>
+                <div class="extra-item">
+                    <a href="pagrindinis.php?id=off">
+                        <i class="fa-duotone fa-power-off icon-logout"></i>
+                        <span>Atsijungti</span>
+                    </a>
+                </div>
+            </div>
+        </div>';
+    
 
     echo '
-
-<img src="img/aicon/ape.png" /><a href="?id=great">Great ape</b></a><br/>';
-
-
-    echo '
-<img src="img/bicons/vip.png" /> <a href="vipas.php?id=">VIP Privilegija</a>';
-    if ($inv['viplvl'] > 0) {
-        echo '
-<font color="white">[</font><font color="red"><b>' . $inv['viplvl'] . ' </b></font><font color="white"><b> Lygio VIP</b>]</font>';
-    }
-    echo '<br>';
-
-
-    echo ' ' . $ico . '<b>VIP Tickets </b></font>[<b>' . sk($apie['vipticket']) . ' <img src="img/bicons/vipt.png" /></b>]</font><br>';
-
-    if (isEventHappening()) {
-        echo ' <img src="img/boxes/saule.png" />  <a href="event.php?id="><font color="red"><b>Vasaros Event</b></font></a>';
-    }
-    echo '</div>';
-    echo '
-<div class="up">
-
-
-
-<b>Planetos:</b>
-</div>
-';
-
-    echo '
-<div class="meniu" >
-
-	<img src="img/aicon/nam.png" /><a href="namek.php?id=">Namek planeta</a> <br>  
-	<img src="img/aicon/kaju.png" /><a href="kio.php?id=">Kajų planeta</a>  <br/>
-	<img src="img/aicon/angel.png" /><a href="juodap.php?id="><b>Juodoji planeta</b></a>  </br>
-	<img src="img/aicon/futer.png" /><a href="tuffle.php?id="><b>Tuffle planeta</b></a>  </br>
-	<img src="img/aicon/angel.png" /><a href="pomirtinis.php?id=">Pomirtinis pasaulis</a>   </br>
-	';
-    echo '</div>';
-
-    echo '
-<div class="up">
-
-
-
-<b>Vietovės:</b>
-</div>
-';
-
-    echo '
-<div class="meniu" >
-
-<img src="img/aicon/city.png" /><a href="miestas.php?id=">Vakarų miestas</a>   <br>
-<img src="img/aicon/god.png" /><a href="dievas.php?id=">Dievo namai</a> <br/>
-<img src="img/aicon/tower.png" /> <a href="karinas.php?id=">Karino bokštas</a> <br/>
-<img src="img/aicon/house.png" /><a href="kame.php?id=">Džino vėžlio sala</a>   <br/>
-<img src="img/aicon/capital.png" /><a href="labaratory.php?id=">Gero labaratorija</a>   <br/>
-<img src="img/aicon/arena.png" /> <a href="arena.php?id=">Kovų arena (<b>' . mysql_num_rows(mysql_query("SELECT * FROM online WHERE vieta='Arenoje'")) . '</b>)</a>   <br/>
-<img src="img/bicons/ball.gif" /><a href="isbarstyti.php?id=">Išbarstyti rutuliai</a>   <br/>
-<img src="img/aicon/corp.png" /><a href="corp.php?id=">Kapsulių korporacija</a>   <br/>
-<img src="img/aicon/planet1.png" /><a href="fight.php?id="><font color="red"><b>Kovų zona</b></font></a>  <br/> 
-<img src="img/aicon/misijos.png" /><a href="misijos.php?id="><b>Misijos</b></a>   <br/>
-<img src="img/kasimas/vario.png" alt="IMG" height="16" width="16"> <a href="kasimas.php?id="><b>Rūdų kasykla</b></a>  <br/>
-<img src="img/bicons/malka.png" /><a href="miskas.php?id=">Miškas</a> <br/>
-<img src="img/aicon/house1.png" /><a href="gravitacija.php?id=">Gravitacijos kambarys</a>   <br/>
-<img src="img/aicon/team.png" /><a href="komanda.php?id=">Komandos</a>  </div>
-';
-
-    echo '
-<div class="up">
-
-<b> Papildoma:</b>
-</div> 
-';
-
-    echo '
-<div class="meniu">
-<img src="img/aicon/pas.png" /><a href="pasiulymai.php">Pasiūlymai  (<font color="red"><b>' . $ii . '</b></font>/<font color="green"><b>' . $i . '</b></font>)</a></b><br/>
-<img src="img/aicon/info.png" /><a href="informacija.php?id=">Informacija</a></b><br/>
-<img src="img/aicon/forumas.png" /><a href="forumas.php?id=">Forumas</a><br />
-<img src="img/aicon/viktorina.png" /><a href="viktorina.php?id=">Viktorina</a><br />
-<img src="img/bicons/sms.png" /><a href="pokalbiai.php?id=">Pokalbiai</a><br />
-
-<img src="img/aicon/on.png" /><a href="prisijunge.php?id="> Prisijungusių :</font><font color="red"> ' . kiek('online') . '</font></a><br/>
-
-<img src="img/aicon/off.png" /><a href="pagrindinis.php?id=off">Atsijungti</a></b><br/>
-
-</div>
-
-';
-
-    echo '
-<div class="up">
-
-<b> Mini chat:</b>
-
-</div> 
-';
+    <div class="wow">
+        <i class="fa-duotone fa-message"></i> Mini chat:
+    </div>';
 
     if ($apie['mini_chat'] == '0') {
-        echo '<div class="meniuc"><a href="?id=onn">Ijungti mini chat</a></div>';
-    }
-    if ($apie['mini_chat'] == '1') {
-
+        echo '<div class="meniuc"><a href="?id=onn">Įjungti mini chat</a></div>';
+    } elseif ($apie['mini_chat'] == '1') {
 
         if ($ka == "rasyti") {
             $zin = post($_POST['zinute']);
@@ -557,21 +1146,15 @@ Trūksta EXP - <b>' . skaicius($apie['expl'] * 4.95 - $apie['exp']) . ' </b><img
                 echo '<div class="error">Jūsų lygis per žemas! Reikia 25 lygio.</div>';
             } elseif ($gaves == "+") {
                 echo '<div class="meniuc"><b>Klaida!</b> Tu esi užtildytas!</div>';
-
-            } elseif ($apie[veiksmai] < 5000) {
+            } elseif ($apie['veiksmai'] < 5000) {
                 echo '<font color="red">Rašyti galima nuo 5000 laimėtų kovų</font><br/>';
-            } elseif (apsas($zin) == apsas('/clean') and in_array($apie[statusas], $statusai)) {
-
+            } elseif (apsas($zin) == apsas('/clean') && in_array($apie['statusas'], $statusai)) {
                 mysql_query("TRUNCATE pokalbiai");
-                mysql_query("INSERT INTO pokalbiai SET nick='" . $nick . "', sms='Išvaliau pokalbius :)', data='" . time() . "'");
+                mysql_query("INSERT INTO pokalbiai SET nick='$nick', sms='Išvaliau pokalbius :)', data='" . time() . "'");
             } else {
-
-
-                ////bannx
                 $ti = time() + 60;
-                mysql_query('INSERT INTO block SET nick = "$nick", uz="keiksmazodziai", kas_ban="SISTEMA", time="$ti"');
-
-                mysql_query("INSERT INTO pokalbiai SET nick='" . $nick . "', sms='$zin', data='" . time() . "'");
+                mysql_query("INSERT INTO block SET nick='$nick', uz='keiksmazodziai', kas_ban='SISTEMA', time='$ti'");
+                mysql_query("INSERT INTO pokalbiai SET nick='$nick', sms='$zin', data='" . time() . "'");
                 include 'snekute.php';
             }
             if ($apie['pliusaib'] - time() < 0) {
@@ -579,34 +1162,41 @@ Trūksta EXP - <b>' . skaicius($apie['expl'] * 4.95 - $apie['exp']) . ' </b><img
                 echo '<script>document.location="?id=#"</script>';
             }
         }
-        if (!empty($ka)) $ats = $ka . ' -> '; else $ats = '';
-        echo '<div class="meniuc">
-		<div id="error"></div>
-		';
-        $apie = mysql_fetch_assoc(mysql_query("SELECT * FROM `zaidejai` WHERE `nick` = '$nick'"));
+
+        $ats = !empty($ka) ? $ka . ' -> ' : '';
+
+        echo '<div class="meniuc" id="error"></div>';
+
+        $apie = mysql_fetch_assoc(mysql_query("SELECT * FROM zaidejai WHERE nick='$nick'"));
+
         if ($apie['minichatas'] != 1) {
             echo '
-    <form action="?id=&ka=rasyti#" method="post"/>
-    <textarea name="zinute" cols="25" rows="2" placeholder="Bendraujam :)" required>' . $ats . '</textarea><br />
-     <div class="line"></div>
-    <input type="submit" value="Rašyti" style="cursor: pointer;></form>
-     <div class="l">
-  </div>';
-
+            <form action="?id=&ka=rasyti#" method="post">
+                <div class="chat-input-container">
+                    <textarea class="chat-textarea" name="zinute" placeholder="Rašyk savo žinutę čia..." required><center>' . $ats . '</center></textarea>
+                    <div class="chat-controls">
+                        <button type="submit" class="chat-send-button">
+                            <i class="fa-duotone fa-paper-plane-top"></i> Siųsti
+                        </button>
+                    </div>
+                </div>
+            </form>';
         } else {
-            echo '<textarea class="bbzzin" name="zinute" id="minichatzin">' . $ats . '</textarea><br/>
-<input id="minichatusername" name="nick" style="display: none;" readonly="readonly""/>
- <div class="line"></div>
-
-  <input type="submit" onClick="minichatwrite()" value="Ra&#353;yti" style="cursor: pointer;"/>';
+            echo '
+            <textarea class="chat-textarea" id="minichatzin" name="zinute" placeholder="Rašyk savo žinutę čia...">' . $ats . '</textarea>
+            <input id="minichatusername" name="nick" style="display:none;" readonly />
+            <div class="chat-controls">
+                <button type="button" onclick="minichatwrite()" class="chat-send-button" style="margin:0 auto; display:block;">
+                    <i class="fa-duotone fa-paper-plane-top"></i> Siųsti
+                </button>
+            </div>';
             echo '</div><div class="title">';
-
         }
 
-        mysql_query("DELETE FROM `pokalbiai` WHERE expired_at < NOW()");
+        mysql_query("DELETE FROM pokalbiai WHERE expired_at < NOW()");
         $visi = mysql_result(mysql_query("SELECT COUNT(*) FROM pokalbiai"), 0);
-        if ($visi > 0) {
 
+        if ($visi > 0) {
             if ($apie['minichatas'] == 1) {
                 require 'mini.php';
                 ?>
@@ -616,31 +1206,25 @@ Trūksta EXP - <b>' . skaicius($apie['expl'] * 4.95 - $apie['exp']) . ' </b><img
                         loadChat(nick);
                     }, 1000);
                 </script>
-
                 <div id="myDiv2"><?php include("minichat2.php"); ?></div></div>
                 <?php
             } else {
                 $xaz = $apie['rodymas'];
-
                 $q = mysql_query("SELECT * FROM pokalbiai ORDER BY id DESC LIMIT $xaz");
-
                 echo '<div class="title">';
                 while ($rr = mysql_fetch_assoc($q)) {
                     $nr++;
-                    if ($apie[statusas] == 'Admin' or $apie[statusas] == 'Mod' or $apie[statusas] == 'Mod2' or $apie[statusas] == 'Mod3' or $apie[statusas] == 'Mod4' or $apie[statusas] == 'Kurejas') {
+                    $goo = '';
+                    if (in_array($apie['statusas'], ['Admin', 'Mod', 'Mod2', 'Mod3', 'Mod4', 'Kurejas'])) {
                         $goo = '<a href="?id=delete&ka=' . $rr['id'] . '"><small>[x]</small></a>';
                     }
                     echo '<b>' . $nr . '.</b> <a href="?id=apie&ka=' . $rr['nick'] . '"><b>' . statusas($rr['nick']) . '</b></a> -';
-
-                    if ($apie[statusas] == 'Žaidėjas') {
+                    if ($apie['statusas'] == 'Žaidėjas') {
                         echo ' <font color="white">' . smile($rr['sms']) . '</font>';
-                    }
-                    if ($apie[statusas] == 'Kurejas') {
+                    } elseif ($apie['statusas'] == 'Kurejas') {
                         echo ' <font color="red">' . smile($rr['sms']) . '</font>';
                     }
-                    echo ' <small>(' . lai($rr['data']) . ')</small>';
-                    echo ' <a href="?id=&ka=' . $rr['nick'] . '#"><small>[A]</small></a>' . $goo . '<br />';
-
+                    echo ' <small>(' . lai($rr['data']) . ')</small> <a href="?id=&ka=' . $rr['nick'] . '#"><small>[A]</small></a>' . $goo . '<br />';
                 }
                 unset($nr);
                 echo '</div>';
@@ -649,15 +1233,12 @@ Trūksta EXP - <b>' . skaicius($apie['expl'] * 4.95 - $apie['exp']) . ' </b><img
             echo '<div class="meniuc">Žinučių nėra!</div>';
         }
     }
-
-
-    echo '
-<div class="up">
+echo '<div class="up">
 
 <b>
-	  <div class="topbar"> 
-		<a href="?id=turnonminichat">Ijungti išmanujį chat`a</a>   <a href="?id=bbc">BBC kodai</a>  <a href="?id=offas">[x]</a> 
-	</b>
+    <div class="topbar"> 
+        <a href="?id=turnonminichat">Ijungti išmanujį chat`a</a>   <a href="?id=bbc">BBC kodai</a>  <a href="?id=offas">[x]</a> 
+    </b>
 
 </div> </div>
 ';
@@ -701,17 +1282,17 @@ if ($id == "keistiinf") {
 
     echo '
 
- <div class="meniu">
+<div class="meniu">
         <form method="post" action="?id=keistiinf2&ka=' . $nick . '">
-          Vardas:<br /><input type="text" name="varda"/><br />
-          
-          Amžius:<br /><input type="text" name="amzius"/><br />
-          
-          Miestas :<br /><input type="text" name="miesNta"/><br />
-         
-          Aprasymas: <br /><input type="text" name="apr" /><br />
-      
-         <input type="submit" name="submit" value="Nustatyti"/></form>
+        Vardas:<br /><input type="text" name="varda"/><br />
+        
+        Amžius:<br /><input type="text" name="amzius"/><br />
+        
+        Miestas :<br /><input type="text" name="miesNta"/><br />
+        
+        Aprasymas: <br /><input type="text" name="apr" /><br />
+    
+        <input type="submit" name="submit" value="Nustatyti"/></form>
         </div>';
 
     $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "Informacijos keitimas");
@@ -745,13 +1326,13 @@ if ($id == "funkcijosm") {
 
 
     echo "
- <div class='meniu'>
-	$ico <a href='?id=komentarai&ka=" . $inf['nick'] . "'>Jūsų komentarai (" . mysql_num_rows(mysql_query("SELECT * FROM `komentarai` WHERE `kas` = '" . $inf['nick'] . "'")) . ")</a><br/>
-			
-			$ico<a href='?id=inf&ka=" . $inf['nick'] . "'>Jūsų anketa</a><br/>
-			$ico  <a href='?id=sta&ka=" . $nick . "'>Statistika</a><br/>
-			$ico <a href='?id=medaliai&ka=$inf[nick]'>Medaliai</a><br/>
-			$ico   <a href='?id=draugai&ka=" . $ka . "'>Draugai (" . mysql_num_rows(mysql_query("SELECT * FROM draugai WHERE nick='$ka'")) . ")</a></div>
+<div class='meniu'>
+    $ico <a href='?id=komentarai&ka=" . $inf['nick'] . "'>Jūsų komentarai (" . mysql_num_rows(mysql_query("SELECT * FROM `komentarai` WHERE `kas` = '" . $inf['nick'] . "'")) . ")</a><br/>
+            
+            $ico<a href='?id=inf&ka=" . $inf['nick'] . "'>Jūsų anketa</a><br/>
+            $ico  <a href='?id=sta&ka=" . $nick . "'>Statistika</a><br/>
+            $ico <a href='?id=medaliai&ka=$inf[nick]'>Medaliai</a><br/>
+            $ico   <a href='?id=draugai&ka=" . $ka . "'>Draugai (" . mysql_num_rows(mysql_query("SELECT * FROM draugai WHERE nick='$ka'")) . ")</a></div>
 
 
 
@@ -802,20 +1383,20 @@ if ($id == "funkcijosm") {
 </div></a></div><div class="line"></div>';
 
         echo '<div class="meniuc"><img src="admin.png"/></div>';
-        echo '<div class="up">Administracijos topikas</div>';
+        echo '<div class="wow">Administracijos topikas</div>';
         echo '<div class="meniuc">Sveikas <b>' . $nick . '</b>, Mums būtų džiugu išgirsti iš jūsų atsiliepimą, mes visados galime jums padėti, atsakyti į klausimus, ir kita. <br/>
-		Dėl atsiskaitymų prašome rašyti privačia žinute esančia žemiau.<br/>
-		<i>Administracija niekada nedalina resursų dovanai, todėl visokie prašymai bus <b>ignoruojami</b> ir nebus atsakyta.<br/>
-		</i><u>Į žinutes atsakysime per <b>24val.</b> laikotarpį. priklauso nuo administracijos užimtumo.</u></div>';
-        echo '<div class="up">Informacija</div>
-		<div class="meniuc">' . $ico2 . '<b> Paskutinis veiksmas: </b>' . laikas($inf[last]) . '<br /></div>';
-        echo '<div class="up">Žinutė Administracijai</div>';
+        Dėl atsiskaitymų prašome rašyti privačia žinute esančia žemiau.<br/>
+        <i>Administracija niekada nedalina resursų dovanai, todėl visokie prašymai bus <b>ignoruojami</b> ir nebus atsakyta.<br/>
+        </i><u>Į žinutes atsakysime per <b>24val.</b> laikotarpį. priklauso nuo administracijos užimtumo.</u></div>';
+        echo '<div class="wow">Informacija</div>
+        <div class="meniuc">' . $ico2 . '<b> Paskutinis veiksmas: </b>' . laikas($inf[last]) . '<br /></div>';
+        echo '<div class="wow">Žinutė Administracijai</div>';
         if (!empty($ka)) $ats = $ka;
         echo '<div class="titlec">
-  <form action="pm.php?id=write&kam=' . $ka . '" method="post"/>
-  <textarea name="txt" type="text" maxlength="300" title="žinutė" placeholder="Jūsų žinutė" style="width: 80%;" rows="5" /></textarea><br/>
-  <input type="submit" value="Siųsti"/>
-   </div>';
+<form action="pm.php?id=write&kam=' . $ka . '" method="post"/>
+<textarea name="txt" type="text" maxlength="300" title="žinutė" placeholder="Jūsų žinutė" style="width: 80%;" rows="5" /></textarea><br/>
+<input type="submit" value="Siųsti"/>
+</div>';
 
         $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "Žaidimo kūrėjas");
         navigacija($g_n);
@@ -831,17 +1412,17 @@ if ($id == "funkcijosm") {
 </div></a></div><div class="line"></div>';
 
         echo '<div class="meniuc"><img src="https://i.ibb.co/3Wgd94v/wanda-640x360-removebg-preview.png"/></div>';
-        echo '<div class="up">Žaidimo Grafikos Kūrėjas</div>';
+        echo '<div class="wow">Žaidimo Grafikos Kūrėjas</div>';
         echo '<div class="meniuc">Sveikas <b>' . $nick . '</b> Aš esu Žaidimo Grafikos Kūrėjas, jei radai kažkur grafikos klaida pranešk man<br/></div>';
-        echo '<div class="up">Informacija</div>
-		<div class="meniuc">' . $ico2 . '<b> Paskutinis veiksmas: </b>' . laikas($inf[last]) . '<br /></div>';
-        echo '<div class="up">Žinutė Žaidimo Grafikos Kūrėjui</div>';
+        echo '<div class="wow">Informacija</div>
+        <div class="meniuc">' . $ico2 . '<b> Paskutinis veiksmas: </b>' . laikas($inf[last]) . '<br /></div>';
+        echo '<div class="wow">Žinutė Žaidimo Grafikos Kūrėjui</div>';
         if (!empty($ka)) $ats = $ka;
         echo '<div class="titlec">
-  <form action="pm.php?id=write&kam=' . $ka . '" method="post"/>
-  <textarea name="txt" type="text" maxlength="300" title="žinutė" placeholder="Jūsų žinutė" style="width: 80%;" rows="5" /></textarea><br/>
-  <input type="submit" value="Siųsti"/>
-   </div>';
+<form action="pm.php?id=write&kam=' . $ka . '" method="post"/>
+<textarea name="txt" type="text" maxlength="300" title="žinutė" placeholder="Jūsų žinutė" style="width: 80%;" rows="5" /></textarea><br/>
+<input type="submit" value="Siųsti"/>
+</div>';
 
         $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "Žaidimo kūrėjas");
         navigacija($g_n);
@@ -936,28 +1517,28 @@ if ($id == "funkcijosm") {
 
 
                 echo '
-			<table class="box"><tr><td>' . $radar . '</a></td><td rowspan="3" colspan="2"><img src="img/veikejai/' . $inf['veikejas'] . '-' . $inf[trans] . '.png" alt="' . $inf['veikejas'] . ' "/></a></td>	</td>
-					<td>' . $ki . '</a>					</td>
-				</tr>
-				<tr>
-					<td>' . $lazdele . '</a>				</td>
-					<td>' . $potara . '</a>		</td>
-				</tr>
-				<tr>
-					<td>' . $kate . '</a>	</td>
-					
-				
-				<td>' . $giras . '</a>				</td>
-				</tr>
-		
+            <table class="box"><tr><td>' . $radar . '</a></td><td rowspan="3" colspan="2"><img src="img/veikejai/' . $inf['veikejas'] . '-' . $inf[trans] . '.png" alt="' . $inf['veikejas'] . ' "/></a></td>	</td>
+                    <td>' . $ki . '</a>					</td>
+                </tr>
+                <tr>
+                    <td>' . $lazdele . '</a>				</td>
+                    <td>' . $potara . '</a>		</td>
+                </tr>
+                <tr>
+                    <td>' . $kate . '</a>	</td>
+                    
+                
+                <td>' . $giras . '</a>				</td>
+                </tr>
+        
 
-					<center>' . $pickaxe . '
-					
-				' . $kovu . '
+                    <center>' . $pickaxe . '
+                    
+                ' . $kovu . '
 </center>
-	
-			</table>
-		</center>
+    
+            </table>
+        </center>
 
 </div>';
 
@@ -995,14 +1576,14 @@ if ($id == "funkcijosm") {
                 }
 
                 echo '<div class="line"></div><div class="up" > <b>Jūsų informacija:</b></div> <div class="line"></div> 
-           <div class="meniu">
+        <div class="meniu">
         ' . $ico2 . '   <b> Busena: </b>' . ar_on($inf['nick']) . '<br />
         ' . $ico2 . '  <b> Nick: </b>' . statusas($inf['nick']) . '(' . $sst . ')<br />
         ' . $ico2 . '  <b> Veikejas: </b>' . $inf['veikejas'] . '</b><br />
-   
+
     ' . $nuotaika . '
-     ' . $ico2 . '   <b> Lygis: </b>' . $inf['lygis'] . '<img src="img/bicons/lvl.png"/></b><br />
- ';
+    ' . $ico2 . '   <b> Lygis: </b>' . $inf['lygis'] . '<img src="img/bicons/lvl.png"/></b><br />
+';
 
                 if (!empty($user[team])) {
                     echo '    ' . $ico2 . ' <b>Priklauso komandai :</b> <a href="komanda.php?id=info&ka=' . $useris[team] . '">' . $useris[team] . '</a><br>';
@@ -1029,17 +1610,17 @@ Turi <b>LVL</b> kasimo: <b>' . skaicius($apie['kasimolvl']) . '</b>
                 if ($apie['antipl'] - time() < 0) {
                     echo '<div class="meniuc"><b>Apsaugos nuo puolimų neturi!</b></div>';
                 }
-                echo '<div class="up">Eurai/kreditai/auksiniai/pinigai/exp</div>
-          <div class="meniuc">
-   <b>  <a href="eurai.php?id=">   ' . skaicius($inf['sms_litai'], 2) . ' </b><img src="img/bicons/euro.png"/> </a> |
-   <b> <a href="pagrindinis.php?id=kredai">    ' . skaicius($inf['kred']) . ' </b><img src="img/bicons/credit.png"/> </a> |
-   <b>   <a href="auksiniai.php?id=">    ' . skaicius($inf['auksiniai']) . ' </b><img src="img/bicons/auxo.png"/> </a> |
-  <b>   ' . skaicius($inf['litai']) . ' </b><img src="img/bicons/pinigai.png" /> |
-      <b> ' . skaicius($inf['exp']) . ' </b><img src="img/bicons/exp.png"/> <br />
+                echo '<div class="wow">Eurai/kreditai/auksiniai/pinigai/exp</div>
+        <div class="meniuc">
+<b>  <a href="eurai.php?id=">   ' . skaicius($inf['sms_litai'], 2) . ' </b><img src="img/bicons/euro.png"/> </a> |
+<b> <a href="pagrindinis.php?id=kredai">    ' . skaicius($inf['kred']) . ' </b><img src="img/bicons/credit.png"/> </a> |
+<b>   <a href="auksiniai.php?id=">    ' . skaicius($inf['auksiniai']) . ' </b><img src="img/bicons/auxo.png"/> </a> |
+<b>   ' . skaicius($inf['litai']) . ' </b><img src="img/bicons/pinigai.png" /> |
+    <b> ' . skaicius($inf['exp']) . ' </b><img src="img/bicons/exp.png"/> <br />
         </div>';
 
                 echo '<div class="line"></div><div class="up"> <b>Kiek turite+Bonusai+Itemai=Bendrai</b>:</div>
-         <div class="meniuc">
+        <div class="meniuc">
     <b>' . sk($inf['jega'] + $inf['swordp']) . '   <img src="img/bicons/attack.png"/>    ' . $procentas1 . '% <img src="img/bicons/kovines.png"/> +' . skaicius($swordas) . '  <img src="img/bicons/lyg.png"/>   ' . skaicius($jegax) . '  <img src="img/bicons/attack.png"/>   </b>';
 
                 echo '<br/>';
@@ -1048,27 +1629,27 @@ Turi <b>LVL</b> kasimo: <b>' . skaicius($apie['kasimolvl']) . '</b>
 
                 echo '<br/>';
                 echo ' <b>' . sk($inf['gyvybes']) . ' <img src="img/bicons/hp.png"/><br />
-       
-      
+    
+    
             </div>';
 
 
                 echo '<div class="up" ><b>Veiksmai:</b>:</div> <div class="line"></div> 
             <div class="meniuc">
-   <b> Šiandien  <img src="img/bicons/attack1.png"/> ' . skaicius($inff['vksm']) . '</b><img src="img/bicons/lyg.png"/>
+<b> Šiandien  <img src="img/bicons/attack1.png"/> ' . skaicius($inff['vksm']) . '</b><img src="img/bicons/lyg.png"/>
         <b> Išviso  ' . skaicius($inf['veiksmai']) . ' <img src="img/bicons/attack1.png"/></b>
-     <br />
+    <br />
 
 
-       <b> Laimėta arenoje: </b>' . $inf['laimeta'] . ' <img src="img/bicons/lyg.png"/>
+    <b> Laimėta arenoje: </b>' . $inf['laimeta'] . ' <img src="img/bicons/lyg.png"/>
 
-         <b> Pralaimėta arenoje: </b>' . $inf['pralaimeta'] . '<br />
+        <b> Pralaimėta arenoje: </b>' . $inf['pralaimeta'] . '<br />
 
- <b> Laimėta prieš žaidėjus: </b>' . $inf['laimetapl'] . ' <img src="img/bicons/lyg.png"/>
+<b> Laimėta prieš žaidėjus: </b>' . $inf['laimetapl'] . ' <img src="img/bicons/lyg.png"/>
 
-         <b> Pralaimėta prieš žaidėjus: </b>' . $inf['pralaimetapl'] . '<br />
+        <b> Pralaimėta prieš žaidėjus: </b>' . $inf['pralaimetapl'] . '<br />
 </div>';
-                echo '<div class="up">Pasiekimai</div>';
+                echo '<div class="wow">Pasiekimai</div>';
                 echo '<div class="meniu">
 ' . $ico2 . '  Vygdai:<b> ' . $apie[sagos] . ' iš 110 sagų</b><br>
 ' . $ico2 . '  Vygdai:<b> ' . $apie[kovu_misijos] . ' iš 151 kovų misijų</b><br>
@@ -1076,35 +1657,35 @@ Turi <b>LVL</b> kasimo: <b>' . skaicius($apie['kasimolvl']) . '</b>
 ' . $ico2 . '  Vygdai:<b> ' . $apie[istorija] . ' iš 101 žaidimo istorijos misijų</b><br>
 ' . $ico2 . '  Vygdai:<b> ' . $apie[kasimom] . ' iš 11 kasimo misijų</b><br>
 ' . $ico2 . '  Nugalėti bosai:<b> ' . $apie[nukirtobosu] . '</b>   <br>
- ' . $ico2 . '  Kritinio lygio:<b> ' . $apie[critical] . '</b>   
+' . $ico2 . '  Kritinio lygio:<b> ' . $apie[critical] . '</b>   
 </div>';
 
                 echo '
 
         <div class="up">Kita</div>
 <div class="meniu">
-     ' . $ico2 . '      <b> Užsiregistravo: </b>' . laikas($inf['uzsiregistravo']) . '<br />
-     
-   
-     ' . $ico2 . '                   <b> Paskutinis veiksmas: </b>' . laikas($inf['last']) . '<br />';
+    ' . $ico2 . '      <b> Užsiregistravo: </b>' . laikas($inf['uzsiregistravo']) . '<br />
+    
+
+    ' . $ico2 . '                   <b> Paskutinis veiksmas: </b>' . laikas($inf['last']) . '<br />';
                 echo '' . $ico2 . '       <b> IP: </b>' . $inf['ip'] . ' | ' . salys($inf['ip']) . '<br />';
 
 
                 echo '         </div>';
                 echo "
-			<div class='up'>Galimybės:</div><div class='meniu'>
-				
-			
-			
-	   $ico<a href='?id=inf&ka=" . $inf['nick'] . "'>Jūsų anketa</a><br/>
+            <div class='up'>Galimybės:</div><div class='meniu'>
+                
+            
+            
+    $ico<a href='?id=inf&ka=" . $inf['nick'] . "'>Jūsų anketa</a><br/>
 
-			$ico  <a href='?id=sta&ka=" . $nick . "'>Statistika</a><br/>
-			$ico <a href='?id=medaliai&ka=$inf[nick]'>Medaliai</a><br/>
-			$ico   <a href='?id=draugai&ka=" . $ka . "'>Draugai (" . mysql_num_rows(mysql_query("SELECT * FROM draugai WHERE nick='$ka'")) . ")</a><br>
-   $ico<a href='?id=komentarai&ka=" . $inf['nick'] . "'>Jūsų komentarai</a><br/>
+            $ico  <a href='?id=sta&ka=" . $nick . "'>Statistika</a><br/>
+            $ico <a href='?id=medaliai&ka=$inf[nick]'>Medaliai</a><br/>
+            $ico   <a href='?id=draugai&ka=" . $ka . "'>Draugai (" . mysql_num_rows(mysql_query("SELECT * FROM draugai WHERE nick='$ka'")) . ")</a><br>
+$ico<a href='?id=komentarai&ka=" . $inf['nick'] . "'>Jūsų komentarai</a><br/>
 </div>
- 
-		";
+
+        ";
 
                 $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "Apie $nick");
                 navigacija($g_n);
@@ -1122,11 +1703,11 @@ Turi <b>LVL</b> kasimo: <b>' . skaicius($apie['kasimolvl']) . '</b>
                 } else {
 
 
-                    echo '<div class="up">' . statusas($ka) . ' Informacija</div><div class="meniuc">';
+                    echo '<div class="wow">' . statusas($ka) . ' Informacija</div><div class="meniuc">';
                     if (mysql_num_rows(mysql_query("SELECT * FROM block WHERE nick='$ka'")) == TRUE) {
                         $b_in = mysql_fetch_assoc(mysql_query("SELECT * FROM block WHERE nick='$ka'"));
                         echo ' <div class="meniuc">
-	<img src="img/bicons/ban.png" /></div>';
+    <img src="img/bicons/ban.png" /></div>';
                         echo '<div class="meniuc"><b>' . $inf['nick'] . '</b> žaidėjas yra <font color="red"><b>užbanintas</b></font> už <font color="red">' . $b_in[uz] . '</font></div>';
                     } else {
                         echo '
@@ -1186,28 +1767,28 @@ Turi <b>LVL</b> kasimo: <b>' . skaicius($apie['kasimolvl']) . '</b>
 
 
                         echo '
-			<table class="box"><tr><td>' . $radar . '</a></td><td rowspan="3" colspan="2"><img src="img/veikejai/' . $inf['veikejas'] . '-' . $inf[trans] . '.png" alt="' . $inf['veikejas'] . ' "/> </a></td>	</td>
-										<td>' . $ki . '</a>					</td>
-				</tr>
-				<tr>
-					<td>' . $lazdele . '</a>				</td>
-					<td>' . $potara . '</a>		</td>
-				</tr>
-				<tr>
-					<td>' . $kate . '</a>	</td>
-					
-				
-				<td>' . $giras . '</a>				</td>
-				</tr>
-		
+            <table class="box"><tr><td>' . $radar . '</a></td><td rowspan="3" colspan="2"><img src="img/veikejai/' . $inf['veikejas'] . '-' . $inf[trans] . '.png" alt="' . $inf['veikejas'] . ' "/> </a></td>	</td>
+                                        <td>' . $ki . '</a>					</td>
+                </tr>
+                <tr>
+                    <td>' . $lazdele . '</a>				</td>
+                    <td>' . $potara . '</a>		</td>
+                </tr>
+                <tr>
+                    <td>' . $kate . '</a>	</td>
+                    
+                
+                <td>' . $giras . '</a>				</td>
+                </tr>
+        
 
-					<center>' . $pickaxe . '
-					
-				' . $kovu . '
+                    <center>' . $pickaxe . '
+                    
+                ' . $kovu . '
 </center>
-	
-			</table>
-		</center>
+    
+            </table>
+        </center>
 
 </div>';
 
@@ -1319,7 +1900,7 @@ Turi <b>LVL</b> kasimo: <b>' . skaicius($apie['kasimolvl']) . '</b>
                         }
                         if ($useris[secret] - time() > 0 and $apie['statusas'] != 'Kurejas') {
                             echo '<div class="up" > <b>Pagrindinė informacija:</b></div> <div class="line"></div> 
-           <div class="meniu">
+        <div class="meniu">
         ' . $ico2 . '   <b> Busena: </b>' . ar_on($inf['nick']) . ' <br/>
         ';
                             if (in_array($apie[statusas], $statusai)) {
@@ -1329,21 +1910,21 @@ Turi <b>LVL</b> kasimo: <b>' . skaicius($apie['kasimolvl']) . '</b>
                             }
                             echo '    </div>';
                             echo '    	<div class="meniuc"><b>Šis žaidėjas yra užsislaptinęs savo informaciją</b></div>
-		';
+        ';
                         } else {
                             echo '<div class="up" > <b>Pagrindinė informacija:</b></div> 
-           <div class="meniu">
+        <div class="meniu">
         ' . $ico2 . '   <b> Busena: </b>' . ar_on($inf['nick']) . ' <br />
-       ' . $ico2 . '    <b> Nick: </b>' . statusas($inf['nick']) . ' (' . $sst . ')<br />
-       ' . $ico2 . '    <b> Veikejas: </b>' . $inf['veikejas'] . '</b><br />
-      
-         ' . $nuotaika . '
-       ' . $ico2 . '    <b> Lygis: </b>' . sk($inf['lygis']) . '<img src="img/bicons/lvl.png"/></b><br />
-      
+    ' . $ico2 . '    <b> Nick: </b>' . statusas($inf['nick']) . ' (' . $sst . ')<br />
+    ' . $ico2 . '    <b> Veikejas: </b>' . $inf['veikejas'] . '</b><br />
+    
+        ' . $nuotaika . '
+    ' . $ico2 . '    <b> Lygis: </b>' . sk($inf['lygis']) . '<img src="img/bicons/lvl.png"/></b><br />
+    
 
 
-	   ' . $ico . ' <b>Priklauso komandai :</b> <a href="komanda.php?id=info&ka=' . $useris[team] . '">' . $useris[team] . '</a><br/>
- ' . $ico2 . '       <b> Susijunges: </b> ' . $su_kuo . '<br /></div>';
+    ' . $ico . ' <b>Priklauso komandai :</b> <a href="komanda.php?id=info&ka=' . $useris[team] . '">' . $useris[team] . '</a><br/>
+' . $ico2 . '       <b> Susijunges: </b> ' . $su_kuo . '<br /></div>';
                             echo '  <div class="meniuc">Surinko išviso pinigų: <b>' . skaicius($inf['surinktapin']) . '<img src="img/bicons/pinigai.png"/></b>
 <br>
 Turi <b>LVL</b> kasimo: <b>' . skaicius($inf['kasimolvl']) . '</b>
@@ -1365,19 +1946,19 @@ Turi <b>LVL</b> kasimo: <b>' . skaicius($inf['kasimolvl']) . '</b>
                             }
                             echo '</div>';
                             echo '   <div class="up">  Eurai/kreditai/auksiniai/pinigai/exp</div>
-  <div class="meniuc">
+<div class="meniuc">
         <b>' . skaicius($inf['sms_litai'], 2) . ' </b><img src="img/bicons/euro.png"/> |
-         <b> ' . skaicius($inf['kred']) . ' </b><img src="img/bicons/credit.png"/> |
-              <b> ' . skaicius($inf['auksiniai']) . '  </b><img src="img/bicons/auxo.png"/> |
-       <b> ' . skaicius($inf['litai']) . '   </b><img src="img/bicons/pinigai.png"/> | 
-	   
-              <b> ' . skaicius($inf['exp']) . ' </b><img src="img/bicons/exp.png"/>   <br />   
-          </div>';
+        <b> ' . skaicius($inf['kred']) . ' </b><img src="img/bicons/credit.png"/> |
+            <b> ' . skaicius($inf['auksiniai']) . '  </b><img src="img/bicons/auxo.png"/> |
+    <b> ' . skaicius($inf['litai']) . '   </b><img src="img/bicons/pinigai.png"/> | 
+    
+            <b> ' . skaicius($inf['exp']) . ' </b><img src="img/bicons/exp.png"/>   <br />   
+        </div>';
 
                             if ($inv['ki'] >= '1' && apsas($ka) != apsas(sajanas)) {
-                                echo '<div class="up"> <b> Kovos skillai</b>:</div> <div class="line"></div> 
+                                echo '<div class="wow"> <b> Kovos skillai</b>:</div> <div class="line"></div> 
             <div class="meniu">
-      ' . $ico2 . '    <b> Jėga:</b> ' . skaicius($inf['jega']) . '</b><br/>';
+    ' . $ico2 . '    <b> Jėga:</b> ' . skaicius($inf['jega']) . '</b><br/>';
                                 $gy = round(($inf['gynyba'] / 3));
                                 $jo_kg = ($inf['jega'] >= $gy) ? $gy : $inf['jega'];
 
@@ -1395,17 +1976,17 @@ Turi <b>LVL</b> kasimo: <b>' . skaicius($inf['kasimolvl']) . '</b>
             <div class="meniuc">
 
 <b> Šiandien <img src="img/bicons/attack1.png"/> </b>' . sk($inff['vksm']) . ' <img src="img/bicons/lyg.png"/>
-         <b> Išviso  </b>' . skaicius($inf['veiksmai']) . ' <img src="img/bicons/attack1.png"/><br>
-       
+        <b> Išviso  </b>' . skaicius($inf['veiksmai']) . ' <img src="img/bicons/attack1.png"/><br>
+    
             <b> Laimėta arenoje: </b>' . $inf['laimeta'] . ' <img src="img/bicons/lyg.png"/>
- 
-      <b> Pralaimėta arenoje: </b>' . $inf['pralaimeta'] . '<br />
+
+    <b> Pralaimėta arenoje: </b>' . $inf['pralaimeta'] . '<br />
 <b> Laimėta prieš žaidėjus: </b>' . $inf['laimetapl'] . ' <img src="img/bicons/lyg.png"/>
- 
-      <b> Pralaimėta prieš žaidėjus: </b>' . $inf['pralaimetapl'] . '<br />
+
+    <b> Pralaimėta prieš žaidėjus: </b>' . $inf['pralaimetapl'] . '<br />
 </div>
-  <div class="up">Pasiekimai:</div>
-  <div class="meniu">
+<div class="up">Pasiekimai:</div>
+<div class="meniu">
 ' . $ico2 . '  Vygdo:<b> ' . $inf[sagos] . ' iš 110  sagų</b><br>
 ' . $ico2 . '  Vygdo:<b> ' . $inf[kovu_misijos] . ' iš 151  kovų misijų</b><br>
 ' . $ico2 . '  Vygdo:<b> ' . $inf[namekm] . ' iš 51 namek misijų</b><br>
@@ -1414,15 +1995,15 @@ Turi <b>LVL</b> kasimo: <b>' . skaicius($inf['kasimolvl']) . '</b>
 ' . $ico2 . '  Įvykdė:<b> ' . $completedMissions . ' legendines dienos misijas</b><br>
 
 ' . $ico2 . '  Nugalėti bosai:<b> ' . $inf[nukirtobosu] . '</b>    <br>
-       ' . $ico2 . '  Kritinio lygio:<b> ' . $inf[critical] . '</b>   
+    ' . $ico2 . '  Kritinio lygio:<b> ' . $inf[critical] . '</b>   
 </div>';
 
 
                             $playerBuffsQuery = mysql_query("SELECT player_id, skills.icon as icon, skills.description as description, ends_at FROM player_skills JOIN skills ON player_skills.skill_id = skills.id WHERE player_id = '$inf[id]' AND ends_at > NOW() AND skills.category = 'buff' ORDER BY ends_at LIMIT 10");
                             if (mysql_num_rows($playerBuffsQuery)) {
 
-                                echo '<div class="up">Buffai:</div>
-  <div class="meniu">';
+                                echo '<div class="wow">Buffai:</div>
+<div class="meniu">';
                                 while ($playerBuff = mysql_fetch_assoc($playerBuffsQuery)) {
                                     echo '<div style="display: flex; align-items: center;">';
                                     echo '<img width="30" height="30" src="/img/skills/' . $playerBuff['icon'] . '" style="margin-right: 5px;">';
@@ -1441,7 +2022,7 @@ Turi <b>LVL</b> kasimo: <b>' . skaicius($inf['kasimolvl']) . '</b>
                             }
                             $infInv = mysql_fetch_assoc(mysql_query("SELECT * FROM inv WHERE nick='$inf[nick]'"));
                             if ($infInv['alavas'] || $infInv['titanas'] || $infInv['kvarcas']) {
-                                echo '<div class="up">Turimos rūdos</div>';
+                                echo '<div class="wow">Turimos rūdos</div>';
                                 echo '<div class="meniu">';
 
                                 if ($infInv['alavas'] > 0) {
@@ -1458,15 +2039,15 @@ Turi <b>LVL</b> kasimo: <b>' . skaicius($inf['kasimolvl']) . '</b>
                             }
 
                             echo '
-  <div class="up">Kita:</div>
-  <div class="meniu">
-     
-     ' . $ico2 . '      <b> Užsiregistravo: </b>' . laikas($inf['uzsiregistravo']) . '<br />
- ';
+<div class="up">Kita:</div>
+<div class="meniu">
+    
+    ' . $ico2 . '      <b> Užsiregistravo: </b>' . laikas($inf['uzsiregistravo']) . '<br />
+';
 
                             echo '
         ' . $ico2 . '          <b> Paskutinis veiksmas: </b>' . laikas($inf[last]) . '<br />
-     ';
+    ';
                             $statusai = array("Mod", "Mod2", "Mod3", "Mod4", "Admin", "Kurejas");
                             if (in_array($apie[statusas], $statusai)) {
                                 echo '' . $ico2 . '       <b> IP: </b>' . $inf['ip'] . ' | ' . salys($inf['ip']) . ' <a href="meniu.php?id=mod&ka=searchip3&ip=' . $inf['ip'] . '">[Patikrinti šį IP]</a><br/>';
@@ -1485,7 +2066,7 @@ Turi <b>LVL</b> kasimo: <b>' . skaicius($inf['kasimolvl']) . '</b>
 
                         }
                         echo '    </div>';
-                        echo '<div class="up"><b>Funkcijos</b>:</div> <div class="meniu"> ';
+                        echo '<div class="wow"><b>Funkcijos</b>:</div> <div class="meniu"> ';
                         echo '   ' . $ico . '  <a href="?id=pulti&ka=' . $inf['nick'] . '">Pulti žaidėją</a><br />';
 
 
@@ -1503,24 +2084,24 @@ Turi <b>LVL</b> kasimo: <b>' . skaicius($inf['kasimolvl']) . '</b>
                         }
 
                         echo '
-                 ' . $ico . ' <a href="pagrindinis.php?id=usedaiktai&ka=' . $ka . '">Uždėti daiktai</a><br /> 
-          
+                ' . $ico . ' <a href="pagrindinis.php?id=usedaiktai&ka=' . $ka . '">Uždėti daiktai</a><br /> 
+        
             ' . $ico . ' <a href="pagrindinis.php?id=pervedimai&ka=' . $ka . '">Pervedimai</a><br />
-          ' . $ico . ' <a href="pagrindinis.php?id=pakvietimai&ka=' . $ka . '">Pakvietimai</a><br />
-          
-			
-			
-			
-			' . $ico . '  <a href="?id=inf&ka=' . $inf['nick'] . '">' . $inf['nick'] . ' anketa</a><br/>
-		' . $ico . '  <a href="?id=sta&ka=' . $inf['nick'] . '">Statistika</a><br/>
-		
-		
-							' . $ico . '  <a href="?id=medaliai&ka=' . $inf['nick'] . '">Medaliai</a><br/>
-			' . $ico . '  <a href="?id=draugai&ka=' . $inf['nick'] . '">Draugai (' . mysql_num_rows(mysql_query("SELECT * FROM draugai WHERE nick='$ka'")) . ')</a><br>
-	' . $ico . ' <a href="?id=komentarai&ka=' . $inf['nick'] . '">Komentarai (' . mysql_num_rows(mysql_query("SELECT * FROM `komentarai` WHERE `kas` = '" . $inf['nick'] . "'")) . ')</a>
+        ' . $ico . ' <a href="pagrindinis.php?id=pakvietimai&ka=' . $ka . '">Pakvietimai</a><br />
+        
+            
+            
+            
+            ' . $ico . '  <a href="?id=inf&ka=' . $inf['nick'] . '">' . $inf['nick'] . ' anketa</a><br/>
+        ' . $ico . '  <a href="?id=sta&ka=' . $inf['nick'] . '">Statistika</a><br/>
+        
+        
+                            ' . $ico . '  <a href="?id=medaliai&ka=' . $inf['nick'] . '">Medaliai</a><br/>
+            ' . $ico . '  <a href="?id=draugai&ka=' . $inf['nick'] . '">Draugai (' . mysql_num_rows(mysql_query("SELECT * FROM draugai WHERE nick='$ka'")) . ')</a><br>
+    ' . $ico . ' <a href="?id=komentarai&ka=' . $inf['nick'] . '">Komentarai (' . mysql_num_rows(mysql_query("SELECT * FROM `komentarai` WHERE `kas` = '" . $inf['nick'] . "'")) . ')</a>
 </div>
-		
-		';
+        
+        ';
                         if ($statusas == "Kurejas") {
                             echo ' <div class="up">Kūrėjo Meniu</div>';
                         }
@@ -1540,13 +2121,13 @@ Turi <b>LVL</b> kasimo: <b>' . skaicius($inf['kasimolvl']) . '</b>
                         }
 
                         if (!empty($ka)) $ats = $ka;
-                        echo '<div class="up">PM Siuntimas</div>';
+                        echo '<div class="wow">PM Siuntimas</div>';
                         echo '<div class="titlec">
-  <form action="pm.php?id=write&kam=' . $ka . '" method="post"/>
-   Žinutė:<br />
-   <textarea name="txt" rows="3"></textarea><br />
-   <input type="submit" value="Siųsti"/>
-   </div>';
+<form action="pm.php?id=write&kam=' . $ka . '" method="post"/>
+Žinutė:<br />
+<textarea name="txt" rows="3"></textarea><br />
+<input type="submit" value="Siųsti"/>
+</div>';
                     }
                     echo '</div>';
 
@@ -1670,13 +2251,13 @@ if ($id == 'pulti2') {
         top('Informacijos keitimas');
 
         echo '
-           <div class="meniu">
+        <div class="meniu">
             ' . $ico2 . '<b> Vardas: </b>' . $apie['vardas'] . ' <br />
-             ' . $ico2 . '<b> Amžius: </b>' . $apie['amzius'] . ' <br />
-               ' . $ico2 . '<b> Miestas: </b>' . $apie['miestas'] . ' <br />
+            ' . $ico2 . '<b> Amžius: </b>' . $apie['amzius'] . ' <br />
+            ' . $ico2 . '<b> Miestas: </b>' . $apie['miestas'] . ' <br />
                 ' . $ico2 . '<b> Aprašymas: </b>' . $apie['aprasymas'] . ' <br />
-                  ' . $ico2 . '<b> Lytis: </b>' . $apie['litis'] . ' <br />
-         ' . $ico . ' <a href="?id=keistiinf&ka=' . $nick . '">Keisti</a></div>';
+                ' . $ico2 . '<b> Lytis: </b>' . $apie['litis'] . ' <br />
+        ' . $ico . ' <a href="?id=keistiinf&ka=' . $nick . '">Keisti</a></div>';
         $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "pagrindinis.php?id=apie&ka=$nick", "Apie $nick", "Informacijos keitimas");
         navigacija($g_n);
 
@@ -1695,16 +2276,16 @@ if ($id == 'pulti2') {
             top("$inf[nick] Informacija");
 
             echo '
-           <div class="meniu">
+        <div class="meniu">
             ' . $ico2 . ' Vardas: ' . $inf['vardas'] . ' <br />
-             ' . $ico2 . ' Amžius: ' . $inf['amzius'] . ' <br />
-          ' . $ico2 . ' Miestas: ' . $inf['miestas'] . ' <br />
-         ' . $ico2 . '  Aprašymas: ' . $inf['aprasymas'] . ' <br />
-         ' . $ico2 . '  Lytis: ' . $inf['litis'] . ' <br />
-          </div>
-          
-          
-          ';
+            ' . $ico2 . ' Amžius: ' . $inf['amzius'] . ' <br />
+        ' . $ico2 . ' Miestas: ' . $inf['miestas'] . ' <br />
+        ' . $ico2 . '  Aprašymas: ' . $inf['aprasymas'] . ' <br />
+        ' . $ico2 . '  Lytis: ' . $inf['litis'] . ' <br />
+        </div>
+        
+        
+        ';
 
 
             $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "pagrindinis.php?id=apie&ka=$inf[nick]", "Apie $inf[nick]", "$ka informacija");
@@ -1717,12 +2298,12 @@ if ($id == 'pulti2') {
         online('zaidejo informacijoj');
         top("$ka statistika");
         echo '
-           <div class="meniu">
+        <div class="meniu">
             ' . $ico . '<b> Chate žinučiu: </b>' . $apie['chate'] . ' <br />
-             ' . $ico . '<b> Viktorinoj žinučiu: </b>' . $apie['vikte'] . ' <br />
-     
-             
-          </div>';
+            ' . $ico . '<b> Viktorinoj žinučiu: </b>' . $apie['vikte'] . ' <br />
+    
+            
+        </div>';
 
         $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "pagrindinis.php?id=apie&ka=$inf[nick]", "Apie $inf[nick]", "$ka statistika");
         navigacija($g_n);
@@ -1741,14 +2322,14 @@ if ($id == 'pulti2') {
 
 
             echo '
-           <div class="meniu">
-          ' . $ico . '<b> Chate žinučiu: </b>' . $inf['chate'] . ' <br />
-             ' . $ico . '<b> Viktorinoj žinučiu: </b>' . $inf['vikte'] . ' <br />
-             
-          </div>
-          
-          
-          ';
+        <div class="meniu">
+        ' . $ico . '<b> Chate žinučiu: </b>' . $inf['chate'] . ' <br />
+            ' . $ico . '<b> Viktorinoj žinučiu: </b>' . $inf['vikte'] . ' <br />
+            
+        </div>
+        
+        
+        ';
 
 
             $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "pagrindinis.php?id=apie&ka=$inf[nick]", "Apie $inf[nick]", "$ka statistika");
@@ -1857,15 +2438,15 @@ if ($id == 'inventorius') {
         $puslapiu = ceil($viso / $rezultatu_rodymas);
 
         echo '
-			<div class="meniuc">
-			<form action="?id=komentarai2&ka=' . $ka . '" method="POST">
-			Komentaras:<br/>
-				<input type="text" name="komentaras" maxlenght="350"><br/>
-				<input type="Submit" Value="Rašyti">
-			</form>
-			</div>
-			<div class="title">
-				';
+            <div class="meniuc">
+            <form action="?id=komentarai2&ka=' . $ka . '" method="POST">
+            Komentaras:<br/>
+                <input type="text" name="komentaras" maxlenght="350"><br/>
+                <input type="Submit" Value="Rašyti">
+            </form>
+            </div>
+            <div class="title">
+                ';
         //$query = "SELECT * FROM `komentarai` WHERE `kas` = '".$nick."' ORDER BY `id` DESC LIMIT 30";
 
         $mquery = mysql_query($query);
@@ -1878,8 +2459,8 @@ if ($id == 'inventorius') {
             }
         }
         echo '
-			</div>
-		';
+            </div>
+        ';
         echo '<div class="meniuc">' . puslapiavimas($puslapiu, $psl, '?id=komentarai&ka=' . $ka . '') . '</div>';
         $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "pagrindinis.php?id=apie&ka=$nick", "Apie $nick", "$ka komentarai");
         navigacija($g_n);
@@ -1899,16 +2480,16 @@ if ($id == 'inventorius') {
         $puslapiu = ceil($viso / $rezultatu_rodymas);
 
         echo '
-		
-			<div class="meniuc">
-			<form action="?id=komentarai2&ka=' . $ka . '" method="POST">
-			Komentaras:<br/>
-				<input type="text" name="komentaras" maxlenght="350"><br/>
-				<input type="Submit" Value="Rašyti">
-			</form>
-			</div>
-			<div class="title">
-				';
+        
+            <div class="meniuc">
+            <form action="?id=komentarai2&ka=' . $ka . '" method="POST">
+            Komentaras:<br/>
+                <input type="text" name="komentaras" maxlenght="350"><br/>
+                <input type="Submit" Value="Rašyti">
+            </form>
+            </div>
+            <div class="title">
+                ';
         $query = "SELECT * FROM `komentarai` WHERE `kas` = '$ka' ORDER BY `id` DESC LIMIT $nuo_kiek,$rezultatu_rodymas";
         $mquery = mysql_query($query);
 
@@ -1917,12 +2498,12 @@ if ($id == 'inventorius') {
         } else {
             while ($komentarai = mysql_fetch_assoc($mquery)) {
                 echo ++$nr . ". <a href='?id=apie&ka=" . $komentarai['kas2'] . "'>" . statusas($komentarai['kas2']) . "</a>: " . smile($komentarai['komentaras']) . " <small>[" . $komentarai['laikas'] . "]</small>
-							<br/>";
+                            <br/>";
             }
         }
         echo '
-			</div>
-		';
+            </div>
+        ';
         echo '<div class="meniuc">' . puslapiavimas($puslapiu, $psl, '?id=komentarai&ka=' . $ka . '') . '</div>';
         $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "pagrindinis.php?id=apie&ka=$inf[nick]", "Apie $inf[nick]", "$ka komentarai");
         navigacija($g_n);
@@ -1949,7 +2530,7 @@ if ($id == 'kom_del') {
         $kom = post($_POST['komentaras']);
         if (strlen($kom) < 2) {
             echo '<div class="meniuc">
-			Komentaras per trumpas</div>';
+            Komentaras per trumpas</div>';
         } elseif ($lygis < 30) {
             echo '<div class="meniuc">Tavo lygis per žemas! Reikia 30 lygio.</div>';
         } elseif ($gaves == "+") {
@@ -1979,9 +2560,9 @@ if ($id == 'kom_del') {
 <div class="meniuc">
 <img src="img/imgg/topas.png" /></div>
     <div class="meniuc" >
-     <b>1</b>. <img src="img/bicons/gold.png" /> - <b>' . sk($prizas) . '</b> <img src="img/bicons/vipt.png">!<br />
+    <b>1</b>. <img src="img/bicons/gold.png" /> - <b>' . sk($prizas) . '</b> <img src="img/bicons/vipt.png">!<br />
     <b>2</b>. <img src="img/bicons/silver.png" /> - <b>' . sk(round($prizas / 2)) . '</b> <img src="img/bicons/vipt.png">!<br />
-     <b>3</b>. <img src="img/bicons/bronze.png" /> - <b>' . sk(round($prizas / 3)) . '</b> <img src="img/bicons/vipt.png">!<br />
+    <b>3</b>. <img src="img/bicons/bronze.png" /> - <b>' . sk(round($prizas / 3)) . '</b> <img src="img/bicons/vipt.png">!<br />
     </div><div class="title">
     ' . $ico . ' <a href="?id=didinti_priza">Didinti D.TOP prizą</a><br />
     </div>';
@@ -1989,9 +2570,9 @@ if ($id == 'kom_del') {
     <div class="title">
     &raquo; Dienos topas baigiasi lygiai <b>00:00</b> , tada visi jūsų veiksmai anuliuojasi ir vėl galėsite varžytis dėl prizo.<br />
     &raquo; Norėdami būti dienos tope turite kovoti.<br />
-      
+    
     </div><div class="meniuc"><img src="img/bicons/gold2.png" /> Dienos rekordas<font color="red"> <b>' . sk($nust[dtop_rek]) . ' <img src="img/bicons/attack1.png"></b></font>  --  <b>' . statusas($nust[dtop_rek_n]) . '.</b><br /></div>';
-    echo '<div class="up"> <b>Šiandienos TOP 5</b>:</div><div class="line"></div>';
+    echo '<div class="wow"> <b>Šiandienos TOP 5</b>:</div><div class="line"></div>';
 
 
     $query = mysql_query("SELECT * FROM dtop ORDER BY vksm DESC LIMIT 0,5");
@@ -2013,7 +2594,7 @@ if ($id == 'kom_del') {
     echo '<div class="meniuc">Jūsų veiksmai:  <b> ' . sk($dtop2['vksm']) . '</b> <img src="img/bicons/attack1.png" /></div>';
 
 
-    echo '<div class="up"> <b>Paskutinis laimėtojas:</b>:</div><div class="line"></div>';
+    echo '<div class="wow"> <b>Paskutinis laimėtojas:</b>:</div><div class="line"></div>';
 
 
     $query = mysql_query("SELECT * FROM dtop_log ORDER BY id DESC LIMIT 1");
@@ -2074,7 +2655,7 @@ if ($id == 'kom_del') {
     online('Keicia topic');
     top('Topic keitimas');
     echo '<div class="meniuc">
-     Topic\'o keitimas jums kainuos 10 kreditu.</div>';
+    Topic\'o keitimas jums kainuos 10 kreditu.</div>';
     echo '<div class="titlec">
     <form action="pagrindinis.php?id=keisti2" method="post"/>
     Topic\'as:<br /><textarea name="zinute" rows="3"></textarea><br />
@@ -2126,7 +2707,7 @@ if ($id == 'kom_del') {
 
             $vt++;
             echo ' <b>' . $vt . '.</b> ' . smile($row['message']) . ' (' . statusas($row['kas']) . ')<br/>
-                     ';
+                    ';
             unset($row);
 
 
@@ -2154,18 +2735,18 @@ if ($id == 'kom_del') {
         $puslapiu = ceil($viso / $rezultatu_rodymas);
         while ($row = mysql_fetch_assoc($q)) {
             echo '<div class="meniu">
-           ' . $ico . '  <b>Atnaujinimas</b>: ' . smile($row['name']) . '</a><br/>';
+        ' . $ico . '  <b>Atnaujinimas</b>: ' . smile($row['name']) . '</a><br/>';
             if ($row['new']) {
                 echo '' . $ico . '  <b>Plačiau</b>: ' . smile($row['new']) . '</a><br/>';
             }
             echo '
-           ' . $ico . '   <b>Atliko atnaujinimą</b> : ' . statusas($row[kas]) . '<br/>
-           ' . $ico . '   <b>Data</b> : ' . laikas($row['data']) . '</br>
-          ' . $ico . '    <b>Įvertinimas</b>:   <a href=?id=nrep&co=1&ka=' . $row['id'] . '><img src="img/replike.gif"></a>' . $row['likes'] . ' <a href=?id=nrep&co=2&ka=' . $row['id'] . '><img src="img/repdislike.gif"></a>' . $row['unlike'] . '
+        ' . $ico . '   <b>Atliko atnaujinimą</b> : ' . statusas($row[kas]) . '<br/>
+        ' . $ico . '   <b>Data</b> : ' . laikas($row['data']) . '</br>
+        ' . $ico . '    <b>Įvertinimas</b>:   <a href=?id=nrep&co=1&ka=' . $row['id'] . '><img src="img/replike.gif"></a>' . $row['likes'] . ' <a href=?id=nrep&co=2&ka=' . $row['id'] . '><img src="img/repdislike.gif"></a>' . $row['unlike'] . '
             
         
             
-         
+        
             
             </div>';
             $nau = mysql_query("SELECT * FROM news WHERE id=$id");
@@ -2346,19 +2927,19 @@ if ($id == 'kom_del') {
 } elseif ($id == "rep") {
     online('Deda ' . $ka . ' REP');
     if ($lygis < 30) {
-        echo '<div class="up">REP DAVIMAS</div>';
+        echo '<div class="wow">REP DAVIMAS</div>';
         echo '<div class="meniuc">Reputacija galim duoti nuo 30 lygio!</div>';
     } elseif ($co > 2 or $co < 1) {
-        echo '<div class="up">REP DAVIMAS</div>';
+        echo '<div class="wow">REP DAVIMAS</div>';
         echo '<div class="meniuc">Tokios reputacijos nėra!</div>';
     } elseif (!mysql_num_rows(mysql_query("SELECT * FROM zaidejai WHERE nick='$ka'"))) {
-        echo '<div class="up">REP DAVIMAS</div>';
+        echo '<div class="wow">REP DAVIMAS</div>';
         echo '<div class="meniuc">Toks žaidėjas neegzistuoja!</div>';
     } elseif (mysql_num_rows(mysql_query("SELECT * FROM rep WHERE kas='$nick' && kam='$ka'"))) {
-        echo '<div class="up">REP DAVIMAS</div>';
+        echo '<div class="wow">REP DAVIMAS</div>';
         echo '<div class="meniuc">Šiam žaidėjui jau davei reputacijos!</div>';
     } elseif (apsas($ka) == apsas($nick)) {
-        echo '<div class="up">REP DAVIMAS</div>';
+        echo '<div class="wow">REP DAVIMAS</div>';
         echo '<div class="meniuc">Sau reputacijos dėti negalimą!</div>';
     } else {
 
@@ -2382,21 +2963,21 @@ if ($id == 'kom_del') {
     top('BBCode');
     online('Ziuri bbcode');
     echo '
-   	<div class="meniu">
-   [b]Tekstas[/b] - <b>tekstas</b><br/>
-  
-   	[u]Tekstas[/u] - <u>tekstas</u><br/>
-   	[i]Tekstas[/i] - <i>tekstas</i><br/>
-  
-   	[red]Tekstas[/red] - <font color="red">tekstas</font><br/>
-   	[white]Tekstas[/white] - <font color="white">tekstas</font><br/>
-   	[green]Tekstas[/green] - <font color="green">tekstas</font><br/>
-   		[blue]Tekstas[/blue] - <font color="blue">tekstas</font><br/>
-   	[color=spalvos kodas]Tekstas[/color] - rašys jusu norima spalva<br/>
-   	</div> 
-   	
-   	
-   	';
+    <div class="meniu">
+[b]Tekstas[/b] - <b>tekstas</b><br/>
+
+    [u]Tekstas[/u] - <u>tekstas</u><br/>
+    [i]Tekstas[/i] - <i>tekstas</i><br/>
+
+    [red]Tekstas[/red] - <font color="red">tekstas</font><br/>
+    [white]Tekstas[/white] - <font color="white">tekstas</font><br/>
+    [green]Tekstas[/green] - <font color="green">tekstas</font><br/>
+        [blue]Tekstas[/blue] - <font color="blue">tekstas</font><br/>
+    [color=spalvos kodas]Tekstas[/color] - rašys jusu norima spalva<br/>
+    </div> 
+    
+    
+    ';
     $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "BBCode");
     navigacija($g_n);
 
@@ -2405,10 +2986,10 @@ if ($id == 'kom_del') {
     if (date('H') == 23 or date('H') == 24) $kas = 'Jus esate Great ape formoje!';
     echo '<div class="meniuc"><img src="img/imgg/ape.png" border="0" alt="*"></div>';
     echo ' <div class="meniu">
-   <b>' . $kas . '</b><br />
-   Mėnulio pilnatis buna nuo 23.00 val. iki 24.00 val.<br />
+<b>' . $kas . '</b><br />
+Mėnulio pilnatis buna nuo 23.00 val. iki 24.00 val.<br />
     Per mėnulio pilnatį visi žaidėjai kovose gauna 10% daugiau  <img src="img/bicons/pinigai.png" />     ir   <img src="img/bicons/exp.png" />.<br />
-     </div>';
+    </div>';
     $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "Great ape");
     navigacija($g_n);
 } elseif ($id == "pinigus2") {
@@ -2516,11 +3097,11 @@ if ($id == 'pakvietimai') {
 
     echo '
             
-          
-         
-					' . $ico . '  <a href="?id=kviesti&ID=' . $inf['nick'] . '">Kviesti į draugus</a><br/>
-	
-		';
+        
+        
+                    ' . $ico . '  <a href="?id=kviesti&ID=' . $inf['nick'] . '">Kviesti į draugus</a><br/>
+    
+        ';
     echo '</div>';
 
     $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "pagrindinis.php?id=apie&ka=$ka", "Apie $ka", "Pakvietimai");
@@ -2530,35 +3111,35 @@ if ($id == 'pervedimai') {
     top('Pervedimai');
     online('Pervedimai');
     echo '<div class="meniu">' . $ico . '	Turi pinigų: ' . sk($apie['litai']) . '</br>
-	   ' . $ico . '	Turi eurų: ' . sk($apie['sms_litai']) . '</br>
-	   ' . $ico . '	Turi VIP TICKET: ' . sk($apie['vipticket']) . '</br>
-	    ' . $ico . '	Turi kreditų: ' . sk($apie['kred']) . '</br>
+    ' . $ico . '	Turi eurų: ' . sk($apie['sms_litai']) . '</br>
+    ' . $ico . '	Turi VIP TICKET: ' . sk($apie['vipticket']) . '</br>
+        ' . $ico . '	Turi kreditų: ' . sk($apie['kred']) . '</br>
     ' . $ico . '	Turi auksinių: ' . sk($apie['auksiniai']) . '</div>
-	   
-	   ';
+    
+    ';
     echo '<div class="meniuc">
         <form action="pagrindinis.php?id=litus2&ka=' . $ka . '" method="post">
         Kiek pervesi eurų:<br/><input type="text" name="kieks"><br/>
-          
+        
         <input type="submit" name="submit" value="Pervesti">
         </form></div>';
 
     echo '<div class="meniuc">
         <form action="pagrindinis.php?id=kred2&ka=' . $ka . '" method="post">
         Kiek pervesi kreditų:<br/><input type="text" name="kieks"><br/>
-         
+        
         <input type="submit" name="submit" value="Pervesti">
         </form></div>';
     echo '<div class="meniuc">
         <form action="pagrindinis.php?id=vipt&ka=' . $ka . '" method="post">
         Kiek pervesi VIP TICKET:<br/><input type="text" name="kieks"><br/>
-         
+        
         <input type="submit" name="submit" value="Pervesti">
         </form></div>';
     echo '<div class="meniuc">
         <form action="pagrindinis.php?id=pinigus2&ka=' . $ka . '" method="post">
         Kiek pervesi pinigu:<br/><input type="text" name="kieks"><br/>
-          
+        
         <input type="submit" name="submit" value="Pervesti">
         </form></div>';
 
@@ -2566,7 +3147,7 @@ if ($id == 'pervedimai') {
     echo '<div class="meniuc">
         <form action="pagrindinis.php?id=aux2&ka=' . $ka . '" method="post">
         Kiek pervesi auksinių:<br/><input type="text" name="kieks"><br/>
-          
+        
         <input type="submit" name="submit" value="Pervesti">
         </form></div>';
 
@@ -2713,7 +3294,7 @@ if ($id == 'litis') {
     top('Lyties pasirinkimas');
     echo '<div class="meniuc">
         <form action="?id=litis2" method="post"/>
-      
+    
         Pasirinkitę:<br/><select name="kaa">
         <option value="1">Vyras</option>
         <option value="2">Moteris</option>
@@ -2760,10 +3341,10 @@ if ($id == 'medal') {
         top('' . $ka . ' medaliai');
         online('' . $ka . ' medaliai');
         echo '<div class="meniuc"><img src="img/' . $med_inf[medalis] . '.png"><br/>
-	Medalis už : ' . $med_inf[uz] . '<br/>
-	Kada : ' . laikas($med_inf[laikas]) . '
-	
-	</div>';
+    Medalis už : ' . $med_inf[uz] . '<br/>
+    Kada : ' . laikas($med_inf[laikas]) . '
+    
+    </div>';
 
         $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "pagrindinis.php?id=apie&ka=$ka", "Apie $ka", "$ka medaliai");
         navigacija($g_n);
@@ -2781,19 +3362,19 @@ if ($id == 'daily') {
         $rand[3] = rand(1, 5);
         $rand[4] = rand(1, 5);
         echo '<div class="meniuc">Pasirink prizą!</div>
-		<div class="meniuc">
-		<a href="?id=daily2&ID=' . $rand[0] . '"><img src="img/boxes/deze.png"></a>
-		<a href="?id=daily2&ID=' . $rand[1] . '"><img src="img/boxes/taure.png"></a>
-		<a href="?id=daily2&ID=' . $rand[2] . '"><img src="img/boxes/deze2.png"></a>
-		<a href="?id=daily2&ID=' . $rand[3] . '"><img src="img/boxes/taure2.png"></a>
-		<a href="?id=daily2&ID=' . $rand[4] . '"><img src="img/boxes/deze.png"></a>
-		
-		
-		</div>
-		
-		
-		
-		';
+        <div class="meniuc">
+        <a href="?id=daily2&ID=' . $rand[0] . '"><img src="img/boxes/deze.png"></a>
+        <a href="?id=daily2&ID=' . $rand[1] . '"><img src="img/boxes/taure.png"></a>
+        <a href="?id=daily2&ID=' . $rand[2] . '"><img src="img/boxes/deze2.png"></a>
+        <a href="?id=daily2&ID=' . $rand[3] . '"><img src="img/boxes/taure2.png"></a>
+        <a href="?id=daily2&ID=' . $rand[4] . '"><img src="img/boxes/deze.png"></a>
+        
+        
+        </div>
+        
+        
+        
+        ';
     }
     $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "Dienos prizas");
     navigacija($g_n);
@@ -3008,7 +3589,7 @@ if ($id == 'stat') {
 
     } else {
         echo '<div class="meniuc">Pasirinkite norimą statusą<br/>
-	  <form action="?id=stat2&ka=' . $ka . '" method="post"/>
+    <form action="?id=stat2&ka=' . $ka . '" method="post"/>
 <select name="statusas">
 <option value="Draugas">Draugas</option>
 <option value="Mes susipyke\">Mes susipyke</option>
@@ -3020,10 +3601,10 @@ if ($id == 'stat') {
 <option value="Giminaitis">Giminaitis</option>
 <option value="Mano meilė">Mano meile</option>
 </select>	<br/>
-   <input type="submit" value="Nustatyti"></form>
+<input type="submit" value="Nustatyti"></form>
 
 </div>
-	';
+    ';
 
         $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "?id=apie&ka='$ka'", "$ka informacija", "pagrindinis.php?id=draugai&ka=$ka", "$ka draugai", "Statuso keitimas");
         navigacija($g_n);
@@ -3096,6 +3677,9 @@ if ($id == 'stt_n') {
 
 }
 
+
+// Close unclosed nested divs
+echo str_repeat('</div>', 5);
 
 foot();
 ?>

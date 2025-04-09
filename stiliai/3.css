@@ -37,21 +37,16 @@ body {
 }
 
 
-.button {
+.btn-common, .button, .mygtukas a, .topbar a, input[type=submit] {
     color: #fff;
     background: linear-gradient(to top, rgb(192, 93, 0) 0%, rgb(254, 202, 54) 100%);
     border-radius: 10px;
     padding: 5px;
+    transition: 0.3s ease;
 }
 
-.button:hover {
+.btn-common:hover, .button:hover, .mygtukas a:hover, .topbar a:hover, input[type=submit]:hover {
     background: #C05D00FF;
-}
-
-.mygtukas a {
-    color: #fff;
-    background: linear-gradient(to top, rgb(192, 93, 0) 0%, rgb(254, 202, 54) 100%);
-    padding: 1px;
 }
 
 
@@ -188,50 +183,21 @@ span.nowrap {
     color: #fff;
 }
 
-.title1 {
-    background: linear-gradient(to top, rgba(192, 93, 0) 0%, rgb(254, 202, 54) 100%);
-    padding: 7px;
+input[type=submit] {
+    background: linear-gradient(to top, rgb(192, 93, 0) 0%, rgb(254, 202, 54) 100%);
+    min-height: 25px;
     color: #fafafa;
     font-weight: bold;
     margin: 2px;
+    padding: 5px;
+    min-width: 100px;
+    margin-top: -1px;
     border: 1px solid #0e0e0e;
-    position: relative;
-    border-radius: 10px;
-}
-
-.titlec {
-    background-color: rgba(0, 0, 0, 0.9);
-    padding: 7px;
-    color: #fafafa;
-    font-weight: bold;
-    border-radius: 10px;
-    margin: 2px;
-    border: 1px solid #0e0e0e;
-    posiotion: relative;
-}
-
-.title {
-    background-color: rgba(0, 0, 0, 0.9);
-    padding: 7px;
-    color: #fafafa;
-    font-weight: bold;
-    border-radius: 10px;
-    margin: 2px;
-    border: 1px solid #0e0e0e;
-    posiotion: relative;
-    text-align: left;
-}
-
-.title2 {
-    background-color: rgba(0, 0, 0, 0.9);
-    padding: 7px;
-    color: #fafafa;
-    font-weight: bold;
-    border-radius: 10px;
-    margin: 2px;
-    border: 1px solid #0e0e0e;
-    posiotion: relative;
+    font-size: 11px;
+    text-shadow: 0 0 1px #aaa;
     text-align: center;
+    text-transform: uppercase;
+    border-radius: 1000px;
 }
 
 .up {
@@ -493,19 +459,20 @@ label {
     display: block;
 }
 
-input[type=text], input[type=password], select {
+.input-control {
     min-height: 29px;
-    max-height: 110px;
     padding: 5px 10px;
-    outline: none;
-    border-width: 1px;
     border: 1px solid #29313d;
     border-radius: 10px;
-    margin-top: 2px;
-    margin-bottom: 5px;
-    background: #f9f9f9;
-    font-size: 13px;
+    font-family: "Segoe UI", Arial, sans-serif;
     color: #404040;
+    transition: all 0.3s ease;
+}
+
+.input-control:focus {
+    border-color: #c94747;
+    box-shadow: 0 0 15px rgba(201, 71, 71, 0.5);
+    outline: none;
 }
 
 textarea {
@@ -554,32 +521,14 @@ textarea:focus {
     color: #c94747;
 }
 
-input[type=submit] {
-    background: linear-gradient(to top, rgb(41, 49, 61, 0.6) 0%, rgb(0, 117, 201) 100%);
-    color: #fff;
-    padding: 5px;
-    min-width: 100px;
-    min-height: 25px;
-    border-radius: 3px;
-    text-shadow: 0 0 1px #aaa;
-    text-transform: uppercase;
+.col a {
+    color: #DBDBD6;
+    text-decoration: none;
 }
 
-input[type=submit] {
-    background: linear-gradient(to top, rgb(192, 93, 0) 0%, rgb(254, 202, 54) 100%);
-    min-height: 25px;
-    color: #fafafa;
-    font-weight: bold;
-    margin: 2px;
-    padding: 5px;
-    min-width: 100px;
-    margin-top: -1px;
-    border: 1px solid #0e0e0e;
-    font-size: 11px;
-    text-shadow: 0 0 1px #aaa;
-    text-align: center;
-    text-transform: uppercase;
-    border-radius: 1000px;
+.col a:hover {
+    color: #f86759;
+    text-decoration: none;
 }
 
 input[type=submit]:hover {
@@ -753,24 +702,31 @@ a.effect_link {
 
 }
 
-.col a {
-    color: #DBDBD6;
-    text-decoration: none;
+.title-common {
+    background-color: rgba(0,0,0,0.9);
+    padding: 7px;
+    color: #fafafa;
+    font-weight: bold;
+    border-radius: 10px;
+    margin: 2px;
+    border: 1px solid #0e0e0e;
+    position: relative;
 }
 
-.col a:hover {
-    color: #f86759;
-    text-decoration: none;
+.title1 {
+    background: linear-gradient(to top, rgba(192,93,0) 0%, rgb(254,202,54) 100%);
 }
 
-.col a {
-    color: #DBDBD6;
-    text-decoration: none;
+.title2 {
+    text-align: center;
 }
 
-.col a:hover {
-    color: #f86759;
-    text-decoration: none;
+.title {
+    text-align: left;
+}
+
+.titlec {
+    /* gali turėti tekstą kaip norite */
 }
 
 .champion-select {
@@ -858,17 +814,17 @@ a.effect_link {
     align-items: center;
 }
 
-.card {
+.card-common {
     justify-items: center;
-    max-width: 300px;
     padding: 15px;
-    margin: 10px;
+    margin: 1px;
     background-color: #111;
     border-radius: 10px;
-    display: grid; /* For grid-specific properties */
+    display: grid;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
 
-.card .card-body {
+.card-body {
     margin-top: 10px;
     font-size: 14px;
     text-align: center;
@@ -2894,63 +2850,6 @@ a.effect_link {
     .chat-send-button i {
         margin-right: 5px;
     } 
-    .chat-input-container {
-    background: rgba(0, 0, 0, 0.4);
-    border-radius: 10px;
-    padding: 10px;
-    box-shadow: 0 0 10px rgba(201, 133, 42, 0.3);
-    border: 1px solid rgba(255, 215, 0, 0.2);
-    margin-bottom: 15px;
-    }
-    
-    .chat-textarea {
-    width: 100%;
-    min-height: 60px;
-    padding: 10px;
-    border: 1px solid rgba(255, 215, 0, 0.4);
-    border-radius: 8px;
-    background-color: rgba(0, 0, 0, 0.5);
-    color: #fff;
-    font-size: 14px;
-    resize: vertical;
-    margin-bottom: 10px;
-    transition: all 0.3s ease;
-    font-family: "Segoe UI", Arial, sans-serif;
-    }
-    
-    .chat-textarea:focus {
-    border-color: #ffd700;
-    box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
-    outline: none;
-    }
-    
-    .chat-controls {
-    display: flex;
-    justify-content: flex-end;
-    }
-    
-    .chat-send-button {
-    background: linear-gradient(to bottom, #6a5c2a, #3e2e0a);
-    color: #ffd700;
-    border: none;
-    border-radius: 5px;
-    padding: 8px 15px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    box-shadow: 0 0 5px rgba(201, 133, 42, 0.3);
-    border: 1px solid rgba(255, 215, 0, 0.4);
-    }
-    
-    .chat-send-button:hover {
-    background: linear-gradient(to bottom, #8a7c4a, #5e4e2a);
-    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-    transform: translateY(-2px);
-    }
-    
-    .chat-send-button i {
-    margin-right: 5px;
-    }
 /* Panaikina tarpus tarp visų pagrindinių blokų */
 .game-day-container,
 .competition-section,
@@ -3045,7 +2944,7 @@ input, textarea, select {
     margin: 10px auto;
     text-align: center;
   }
-  .topbar {
+.topbar {
     background-color: rgba(0, 0, 0, 0.9);
 
     border-radius: 10px;
@@ -3055,17 +2954,26 @@ input, textarea, select {
     gap: 10px;
     justify-content: center;
 }
-.topbar a {
-    display: inline-block;
-    padding: 8px 14px;
-    border-radius: 5px;
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-        background: linear-gradient(to right, #3e2e0a, #6a5c2a);
 
-}
-.topbar a:hover {
+.btn-primary {
     color: #fff;
+    background: linear-gradient(to top, rgb(192, 93, 0) 0%, rgb(254, 202, 54) 100%);
+    border-radius: 10px;
+    padding: 5px;
+    transition: 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: #C05D00FF;
+}
+
+.glow-effect {
+    filter: brightness(1.2);
+    text-shadow: 0 0 8px currentColor;
+    animation: pulse 1.5s infinite alternate;
+}
+
+@keyframes pulse {
+    0% { text-shadow: 0 0 5px currentColor; }
+    100% { text-shadow: 0 0 15px currentColor, 0 0 20px rgba(255,255,255,0.3); }
 }
