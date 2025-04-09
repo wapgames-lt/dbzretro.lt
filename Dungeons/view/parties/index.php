@@ -1,6 +1,5 @@
 <?php
 
-use LegacyDbz\Core\Db;
 use LegacyDbz\Parties\DTO\Party;
 use LegacyDbz\Parties\Repositories\PartyMembersRepository;
 use LegacyDbz\Parties\Repositories\PartyRepository;
@@ -197,9 +196,9 @@ if ($id === 'createParty') {
         $error = true;
     }
     $cadmiumAmount = 15000;
-    if (!CurrentPlayer::get()->hasMoreCadmiumThan($cadmiumAmount)) {
+    if (! CurrentPlayer::get()->hasMoreCadmiumThan($cadmiumAmount)) {
         echo ' <div class="meniu">';
-        echo 'Kad sukurtumėte party turite turėti 5000 kadmio';
+        echo "Kad sukurtumėte party, turite turėti {$cadmiumAmount} kadmio.";
         echo '</div>';
         $error = true;
     }
