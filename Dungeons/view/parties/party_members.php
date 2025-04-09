@@ -39,7 +39,7 @@ function renderIndex()
             echo 'Įvyko klaida, kreipkitės į administraciją';
             return;
         }
-        echo $player->username();
+        echo $player->nick();
         echo '<br>';
         echo '<small>Prisijungė: </small>';
         echo formatDateTimeString($partyMember->joinedAt());

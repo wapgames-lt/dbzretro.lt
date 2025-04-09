@@ -69,7 +69,7 @@ function renderIndex()
             echo 'Įvyko klaida, kreipkitės į administraciją';
             return;
         }
-        echo $invitee->username();
+        echo $invitee->nick();
         echo '<br>';
         echo 'Statusas: ';
         echo getStatusBadge($partyInvite->status());
@@ -249,14 +249,14 @@ function validateAndSavePartyInvite()
     $partyMembers = $partyMembersRepository->findByPlayerId($player->id());
     if (!$partyMembers->isEmpty()) {
         echo ' <div class="meniu">';
-        echo 'Žaidėjas ' . $player->username() . ' jau yra party';
+        echo 'Žaidėjas ' . $player->nick() . ' jau yra party';
         echo '</div>';
         $error = true;
     }
     $pendingInvites = $partyInvitesRepository->findByIniteeIdAndStatus($player->id(), PartyInvite::STATUS_PENDING);
     if (!$pendingInvites->isEmpty()) {
         echo ' <div class="meniu">';
-        echo 'Žaidėjas ' . $player->username() . ' jau turi pending pakvietimų';
+        echo 'Žaidėjas ' . $player->nick() . ' jau turi pending pakvietimų';
         echo '</div>';
         $error = true;
     }
@@ -287,7 +287,7 @@ function validateAndSavePartyInvite()
         $inventoryRepository = new InventoryRepository();
         $inventoryRepository->subtractCadmium($nick, $cadmiumAmount);
         echo ' <div class="meniu">';
-        echo 'Žaidėjas ' . $player->username() . ' sėkmingai pakviestas!';
+        echo 'Žaidėjas ' . $player->nick() . ' sėkmingai pakviestas!';
         echo '</div>';
     }
 

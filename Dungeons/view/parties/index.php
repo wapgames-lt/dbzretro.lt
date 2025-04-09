@@ -4,6 +4,7 @@ use LegacyDbz\Core\Db;
 use LegacyDbz\Parties\DTO\Party;
 use LegacyDbz\Parties\Repositories\PartyMembersRepository;
 use LegacyDbz\Parties\Repositories\PartyRepository;
+use LegacyDbz\Players\Repositories\InventoryRepository;
 use LegacyDbz\Players\Repositories\PlayersRepository;
 use LegacyDbz\Players\Services\CurrentPlayer;
 
@@ -30,7 +31,7 @@ if (!isset($id)) {
         echo '<small>';
         $partyLeader = $playersRepository->findById($party->leaderId());
         echo 'Leader: ';
-        echo '<a href="/pagrindinis.php?id=apie&ka=' . $partyLeader->username() . '"><b>' . $partyLeader->username() . '</b> </a>';
+        echo '<a href="/pagrindinis.php?id=apie&ka=' . $partyLeader->nick() . '"><b>' . $partyLeader->nick() . '</b> </a>';
         echo '<br>';
         $partyMembersCount = $partyMembersRepository->countByPartyId($party->id());
         echo 'Narių: ' . $partyMembersCount . '/' . Party::ALLOWED_MEMBERS_AMOUNT . '<br>';
@@ -70,7 +71,7 @@ if ($id === 'view') {
         echo '<small>';
         $partyLeader = $playersRepository->findById($party->leaderId());
         echo 'Leader: ';
-        echo '<a href="/pagrindinis.php?id=apie&ka=' . $partyLeader->username() . '"><b>' . $partyLeader->username() . '</b> </a>';
+        echo '<a href="/pagrindinis.php?id=apie&ka=' . $partyLeader->nick() . '"><b>' . $partyLeader->nick() . '</b> </a>';
         echo '<br>';
         $partyMembersCount = $partyMembersRepository->countByPartyId($party->id());
         echo 'Narių: ' . $partyMembersCount . '/' . Party::ALLOWED_MEMBERS_AMOUNT . '<br>';
@@ -196,7 +197,7 @@ if ($id === 'createParty') {
         $error = true;
     }
     $cadmiumAmount = 15000;
-    if ($inv['kadmis'] < $cadmiumAmount) {
+    if (!CurrentPlayer::get()->hasMoreCadmiumThan($cadmiumAmount)) {
         echo ' <div class="meniu">';
         echo 'Kad sukurtumėte party turite turėti 5000 kadmio';
         echo '</div>';
@@ -206,11 +207,8 @@ if ($id === 'createParty') {
     if (! $error) {
         $party = new Party(null, CurrentPlayer::get()->id(), $name, null);
         $partiesRepository->save($party);
-        $stmt = Db::prepare("UPDATE inv SET kadmis = kadmis - :amount WHERE nick = :nick");
-        $stmt->execute([
-            'amount' => $cadmiumAmount,
-            'nick' => CurrentPlayer::get()->username(),
-        ]);
+        $inventoryRepository = new InventoryRepository();
+        $inventoryRepository->subtractCadmium(CurrentPlayer::get()->nick(), $cadmiumAmount);
         echo ' <div class="meniu">';
         echo 'Party sukurta sėkmingai!';
         echo '</div>';

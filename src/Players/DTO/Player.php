@@ -13,7 +13,7 @@ class Player
 
     private $id;
 
-    private $username;
+    private $nick;
 
     private $ip;
 
@@ -34,7 +34,7 @@ class Player
     public function __construct($id, $username, $ip, $character, $inventory)
     {
         $this->id = $id;
-        $this->username = $username;
+        $this->nick = $username;
         $this->ip = $ip;
         $this->character = $character;
         $this->inventory = $inventory;
@@ -52,9 +52,9 @@ class Player
     /**
      * @return mixed
      */
-    public function username()
+    public function nick()
     {
-        return $this->username;
+        return $this->nick;
     }
 
     public function character()

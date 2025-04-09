@@ -67,7 +67,7 @@ if ($firstPendingInvite) {
             </div>
             <div class="notification-content">
                 <div class="notification-title">Gavote pakvietimą į party:</div>
-                ' . $party->name() . ', lyderis: ' . $partyLeader->username() . '
+                ' . $party->name() . ', lyderis: ' . $partyLeader->nick() . '
                 <div class="notification-actions">
                     <a href="/Dungeons/view/parties/party_invites.php?id=inviteeInvites" class="action-button">
                         <i class="fa-duotone fa-eye"></i> Peržiūrėti
