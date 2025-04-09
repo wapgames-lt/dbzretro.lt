@@ -7,6 +7,7 @@ use LegacyDbz\Parties\Repositories\PartyInvitesRepository;
 use LegacyDbz\Parties\Repositories\PartyMembersRepository;
 use LegacyDbz\Parties\Repositories\PartyRepository;
 use LegacyDbz\Players\Repositories\PlayersRepository;
+use LegacyDbz\Players\Services\CurrentPlayer;
 
 include_once '../head.php';
 
@@ -15,7 +16,7 @@ $playersRepository = new PlayersRepository();
 $partyMembersRepository = new PartyMembersRepository();
 $partyInvitesRepository = new PartyInvitesRepository();
 $partyInvitesRepository->deleteExpired();
-$currentPlayer = $playersRepository->findById($apie['id']);
+$currentPlayer = CurrentPlayer::get();
 
 switch ($id) {
     case 'create':

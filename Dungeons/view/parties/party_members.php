@@ -4,6 +4,7 @@ use LegacyDbz\Parties\DTO\PartyMember;
 use LegacyDbz\Parties\Repositories\PartyMembersRepository;
 use LegacyDbz\Parties\Repositories\PartyRepository;
 use LegacyDbz\Players\Repositories\PlayersRepository;
+use LegacyDbz\Players\Services\CurrentPlayer;
 
 include_once '../head.php';
 
@@ -23,13 +24,13 @@ switch ($id) {
 
 function renderIndex()
 {
-    global $playersRepository, $partyMembersRepository, $apie, $arrow;
+    global $playersRepository, $partyMembersRepository, $arrow;
 
     online('Party Management > Party Members');
     top('Party Members');
 
     /** @var PartyMember[] $partyMembers */
-    $partyMembers = $partyMembersRepository->findByPartyLeaderId($apie['id'])->all();
+    $partyMembers = $partyMembersRepository->findByPartyLeaderId(CurrentPlayer::get()->id())->all();
     foreach ($partyMembers as $partyMember) {
         echo '<div class="meniu">';
         echo $arrow;
@@ -52,7 +53,7 @@ function renderIndex()
 }
 
 function removeFromParty() {
-    global $partiesRepository, $partyMembersRepository, $apie;
+    global $partiesRepository, $partyMembersRepository;
     online('Party Management -> Remove Player From Party');
     top('Išeiti iš Party');
 
@@ -64,7 +65,7 @@ function removeFromParty() {
         echo '</div>';
         $error = true;
     }
-    $party = $partiesRepository->findByLeaderId($apie['id']);
+    $party = $partiesRepository->findByLeaderId(CurrentPlayer::get()->id());
     if (!$party) {
         echo '<div class="meniu">';
         echo 'Party nerasta';
