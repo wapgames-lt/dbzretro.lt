@@ -1,6 +1,6 @@
 <?php
 
-namespace LegacyDbz\Characters\Constants;
+namespace LegacyDbz\Players\Constants;
 
 class CharacterName
 {

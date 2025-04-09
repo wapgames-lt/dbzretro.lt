@@ -1,8 +1,8 @@
 <?php
 
-namespace LegacyDbz\Characters\Traits;
+namespace LegacyDbz\Players\Traits;
 
-use LegacyDbz\Characters\Constants\CharacterName;
+use LegacyDbz\Players\Constants\CharacterName;
 
 trait CharacterTrait
 {

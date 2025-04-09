@@ -1,11 +1,11 @@
 <?php
 
-use LegacyDbz\Core\Db;
 use LegacyDbz\Parties\DTO\Party;
 use LegacyDbz\Parties\DTO\PartyInvite;
 use LegacyDbz\Parties\Repositories\PartyInvitesRepository;
 use LegacyDbz\Parties\Repositories\PartyMembersRepository;
 use LegacyDbz\Parties\Repositories\PartyRepository;
+use LegacyDbz\Players\Repositories\InventoryRepository;
 use LegacyDbz\Players\Repositories\PlayersRepository;
 use LegacyDbz\Players\Services\CurrentPlayer;
 
@@ -273,8 +273,8 @@ function validateAndSavePartyInvite()
         echo '</div>';
         $error = true;
     }
-    $cadmiumAmount = 50;
-    if ($inv['kadmis'] < $cadmiumAmount) {
+    $cadmiumAmount = 500;
+    if (!$currentPlayer->hasMoreCadmiumThan($cadmiumAmount)) {
         echo ' <div class="meniu">';
         echo 'Kad pakviestumėte į party turite turėti ' . $cadmiumAmount . ' kadmio';
         echo '</div>';
@@ -284,11 +284,8 @@ function validateAndSavePartyInvite()
     if (!$error) {
         $partyInvite = new PartyInvite(null, $party->id(), $currentPlayer->id(), $player->id());
         $partyInvitesRepository->save($partyInvite);
-        $stmt = Db::prepare("UPDATE inv SET kadmis = kadmis - :amount WHERE nick = :nick");
-        $stmt->execute([
-            'amount' => $cadmiumAmount,
-            'nick' => $currentPlayer->username(),
-        ]);
+        $inventoryRepository = new InventoryRepository();
+        $inventoryRepository->subtractCadmium($nick, $cadmiumAmount);
         echo ' <div class="meniu">';
         echo 'Žaidėjas ' . $player->username() . ' sėkmingai pakviestas!';
         echo '</div>';
