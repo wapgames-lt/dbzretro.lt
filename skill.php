@@ -12,7 +12,7 @@ $apie = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM zaidejai WHERE nick
 
 baneris();
 topbar();
-	if($user[tech] == '1'){
+	if($user['tech'] == '1'){
  				$kgg = 10000;
 					$lvlss = 5;
 $eur = 5;
@@ -22,7 +22,7 @@ $gyn2 = 3000;
 					$gynnn = $apie['gynyba'] + 3000;
 					$gavai = 2 ;
 				}
-				if($user[tech] == '2'){
+				if($user['tech'] == '2'){
  				$kgg = 50000;
 					$lvlss =10;
     $eur = 10;
@@ -31,7 +31,7 @@ $gyn2 = 6000;
 					$jeggg =$apie['jega'] + 2000;
 					$gynnn = $apie['gynyba'] + 6000;
 					$gavai = 4 ;}
-				if($user[tech] == '3'){
+				if($user['tech'] == '3'){
  				$kgg = 120000;
 					$lvlss = 20;
   $eur = 15;
@@ -40,7 +40,7 @@ $gyn2 = 15000;
 						$jeggg =$apie['jega'] + 5000;
 					$gynnn = $apie['gynyba'] + 15000;
 					$gavai = 6 ;}
-				if($user[tech] == '4'){
+				if($user['tech'] == '4'){
  				$kgg = 250000;
 					$lvlss = 25;
   $eur = 20;
@@ -49,7 +49,7 @@ $gyn2 = 30000;
 					$jeggg =$apie['jega'] + 10000;
 					$gynnn = $apie['gynyba'] + 30000;
 					$gavai = 8 ;}
-				if($user[tech] == '5'){
+				if($user['tech'] == '5'){
  				$kgg = 500000;
 					$lvlss = 30;
   $eur = 25;
@@ -58,7 +58,7 @@ $gyn2 = 45000;
 				$jeggg =$apie['jega'] + 15000;
 					$gynnn = $apie['gynyba'] + 45000;
 					$gavai = 10 ;}
-				if($user[tech] == '6'){
+				if($user['tech'] == '6'){
  				$kgg = 1000000;
 					$lvlss =35;
   $eur = 30;
@@ -67,7 +67,7 @@ $gyn2 = 75000;
 						$jeggg =$apie['jega'] + 25000;
 					$gynnn = $apie['gynyba'] + 75000;
 					$gavai = 20 ;}
-				if($user[tech] == '7'){
+				if($user['tech'] == '7'){
  				$kgg = 2000000;
 					$lvlss = 40;
   $eur = 35;
@@ -77,7 +77,7 @@ $gyn2 = 150000;
 					$gynnn = $apie['gynyba'] + 150000;
 					$gavai = 30;}
 				
-				if($user[tech] == '8'){
+				if($user['tech'] == '8'){
  				$kgg = 5000000;
 					$lvlss = 50;
   $eur = 50;
@@ -87,7 +87,7 @@ $gyn2 = 300000;
 					$gynnn = $apie['gynyba'] + 300000;
 					$gavai = 50 ;}
 if($id == ""){
-   online('Skill\'s');
+   online('Skills');
   top('Mano skillai');
    echo '  <div class="meniuc">
        
@@ -95,7 +95,7 @@ if($id == ""){
    echo '<div class="meniuc">Skill\'s - čia galima mokytis auras, mokytis unikalių technikų, daryti transformacijas, išmokti Susijungimo šokį, už tai jūs įgaunate vis naujų statusų. </div>';
    echo '<div class="line"></div><div class="meniu">
  
-<img src="img/veikejai/'.$apie['veikejas'].'-'.$apie[trans].'.png" border="1" width="16" height="16"><a href="transformacijos.php?id=">Transformacijos</a><br/></div>
+<img src="img/veikejai/'.$apie['veikejas'].'-'.$apie['trans'].'.png" border="1" width="16" height="16"><a href="transformacijos.php?id=">Transformacijos</a><br/></div>
   
 <div class="meniu"><img src=img/imgg/technikos.png border="1" width="16" height="16"><a href="technikos.php?id=">Technikos</a><br/></div>
 <div class="meniu"><img src=img/imgg/sokis.png border="1" width="16" height="16"> <a href="?id=mokytis">Susijungimo pamoka</a><br/></div>
@@ -2811,33 +2811,6 @@ Su kiekviena kova jus prarandate -1 energijos, energija atsinaujina kas 30 minu�
 	$g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php","Skillai","Energijos anplitude");
 	navigacija($g_n);
 	
-}
-
-if($id == suka444upti){
-		top('Energijos sukaupimas');		
-			
-		if($inv[Pupos] < 1){
-			
-			echo'<div class="meniuc">Tu neturi stebuklingų pupų</div>';
-		}	
-		elseif($apie[energy] == $apie[energy_max]){
-			
-			
-			echo'<div class="meniuc">Tu jau turi maksimalę energiją</div>';
-			
-		}
-		else{
-			
-			
-			mysqli_query($conn,"UPDATE inv SET Pupos=Pupos-'1' WHERE nick='$nick'");
-			mysqli_query($conn,"UPDATE zaidejai SET energy='$apie[energy_max]' WHERE nick='$nick'");	
-			echo'<div class="meniuc">Energija sukaupta</div>';
-			
-				}
-			
-		
-		$g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php","Skillai","Energijos anplitude");
-	navigacija($g_n);
 }
 
 

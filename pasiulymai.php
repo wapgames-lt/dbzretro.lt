@@ -10,7 +10,7 @@ head2();
 
 baneris();
 		topbar();
-		$k = isset($_GET[k]) ? post($_GET[k]) : null;
+		$k = isset($_GET['k']) ? post($_GET['k']) : null;
 if($id == ""){
 	
     online('Pasiūlymai');

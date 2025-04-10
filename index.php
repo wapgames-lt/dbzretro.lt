@@ -247,7 +247,7 @@ elseif($id == "news"){
 <div class="meniuc">
 <table width="100%"><tr><td width="50%" style="border-right: 1px solid #000;">
 <center>
-<small> <b>Atliko atnaujinimą</b>: <font color="red">'.$row[kas].'</small></font>
+<small> <b>Atliko atnaujinimą</b>: <font color="red">'.$row['kas'].'</small></font>
 </center>
 </td><td width="50%">
 <center>

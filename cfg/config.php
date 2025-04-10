@@ -552,7 +552,7 @@ function foot(): void{
     $version = phpversion();
     $versionParts = explode('.', $version);
     echo 'PHP ' . $versionParts[0] . '.' . $versionParts[1];
-    echo ',
+    echo '
 2022-' . date('Y') .' <b>&copy;</b> testas1 <SUP><B><small>(';
 $onoff = mysqli_query($conn,"SELECT * FROM online WHERE nick='testas1'");
 if(mysqli_num_rows($onoff)){
