@@ -10,7 +10,7 @@ baneris();
 
 		topbar();
 		
-		if($apie[lygis] < 20){
+		if($apie['lygis'] < 20){
 			top('Aukcionas');
 			echo"<div class='meniuc'>I aukciona galima tik nuo 20 lygio!</div>";
 			
@@ -29,7 +29,7 @@ if($id == ""){
 	$time = time();
 	$query = mysqli_query($conn,"SELECT * FROM aukcijonas WHERE laikas < '$time'");
 	while($prekes_inf = mysqli_fetch_assoc($query)) {
-		if ($prekes_inf[laikas] < $time) {
+		if ($prekes_inf['laikas'] < $time) {
 			if ($prekes_inf['preke'] == 1) {
 				$kiek_gaunas = $inv['Dball1'] + $prekes_inf['kiek'];
 				mysqli_query($conn,"UPDATE inv SET Dball1='$kiek_gaunas' WHERE nick='$prekes_inf[kas]'") or die(mysqli_error());

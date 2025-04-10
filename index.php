@@ -79,7 +79,7 @@ if ($ip === '178.16.43.65') {
 }
 
 
-$ID  = isset($_GET['ID']) ? trim(mysqli_real_escape_string(htmlspecialchars($_GET['ID']))) : null;
+$ID  = isset($_GET['ID']) ? trim(mysqli_real_escape_string($conn,htmlspecialchars($_GET['ID']))) : null;
 $nust = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM nustatymai"));
 $new = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM news ORDER BY id DESC LIMIT 1"));
 $kiek = mysqli_num_rows(mysqli_query($conn,"SELECT * FROM news "));

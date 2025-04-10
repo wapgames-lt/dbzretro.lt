@@ -115,9 +115,9 @@ if($nust['pasiekimai'] == "-"){
        }
 else{
 
-$ID = mysqli_real_escape_string(htmlspecialchars($_GET['ID']));
-			$VS = mysqli_real_escape_string(htmlspecialchars($_GET['VS']));
-		$KA = mysqli_real_escape_string(htmlspecialchars($_GET['KA']));
+$ID = mysqli_real_escape_string($conn,htmlspecialchars($_GET['ID']));
+			$VS = mysqli_real_escape_string($conn,htmlspecialchars($_GET['VS']));
+		$KA = mysqli_real_escape_string($conn,htmlspecialchars($_GET['KA']));
 
 			$KD = rand(9999,99999);
 $ID = post($_GET['ID']);

@@ -9,12 +9,8 @@ use LegacyDbz\Players\DTO\Player;
 
 class PartyService
 {
-    /** @var PartiesRepository */
-    private $partiesRepository;
-
-    public function __construct(PartiesRepository $partiesRepository)
+    public function __construct(private readonly PartiesRepository $partiesRepository)
     {
-        $this->partiesRepository = $partiesRepository;
     }
 
     public function create($name, $cadmiumAmount, Player $player)

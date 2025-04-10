@@ -44,7 +44,7 @@ if (!isset($id)) {
         echo '<div class="meniuc">';
         echo ' <a href="index.php?id=dead_bosses">Nukauti bosai</a><br>';
         echo '</div>';
-        $g_n[] = array("/pagrindinis.php?id=", "Pagrindinis", "Legendary bosai");
+        $g_n[] = ["/pagrindinis.php?id=", "Pagrindinis", "Legendary bosai"];
         navigacija($g_n);
         return;
     }
@@ -58,7 +58,7 @@ Neužsidėjus mirties, atgimimo daiktų kovoti nerekomenduojama.
         echo '<div class="meniuc">';
         echo 'Bosų nėra.';
         echo '</div>';
-        $g_n[] = array("/pagrindinis.php?id=", "Pagrindinis", "Legendary bosai");
+        $g_n[] = ["/pagrindinis.php?id=", "Pagrindinis", "Legendary bosai"];
         navigacija($g_n);
         return;
     }
@@ -87,8 +87,8 @@ Neužsidėjus mirties, atgimimo daiktų kovoti nerekomenduojama.
     echo '<div class="card-body">';
 
     echo '<b>' . $bossConfig['name'] . '</b><br><br>';
-    $totalHealth = $bossConfig['health']; // Maximum health
-    $currentHealth = $boss->getHealth(); // Current health from your logic
+    $totalHealth = $bossConfig['health'];
+    $currentHealth = $boss->getHealth();
     $healthPercentage = ($currentHealth / $totalHealth) * 100;
     echo 'Gyvybių: ' . skaicius($boss->getHealth());
     echo '<div class="health-bar">';
@@ -148,7 +148,7 @@ Neužsidėjus mirties, atgimimo daiktų kovoti nerekomenduojama.
     echo 'Daugiausiai damage Legendary Bosams daro veikėjas: <font color="red">Kefla</font><br>';
     echo '</div>';
 
-    $g_n[] = array("/pagrindinis.php?id=", "Pagrindinis", "Legendary bosai");
+    $g_n[] = ["/pagrindinis.php?id=", "Pagrindinis", "Legendary bosai"];
     navigacija($g_n);
 }
 
@@ -267,7 +267,7 @@ if ($id === 'dead_bosses') {
     } else {
         echo '<div class="meniuc">Bosų nėra.</div>';
     }
-    $g_n[] = array("index.php", "Legendary bosai", "Nukauti bosai");
+    $g_n[] = ["index.php", "Legendary bosai", "Nukauti bosai"];
     navigacija($g_n);
 }
 
@@ -349,7 +349,7 @@ if ($id === 'freezeLegendaryBoss') {
 }
 
 if ($id === 'summon') {
-    $bossId = isset($_GET['bossId']) ? preg_replace('/\D/', "", $_GET['bossId']) : null;
+    $bossId = isset($_GET['bossId']) ? preg_replace('/\D/', "", (string) $_GET['bossId']) : null;
     $repository = new \LegacyDbz\LegendaryBosses\Repositories\LegendaryBossRepository();
     $service = new \LegacyDbz\LegendaryBosses\Services\LegendaryBossService($repository);
     $boss = $service->get();
@@ -360,7 +360,7 @@ if ($id === 'summon') {
         echo '<div class="meniu">';
         echo 'Bosas jau iškviestas<br>';
         echo '</div>';
-        $g_n[] = array("index.php", "Legendary bosai", "Iškviesti bosą");
+        $g_n[] = ["index.php", "Legendary bosai", "Iškviesti bosą"];
         navigacija($g_n);
         return;
     }
@@ -368,7 +368,7 @@ if ($id === 'summon') {
         echo '<div class="meniu">';
         echo 'Neteisinga boso konfigūraciją<br>';
         echo '</div>';
-        $g_n[] = array("index.php", "Legendary bosai", "Iškviesti bosą");
+        $g_n[] = ["index.php", "Legendary bosai", "Iškviesti bosą"];
         navigacija($g_n);
         return;
     }
@@ -377,7 +377,7 @@ if ($id === 'summon') {
         echo '<div class="meniu">';
         echo 'Bosas neseniai buvo prikeltas<br>';
         echo '</div>';
-        $g_n[] = array("index.php", "Legendary bosai", "Iškviesti bosą");
+        $g_n[] = ["index.php", "Legendary bosai", "Iškviesti bosą"];
         navigacija($g_n);
         return;
     }
@@ -531,7 +531,7 @@ if ($id === 'summon') {
     }
 
 
-    $g_n[] = array("index.php", "Legendary bosai", "Iškviesti bosą");
+    $g_n[] = ["index.php", "Legendary bosai", "Iškviesti bosą"];
     navigacija($g_n);
 }
 
@@ -540,7 +540,7 @@ if ($id === 'summon_boss') {
     online('Legendary Boso iškvietimo apeigos');
 
     echo '  <div class="meniu">';
-    $bossId = isset($_GET['bossId']) ? preg_replace('/\D/', "", $_GET['bossId']) : null;
+    $bossId = isset($_GET['bossId']) ? preg_replace('/\D/', "", (string) $_GET['bossId']) : null;
     $repository = new \LegacyDbz\LegendaryBosses\Repositories\LegendaryBossRepository();
     $service = new \LegacyDbz\LegendaryBosses\Services\LegendaryBossService($repository);
     $boss = $service->get();
@@ -610,13 +610,13 @@ if ($id === 'summon_boss') {
 
     echo '</div>';
 
-    $g_n[] = array("/pagrindinis.php?id=", "Pagrindinis", "index.php", "Legendary bosai", "index.php?id=summon&bossId=$bossId", "Iškviesti bosą", "Kvietimo apeigos");
+    $g_n[] = ["/pagrindinis.php?id=", "Pagrindinis", "index.php", "Legendary bosai", "index.php?id=summon&bossId=$bossId", "Iškviesti bosą", "Kvietimo apeigos"];
     navigacija($g_n);
 }
 
 
 if ($id === 'contribute_items') {
-    $bossId = isset($_GET['bossId']) ? preg_replace('/\D/', "", $_GET['bossId']) : null;
+    $bossId = isset($_GET['bossId']) ? preg_replace('/\D/', "", (string) $_GET['bossId']) : null;
     $repository = new \LegacyDbz\LegendaryBosses\Repositories\LegendaryBossRepository();
     $service = new \LegacyDbz\LegendaryBosses\Services\LegendaryBossService($repository);
     $boss = $service->get();
@@ -627,7 +627,7 @@ if ($id === 'contribute_items') {
         echo '<div class="meniu">';
         echo 'Bosas jau iškviestas<br>';
         echo '</div>';
-        $g_n[] = array("index.php", "Legendary bosai", "Iškviesti bosą");
+        $g_n[] = ["index.php", "Legendary bosai", "Iškviesti bosą"];
         navigacija($g_n);
         return;
     }
@@ -635,7 +635,7 @@ if ($id === 'contribute_items') {
         echo '<div class="meniu">';
         echo 'Neteisinga boso konfigūraciją<br>';
         echo '</div>';
-        $g_n[] = array("index.php", "Legendary bosai", "Iškviesti bosą");
+        $g_n[] = ["index.php", "Legendary bosai", "Iškviesti bosą"];
         navigacija($g_n);
         return;
     }
@@ -698,14 +698,14 @@ if ($id === 'contribute_items') {
     }
 
 
-    $g_n[] = array("/pagrindinis.php?id=", "Pagrindinis", "index.php", "Legendary bosai", "index.php?id=summon&bossId=$bossId", "Iškviesti bosą", "Aukoti daiktus");
+    $g_n[] = ["/pagrindinis.php?id=", "Pagrindinis", "index.php", "Legendary bosai", "index.php?id=summon&bossId=$bossId", "Iškviesti bosą", "Aukoti daiktus"];
     navigacija($g_n);
 }
 
 if ($id === 'contributeSayiantail') {
     online('Auka bosui > aukoja Sayiantail');
     top('Sayiantail aukojimas');
-    $bossId = isset($_GET['bossId']) ? preg_replace('/\D/', "", $_GET['bossId']) : null;
+    $bossId = isset($_GET['bossId']) ? preg_replace('/\D/', "", (string) $_GET['bossId']) : null;
 
     if (isset($_POST['submit'])) {
         $repository = new \LegacyDbz\LegendaryBosses\Repositories\LegendaryBossRepository();
@@ -727,14 +727,14 @@ if ($id === 'contributeSayiantail') {
         }
     }
 
-    $g_n[] = array("/pagrindinis.php?id=", "Pagrindinis", "index.php", "Legendary bosai", "index.php?id=contribute_items&bossId=$bossId", "Iškviesti bosą", "Aukoti daiktus");
+    $g_n[] = ["/pagrindinis.php?id=", "Pagrindinis", "index.php", "Legendary bosai", "index.php?id=contribute_items&bossId=$bossId", "Iškviesti bosą", "Aukoti daiktus"];
     navigacija($g_n);
 }
 
 if ($id === 'contributeStone') {
     online('Auka bosui > aukoja Stone');
     top('Stone aukojimas');
-    $bossId = isset($_GET['bossId']) ? preg_replace('/\D/', "", $_GET['bossId']) : null;
+    $bossId = isset($_GET['bossId']) ? preg_replace('/\D/', "", (string) $_GET['bossId']) : null;
 
     if (isset($_POST['submit'])) {
         $repository = new \LegacyDbz\LegendaryBosses\Repositories\LegendaryBossRepository();
@@ -756,14 +756,14 @@ if ($id === 'contributeStone') {
         }
     }
 
-    $g_n[] = array("/pagrindinis.php?id=", "Pagrindinis", "index.php", "Legendary bosai", "index.php?id=contribute_items&bossId=$bossId", "Iškviesti bosą", "Aukoti daiktus");
+    $g_n[] = ["/pagrindinis.php?id=", "Pagrindinis", "index.php", "Legendary bosai", "index.php?id=contribute_items&bossId=$bossId", "Iškviesti bosą", "Aukoti daiktus"];
     navigacija($g_n);
 }
 
 if ($id === 'contributeCadmiumOre') {
     online('Auka bosui > aukoja Kadmio rūdą');
     top('Kadmio rūdos aukojimas');
-    $bossId = isset($_GET['bossId']) ? preg_replace('/\D/', "", $_GET['bossId']) : null;
+    $bossId = isset($_GET['bossId']) ? preg_replace('/\D/', "", (string) $_GET['bossId']) : null;
 
     if (isset($_POST['submit'])) {
         $repository = new \LegacyDbz\LegendaryBosses\Repositories\LegendaryBossRepository();
@@ -785,14 +785,14 @@ if ($id === 'contributeCadmiumOre') {
         }
     }
 
-    $g_n[] = array("/pagrindinis.php?id=", "Pagrindinis", "index.php", "Legendary bosai", "index.php?id=contribute_items&bossId=$bossId", "Iškviesti bosą", "Aukoti daiktus");
+    $g_n[] = ["/pagrindinis.php?id=", "Pagrindinis", "index.php", "Legendary bosai", "index.php?id=contribute_items&bossId=$bossId", "Iškviesti bosą", "Aukoti daiktus"];
     navigacija($g_n);
 }
 
 if ($id === 'contributeMicroshem') {
     online('Auka bosui > aukoja Microshemas');
     top('Microshemų aukojimas');
-    $bossId = isset($_GET['bossId']) ? preg_replace('/\D/', "", $_GET['bossId']) : null;
+    $bossId = isset($_GET['bossId']) ? preg_replace('/\D/', "", (string) $_GET['bossId']) : null;
 
     if (isset($_POST['submit'])) {
         $repository = new \LegacyDbz\LegendaryBosses\Repositories\LegendaryBossRepository();
@@ -814,7 +814,7 @@ if ($id === 'contributeMicroshem') {
         }
     }
 
-    $g_n[] = array("/pagrindinis.php?id=", "Pagrindinis", "index.php", "Legendary bosai", "index.php?id=contribute_items&bossId=$bossId", "Iškviesti bosą", "Aukoti daiktus");
+    $g_n[] = ["/pagrindinis.php?id=", "Pagrindinis", "index.php", "Legendary bosai", "index.php?id=contribute_items&bossId=$bossId", "Iškviesti bosą", "Aukoti daiktus"];
     navigacija($g_n);
 }
 
@@ -1063,7 +1063,7 @@ if ($id === 'attack') {
                 echo '<b>Stebuklingos pupos: <b>' . $inv['Pupos'] . '</b> <a href="/inv.php?id=eat">[Valgyti]</a></br>';
             }
             echo '</div>';
-            $g_n[] = array("index.php", "Legendary bosai", "Pulti bosą");
+            $g_n[] = ["index.php", "Legendary bosai", "Pulti bosą"];
             navigacija($g_n);
             return;
         }
@@ -1156,7 +1156,7 @@ if ($id === 'attack') {
             mysqli_query($conn,"DELETE FROM legendary_bosses WHERE `ends_at` < '$date' AND dead_at IS NULL ");
             echo '</div>';
 
-            $g_n[] = array("index.php", "Legendary bosai", "Pulti bosą");
+            $g_n[] = ["index.php", "Legendary bosai", "Pulti bosą"];
             navigacija($g_n);
             return;
         }
@@ -1250,7 +1250,7 @@ if ($id === 'attack') {
     echo '</div>';
 
     echo '</div>';
-    $g_n[] = array("index.php", "Legendary bosai", "Pulti bosą");
+    $g_n[] = ["index.php", "Legendary bosai", "Pulti bosą"];
     navigacija($g_n);
 }
 

@@ -106,7 +106,7 @@ if (!isset($id)) {
     renderTopBossKillers();
     renderTopPlayersByTokens();
 
-    $g_n[] = array("/pagrindinis.php?id=","Pagrindinis","Jungle King bosai");
+    $g_n[] = ["/pagrindinis.php?id=","Pagrindinis","Jungle King bosai"];
     navigacija($g_n);
 }
 
@@ -136,7 +136,7 @@ if ($id === 'getMission') {
         echo '</div>';
     }
 
-    $g_n[] = array("index.php","Jungle King bosai","Gauti Misiją");
+    $g_n[] = ["index.php","Jungle King bosai","Gauti Misiją"];
     navigacija($g_n);
 }
 
@@ -145,7 +145,7 @@ if ($id === 'getMission') {
  */
 if ($id === 'attack') {
     $KD = $_GET['KD'];
-    $bossId = isset($_GET['bossId']) ? preg_replace('/\D/', "", $_GET['bossId']) : null;
+    $bossId = isset($_GET['bossId']) ? preg_replace('/\D/', "", (string) $_GET['bossId']) : null;
     $bossConfig = getBossById($bossId);
     $playerHealth = round($apie['gyvybes']);
     $playerPower = round($apie['jega']);
@@ -314,9 +314,7 @@ if ($id === 'attack') {
         }
 
         /** @var PlayerSkill $crossOfBloodBuff */
-        $crossOfBloodBuff = $playerActiveBuffs->first(function (PlayerSkill $playerSkill) {
-            return $playerSkill->skill()->name() === Skill::BUFF_NAME_CROSS_OF_BLOOD;
-        });
+        $crossOfBloodBuff = $playerActiveBuffs->first(fn(PlayerSkill $playerSkill) => $playerSkill->skill()->name() === Skill::BUFF_NAME_CROSS_OF_BLOOD);
         if (!$isBossBlockedAttack && $crossOfBloodBuff) {
             $playerDamage *= $crossOfBloodBuff->skill()->power();
 
@@ -337,7 +335,7 @@ if ($id === 'attack') {
             echo '<font color="red"><b>Tu pralaimėjai!</b></font><br>';
             mysqli_query($conn,"UPDATE zaidejai SET gyvybes='0' WHERE nick='$nick' ");
             echo '</div>';
-            $g_n[] = array("index.php","Jungle King bosai","Pulti bosą");
+            $g_n[] = ["index.php","Jungle King bosai","Pulti bosą"];
             navigacija($g_n);
             return;
         }
@@ -401,7 +399,7 @@ if ($id === 'attack') {
                 if ($rr == 1) {
                     $qq = 1.4;
                 } else {
-                    $qq = $qq * 1.4;
+                    $qq *= 1.4;
                 }
                 if ($qq >= $kiek_exp / 10 && $enda != $rr) {
                     $lvlas = $rr;
@@ -415,7 +413,7 @@ if ($id === 'attack') {
             }
             mysqli_query($conn,"UPDATE zaidejai SET exp=exp+'$boss[exp]', lygis='$lvlas',expl='$left', expl2='$left*3.53' WHERE nick='$apie[nick]'");
 
-            $g_n[] = array("index.php","Jungle King bosai","Pulti bosą");
+            $g_n[] = ["index.php","Jungle King bosai","Pulti bosą"];
             navigacija($g_n);
             return;
         }
@@ -477,7 +475,7 @@ if ($id === 'attack') {
     $refresh = 8;
     echo '<meta http-equiv="refresh" content="'.$refresh.'; url=index.php?id=attack&KD='.$KD.'&bossId='.$bossId.'">';
     echo '</div>';
-    $g_n[] = array("index.php","Jungle King bosai","Pulti bosą");
+    $g_n[] = ["index.php","Jungle King bosai","Pulti bosą"];
     navigacija($g_n);
 }
 
@@ -486,9 +484,9 @@ if ($id === 'attack') {
  * COMPLETE MISSION
  */
 if ($id === 'completeMission') {
-    $bossId = isset($_GET['bossId']) ? preg_replace('/\D/',"",$_GET['bossId'])  : null;
+    $bossId = isset($_GET['bossId']) ? preg_replace('/\D/',"",(string) $_GET['bossId'])  : null;
     $missionConfig = getBossById($bossId);
-    $missionName = isset($missionConfig['name']) ? $missionConfig['name'] : null;
+    $missionName = $missionConfig['name'] ?? null;
     $requirements = $missionConfig ? $missionConfig['requirements'] : [];
     $rewards = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM jungle_king_bosses WHERE status='prepared' AND user_id='$apie[id]' AND boss_id = '$bossId' AND DATE(created_at) = '$date'"));
 
@@ -666,7 +664,7 @@ if ($id === 'completeMission') {
     }
     echo '</div>';
 
-    $g_n[] = array("index.php","Jungle King bosai","Įvykdyti Pasiruošimo Misiją");
+    $g_n[] = ["index.php","Jungle King bosai","Įvykdyti Pasiruošimo Misiją"];
     navigacija($g_n);
 }
 
@@ -702,7 +700,7 @@ if ($id === 'shop') {
         <input type="submit" name="submit" value="Keisti"/></form></div>';
 
 
-    $g_n[] = array("/pagrindinis.php?id=", "Pagrindinis", "index.php", "Jungle King bosai", "Tokenų keitykla");
+    $g_n[] = ["/pagrindinis.php?id=", "Pagrindinis", "index.php", "Jungle King bosai", "Tokenų keitykla"];
     navigacija($g_n);
 }
 
@@ -726,7 +724,7 @@ if ($id === 'changeToMirtiesItem') {
         }
     }
 
-    $g_n[] = array("/pagrindinis.php?id=", "Pagrindinis", "index.php", "Jungle King bosai", "index.php?id=shop", "Tokenų keitykla", "Tokenų keitimas");
+    $g_n[] = ["/pagrindinis.php?id=", "Pagrindinis", "index.php", "Jungle King bosai", "index.php?id=shop", "Tokenų keitykla", "Tokenų keitimas"];
     navigacija($g_n);
 }
 
@@ -750,7 +748,7 @@ if ($id === 'changeToAtgimimoItem') {
         }
     }
 
-    $g_n[] = array("/pagrindinis.php?id=", "Pagrindinis", "index.php", "Jungle King bosai", "index.php?id=shop", "Tokenų keitykla", "Tokenų keitimas");
+    $g_n[] = ["/pagrindinis.php?id=", "Pagrindinis", "index.php", "Jungle King bosai", "index.php?id=shop", "Tokenų keitykla", "Tokenų keitimas"];
     navigacija($g_n);
 }
 
@@ -774,7 +772,7 @@ if ($id === 'changeToSayiantail') {
         }
     }
 
-    $g_n[] = array("/pagrindinis.php?id=", "Pagrindinis", "index.php", "Jungle King bosai", "index.php?id=shop", "Tokenų keitykla", "Tokenų keitimas");
+    $g_n[] = ["/pagrindinis.php?id=", "Pagrindinis", "index.php", "Jungle King bosai", "index.php?id=shop", "Tokenų keitykla", "Tokenų keitimas"];
     navigacija($g_n);
 }
 

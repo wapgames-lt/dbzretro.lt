@@ -4,22 +4,13 @@ namespace LegacyDbz\Parties\DTO;
 
 class PartyMember
 {
-    private $partyId;
-
-    private $playerId;
-
-    private $joinedAt;
-
     /**
      * @param $partyId
      * @param $playerId
      * @param $joinedAt
      */
-    public function __construct($partyId, $playerId, $joinedAt)
+    public function __construct(private $partyId, private $playerId, private $joinedAt)
     {
-        $this->partyId = $partyId;
-        $this->playerId = $playerId;
-        $this->joinedAt = $joinedAt;
     }
 
     /**

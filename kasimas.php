@@ -9,7 +9,7 @@ head2();
 baneris();
 topbar();
 $kasimas = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM kasyklav WHERE id='$VS' "));
-   if(empty($apie[kasimasa])){
+   if(empty($apie['kasimasa'])){
 	
 	mysqli_query($conn,"UPDATE zaidejai SET kasimasa='paprastas' WHERE nick='$nick'");
 }
@@ -18,7 +18,7 @@ $kasimas = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM kasyklav WHERE i
    echo'<div class="meniuc"><img src="img/kasimas/kasykla.png" border="1"></div>';
     echo '<div class="meniuc">Auto kasimas išjungtas!</div>';
     mysqli_query($conn,"UPDATE zaidejai SET autok='-', kasimasa='-' WHERE nick='$nick' ");
-  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","kasimas.php?id=kasykla","Kasykla", "Kasimo auto OFF");
+  $g_n[] = ["pagrindinis.php?id=","Pagrindinis","kasimas.php?id=kasykla","Kasykla", "Kasimo auto OFF"];
 	navigacija($g_n);
   
 }
@@ -27,7 +27,7 @@ elseif($id == "auto_on"){
     echo'<div class="meniuc"><img src="img/kasimas/kasykla.png" border="1"></div>';
     echo '<div class="meniuc">Auto kasimas  įjungtas!</div>';
     mysqli_query($conn,"UPDATE zaidejai SET autok='+', kasimasa='paprastas' WHERE nick='$nick' ");
-   $g_n[] = array("pagrindinis.php?id=","Pagrindinis","kasimas.php?id=kasykla","Kasykla", "Kasimo auto ON");
+   $g_n[] = ["pagrindinis.php?id=","Pagrindinis","kasimas.php?id=kasykla","Kasykla", "Kasimo auto ON"];
 	navigacija($g_n);
 	
 }	           
@@ -42,7 +42,7 @@ elseif($id == "pap"){
    
 	
 }	          
-if($apie[vip]-time() > 0){
+if((int)$apie['vip']-time() > 0){
 $kasimasa = 1;
  $padusimas = 1;
  
@@ -122,7 +122,7 @@ echo'</div>';
 
 
 
-			 $g_n[] = array("pagrindinis.php?id=","Pagrindinis", "Kasykla");
+			 $g_n[] = ["pagrindinis.php?id=","Pagrindinis", "Kasykla"];
 	navigacija($g_n);
 }
 
@@ -137,7 +137,7 @@ elseif($id == "kasimoreward"){
    </div><div class="titlec">
    <a href="?id=kasimoreward2">Pasiekiau reikiama lygį!</a>
    </div>';
-    $g_n[] = array("pagrindinis.php?id=","Pagrindinis","kasimas.php", "Kasykla", "Kasimo Lvl misija");
+    $g_n[] = ["pagrindinis.php?id=","Pagrindinis","kasimas.php", "Kasykla", "Kasimo Lvl misija"];
 	navigacija($g_n);
 }
 elseif($id == "kasimoreward2"){
@@ -162,7 +162,7 @@ echo '<div class="meniuc"><img src="img/kasimoreward.png"></div>';
        
       mysqli_query($conn,"UPDATE zaidejai SET kasimoreward='+' WHERE nick='$nick' ");}
  
-    $g_n[] = array("pagrindinis.php?id=","Pagrindinis","kasimas.php", "Kasykla", "Kasimo Lvl reward");
+    $g_n[] = ["pagrindinis.php?id=","Pagrindinis","kasimas.php", "Kasykla", "Kasimo Lvl reward"];
 	navigacija($g_n);
 
 }
@@ -422,7 +422,7 @@ echo'<div class="up">Kvarco iškasenų</div>
         <input type="number" value="'. $inv['kvarcas'] . '" min="500" max="'. $inv['kvarcas'] . '" name="gynybaa"><br />
         <input type="submit" name="submit" value="Keisti"/></form></div>
 		';
-$g_n[] = array("pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Iškasenų parduotuvė");
+$g_n[] = ["pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Iškasenų parduotuvė"];
 	navigacija($g_n);
 
 }
@@ -459,7 +459,7 @@ echo'<div class="up">Paprastos rūdos</div>
 <b>'.$inv['osmis'].'</b><img src="img/kasimas/osmio.png" alt="IMG" height="16" width="16"> | 
 <b>'.$inv['manganas'].'</b><img src="img/kasimas/mangano.png" alt="IMG" height="16" width="16"> 
 </div>';
-$g_n[] = array("pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Kasimas");
+$g_n[] = ["pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Kasimas"];
 	navigacija($g_n);
 
 }
@@ -470,7 +470,7 @@ top('Kasykla');
   
 
 
-$KD = rand(9999,99999);
+$KD = random_int(9999,99999);
 mysqli_query($conn,"UPDATE zaidejai SET kda2='$KD' WHERE nick='$nick'");
 $ID = sk($_GET['ID']);
    online('Kasykloje');
@@ -489,10 +489,10 @@ echo'<div class="meniuc"><img src="img/kasimas/kasykla.png" border="1"></div>
 
   <div class="titlec">Dabar padusimai kas <b><font color="green">'.$padusimas.'</font></b> sec , auto kasimas kas <b><font color="green">'.$kasimasa.'</font></b> sec<br/></div>
 ';
-if($apie['kasimas2x']-time() > 0){
+if((int)$apie['kasimas2x']-time() > 0){
   echo '<div class="meniuc">Daugiau iškasamų rūdų tau galios: <b>'.laikas($apie['kasimas2x']-time(), 1).'</b></div>';
 }
-if($apie['kasimolvl2x']-time() > 0){
+if((int)$apie['kasimolvl2x']-time() > 0){
   echo '<div class="meniuc">Daugiau kasimi LVL tau galios: <b>'.laikas($apie['kasimolvl2x']-time(), 1).'</b></div>';
 }
 echo'<div class="meniuc"><a href="?id=rudos"><font color="red"><b>Iškasti ištekliai</b></font></a></div>';
@@ -538,7 +538,7 @@ echo'</div>';}
          
     }
 }
-		 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","kasimas.php?id=","Kasykla","Kasimas");
+		 $g_n[] = ["pagrindinis.php?id=","Pagrindinis","kasimas.php?id=","Kasykla","Kasimas"];
 	navigacija($g_n);
 }
 
@@ -550,7 +550,7 @@ if($id == 'kasu'){
         error_log($message);
         $b_laikas2 = time()+60;
         $kasBan = 'testas1';
-        mysqli_query($conn,"INSERT INTO ban_logai SET nick='$nick', uz='$message', time='$b_laikas2', kas_ban='$kasBan'")or die(mysqli_error);
+        mysqli_query($conn,"INSERT INTO ban_logai SET nick='$nick', uz='$message', time='$b_laikas2', kas_ban='$kasBan'")or die(\MYSQLI_ERROR);
         mysqli_query($conn,"INSERT INTO block SET nick='$nick', uz='$message', time='$b_laikas2', kas_ban='$kasBan'");
         header('Refresh: 1; url=pagrindinis.php');
     }
@@ -583,24 +583,24 @@ if($id == 'kasu'){
         }
     }
 
-		$ID = mysqli_real_escape_string(htmlspecialchars($_GET['ID']));
-			$VS = mysqli_real_escape_string(htmlspecialchars($_GET['VS']));
+		$ID = mysqli_real_escape_string($conn, htmlspecialchars((string) $_GET['ID']));
+			$VS = mysqli_real_escape_string($conn,htmlspecialchars((string) $_GET['VS']));
 	
 $kasimas = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM kasyklav WHERE id='$VS' "));
-			$KD = rand(9999,99999);
+			$KD = random_int(9999,99999);
 $ID = post($_GET['ID']);
 $VS = post($_GET['VS']);
 $KD = post($_GET['KD']);
    online('Kasykloje');
 //// 2x kasimo lvl
-  if($apie['kasimolvl2x']-time() > 0){
+  if((int)$apie['kasimolvl2x']-time() > 0){
 $kasimas2x=2;}
-  if($apie['kasimolvl2x']-time() < 0){
+  if((int)$apie['kasimolvl2x']-time() < 0){
 $kasimas2x=1;}
 /// 2x rudu
-   if($apie['kasimas2x']-time() > 0){
+   if((int)$apie['kasimas2x']-time() > 0){
 $kasimasx=1;}
-if($apie['kasimas2x']-time() < 0){
+if((int)$apie['kasimas2x']-time() < 0){
 $kasimasx=0;}
 /// reward
 if($apie['kasimoreward'] == '+'){
@@ -625,7 +625,7 @@ $kasimoreward=0;}
 echo'<div class="meniuc"><img src="img/kasimas/kasykla.png" border="1"></div>';
           echo '<div class="meniu" style="text-align: center;">Taip kasti negalimą! Eikite atgal ir vėl kaskite!</div>';
     
- $g_n[] = array("pagrindinis.php?id=","Pagrindinis","kasimas.php", "Rūdų kasimas", "Klaida");
+ $g_n[] = ["pagrindinis.php?id=","Pagrindinis","kasimas.php", "Rūdų kasimas", "Klaida"];
 	navigacija($g_n);
 	}
 
@@ -636,7 +636,7 @@ echo'<div class="meniuc"><img src="img/kasimas/kasykla.png" border="1"></div>';
 			echo'<div class="meniuc"><img src="img/kasimas/kasykla.png" border="1"></div>';
 		echo'	<div class="meniuc">Tu neturi tokio <b>Rūdų kasimo lvl</b>!  </div> ';
 
-			 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Kasimas");
+			 $g_n[] = ["pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Kasimas"];
 	navigacija($g_n);
 
 }
@@ -647,36 +647,36 @@ echo'<div class="meniuc"><img src="img/kasimas/kasykla.png" border="1"></div>';
 
 		echo'	<div class="meniuc">Tu neturi <b>'.$kasimas['img'].' kirtiklio</b>!
 </div> ';
-			 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Kasimas");
+			 $g_n[] = ["pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Kasimas"];
 	navigacija($g_n);
 }
 
-	elseif($_SESSION[kasu] > time()){
+	elseif($_SESSION['kasu'] > time()){
 echo'<div class="meniuc"><img src="img/kasimas/kasykla.png" border="1"></div>';
-		echo'<div class="meniuc">Per greit kasi galėsi po '.laikas($_SESSION[kasu]-time(), 1).'</div>';
- $g_n[] = array("pagrindinis.php?id=","Pagrindinis","kasimas.php", "Rūdos kasimas", "Klaida");
+		echo'<div class="meniuc">Per greit kasi galėsi po '.laikas($_SESSION['kasu']-time(), 1).'</div>';
+ $g_n[] = ["pagrindinis.php?id=","Pagrindinis","kasimas.php", "Rūdos kasimas", "Klaida"];
 	navigacija($g_n);
 	
 	}
 	else{
 
 
-		   $KDS= rand(9999,99999);
+		   $KDS= random_int(9999,99999);
     mysqli_query($conn,"UPDATE zaidejai SET kda2='$KDS' WHERE nick='$nick'");
 
              $query = mysqli_query($conn,"SELECT * FROM kasyklav WHERE lokacija='$ID' ORDER BY id='$VS' DESC LIMIT 1");
              while($row = mysqli_fetch_assoc($query)){
-		$_SESSION[kasu] = time()+$padusimas;
-		$randas = rand(1,1);
-		$randas2 =rand(1+$kasimasx+$kasimoreward,1+$kasimasx+$kasimoreward);
-		$randas3 =rand($row['minlvl']*$kasimas2x,$row['maxlvl']*$kasimas2x);
+		$_SESSION['kasu'] = time()+$padusimas;
+		$randas = random_int(1,1);
+		$randas2 =random_int(1+$kasimasx+$kasimoreward,1+$kasimasx+$kasimoreward);
+		$randas3 =random_int($row['minlvl']*$kasimas2x,$row['maxlvl']*$kasimas2x);
 		online('Kasykloje > ' . $row['name']);
 echo'<div class="meniuc"><img src="img/kasimas/kasykla.png" border="1"></div>';
 echo'<div class="up">'.$row['kasimolvl'].' LVL Rūdu kasimas</div>';
-if($apie['kasimas2x']-time() > 0){
+if((int)$apie['kasimas2x']-time() > 0){
   echo '<div class="meniuc">Gausite <b>2x</b> iškasamų rūdų dar: <b>'.laikas($apie['kasimas2x']-time(), 1).'</b></div>';
 }
-if($apie['kasimolvl2x']-time() > 0){
+if((int)$apie['kasimolvl2x']-time() > 0){
   echo '<div class="meniuc">Gausite <b>2x</b> kasimo LVL dar: <b>'.laikas($apie['kasimolvl2x']-time(), 1).'</b></div>';
 }
 echo'<div class="meniuc">Iškasei<b> '.$randas2.' </b><img src="img/kasimas/'.$row['img'].'.png" alt="IMG" height="16" width="16"> | Išviso turi: <b>'.$inv[$row['ruda']].'</b><img src="img/kasimas/'.$row['img'].'.png" alt="IMG" height="16" width="16"><br>Gavai +<font color="red">'.$randas3.'</font><b> Rūdų kasimo lygio</b><br>Turi <font color="red">'.skaicius($apie['kasimolvl']).'</font><b> Rūdų kasimo lygio</b>
@@ -690,13 +690,13 @@ mysqli_query($conn,"UPDATE kasimotop SET surinkta=surinkta+'$randas3' WHERE nick
                  if (mysqli_num_rows(mysqli_query($conn,"SELECT * FROM s_top WHERE nick='$nick'")) > 0) mysqli_query($conn,"UPDATE s_top SET vksm=vksm+1 WHERE nick='$nick'"); else mysqli_query($conn,"INSERT INTO s_top SET vksm='1', nick='$nick'");
 	}
 	    
-if($autok = '+' AND $apie[kasimasa] == 'paprastas'){
+if($autok = '+' AND $apie['kasimasa'] == 'paprastas'){
     echo '<meta http-equiv="refresh" content="'.$kasimasa.'; url=kasimas.php?id=kasu&ID='.$ID.'&VS='.$VS.'&KD='.$KDS.'">';}	     
 
 
 
 		echo'<div class="meniuc"><a href="kasimas.php?id=kasu&ID='.$ID.'&VS='.$VS.'&KD='.$KDS.'">Kasti toliau</a></div>';
-		 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","kasimas.php", "Rūdų kasimas", "Kasimas");
+		 $g_n[] = ["pagrindinis.php?id=","Pagrindinis","kasimas.php", "Rūdų kasimas", "Kasimas"];
 	navigacija($g_n);
 	}
 	
@@ -752,7 +752,7 @@ if($id == 'kirtikliai'){
 
 
 ';
-		 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","kasimas.php","Rudų kasimas","Kirtiklių pirkimas");
+		 $g_n[] = ["pagrindinis.php?id=","Pagrindinis","kasimas.php","Rudų kasimas","Kirtiklių pirkimas"];
 	navigacija($g_n);
 }
 if($id == "kirtalavo"){
@@ -780,7 +780,7 @@ mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai-'20' WHERE nick='$ni
 		}
 	
 
- $g_n[] = array("pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Kirtiklio pirkimas");
+ $g_n[] = ["pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Kirtiklio pirkimas"];
 	navigacija($g_n);
 	
 
@@ -810,7 +810,7 @@ mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai-'40' WHERE nick='$ni
 		}
 	
 
- $g_n[] = array("pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Kirtiklio pirkimas");
+ $g_n[] = ["pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Kirtiklio pirkimas"];
 	navigacija($g_n);
 	
 
@@ -840,7 +840,7 @@ mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai-'70' WHERE nick='$ni
 		}
 	
 
- $g_n[] = array("pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Kirtiklio pirkimas");
+ $g_n[] = ["pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Kirtiklio pirkimas"];
 	navigacija($g_n);
 	
 
@@ -870,7 +870,7 @@ mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai-'100' WHERE nick='$n
 		}
 	
 
- $g_n[] = array("pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Kirtiklio pirkimas");
+ $g_n[] = ["pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Kirtiklio pirkimas"];
 	navigacija($g_n);
 	
 
@@ -900,7 +900,7 @@ mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai-'120' WHERE nick='$n
 		}
 	
 
- $g_n[] = array("pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Kirtiklio pirkimas");
+ $g_n[] = ["pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Kirtiklio pirkimas"];
 	navigacija($g_n);
 	
 
@@ -930,7 +930,7 @@ mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai-'150' WHERE nick='$n
 		}
 	
 
- $g_n[] = array("pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Kirtiklio pirkimas");
+ $g_n[] = ["pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Kirtiklio pirkimas"];
 	navigacija($g_n);
 	
 
@@ -960,7 +960,7 @@ mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai-'200' WHERE nick='$n
 		}
 	
 
- $g_n[] = array("pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Kirtiklio pirkimas");
+ $g_n[] = ["pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Kirtiklio pirkimas"];
 	navigacija($g_n);
 	
 
@@ -990,7 +990,7 @@ mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai-'250' WHERE nick='$n
 		}
 	
 
- $g_n[] = array("pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Kirtiklio pirkimas");
+ $g_n[] = ["pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Kirtiklio pirkimas"];
 	navigacija($g_n);
 	
 
@@ -1020,7 +1020,7 @@ mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai-'300' WHERE nick='$n
 		}
 	
 
- $g_n[] = array("pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Kirtiklio pirkimas");
+ $g_n[] = ["pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Kirtiklio pirkimas"];
 	navigacija($g_n);
 	
 
@@ -1050,7 +1050,7 @@ mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai-'350' WHERE nick='$n
 		}
 	
 
- $g_n[] = array("pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Kirtiklio pirkimas");
+ $g_n[] = ["pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Kirtiklio pirkimas"];
 	navigacija($g_n);
 	
 
@@ -1080,7 +1080,7 @@ mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai-'400' WHERE nick='$n
 		}
 	
 
- $g_n[] = array("pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Kirtiklio pirkimas");
+ $g_n[] = ["pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Kirtiklio pirkimas"];
 	navigacija($g_n);
 	
 
@@ -1110,7 +1110,7 @@ mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai-'12000' WHERE nick='
 		}
 	
 
- $g_n[] = array("pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Kirtiklio pirkimas");
+ $g_n[] = ["pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Kirtiklio pirkimas"];
 	navigacija($g_n);
 	
 
@@ -1141,7 +1141,7 @@ mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai-'50000' WHERE nick='
 		}
 	
 
- $g_n[] = array("pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Kirtiklio pirkimas");
+ $g_n[] = ["pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Kirtiklio pirkimas"];
 	navigacija($g_n);
 	
 
@@ -1177,7 +1177,7 @@ if($id =='keiciumangana1'){
         }
 
 
-        $g_n[] = array("pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Iškasenų keitimas");
+        $g_n[] = ["pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Iškasenų keitimas"];
         navigacija($g_n);}
 }
 if($id == "keiciumangana2"){
@@ -1209,7 +1209,7 @@ if($id == "keiciumangana2"){
         }
 
 
-        $g_n[] = array("pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Iškasenų keitimas");
+        $g_n[] = ["pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Iškasenų keitimas"];
         navigacija($g_n);}
 
 
@@ -1245,7 +1245,7 @@ top('Iškasenų keitimas');
 			  }
 
 		
- $g_n[] = array("pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Iškasenų keitimas");
+ $g_n[] = ["pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Iškasenų keitimas"];
 	navigacija($g_n);}
 }		
 if($id == "keiciua2"){
@@ -1277,7 +1277,7 @@ top('Iškasenų keitimas');
 			  }
 
 		
- $g_n[] = array("pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Iškasenų keitimas");
+ $g_n[] = ["pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Iškasenų keitimas"];
 		navigacija($g_n);}
 	
 
@@ -1309,7 +1309,7 @@ top('Iškasenų keitimas');
 			mysqli_query($conn,"UPDATE inv SET varis=varis-'$kainn' WHERE nick='$nick' ");
 			  }
 			  
- $g_n[] = array("pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Iškasenų keitimas");
+ $g_n[] = ["pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Iškasenų keitimas"];
 				navigacija($g_n);}
 	
 
@@ -1342,7 +1342,7 @@ top('Iškasenų keitimas');
 			  
 		}
 
- $g_n[] = array("pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Iškasenų keitimas");
+ $g_n[] = ["pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Iškasenų keitimas"];
 				navigacija($g_n);}
 	
 
@@ -1376,7 +1376,7 @@ top('Iškasenų keitimas');
 			  }
 
 		
- $g_n[] = array("pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Iškasenų keitimas");
+ $g_n[] = ["pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Iškasenų keitimas"];
 	navigacija($g_n);}
 }		
 if($id == "keiciuk2"){
@@ -1408,7 +1408,7 @@ top('Iškasenų keitimas');
 			  }
 
 		
- $g_n[] = array("pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Iškasenų keitimas");
+ $g_n[] = ["pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Iškasenų keitimas"];
 		navigacija($g_n);}
 	
 
@@ -1442,7 +1442,7 @@ top('Iškasenų keitimas');
 			  }
 
 		
- $g_n[] = array("pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Iškasenų keitimas");
+ $g_n[] = ["pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Iškasenų keitimas"];
 	navigacija($g_n);}
 }		
 if($id == "keiciuc2"){
@@ -1474,7 +1474,7 @@ top('Iškasenų keitimas');
 			  }
 
 		
- $g_n[] = array("pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Iškasenų keitimas");
+ $g_n[] = ["pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Iškasenų keitimas"];
 		navigacija($g_n);}
 	
 
@@ -1508,7 +1508,7 @@ top('Iškasenų keitimas');
 			  }
 
 		
- $g_n[] = array("pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Iškasenų keitimas");
+ $g_n[] = ["pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Iškasenų keitimas"];
 	navigacija($g_n);}
 }		
 if($id == "keiciug2"){
@@ -1540,7 +1540,7 @@ top('Iškasenų keitimas');
 			  }
 
 		
- $g_n[] = array("pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Iškasenų keitimas");
+ $g_n[] = ["pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Iškasenų keitimas"];
 		navigacija($g_n);}
 	
 }
@@ -1573,7 +1573,7 @@ top('Iškasenų keitimas');
 			  }
 
 		
- $g_n[] = array("pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Iškasenų keitimas");
+ $g_n[] = ["pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Iškasenų keitimas"];
 	navigacija($g_n);}
 }		
 if($id == "keicius2"){
@@ -1605,7 +1605,7 @@ top('Iškasenų keitimas');
 			  }
 
 		
- $g_n[] = array("pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Iškasenų keitimas");
+ $g_n[] = ["pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Iškasenų keitimas"];
 		navigacija($g_n);}
 	
 
@@ -1639,7 +1639,7 @@ top('Iškasenų keitimas');
 			  }
 
 		
- $g_n[] = array("pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Iškasenų keitimas");
+ $g_n[] = ["pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Iškasenų keitimas"];
 	navigacija($g_n);}
 }		
 if($id == "keiciuaux2"){
@@ -1671,7 +1671,7 @@ top('Iškasenų keitimas');
 			  }
 
 		
- $g_n[] = array("pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Iškasenų keitimas");
+ $g_n[] = ["pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Iškasenų keitimas"];
 		navigacija($g_n);}
 	
 
@@ -1705,7 +1705,7 @@ top('Iškasenų keitimas');
 			  }
 
 		
- $g_n[] = array("pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Iškasenų keitimas");
+ $g_n[] = ["pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Iškasenų keitimas"];
 	navigacija($g_n);}
 }		
 if($id == "keiciup2"){
@@ -1737,7 +1737,7 @@ top('Iškasenų keitimas');
 			  }
 
 		
- $g_n[] = array("pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Iškasenų keitimas");
+ $g_n[] = ["pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Iškasenų keitimas"];
 		navigacija($g_n);}
 	
 
@@ -1771,7 +1771,7 @@ top('Iškasenų keitimas');
 			  }
 
 		
- $g_n[] = array("pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Iškasenų keitimas");
+ $g_n[] = ["pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Iškasenų keitimas"];
 	navigacija($g_n);}
 }		
 if($id == "keiciut2"){
@@ -1803,7 +1803,7 @@ top('Iškasenų keitimas');
 			  }
 
 		
- $g_n[] = array("pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Iškasenų keitimas");
+ $g_n[] = ["pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Iškasenų keitimas"];
 		navigacija($g_n);}
 	
 
@@ -1837,7 +1837,7 @@ top('Iškasenų keitimas');
 			  }
 
 		
- $g_n[] = array("pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Iškasenų keitimas");
+ $g_n[] = ["pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Iškasenų keitimas"];
 	navigacija($g_n);}
 }		
 if($id == "keiciuo2"){
@@ -1869,7 +1869,7 @@ top('Iškasenų keitimas');
 			  }
 
 		
- $g_n[] = array("pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Iškasenų keitimas");
+ $g_n[] = ["pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Iškasenų keitimas"];
 		navigacija($g_n);}
 	
 
@@ -1904,7 +1904,7 @@ top('Iškasenų keitimas');
 			  }
 
 		
- $g_n[] = array("pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Iškasenų keitimas");
+ $g_n[] = ["pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Iškasenų keitimas"];
 	navigacija($g_n);}
 }		
 if($id == "keiciuang2"){
@@ -1936,7 +1936,7 @@ top('Iškasenų keitimas');
 			  }
 
 		
- $g_n[] = array("pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Iškasenų keitimas");
+ $g_n[] = ["pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Iškasenų keitimas"];
 		navigacija($g_n);}
 	
 
@@ -1971,7 +1971,7 @@ top('Iškasenų keitimas');
 			  }
 
 		
- $g_n[] = array("pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Iškasenų keitimas");
+ $g_n[] = ["pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Iškasenų keitimas"];
 	navigacija($g_n);}
 }		
 if($id == "keiciumin2"){
@@ -2003,7 +2003,7 @@ top('Iškasenų keitimas');
 			  }
 
 		
- $g_n[] = array("pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Iškasenų keitimas");
+ $g_n[] = ["pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Iškasenų keitimas"];
 		navigacija($g_n);}
 	
 
@@ -2037,7 +2037,7 @@ top('Iškasenų keitimas');
 			  }
 
 		
- $g_n[] = array("pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Iškasenų keitimas");
+ $g_n[] = ["pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Iškasenų keitimas"];
 	navigacija($g_n);}
 }		
 if($id == "keiciuspa2"){
@@ -2069,7 +2069,7 @@ top('Iškasenų keitimas');
 			  }
 
 		
- $g_n[] = array("pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Iškasenų keitimas");
+ $g_n[] = ["pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Iškasenų keitimas"];
 		navigacija($g_n);}
 	
 
@@ -2103,7 +2103,7 @@ top('Iškasenų keitimas');
 			  }
 
 		
- $g_n[] = array("pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Iškasenų keitimas");
+ $g_n[] = ["pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Iškasenų keitimas"];
 	navigacija($g_n);}
 }		
 if($id == "keiciukva2"){
@@ -2135,7 +2135,7 @@ top('Iškasenų keitimas');
 			  }
 
 		
- $g_n[] = array("pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Iškasenų keitimas");
+ $g_n[] = ["pagrindinis.php?id=","Pagrindinis","kasimas.php","Rūdų kasimas", "Iškasenų keitimas"];
 		navigacija($g_n);}
 	
 

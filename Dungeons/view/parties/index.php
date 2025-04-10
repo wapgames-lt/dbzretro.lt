@@ -45,7 +45,7 @@ if (!isset($id)) {
         echo '</div>';
     }
 
-    $g_n[] = array("/index.php", "Dungeons", "Party Valdymas");
+    $g_n[] = ["/index.php", "Dungeons", "Party Valdymas"];
     navigacija($g_n);
 
 }
@@ -99,7 +99,7 @@ if ($id === 'view') {
         echo '</div>';
     }
 
-    $g_n[] = array("/index.php", "Parties", "Party Informacija");
+    $g_n[] = ["/index.php", "Parties", "Party Informacija"];
     navigacija($g_n);
 
 }
@@ -115,7 +115,7 @@ if ($id === 'create') {
          <input type="submit" name="submit" value="Sukurti"/></form>
         </div>';
 
-    $g_n[] = array("index.php", "Party Management", "Party Kūrimas");
+    $g_n[] = ["index.php", "Party Management", "Party Kūrimas"];
     navigacija($g_n);
 }
 
@@ -138,7 +138,7 @@ if ($id === 'delete') {
         echo '</div>';
     }
 
-    $g_n[] = array("index.php", "Party Management", "Party Trinimas");
+    $g_n[] = ["index.php", "Party Management", "Party Trinimas"];
     navigacija($g_n);
 }
 
@@ -151,7 +151,7 @@ if ($id === 'leaveParty') {
     echo 'Išėjote iš Party';
     echo '</div>';
 
-    $g_n[] = array("index.php", "Party Management", "Išeiti iš Party");
+    $g_n[] = ["index.php", "Party Management", "Išeiti iš Party"];
     navigacija($g_n);
 }
 
@@ -213,7 +213,7 @@ if ($id === 'createParty') {
             echo '<div class="meniu">';
             echo 'Party sukurta sėkmingai!';
             echo '</div>';
-        } catch (Exception $e) {
+        } catch (Exception) {
             echo '<div class="meniu">';
             echo 'Įvyko kūrimo klaida!';
             echo '</div>';
@@ -222,7 +222,7 @@ if ($id === 'createParty') {
     }
 
 
-    $g_n[] = array("index.php", "Party Management", "Party Kūrimas");
+    $g_n[] = ["index.php", "Party Management", "Party Kūrimas"];
     navigacija($g_n);
 }
 

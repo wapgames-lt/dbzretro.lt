@@ -18,13 +18,13 @@ topbar();
 
 $playerActiveBuffs = CurrentPlayer::get()->getActiveFightZoneBuffs();
 
-if (empty($apie[kovos])) {
+if (empty($apie['kovos'])) {
 
     mysqli_query($conn,"UPDATE zaidejai SET kovos='paprastos' WHERE nick='$nick'");
 }
 
 
-if ($apie[vip] - time() > 0) {
+if ($apie['vip'] - time() > 0) {
     $kovojimas = 1;
     $padusimas = 1;
 
@@ -117,20 +117,20 @@ $kg = ($kg/100) * 15000;
 </div>
 ';
 
-        if ($apie[vip] - time() > 0) {
-            $timestamp = $apie[vip];
+        if ($apie['vip'] - time() > 0) {
+            $timestamp = $apie['vip'];
             $dt = new DateTime("@$timestamp");
             $timezone = new DateTimeZone('Europe/Vilnius');
             $dt->setTimezone($timezone);
             echo '<div class="meniuc">
 		<span>VIP Privilegija</span> (<font color="red">iki: ' . $dt->format('m-d H:i') . '</font>)</div>';
         }
-        if ($apie['monak'] - time() > 0) {
+        if ((int)$apie['monak'] - time() > 0) {
             echo '<div class="meniuc"><small>Monako mirtis suteikia jums <b>2 kartus</b> daugiau ' . $pinigaii . '</b></small> - <b>' . laikas($apie['monak'] - time(), 1) . '</b></div>';
         }
 
-        if (($apie[uzsiregistravo] + 3600 * 0) > time()) {
-            echo '	<div class="meniuc">Jums galioja 10x paslauga nes esate naujokas, galios <font color="red">' . laikas(($apie[uzsiregistravo] + 3600 * 24 * 0) - time(), 1) . '</font></div>';
+        if (($apie['uzsiregistravo'] + 3600 * 0) > time()) {
+            echo '	<div class="meniuc">Jums galioja 10x paslauga nes esate naujokas, galios <font color="red">' . laikas(($apie['uzsiregistravo'] + 3600 * 24 * 0) - time(), 1) . '</font></div>';
 
         }
 /// reward
@@ -354,8 +354,8 @@ if ($id == "kova") {
 
     } else {
         $tt = ' <img src="img/veikejaic/Bardock.png" /> ';
-        $ID = mysqli_real_escape_string(htmlspecialchars($_GET['ID']));
-        $VS = mysqli_real_escape_string(htmlspecialchars($_GET['VS']));
+        $ID = mysqli_real_escape_string($conn, htmlspecialchars($_GET['ID']));
+        $VS = mysqli_real_escape_string($conn, htmlspecialchars($_GET['VS']));
 
 /// reward
         if ($apie['kovureward'] == '+') {
@@ -384,18 +384,18 @@ if ($id == "kova") {
         }
         if ($m['kda'] != $KD) {
 
-            top(Klaida);
+            top('Klaida');
             echo '<div class="meniu" style="text-align: center;">Taip kovoti negalimą! Eikite atgal ir vėl pulkite.</div>';
         } else {
 
 
             if ($apie['kovu_tm'] - time() > 0) {
-                top(Klaida);
+                top('Klaida');
                 echo '<div class="meniu" style="text-align: center;"">Padusai! Kovoti galėsi už <b>' . laikas($_SESSION['pad'] - time(), 1) . '</b>.</div>';
             } else {
 
                 if ($apie['energy'] < 0) {
-                    top(Klaida);
+                    top('Klaida');
                     echo '<div class="meniu" style="text-align: center;"">Neturi energijos</div>';
                 } else {
 
@@ -407,7 +407,7 @@ if ($id == "kova") {
                         echo '<div class="meniuc">Nebeturi ' . $hp . '</div>';
                         mysqli_query($conn,"UPDATE zaidejai SET gyvybes='0' WHERE nick='$nick' ");
                     } else {
-                        if ($gyvybes == 4444444 or $mob[kg] / $kovureward > $kg) {
+                        if ($gyvybes == 4444444 or $mob['kg'] / $kovureward > $kg) {
                             top(Klaida);
                             echo '<div class="meniuc"><img src="img/bicons/dislike.png" /> Jūsų ' . $kgi . '  yra per maža!</div>';
 
@@ -456,14 +456,14 @@ if ($id == "kova") {
 
 
 //monak
-                            if ($apie['monak'] - time() > 0) {
+                            if ((int)$apie['monak'] - time() > 0) {
                                 $mob['pin'] = $mob['pin'] * 2;
                                 $mob['exp'] = $mob['exp'] * 1;
                                 $xxs = "+";
                             }
 
 //cognac
-                            if ($apie['cognacb'] - time() > 0) {
+                            if ((int)$apie['cognacb'] - time() > 0) {
                                 $mob['pin'] = $mob['pin'] * 5;
                                 $mob['exp'] = $mob['exp'] * 5;
                                 $xxs = "+";
@@ -530,7 +530,7 @@ if ($id == "kova") {
                             }
 
 //5x
-                            if ($apie['botas5x'] - time() > 0) {
+                            if ((int) $apie['botas5x'] - time() > 0) {
                                 $mob['pin'] = $mob['pin'] * 5;
                                 $mob['exp'] = $mob['exp'] * 5;
                                 $xxs = "+";
@@ -1071,51 +1071,51 @@ Esate išjungęs <b>Kovų Paveiksliukus</b>!</div>';
     </div>';
                             }
 
-                            if ($apie[kenergija] > 49999) {
+                            if ($apie['kenergija'] > 49999) {
                                 echo '<div class="up">Kamehameha technika</div>';
                                 echo '<div class="meniuc">Gaunate <b>4x</b> ' . $pinigaii . ' daugiau!</div>';
                             }
-                            if ($apie[kenergija2] > 49999) {
+                            if ($apie['kenergija2'] > 49999) {
                                 echo '<div class="up">Final flash technika</div>';
                                 echo '<div class="meniuc">Gaunate <b>3x</b> ' . $expi . ' daugiau!</div>';
                             }
-                            if ($apie[kenergija3] > 49999) {
+                            if ($apie['kenergija3'] > 49999) {
                                 echo '<div class="up">Masenko technika</div>';
                                 echo '<div class="meniuc">Gaunate <b>2x</b> ' . $pinigaii . ' , ' . $expi . ' daugiau!</div>';
                             }
-                            if ($apie[kenergija4] > 49999) {
+                            if ($apie['kenergija4'] > 49999) {
                                 echo '<div class="up">Galick Gun technika</div>';
                                 echo '<div class="meniuc">Gaunate <b>3.5x</b> ' . $pinigaii . ' , <b>4.5</b>' . $expi . ' daugiau !</div>';
                             }
-                            if ($apie[kenergija5] > 49999) {
+                            if ($apie['kenergija5'] > 49999) {
                                 echo '<div class="up">Death Laser technika</div>';
                                 echo '<div class="meniuc">Gaunate <b>2.5x</b> ' . $pinigaii . ' , <b>3.5</b> ' . $expi . ' daugiau!</div>';
                             }
-                            if ($apie[kenergija7] > 49999) {
+                            if ($apie['kenergija7'] > 49999) {
                                 echo '<div class="up">Sayan Power technika</div>';
                                 echo '<div class="meniuc">Gaunate <b>3x</b> ' . $pinigaii . ' daugiau!</div>';
                             }
-                            if ($apie[kenergija8] > 49999) {
+                            if ($apie['kenergija8'] > 49999) {
                                 echo '<div class="up">Makosen technika</div>';
                                 echo '<div class="meniuc">Gaunate <b>5x</b> ' . $expi . ' daugiau!</div>';
                             }
-                            if ($apie[kenergija10] > 49999) {
+                            if ($apie['kenergija10'] > 49999) {
                                 echo '<div class="up">Changed technika</div>';
                                 echo '<div class="meniuc">Gaunate <b>2.5x</b>' . $pinigaii . ' ,  ' . $expi . ' daugiau!</div>';
                             }
-                            if ($apie[kenergija12] > 49999) {
+                            if ($apie['kenergija12'] > 49999) {
                                 echo '<div class="up">Regeneration technika</div>';
                                 echo '<div class="meniuc">Gaunate <b>4x</b>' . $pinigaii . ' ,  ' . $expi . ' daugiau!</div>';
                             }
-                            if ($apie[kenergija13] > 49999) {
+                            if ($apie['kenergija13'] > 49999) {
                                 echo '<div class="up">ArmBreak technika</div>';
                                 echo '<div class="meniuc">Gaunate <b>3x</b>' . $pinigaii . ' ,  ' . $expi . ' daugiau!</div>';
                             }
-                            if ($apie[kenergija15] > 49999) {
+                            if ($apie['kenergija15'] > 49999) {
                                 echo '<div class="up">AngryBulma technika</div>';
                                 echo '<div class="meniuc">Gaunate <b>2x</b>' . $pinigaii . ' ,  ' . $expi . ' daugiau!</div>';
                             }
-                            if ($dtop2[vksm] == 40000) {
+                            if ($dtop2['vksm'] == 40000) {
                                 echo '<div class="up">Kovų užduotis</div>';
                                 echo '<div class="meniuc">Atlikote <b>40000</b> veiksmų , gaunate <b>35</b>' . $eurui . '</div>';
                                 $txt = "įvygdei <b>kovų užduotį</b> - Padaryti <b>40000</b> veiksmų! Gavai <b>35</b> $eurui ";
@@ -1125,7 +1125,7 @@ Esate išjungęs <b>Kovų Paveiksliukus</b>!</div>';
 
 
                             }
-                            if ($dtop2[vksm] == 25000) {
+                            if ($dtop2['vksm'] == 25000) {
                                 echo '<div class="up">Kovų užduotis</div>';
                                 echo '<div class="meniuc">Atlikote <b>25000</b> veiksmų , gaunate <b>30</b>' . $eurui . '</div>';
                                 $txt = "įvygdei <b>kovų užduotį</b> - Padaryti <b>25000</b> veiksmų! Gavai <b>30</b> $eurui ";
@@ -1136,7 +1136,7 @@ Esate išjungęs <b>Kovų Paveiksliukus</b>!</div>';
 
                             }
 
-                            if ($dtop2[vksm] == 15000) {
+                            if ($dtop2['vksm'] == 15000) {
                                 echo '<div class="up">Kovų užduotis</div>';
                                 echo '<div class="meniuc">Atlikote <b>15000</b> veiksmų , gaunate <b>25</b>' . $eurui . '</div>';
                                 $txt = "įvygdei <b>kovų užduotį</b> - Padaryti <b>15000</b> veiksmų! Gavai <b>25</b> $eurui ";
@@ -1147,7 +1147,7 @@ Esate išjungęs <b>Kovų Paveiksliukus</b>!</div>';
 
                             }
 
-                            if ($dtop2[vksm] == 7000) {
+                            if ($dtop2['vksm'] == 7000) {
                                 echo '<div class="up">Kovų užduotis</div>';
                                 echo '<div class="meniuc">Atlikote <b>7000</b> veiksmų , gaunate <b>20</b>' . $eurui . '</div>';
                                 $txt = "įvygdei <b>kovų užduotį</b> - Padaryti <b>7000</b> veiksmų! Gavai <b>20</b> $eurui ";
@@ -1158,7 +1158,7 @@ Esate išjungęs <b>Kovų Paveiksliukus</b>!</div>';
 
                             }
 
-                            if ($dtop2[vksm] == 3500) {
+                            if ($dtop2['vksm'] == 3500) {
                                 echo '<div class="up">Kovų užduotis</div>';
                                 echo '<div class="meniuc">Atlikote <b>3500</b> veiksmų , gaunate <b>15</b>' . $eurui . '</div>';
                                 $txt = "įvygdei <b>kovų užduotį</b> - Padaryti <b>3500</b> veiksmų! Gavai <b>15</b> $eurui ";
@@ -1168,7 +1168,7 @@ Esate išjungęs <b>Kovų Paveiksliukus</b>!</div>';
 
 
                             }
-                            if ($dtop2[vksm] == 1500) {
+                            if ($dtop2['vksm'] == 1500) {
                                 echo '<div class="up">Kovų užduotis</div>';
                                 echo '<div class="meniuc">Atlikote <b>1500</b> veiksmų , gaunate <b>10</b>' . $eurui . '</div>';
                                 $txt = "Įvygdei <b>kovų užduotį</b> -  Padaryti <b>1500</b> veiksmų! Gavai <b>10</b> $eurui ";
@@ -1178,7 +1178,7 @@ Esate išjungęs <b>Kovų Paveiksliukus</b>!</div>';
 
 
                             }
-                            if ($dtop2[vksm] == 500) {
+                            if ($dtop2['vksm'] == 500) {
                                 echo '<div class="up">Kovų užduotis</div>';
                                 echo '<div class="meniuc">Atlikote <b>500</b> veiksmų, gaunate <b>5</b>' . $eurui . '</div>';
                                 $txt = "Įvygdei <b>kovų užduotį</b> -  Padaryti <b>500</b> veiksmų! Gavai <b>5</b> $eurui ";
@@ -1188,49 +1188,49 @@ Esate išjungęs <b>Kovų Paveiksliukus</b>!</div>';
 
 
                             }
-                            if ($dtop2[vksm] > 40001) {
+                            if ($dtop2['vksm'] > 40001) {
                                 echo '<div class="up">Kovų užduotis</div>';
                                 echo '<div class="meniuc"><small><b>Tu esi įvygdęs visas užduotis!</b></small></div>';
 
 
                             } else {
-                                if ($dtop2[vksm] > 25001) {
+                                if ($dtop2['vksm'] > 25001) {
                                     echo '<div class="up">Kovų užduotis</div>';
                                     echo '<div class="meniuc"><small>Tu padaręs -  <b>' . sk($dtop2['vksm']) . '</small></b><img src="img/bicons/attack1.png" /> | <small>Reikia padaryti - <b>40000</b><img src="img/bicons/attack1.png" /> </small>| <small>Gausite <b>35</b>' . $eurui . '</small></div>';
 
 
                                 } else {
-                                    if ($dtop2[vksm] > 15001) {
+                                    if ($dtop2['vksm'] > 15001) {
                                         echo '<div class="up">Kovų užduotis</div>';
                                         echo '<div class="meniuc"><small>Tu padaręs -  <b>' . sk($dtop2['vksm']) . '</small></b><img src="img/bicons/attack1.png" /> | <small>Reikia padaryti - <b>25000</b><img src="img/bicons/attack1.png" /> </small>| <small>Gausite <b>30</b>' . $eurui . '</small></div>';
 
 
                                     } else {
-                                        if ($dtop2[vksm] > 7001) {
+                                        if ($dtop2['vksm'] > 7001) {
                                             echo '<div class="up">Kovų užduotis</div>';
                                             echo '<div class="meniuc"><small>Tu padaręs -  <b>' . sk($dtop2['vksm']) . '</small></b><img src="img/bicons/attack1.png" /> | <small>Reikia padaryti - <b>15000</b><img src="img/bicons/attack1.png" /> </small>| <small>Gausite <b>25</b>' . $eurui . '</small></div>';
 
 
                                         } else {
-                                            if ($dtop2[vksm] > 3501) {
+                                            if ($dtop2['vksm'] > 3501) {
                                                 echo '<div class="up">Kovų užduotis</div>';
                                                 echo '<div class="meniuc"><small>Tu padaręs -  <b>' . sk($dtop2['vksm']) . '</small></b><img src="img/bicons/attack1.png" /> | <small>Reikia padaryti - <b>7000</b><img src="img/bicons/attack1.png" /> </small>| <small>Gausite <b>20</b>' . $eurui . '</small></div>';
 
 
                                             } else {
-                                                if ($dtop2[vksm] > 1501) {
+                                                if ($dtop2['vksm'] > 1501) {
                                                     echo '<div class="up">Kovų užduotis</div>';
                                                     echo '<div class="meniuc"><small>Tu padaręs -  <b>' . sk($dtop2['vksm']) . '</small></b><img src="img/bicons/attack1.png" /> | <small>Reikia padaryti - <b>3500</b><img src="img/bicons/attack1.png" /> </small>| <small>Gausite <b>15</b>' . $eurui . '</small></div>';
 
 
                                                 } else {
-                                                    if ($dtop2[vksm] > 501) {
+                                                    if ($dtop2['vksm'] > 501) {
                                                         echo '<div class="up">Kovų užduotis</div>';
                                                         echo '<div class="meniuc"><small>Tu padaręs -  <b>' . sk($dtop2['vksm']) . '</small></b><img src="img/bicons/attack1.png" /> | <small>Reikia padaryti - <b>1500</b><img src="img/bicons/attack1.png" /> </small>| <small>Gausite <b>10</b>' . $eurui . '</small></div>';
 
 
                                                     } else {
-                                                        if ($dtop2[vksm] < 500) {
+                                                        if ($dtop2['vksm'] < 500) {
                                                             echo '<div class="up">Kovų užduotis</div>';
                                                             echo '<div class="meniuc"><small>Tu padaręs -  <b>' . sk($dtop2['vksm']) . '</small></b><img src="img/bicons/attack1.png" /> | <small>Reikia padaryti - <b>500</b><img src="img/bicons/attack1.png" /> </small>| <small>Gausite <b>5</b>' . $eurui . '</small></div>';
                                                         }
@@ -1396,7 +1396,7 @@ Padaręs išviso  <img src="img/bicons/attack1.png" /> <b> ' . sk($apie['veiksma
                                 mysqli_query($conn,"UPDATE isbarstyta  SET turima=turima+ '$kiek_duos' WHERE nick='$nick'");
                                 mysqli_query($conn,"UPDATE nustatymai  SET balls=balls+ '$kiek_duos'");
                             }
-                            if ($apie['jirenmb'] - time() > 0) {
+                            if ((int)$apie['jirenmb'] - time() > 0) {
                                 if (rand(1, 600) == 201) {
                                     if ($apie['duxdaig'] - time() > 0) {
                                         $kiek_duos = $kiek_duos = 1;
@@ -1634,9 +1634,8 @@ Padaręs išviso  <img src="img/bicons/attack1.png" /> <b> ' . sk($apie['veiksma
                             mysqli_query($conn,"UPDATE zaidejai SET surinktapin=surinktapin+'$mob[pin]' WHERE nick='$nick'");
                             mysqli_query($conn,"UPDATE pinigai SET  surinkta=surinkta+'$mob[pin]' WHERE nick='$nick'");
 
-                            mysqli_query($conn,"UPDATE zaidejai SET sveiksmai=sveiksmai+'1' WHERE nick='$nick'");
 
-                            if ($auto == "+" and $apie[kovos] == 'js') {
+                            if ($auto == "+" and $apie['kovos'] == 'js') {
 
                                 ?>
                                 <div class='titlec'> Kita kova įvyks už <label
@@ -1672,7 +1671,7 @@ Padaręs išviso  <img src="img/bicons/attack1.png" /> <b> ' . sk($apie['veiksma
                                     </script>
                                     <br/></div>
                                 <?
-                            } elseif ($auto = '+' and $apie[kovos] == 'paprastos') {
+                            } elseif ($auto = '+' and $apie['kovos'] == 'paprastos') {
                                 echo '<meta http-equiv="refresh" content="' . $kovojimas . '; url=fight.php?id=kova&ID=' . $ID . '&VS=' . $VS . '&KD=' . $KDS . '">';
                             }
                             echo '<div class="up">' . $ico . '<font color="white">Informacija<br/></div></font>';
@@ -1683,7 +1682,7 @@ Padaręs išviso  <img src="img/bicons/attack1.png" /> <b> ' . sk($apie['veiksma
                             $krss = $kr / 100;
                             $experience = $xp;
 
-                            mysqli_query($conn,"UPDATE zaidejai SET exp=exp+'$experience', litai=litai+'$krss', lygis='$lvlas',expl='$left', energy=energy-'0' WHERE nick='$nick'");
+                            mysqli_query($conn,"UPDATE zaidejai SET exp=exp+'$experience', litai=litai+'$krss', lygis='$lvlas',expl='$left' WHERE nick='$nick'");
 
                             $_SESSION['pad'] = time() + $padusimas;
                             $tt = time() + $padusimas;
@@ -1737,7 +1736,7 @@ Padaręs išviso  <img src="img/bicons/attack1.png" /> <b> ' . sk($apie['veiksma
                 }
             }
         }
-        if ($user[chat] == '1') {
+        if ($user['chat'] == '1') {
             top('Pokalbiai');
             require 'chat.php';
         }
@@ -1756,7 +1755,7 @@ if ($id == 'kovu_masina') {
     $VS = post($_GET['VS']);
     $KD = post($_GET['KD']);
 
-    if ($VS == botas) {
+    if ($VS == 'botas') {
 
         if ($kg < 100000) {
             $kr = $kg / 10;
@@ -1865,7 +1864,7 @@ Dabar tavo lygis: <u>$lvlas</u>. Gavai $pt Skill Points<br/></div>";
                             echo ' <div class="title">
     ' . $ico2 . ' Jūsų Kovine galia: <b>' . sk($kg) . '</b><br/>
     ' . $ico2 . '  Kovine galia: <b>' . $lvl . '</b><br/>
-     ' . $ico2 . '  Energija: <b>' . $apie[energy] . '/' . $apie[energy_max] . '</b><br/>
+     ' . $ico2 . '  Energija: <b>' . $apie['energy'] . '/' . $apie['energy_max'] . '</b><br/>
     </div>
     <div class="meniu">
    ' . $ico2 . ' Gavai <b>' . sk($xp) . '</b> EXP.<br/>
@@ -1879,7 +1878,7 @@ Dabar tavo lygis: <u>$lvlas</u>. Gavai $pt Skill Points<br/></div>";
                             }
                             dropas();
                             echo '</div>';
-                            if ($auto == "+" and $apie[kovos] == 'js') {
+                            if ($auto == "+" and $apie['kovos'] == 'js') {
 
                                 ?>
                                 <div class='titlec'> Kita kova įvyks už <label
@@ -1915,7 +1914,7 @@ Dabar tavo lygis: <u>$lvlas</u>. Gavai $pt Skill Points<br/></div>";
                                     </script>
                                     <br/></div>
                                 <?
-                            } elseif ($auto = '+' and $apie[kovos] == 'paprastos') {
+                            } elseif ($auto = '+' and $apie['kovos'] == 'paprastos') {
 
                                 echo '<meta http-equiv="refresh" content="' . $kovojimas . '; url=fight.php?id=kovu_masina&&VS=botas&KD=' . $KDS . '">';
                             }
@@ -1927,7 +1926,7 @@ Dabar tavo lygis: <u>$lvlas</u>. Gavai $pt Skill Points<br/></div>";
                             $krss = $kr;
                             $experience = $xp;
 
-                            mysqli_query($conn,"UPDATE zaidejai SET exp=exp+'$experience', litai=litai+'$krss', lygis='$lvlas',expl='$left', energy=energy-'1' WHERE nick='$nick'");
+                            mysqli_query($conn,"UPDATE zaidejai SET exp=exp+'$experience', litai=litai+'$krss', lygis='$lvlas',expl='$left' WHERE nick='$nick'");
 
                             $_SESSION['pad'] = time() + $padusimas;
                             $tt = time() + $padusimas;

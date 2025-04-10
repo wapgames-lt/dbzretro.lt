@@ -7,26 +7,14 @@ class Party
 {
     const ALLOWED_MEMBERS_AMOUNT = 4;
 
-    private $id;
-
-    private $leaderId;
-
-    private $name;
-
-    private $createdAt;
-
     /**
      * @param $id
      * @param $leaderId
      * @param $name
      * @param $createdAt
      */
-    public function __construct($id, $leaderId, $name, $createdAt)
+    public function __construct(private $id, private $leaderId, private $name, private $createdAt)
     {
-        $this->id = $id;
-        $this->leaderId = $leaderId;
-        $this->name = $name;
-        $this->createdAt = $createdAt;
     }
 
     /**

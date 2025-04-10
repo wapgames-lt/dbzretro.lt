@@ -12,15 +12,10 @@ $partiesRepository = new PartiesRepository();
 $playersRepository = new PlayersRepository();
 $partyMembersRepository = new PartyMembersRepository();
 
-switch ($id) {
-    case 'removeFromParty':
-        removeFromParty();
-        break;
-
-    default:
-        renderIndex();
-        break;
-}
+match ($id) {
+    'removeFromParty' => removeFromParty(),
+    default => renderIndex(),
+};
 
 function renderIndex()
 {
@@ -48,7 +43,7 @@ function renderIndex()
         echo '</div>';
     }
 
-    $g_n[] = array("index.php", "Party Management", "Narių Valdymas");
+    $g_n[] = ["index.php", "Party Management", "Narių Valdymas"];
     navigacija($g_n);
 }
 
@@ -58,7 +53,7 @@ function removeFromParty() {
     top('Išeiti iš Party');
 
     $error = false;
-    $playerId = isset($_GET['playerId']) ? preg_replace('/\D/', "", $_GET['playerId']) : null;
+    $playerId = isset($_GET['playerId']) ? preg_replace('/\D/', "", (string) $_GET['playerId']) : null;
     if (!$playerId) {
         echo '<div class="meniu">';
         echo 'Įvyko klaida';
@@ -86,7 +81,7 @@ function removeFromParty() {
         echo '</div>';
     }
 
-    $g_n[] = array("party_members.php", "Narių Valdymas", "Pašalinti Žaidėją");
+    $g_n[] = ["party_members.php", "Narių Valdymas", "Pašalinti Žaidėją"];
     navigacija($g_n);
 }
 

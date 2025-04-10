@@ -9,21 +9,6 @@ class WorldBoss
     const DAMAGE_TYPE_DEATH = 'death';
     const DAMAGE_TYPE_REVIVAL = 'revival';
 
-    private $id;
-
-    private $bossId;
-    private $firstHitPlayerId;
-    private $lastHitPlayerId;
-
-    private $health;
-
-    private $damageType;
-    private $switchDamageAt;
-
-    private $freezeEndsAt;
-    private $startsAt;
-    private $endsAt;
-
     /**
      * @param $id
      * @param $bossId
@@ -36,18 +21,8 @@ class WorldBoss
      * @param $startsAt
      * @param $endsAt
      */
-    public function __construct($id, $bossId, $firstHitPlayerId, $lastHitPlayerId, $health, $damageType, $switchDamageAt, $freezeEndsAt, $startsAt, $endsAt)
+    public function __construct(private $id, private $bossId, private $firstHitPlayerId, private $lastHitPlayerId, private $health, private $damageType, private $switchDamageAt, private $freezeEndsAt, private $startsAt, private $endsAt)
     {
-        $this->id = $id;
-        $this->bossId = $bossId;
-        $this->firstHitPlayerId = $firstHitPlayerId;
-        $this->lastHitPlayerId = $lastHitPlayerId;
-        $this->health = $health;
-        $this->damageType = $damageType;
-        $this->switchDamageAt = $switchDamageAt;
-        $this->freezeEndsAt = $freezeEndsAt;
-        $this->startsAt = $startsAt;
-        $this->endsAt = $endsAt;
     }
 
 
@@ -111,7 +86,7 @@ class WorldBoss
     {
         $currentDate = date('Y-m-d H:i:s');
         $timestamp1 = strtotime($currentDate);
-        $timestamp2 = strtotime($this->switchDamageAt);
+        $timestamp2 = strtotime((string) $this->switchDamageAt);
 
         return $timestamp1 > $timestamp2;
     }
@@ -147,7 +122,7 @@ class WorldBoss
 
         $currentDate = date('Y-m-d H:i:s');
         $timestamp1 = strtotime($currentDate);
-        $timestamp2 = strtotime($this->freezeEndsAt);
+        $timestamp2 = strtotime((string) $this->freezeEndsAt);
 
         return $timestamp1 < $timestamp2;
     }

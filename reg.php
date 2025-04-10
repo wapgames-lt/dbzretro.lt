@@ -8,9 +8,9 @@ echo'
 <img src="img/baneriai/botasm.png" /></div>';
 class aps{
 function save($kint, $i=0){
-$rez = trim(mysqli_real_escape_string(addslashes(htmlspecialchars(htmlentities($kint)))));	
+$rez = trim(mysqli_real_escape_string($conn,addslashes(htmlspecialchars(htmlentities($kint)))));	
 if($id=1){
-$rez = trim(mysqli_real_escape_string(stripslashes(htmlspecialchars(htmlentities($kint)))));		
+$rez = trim(mysqli_real_escape_string($conn,stripslashes(htmlspecialchars(htmlentities($kint)))));		
 	
 	
 }	

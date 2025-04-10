@@ -21,35 +21,14 @@ class Skill
 
     const CATEGORY_BUFF = 'buff';
 
-    private $id;
-
-    private $name;
-
-    private $description;
-
-    private $cooldown;
-
-    private $category;
-
-    private $power;
-
-    private $icon;
-
     /**
      * @param $id
      * @param $name
      * @param $description
      * @param $cooldown
      */
-    public function __construct($id, $name, $description, $cooldown, $category, $power, $icon)
+    public function __construct(private $id, private $name, private $description, private $cooldown, private $category, private $power, private $icon)
     {
-        $this->id = $id;
-        $this->name = $name;
-        $this->description = $description;
-        $this->cooldown = $cooldown;
-        $this->category = $category;
-        $this->power = $power;
-        $this->icon = $icon;
     }
 
     /**

@@ -13,24 +13,6 @@ class Player
 {
     use CharacterTrait, PlayerSkillTrait;
 
-    private $id;
-
-    private $nick;
-
-    private $ip;
-
-    private $character;
-
-    /**
-     * @var Inventory
-     */
-    private $inventory;
-
-    /**
-     * @var Collection|PlayerSkill[]
-     */
-    private $activeSkills;
-
     /**
      * @param $id
      * @param $nick
@@ -39,14 +21,8 @@ class Player
      * @param Inventory $inventory
      * @param Collection|PlayerSkill[] $activeSkills
      */
-    public function __construct($id, $nick, $ip, $character, Inventory $inventory, $activeSkills)
+    public function __construct(private $id, private $nick, private $ip, private $character, private Inventory $inventory, private $activeSkills)
     {
-        $this->id = $id;
-        $this->nick = $nick;
-        $this->ip = $ip;
-        $this->character = $character;
-        $this->inventory = $inventory;
-        $this->activeSkills = $activeSkills;
     }
 
     /**

@@ -7,25 +7,13 @@ use LegacyDbz\Skills\DTO\Skill;
 
 class PlayerSkill
 {
-    private $endsAt;
-
-    private $playerId;
-
-    /**
-     * @var Skill
-     */
-    private $skill;
-
     /**
      * @param $endsAt
      * @param $playerId
      * @param Skill $skill
      */
-    public function __construct($endsAt, $playerId, Skill $skill)
+    public function __construct(private $endsAt, private $playerId, private readonly Skill $skill)
     {
-        $this->endsAt = $endsAt;
-        $this->playerId = $playerId;
-        $this->skill = $skill;
     }
 
     /**

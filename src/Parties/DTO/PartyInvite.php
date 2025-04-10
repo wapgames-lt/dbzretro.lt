@@ -8,18 +8,6 @@ class PartyInvite
     const STATUS_ACCEPTED = 'accepted';
     const STATUS_DECLINED = 'declined';
 
-    private $id;
-
-    private $partyId;
-
-    private $inviterId;
-
-    private $inviteeId;
-
-    private $status;
-
-    private $createdAt;
-
     /**
      * @param $id
      * @param $partyId
@@ -28,14 +16,8 @@ class PartyInvite
      * @param $status
      * @param $createdAt
      */
-    public function __construct($id, $partyId, $inviterId, $inviteeId, $status = null, $createdAt = null)
+    public function __construct(private $id, private $partyId, private $inviterId, private $inviteeId, private $status = null, private $createdAt = null)
     {
-        $this->id = $id;
-        $this->partyId = $partyId;
-        $this->inviterId = $inviterId;
-        $this->inviteeId = $inviteeId;
-        $this->status = $status;
-        $this->createdAt = $createdAt;
     }
 
     /**

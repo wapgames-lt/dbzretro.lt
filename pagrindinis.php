@@ -19,7 +19,6 @@ $prizas3 = round($nust['sms_priz']) / 3;
 $statusai = array("Mod", "Mod2", "Mod3", "Mod4", "Admin");
 $nst = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM turnyras"));
 $new = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM news ORDER BY id DESC LIMIT 1"));
-$xd = mysqli_query($conn,"SELECT * FROM zaidejai WHERE nick= $nick");
 mysqli_query($conn,"DELETE FROM `pm` WHERE `time` <= UNIX_TIMESTAMP(DATE_SUB(NOW(), INTERVAL 7 DAY))");
 head2();
 if ($nust['new_time'] - time() > 0) {
@@ -564,7 +563,7 @@ if ($id == "") {
         while ($rr = mysqli_fetch_assoc($q)) {
             $nr++;
             $goott = '';
-            if ($apie[statusas] == 'Admin' or $apie[statusas] == 'Mod' or $apie[statusas] == 'Mod2' or $apie[statusas] == 'Mod3' or $apie[statusas] == 'Mod4') {
+            if ($apie['statusas'] == 'Admin' or $apie['statusas'] == 'Mod' or $apie['statusas'] == 'Mod2' or $apie['statusas'] == 'Mod3' or $apie['statusas'] == 'Mod4') {
                 $goott = '<a href="?id=exit&ka=' . $rr['id'] . '" class="delete-topic"><i class="fa-duotone fa-trash-can"></i></a>';
             }
             $topicDate = date('m-d H:i', $rr['time']);
@@ -623,21 +622,29 @@ if ($id == "") {
     // Currency section with improved design
 echo '
 <div class="currency-container">
-<div class="currency-header">
-    <i class="fa-duotone fa-coins"></i>
-    <span>Valiutos</span>
-</div>
-<div class="currency-body" style="flex-direction: column; align-items: center;">
-    <a href="valiutos.php?id=" class="currency-link" style="justify-content: center;">
-        <i class="fa-duotone fa-sack-dollar"></i>
-        <span>Jūsų turimos valiutos</span>
-    </a>
-    <div class="currency-divider" style="width: 80%; height: 1px; margin: 10px 0;"></div>
-    <a href="valiutos.php?id=pasl" class="currency-link" style="justify-content: center;">
-        <i class="fa-duotone fa-credit-card"></i>
-        <span>Jūsų įsigytos paslaugos</span>
-    </a>
-</div>
+    <div class="currency-header">
+        <i class="fa-duotone fa-coins"></i>
+        <span>Valiutos</span>
+    </div>
+    <div class="currency-body"   style="flex-direction: column; align-items: center;">
+        <a href="valiutos.php?id=" class="currency-link" style="justify-content: center;">
+            <i class="fa-duotone fa-sack-dollar"></i>
+            <span>Jūsų turimos valiutos</span>
+        </a>
+        <div class="currency-divider" style="width: 80%; height: 1px; margin: 10px 0;"></div>
+        <a href="valiutos.php?id=pasl" class="currency-link" style="justify-content: center;">
+            <i class="fa-duotone fa-credit-card"></i>
+            <span>Jūsų įsigytos paslaugos</span>
+        </a>
+        <div class="currency-divider" style="width: 80%; height: 1px; margin: 10px 0;"></div>
+        <div class="currency-link" style="justify-content: center;">
+            <i class="fa-duotone fa-money-bill-wave"></i>
+            <span>
+            <a href="botas.php?id=">Vegita Cash</a>
+            [<b>' . sk($apie['botas']) . ' <img src="img/bicons/cash.png" /></b>]
+            </span>
+        </div>
+    </div>
 </div>';
 
 
@@ -688,25 +695,25 @@ echo '
     }
     echo '</div></div>';
 
-    if ($nust[diena] == 1) {
+    if ($nust['diena'] == 1) {
         $day = "Pinigų";
         $n1 = 'gausite 10% daugiau <img src="img/bicons/pinigai.png" /> pinigų';
-    } elseif ($nust[diena] == 2) {
+    } elseif ($nust['diena'] == 2) {
         $day = "Exp";
         $n1 = 'gausite 15% daugiau <img src="img/bicons/exp.png" /> patirties';
-    } elseif ($nust[diena] == 3) {
+    } elseif ($nust['diena'] == 3) {
         $day = "Daigtų";
         $n1 = 'gausite 10% didesnį šansą rasti daiktus';
-    } elseif ($nust[diena] == 4) {
+    } elseif ($nust['diena'] == 4) {
         $day = "Paprasta";
         $n1 = 'šiandien nėra specialių bonusų';
-    } elseif ($nust[diena] == 5) {
+    } elseif ($nust['diena'] == 5) {
         $day = "Euru";
         $n1 = 'gausite iš kovų po 0.2 euro!';
-    } elseif ($nust[diena] == 6) {
+    } elseif ($nust['diena'] == 6) {
         $day = "Kreditu";
         $n1 = 'gausite iš kovų po 2 kreditus!';
-    } elseif ($nust[diena] == 7) {
+    } elseif ($nust['diena'] == 7) {
         $day = "Auksiniu";
         $n1 = 'gausite iš kovų po 2 auksinius!';
     }
@@ -741,7 +748,7 @@ echo '
         <div class="character-section">
             <a href="pagrindinis.php?id=apie&ka=' . $nick . '">
                 <div class="character-frame">
-                    <img src="img/veikejai/' . $apie['veikejas'] . '-' . $apie[trans] . '.png" alt="IMG">
+                    <img src="img/veikejai/' . $apie['veikejas'] . '-' . $apie['trans'] . '.png" alt="IMG">
                     <div class="level-badge"><i class="fa-solid fa-star"></i> LV. ' . skaicius($apie['lygis']) . '</div>
                 </div>
             </a>
@@ -1034,7 +1041,7 @@ echo '
                 <div class="location-item">
                     <a href="arena.php?id=">
                         <i class="fa-duotone fa-skull-crossbones icon-arena"></i>
-                        <span>Kovų arena (' . mysqli_num_rows(mysqli_query($conn,"SELECT * FROM online WHERE vieta=\'Arenoje\'")) . ')</span>
+                        <span>Kovų arena (' . mysqli_num_rows(mysqli_query($conn,"SELECT * FROM online WHERE vieta='Arenoje'")) . ')</span>
                     </a>
                 </div>
                 
@@ -1170,27 +1177,23 @@ echo '
         $apie = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM zaidejai WHERE nick='$nick'"));
 
         if ($apie['minichatas'] != 1) {
-            echo '
-            <form action="?id=&ka=rasyti#" method="post">
-                <div class="chat-input-container">
-                    <textarea class="chat-textarea" name="zinute" placeholder="Rašyk savo žinutę čia..." required><center>' . $ats . '</center></textarea>
-                    <div class="chat-controls">
-                        <button type="submit" class="chat-send-button">
-                            <i class="fa-duotone fa-paper-plane-top"></i> Siųsti
-                        </button>
-                    </div>
-                </div>
-            </form>';
+            echo '<div class="meniuc">
+            <form action="?id=&ka=rasyti#" method="post" style="text-align:center;">
+            <textarea name="zinute" cols="25" rows="2" placeholder="Bendraujam :)" required>' . $ats . '</textarea><br />
+            <div class="line"></div>
+            <input type="submit" value="Rašyti" style="cursor: pointer;">
+            </form></div>
+            <div class="l"></div>
+            <div class="title">';
         } else {
-            echo '
-            <textarea class="chat-textarea" id="minichatzin" name="zinute" placeholder="Rašyk savo žinutę čia...">' . $ats . '</textarea>
-            <input id="minichatusername" name="nick" style="display:none;" readonly />
-            <div class="chat-controls">
-                <button type="button" onclick="minichatwrite()" class="chat-send-button" style="margin:0 auto; display:block;">
-                    <i class="fa-duotone fa-paper-plane-top"></i> Siųsti
-                </button>
-            </div>';
-            echo '</div><div class="title">';
+            echo '<div class="meniuc">
+            <form action="?id=&ka=rasyti#" method="post" style="text-align:center;">
+            <textarea name="zinute" cols="25" rows="2" placeholder="Bendraujam :)" required>' . $ats . '</textarea><br />
+            <div class="line"></div>
+            <input type="submit" value="Rašyti" style="cursor: pointer;">
+            </form></div>
+            <div class="l"></div>
+            <div class="title">';
         }
 
         mysqli_query($conn,"DELETE FROM pokalbiai WHERE expired_at < NOW()");

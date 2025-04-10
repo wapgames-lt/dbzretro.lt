@@ -21,7 +21,7 @@ $q = mysqli_query($conn,"SELECT * FROM pokalbiai ORDER BY id DESC LIMIT $xaz");
 			if ($rr['nick']  == 'SISTEMA'){
 				echo '<b>'.$nr.'</b>. <b>'.statusas($rr['nick']).'</b> - '.smile($rr['sms']).'<small>('.laikas($rr['data']).')</small> ';
 			}
-				 	if($apie[statusas] == 'Kurejas' or$apie[statusas] == 'Admin' or $apie[statusas] == 'Mod' or $apie[statusas] == 'Mod2' or $apie[statusas] == 'Mod3' or $apie[statusas] == 'Mod4'){ $goo = '<a href="pagrindinis.php?id=delete&ka='.$rr['id'].'"><small>[x]</small></a>';}
+				 	if($apie['statusas'] == 'Kurejas' or$apie['statusas'] == 'Admin' or $apie['statusas'] == 'Mod' or $apie['statusas'] == 'Mod2' or $apie['statusas'] == 'Mod3' or $apie['statusas'] == 'Mod4'){ $goo = '<a href="pagrindinis.php?id=delete&ka='.$rr['id'].'"><small>[x]</small></a>';}
 			echo ' <a onclick="citata(\''.$rr['nick'].'\')"><small>[A]</small></a>'.$goo.'<br />';
         }
         unset($nr);

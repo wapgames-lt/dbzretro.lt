@@ -5,7 +5,6 @@ use LegacyDbz\Parties\DTO\PartyInvite;
 use LegacyDbz\Parties\Repositories\PartyInvitesRepository;
 use LegacyDbz\Parties\Repositories\PartyMembersRepository;
 use LegacyDbz\Parties\Repositories\PartiesRepository;
-use LegacyDbz\Players\Repositories\InventoryRepository;
 use LegacyDbz\Players\Repositories\PlayersRepository;
 use LegacyDbz\Players\Services\CurrentPlayer;
 
@@ -23,31 +22,14 @@ render($id);
 
 function render($id)
 {
-    switch ($id) {
-        case 'create':
-            createPartyInvite();
-            break;
-
-        case 'createPartyInvite':
-            validateAndSavePartyInvite();
-            break;
-
-        case 'inviteeInvites':
-            inviteeInvites();
-            break;
-
-        case 'acceptInvite':
-            acceptInvite();
-            break;
-
-        case 'declineInvite':
-            declineInvite();
-            break;
-
-        default:
-            renderIndex();
-            break;
-    }
+    match ($id) {
+        'create' => createPartyInvite(),
+        'createPartyInvite' => validateAndSavePartyInvite(),
+        'inviteeInvites' => inviteeInvites(),
+        'acceptInvite' => acceptInvite(),
+        'declineInvite' => declineInvite(),
+        default => renderIndex(),
+    };
 }
 
 function renderIndex()
@@ -78,7 +60,7 @@ function renderIndex()
         echo '</div>';
     }
 
-    $g_n[] = array("index.php", "Party Management", "Party Pakvietimai");
+    $g_n[] = ["index.php", "Party Management", "Party Pakvietimai"];
     navigacija($g_n);
 }
 
@@ -111,7 +93,7 @@ function inviteeInvites()
         echo '</div>';
     }
 
-    $g_n[] = array("index.php", "Party Management", "Party Pakvietimai");
+    $g_n[] = ["index.php", "Party Management", "Party Pakvietimai"];
     navigacija($g_n);
 }
 
@@ -123,7 +105,7 @@ function acceptInvite()
 
 
     $error = false;
-    $inviteId = isset($_GET['inviteId']) ? preg_replace('/\D/', "", $_GET['inviteId']) : null;
+    $inviteId = isset($_GET['inviteId']) ? preg_replace('/\D/', "", (string) $_GET['inviteId']) : null;
     if (!$inviteId) {
         echo ' <div class="meniu">';
         echo 'Įvyko klaida';
@@ -160,7 +142,7 @@ function acceptInvite()
         echo '</div>';
     }
 
-    $g_n[] = array("index.php", "Party Management", "Party Pakvietimai");
+    $g_n[] = ["index.php", "Party Management", "Party Pakvietimai"];
     navigacija($g_n);
 }
 
@@ -172,7 +154,7 @@ function declineInvite()
 
 
     $error = false;
-    $inviteId = isset($_GET['inviteId']) ? preg_replace('/\D/', "", $_GET['inviteId']) : null;
+    $inviteId = isset($_GET['inviteId']) ? preg_replace('/\D/', "", (string) $_GET['inviteId']) : null;
     if (!$inviteId) {
         echo ' <div class="meniu">';
         echo 'Įvyko klaida';
@@ -194,7 +176,7 @@ function declineInvite()
         echo '</div>';
     }
 
-    $g_n[] = array("index.php", "Party Management", "Party Pakvietimai");
+    $g_n[] = ["index.php", "Party Management", "Party Pakvietimai"];
     navigacija($g_n);
 }
 
@@ -209,7 +191,7 @@ function createPartyInvite()
          <input type="submit" name="submit" value="Kviesti"/></form>
         </div>';
 
-    $g_n[] = array("index.php", "Party Management", "Party Kūrimas");
+    $g_n[] = ["index.php", "Party Management", "Party Kūrimas"];
     navigacija($g_n);
 }
 
@@ -292,7 +274,7 @@ function validateAndSavePartyInvite()
         echo '</div>';
     }
 
-    $g_n[] = array("party_invites.php", "Party Pakvietimai", "Party Pakvietimai");
+    $g_n[] = ["party_invites.php", "Party Pakvietimai", "Party Pakvietimai"];
     navigacija($g_n);
 }
 
@@ -304,9 +286,9 @@ function getStatusBadge($status)
         PartyInvite::STATUS_DECLINED => 'badge-danger',
     ];
 
-    $class = isset($colors[$status]) ? $colors[$status] : 'badge-default';
+    $class = $colors[$status] ?? 'badge-default';
 
-    return '<span class="badge ' . $class . '">' . ucfirst($status) . '</span>';
+    return '<span class="badge ' . $class . '">' . ucfirst((string) $status) . '</span>';
 }
 
 

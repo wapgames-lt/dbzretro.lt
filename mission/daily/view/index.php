@@ -90,7 +90,7 @@ if (!isset($id)) {
     renderTopMissionExecutors();
     renderTopPlayersByTokens();
 
-    $g_n[] = array("/pagrindinis.php?id=","Pagrindinis","Dienos misijos");
+    $g_n[] = ["/pagrindinis.php?id=","Pagrindinis","Dienos misijos"];
     navigacija($g_n);
 }
 
@@ -120,7 +120,7 @@ if ($id === 'getMission') {
         echo '</div>';
     }
 
-    $g_n[] = array("index.php","Dienos Misijos","Gauti Misiją");
+    $g_n[] = ["index.php","Dienos Misijos","Gauti Misiją"];
     navigacija($g_n);
 }
 
@@ -128,9 +128,9 @@ if ($id === 'getMission') {
  * COMPLETE MISSION
  */
 if ($id === 'completeMission') {
-    $missionId = isset($_GET['missionId']) ? preg_replace('/\D/',"",$_GET['missionId'])  : null;
+    $missionId = isset($_GET['missionId']) ? preg_replace('/\D/',"",(string) $_GET['missionId'])  : null;
     $missionConfig = getMissionById($missionId);
-    $missionName = isset($missionConfig['name']) ? $missionConfig['name'] : null;
+    $missionName = $missionConfig['name'] ?? null;
     $requirements = $missionConfig ? $missionConfig['requirements'] : [];
     $rewards = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM user_daily_mission WHERE status='new' AND user_id='$apie[id]' AND mission_id = '$missionId' AND DATE(created_at) = '$date'"));
 
@@ -301,7 +301,7 @@ if ($id === 'completeMission') {
                 if ($rr == 1) {
                     $qq = 1.4;
                 } else {
-                    $qq = $qq * 1.4;
+                    $qq *= 1.4;
                 }
                 if ($qq >= $kiek_exp / 10 && $enda != $rr) {
                     $lvlas = $rr;
@@ -334,7 +334,7 @@ if ($id === 'completeMission') {
     }
     echo '</div>';
 
-    $g_n[] = array("index.php","Dienos Misijos","Įvykdyti Misiją");
+    $g_n[] = ["index.php","Dienos Misijos","Įvykdyti Misiją"];
     navigacija($g_n);
 }
 
@@ -411,7 +411,7 @@ if ($id === 'shop') {
         <input type="number" value="'.$apie['daily_mission_token'].'" min="1" max="'.$apie['daily_mission_token'].'" name="tokens"><br />
         <input type="submit" name="submit" value="Keisti"/></form></div>';
 
-    $g_n[] = array("/pagrindinis.php?id=", "Pagrindinis", "index.php", "Legendinės dienos misijos", "Tokenų keitykla");
+    $g_n[] = ["/pagrindinis.php?id=", "Pagrindinis", "index.php", "Legendinės dienos misijos", "Tokenų keitykla"];
     navigacija($g_n);
 }
 
@@ -435,7 +435,7 @@ if ($id === 'changeToMajinScroll') {
         }
     }
 
-    $g_n[] = array("/pagrindinis.php?id=", "Pagrindinis", "index.php", "Legendinės dienos misijos", "index.php?id=shop", "Tokenų keitykla", "Tokenų keitimas");
+    $g_n[] = ["/pagrindinis.php?id=", "Pagrindinis", "index.php", "Legendinės dienos misijos", "index.php?id=shop", "Tokenų keitykla", "Tokenų keitimas"];
     navigacija($g_n);
 }
 
@@ -459,7 +459,7 @@ if ($id === 'changeToMagicBall') {
         }
     }
 
-    $g_n[] = array("/pagrindinis.php?id=", "Pagrindinis", "index.php", "Legendinės dienos misijos", "index.php?id=shop", "Tokenų keitykla", "Tokenų keitimas");
+    $g_n[] = ["/pagrindinis.php?id=", "Pagrindinis", "index.php", "Legendinės dienos misijos", "index.php?id=shop", "Tokenų keitykla", "Tokenų keitimas"];
     navigacija($g_n);
 }
 
@@ -483,7 +483,7 @@ if ($id === 'changeToSoul') {
         }
     }
 
-    $g_n[] = array("/pagrindinis.php?id=", "Pagrindinis", "index.php", "Legendinės dienos misijos", "index.php?id=shop", "Tokenų keitykla", "Tokenų keitimas");
+    $g_n[] = ["/pagrindinis.php?id=", "Pagrindinis", "index.php", "Legendinės dienos misijos", "index.php?id=shop", "Tokenų keitykla", "Tokenų keitimas"];
     navigacija($g_n);
 }
 
@@ -507,7 +507,7 @@ if ($id === 'changeToTobulas') {
         }
     }
 
-    $g_n[] = array("/pagrindinis.php?id=", "Pagrindinis", "index.php", "Legendinės dienos misijos", "index.php?id=shop", "Tokenų keitykla", "Tokenų keitimas");
+    $g_n[] = ["/pagrindinis.php?id=", "Pagrindinis", "index.php", "Legendinės dienos misijos", "index.php?id=shop", "Tokenų keitykla", "Tokenų keitimas"];
     navigacija($g_n);
 }
 
@@ -531,7 +531,7 @@ if ($id === 'changeToAngelWing') {
         }
     }
 
-    $g_n[] = array("/pagrindinis.php?id=", "Pagrindinis", "index.php", "Legendinės dienos misijos", "index.php?id=shop", "Tokenų keitykla", "Tokenų keitimas");
+    $g_n[] = ["/pagrindinis.php?id=", "Pagrindinis", "index.php", "Legendinės dienos misijos", "index.php?id=shop", "Tokenų keitykla", "Tokenų keitimas"];
     navigacija($g_n);
 }
 
@@ -555,7 +555,7 @@ if ($id === 'changeToNaikinimoAmuletItem') {
         }
     }
 
-    $g_n[] = array("/pagrindinis.php?id=", "Pagrindinis", "index.php", "Legendinės dienos misijos", "index.php?id=shop", "Tokenų keitykla", "Tokenų keitimas");
+    $g_n[] = ["/pagrindinis.php?id=", "Pagrindinis", "index.php", "Legendinės dienos misijos", "index.php?id=shop", "Tokenų keitykla", "Tokenų keitimas"];
     navigacija($g_n);
 }
 
@@ -579,7 +579,7 @@ if ($id === 'changeToNaikinti') {
         }
     }
 
-    $g_n[] = array("/pagrindinis.php?id=", "Pagrindinis", "index.php", "Legendinės dienos misijos", "index.php?id=shop", "Tokenų keitykla", "Tokenų keitimas");
+    $g_n[] = ["/pagrindinis.php?id=", "Pagrindinis", "index.php", "Legendinės dienos misijos", "index.php?id=shop", "Tokenų keitykla", "Tokenų keitimas"];
     navigacija($g_n);
 }
 
@@ -624,13 +624,13 @@ if ($id === 'changeToEnergyStone') {
         }
     }
 
-    $g_n[] = array("/pagrindinis.php?id=", "Pagrindinis", "index.php", "Legendinės dienos misijos", "index.php?id=shop", "Tokenų keitykla", "Tokenų keitimas");
+    $g_n[] = ["/pagrindinis.php?id=", "Pagrindinis", "index.php", "Legendinės dienos misijos", "index.php?id=shop", "Tokenų keitykla", "Tokenų keitimas"];
     navigacija($g_n);
 }
 
 function renderRequirements(array $requirements)
 {
-    global $nick, $inv, $arrow, $checked;
+    global $nick, $inv, $arrow, $checked, $conn;
 
     echo 'Kad įvykdytumėte misiją jums reikia atlikti šiuos veiksmus: <br><br>';
     if ($requirements['winFights']) {
@@ -750,7 +750,7 @@ function renderRequirements(array $requirements)
 
 function handleRewards(array $rewards, $mission)
 {
-    global $apie;
+    global $apie, $conn;
 
     echo 'Kokius prizus gausi įvykdęs misiją:<br><br>';
 
@@ -811,7 +811,7 @@ function handleRewards(array $rewards, $mission)
 
 function renderTopMissionExecutors()
 {
-    global $trophy;
+    global $trophy, $conn;
 
     $allCompletedMissionsCount = mysqli_num_rows(mysqli_query($conn,"SELECT * FROM user_daily_mission WHERE status='done'"));
     if ($allCompletedMissionsCount) {
@@ -832,7 +832,7 @@ function renderTopMissionExecutors()
 
 function renderTopPlayersByTokens()
 {
-    global $tokens;
+    global $tokens, $conn;
 
     $userCount = mysqli_num_rows(mysqli_query($conn,"SELECT nick, daily_mission_token FROM `zaidejai` WHERE daily_mission_token > 0"));
 

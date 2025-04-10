@@ -7,7 +7,7 @@ use LegacyDbz\WorldBosses\Repositories\WorldBossRepository;
 
 class WorldBossService
 {
-    private $bossList = [
+    private array $bossList = [
         [
             'id' => '1',
             'name' => 'Kristina',
@@ -470,14 +470,8 @@ class WorldBossService
         ],
     ];
 
-    /**
-     * @var WorldBossRepository
-     */
-    private $worldBossRepository;
-
-    public function __construct(WorldBossRepository $worldBossRepository)
+    public function __construct(private readonly WorldBossRepository $worldBossRepository)
     {
-        $this->worldBossRepository = $worldBossRepository;
     }
 
     /**
@@ -581,9 +575,7 @@ class WorldBossService
 
     private function getRandomBossByConfig($id)
     {
-        $filteredBossList = array_filter($this->bossList, static function ($boss) use ($id) {
-            return $boss['id'] !== $id;
-        });
+        $filteredBossList = array_filter($this->bossList, static fn($boss) => $boss['id'] !== $id);
 
         if (empty($filteredBossList)) {
             return null;
@@ -597,7 +589,7 @@ class WorldBossService
     private function getBossConfigById($bossId)
     {
         foreach ($this->bossList as $boss) {
-            if ($boss['id'] === $bossId) {
+            if ((int)$boss['id'] === $bossId) {
                 return $boss;
             }
         }

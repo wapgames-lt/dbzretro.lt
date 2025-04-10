@@ -27,7 +27,7 @@ Neužsidėjus mirties, atgimimo daiktų kovoti nerekomenduojama.
         echo '<div class="meniuc">';
         echo 'Bosų nėra.';
         echo '</div>';
-        $g_n[] = array("/pagrindinis.php?id=", "Pagrindinis", "World bosai");
+        $g_n[] = ["/pagrindinis.php?id=", "Pagrindinis", "World bosai"];
         navigacija($g_n);
         return;
     }
@@ -138,7 +138,7 @@ Neužsidėjus mirties, atgimimo daiktų kovoti nerekomenduojama.
     echo '<div class="meniuc">';
     echo ' <a href="index.php?id=dead_bosses">Nukauti bosai</a><br>';
     echo '</div>';
-    $g_n[] = array("/pagrindinis.php?id=", "Pagrindinis", "World bosai");
+    $g_n[] = ["/pagrindinis.php?id=", "Pagrindinis", "World bosai"];
     navigacija($g_n);
 }
 
@@ -255,7 +255,7 @@ if ($id === 'dead_bosses') {
     } else {
         echo '<div class="meniuc">Bosų nėra.</div>';
     }
-    $g_n[] = array("index.php", "World bosai", "Nukauti bosai");
+    $g_n[] = ["index.php", "World bosai", "Nukauti bosai"];
     navigacija($g_n);
 }
 
@@ -375,7 +375,7 @@ if ($id === 'attack') {
 
     if ($_SESSION['pad-world-bosses'] - time() > 0) {
         echo 'Padusai! Trenkti galėsi už <b>' . laikas($_SESSION['pad-world-bosses'] - time(), 1) . '</b>';
-    } elseif ($KD && (int)$KD !== $_SESSION['refresh-world-bosses']) {
+    } elseif ($KD && (int)$KD !== (int)$_SESSION['refresh-world-bosses']) {
         echo 'Atnaujinti puslapio negalimą! Eikite atgal ir vėl trenkite.';
     } else {
         $worldBossId = $boss->getId();
@@ -539,7 +539,7 @@ if ($id === 'attack') {
                 echo '<b>Stebuklingos pupos: <b>' . $inv['Pupos'] . '</b> <a href="/inv.php?id=eat">[Valgyti]</a></br>';
             }
             echo '</div>';
-            $g_n[] = array("index.php", "World bosai", "Pulti bosą");
+            $g_n[] = ["index.php", "World bosai", "Pulti bosą"];
             navigacija($g_n);
             return;
         }
@@ -662,7 +662,7 @@ if ($id === 'attack') {
             mysqli_query($conn,"DELETE FROM world_bosses WHERE `ends_at` < '$date' AND dead_at IS NULL ");
             echo '</div>';
 
-            $g_n[] = array("index.php", "World bosai", "Pulti bosą");
+            $g_n[] = ["index.php", "World bosai", "Pulti bosą"];
             navigacija($g_n);
             return;
         }
@@ -715,8 +715,9 @@ if ($id === 'attack') {
         echo '<br>';
         $_SESSION['pad-world-bosses'] = time() + 1;
     }
-    $KD = mt_rand(9999, 99999);
+    $KD = random_int(9999, 99999);
     $_SESSION['refresh-world-bosses'] = $KD;
+
     echo '<div class="meniuc">';
     $linkText = 'Trenkti <b>' . $bossConfig['name'] . '</b>';
     echo '<a id="myLink" href="index.php?id=attack&KD=' . $KD . '">' . $linkText . '</a>';
@@ -753,9 +754,33 @@ if ($id === 'attack') {
 </script>';
     echo '</div>';
     $refresh = 8;
-    echo '<meta http-equiv="refresh" content="'.$refresh.'; url=index.php?id=attack&KD='.$KD.'">';
+
+    echo '<div class="meniuc">';
+    echo '<p>Atsinaujins po <span id="timer">' . $refresh . '</span> sekundžių</p>';
     echo '</div>';
-    $g_n[] = array("index.php", "World bosai", "Pulti bosą");
+
+    echo '<script>
+let refreshTime = ' . $refresh . '; // Set refresh time from PHP
+let timerElement = document.getElementById("timer");
+
+if (timerElement) {
+    // Countdown timer
+    let countdown = setInterval(function() {
+        refreshTime--;  // Decrease the timer each second
+        timerElement.textContent = refreshTime;  // Update the displayed time
+
+        // When the timer reaches 0, refresh the page
+        if (refreshTime <= 0) {
+            clearInterval(countdown);  // Stop the countdown
+            window.location.href = "index.php?id=attack&KD=" + ' . $KD . ';
+        }
+    }, 1000);  // Update every second
+} else {
+    console.error("Timer element not found!");
+}
+</script>';
+    echo '</div>';
+    $g_n[] = ["index.php", "World bosai", "Pulti bosą"];
     navigacija($g_n);
 }
 

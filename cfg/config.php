@@ -2,7 +2,6 @@
 
 use LegacyDbz\Core\Db;
 
-error_reporting(0);
 session_start();
 
 require 'sql.php';
@@ -70,7 +69,7 @@ function sk($skaicius, $nr = 0){
 function post($input){
     global $conn;
 
-    $input = trim($input);
+    $input = trim((string) $input);
     $input = mysqli_real_escape_string($conn, $input);
 
     return $input;
@@ -78,16 +77,16 @@ function post($input){
 
 
 
-$id = isset($_GET['id']) ? preg_replace("/[^A-Za-z0-9_ ]/", '', $_GET['id'])  : null;
-$ID = isset($_GET['ID']) ? preg_replace("/[^A-Za-z0-9_ ]/","",$_GET['ID'])  : null;
-$ka = isset($_GET['ka']) ? preg_replace("/[^A-Za-z0-9_ ]/","",$_GET['ka'])  : null;  
-$co = isset($_GET['co']) ? preg_replace("/[^A-Za-z0-9_ ]/","",$_GET['co'])  : null;
-$go = isset($_GET['go']) ? preg_replace("/[^A-Za-z0-9_ ]/","",$_GET['go'])  : null;
-$wh = isset($_GET['wh']) ? preg_replace("/[^A-Za-z0-9_ ]/","",$_GET['wh'])  : null;
-$i = isset($_GET['i']) ? preg_replace("/[^A-Za-z0-9_ ]/","",$_GET['i'])  : null;
-$psl = isset($_GET['psl']) ? preg_replace("/[^A-Za-z0-9_ ]/","",$_GET['psl'])  : null;
-$mo = isset($_GET['mo']) ? preg_replace("/[^A-Za-z0-9_ ]/","",$_GET['mo'])  : null;    
-$ft_id = isset($_GET['ft_id']) ? preg_replace("/[^0-9]/","",$_GET['ft_id'])  : null;
+$id = isset($_GET['id']) ? preg_replace("/[^A-Za-z0-9_ ]/", '', (string) $_GET['id'])  : null;
+$ID = isset($_GET['ID']) ? preg_replace("/[^A-Za-z0-9_ ]/","",(string) $_GET['ID'])  : null;
+$ka = isset($_GET['ka']) ? preg_replace("/[^A-Za-z0-9_ ]/","",(string) $_GET['ka'])  : null;  
+$co = isset($_GET['co']) ? preg_replace("/[^A-Za-z0-9_ ]/","",(string) $_GET['co'])  : null;
+$go = isset($_GET['go']) ? preg_replace("/[^A-Za-z0-9_ ]/","",(string) $_GET['go'])  : null;
+$wh = isset($_GET['wh']) ? preg_replace("/[^A-Za-z0-9_ ]/","",(string) $_GET['wh'])  : null;
+$i = isset($_GET['i']) ? preg_replace("/[^A-Za-z0-9_ ]/","",(string) $_GET['i'])  : null;
+$psl = isset($_GET['psl']) ? preg_replace("/[^A-Za-z0-9_ ]/","",(string) $_GET['psl'])  : null;
+$mo = isset($_GET['mo']) ? preg_replace("/[^A-Za-z0-9_ ]/","",(string) $_GET['mo'])  : null;    
+$ft_id = isset($_GET['ft_id']) ? preg_replace("/[^0-9]/","",(string) $_GET['ft_id'])  : null;
 
 
 function puslapiavimas($puslapiu_is_viso,$esamas_puslapis,$puslapiavimo_adresas){
@@ -183,13 +182,13 @@ if($id){
 
 function formatDateTimeString($dateTimeString)
 {
-    $time = strtotime($dateTimeString);
+    $time = strtotime((string) $dateTimeString);
 
     $currentDate = new DateTime('now');
     $yesterdayDate = new DateTime('yesterday');
-    $dayBeforeYesterdayDate = (new DateTime('yesterday'))->sub(new DateInterval('P1D')); // Subtract 1 day
+    $dayBeforeYesterdayDate = new DateTime('yesterday')->sub(new DateInterval('P1D')); // Subtract 1 day
     $tomorrowDate = new DateTime('tomorrow');
-    $dayAfterTomorrowDate = (new DateTime('tomorrow'))->add(new DateInterval('P1D')); // Add 1 day
+    $dayAfterTomorrowDate = new DateTime('tomorrow')->add(new DateInterval('P1D')); // Add 1 day
 
     if ($currentDate->format('Y-m-d') == date('Y-m-d', $time)) {
         $xx = '<small><font color="red">Šiandien</font> - ' . date('H:i', $time) . '</small>';
@@ -215,7 +214,7 @@ function random_coloras($tekstas){
 
 
 function spal($zodis){ 
-    $array = str_split($zodis);
+    $array = str_split((string) $zodis);
     $eilute = ''; 
     for($i=0; $i<count($array); $i++){ 
         $eilute .= random_coloras($array[$i]); 
@@ -227,13 +226,13 @@ function spal($zodis){
 function isYouTubeLink($url) {
     $pattern = '/^(https?:\/\/)?(www\.)?(youtube\.com\/(watch\?v=|embed\/|v\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/';
 
-    return preg_match($pattern, $url);
+    return preg_match($pattern, (string) $url);
 }
 
 function isSoundCloudLink($url) {
     $soundcloudPattern = '/^(https?:\/\/)?(on\.)?soundcloud\.com\/[a-zA-Z0-9_-]+\/[a-zA-Z0-9_-]+$/';
 
-    return preg_match($soundcloudPattern, $url);
+    return preg_match($soundcloudPattern, (string) $url);
 }
 
 
@@ -531,7 +530,7 @@ else if($n>=1000) return ''.round(($n/1000),1).' <font color="red">tūkst.</font
 return number_format($n);
 }
 function e($L){
-$b = substr($L,0, 1)	;
+$b = substr((string) $L,0, 1)	;
 $dd = strlen($L-1);
 $f = "$b.e+$dd";	
 return ($f);
@@ -587,8 +586,8 @@ function skaitl(){
  
 function dydziai($kint) 
 { 
-$dydis = array(' B', ' KB', ' MB', ' GB'); 
-return $kint ? round($kint/pow(1024, ($x = floor(log($kint, 1024)))), 1) . $dydis[$x] : '0 B'; 
+$dydis = [' B', ' KB', ' MB', ' GB']; 
+return $kint ? round($kint/1024 ** $x = floor(log($kint, 1024)), 1) . $dydis[$x] : '0 B'; 
 } 
 
 
@@ -599,10 +598,10 @@ return $kint ? round($kint/pow(1024, ($x = floor(log($kint, 1024)))), 1) . $dydi
 
 //** APSAUGA
 function aps($xe){
-    return trim(mysqli_real_escape_string(stripslashes(htmlspecialchars($xe, ENT_QUOTES, 'utf-8'))));
+    return trim(mysqli_real_escape_string($conn,stripslashes(htmlspecialchars((string) $xe, ENT_QUOTES, 'utf-8'))));
 }
 function nr($xe){
-    return trim(mysqli_real_escape_string(htmlspecialchars(abs($xe))));
+    return trim(mysqli_real_escape_string($conn,htmlspecialchars(abs($xe))));
 }
 
 
@@ -622,7 +621,7 @@ function nr($xe){
 	    </div><div class="line"></div>';}
 */
 function in_baneris(){
- $arr = array('botasm','botasm2');
+ $arr = ['botasm','botasm2'];
  $rand = array_rand($arr);
 
  echo'<div class="in">
@@ -635,7 +634,7 @@ function in_baneris(){
 </div> ';}
 
 
-$galunes = array (".php",".gif",".bmp",".png"); 
+$galunes =  [".php",".gif",".bmp",".png"]; 
 $pavadinimas = str_replace ($galunes,"",$pavadinimas); 
 
 class klases  {
@@ -670,14 +669,7 @@ $nuorodos = array_reverse($nuorodos);
 echo'<div class="up">Navigacija</div>';
 echo'<div class="meniu">';
 foreach($nuorodos as $row){
-list(
-$pirmoji,$pirmoji_pav,
-$antroji,$antroji_pav,
-$trecioji,$trecioji_pav,
-$ketvirtoji,$ketvirtoji_pav,
-$penktoji,$penktoji_pav,
-$gryzta
-)
+[$pirmoji, $pirmoji_pav, $antroji, $antroji_pav, $trecioji, $trecioji_pav, $ketvirtoji, $ketvirtoji_pav, $penktoji, $penktoji_pav, $gryzta]
 = $row;
 
 if($gryzta){

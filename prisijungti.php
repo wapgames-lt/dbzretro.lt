@@ -127,7 +127,7 @@ El. Paštas</b><br/><input type="text" name="email"/placeholder="Įveskite savo 
 
 
     $pnick = isset($_POST['pnick']) ? preg_replace("/[^a-z0-9_]/", "", $_POST['pnick']) : null;
-    $email = mysqli_real_escape_string(stripslashes($_POST['email']));
+    $email = mysqli_real_escape_string($conn,stripslashes($_POST['email']));
 
     if (empty($pnick) or empty($email)) {
         echo '<div class="meniuc"><img src="img/bicons/dislike.png" />

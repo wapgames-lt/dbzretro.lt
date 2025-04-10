@@ -10,8 +10,8 @@
     }
   ],
   "require": {
-    "php": "5.6.*",
-    "monolog/monolog": "^1.27",
+    "php": "^8.4",
+    "monolog/monolog": "^3.9",
     "ext-mysqli": "*",
     "ext-pdo": "*"
   },
@@ -25,5 +25,8 @@
     ],
     "post-update-cmd": [
     ]
+  },
+  "require-dev": {
+    "rector/rector": "^2.0"
   }
 }

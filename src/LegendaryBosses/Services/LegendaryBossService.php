@@ -9,14 +9,8 @@ class LegendaryBossService
 {
     private $bossList;
 
-    /**
-     * @var LegendaryBossRepository
-     */
-    private $legendaryBossRepository;
-
-    public function __construct(LegendaryBossRepository $legendaryBossRepository)
+    public function __construct(private readonly LegendaryBossRepository $legendaryBossRepository)
     {
-        $this->legendaryBossRepository = $legendaryBossRepository;
         $this->bossList = include __DIR__ . '/../config/boss.php';
     }
 
@@ -148,9 +142,7 @@ class LegendaryBossService
 
     private function getRandomBossByConfig($id)
     {
-        $filteredBossList = array_filter($this->bossList, static function ($boss) use ($id) {
-            return $boss['id'] !== $id;
-        });
+        $filteredBossList = array_filter($this->bossList, static fn($boss) => $boss['id'] !== $id);
 
         if (empty($filteredBossList)) {
             return null;
@@ -164,7 +156,7 @@ class LegendaryBossService
     private function getBossConfigById($bossId)
     {
         foreach ($this->bossList as $boss) {
-            if ($boss['id'] === $bossId) {
+            if ((int)$boss['id'] === $bossId) {
                 return $boss;
             }
         }

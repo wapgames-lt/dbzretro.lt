@@ -103,8 +103,8 @@ echo'<div class="meniuc"><img src="img/imgg/nmisijos.png"></div>';
 }
 elseif($id == "vygdau"){
 
-	$ID = mysqli_real_escape_string(htmlspecialchars($_GET['ID']));
-			$VS = mysqli_real_escape_string(htmlspecialchars($_GET['VS']));
+	$ID = mysqli_real_escape_string($conn,htmlspecialchars($_GET['ID']));
+			$VS = mysqli_real_escape_string($conn,htmlspecialchars($_GET['VS']));
 	
 
 			

@@ -8,8 +8,6 @@ class Inventory
 {
     use InventoryTrait;
 
-    private $id;
-
     private $tinOre;
 
     private $cadmiumOre;
@@ -33,9 +31,8 @@ class Inventory
      * @param $sayiantail
      * @param $stone
      */
-    public function __construct($id, $tinOre, $cadmiumOre, $titanOre, $sayiantail, $stone)
+    public function __construct(private $id, $tinOre, $cadmiumOre, $titanOre, $sayiantail, $stone)
     {
-        $this->id = $id;
         $this->tinOre = $tinOre;
         $this->cadmiumOre = $cadmiumOre;
         $this->titanOre = $titanOre;

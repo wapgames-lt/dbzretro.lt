@@ -72,7 +72,7 @@ class Collection
      * @param callable $callback
      * @return mixed|null
      */
-    public function first(callable $callback = null)
+    public function first(?callable $callback = null)
     {
         if ($callback === null) {
             return reset($this->items) ?: null;

@@ -382,8 +382,8 @@ if($id == 'kasu'){
     if ($onlineCount) {
         header('Refresh: 1; url=pagrindinis.php');
     }
-		$ID = mysqli_real_escape_string(htmlspecialchars($_GET['ID']));
-			$VS = mysqli_real_escape_string(htmlspecialchars($_GET['VS']));
+		$ID = mysqli_real_escape_string($conn,htmlspecialchars($_GET['ID']));
+			$VS = mysqli_real_escape_string($conn,htmlspecialchars($_GET['VS']));
 	
 $kasimas = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM kasyklav3 WHERE id='$VS' "));
 			$KD = rand(9999,99999);

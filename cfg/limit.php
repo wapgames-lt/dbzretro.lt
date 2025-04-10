@@ -40,7 +40,7 @@ function limit_requests($nr=10,$t=1) {
 }
 
 function start_session_based_on_ip() {
-    $ip_hash = md5($_SERVER['REMOTE_ADDR']);
+    $ip_hash = md5((string) $_SERVER['REMOTE_ADDR']);
     session_id($ip_hash);
     session_start();
 }

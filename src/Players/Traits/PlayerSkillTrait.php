@@ -52,9 +52,7 @@ trait PlayerSkillTrait
      */
     public function getFirstActiveBuffByNameAndList($name, array $allowedBuffs)
     {
-        return $this->getActiveBuffsByList($allowedBuffs)->first(function (PlayerSkill $playerSkill) use ($name) {
-            return $playerSkill->skill()->name() === $name;
-        });
+        return $this->getActiveBuffsByList($allowedBuffs)->first(fn(PlayerSkill $playerSkill) => $playerSkill->skill()->name() === $name);
     }
 
     /**
