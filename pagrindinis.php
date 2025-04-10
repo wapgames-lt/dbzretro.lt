@@ -2,7 +2,7 @@
 
 use LegacyDbz\Parties\DTO\PartyInvite;
 use LegacyDbz\Parties\Repositories\PartyInvitesRepository;
-use LegacyDbz\Parties\Repositories\PartyRepository;
+use LegacyDbz\Parties\Repositories\PartiesRepository;
 use LegacyDbz\Players\Repositories\PlayersRepository;
 
 ob_start();
@@ -52,7 +52,7 @@ $partyInvitesRepository = new PartyInvitesRepository();
 /** @var PartyInvite|null $firstPendingInvite */
 $firstPendingInvite = $partyInvitesRepository->findByIniteeIdAndStatus($apie['id'], PartyInvite::STATUS_PENDING)->first();
 if ($firstPendingInvite) {
-    $partyRepository = new PartyRepository();
+    $partyRepository = new PartiesRepository();
     $party = $partyRepository->findById($firstPendingInvite->partyId());
     $playerRepository = new PlayersRepository();
     $partyLeader = $playerRepository->findById($party->leaderId());
@@ -3219,7 +3219,7 @@ if ($id == 'pervedimai') {
     echo '<div class="meniuc">Sėkmingai atsijungėte!</div>';
     mysql_query("DELETE FROM online WHERE nick='$nick' ");
     setcookie('vardas', null, time() - 3600 * 12 * 365);
-    setcookie('pass', nulll, time() - 3600 * 12 * 365);
+    setcookie('pass', null, time() - 3600 * 12 * 365);
 
     $g_n[] = array("index.php?id=", "Pagrindinis", "Atsijungimas");
     navigacija($g_n);

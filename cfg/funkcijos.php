@@ -14,7 +14,6 @@ $_COOKIE['vardas'] = htmlentities($_COOKIE['vardas'], ENT_QUOTES);
 $_COOKIE['pass'] = htmlentities($_COOKIE['pass'], ENT_QUOTES);
 $cookis = isset($_COOKIE['vardas']) ? $_COOKIE['vardas'] : null;
 $nick = $cookis;
-setCurrentPlayer($nick);
 
 $cookis2 = isset($_COOKIE['pass']) ? $_COOKIE['pass'] : null;
 $pass = $cookis2;  
@@ -2946,6 +2945,8 @@ if(mysql_num_rows(mysql_query("SELECT * FROM arena WHERE nick='$nick'")) == true
 if($inv[radaras] > 2){
 	 mysql_query("UPDATE inv SET radaras='2' WHERE nick='$nick'");
 }
+
+setCurrentPlayer($nick);
 
 function calculatePowerIncreaseByPercentage($percentage)
 {

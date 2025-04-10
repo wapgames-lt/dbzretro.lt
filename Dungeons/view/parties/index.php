@@ -1,15 +1,16 @@
 <?php
 
 use LegacyDbz\Parties\DTO\Party;
+use LegacyDbz\Parties\PartyService;
 use LegacyDbz\Parties\Repositories\PartyMembersRepository;
-use LegacyDbz\Parties\Repositories\PartyRepository;
+use LegacyDbz\Parties\Repositories\PartiesRepository;
 use LegacyDbz\Players\Repositories\InventoryRepository;
 use LegacyDbz\Players\Repositories\PlayersRepository;
 use LegacyDbz\Players\Services\CurrentPlayer;
 
 include_once '../head.php';
 
-$partiesRepository = new PartyRepository();
+$partiesRepository = new PartiesRepository();
 $playersRepository = new PlayersRepository();
 $partyMembersRepository = new PartyMembersRepository();
 
@@ -196,7 +197,7 @@ if ($id === 'createParty') {
         $error = true;
     }
     $cadmiumAmount = 15000;
-    if (! CurrentPlayer::get()->hasMoreCadmiumThan($cadmiumAmount)) {
+    if (! CurrentPlayer::get()->inventory()->hasMoreCadmiumThan($cadmiumAmount)) {
         echo ' <div class="meniu">';
         echo "Kad sukurtumėte party, turite turėti {$cadmiumAmount} kadmio.";
         echo '</div>';
@@ -204,14 +205,22 @@ if ($id === 'createParty') {
     }
 
     if (! $error) {
-        $party = new Party(null, CurrentPlayer::get()->id(), $name, null);
-        $partiesRepository->save($party);
-        $inventoryRepository = new InventoryRepository();
-        $inventoryRepository->subtractCadmium(CurrentPlayer::get()->nick(), $cadmiumAmount);
-        echo ' <div class="meniu">';
-        echo 'Party sukurta sėkmingai!';
-        echo '</div>';
+        $partyService = new PartyService($partiesRepository);
+
+        try {
+            $partyService->create($name, $cadmiumAmount, CurrentPlayer::get());
+
+            echo '<div class="meniu">';
+            echo 'Party sukurta sėkmingai!';
+            echo '</div>';
+        } catch (Exception $e) {
+            echo '<div class="meniu">';
+            echo 'Įvyko kūrimo klaida!';
+            echo '</div>';
+            return;
+        }
     }
+
 
     $g_n[] = array("index.php", "Party Management", "Party Kūrimas");
     navigacija($g_n);

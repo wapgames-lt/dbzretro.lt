@@ -2,13 +2,13 @@
 
 use LegacyDbz\Parties\DTO\PartyMember;
 use LegacyDbz\Parties\Repositories\PartyMembersRepository;
-use LegacyDbz\Parties\Repositories\PartyRepository;
+use LegacyDbz\Parties\Repositories\PartiesRepository;
 use LegacyDbz\Players\Repositories\PlayersRepository;
 use LegacyDbz\Players\Services\CurrentPlayer;
 
 include_once '../head.php';
 
-$partiesRepository = new PartyRepository();
+$partiesRepository = new PartiesRepository();
 $playersRepository = new PlayersRepository();
 $partyMembersRepository = new PartyMembersRepository();
 

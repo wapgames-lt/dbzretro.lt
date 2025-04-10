@@ -2,9 +2,12 @@
 
 namespace LegacyDbz\Players\DTO;
 
+use LegacyDbz\Players\Traits\InventoryTrait;
 
 class Inventory
 {
+    use InventoryTrait;
+
     private $id;
 
     private $tinOre;
@@ -16,6 +19,11 @@ class Inventory
     private $sayiantail;
 
     private $stone;
+
+    /**
+     * @var array Stores original values for dirty checking
+     */
+    private $original = [];
 
     /**
      * @param $id
@@ -85,7 +93,7 @@ class Inventory
 
     public static function fromArray(array $data)
     {
-        return new self(
+        $instance = new self(
             $data['id'],
             $data['alavas'],
             $data['kadmis'],
@@ -93,5 +101,44 @@ class Inventory
             $data['Sayiantail'],
             $data['Stone']
         );
+
+        $instance->original = $instance->toArray();
+
+        return $instance;
+    }
+
+    public function toArray()
+    {
+        return [
+            'id' => $this->id,
+            'alavas' => $this->tinOre,
+            'kadmis' => $this->cadmiumOre,
+            'titanas' => $this->titanOre,
+            'Sayiantail' => $this->sayiantail,
+            'Stone' => $this->stone,
+        ];
+    }
+
+    public function syncOriginal()
+    {
+        $this->original = $this->toArray();
+    }
+
+    public function getChanges()
+    {
+        $current = $this->toArray();
+        $changes = [];
+
+        foreach ($current as $key => $value) {
+            if (!array_key_exists($key, $this->original)) {
+                continue;
+            }
+
+            if ($value !== $this->original[$key]) {
+                $changes[$key] = $value;
+            }
+        }
+
+        return $changes;
     }
 }

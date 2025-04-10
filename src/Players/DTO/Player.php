@@ -11,7 +11,7 @@ use LegacyDbz\Players\Traits\PlayerSkillTrait;
 
 class Player
 {
-    use CharacterTrait, InventoryTrait, PlayerSkillTrait;
+    use CharacterTrait, PlayerSkillTrait;
 
     private $id;
 
@@ -48,7 +48,6 @@ class Player
         $this->inventory = $inventory;
         $this->activeSkills = $activeSkills;
     }
-
 
     /**
      * @return mixed

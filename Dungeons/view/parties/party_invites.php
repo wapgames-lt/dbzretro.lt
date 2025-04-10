@@ -4,14 +4,14 @@ use LegacyDbz\Parties\DTO\Party;
 use LegacyDbz\Parties\DTO\PartyInvite;
 use LegacyDbz\Parties\Repositories\PartyInvitesRepository;
 use LegacyDbz\Parties\Repositories\PartyMembersRepository;
-use LegacyDbz\Parties\Repositories\PartyRepository;
+use LegacyDbz\Parties\Repositories\PartiesRepository;
 use LegacyDbz\Players\Repositories\InventoryRepository;
 use LegacyDbz\Players\Repositories\PlayersRepository;
 use LegacyDbz\Players\Services\CurrentPlayer;
 
 include_once '../head.php';
 
-$partiesRepository = new PartyRepository();
+$partiesRepository = new PartiesRepository();
 $playersRepository = new PlayersRepository();
 $partyMembersRepository = new PartyMembersRepository();
 $partyInvitesRepository = new PartyInvitesRepository();
@@ -237,14 +237,14 @@ function validateAndSavePartyInvite()
         echo ' <div class="meniu">';
         echo 'Žaidėjas nerastas';
         echo '</div>';
-        $error = true;
+        return;
     }
     $party = $partiesRepository->findByLeaderId($currentPlayer->id());
     if (!$party) {
         echo ' <div class="meniu">';
         echo 'Neturite Party';
         echo '</div>';
-        $error = true;
+        return;
     }
     $partyMembers = $partyMembersRepository->findByPlayerId($player->id());
     if (!$partyMembers->isEmpty()) {
@@ -274,7 +274,7 @@ function validateAndSavePartyInvite()
         $error = true;
     }
     $cadmiumAmount = 500;
-    if (!$currentPlayer->hasMoreCadmiumThan($cadmiumAmount)) {
+    if (!$currentPlayer->inventory()->hasMoreCadmiumThan($cadmiumAmount)) {
         echo ' <div class="meniu">';
         echo 'Kad pakviestumėte į party turite turėti ' . $cadmiumAmount . ' kadmio';
         echo '</div>';
@@ -284,8 +284,9 @@ function validateAndSavePartyInvite()
     if (!$error) {
         $partyInvite = new PartyInvite(null, $party->id(), $currentPlayer->id(), $player->id());
         $partyInvitesRepository->save($partyInvite);
-        $inventoryRepository = new InventoryRepository();
-        $inventoryRepository->subtractCadmium($nick, $cadmiumAmount);
+        $currentPlayerInventory = $currentPlayer->inventory();
+        $currentPlayerInventory->removeCadmiumOre($cadmiumAmount);
+        $currentPlayerInventory->update();
         echo ' <div class="meniu">';
         echo 'Žaidėjas ' . $player->nick() . ' sėkmingai pakviestas!';
         echo '</div>';

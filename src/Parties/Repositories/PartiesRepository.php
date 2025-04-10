@@ -6,7 +6,7 @@ use LegacyDbz\Core\Collection;
 use LegacyDbz\Core\Db;
 use LegacyDbz\Parties\DTO\Party;
 
-class PartyRepository
+class PartiesRepository
 {
     /**
      * @return Collection|Party[]
@@ -75,8 +75,6 @@ class PartyRepository
     public function save(Party $party)
     {
         try {
-            Db::beginTransaction();
-
             $stmt = Db::prepare("INSERT INTO parties (leader_id, name) VALUES (:leader_id, :name)");
             $stmt->execute([
                 'leader_id' => $party->leaderId(),
@@ -91,9 +89,7 @@ class PartyRepository
                 'player_id' => $party->leaderId(),
             ]);
 
-            Db::commit();
         } catch (\Exception $e) {
-            Db::rollBack();
             throw new \RuntimeException("Failed to save party: " . $e->getMessage(), 0, $e);
         }
     }
