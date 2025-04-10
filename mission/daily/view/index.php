@@ -628,7 +628,7 @@ if ($id === 'changeToEnergyStone') {
     navigacija($g_n);
 }
 
-function renderRequirements(array $requirements)
+function renderRequirements(array $requirements): void
 {
     global $nick, $inv, $arrow, $checked, $conn;
 
@@ -748,7 +748,7 @@ function renderRequirements(array $requirements)
     echo '<br>';
 }
 
-function handleRewards(array $rewards, $mission)
+function handleRewards(array $rewards, $mission): void
 {
     global $apie, $conn;
 
@@ -809,7 +809,7 @@ function handleRewards(array $rewards, $mission)
 }
 
 
-function renderTopMissionExecutors()
+function renderTopMissionExecutors(): void
 {
     global $trophy, $conn;
 
@@ -830,7 +830,7 @@ function renderTopMissionExecutors()
     }
 }
 
-function renderTopPlayersByTokens()
+function renderTopPlayersByTokens(): void
 {
     global $tokens, $conn;
 

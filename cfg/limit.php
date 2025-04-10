@@ -1,6 +1,6 @@
 <?php
 
-function limit_requests($nr=10,$t=1) {
+function limit_requests($nr=10,$t=1): void {
 
     if (!session_id()) {
         start_session_based_on_ip();
@@ -39,7 +39,7 @@ function limit_requests($nr=10,$t=1) {
     if ( $remaining_time < 0 ) $remaining_time = $t;
 }
 
-function start_session_based_on_ip() {
+function start_session_based_on_ip(): void {
     $ip_hash = md5((string) $_SERVER['REMOTE_ADDR']);
     session_id($ip_hash);
     session_start();

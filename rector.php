@@ -15,6 +15,6 @@ return RectorConfig::configure()
         __DIR__ . '/worldbosses',
     ])
     ->withPhpSets()
-    ->withTypeCoverageLevel(0)
-    ->withDeadCodeLevel(0)
-    ->withCodeQualityLevel(0);
+    ->withTypeCoverageLevel(2)
+    ->withDeadCodeLevel(1)
+    ->withCodeQualityLevel(1);

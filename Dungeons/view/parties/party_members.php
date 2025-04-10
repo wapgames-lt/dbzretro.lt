@@ -17,7 +17,7 @@ match ($id) {
     default => renderIndex(),
 };
 
-function renderIndex()
+function renderIndex(): void
 {
     global $playersRepository, $partyMembersRepository, $arrow;
 
@@ -47,7 +47,7 @@ function renderIndex()
     navigacija($g_n);
 }
 
-function removeFromParty() {
+function removeFromParty(): void {
     global $partiesRepository, $partyMembersRepository;
     online('Party Management -> Remove Player From Party');
     top('Išeiti iš Party');

@@ -23,7 +23,7 @@ function GenTime(){
 }
 
 
-function head(){
+function head(): void{
     echo '<?xml version="1.0" encoding="utf-8"?> 
     <!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//LT" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
     <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="lt">	
@@ -543,12 +543,16 @@ if(kiek('online') > $nust['snd_max']){
     mysqli_query($conn,"UPDATE nustatymai SET snd_max='".kiek('online')."'");
 }
 
-function foot(){
+function foot(): void{
 	global $versija, $conn;
 	
 	    echo '
 <div class="linija-gr"></div>
-    <div class="foot" style="text-align:left;vertical-align:middle;font-size:12px; text-shadow: 0px 0px 10px;">
+    <div class="foot" style="text-align:left;vertical-align:middle;font-size:12px; text-shadow: 0px 0px 10px;">';
+    $version = phpversion();
+    $versionParts = explode('.', $version);
+    echo 'PHP ' . $versionParts[0] . '.' . $versionParts[1];
+    echo ',
 2022-' . date('Y') .' <b>&copy;</b> testas1 <SUP><B><small>(';
 $onoff = mysqli_query($conn,"SELECT * FROM online WHERE nick='testas1'");
 if(mysqli_num_rows($onoff)){
@@ -557,9 +561,8 @@ echo "<font color='#59ff00'>ON";
 echo "<font color='#e74c3c'>OFF";
 }
 
-echo'</font>)</small></b></SUP> <small><a href="">dbzretro.lt ™</a></small>
-<b><span style="text-shadow: 0px 0px 10px; float:middle; margin-top: 0px; padding-middle: 5px;">
-
+echo'</font>)</small></b></SUP>';
+echo '
 
   </small></div></body></html>';
   mysqli_close($conn);
@@ -569,7 +572,7 @@ echo'</font>)</small></b></SUP> <small><a href="">dbzretro.lt ™</a></small>
 }
 
 
-function top($tekstas){
+function top($tekstas): void{
     echo '<div class="up"><b>'.$tekstas.'</b></div>';
 }
 function skaitl(){
@@ -620,7 +623,7 @@ function nr($xe){
 	    Žaidėjau - '.$nick.'  sekmės žaidime!
 	    </div><div class="line"></div>';}
 */
-function in_baneris(){
+function in_baneris(): void{
  $arr = ['botasm','botasm2'];
  $rand = array_rand($arr);
 
@@ -663,7 +666,7 @@ class klases  {
 $klases = new klases;
 
 
-function navigacija($nuorodos=NULL){
+function navigacija($nuorodos=NULL): void{
 if(!empty($nuorodos)){
 $nuorodos = array_reverse($nuorodos);
 echo'<div class="up">Navigacija</div>';

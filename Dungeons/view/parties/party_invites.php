@@ -20,7 +20,7 @@ $currentPlayer = CurrentPlayer::get();
 
 render($id);
 
-function render($id)
+function render($id): void
 {
     match ($id) {
         'create' => createPartyInvite(),
@@ -32,7 +32,7 @@ function render($id)
     };
 }
 
-function renderIndex()
+function renderIndex(): void
 {
     global $playersRepository, $partyInvitesRepository, $currentPlayer, $arrow;
     online('Party Management > Party Invites');
@@ -64,7 +64,7 @@ function renderIndex()
     navigacija($g_n);
 }
 
-function inviteeInvites()
+function inviteeInvites(): void
 {
     global $partiesRepository, $partyInvitesRepository, $currentPlayer, $arrow;
     online('Party Management > Party Invites');
@@ -97,7 +97,7 @@ function inviteeInvites()
     navigacija($g_n);
 }
 
-function acceptInvite()
+function acceptInvite(): void
 {
     global $partyInvitesRepository, $partyMembersRepository, $currentPlayer;
     online('Party Management > Accept Invite');
@@ -146,7 +146,7 @@ function acceptInvite()
     navigacija($g_n);
 }
 
-function declineInvite()
+function declineInvite(): void
 {
     global $partyInvitesRepository, $currentPlayer;
     online('Party Management > Party Invites');
@@ -180,7 +180,7 @@ function declineInvite()
     navigacija($g_n);
 }
 
-function createPartyInvite()
+function createPartyInvite(): void
 {
     online('Party Management -> Create Party Invite');
     top('Kviesti į Party');
@@ -195,7 +195,7 @@ function createPartyInvite()
     navigacija($g_n);
 }
 
-function validateAndSavePartyInvite()
+function validateAndSavePartyInvite(): void
 {
     global $playersRepository, $partyInvitesRepository, $partiesRepository, $partyMembersRepository, $currentPlayer, $inv;
     online('Party Management -> Create Party Invite');

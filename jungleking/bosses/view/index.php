@@ -776,7 +776,7 @@ if ($id === 'changeToSayiantail') {
     navigacija($g_n);
 }
 
-function renderRequirements(array $requirements)
+function renderRequirements(array $requirements): void
 {
     global $nick, $inv, $arrow, $checked;
 
@@ -896,7 +896,7 @@ function renderRequirements(array $requirements)
     echo '<br>';
 }
 
-function handleRewards(array $rewards, $boosConfig)
+function handleRewards(array $rewards, $boosConfig): void
 {
     global $apie;
 
@@ -957,7 +957,7 @@ function handleRewards(array $rewards, $boosConfig)
 }
 
 
-function renderTopBossKillers()
+function renderTopBossKillers(): void
 {
     global $trophy;
 
@@ -978,7 +978,7 @@ function renderTopBossKillers()
     }
 }
 
-function renderTopPlayersByTokens()
+function renderTopPlayersByTokens(): void
 {
     global $tokens;
 

@@ -22,4 +22,4 @@ ssh:
 	$(APACHE_CONTAINER) bash
 
 rector:
-	$(APACHE_CONTAINER) ./vendor/bin/rector process kasimas.php
+	$(APACHE_CONTAINER) ./vendor/bin/rector process

@@ -49,7 +49,7 @@ if (isset($browser['name'])) {
         error_log('Fiksuojamas Wap gejus su IP: '. $ip.' narsykle: '.$_SERVER['HTTP_USER_AGENT']);
         if (!$nick) {
             $message = '[Security-Alert][' . date('Y-m-d H:i') . ']: Fiksuojamas naudotojas su įtartina naršykle. IP: ' . $ip . ' narsykle: ' . $_SERVER['HTTP_USER_AGENT'];
-            $result = mysqli_query($conn,"SELECT COUNT(*) FROM logs WHERE message='" . mysqli_real_escape_string($conn,$mysqli, $message) . "'");
+            $result = mysqli_query($conn,"SELECT COUNT(*) FROM logs WHERE message='" . mysqli_real_escape_string($conn,(string) $mysqli) . "'");
             $row = mysqli_fetch_row($result);
             $messageCount = $row[0];
             if ($messageCount < 1) {
@@ -271,7 +271,7 @@ mysqli_query($conn,"UPDATE nustatymai SET reg = '+' ") or die(mysqli_error());
 }
 
 
-function autoReset($level)
+function autoReset($level): void
 {
     global $conn;
     $playersCount = mysqli_num_rows(mysqli_query($conn,"SELECT * FROM zaidejai WHERE lygis >= '$level'"));
@@ -361,7 +361,7 @@ function autoReset($level)
 
 
 
-function head2(){
+function head2(): void{
 global $nust, $css, $new_pm, $viso_pm, $fusion, $apie_kita, $taskai,$user;
 echo'<?xml version="1.0" encoding="UTF-8"?>
  <!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//Lithuania" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
@@ -457,7 +457,7 @@ echo'
    foot();
     exit;
 }
-function pm(){
+function pm(): void{
 global $nust, $css, $new_pm, $viso_pm, $fusion, $apie_kita, $taskai, $sys;
 
 
@@ -588,7 +588,7 @@ function kas_toks($nick){
 }
 $tm = time()+ 60*60*2;
 $timx = time()+320;
-function online($vt){
+function online($vt): void{
 global $nick, $nars, $ip, $timx, $tm, $conn;
 if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM online WHERE nick='$nick'")) < 1){
 mysqli_query($conn,"INSERT INTO online SET nick='$nick', vieta='$vt', nrs='$nars', ip='$ip', time='$timx', time_on='".time()."', gausite='$tm'")or die(mysqli_error());
@@ -641,7 +641,7 @@ return $laikas;
 
 //* Daiktų dropas kovu lauke
 
-function dropas(){
+function dropas(): void{
     global $giras, $ico, $nick, $mano_online;
 ///angelo sparnai
 
@@ -1511,7 +1511,7 @@ if($apie['trans'] == 7){
   
 
 
- function topbar(){
+ function topbar(): void{
  global $user, $apie, $date, $conn;
 
 if($user['greitas4'] == '-'){ 
@@ -1636,7 +1636,7 @@ if($user['greitas4'] == '-'){
 }
 
  
- function baneris(){
+ function baneris(): void{
 
 echo'
 
@@ -2907,19 +2907,19 @@ function resolveReward($reward, $defaultReward)
     return max($reward, $defaultReward);
 }
 
-function startTransaction(){
+function startTransaction(): void{
     global $conn;
     mysqli_query($conn,"SET AUTOCOMMIT=0");
     mysqli_query($conn,"START TRANSACTION");
 }
 
-function commitTransaction(){
+function commitTransaction(): void{
     global $conn;
     mysqli_query($conn,"COMMIT");
     mysqli_query($conn,'SET AUTOCOMMIT=1');
 }
 
-function rollbackTransaction(){
+function rollbackTransaction(): void{
     global $conn;
     mysqli_query($conn,"ROLLBACK");
 }
@@ -2962,7 +2962,7 @@ function sendDiscordMessage($message)
     return true;
 }
 
-function setCurrentPlayer($nick)
+function setCurrentPlayer($nick): void
 {
     $playersRepository = new \LegacyDbz\Players\Repositories\PlayersRepository();
     $currentPlayer = $playersRepository->findByNick($nick);
