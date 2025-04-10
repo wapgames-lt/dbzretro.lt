@@ -33,7 +33,7 @@ if ($id == "") {
 if ($id == "smile") {
     top('Šipsenėlės');
     online('Žiūri Šypsenėles');
-    $viso = mysql_result(mysql_query("SELECT COUNT(*) FROM smile"), 0);
+    $viso = mysqli_fetch_row(mysqli_query($conn, "SELECT COUNT(*) FROM smile"))[0];
     if ($viso > 0) {
         $rezultatu_rodymas = 20;
         $total = @intval(($viso - 1) / $rezultatu_rodymas) + 1;
@@ -43,8 +43,8 @@ if ($id == "smile") {
 
         $puslapiu = ceil($viso / $rezultatu_rodymas);
         echo '<div class="meniu">';
-        $query = mysql_query("SELECT * FROM smile ORDER BY id DESC LIMIT $nuo_kiek,$rezultatu_rodymas");
-        while ($row = mysql_fetch_assoc($query)) {
+        $query = mysqli_query($conn,"SELECT * FROM smile ORDER BY id DESC LIMIT $nuo_kiek,$rezultatu_rodymas");
+        while ($row = mysqli_fetch_assoc($query)) {
             echo '' . $row['img'] . ' - <b>' . $row['kodas'] . '</b><br/>';
 
 
@@ -260,28 +260,28 @@ if ($id == "smile2") {
     echo '<div class="meniu">';
     echo ' <div class="meniuc"><img src=img/imgg/informacija.png border="1" width="180" height="90"><alt="**"></div>';
     echo '
-      ' . $ico2 . ' Goku pasirinko ' . mysql_num_rows(mysql_query("SELECT * FROM zaidejai WHERE veikejas='Gokas' ")) . ' žaidėjų<br/>
-       ' . $ico2 . ' Vegeta pasirinko ' . mysql_num_rows(mysql_query("SELECT * FROM zaidejai WHERE veikejas='Vedžitas' ")) . ' žaidėjų<br/>
-       ' . $ico2 . ' Gohan pasirinko ' . mysql_num_rows(mysql_query("SELECT * FROM zaidejai WHERE veikejas='Gohanas' ")) . ' žaidėjų<br/>
-       ' . $ico2 . ' Goten pasirinko ' . mysql_num_rows(mysql_query("SELECT * FROM zaidejai WHERE veikejas='Goten' ")) . ' žaidėjų<br/>
-     ' . $ico2 . ' Trunks pasirinko ' . mysql_num_rows(mysql_query("SELECT * FROM zaidejai WHERE veikejas='Tranksas' ")) . ' žaidėjų<br/>
-       ' . $ico2 . ' Bulma pasirinko ' . mysql_num_rows(mysql_query("SELECT * FROM zaidejai WHERE veikejas='Bulma' ")) . ' žaidėjų<br/>
-       ' . $ico2 . ' Pikola pasirinko ' . mysql_num_rows(mysql_query("SELECT * FROM zaidejai WHERE veikejas='Pikolas' ")) . ' žaidėjų<br/>
-        ' . $ico2 . ' Fryza pasirinko ' . mysql_num_rows(mysql_query("SELECT * FROM zaidejai WHERE veikejas='Fryzas' ")) . ' žaidėjų<br/>
-      ' . $ico2 . ' Buu pasirinko ' . mysql_num_rows(mysql_query("SELECT * FROM zaidejai WHERE veikejas='Buu' ")) . ' žaidėjų<br/>
-     ' . $ico2 . ' Kid trunks pasirinko ' . mysql_num_rows(mysql_query("SELECT * FROM zaidejai WHERE veikejas='Kid trunks' ")) . ' žaidėjų<br/>
-      ' . $ico2 . ' Baby pasirinko ' . mysql_num_rows(mysql_query("SELECT * FROM zaidejai WHERE veikejas='Baby' ")) . ' žaidėjų<br/>
-	   ' . $ico2 . ' Android18 pasirinko ' . mysql_num_rows(mysql_query("SELECT * FROM zaidejai WHERE veikejas='Android18' ")) . ' žaidėjų<br/>
-	  ' . $ico2 . ' Android17 pasirinko ' . mysql_num_rows(mysql_query("SELECT * FROM zaidejai WHERE veikejas='Android17' ")) . ' žaidėjų<br/>
-	  ' . $ico2 . ' Cell pasirinko ' . mysql_num_rows(mysql_query("SELECT * FROM zaidejai WHERE veikejas='Cell' ")) . ' žaidėjų<br/>
-	   ' . $ico2 . ' Broly pasirinko ' . mysql_num_rows(mysql_query("SELECT * FROM zaidejai WHERE veikejas='Broly' ")) . ' žaidėjų<br/>
-	   ' . $ico2 . ' Gohan pasirinko ' . mysql_num_rows(mysql_query("SELECT * FROM zaidejai WHERE veikejas='Gohanas' ")) . ' žaidėjų<br/>
-	   ' . $ico2 . ' Raditz pasirinko ' . mysql_num_rows(mysql_query("SELECT * FROM zaidejai WHERE veikejas='Bardock' ")) . ' žaidėjų<br/>
-	  ' . $ico2 . ' Bardock pasirinko ' . mysql_num_rows(mysql_query("SELECT * FROM zaidejai WHERE veikejas='Bardock' ")) . ' žaidėjų<br/>
-' . $ico2 . ' Vegeta gods pasirinko ' . mysql_num_rows(mysql_query("SELECT * FROM zaidejai WHERE veikejas='Vegeta gods' ")) . ' žaidėjų<br/>
-	 ' . $ico2 . ' Goku gods pasirinko ' . mysql_num_rows(mysql_query("SELECT * FROM zaidejai WHERE veikejas='Goku gods' ")) . ' žaidėjų<br/>
-	 ' . $ico2 . ' Vegito pasirinko ' . mysql_num_rows(mysql_query("SELECT * FROM zaidejai WHERE veikejas='Vegito' ")) . ' žaidėjų<br/>
-	   ' . $ico2 . ' Gold oozuru pasirinko ' . mysql_num_rows(mysql_query("SELECT * FROM zaidejai WHERE veikejas='Gold Oozuru' ")) . ' žaidėjų<br/>
+      ' . $ico2 . ' Goku pasirinko ' . mysqli_num_rows(mysqli_query($conn,"SELECT * FROM zaidejai WHERE veikejas='Gokas' ")) . ' žaidėjų<br/>
+       ' . $ico2 . ' Vegeta pasirinko ' . mysqli_num_rows(mysqli_query($conn,"SELECT * FROM zaidejai WHERE veikejas='Vedžitas' ")) . ' žaidėjų<br/>
+       ' . $ico2 . ' Gohan pasirinko ' . mysqli_num_rows(mysqli_query($conn,"SELECT * FROM zaidejai WHERE veikejas='Gohanas' ")) . ' žaidėjų<br/>
+       ' . $ico2 . ' Goten pasirinko ' . mysqli_num_rows(mysqli_query($conn,"SELECT * FROM zaidejai WHERE veikejas='Goten' ")) . ' žaidėjų<br/>
+     ' . $ico2 . ' Trunks pasirinko ' . mysqli_num_rows(mysqli_query($conn,"SELECT * FROM zaidejai WHERE veikejas='Tranksas' ")) . ' žaidėjų<br/>
+       ' . $ico2 . ' Bulma pasirinko ' . mysqli_num_rows(mysqli_query($conn,"SELECT * FROM zaidejai WHERE veikejas='Bulma' ")) . ' žaidėjų<br/>
+       ' . $ico2 . ' Pikola pasirinko ' . mysqli_num_rows(mysqli_query($conn,"SELECT * FROM zaidejai WHERE veikejas='Pikolas' ")) . ' žaidėjų<br/>
+        ' . $ico2 . ' Fryza pasirinko ' . mysqli_num_rows(mysqli_query($conn,"SELECT * FROM zaidejai WHERE veikejas='Fryzas' ")) . ' žaidėjų<br/>
+      ' . $ico2 . ' Buu pasirinko ' . mysqli_num_rows(mysqli_query($conn,"SELECT * FROM zaidejai WHERE veikejas='Buu' ")) . ' žaidėjų<br/>
+     ' . $ico2 . ' Kid trunks pasirinko ' . mysqli_num_rows(mysqli_query($conn,"SELECT * FROM zaidejai WHERE veikejas='Kid trunks' ")) . ' žaidėjų<br/>
+      ' . $ico2 . ' Baby pasirinko ' . mysqli_num_rows(mysqli_query($conn,"SELECT * FROM zaidejai WHERE veikejas='Baby' ")) . ' žaidėjų<br/>
+	   ' . $ico2 . ' Android18 pasirinko ' . mysqli_num_rows(mysqli_query($conn,"SELECT * FROM zaidejai WHERE veikejas='Android18' ")) . ' žaidėjų<br/>
+	  ' . $ico2 . ' Android17 pasirinko ' . mysqli_num_rows(mysqli_query($conn,"SELECT * FROM zaidejai WHERE veikejas='Android17' ")) . ' žaidėjų<br/>
+	  ' . $ico2 . ' Cell pasirinko ' . mysqli_num_rows(mysqli_query($conn,"SELECT * FROM zaidejai WHERE veikejas='Cell' ")) . ' žaidėjų<br/>
+	   ' . $ico2 . ' Broly pasirinko ' . mysqli_num_rows(mysqli_query($conn,"SELECT * FROM zaidejai WHERE veikejas='Broly' ")) . ' žaidėjų<br/>
+	   ' . $ico2 . ' Gohan pasirinko ' . mysqli_num_rows(mysqli_query($conn,"SELECT * FROM zaidejai WHERE veikejas='Gohanas' ")) . ' žaidėjų<br/>
+	   ' . $ico2 . ' Raditz pasirinko ' . mysqli_num_rows(mysqli_query($conn,"SELECT * FROM zaidejai WHERE veikejas='Bardock' ")) . ' žaidėjų<br/>
+	  ' . $ico2 . ' Bardock pasirinko ' . mysqli_num_rows(mysqli_query($conn,"SELECT * FROM zaidejai WHERE veikejas='Bardock' ")) . ' žaidėjų<br/>
+' . $ico2 . ' Vegeta gods pasirinko ' . mysqli_num_rows(mysqli_query($conn,"SELECT * FROM zaidejai WHERE veikejas='Vegeta gods' ")) . ' žaidėjų<br/>
+	 ' . $ico2 . ' Goku gods pasirinko ' . mysqli_num_rows(mysqli_query($conn,"SELECT * FROM zaidejai WHERE veikejas='Goku gods' ")) . ' žaidėjų<br/>
+	 ' . $ico2 . ' Vegito pasirinko ' . mysqli_num_rows(mysqli_query($conn,"SELECT * FROM zaidejai WHERE veikejas='Vegito' ")) . ' žaidėjų<br/>
+	   ' . $ico2 . ' Gold oozuru pasirinko ' . mysqli_num_rows(mysqli_query($conn,"SELECT * FROM zaidejai WHERE veikejas='Gold Oozuru' ")) . ' žaidėjų<br/>
 	  
 	   </div>
         ';
@@ -292,20 +292,20 @@ if ($id == "smile2") {
     top('Žaidėju statistika');
     echo ' <div class="meniuc"><img src=img/imgg/informacija.png border="1" width="180" height="90"><alt="**"></div>';
     echo '<div class="meniu">Viso prižiūrėtoju ';
-    $a = mysql_num_rows(mysql_query("SELECT * FROM zaidejai WHERE statusas='Admin'"));
-    $b = mysql_num_rows(mysql_query("SELECT * FROM zaidejai WHERE statusas='Mod'"));
-    $c = mysql_num_rows(mysql_query("SELECT * FROM zaidejai WHERE statusas='Mod2'"));
-    $d = mysql_num_rows(mysql_query("SELECT * FROM zaidejai WHERE statusas='Mod3'"));
-    $e = mysql_num_rows(mysql_query("SELECT * FROM zaidejai WHERE statusas='Mod4'"));
-    $k = mysql_num_rows(mysql_query("SELECT * FROM zaidejai WHERE statusas='Kurejas' "));
+    $a = mysqli_num_rows(mysqli_query($conn,"SELECT * FROM zaidejai WHERE statusas='Admin'"));
+    $b = mysqli_num_rows(mysqli_query($conn,"SELECT * FROM zaidejai WHERE statusas='Mod'"));
+    $c = mysqli_num_rows(mysqli_query($conn,"SELECT * FROM zaidejai WHERE statusas='Mod2'"));
+    $d = mysqli_num_rows(mysqli_query($conn,"SELECT * FROM zaidejai WHERE statusas='Mod3'"));
+    $e = mysqli_num_rows(mysqli_query($conn,"SELECT * FROM zaidejai WHERE statusas='Mod4'"));
+    $k = mysqli_num_rows(mysqli_query($conn,"SELECT * FROM zaidejai WHERE statusas='Kurejas' "));
     echo '' . $a + $b + $c + $d + $e + $k . '</div>';
     echo '<div class="up"><b>Žaidimo KŪRĖJAS</b>:</div>';
     echo '<div class="meniuc">';
-    if (mysql_num_rows(mysql_query("SELECT * FROM zaidejai WHERE statusas='Kurėjas' ")) == 0) {
+    if (mysqli_num_rows(mysqli_query($conn,"SELECT * FROM zaidejai WHERE statusas='Kurėjas' ")) == 0) {
         echo '<b>[&raquo;]</b> Kūrėjų nėra...<br/>';
     } else {
-        $query = mysql_query("SELECT * FROM zaidejai WHERE statusas='Kurejas' ");
-        while ($row = mysql_fetch_assoc($query)) {
+        $query = mysqli_query($conn,"SELECT * FROM zaidejai WHERE statusas='Kurejas' ");
+        while ($row = mysqli_fetch_assoc($query)) {
             $nr++;
             echo ' <a href="pagrindinis.php?id=apie&ka=' . $row['nick'] . '">' . statusas($row['nick']) . '</a><br/>';
         }
@@ -315,11 +315,11 @@ if ($id == "smile2") {
     echo '</div>';
     echo '<div class="up"><b> Administratoriai</b>:</div>';
     echo '<div class="meniu">';
-    if (mysql_num_rows(mysql_query("SELECT * FROM zaidejai WHERE statusas='Admin' ")) == 0) {
+    if (mysqli_num_rows(mysqli_query($conn,"SELECT * FROM zaidejai WHERE statusas='Admin' ")) == 0) {
         echo '<b>[&raquo;]</b> Administratorių nėra...<br/>';
     } else {
-        $query = mysql_query("SELECT * FROM zaidejai WHERE statusas='Admin' ");
-        while ($row = mysql_fetch_assoc($query)) {
+        $query = mysqli_query($conn,"SELECT * FROM zaidejai WHERE statusas='Admin' ");
+        while ($row = mysqli_fetch_assoc($query)) {
             $nr++;
             echo '<b>' . $nr . '.</b> <a href="pagrindinis.php?id=apie&ka=' . $row['nick'] . '">' . statusas($row['nick']) . '</a><br/>';
         }
@@ -330,11 +330,11 @@ if ($id == "smile2") {
     echo '</div>';
     echo '<div class="up"><b>1 Lygio modai:</b></div>';
     echo '<div class="meniu">';
-    if (mysql_num_rows(mysql_query("SELECT * FROM zaidejai WHERE statusas='Mod' ")) == 0) {
+    if (mysqli_num_rows(mysqli_query($conn,"SELECT * FROM zaidejai WHERE statusas='Mod' ")) == 0) {
         echo ' 1 Lygio modu nera...<br/></div>';
     } else {
-        $query = mysql_query("SELECT * FROM zaidejai WHERE statusas='Mod' ");
-        while ($row = mysql_fetch_assoc($query)) {
+        $query = mysqli_query($conn,"SELECT * FROM zaidejai WHERE statusas='Mod' ");
+        while ($row = mysqli_fetch_assoc($query)) {
             $nr++;
             echo '<b>' . $nr . '.</b> <a href="pagrindinis.php?id=apie&ka=' . $row['nick'] . '">' . statusas($row['nick']) . '</a><br/>';
         }
@@ -342,11 +342,11 @@ if ($id == "smile2") {
     unset($nr);
     echo '</div><div class="up"><b>2 Lygio modai:</b></div>';
     echo '<div class="meniu">';
-    if (mysql_num_rows(mysql_query("SELECT * FROM zaidejai WHERE statusas='Mod2' ")) == 0) {
+    if (mysqli_num_rows(mysqli_query($conn,"SELECT * FROM zaidejai WHERE statusas='Mod2' ")) == 0) {
         echo ' 2 Lygio modu nera...<br/></div>';
     } else {
-        $query = mysql_query("SELECT * FROM zaidejai WHERE statusas='Mod2' ");
-        while ($row = mysql_fetch_assoc($query)) {
+        $query = mysqli_query($conn,"SELECT * FROM zaidejai WHERE statusas='Mod2' ");
+        while ($row = mysqli_fetch_assoc($query)) {
             $nr++;
             echo '<b>' . $nr . '.</b> <a href="pagrindinis.php?id=apie&ka=' . $row['nick'] . '">' . statusas($row['nick']) . '</a><br/>';
         }
@@ -356,11 +356,11 @@ if ($id == "smile2") {
     }
     echo '<div class="up"><b>3 Lygio modai:</b></div>';
     echo '<div class="meniu">';
-    if (mysql_num_rows(mysql_query("SELECT * FROM zaidejai WHERE statusas='Mod3' ")) == 0) {
+    if (mysqli_num_rows(mysqli_query($conn,"SELECT * FROM zaidejai WHERE statusas='Mod3' ")) == 0) {
         echo ' 3 Lygio modu nera...<br/></div>';
     } else {
-        $query = mysql_query("SELECT * FROM zaidejai WHERE statusas='Mod3' ");
-        while ($row = mysql_fetch_assoc($query)) {
+        $query = mysqli_query($conn,"SELECT * FROM zaidejai WHERE statusas='Mod3' ");
+        while ($row = mysqli_fetch_assoc($query)) {
             $nr++;
             echo '<b>' . $nr . '.</b> <a href="pagrindinis.php?id=apie&ka=' . $row['nick'] . '">' . statusas($row['nick']) . '</a><br/>';
         }
@@ -369,11 +369,11 @@ if ($id == "smile2") {
     }
     echo '<div class="up"><b>4 Lygio modai:</b></div>';
     echo '<div class="meniu">';
-    if (mysql_num_rows(mysql_query("SELECT * FROM zaidejai WHERE statusas='Mod4' ")) == 0) {
+    if (mysqli_num_rows(mysqli_query($conn,"SELECT * FROM zaidejai WHERE statusas='Mod4' ")) == 0) {
         echo ' 4 Lygio modu nera...<br/></div>';
     } else {
-        $query = mysql_query("SELECT * FROM zaidejai WHERE statusas='Mod4' ");
-        while ($row = mysql_fetch_assoc($query)) {
+        $query = mysqli_query($conn,"SELECT * FROM zaidejai WHERE statusas='Mod4' ");
+        while ($row = mysqli_fetch_assoc($query)) {
             $nr++;
             echo '<b>' . $nr . '.</b> <a href="pagrindinis.php?id=apie&ka=' . $row['nick'] . '">' . statusas($row['nick']) . '</a><br/>';
         }
@@ -385,11 +385,11 @@ if ($id == "smile2") {
 }
 if ($id === 'bufai') {
 
-$buffsQuery = mysql_query("SELECT * FROM skills WHERE skills.category = 'buff' LIMIT 10");
-if (mysql_num_rows($buffsQuery)) {
+$buffsQuery = mysqli_query($conn,"SELECT * FROM skills WHERE skills.category = 'buff' LIMIT 10");
+if (mysqli_num_rows($buffsQuery)) {
     echo '<div class="up">Bufai:</div>
   <div class="meniu">';
-    while ($buff = mysql_fetch_assoc($buffsQuery)) {
+    while ($buff = mysqli_fetch_assoc($buffsQuery)) {
         echo '<div style="display: flex; align-items: center;">';
         echo '<img width="30" height="30" src="/img/skills/' . $buff['icon'] . '">';
 
@@ -404,12 +404,12 @@ if (mysql_num_rows($buffsQuery)) {
 
 
 
-    $playerBuffsQuery = mysql_query("SELECT player_id, skills.icon as icon, skills.description as description, ends_at FROM player_skills JOIN skills ON player_skills.skill_id = skills.id WHERE player_id = '$apie[id]' AND ends_at > NOW() AND skills.category = 'buff' ORDER BY ends_at LIMIT 10");
-    if (mysql_num_rows($playerBuffsQuery)) {
+    $playerBuffsQuery = mysqli_query($conn,"SELECT player_id, skills.icon as icon, skills.description as description, ends_at FROM player_skills JOIN skills ON player_skills.skill_id = skills.id WHERE player_id = '$apie[id]' AND ends_at > NOW() AND skills.category = 'buff' ORDER BY ends_at LIMIT 10");
+    if (mysqli_num_rows($playerBuffsQuery)) {
 
         echo '<div class="up">Tavo bufai:</div>
   <div class="meniu">';
-        while ($playerBuff = mysql_fetch_assoc($playerBuffsQuery)) {
+        while ($playerBuff = mysqli_fetch_assoc($playerBuffsQuery)) {
             echo '<div style="display: flex; align-items: center;">';
             echo '<img width="30" height="30" src="/img/skills/' . $playerBuff['icon'] . '">';
             $currentDate = new DateTime();

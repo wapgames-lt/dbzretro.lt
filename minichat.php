@@ -35,21 +35,21 @@ echo 'Antiflood!! rašyti galesi už <b>'.laikas($_SESSION['chet']-time(), 1).' 
 		
 		elseif(apsas($zin) == apsas('/clean') AND in_array($apie[statusas],$statusai)){
 			
-			mysql_query("TRUNCATE pokalbiai");
-		   mysql_query("INSERT INTO pokalbiai SET nick='".$nick."', sms='Išvaliau pokalbius :)', data='".time()."'");	
+			mysqli_query($conn,"TRUNCATE pokalbiai");
+		   mysqli_query($conn,"INSERT INTO pokalbiai SET nick='".$nick."', sms='Išvaliau pokalbius :)', data='".time()."'");	
 		}
 
         
       
             else{
             	
-            mysql_query("INSERT INTO pokalbiai SET nick='".$nick."', sms='$zin', data='".time()."'");
+            mysqli_query($conn,"INSERT INTO pokalbiai SET nick='".$nick."', sms='$zin', data='".time()."'");
 			include'snekute.php';
 			  $_SESSION['chet'] = time()+5;
             
-            mysql_query("UPDATE zaidejai SET chate=chate+1, pliusai=pliusai+'5' WHERE nick='$nick'");
+            mysqli_query($conn,"UPDATE zaidejai SET chate=chate+1, pliusai=pliusai+'5' WHERE nick='$nick'");
 
-    mysql_query("UPDATE  bendravimo_top SET sms=sms+'1'  WHERE nick='$nick'");
+    mysqli_query($conn,"UPDATE  bendravimo_top SET sms=sms+'1'  WHERE nick='$nick'");
             echo '<font color="green">Žinutė įrašyta!</font><br/>';
 			}
 

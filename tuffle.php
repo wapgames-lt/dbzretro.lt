@@ -11,8 +11,8 @@ baneris();
  $kovojimas = 2;
  $padusimas = 3; 
  
-    $asas = mysql_fetch_assoc(mysql_query("SELECT * FROM unikalai WHERE unikalas='$veikejas'"));
-if(mysql_num_rows(mysql_query("SELECT * FROM unikalai WHERE unikalas='$asas[unikalas]'")) > 0){
+    $asas = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM unikalai WHERE unikalas='$veikejas'"));
+if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM unikalai WHERE unikalas='$asas[unikalas]'")) > 0){
 
         //$kg = $apie['jega'] + ($apie['gynyba']/2) + ($swordp + $armorp);
 
@@ -84,17 +84,18 @@ else{
 
 </div>';
 
-   $total = mysql_result(mysql_query("SELECT COUNT(*) FROM tuffle_lokacijos"),0);
+    $total = mysqli_fetch_row(mysqli_query($conn, "SELECT COUNT(*) FROM tuffle_lokacijos"))[0];
 
-   if($total > 0){
+
+    if($total > 0){
 
    echo '<div class="up"><b>'.$ico.' Vietovės</b>:</div>';
 
    echo '<div class="meniu">';
 
-   $query = mysql_query("SELECT * FROM tuffle_lokacijos");
+   $query = mysqli_query($conn,"SELECT * FROM tuffle_lokacijos");
 
-   while($row = mysql_fetch_assoc($query)){
+   while($row = mysqli_fetch_assoc($query)){
 
          echo '<b>[&raquo;]</b> <a href="tuffle.php?id=vieta&ID='.$row['id'].'">'.$row['name'].'</a><br/>';
 
@@ -132,7 +133,7 @@ else{
     online('Auto kovojimai');
     
     echo '<div class="meniuc">Auto kovojimai išjungti!</div>';
-    mysql_query("UPDATE zaidejai SET auto='-' WHERE nick='$nick' ");
+    mysqli_query($conn,"UPDATE zaidejai SET auto='-' WHERE nick='$nick' ");
 		   $g_n[] = array("pagrindinis.php?id=","Pagrindinis","tuffle.php","Tuffle Planeta","AUTO");
 	navigacija($g_n);
   
@@ -142,7 +143,7 @@ elseif($id == "auto_on"){
     online('Auto kovojimai');
     
     echo '<div class="meniuc">Auto kovojimai įjungti!</div>';
-    mysql_query("UPDATE zaidejai SET auto='+' WHERE nick='$nick' ");
+    mysqli_query($conn,"UPDATE zaidejai SET auto='+' WHERE nick='$nick' ");
 	   $g_n[] = array("pagrindinis.php?id=","Pagrindinis","tuffle.php", "Tuffle Planeta", "AUTO");
 	navigacija($g_n);
 
@@ -218,7 +219,7 @@ elseif($id == "tren2"){
        if($klaida != ""){
             echo '<div class="meniuc">'.$klaida.'</div>';
       } else {
-            mysql_query("UPDATE zaidejai SET jega=jega+'$kjega', litai=litai-'$kkiek' WHERE nick='$nick' ");
+            mysqli_query($conn,"UPDATE zaidejai SET jega=jega+'$kjega', litai=litai-'$kkiek' WHERE nick='$nick' ");
             echo '<div class="meniuc">Atlikta! Pasitreniravai';
             if($kjega == ""){} else {
                  echo ' <b>'.sk($kjega).'</b> Jėgos';
@@ -257,7 +258,7 @@ elseif($id == "tren3"){
        if($klaida != ""){
             echo '<div class="meniuc">'.$klaida.'</div>';
       } else {
-            mysql_query("UPDATE zaidejai SET gynyba=gynyba+'$kgynyba', litai=litai-'$kkiek' WHERE nick='$nick' ");
+            mysqli_query($conn,"UPDATE zaidejai SET gynyba=gynyba+'$kgynyba', litai=litai-'$kkiek' WHERE nick='$nick' ");
             echo '<div class="meniuc">Atlikta! Pasitreniravai';
 
             if($kgynyba == ""){} else {
@@ -276,14 +277,14 @@ elseif($id == "vieta"){
 $KD = rand(9999,99999);
 
 $_SESSION['refresh'] = $KD;
-mysql_query("UPDATE zaidejai SET kda='$KD' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET kda='$KD' WHERE nick='$nick'");
 $ID = sk($_GET['ID']);
 
    online('tuffle Planeta - Kovose');
 
-   $lok = mysql_fetch_assoc(mysql_query("SELECT * FROM tuffle_lokacijos WHERE id='$ID' "));
-$m = mysql_fetch_array(mysql_query("SELECT * FROM zaidejai WHERE nick='$nick'"));
-    if(mysql_num_rows(mysql_query("SELECT * FROM tuffle_lokacijos WHERE id='$ID' ")) == 0){
+   $lok = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM tuffle_lokacijos WHERE id='$ID' "));
+$m = mysqli_fetch_array(mysqli_query($conn,"SELECT * FROM zaidejai WHERE nick='$nick'"));
+    if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM tuffle_lokacijos WHERE id='$ID' ")) == 0){
 
           echo '<div class="up"><b>Klaida ! ! !</b></div>';
 
@@ -291,9 +292,10 @@ $m = mysql_fetch_array(mysql_query("SELECT * FROM zaidejai WHERE nick='$nick'"))
 
     } else {
 
-         $total = mysql_result(mysql_query("SELECT COUNT(*) FROM tuffle_mobai WHERE lokacija='$ID'"),0);
+        $total = mysqli_fetch_row(mysqli_query($conn, "SELECT COUNT(*) FROM tuffle_mobai WHERE lokacija='$ID'"))[0];
 
-         echo '<div class="up"><img src="http://tools.uiwap.com/icon/art/icon.snow.png"style="float:left" ><font color="white"><b>'.$lok['name'].'</b></font></div>';
+
+        echo '<div class="up"><img src="http://tools.uiwap.com/icon/art/icon.snow.png"style="float:left" ><font color="white"><b>'.$lok['name'].'</b></font></div>';
 
 
 
@@ -307,9 +309,9 @@ Jūs galite nukauti <b><font color="red">'.sk($kgun).'</font></b> lygio karį.</
 
              echo '<div class="meniu">';
 
-             $query = mysql_query("SELECT * FROM tuffle_mobai WHERE lokacija='$ID' ORDER BY -kg DESC LIMIT 0,30");
+             $query = mysqli_query($conn,"SELECT * FROM tuffle_mobai WHERE lokacija='$ID' ORDER BY -kg DESC LIMIT 0,30");
 
-             while($row = mysql_fetch_assoc($query)){
+             while($row = mysqli_fetch_assoc($query)){
               if($row[kg] < $kgun){
                 $nukausi = "<font color='green'>&raquo;</font>";
               }
@@ -345,15 +347,15 @@ $ID = post($_GET['ID']);
 $VS = post($_GET['VS']);
 $KD = post($_GET['KD']);
    online('tuffle Planeta - Kovose');
-$dtop = mysql_fetch_assoc(mysql_query("SELECT * FROM dtop WHERE id='vksm' "));
-   $lok = mysql_fetch_assoc(mysql_query("SELECT * FROM tuffle_lokacijos WHERE id='$ID' "));
-   $mob = mysql_fetch_assoc(mysql_query("SELECT * FROM tuffle_mobai WHERE id='$VS' "));
-   $m = mysql_fetch_array(mysql_query("SELECT * FROM zaidejai WHERE nick='$nick'"));
-    if(mysql_num_rows(mysql_query("SELECT * FROM tuffle_lokacijos WHERE id='$ID' ")) == 0){
+$dtop = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM dtop WHERE id='vksm' "));
+   $lok = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM tuffle_lokacijos WHERE id='$ID' "));
+   $mob = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM tuffle_mobai WHERE id='$VS' "));
+   $m = mysqli_fetch_array(mysqli_query($conn,"SELECT * FROM zaidejai WHERE nick='$nick'"));
+    if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM tuffle_lokacijos WHERE id='$ID' ")) == 0){
           echo '<div class="up">Klaida !</div>';
           echo '<div class="meniuc"><div class="error">Tokios lokacijos nėra!</div></div>';
     } else {
-    if(mysql_num_rows(mysql_query("SELECT * FROM tuffle_mobai WHERE id='$VS' ")) == 0){
+    if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM tuffle_mobai WHERE id='$VS' ")) == 0){
           echo '<div class="up">Klaida !</div>';
           echo '<div class="meniuc"><div class="error">Tokio monstro kovų lauke nėra!</div></div>';
     } }
@@ -381,26 +383,26 @@ else {
 <div class="meniuc">
 <img src="img/imgg/zona.png" /></div>'; 
         echo '<div class="meniuc">Nebeturi '.$hp.'</div>';
-mysql_query("UPDATE zaidejai SET gyvybes='0' WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE zaidejai SET gyvybes='0' WHERE nick='$nick' ");
     }
 else{
     if($gyvybes == 4444444 or $mob[kg]/$kovureward > $kg){
     	top(Klaida);
           echo '<div class="meniuc"><img src="img/bicons/dislike.png" /> Jūsų '.$kgi.'  yra per maža!</div>';
 		
-          mysql_query("UPDATE zaidejai SET gyvybe='0' WHERE nick='$nick' ");
-          mysql_query("UPDATE zaidejai SET pveiksmai=pveiksmai+0, vveiksmai=vveiksmai+1 WHERE nick='$nick'");
+          mysqli_query($conn,"UPDATE zaidejai SET gyvybe='0' WHERE nick='$nick' ");
+          mysqli_query($conn,"UPDATE zaidejai SET pveiksmai=pveiksmai+0, vveiksmai=vveiksmai+1 WHERE nick='$nick'");
     
     } else {
 
 
     $KDS = rand(9999,99999);
-	mysql_query("UPDATE zaidejai SET kda='$KDS' WHERE nick='$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET kda='$KDS' WHERE nick='$nick'");
     $_SESSION['kovv'] = $KDS;
-    if(mysql_num_rows(mysql_query("SELECT * FROM dtop WHERE nick='$nick'")) > 0) mysql_query("UPDATE dtop SET vksm=vksm+1 WHERE nick='$nick'"); else mysql_query("INSERT INTO dtop SET vksm='1', nick='$nick'");
-   if(mysql_num_rows(mysql_query("SELECT * FROM s_top WHERE nick='$nick'")) > 0) mysql_query("UPDATE s_top SET vksm=vksm+1 WHERE nick='$nick'"); else mysql_query("INSERT INTO s_top SET vksm='1', nick='$nick'");
+    if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM dtop WHERE nick='$nick'")) > 0) mysqli_query($conn,"UPDATE dtop SET vksm=vksm+1 WHERE nick='$nick'"); else mysqli_query($conn,"INSERT INTO dtop SET vksm='1', nick='$nick'");
+   if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM s_top WHERE nick='$nick'")) > 0) mysqli_query($conn,"UPDATE s_top SET vksm=vksm+1 WHERE nick='$nick'"); else mysqli_query($conn,"INSERT INTO s_top SET vksm='1', nick='$nick'");
    
-    mysql_query("UPDATE zaidejai SET veiksmai=veiksmai+1, vveiksmai=vveiksmai+1 WHERE nick='$nick'");
+    mysqli_query($conn,"UPDATE zaidejai SET veiksmai=veiksmai+1, vveiksmai=vveiksmai+1 WHERE nick='$nick'");
 	
 	
 	
@@ -426,14 +428,14 @@ Sveikinu! Tu pasikelei naują <img src='img/bicons/lvl.png'/><br/>
 Dabar tavo <img src='img/bicons/lvl.png' />: <u>$lvlas</u>. Gavai $pt Lygio taškų!<br/></div>";
 
 
-mysql_query("UPDATE zaidejai SET taskai=taskai + '$pt' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET taskai=taskai + '$pt' WHERE nick='$nick'");
 }
 echo'
 <div class="up">'.$ico.' Laimėjote!<br>
 Nukovėte '.$mob['name'].'
 (<b>'.skaicius($mob['kg']).'</b> <img src="img/bicons/kovines.png" />)</div>  ';
-	mysql_query("UPDATE zaidejai SET jega=jega+'$j' WHERE nick='$nick' ");
-	mysql_query("UPDATE zaidejai SET gynyba=gynyba+'$g' WHERE nick='$nick' ");
+	mysqli_query($conn,"UPDATE zaidejai SET jega=jega+'$j' WHERE nick='$nick' ");
+	mysqli_query($conn,"UPDATE zaidejai SET gynyba=gynyba+'$g' WHERE nick='$nick' ");
 	
 	
 	
@@ -476,9 +478,9 @@ if($dtop2[vksm] ==40000){
 echo'<div class="up">Kovų užduotis</div>';
 echo'<div class="meniuc">Atlikote <b>40000</b> veiksmų , gaunate <b>35</b>'.$eurui.'</div>';
 $txt = "įvygdei <b>kovų užduotį</b> - Padaryti <b>40000</b> veiksmų! Gavai <b>35</b> $eurui ";
-                    mysql_query("INSERT INTO pm SET what='SISTEMA', txt='$txt', time='".time()."', nauj='NEW', gavejas='$apie[nick]' ");
+                    mysqli_query($conn,"INSERT INTO pm SET what='SISTEMA', txt='$txt', time='".time()."', nauj='NEW', gavejas='$apie[nick]' ");
 
-	mysql_query("UPDATE zaidejai SET sms_litai=sms_litai+'35' WHERE nick='$apie[nick]'")or die(mysql_error());
+	mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai+'35' WHERE nick='$apie[nick]'")or die(mysqli_error());
 
 
 }
@@ -486,9 +488,9 @@ if($dtop2[vksm] ==25000){
 echo'<div class="up">Kovų užduotis</div>';
 echo'<div class="meniuc">Atlikote <b>25000</b> veiksmų , gaunate <b>30</b>'.$eurui.'</div>';
 $txt = "įvygdei <b>kovų užduotį</b> - Padaryti <b>25000</b> veiksmų! Gavai <b>30</b> $eurui ";
-                    mysql_query("INSERT INTO pm SET what='SISTEMA', txt='$txt', time='".time()."', nauj='NEW', gavejas='$apie[nick]' ");
+                    mysqli_query($conn,"INSERT INTO pm SET what='SISTEMA', txt='$txt', time='".time()."', nauj='NEW', gavejas='$apie[nick]' ");
 
-	mysql_query("UPDATE zaidejai SET sms_litai=sms_litai+'30' WHERE nick='$apie[nick]'")or die(mysql_error());
+	mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai+'30' WHERE nick='$apie[nick]'")or die(mysqli_error());
 
 
 }
@@ -497,9 +499,9 @@ if($dtop2[vksm] ==15000){
 echo'<div class="up">Kovų užduotis</div>';
 echo'<div class="meniuc">Atlikote <b>15000</b> veiksmų , gaunate <b>25</b>'.$eurui.'</div>';
 $txt = "įvygdei <b>kovų užduotį</b> - Padaryti <b>15000</b> veiksmų! Gavai <b>25</b> $eurui ";
-                    mysql_query("INSERT INTO pm SET what='SISTEMA', txt='$txt', time='".time()."', nauj='NEW', gavejas='$apie[nick]' ");
+                    mysqli_query($conn,"INSERT INTO pm SET what='SISTEMA', txt='$txt', time='".time()."', nauj='NEW', gavejas='$apie[nick]' ");
 
-	mysql_query("UPDATE zaidejai SET sms_litai=sms_litai+'25' WHERE nick='$apie[nick]'")or die(mysql_error());
+	mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai+'25' WHERE nick='$apie[nick]'")or die(mysqli_error());
 
 
 }
@@ -508,9 +510,9 @@ if($dtop2[vksm] ==7000){
 echo'<div class="up">Kovų užduotis</div>';
 echo'<div class="meniuc">Atlikote <b>7000</b> veiksmų , gaunate <b>20</b>'.$eurui.'</div>';
 $txt = "įvygdei <b>kovų užduotį</b> - Padaryti <b>7000</b> veiksmų! Gavai <b>20</b> $eurui ";
-                    mysql_query("INSERT INTO pm SET what='SISTEMA', txt='$txt', time='".time()."', nauj='NEW', gavejas='$apie[nick]' ");
+                    mysqli_query($conn,"INSERT INTO pm SET what='SISTEMA', txt='$txt', time='".time()."', nauj='NEW', gavejas='$apie[nick]' ");
 
-	mysql_query("UPDATE zaidejai SET sms_litai=sms_litai+'20' WHERE nick='$apie[nick]'")or die(mysql_error());
+	mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai+'20' WHERE nick='$apie[nick]'")or die(mysqli_error());
 
 
 }
@@ -519,9 +521,9 @@ if($dtop2[vksm] ==3500){
 echo'<div class="up">Kovų užduotis</div>';
 echo'<div class="meniuc">Atlikote <b>3500</b> veiksmų , gaunate <b>15</b>'.$eurui.'</div>';
 $txt = "įvygdei <b>kovų užduotį</b> - Padaryti <b>3500</b> veiksmų! Gavai <b>15</b> $eurui ";
-                    mysql_query("INSERT INTO pm SET what='SISTEMA', txt='$txt', time='".time()."', nauj='NEW', gavejas='$apie[nick]' ");
+                    mysqli_query($conn,"INSERT INTO pm SET what='SISTEMA', txt='$txt', time='".time()."', nauj='NEW', gavejas='$apie[nick]' ");
 
-	mysql_query("UPDATE zaidejai SET sms_litai=sms_litai+'15' WHERE nick='$apie[nick]'")or die(mysql_error());
+	mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai+'15' WHERE nick='$apie[nick]'")or die(mysqli_error());
 
 
 }
@@ -529,9 +531,9 @@ if($dtop2[vksm] ==1500){
 echo'<div class="up">Kovų užduotis</div>';
 echo'<div class="meniuc">Atlikote <b>1500</b> veiksmų , gaunate <b>10</b>'.$eurui.'</div>';
 $txt = "Įvygdei <b>kovų užduotį</b> -  Padaryti <b>1500</b> veiksmų! Gavai <b>10</b> $eurui ";
-                    mysql_query("INSERT INTO pm SET what='SISTEMA', txt='$txt', time='".time()."', nauj='NEW', gavejas='$apie[nick]' ");
+                    mysqli_query($conn,"INSERT INTO pm SET what='SISTEMA', txt='$txt', time='".time()."', nauj='NEW', gavejas='$apie[nick]' ");
 
-	mysql_query("UPDATE zaidejai SET sms_litai=sms_litai+'10' WHERE nick='$apie[nick]'")or die(mysql_error());
+	mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai+'10' WHERE nick='$apie[nick]'")or die(mysqli_error());
 
 
 }
@@ -539,9 +541,9 @@ if($dtop2[vksm] ==500){
 echo'<div class="up">Kovų užduotis</div>';
 echo'<div class="meniuc">Atlikote <b>500</b> veiksmų, gaunate <b>5</b>'.$eurui.'</div>';
 $txt = "Įvygdei <b>kovų užduotį</b> -  Padaryti <b>500</b> veiksmų! Gavai <b>5</b> $eurui ";
-                    mysql_query("INSERT INTO pm SET what='SISTEMA', txt='$txt', time='".time()."', nauj='NEW', gavejas='$apie[nick]' ");
+                    mysqli_query($conn,"INSERT INTO pm SET what='SISTEMA', txt='$txt', time='".time()."', nauj='NEW', gavejas='$apie[nick]' ");
 
-	mysql_query("UPDATE zaidejai SET sms_litai=sms_litai+'5' WHERE nick='$apie[nick]'")or die(mysql_error());
+	mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai+'5' WHERE nick='$apie[nick]'")or die(mysqli_error());
 
 
 
@@ -654,7 +656,7 @@ $kiek_duos = 1;
 echo ' 
 <div class="meniuc">
  <img src="img/bicons/green.png" />     <b>Gavai '.$kiek_duos.'   Drakono rutulį! </b><br/></div>';
-         mysql_query("UPDATE inv  SET dball=dball + '$kiek_duos' WHERE nick='$nick'");
+         mysqli_query($conn,"UPDATE inv  SET dball=dball + '$kiek_duos' WHERE nick='$nick'");
     }
 }
 ///event daiktai
@@ -678,7 +680,7 @@ $kiek_duos = 1;
 echo ' 
 <div class="meniuc">
  <img src="img/bicons/green.png" />     <b>Pavogei '.$kiek_duos.'   <img src="img/boxes/1.png" /> </b><br/></div>';
-         mysql_query("UPDATE inv  SET event1=event1 + '$kiek_duos' WHERE nick='$nick'");
+         mysqli_query($conn,"UPDATE inv  SET event1=event1 + '$kiek_duos' WHERE nick='$nick'");
     }
 if(rand(1,90) == 46 )
 {
@@ -700,7 +702,7 @@ $kiek_duos = 1;
 echo ' 
 <div class="meniuc">
  <img src="img/bicons/green.png" />     <b>Nuskynei '.$kiek_duos.'   <img src="img/boxes/2.png" /> </b><br/></div>';
-         mysql_query("UPDATE inv  SET event2=event2 + '$kiek_duos' WHERE nick='$nick'");
+         mysqli_query($conn,"UPDATE inv  SET event2=event2 + '$kiek_duos' WHERE nick='$nick'");
     }
 if(rand(1,90) == 45 )
 {
@@ -722,7 +724,7 @@ $kiek_duos = 1;
 echo ' 
 <div class="meniuc">
  <img src="img/bicons/green.png" />     <b>Suradai '.$kiek_duos.'   <img src="img/boxes/3.png" /> </b><br/></div>';
-         mysql_query("UPDATE inv  SET event3=event3 + '$kiek_duos' WHERE nick='$nick'");
+         mysqli_query($conn,"UPDATE inv  SET event3=event3 + '$kiek_duos' WHERE nick='$nick'");
     }
 if(rand(1,90) == 49 )
 {
@@ -744,7 +746,7 @@ $kiek_duos = 1;
 echo ' 
 <div class="meniuc">
  <img src="img/bicons/green.png" />     <b>Sugavai '.$kiek_duos.'   <img src="img/boxes/4.png" /> </b><br/></div>';
-         mysql_query("UPDATE inv  SET event4=event4 + '$kiek_duos' WHERE nick='$nick'");
+         mysqli_query($conn,"UPDATE inv  SET event4=event4 + '$kiek_duos' WHERE nick='$nick'");
     }
 //// kitu daiktu drop
 if(rand(1,90) == 49 )
@@ -767,7 +769,7 @@ $kiek_duos = 1;
 echo ' 
 <div class="meniuc">
  <img src="img/bicons/green.png" />     <b>Gavai '.$kiek_duos.'   <font color="red"><b>AD 16</b></font>! </b><br/></div>';
-         mysql_query("UPDATE inv  SET ad16=ad16+ '$kiek_duos' WHERE nick='$nick'");
+         mysqli_query($conn,"UPDATE inv  SET ad16=ad16+ '$kiek_duos' WHERE nick='$nick'");
     }
 
 if(rand(1,180) == 101 )
@@ -790,8 +792,8 @@ $kiek_duos = 1;
 echo ' 
 <div class="meniuc">
  <img src="img/bicons/green.png" />     <b>Gavai '.$kiek_duos.'   <font color="green"><b>Išbarstytą rutulį</b></font>! </b><br/></div>';
-         mysql_query("UPDATE isbarstyta  SET turima=turima+ '$kiek_duos' WHERE nick='$nick'");
-mysql_query("UPDATE nustatymai  SET balls=balls+ '$kiek_duos'");
+         mysqli_query($conn,"UPDATE isbarstyta  SET turima=turima+ '$kiek_duos' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE nustatymai  SET balls=balls+ '$kiek_duos'");
     }
 if($apie['jirenmb']-time() > 0){
 if(rand(1,600) == 201 )
@@ -814,7 +816,7 @@ echo '
 <div class="meniuc">
  <img src="img/bicons/green.png" />     <b>Gavai '.$kiek_duos.'   <font color="green"><b>Juodąjį drakono rutulį</b></font>! </b><br/></div>';
          
-mysql_query("UPDATE inv  SET jball=jball+ '$kiek_duos' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE inv  SET jball=jball+ '$kiek_duos' WHERE nick='$nick'");
     }
 
 }
@@ -840,7 +842,7 @@ $kiek_duos = 1;
 echo ' 
 <div class="meniuc">
  <img src="img/bicons/green.png" />     <b>Gavai '.$kiek_duos.'   <font color="red">Super Amulet Iteam</font>! </b><br/></div>';
-         mysql_query("UPDATE inv  SET Super_amulet_item=Super_amulet_item+ '$kiek_duos' WHERE nick='$nick'");
+         mysqli_query($conn,"UPDATE inv  SET Super_amulet_item=Super_amulet_item+ '$kiek_duos' WHERE nick='$nick'");
     }
 if($apie['bts']-time() > 0){
 if(rand(1,400) == 222 )
@@ -856,7 +858,7 @@ echo '
 <div class="meniuc">
  <img src="img/bicons/green.png" />     <b>Gavai '.$kiek_bt.'    <img src="img/bicons/bitcoin.png" /> </b><br/></div>';
 
-         mysql_query("UPDATE zaidejai  SET bitcoin=bitcoin+ '$kiek_bt' WHERE nick='$nick'");
+         mysqli_query($conn,"UPDATE zaidejai  SET bitcoin=bitcoin+ '$kiek_bt' WHERE nick='$nick'");
     }
 }
 
@@ -882,7 +884,7 @@ $kiek_duos = 1;
 echo ' 
 <div class="meniuc">
  <img src="img/bicons/green.png" />     <b>Gavai '.$kiek_duos.'   <font color="red">Naikinimo Amulet Iteam</font>! </b><br/></div>';
-         mysql_query("UPDATE inv  SET naikinimo_amulet_item=naikinimo_amulet_item+ '$kiek_duos' WHERE nick='$nick'");
+         mysqli_query($conn,"UPDATE inv  SET naikinimo_amulet_item=naikinimo_amulet_item+ '$kiek_duos' WHERE nick='$nick'");
     }
 if(rand(1,131) == 64 )
 {
@@ -905,7 +907,7 @@ $kiek_duos = 1;
 echo ' 
 <div class="meniuc">
  <img src="img/bicons/green.png" />     <b>Gavai '.$kiek_duos.'   <font color="red">Mirties Iteam</font>! </b><br/></div>';
-         mysql_query("UPDATE inv  SET mirties_item=mirties_item+ '$kiek_duos' WHERE nick='$nick'");
+         mysqli_query($conn,"UPDATE inv  SET mirties_item=mirties_item+ '$kiek_duos' WHERE nick='$nick'");
     }
 if(rand(1,132) == 64 )
 {
@@ -928,7 +930,7 @@ $kiek_duos = 1;
 echo ' 
 <div class="meniuc">
  <img src="img/bicons/green.png" />     <b>Gavai '.$kiek_duos.'   <font color="red">Atgimimo Iteam</font>! </b><br/></div>';
-         mysql_query("UPDATE inv  SET atgimimo_item=atgimimo_item+ '$kiek_duos' WHERE nick='$nick'");
+         mysqli_query($conn,"UPDATE inv  SET atgimimo_item=atgimimo_item+ '$kiek_duos' WHERE nick='$nick'");
     }
 
 
@@ -949,7 +951,7 @@ echo '
 <div class="meniuc">
  <img src="img/bicons/green.png" />     <b>Gavai '.$kiek_krd.'    <img src="img/bicons/credit.png" /> </b><br/></div>';
 
-         mysql_query("UPDATE zaidejai  SET kred=kred + '$kiek_krd' WHERE nick='$nick'");
+         mysqli_query($conn,"UPDATE zaidejai  SET kred=kred + '$kiek_krd' WHERE nick='$nick'");
     }
 
 if(rand(1,1) == 1 )
@@ -982,7 +984,7 @@ $kiek_aux = 1;}
 echo ' 
 <div class="meniuc">
  <img src="img/bicons/green.png" />     <b>Gavai '.$kiek_aux.'  <img src="img/coin.png" />   </b><br/></div>';
-         mysql_query("UPDATE zaidejai  SET auksiniai=auksiniai + '$kiek_aux' WHERE nick='$nick'");
+         mysqli_query($conn,"UPDATE zaidejai  SET auksiniai=auksiniai + '$kiek_aux' WHERE nick='$nick'");
     }
 
 
@@ -1003,7 +1005,7 @@ $kiek_eur = 0.1;
 echo ' 
 <div class="meniuc">
  <img src="img/bicons/green.png" />     <b>Gavai '.$kiek_eur.'  <img src="img/bicons/euro.png" />   </b><br/></div>';
-         mysql_query("UPDATE zaidejai  SET sms_litai=sms_litai + '$kiek_eur' WHERE nick='$nick'");
+         mysqli_query($conn,"UPDATE zaidejai  SET sms_litai=sms_litai + '$kiek_eur' WHERE nick='$nick'");
     }
 
  if(rand(1,80) == 37 )
@@ -1026,7 +1028,7 @@ $kiek_duos = 1;
 echo ' 
 <div class="meniuc">
  <img src="img/bicons/green.png" />     <b>Gavai '.$kiek_duos.'   Sayiantail! </b><br/></div>';
-         mysql_query("UPDATE inv  SET Sayiantail=Sayiantail + '$kiek_duos' WHERE nick='$nick'");
+         mysqli_query($conn,"UPDATE inv  SET Sayiantail=Sayiantail + '$kiek_duos' WHERE nick='$nick'");
     }
  if(rand(1,85) == 39 )
 {
@@ -1048,7 +1050,7 @@ $kiek_duos = 1;
 echo ' 
 <div class="meniuc">
  <img src="img/bicons/green.png" />     <b>Gavai '.$kiek_duos.'   Fusion Fail! </b><br/></div>';
-         mysql_query("UPDATE inv  SET Fusionfail=Fusionfail + '$kiek_duos' WHERE nick='$nick'");
+         mysqli_query($conn,"UPDATE inv  SET Fusionfail=Fusionfail + '$kiek_duos' WHERE nick='$nick'");
     }
 
 
@@ -1073,7 +1075,7 @@ $kiek_duos = 1;
 echo ' 
 <div class="meniuc">
  <img src="img/bicons/green.png" />     <b>Gavai '.$kiek_duos.'   Stone! </b><br/></div>';
-         mysql_query("UPDATE inv  SET Stone=Stone + '$kiek_duos' WHERE nick='$nick'");
+         mysqli_query($conn,"UPDATE inv  SET Stone=Stone + '$kiek_duos' WHERE nick='$nick'");
     }
     
         if(rand(1,100) == 50 )
@@ -1096,7 +1098,7 @@ $kiek_duos = 1;
 echo ' 
 <div class="meniuc">
  <img src="img/bicons/green.png" />     <b>Gavai '.$kiek_duos.'   Soul! </b><br/></div>';
-         mysql_query("UPDATE inv  SET Soul=Soul + '$kiek_duos' WHERE nick='$nick'");
+         mysqli_query($conn,"UPDATE inv  SET Soul=Soul + '$kiek_duos' WHERE nick='$nick'");
     }
     if(rand(1,100) == 38 )
 {
@@ -1118,7 +1120,7 @@ $kiek_duos = 1;
 echo ' 
 <div class="meniuc">
  <img src="img/bicons/green.png" />     <b>Gavai '.$kiek_duos.'   Energy stone! </b><br/></div>';
-         mysql_query("UPDATE inv  SET Energystone=Energystone + '$kiek_duos' WHERE nick='$nick'");
+         mysqli_query($conn,"UPDATE inv  SET Energystone=Energystone + '$kiek_duos' WHERE nick='$nick'");
     }
 
 
@@ -1145,7 +1147,7 @@ $kiek_duos = 1;
 echo ' 
 <div class="meniuc">
  <img src="img/bicons/green.png" />     <b>Gavai '.$kiek_duos.'   Pragaro vaisius! </b><br/></div>';
-         mysql_query("UPDATE inv  SET Pragarovaisius=Pragarovaisius + '$kiek_duos' WHERE nick='$nick'");
+         mysqli_query($conn,"UPDATE inv  SET Pragarovaisius=Pragarovaisius + '$kiek_duos' WHERE nick='$nick'");
     }
 if(rand(1,80) == 42 )
 {
@@ -1167,7 +1169,7 @@ $kiek_duos = 1;
 echo ' 
 <div class="meniuc">
  <img src="img/bicons/green.png" />     <b>Gavai '.$kiek_duos.'   Majin scroll! </b><br/></div>';
-         mysql_query("UPDATE inv  SET Majinsroll=Majinsroll + '$kiek_duos' WHERE nick='$nick'");
+         mysqli_query($conn,"UPDATE inv  SET Majinsroll=Majinsroll + '$kiek_duos' WHERE nick='$nick'");
     }
     if(rand(1,95) == 43 )
 {
@@ -1190,7 +1192,7 @@ $kiek_duos = 1;
 echo ' 
 <div class="meniuc">
  <img src="img/bicons/green.png" />     <b>Gavai '.$kiek_duos.'   Gold stone! </b><br/></div>';
-         mysql_query("UPDATE inv  SET Goldstone=Goldstone + '$kiek_duos' WHERE nick='$nick'");
+         mysqli_query($conn,"UPDATE inv  SET Goldstone=Goldstone + '$kiek_duos' WHERE nick='$nick'");
     }
     if(rand(1,90) == 34 )
 {
@@ -1213,7 +1215,7 @@ $kiek_duos = 1;
 echo ' 
 <div class="meniuc">
  <img src="img/bicons/green.png" />     <b>Gavai '.$kiek_duos.'   Magic ball! </b><br/></div>';
-         mysql_query("UPDATE inv  SET Magicball=Magicball + '$kiek_duos' WHERE nick='$nick'");
+         mysqli_query($conn,"UPDATE inv  SET Magicball=Magicball + '$kiek_duos' WHERE nick='$nick'");
     }
 
  if(rand(1,80) == 44 )
@@ -1237,7 +1239,7 @@ $kiek_duos = 1;
 echo ' 
 <div class="meniuc">
  <img src="img/bicons/green.png" />     <b>Gavai '.$kiek_duos.'    <img src="img/boxes/anti.png" />Anti potion! </b><br/></div>';
-         mysql_query("UPDATE inv  SET antipotion=antipotion + '$kiek_duos' WHERE nick='$nick'");
+         mysqli_query($conn,"UPDATE inv  SET antipotion=antipotion + '$kiek_duos' WHERE nick='$nick'");
     }
    if(rand(1,75) == 40 )
 {
@@ -1260,7 +1262,7 @@ $kiek_duos = 1;
 echo ' 
 <div class="meniuc">
  <img src="img/bicons/green.png" />     <b>Gavai '.$kiek_duos.'   Mikroskemų!</b><br/></div>';
-         mysql_query("UPDATE inv  SET Microshem=Microshem+'$kiek_duos' WHERE nick='$nick'");
+         mysqli_query($conn,"UPDATE inv  SET Microshem=Microshem+'$kiek_duos' WHERE nick='$nick'");
     }
 
 
@@ -1287,7 +1289,7 @@ $kiek_duos = 1;
 echo ' 
 <div class="meniuc">
  <img src="img/bicons/green.png" />     <b>Gavai '.$kiek_duos.'   Power stone !</b><br/></div>';
-         mysql_query("UPDATE inv  SET Powerstone=Powerstone + '$kiek_duos' WHERE nick='$nick'");
+         mysqli_query($conn,"UPDATE inv  SET Powerstone=Powerstone + '$kiek_duos' WHERE nick='$nick'");
     }
     
 if(rand(1,120) == 90 )
@@ -1310,7 +1312,7 @@ $kiek_duos = 1;
 echo ' 
 <div class="meniuc">
  <img src="img/bicons/green.png" />     <b>Gavai '.$kiek_duos.'   <b>Critical stone</b>!</b><br/></div>';
-         mysql_query("UPDATE inv  SET critical=critical+ '$kiek_duos' WHERE nick='$nick'");
+         mysqli_query($conn,"UPDATE inv  SET critical=critical+ '$kiek_duos' WHERE nick='$nick'");
     }
     
 
@@ -1329,7 +1331,7 @@ $kiek_duos = 1;
 echo ' 
 <div class="meniuc">
  <img src="img/bicons/green.png" />     <b>Gavai '.$kiek_duos.'   Lygio taškų! </b><br/></div>';
-         mysql_query("UPDATE zaidejai SET taskai=taskai + '$kiek_duos' WHERE nick='$nick'");
+         mysqli_query($conn,"UPDATE zaidejai SET taskai=taskai + '$kiek_duos' WHERE nick='$nick'");
     }
     if(rand(1,70) == 50 )
 {
@@ -1346,7 +1348,7 @@ $kiek_duos = 1;
 echo ' 
 <div class="meniuc">
  <img src="img/bicons/green.png" />     <b>Gavai '.$kiek_duos.'   <font color="red"><b>Angelo Sparnus! </b><br/></font></div>';
-         mysql_query("UPDATE inv SET angelwing=angelwing + '$kiek_duos' WHERE nick='$nick'");
+         mysqli_query($conn,"UPDATE inv SET angelwing=angelwing + '$kiek_duos' WHERE nick='$nick'");
     }
 /// kit
     if(rand(1,70) == 50 )
@@ -1364,7 +1366,7 @@ $kiek_duos = 1;
 echo ' 
 <div class="meniuc">
  <img src="img/bicons/green.png" />     <b>Gavai '.$kiek_duos.'  <font color="red"><b>Naikinimo galios! </b><br/></div></font>';
-         mysql_query("UPDATE inv SET naikinti=naikinti + '$kiek_duos' WHERE nick='$nick'");
+         mysqli_query($conn,"UPDATE inv SET naikinti=naikinti + '$kiek_duos' WHERE nick='$nick'");
     }
 
     if(rand(1,70) == 50 )
@@ -1382,16 +1384,16 @@ $kiek_duos = 1;
 echo ' 
 <div class="meniuc">
  <img src="img/bicons/green.png" />     <b>Gavai '.$kiek_duos.' <font color="red"><b>  Kario tobuljimas! </b><br/></div></font>';
-         mysql_query("UPDATE inv SET tobulas=tobulas + '$kiek_duos' WHERE nick='$nick'");
+         mysqli_query($conn,"UPDATE inv SET tobulas=tobulas + '$kiek_duos' WHERE nick='$nick'");
     }
 
     
 
-mysql_query("UPDATE zaidejai SET exp=exp+'$mob[exp]', litai=litai+'$mob[pin]', lygis='$lvlas',expl='$left', expl2='$left*3.53' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET surinktapin=surinktapin+'$mob[pin]' WHERE nick='$nick'");
-mysql_query("UPDATE pinigai SET  surinkta=surinkta+'$mob[pin]' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET exp=exp+'$mob[exp]', litai=litai+'$mob[pin]', lygis='$lvlas',expl='$left', expl2='$left*3.53' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET surinktapin=surinktapin+'$mob[pin]' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE pinigai SET  surinkta=surinkta+'$mob[pin]' WHERE nick='$nick'");
 
-mysql_query("UPDATE zaidejai SET sveiksmai=sveiksmai+'1' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET sveiksmai=sveiksmai+'1' WHERE nick='$nick'");
 
     if($auto == "+" AND $apie[kovos] == 'js'){
     
@@ -1437,34 +1439,34 @@ elseif($auto = '+' AND $apie[kovos] == 'paprastos'){
 	$krss = $kr/100;
 	$experience = $xp;
 
-    mysql_query("UPDATE zaidejai SET exp=exp+'$experience', litai=litai+'$krss', lygis='$lvlas',expl='$left', energy=energy-'0' WHERE nick='$nick'");
+    mysqli_query($conn,"UPDATE zaidejai SET exp=exp+'$experience', litai=litai+'$krss', lygis='$lvlas',expl='$left', energy=energy-'0' WHERE nick='$nick'");
 
        $_SESSION['pad'] = time()+$padusimas;
 	   $tt = time()+$padusimas;
-	   mysql_query("UPDATE zaidejai SET kovu_tm='$tt' WHERE nick='$nick'");
-	 $fusn = mysql_fetch_array(mysql_query("SELECT * FROM susijungimas WHERE nick='$nick'"));
-    $fusn_k2 = mysql_fetch_array(mysql_query("SELECT * FROM susijungimas WHERE nick='$fusn[kitas_zaidejas]'"));
+	   mysqli_query($conn,"UPDATE zaidejai SET kovu_tm='$tt' WHERE nick='$nick'");
+	 $fusn = mysqli_fetch_array(mysqli_query($conn,"SELECT * FROM susijungimas WHERE nick='$nick'"));
+    $fusn_k2 = mysqli_fetch_array(mysqli_query($conn,"SELECT * FROM susijungimas WHERE nick='$fusn[kitas_zaidejas]'"));
 	 if(!empty($fusn['kitas_zaidejas']) AND $fusn[double_fussion_dance] == '+'){ 
         $mob['exp']= $mob['exp']/10;
-        mysql_query("UPDATE zaidejai SET exp=exp+'$mob[exp]' WHERE nick='$fusn[kitas_zaidejas]'")or die(mysql_error());
-        mysql_query("UPDATE susijungimas SET uzdirbo_exp=uzdirbo_exp+'$mob[exp]' WHERE nick='$nick'")or die(mysql_error());}
+        mysqli_query($conn,"UPDATE zaidejai SET exp=exp+'$mob[exp]' WHERE nick='$fusn[kitas_zaidejas]'")or die(mysqli_error());
+        mysqli_query($conn,"UPDATE susijungimas SET uzdirbo_exp=uzdirbo_exp+'$mob[exp]' WHERE nick='$nick'")or die(mysqli_error());}
    
     
 	if(!empty($user['team'])){
-	$komanda = mysql_fetch_array(mysql_query("SELECT * FROM team WHERE pavadinimas='".$user['team']."'"));
+	$komanda = mysqli_fetch_array(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$user['team']."'"));
 	$plius = $user['win_in_team']+1;
 	$pius = $komanda['viso_laimejo_kovu']+1;
 $pius2= $komanda['pinigai']+$mob[pin]/50;
 $pius3= $komanda['eurai']+0.01;
 	
-	mysql_query("UPDATE team SET viso_laimejo_kovu='$pius', pinigai='$pius2', eurai='$pius3' WHERE pavadinimas = '".$user['team']."'") or die(mysql_error());
-	mysql_query("UPDATE user SET win_in_team='$plius',iki_algos=iki_algos-'1' WHERE nick='$nick'")or die(mysql_error());
-	if(!mysql_num_rows(mysql_query("SELECT * FROM komandu_dtop WHERE team = '$user[team]'"))){
-		mysql_query("INSERT INTO komandu_dtop SET laimejo_kovu='0', team = '".$user['team']."'")or die(mysql_error());
+	mysqli_query($conn,"UPDATE team SET viso_laimejo_kovu='$pius', pinigai='$pius2', eurai='$pius3' WHERE pavadinimas = '".$user['team']."'") or die(mysqli_error());
+	mysqli_query($conn,"UPDATE user SET win_in_team='$plius',iki_algos=iki_algos-'1' WHERE nick='$nick'")or die(mysqli_error());
+	if(!mysqli_num_rows(mysqli_query($conn,"SELECT * FROM komandu_dtop WHERE team = '$user[team]'"))){
+		mysqli_query($conn,"INSERT INTO komandu_dtop SET laimejo_kovu='0', team = '".$user['team']."'")or die(mysqli_error());
 		
 	}else{
-mysql_query("UPDATE komandu_sav_dtop SET laimejo_kovu=laimejo_kovu+1 WHERE team='".$user['team']."'")or die(mysql_error());
-	mysql_query("UPDATE komandu_dtop SET laimejo_kovu=laimejo_kovu+1 WHERE team='".$user['team']."'")or die(mysql_error());
+mysqli_query($conn,"UPDATE komandu_sav_dtop SET laimejo_kovu=laimejo_kovu+1 WHERE team='".$user['team']."'")or die(mysqli_error());
+	mysqli_query($conn,"UPDATE komandu_dtop SET laimejo_kovu=laimejo_kovu+1 WHERE team='".$user['team']."'")or die(mysqli_error());
 
 }
 
@@ -1472,19 +1474,19 @@ mysql_query("UPDATE komandu_sav_dtop SET laimejo_kovu=laimejo_kovu+1 WHERE team=
 }
 
   
-	 if(!mysql_num_rows(mysql_query("SELECT * FROM komandu_sav_dtop WHERE team = '$user[team]'"))){
-		mysql_query("INSERT INTO komandu_sav_dtop SET laimejo_kovu='0', team = '".$user['team']."'")or die(mysql_error());
+	 if(!mysqli_num_rows(mysqli_query($conn,"SELECT * FROM komandu_sav_dtop WHERE team = '$user[team]'"))){
+		mysqli_query($conn,"INSERT INTO komandu_sav_dtop SET laimejo_kovu='0', team = '".$user['team']."'")or die(mysqli_error());
 	
 }else{
 
 }
-   $nst = mysql_fetch_assoc(mysql_query("SELECT * FROM turnyras"));
-$usex = mysql_fetch_assoc(mysql_query("SELECT * FROM user WHERE nick='$nick'"));
+   $nst = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM turnyras"));
+$usex = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM user WHERE nick='$nick'"));
 if($usex['kovu_trn'] == '+')
 {
 if($nst['trn_busena'] == '2' OR $nst['trn_busena'] == '3' OR $nst['trn_busena'] == '4' OR$nst['trn_busena'] == '5' )
 {
-	mysql_query("UPDATE user SET kiek_trn=kiek_trn+1 WHERE nick='$nick'");
+	mysqli_query($conn,"UPDATE user SET kiek_trn=kiek_trn+1 WHERE nick='$nick'");
 }
 	}
    }
@@ -1515,8 +1517,8 @@ elseif($id == "baby"){
   
   echo '<div class="up">Tu įvykdei Baby Vegeta misiją !</div>';
   echo '<div class="meniuc"><img src="img/vaikeliss.png"></div><div class="meniu"><b>Baby Vegeta</b> tau dovanoja: <b>5000 eurų ir 10000000000 pinigų!</b></div>';
-  mysql_query("UPDATE zaidejai SET sms_litai=sms_litai+'1000', litai=litai+'10000000000', baby='+' WHERE nick='$nick'");
-  mysql_query("UPDATE inv SET jball=jball-'7' WHERE nick='$nick'")or die(mysql_error());
+  mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai+'1000', litai=litai+'10000000000', baby='+' WHERE nick='$nick'");
+  mysqli_query($conn,"UPDATE inv SET jball=jball-'7' WHERE nick='$nick'")or die(mysqli_error());
   
  }else{
 

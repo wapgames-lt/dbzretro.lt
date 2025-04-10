@@ -203,7 +203,7 @@ top(''.$name.'');
 		if($apie[sagos] == 5){
 		$j = $apie[jega] +160;
 			$gy = $apie[gynyba] +500;
-		mysql_query("UPDATE zaidejai SET jega='$j', gynyba='$gy', kred=kred+'5' WHERE nick = '$nick'");
+		mysqli_query($conn,"UPDATE zaidejai SET jega='$j', gynyba='$gy', kred=kred+'5' WHERE nick = '$nick'");
 	}
 
 
@@ -226,85 +226,85 @@ top(''.$name.'');
 if($apie[sagos] == 5){
 		$j = $apie[jega]+300;
 			$gy = $apie[gynyba]+900;
-		mysql_query("UPDATE zaidejai SET jega='$j', gynyba='$gy', kred=kred+'5' WHERE nick = '$nick'");
-mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+		mysqli_query($conn,"UPDATE zaidejai SET jega='$j', gynyba='$gy', kred=kred+'5' WHERE nick = '$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 	} 
 
 if($apie[sagos] == 10){
 		$j = $apie[jega]+600;
 			$gy = $apie[gynyba]+1800;
-		mysql_query("UPDATE zaidejai SET jega='$j', gynyba='$gy', kred=kred+'10', sms_litai=sms_litai+'1' WHERE nick = '$nick'");
-mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+		mysqli_query($conn,"UPDATE zaidejai SET jega='$j', gynyba='$gy', kred=kred+'10', sms_litai=sms_litai+'1' WHERE nick = '$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 	} 
 
 if($apie[sagos] == 14){
 		$j = $apie[jega]+1200;
 			$gy = $apie[gynyba]+3600;
-		mysql_query("UPDATE zaidejai SET jega='$j', gynyba='$gy', kred=kred+'15', sms_litai=sms_litai+'2' WHERE nick = '$nick'");
-mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+		mysqli_query($conn,"UPDATE zaidejai SET jega='$j', gynyba='$gy', kred=kred+'15', sms_litai=sms_litai+'2' WHERE nick = '$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 	} 
 
 if($apie[sagos] == 19){
 		$j = $apie[jega]+2400;
 			$gy = $apie[gynyba]+7200;
-		mysql_query("UPDATE zaidejai SET jega='$j', gynyba='$gy', kred=kred+'20', sms_litai=sms_litai+'4' WHERE nick = '$nick'");
-mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+		mysqli_query($conn,"UPDATE zaidejai SET jega='$j', gynyba='$gy', kred=kred+'20', sms_litai=sms_litai+'4' WHERE nick = '$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 	} 
 
 if($apie[sagos] == 30){
 		$j = $apie[jega]+4800;
 			$gy = $apie[gynyba]+14400;
-		mysql_query("UPDATE zaidejai SET jega='$j', gynyba='$gy', kred=kred+'30', sms_litai=sms_litai+'7' WHERE nick = '$nick'");
-mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+		mysqli_query($conn,"UPDATE zaidejai SET jega='$j', gynyba='$gy', kred=kred+'30', sms_litai=sms_litai+'7' WHERE nick = '$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 	} 
 
 if($apie[sagos] == 34){
 		$j = $apie[jega]+9600;
 			$gy = $apie[gynyba]+28800;
-		mysql_query("UPDATE zaidejai SET jega='$j', gynyba='$gy', kred=kred+'35', sms_litai=sms_litai+'10'  WHERE nick = '$nick'");
-mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+		mysqli_query($conn,"UPDATE zaidejai SET jega='$j', gynyba='$gy', kred=kred+'35', sms_litai=sms_litai+'10'  WHERE nick = '$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 	} 
 
 if($apie[sagos] == 38){
 		$j = $apie[jega]+12000;
 			$gy = $apie[gynyba]+36000;
-		mysql_query("UPDATE zaidejai SET jega='$j', gynyba='$gy', kred=kred+'40', sms_litai=sms_litai+'12' WHERE nick = '$nick'");
-mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+		mysqli_query($conn,"UPDATE zaidejai SET jega='$j', gynyba='$gy', kred=kred+'40', sms_litai=sms_litai+'12' WHERE nick = '$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 	} 
 if($apie[sagos] == 40){
 		$j = $apie[jega]+15000;
 			$gy = $apie[gynyba]+45000;
-		mysql_query("UPDATE zaidejai SET jega='$j', gynyba='$gy', kred=kred+'45', sms_litai=sms_litai+'15' WHERE nick = '$nick'");
-mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+		mysqli_query($conn,"UPDATE zaidejai SET jega='$j', gynyba='$gy', kred=kred+'45', sms_litai=sms_litai+'15' WHERE nick = '$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 	} 
 if($apie[sagos] == 46){
 		$j = $apie[jega]+20000;
 			$gy = $apie[gynyba]+60000;
-		mysql_query("UPDATE zaidejai SET jega='$j', gynyba='$gy', kred=kred+'50', sms_litai=sms_litai+'20' WHERE nick = '$nick'");
-mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+		mysqli_query($conn,"UPDATE zaidejai SET jega='$j', gynyba='$gy', kred=kred+'50', sms_litai=sms_litai+'20' WHERE nick = '$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 	} 
 
 if($apie[sagos] == 49){
 		$j = $apie[jega]+30000;
 			$gy = $apie[gynyba]+90000;
-		mysql_query("UPDATE zaidejai SET jega='$j', gynyba='$gy', kred=kred+'55', sms_litai=sms_litai+'22' WHERE nick = '$nick'");
-mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+		mysqli_query($conn,"UPDATE zaidejai SET jega='$j', gynyba='$gy', kred=kred+'55', sms_litai=sms_litai+'22' WHERE nick = '$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 	} 
 
 if($apie[sagos] == 54){
 		$j = $apie[jega]+35000;
 			$gy = $apie[gynyba]+105000;
-		mysql_query("UPDATE zaidejai SET jega='$j', gynyba='$gy', kred=kred+'60', sms_litai=sms_litai+'25' WHERE nick = '$nick'");
-mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+		mysqli_query($conn,"UPDATE zaidejai SET jega='$j', gynyba='$gy', kred=kred+'60', sms_litai=sms_litai+'25' WHERE nick = '$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 
 	} 
 if($apie[sagos] == 57){
 		$j = $apie[jega]+40000;
 			$gy = $apie[gynyba]+120000;
-		mysql_query("UPDATE zaidejai SET jega='$j', gynyba='$gy', kred=kred+'70' WHERE nick = '$nick'");
-mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+		mysqli_query($conn,"UPDATE zaidejai SET jega='$j', gynyba='$gy', kred=kred+'70' WHERE nick = '$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 ///duoda 
-	mysql_query("UPDATE zaidejai SET veikejas='Baby Vegeta', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET veikejas='Baby Vegeta', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");
 		
 	
 
@@ -314,42 +314,42 @@ mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 if($apie[sagos] == 66){
 		$j = $apie[jega]+80000;
 			$gy = $apie[gynyba]+240000;
-		mysql_query("UPDATE zaidejai SET jega='$j', gynyba='$gy', kred=kred+'80', sms_litai=sms_litai+'30' WHERE nick = '$nick'");
-mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+		mysqli_query($conn,"UPDATE zaidejai SET jega='$j', gynyba='$gy', kred=kred+'80', sms_litai=sms_litai+'30' WHERE nick = '$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 	} 
 
 if($apie[sagos] == 78){
 		$j = $apie[jega]+150000;
 			$gy = $apie[gynyba]+450000;
-		mysql_query("UPDATE zaidejai SET jega='$j', gynyba='$gy', kred=kred+'110' sms_litai=sms_litai+'35' WHERE nick = '$nick'");
-mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+		mysqli_query($conn,"UPDATE zaidejai SET jega='$j', gynyba='$gy', kred=kred+'110' sms_litai=sms_litai+'35' WHERE nick = '$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 	} 
 
 	if($apie[sagos] == 68){
 		$j = $apie[jega]+100000;
 			$gy = $apie[gynyba]+300000;
-		mysql_query("UPDATE zaidejai SET jega='$j', gynyba='$gy', kred=kred+'100' WHERE nick = '$nick'");
+		mysqli_query($conn,"UPDATE zaidejai SET jega='$j', gynyba='$gy', kred=kred+'100' WHERE nick = '$nick'");
 	} 
 	
 if($apie[sagos] == 86){
 		$j = $apie[jega]+250000;
 			$gy = $apie[gynyba]+750000;
-		mysql_query("UPDATE zaidejai SET jega='$j', gynyba='$gy', kred=kred+'150', sms_litai=sms_litai+'50' WHERE nick = '$nick'");
-mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+		mysqli_query($conn,"UPDATE zaidejai SET jega='$j', gynyba='$gy', kred=kred+'150', sms_litai=sms_litai+'50' WHERE nick = '$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 	} 
 if($apie[sagos] == 102){
 		$j = $apie[jega]+1000000;
 			$gy = $apie[gynyba]+3000000;
-		mysql_query("UPDATE zaidejai SET jega='$j', gynyba='$gy', kred=kred+'175', sms_litai=sms_litai+'75' WHERE nick = '$nick'");
-mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+		mysqli_query($conn,"UPDATE zaidejai SET jega='$j', gynyba='$gy', kred=kred+'175', sms_litai=sms_litai+'75' WHERE nick = '$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 	} 
  
 		if($apie[sagos] == 109){
 		$j = $apie[jega] *1.1;
 			$gy = $apie[gynyba] *1.3;
-		mysql_query("UPDATE zaidejai SET jega='$j', gynyba='$gy', kred=kred+'300', sms_litai=sms_litai+'100' WHERE nick = '$nick'");
+		mysqli_query($conn,"UPDATE zaidejai SET jega='$j', gynyba='$gy', kred=kred+'300', sms_litai=sms_litai+'100' WHERE nick = '$nick'");
 		/// gold fryza uz sagas
-	mysql_query("UPDATE zaidejai SET veikejas='Gold Fryzas', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET veikejas='Gold Fryzas', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");
 		
 	
 
@@ -382,92 +382,92 @@ Tu jau esi perėjas visas sagas!
 //// sagu atlygiu uzrasas
 elseif($apie[sagos] == 5){
 	echo '<div class="meniuc">Sekmingai perejai sajanų sagą! <br>Gauni:<br>300 <img src="img/bicons/attack.png" /><br>900 <img src="img/bicons/shield.png" /><br>5 <img src="img/bicons/credit.png" />.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 
 elseif($apie[sagos] == 10){
 	echo '<div class="meniuc">Sekmingai perejai namek sagą! <br>Gauni:<br>600 <img src="img/bicons/attack.png" /><br>1800 <img src="img/bicons/shield.png" /><br>10 <img src="img/bicons/credit.png" /><br>1 <img src="img/bicons/euro.png" />!</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }
 
 
 elseif($apie[sagos] == 14){
 	echo '<div class="meniuc">Sekmingai perejai kapitono ginio sagą! <br>Gauni:<br>1200 <img src="img/bicons/attack.png" /><br>3600 <img src="img/bicons/shield.png" /><br>15 <img src="img/bicons/credit.png" />.<br>2 <img src="img/bicons/euro.png" />!</div>';
-mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 
 elseif($apie[sagos] == 19){
 	echo '<div class="meniuc">Sekmingai perejai fryzo sagą! <br>Gauni:<br>2400 <img src="img/bicons/attack.png" /><br>7200 <img src="img/bicons/shield.png" /><br>  20 <img src="img/bicons/credit.png" /><br>4 <img src="img/bicons/euro.png" />!</div>';
-mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 
 }	
 
 elseif($apie[sagos] == 30){
 	echo '<div class="meniuc">Sekmingai perejai garlick jaunelio  sagą! <br>Gauni:<br>4800 <img src="img/bicons/attack.png" /><br>14400 <img src="img/bicons/shield.png" /><br>30 <img src="img/bicons/credit.png" /><br> 7 <img src="img/bicons/euro.png" />!</div>';
-mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 
 elseif($apie[sagos] == 34){
 	echo '<div class="meniuc">Sekmingai perejai trankso sagą!  <br>Gauni:<br>9600 <img src="img/bicons/attack.png" /><br>28800 <img src="img/bicons/shield.png" /><br>35 <img src="img/bicons/credit.png" /><br> 9 <img src="img/bicons/euro.png" />!</div>';
-mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 
 elseif($apie[sagos] == 38){
 	echo '<div class="meniuc">Sekmingai perejai androidų sagą!  <br>Gauni:<br>12000 <img src="img/bicons/attack.png" /><br>36000 <img src="img/bicons/shield.png" /><br>40 <img src="img/bicons/credit.png" /><br> 12 <img src="img/bicons/euro.png" />!</div>';
-mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 
 elseif($apie[sagos] == 40){
 	echo '<div class="meniuc">Sekmingai perejai imperfect celo sagą!  <br>Gauni:<br>15000 <img src="img/bicons/attack.png" /><br>45000 <img src="img/bicons/shield.png" /><br>45 <img src="img/bicons/credit.png" /><br> 15 <img src="img/bicons/euro.png" />!</div>';
-mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 
 elseif($apie[sagos] == 46){
 	echo '<div class="meniuc">Sekmingai perejai visas celo sagas sagas!  <br>Gauni:<br>20000 <img src="img/bicons/attack.png" /><br>60000 <img src="img/bicons/shield.png" /><br>50 <img src="img/bicons/credit.png" /><br> 20 <img src="img/bicons/euro.png" />!</div>';
-mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 
 elseif($apie[sagos] == 49){
 	echo '<div class="meniuc">Sekmingai perejai pasaulio čempianato sagą!  <br>Gauni:<br>30000 <img src="img/bicons/attack.png" /><br>90000 <img src="img/bicons/shield.png" /><br>55 <img src="img/bicons/credit.png" /><br> 22 <img src="img/bicons/euro.png" />!</div>';
-mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 elseif($apie[sagos] == 54){
 	echo '<div class="meniuc">Sekmingai perejai babidžio sagą!  <br>Gauni:<br>35000 <img src="img/bicons/attack.png" /><br>105000 <img src="img/bicons/shield.png" /><br>65 <img src="img/bicons/credit.png" /><br> 25 <img src="img/bicons/euro.png" />!</div>';
-mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 elseif($apie[sagos] == 57){
 	echo '<div class="meniuc">Sekmingai perejai majin buu sagą!<br> Gauni:<br>40000 <img src="img/bicons/attack.png" /><br>120000 <img src="img/bicons/shield.png" /><br>70 <img src="img/bicons/credit.png" /><br><img src="img/bicons/euro.png" /> negavai..<br><b>Bet tapai Baby veikėju!</b></div>';
-mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 
 elseif($apie[sagos] == 66){
 	echo '<div class="meniuc">Sekmingai perejai susijungimo sagą! <br>Gauni:<br>80000 <img src="img/bicons/attack.png" /><br>120000 <img src="img/bicons/shield.png" /><br>80 <img src="img/bicons/credit.png" /><br>30 <img src="img/bicons/euro.png" />!</div>';
-mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 
 elseif($apie[sagos] == 68){
 	echo '<div class="meniuc">Sekmingai perejai kid buu sagą! <br>Gauni:<br>100000 <img src="img/bicons/attack.png" /><br>300000 <img src="img/bicons/shield.png" /><br>100 <img src="img/bicons/credit.png" /><br><img src="img/bicons/euro.png" /> negavai..</div>';
-mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 
 elseif($apie[sagos] == 78){
 	echo '<div class="meniuc">Sekmingai perejai juodujų rutulių sagą! <br>Gauni:<br>150000 <img src="img/bicons/attack.png" /><br>450000 <img src="img/bicons/shield.png" /><br>110 <img src="img/bicons/credit.png" /><br>35 <img src="img/bicons/euro.png" />!</div>';
-mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 
 elseif($apie[sagos] == 86){
 	echo '<div class="meniuc">Sekmingai perejai naująją babidi sagą! <br>Gauni:<br>250000 <img src="img/bicons/attack.png" /><br>750000 <img src="img/bicons/shield.png" /><br>150 <img src="img/bicons/credit.png" /><br>50 <img src="img/bicons/euro.png" />!</div>';
-mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 
 elseif($apie[sagos] == 102){
 	echo '<div class="meniuc">Sekmingai perejai super android 17 sagą! <br>Gauni:<br>1000000 <img src="img/bicons/attack.png" /><br>3000000 <img src="img/bicons/shield.png" /><br>175 <img src="img/bicons/shield.png" /><br>75 <img src="img/bicons/euro.png" />!</div>';
-mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 
 elseif($apie[sagos] == 109){
 	echo '<div class="meniuc">Sekmingai perejai visas sagas!!! <br>Gauni:<br>10% <img src="img/bicons/kovines.png" /><br>300 <img src="img/bicons/credit.png" /><br>100 <img src="img/bicons/euro.png" />!<br><b>Bei tapai Gold Fryza!!</div>';
-mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 
 
@@ -488,418 +488,418 @@ elseif($ID != $_SESSION[no_refresh]){
 
 elseif($apie[sagos] == 1){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 
 elseif($apie[sagos] == 2){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 elseif($apie[sagos] == 3){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 elseif($apie[sagos] == 4){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 elseif($apie[sagos] == 6){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 elseif($apie[sagos] == 7){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 elseif($apie[sagos] == 8){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 
 elseif($apie[sagos] == 9){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 elseif($apie[sagos] == 11){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 elseif($apie[sagos] == 12){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 elseif($apie[sagos] == 13){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 elseif($apie[sagos] == 14){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 
 elseif($apie[sagos] == 16){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 elseif($apie[sagos] == 17){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 elseif($apie[sagos] == 18){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 elseif($apie[sagos] == 20){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 elseif($apie[sagos] == 21){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 elseif($apie[sagos] == 22){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 elseif($apie[sagos] == 23){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 elseif($apie[sagos] == 25){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 
 elseif($apie[sagos] == 26){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 
 elseif($apie[sagos] == 27){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 elseif($apie[sagos] == 28){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 elseif($apie[sagos] == 24){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 
 elseif($apie[sagos] == 29){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 
 elseif($apie[sagos] == 31){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 elseif($apie[sagos] == 32){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 elseif($apie[sagos] == 33){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 elseif($apie[sagos] == 35){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 elseif($apie[sagos] == 36){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 
 elseif($apie[sagos] == 37){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 
 elseif($apie[sagos] == 39){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 elseif($apie[sagos] == 41){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 elseif($apie[sagos] == 42){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 elseif($apie[sagos] == 43){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 elseif($apie[sagos] == 44){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 elseif($apie[sagos] == 45){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 
 elseif($apie[sagos] == 47){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 elseif($apie[sagos] == 48){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 
 elseif($apie[sagos] == 50){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 elseif($apie[sagos] == 51){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 
 elseif($apie[sagos] == 52){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 
 elseif($apie[sagos] == 53){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 
 elseif($apie[sagos] == 55){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 elseif($apie[sagos] == 56){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 
 
 elseif($apie[sagos] == 58){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 
 
 elseif($apie[sagos] == 59){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 elseif($apie[sagos] == 60){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 
 elseif($apie[sagos] == 61){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 elseif($apie[sagos] == 62){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 
 
 elseif($apie[sagos] == 63){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 
 elseif($apie[sagos] == 64){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 elseif($apie[sagos] == 65){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 
 elseif($apie[sagos] == 67){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 
 
 elseif($apie[sagos] == 69){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 
 elseif($apie[sagos] == 70){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 elseif($apie[sagos] == 71){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 
 elseif($apie[sagos] == 72){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 
 elseif($apie[sagos] == 73){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 
 elseif($apie[sagos] == 74){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 elseif($apie[sagos] == 75){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 
 elseif($apie[sagos] == 76){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 elseif($apie[sagos] == 77){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 
 elseif($apie[sagos] == 79){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 
 elseif($apie[sagos] == 80){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 
 elseif($apie[sagos] == 81){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 
 elseif($apie[sagos] == 82){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 
 
 elseif($apie[sagos] == 83){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 
 elseif($apie[sagos] == 84){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 
 elseif($apie[sagos] == 85){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 
 elseif($apie[sagos] == 87){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 
 elseif($apie[sagos] == 88){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 
 elseif($apie[sagos] == 89){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 
 elseif($apie[sagos] == 90){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 
 elseif($apie[sagos] == 91){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 
 
 elseif($apie[sagos] == 92){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 
 elseif($apie[sagos] == 93){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 elseif($apie[sagos] == 94){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 
 elseif($apie[sagos] == 95){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 
 elseif($apie[sagos] == 96){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 elseif($apie[sagos] == 97){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 
 elseif($apie[sagos] == 98){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 elseif($apie[sagos] == 99){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 
 elseif($apie[sagos] == 100){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 elseif($apie[sagos] == 101){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 elseif($apie[sagos] == 103){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 
 elseif($apie[sagos] == 104){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 elseif($apie[sagos] == 105){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 elseif($apie[sagos] == 106){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 elseif($apie[sagos] == 107){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 elseif($apie[sagos] == 108){
 	echo '<div class="meniuc">Sekmingai įvygdei sagą.</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }	
 
 
@@ -908,13 +908,13 @@ elseif($apie[sagos] == 108){
 else{
 	$_SESSION[no_refresh] = rand(100000,999999);
 	echo '<div class="meniuc">Ivygdei sėkmingai</div>';
-	mysql_query("UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 }
 
 	if($apie[sagos] == 1100){
 		$tmas = time()+3600*4800;
-	mysql_query("UPDATE user SET sagu_time='$tmas' WHERE nick='$nick'");
-	mysql_query("UPDATE zaidejai SET sagos='1' WHERE nick='$nick'");
+	mysqli_query($conn,"UPDATE user SET sagu_time='$tmas' WHERE nick='$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos='1' WHERE nick='$nick'");
 }
 	$g_n[] = array('pagrindinis.php?id=', 'Pagrindinis', "misijos.php", "Misijos","sagos.php","Sagos","Sagų vygdymas");
 navigacija($g_n);

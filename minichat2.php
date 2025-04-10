@@ -6,9 +6,9 @@ include_once 'cfg/funkcijos.php';
 $nick = post($_GET['username']);
 $xaz = $apie['rodymas'];
 
-$q = mysql_query("SELECT * FROM pokalbiai ORDER BY id DESC LIMIT $xaz");
+$q = mysqli_query($conn,"SELECT * FROM pokalbiai ORDER BY id DESC LIMIT $xaz");
        
-        while($rr = mysql_fetch_assoc($q)){
+        while($rr = mysqli_fetch_assoc($q)){
 			$nr++;
 		 
 

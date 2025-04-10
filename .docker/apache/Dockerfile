@@ -1,6 +1,6 @@
-FROM php:5.6-apache
+FROM php:8.4-apache
 
-RUN docker-php-ext-install mysql pdo_mysql
+RUN docker-php-ext-install mysqli pdo pdo_mysql
 
 COPY php.ini /usr/local/etc/php/conf.d/php.ini
 

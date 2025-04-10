@@ -160,7 +160,9 @@ if ($id === 'dead_bosses') {
 
     $repository = new \LegacyDbz\LegendaryBosses\Repositories\LegendaryBossRepository();
     $service = new \LegacyDbz\LegendaryBosses\Services\LegendaryBossService($repository);
-    $deadBosses = mysql_result(mysql_query("SELECT COUNT(*) FROM legendary_bosses WHERE dead_at IS NOT NULL"), 0);
+    $result = mysqli_query($conn,"SELECT COUNT(*) FROM legendary_bosses WHERE dead_at IS NOT NULL");
+    $row = mysqli_fetch_row($result);
+    $deadBosses = $row[0];
 
     if ($deadBosses > 0) {
         $perPage = 3;
@@ -173,10 +175,10 @@ if ($id === 'dead_bosses') {
         }
         $startFrom = $psl * $perPage - $perPage;
 
-        $deadBossesQuery = mysql_query("SELECT * FROM legendary_bosses WHERE dead_at IS NOT NULL ORDER BY id DESC LIMIT $startFrom, $perPage");
+        $deadBossesQuery = mysqli_query($conn,"SELECT * FROM legendary_bosses WHERE dead_at IS NOT NULL ORDER BY id DESC LIMIT $startFrom, $perPage");
         $pages = ceil($deadBosses / $perPage);
 
-        while ($boss = mysql_fetch_assoc($deadBossesQuery)) {
+        while ($boss = mysqli_fetch_assoc($deadBossesQuery)) {
             echo '<div class="meniu">';
             $bossConfig = $service->getBossConfig($boss['boss_id']);
             if ($bossConfig) {
@@ -189,25 +191,25 @@ if ($id === 'dead_bosses') {
                 echo $arrow;
                 echo 'Nukautas: ' . formatDateTimeString($boss['dead_at']);
                 echo '<br>';
-                $hitsCount = mysql_num_rows(mysql_query("SELECT * FROM `legendary_boss_fights` WHERE legendary_boss_id = '$boss[id]'"));
+                $hitsCount = mysqli_num_rows(mysqli_query($conn,"SELECT * FROM `legendary_boss_fights` WHERE legendary_boss_id = '$boss[id]'"));
                 echo $arrow;
                 echo 'Kad nukauti bosą žaidėjams prireikė suduoti bosui: ' . $hitsCount . ' smūgių.';
                 echo '<br>';
-                $blockCount = mysql_num_rows(mysql_query("SELECT * FROM `legendary_boss_fights` WHERE legendary_boss_id = '$boss[id]' AND player_damage = 0"));
+                $blockCount = mysqli_num_rows(mysqli_query($conn,"SELECT * FROM `legendary_boss_fights` WHERE legendary_boss_id = '$boss[id]' AND player_damage = 0"));
                 echo $arrow;
                 echo 'Bosas blokavo: ' . $blockCount . ' smūgius.';
                 echo '<br>';
-                $bossBlocksPercentage = mysql_fetch_assoc(mysql_query("SELECT ROUND((COUNT(CASE WHEN player_damage = 0 THEN 1 END) / COUNT(*)) * 100) AS blocks_percentage FROM legendary_boss_fights WHERE legendary_boss_id = '$boss[id]'"));
+                $bossBlocksPercentage = mysqli_fetch_assoc(mysqli_query($conn,"SELECT ROUND((COUNT(CASE WHEN player_damage = 0 THEN 1 END) / COUNT(*)) * 100) AS blocks_percentage FROM legendary_boss_fights WHERE legendary_boss_id = '$boss[id]'"));
                 echo $arrow;
                 echo 'Smūgių blokavimo procentas: ' . $bossBlocksPercentage['blocks_percentage'] . '%';
                 echo '<br>';
-                $bossTotalDamageToPlayer = mysql_fetch_assoc(mysql_query("SELECT nick, SUM(boss_damage) AS most_damage FROM legendary_boss_fights INNER JOIN zaidejai ON legendary_boss_fights.player_id = zaidejai.id WHERE legendary_boss_id = '$boss[id]' GROUP BY player_id ORDER BY most_damage DESC LIMIT 1"));
+                $bossTotalDamageToPlayer = mysqli_fetch_assoc(mysqli_query($conn,"SELECT nick, SUM(boss_damage) AS most_damage FROM legendary_boss_fights INNER JOIN zaidejai ON legendary_boss_fights.player_id = zaidejai.id WHERE legendary_boss_id = '$boss[id]' GROUP BY player_id ORDER BY most_damage DESC LIMIT 1"));
                 echo $arrow;
                 echo 'Daugiausiai žalos bosas padarė žaidėjui: ' . $bossTotalDamageToPlayer['nick'] . '(' . sk($bossTotalDamageToPlayer['most_damage']) . ')';
                 echo '<br><br>';
                 echo 'Atlygiai: <br><br>';
-                $rewardsQuery = mysql_query("SELECT legendary_boss_rewards.*, zaidejai.nick FROM legendary_boss_rewards INNER JOIN zaidejai ON legendary_boss_rewards.player_id = zaidejai.id WHERE legendary_boss_id = '$boss[id]'");
-                while ($reward = mysql_fetch_assoc($rewardsQuery)) {
+                $rewardsQuery = mysqli_query($conn,"SELECT legendary_boss_rewards.*, zaidejai.nick FROM legendary_boss_rewards INNER JOIN zaidejai ON legendary_boss_rewards.player_id = zaidejai.id WHERE legendary_boss_id = '$boss[id]'");
+                while ($reward = mysqli_fetch_assoc($rewardsQuery)) {
                     if ($reward['type'] === 'first_hit') {
                         echo '<img src="../assets/img/reward.png">';
                         echo 'Už pirmą smūgį bosui: <br>';
@@ -241,18 +243,18 @@ if ($id === 'dead_bosses') {
                 }
                 echo '<br>';
                 echo 'Daugiausiai žalos padarė: <br><br>';
-                $playersByTotalDamage = mysql_query("SELECT player_id, nick, SUM(player_damage) AS total_damage FROM legendary_boss_fights INNER JOIN zaidejai ON legendary_boss_fights.player_id = zaidejai.id WHERE legendary_boss_id = '$boss[id]' GROUP BY player_id HAVING total_damage > 0 ORDER BY total_damage DESC LIMIT 3");
-                while ($playerByTotalDamage = mysql_fetch_assoc($playersByTotalDamage)) {
+                $playersByTotalDamage = mysqli_query($conn,"SELECT player_id, nick, SUM(player_damage) AS total_damage FROM legendary_boss_fights INNER JOIN zaidejai ON legendary_boss_fights.player_id = zaidejai.id WHERE legendary_boss_id = '$boss[id]' GROUP BY player_id HAVING total_damage > 0 ORDER BY total_damage DESC LIMIT 3");
+                while ($playerByTotalDamage = mysqli_fetch_assoc($playersByTotalDamage)) {
                     echo $arrow;
                     echo $playerByTotalDamage['nick'] . '(', sk($playerByTotalDamage['total_damage']) . ')';
                     echo '<br>';
                 }
                 echo '<br>';
-                $mostDamagePlayer = mysql_fetch_assoc(mysql_query("SELECT player_id, nick, MAX(player_damage) AS most_damage FROM legendary_boss_fights INNER JOIN zaidejai ON legendary_boss_fights.player_id = zaidejai.id WHERE legendary_boss_id = '$boss[id]' GROUP BY player_id ORDER BY most_damage DESC LIMIT 1"));
+                $mostDamagePlayer = mysqli_fetch_assoc(mysqli_query($conn,"SELECT player_id, nick, MAX(player_damage) AS most_damage FROM legendary_boss_fights INNER JOIN zaidejai ON legendary_boss_fights.player_id = zaidejai.id WHERE legendary_boss_id = '$boss[id]' GROUP BY player_id ORDER BY most_damage DESC LIMIT 1"));
                 echo $arrow;
                 echo 'Stipriausią smūgį sudavė: ' . $mostDamagePlayer['nick'] . '(' . sk($mostDamagePlayer['most_damage']) . ')';
                 echo '<br>';
-                $playerByMostHits = mysql_fetch_assoc(mysql_query("SELECT nick, COUNT(*) AS hits_count FROM legendary_boss_fights INNER JOIN zaidejai ON legendary_boss_fights.player_id = zaidejai.id WHERE legendary_boss_id = '$boss[id]' GROUP BY player_id ORDER BY hits_count DESC LIMIT 1"));
+                $playerByMostHits = mysqli_fetch_assoc(mysqli_query($conn,"SELECT nick, COUNT(*) AS hits_count FROM legendary_boss_fights INNER JOIN zaidejai ON legendary_boss_fights.player_id = zaidejai.id WHERE legendary_boss_id = '$boss[id]' GROUP BY player_id ORDER BY hits_count DESC LIMIT 1"));
                 echo $arrow;
                 echo 'Daugiausia smūgių sudavė: ' . $playerByMostHits['nick'] . '(' . $playerByMostHits['hits_count'] . ')';
                 echo '<br>';
@@ -329,13 +331,13 @@ if ($id === 'freezeLegendaryBoss') {
             echo '<div class="meniuc">Freezinti galima tik 15 min!</div>';
         } else {
             echo '<div class="meniuc">Bosas gavo mental freezą <font color="red"><b>' . sk($minutes) . '</b> min</font> už <font color="red"><b>' . sk($microshems) . '</b></font> Microschem</div> ';
-            mysql_query("UPDATE inv SET Microshem=Microshem-'$microshems' WHERE nick='$apie[nick]' ");
+            mysqli_query($conn,"UPDATE inv SET Microshem=Microshem-'$microshems' WHERE nick='$apie[nick]' ");
             $freezeEndsAt = date('Y-m-d H:i:s', strtotime($date) + (60 * $minutes));
             $repository->freeze($boss->getId(), $freezeEndsAt);
 
             $message = $apie['nick'] . ' užfreezino bosą (' . $bossConfig['name'] . ') todėl šis bosas daro žymiai mažiau damage, skubėkite nukauti!';
             $expiresAt = date('Y-m-d H:i:s', strtotime(' + 5 minutes'));
-            mysql_query("INSERT INTO pokalbiai SET nick='SISTEMA', sms='$message', data='" . time() . "', expired_at='$expiresAt'");
+            mysqli_query($conn,"INSERT INTO pokalbiai SET nick='SISTEMA', sms='$message', data='" . time() . "', expired_at='$expiresAt'");
             echo '<script>
              let audio = new Audio("../assets/sounds/ice_barrage.mp3");
             audio.play();
@@ -397,9 +399,9 @@ if ($id === 'summon') {
     echo '</div>';
     echo '  <div class="meniu">';
 
-    $contributionsQuery = mysql_query("SELECT item_name, SUM(quantity) AS total_quantity FROM legendary_boss_summon_contributions WHERE legendary_boss_id = '$legendaryBossId' GROUP BY item_name");
+    $contributionsQuery = mysqli_query($conn,"SELECT item_name, SUM(quantity) AS total_quantity FROM legendary_boss_summon_contributions WHERE legendary_boss_id = '$legendaryBossId' GROUP BY item_name");
     $contributions = [];
-    while ($row = mysql_fetch_assoc($contributionsQuery)) {
+    while ($row = mysqli_fetch_assoc($contributionsQuery)) {
         $contributions[$row['item_name']] = $row['total_quantity'];
     }
 
@@ -497,14 +499,14 @@ if ($id === 'summon') {
     echo '  <div class="meniu">';
     echo 'Aukų logas';
     echo '<br><br>';
-    $playerContributionsQuery = mysql_query("SELECT zaidejai.nick, item_name, quantity, contributed_at FROM legendary_boss_summon_contributions
+    $playerContributionsQuery = mysqli_query($conn,"SELECT zaidejai.nick, item_name, quantity, contributed_at FROM legendary_boss_summon_contributions
     INNER JOIN legendary_bosses ON legendary_boss_summon_contributions.legendary_boss_id = legendary_bosses.id
                                                  INNER JOIN zaidejai ON legendary_boss_summon_contributions.player_id = zaidejai.id
                                                  WHERE legendary_bosses.boss_id = '$bossConfig[id]' AND starts_at IS NULL
                                                  ORDER BY contributed_at DESC
                                                  LIMIT 5
                                                  ");
-    while ($row = mysql_fetch_assoc($playerContributionsQuery)) {
+    while ($row = mysqli_fetch_assoc($playerContributionsQuery)) {
         echo $arrow;
         echo $row['nick'] . ' paaukojo ' . $row['item_name'] . ' x' . $row['quantity'];
         echo '(' . formatDateTimeString($row['contributed_at']) . ')';
@@ -547,9 +549,9 @@ if ($id === 'summon_boss') {
     $legendaryBoss = $service->getPreparedBoss($bossConfig['id']);
     $legendaryBossId = $legendaryBoss->getId();
 
-    $contributionsQuery = mysql_query("SELECT item_name, SUM(quantity) AS total_quantity FROM legendary_boss_summon_contributions WHERE legendary_boss_id = '$legendaryBossId' GROUP BY item_name");
+    $contributionsQuery = mysqli_query($conn,"SELECT item_name, SUM(quantity) AS total_quantity FROM legendary_boss_summon_contributions WHERE legendary_boss_id = '$legendaryBossId' GROUP BY item_name");
     $contributions = [];
-    while ($row = mysql_fetch_assoc($contributionsQuery)) {
+    while ($row = mysqli_fetch_assoc($contributionsQuery)) {
         $contributions[$row['item_name']] = $row['total_quantity'];
     }
 
@@ -600,7 +602,7 @@ if ($id === 'summon_boss') {
         $repository->summon($legendaryBossId);
         $message = $nick . ' iškvietė Legendary bosą (' . $bossConfig['name'] . ')! Skubėkite nukauti!';
         $expiresAt = date('Y-m-d H:i:s', strtotime(' + 10 minutes'));
-        mysql_query("INSERT INTO pokalbiai SET nick='SISTEMA', sms='$message', data='" . time() . "', expired_at='$expiresAt'");
+        mysqli_query($conn,"INSERT INTO pokalbiai SET nick='SISTEMA', sms='$message', data='" . time() . "', expired_at='$expiresAt'");
         echo $bossConfig['name'] . ' sėkmingai iškviestas';
         $isMessageSent = sendDiscordMessage($message);
 
@@ -640,9 +642,9 @@ if ($id === 'contribute_items') {
 
     $legendaryBoss = $service->getPreparedBoss($bossConfig['id']);
     $legendaryBossId = $legendaryBoss->getId();
-    $contributionsQuery = mysql_query("SELECT item_name, SUM(quantity) AS total_quantity FROM legendary_boss_summon_contributions WHERE legendary_boss_id = '$legendaryBossId' GROUP BY item_name");
+    $contributionsQuery = mysqli_query($conn,"SELECT item_name, SUM(quantity) AS total_quantity FROM legendary_boss_summon_contributions WHERE legendary_boss_id = '$legendaryBossId' GROUP BY item_name");
     $contributions = [];
-    while ($row = mysql_fetch_assoc($contributionsQuery)) {
+    while ($row = mysqli_fetch_assoc($contributionsQuery)) {
         $contributions[$row['item_name']] = $row['total_quantity'];
     }
     $requirements = $bossConfig['summon_items'];
@@ -718,10 +720,10 @@ if ($id === 'contributeSayiantail') {
             echo '<div class="meniuc">Neturite pakankamai Sayiantail!</div>';
         } else {
             echo '<div class="meniuc">Paakojote sėkmingai <font color="red"><b>' . sk($amount) . '</b></font> Sayiantail</div> ';
-            mysql_query("UPDATE inv SET Sayiantail=Sayiantail-'$amount' WHERE nick='$nick' ");
+            mysqli_query($conn,"UPDATE inv SET Sayiantail=Sayiantail-'$amount' WHERE nick='$nick' ");
             $legendaryBossId = $boss->getId();
             $currentDate = date('Y-m-d H:i:s');
-            mysql_query("INSERT INTO legendary_boss_summon_contributions SET player_id='$apie[id]', legendary_boss_id='$legendaryBossId', item_name='sayiantail', quantity='$amount', contributed_at='$currentDate'");
+            mysqli_query($conn,"INSERT INTO legendary_boss_summon_contributions SET player_id='$apie[id]', legendary_boss_id='$legendaryBossId', item_name='sayiantail', quantity='$amount', contributed_at='$currentDate'");
         }
     }
 
@@ -747,10 +749,10 @@ if ($id === 'contributeStone') {
             echo '<div class="meniuc">Neturite pakankamai Stone!</div>';
         } else {
             echo '<div class="meniuc">Paakojote sėkmingai <font color="red"><b>' . sk($amount) . '</b></font> Stone</div> ';
-            mysql_query("UPDATE inv SET Stone=Stone-'$amount' WHERE nick='$nick' ");
+            mysqli_query($conn,"UPDATE inv SET Stone=Stone-'$amount' WHERE nick='$nick' ");
             $legendaryBossId = $boss->getId();
             $currentDate = date('Y-m-d H:i:s');
-            mysql_query("INSERT INTO legendary_boss_summon_contributions SET player_id='$apie[id]', legendary_boss_id='$legendaryBossId', item_name='stone', quantity='$amount', contributed_at='$currentDate'");
+            mysqli_query($conn,"INSERT INTO legendary_boss_summon_contributions SET player_id='$apie[id]', legendary_boss_id='$legendaryBossId', item_name='stone', quantity='$amount', contributed_at='$currentDate'");
         }
     }
 
@@ -776,10 +778,10 @@ if ($id === 'contributeCadmiumOre') {
             echo '<div class="meniuc">Neturite pakankamai kadmio rūdos!</div>';
         } else {
             echo '<div class="meniuc">Paakojote sėkmingai <font color="red"><b>' . sk($amount) . '</b></font> kadmio rūdos</div> ';
-            mysql_query("UPDATE inv SET kadmis=kadmis-'$amount' WHERE nick='$nick' ");
+            mysqli_query($conn,"UPDATE inv SET kadmis=kadmis-'$amount' WHERE nick='$nick' ");
             $legendaryBossId = $boss->getId();
             $currentDate = date('Y-m-d H:i:s');
-            mysql_query("INSERT INTO legendary_boss_summon_contributions SET player_id='$apie[id]', legendary_boss_id='$legendaryBossId', item_name='cadmiumOre', quantity='$amount', contributed_at='$currentDate'");
+            mysqli_query($conn,"INSERT INTO legendary_boss_summon_contributions SET player_id='$apie[id]', legendary_boss_id='$legendaryBossId', item_name='cadmiumOre', quantity='$amount', contributed_at='$currentDate'");
         }
     }
 
@@ -805,10 +807,10 @@ if ($id === 'contributeMicroshem') {
             echo '<div class="meniuc">Neturite pakankamai Microshem!</div>';
         } else {
             echo '<div class="meniuc">Paakojote sėkmingai <font color="red"><b>' . sk($amount) . '</b></font> Microshem</div> ';
-            mysql_query("UPDATE inv SET Microshem=Microshem-'$amount' WHERE nick='$nick' ");
+            mysqli_query($conn,"UPDATE inv SET Microshem=Microshem-'$amount' WHERE nick='$nick' ");
             $legendaryBossId = $boss->getId();
             $currentDate = date('Y-m-d H:i:s');
-            mysql_query("INSERT INTO legendary_boss_summon_contributions SET player_id='$apie[id]', legendary_boss_id='$legendaryBossId', item_name='microshem', quantity='$amount', contributed_at='$currentDate'");
+            mysqli_query($conn,"INSERT INTO legendary_boss_summon_contributions SET player_id='$apie[id]', legendary_boss_id='$legendaryBossId', item_name='microshem', quantity='$amount', contributed_at='$currentDate'");
         }
     }
 
@@ -859,7 +861,7 @@ if ($id === 'attack') {
         echo 'Atnaujinti puslapio negalimą! Eikite atgal ir vėl trenkite.';
     } else {
         $time = time();
-        mysql_query("UPDATE zaidejai SET last_fight_time='$time' WHERE nick='$nick' ");
+        mysqli_query($conn,"UPDATE zaidejai SET last_fight_time='$time' WHERE nick='$nick' ");
 
         $legendaryBossId = $boss->getId();
         $damageType = $boss->getDamageType();
@@ -1056,7 +1058,7 @@ if ($id === 'attack') {
 
         if ($playerHealth === 0) {
             echo '<font color="red"><b>Tu pralaimėjai!</b></font><br>';
-            mysql_query("UPDATE zaidejai SET gyvybes='0' WHERE nick='$apie[nick]' ");
+            mysqli_query($conn,"UPDATE zaidejai SET gyvybes='0' WHERE nick='$apie[nick]' ");
             if ($inv['Pupos'] > 0) {
                 echo '<b>Stebuklingos pupos: <b>' . $inv['Pupos'] . '</b> <a href="/inv.php?id=eat">[Valgyti]</a></br>';
             }
@@ -1081,7 +1083,7 @@ if ($id === 'attack') {
             }
 
             $vegitaCashRewardForMostDamage = 20;
-            $mostDamage = mysql_fetch_assoc(mysql_query("SELECT player_id, nick, SUM(player_damage) AS total_damage FROM legendary_boss_fights INNER JOIN zaidejai ON legendary_boss_fights.player_id = zaidejai.id WHERE legendary_boss_id = '$legendaryBossId' GROUP BY player_id ORDER BY total_damage DESC LIMIT 1"));
+            $mostDamage = mysqli_fetch_assoc(mysqli_query($conn,"SELECT player_id, nick, SUM(player_damage) AS total_damage FROM legendary_boss_fights INNER JOIN zaidejai ON legendary_boss_fights.player_id = zaidejai.id WHERE legendary_boss_id = '$legendaryBossId' GROUP BY player_id ORDER BY total_damage DESC LIMIT 1"));
             if ($apie['id'] == $mostDamage['player_id']) {
                 echo 'Atlygis padarius daugiausiai damage:<br>';
                 echo '<img src="../assets/img/reward.png"> Vegita cash: ' . skaicius($vegitaCashRewardForMostDamage);
@@ -1093,8 +1095,8 @@ if ($id === 'attack') {
             // reward queries
 
             $vegitaCashRewardForMostHits = 20;
-            $playerByMostHits = mysql_fetch_assoc(mysql_query("SELECT nick, player_id, COUNT(*) AS hits_count FROM legendary_boss_fights INNER JOIN zaidejai ON legendary_boss_fights.player_id = zaidejai.id WHERE legendary_boss_id = '$legendaryBossId' GROUP BY player_id ORDER BY hits_count DESC LIMIT 1"));
-            mysql_query("UPDATE zaidejai SET botas=botas+'$vegitaCashRewardForMostHits' WHERE id='$playerByMostHits[player_id]' ");
+            $playerByMostHits = mysqli_fetch_assoc(mysqli_query($conn,"SELECT nick, player_id, COUNT(*) AS hits_count FROM legendary_boss_fights INNER JOIN zaidejai ON legendary_boss_fights.player_id = zaidejai.id WHERE legendary_boss_id = '$legendaryBossId' GROUP BY player_id ORDER BY hits_count DESC LIMIT 1"));
+            mysqli_query($conn,"UPDATE zaidejai SET botas=botas+'$vegitaCashRewardForMostHits' WHERE id='$playerByMostHits[player_id]' ");
 
             // chest rewards
             if ($chest = $service->getRandomChest($bossConfig)) {
@@ -1105,53 +1107,53 @@ if ($id === 'attack') {
 
                 $date = date('Y-m-d H:i:s');
                 $expiresAt = date('Y-m-d H:i:s', strtotime($date . ' +1 hours'));
-                mysql_query("INSERT INTO `player_chest_drops` SET player_id = '$playerByMostHits[player_id]', type = '$chest[type]', expires_at = '$expiresAt' ");
-                $insertedId = mysql_insert_id();
+                mysqli_query($conn,"INSERT INTO `player_chest_drops` SET player_id = '$playerByMostHits[player_id]', type = '$chest[type]', expires_at = '$expiresAt' ");
+                $insertedId = mysqli_insert_id();
                 foreach ($chest['config']['contents'] as $name => $chestContent) {
                     $amount = mt_rand($chestContent[0], $chestContent[1]);
-                    mysql_query("INSERT INTO `player_chest_drop_contents` SET chest_drop_id = '$insertedId', name = '$name', amount = '$amount' ") or die(mysql_error());
+                    mysqli_query($conn,"INSERT INTO `player_chest_drop_contents` SET chest_drop_id = '$insertedId', name = '$name', amount = '$amount' ") or die(mysqli_error());
                 }
             }
 
-            mysql_query("UPDATE zaidejai SET botas=botas+'$vegitaCashRewardForLastHit' WHERE id='$apie[id]' ");
+            mysqli_query($conn,"UPDATE zaidejai SET botas=botas+'$vegitaCashRewardForLastHit' WHERE id='$apie[id]' ");
             $firstHitPlayerId = $boss->getFirstHitPlayerId();
-            mysql_query("UPDATE zaidejai SET botas=botas+'$vegitaCashRewardForFirstHit' WHERE id='$firstHitPlayerId' ");
-            mysql_query("UPDATE zaidejai SET botas=botas+'$vegitaCashRewardForMostDamage' WHERE id='$mostDamage[player_id]' ");
+            mysqli_query($conn,"UPDATE zaidejai SET botas=botas+'$vegitaCashRewardForFirstHit' WHERE id='$firstHitPlayerId' ");
+            mysqli_query($conn,"UPDATE zaidejai SET botas=botas+'$vegitaCashRewardForMostDamage' WHERE id='$mostDamage[player_id]' ");
 
             $mostHitsMessage = 'Gavo ' . $vegitaCashRewardForMostHits . ' Vegita Cash.';
-            mysql_query("INSERT INTO `legendary_boss_rewards` SET legendary_boss_id = '$legendaryBossId', player_id = '$playerByMostHits[player_id]', type = 'most_hits', message = '$mostHitsMessage' ");
+            mysqli_query($conn,"INSERT INTO `legendary_boss_rewards` SET legendary_boss_id = '$legendaryBossId', player_id = '$playerByMostHits[player_id]', type = 'most_hits', message = '$mostHitsMessage' ");
             $lastHitMessage = 'Gavo ' . $vegitaCashRewardForLastHit . ' Vegita Cash.';
-            mysql_query("INSERT INTO `legendary_boss_rewards` SET legendary_boss_id = '$legendaryBossId', player_id = '$apie[id]', type = 'last_hit', message = '$lastHitMessage' ");
+            mysqli_query($conn,"INSERT INTO `legendary_boss_rewards` SET legendary_boss_id = '$legendaryBossId', player_id = '$apie[id]', type = 'last_hit', message = '$lastHitMessage' ");
             $firstHitMessage = 'Gavo ' . $vegitaCashRewardForFirstHit . ' Vegita Cash.';
-            mysql_query("INSERT INTO `legendary_boss_rewards` SET legendary_boss_id = '$legendaryBossId', player_id = '$firstHitPlayerId', type = 'first_hit', message = '$firstHitMessage' ");
+            mysqli_query($conn,"INSERT INTO `legendary_boss_rewards` SET legendary_boss_id = '$legendaryBossId', player_id = '$firstHitPlayerId', type = 'first_hit', message = '$firstHitMessage' ");
             $mostDamageMessage = 'Gavo ' . $vegitaCashRewardForMostDamage . ' Vegita Cash.';
-            mysql_query("INSERT INTO `legendary_boss_rewards` SET legendary_boss_id = '$legendaryBossId', player_id = '$mostDamage[player_id]', type = 'most_damage', message = '$mostDamageMessage' ");
+            mysqli_query($conn,"INSERT INTO `legendary_boss_rewards` SET legendary_boss_id = '$legendaryBossId', player_id = '$mostDamage[player_id]', type = 'most_damage', message = '$mostDamageMessage' ");
             $vegitaCashRewardForDamage = 10;
             $damageMessage = 'Gavo ' . $vegitaCashRewardForDamage . ' Vegita Cash.';
 
-            $blessingOfWarBuff = mysql_fetch_assoc(mysql_query("SELECT id, name, cooldown FROM skills WHERE name = 'Blessing Of War' LIMIT 1"));
-            $playersByTotalDamage = mysql_query("SELECT player_id, nick, SUM(player_damage) AS total_damage FROM legendary_boss_fights INNER JOIN zaidejai ON legendary_boss_fights.player_id = zaidejai.id WHERE legendary_boss_id = '$legendaryBossId' GROUP BY player_id HAVING total_damage > 0 ORDER BY total_damage DESC LIMIT 3");
-            while ($playerByTotalDamage = mysql_fetch_assoc($playersByTotalDamage)) {
-                mysql_query("UPDATE zaidejai SET botas=botas+'$vegitaCashRewardForDamage' WHERE id='$playerByTotalDamage[player_id]' ");
-                mysql_query("INSERT INTO `legendary_boss_rewards` SET legendary_boss_id = '$legendaryBossId', player_id = '$playerByTotalDamage[player_id]', type = 'damage', message = '$damageMessage' ");
+            $blessingOfWarBuff = mysqli_fetch_assoc(mysqli_query($conn,"SELECT id, name, cooldown FROM skills WHERE name = 'Blessing Of War' LIMIT 1"));
+            $playersByTotalDamage = mysqli_query($conn,"SELECT player_id, nick, SUM(player_damage) AS total_damage FROM legendary_boss_fights INNER JOIN zaidejai ON legendary_boss_fights.player_id = zaidejai.id WHERE legendary_boss_id = '$legendaryBossId' GROUP BY player_id HAVING total_damage > 0 ORDER BY total_damage DESC LIMIT 3");
+            while ($playerByTotalDamage = mysqli_fetch_assoc($playersByTotalDamage)) {
+                mysqli_query($conn,"UPDATE zaidejai SET botas=botas+'$vegitaCashRewardForDamage' WHERE id='$playerByTotalDamage[player_id]' ");
+                mysqli_query($conn,"INSERT INTO `legendary_boss_rewards` SET legendary_boss_id = '$legendaryBossId', player_id = '$playerByTotalDamage[player_id]', type = 'damage', message = '$damageMessage' ");
 
                 // add buffs
                 $blessingOfWarBuffEndsAt = date('Y-m-d H:i:s', strtotime("now + $blessingOfWarBuff[cooldown] seconds"));
-                mysql_query("INSERT INTO `player_skills` SET skill_id = '$blessingOfWarBuff[id]', player_id = '$playerByTotalDamage[player_id]', ends_at = '$blessingOfWarBuffEndsAt' ") or die(mysql_error());
+                mysqli_query($conn,"INSERT INTO `player_skills` SET skill_id = '$blessingOfWarBuff[id]', player_id = '$playerByTotalDamage[player_id]', ends_at = '$blessingOfWarBuffEndsAt' ") or die(mysqli_error());
                 $message = $playerByTotalDamage['nick'] . ' padarė damage Legendary bosui (' . $bossConfig['name'] . ') todėl gavo ' . $blessingOfWarBuff['name'] . ' bufą.';
                 $expiresAt = date('Y-m-d H:i:s', strtotime(' + 10 minutes'));
-                mysql_query("INSERT INTO pokalbiai SET nick='SISTEMA', sms='$message', data='" . time() . "', expired_at='$expiresAt'");
+                mysqli_query($conn,"INSERT INTO pokalbiai SET nick='SISTEMA', sms='$message', data='" . time() . "', expired_at='$expiresAt'");
             }
 
             $text = 'Padarėte daugiausiai damage(' . $mostDamage['total_damage'] . ') legendary bosui ' . $bossConfig['name'] . ' už tai gaunate: ' . $vegitaCashRewardForMostDamage . ' Vegita Cash!';
-            mysql_query("INSERT INTO pm SET what = 'SISTEMA', txt='$text', gavejas='$mostDamage[nick]', nauj='NEW', time='" . time() . "'");
+            mysqli_query($conn,"INSERT INTO pm SET what = 'SISTEMA', txt='$text', gavejas='$mostDamage[nick]', nauj='NEW', time='" . time() . "'");
             $message = $apie['nick'] . ' sudavė paskutinį smūgį legendary bosui (' . $bossConfig['name'] . ') ';
             $expiresAt = date('Y-m-d H:i:s', strtotime(' + 1 hours'));
-            $insert1 = mysql_query("INSERT INTO pokalbiai SET nick='SISTEMA', sms='$message', data='" . time() . "', expired_at='$expiresAt'");
+            $insert1 = mysqli_query($conn,"INSERT INTO pokalbiai SET nick='SISTEMA', sms='$message', data='" . time() . "', expired_at='$expiresAt'");
             sendDiscordMessage($message);
 
-            $update2 = mysql_query("UPDATE legendary_bosses SET dead_at = '$date', health = 0, last_hit_player_id = '$apie[id]' WHERE id = '$legendaryBossId'");
-            mysql_query("DELETE FROM legendary_bosses WHERE `ends_at` < '$date' AND dead_at IS NULL ");
+            $update2 = mysqli_query($conn,"UPDATE legendary_bosses SET dead_at = '$date', health = 0, last_hit_player_id = '$apie[id]' WHERE id = '$legendaryBossId'");
+            mysqli_query($conn,"DELETE FROM legendary_bosses WHERE `ends_at` < '$date' AND dead_at IS NULL ");
             echo '</div>';
 
             $g_n[] = array("index.php", "Legendary bosai", "Pulti bosą");
@@ -1179,7 +1181,7 @@ if ($id === 'attack') {
             if ($boss->canSwitchDamage()) {
                 $switchDamageAt = date('Y-m-d H:i:s', strtotime($date) + 60);
                 $damageType = $boss->getDamageType() === LegendaryBoss::DAMAGE_TYPE_DEATH ? LegendaryBoss::DAMAGE_TYPE_REVIVAL : LegendaryBoss::DAMAGE_TYPE_DEATH;
-                mysql_query("UPDATE legendary_bosses SET damage_type='$damageType', switch_damage_at = '$switchDamageAt' WHERE id='$legendaryBossId'");
+                mysqli_query($conn,"UPDATE legendary_bosses SET damage_type='$damageType', switch_damage_at = '$switchDamageAt' WHERE id='$legendaryBossId'");
 
             }
             if ($apie['armor'] !== 'Mirties armor' && $damageType === LegendaryBoss::DAMAGE_TYPE_DEATH && $inv['mirties_armor'] > 0) {
@@ -1197,12 +1199,12 @@ if ($id === 'attack') {
 
 
             if (!$boss->getFirstHitPlayerId()) {
-                mysql_query("UPDATE legendary_bosses SET first_hit_player_id='$apie[id]' WHERE id='$legendaryBossId'");
+                mysqli_query($conn,"UPDATE legendary_bosses SET first_hit_player_id='$apie[id]' WHERE id='$legendaryBossId'");
             }
 
-            mysql_query("UPDATE legendary_bosses SET health='$bossHealth' WHERE id='$legendaryBossId'");
-            mysql_query("INSERT INTO legendary_boss_fights SET legendary_boss_id = '$legendaryBossId', player_id = '$apie[id]', player_damage = '$playerDamage', boss_damage = '$bossDamage', created_at='$date'");
-            mysql_query("UPDATE zaidejai SET vveiksmai=vveiksmai+'1', gyvybes=gyvybes-'$bossDamage' WHERE nick='$apie[nick]' AND gyvybes > 0");
+            mysqli_query($conn,"UPDATE legendary_bosses SET health='$bossHealth' WHERE id='$legendaryBossId'");
+            mysqli_query($conn,"INSERT INTO legendary_boss_fights SET legendary_boss_id = '$legendaryBossId', player_id = '$apie[id]', player_damage = '$playerDamage', boss_damage = '$bossDamage', created_at='$date'");
+            mysqli_query($conn,"UPDATE zaidejai SET vveiksmai=vveiksmai+'1', gyvybes=gyvybes-'$bossDamage' WHERE nick='$apie[nick]' AND gyvybes > 0");
         }
         echo '<br>';
         $_SESSION['pad-legendary-bosses'] = time() + 1;

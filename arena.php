@@ -12,17 +12,17 @@ topbar();
 online('Arenoje');
 top('Arena');
 // kint 
-$fight = mysql_fetch_assoc(mysql_query("SELECT * FROM online WHERE nick='$ka' AND vieta = 'Arenoje'"));
-$ar_yra = mysql_fetch_assoc(mysql_query("SELECT * FROM online WHERE nick='$ka'"));
-$arenn=mysql_fetch_assoc(mysql_query("SELECT * FROM arena WHERE nick='$nick'"));
-$arennn=mysql_fetch_assoc(mysql_query("SELECT * FROM zaidejai WHERE nick='$arenn[vs]'"));
+$fight = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM online WHERE nick='$ka' AND vieta = 'Arenoje'"));
+$ar_yra = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM online WHERE nick='$ka'"));
+$arenn=mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM arena WHERE nick='$nick'"));
+$arennn=mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM zaidejai WHERE nick='$arenn[vs]'"));
 
 if($id == ''){
 
-if(mysql_num_rows(mysql_query("SELECT * FROM arena WHERE nick='$nick'"))){header("location:?id=kova", true);}
+if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM arena WHERE nick='$nick'"))){header("location:?id=kova", true);}
 echo'<div class="meniuc">';
-		$query = mysql_query("SELECT * FROM arenos_log ORDER BY id DESC LIMIT 5");
-		while($row = mysql_fetch_assoc($query)){
+		$query = mysqli_query($conn,"SELECT * FROM arenos_log ORDER BY id DESC LIMIT 5");
+		while($row = mysqli_fetch_assoc($query)){
 		echo''.$row[msg].'</br>
 		
 		';
@@ -32,9 +32,9 @@ echo'<div class="meniuc">';
 	<img src="img/imgg/arena.png"></div>';
 		echo'</div>	<div class="meniu">
 			  ';
-	$query = mysql_query("SELECT * FROM online WHERE vieta='Arenoje'");
-		while($row = mysql_fetch_assoc($query)){
-$gamer = mysql_fetch_row(mysql_query("SELECT lygis FROM zaidejai WHERE nick='$row[nick]'"));
+	$query = mysqli_query($conn,"SELECT * FROM online WHERE vieta='Arenoje'");
+		while($row = mysqli_fetch_assoc($query)){
+$gamer = mysqli_fetch_row(mysqli_query($conn,"SELECT lygis FROM zaidejai WHERE nick='$row[nick]'"));
 		
 			$idd++;
 			if(apsas($row[nick]) == apsas($nick)){
@@ -79,14 +79,14 @@ if($id == 'pulti'){
 		}
 		
 		
-		elseif(mysql_num_rows(mysql_query("SELECT * FROM arena WHERE nick='$ka'"))== true)
+		elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM arena WHERE nick='$ka'"))== true)
 		{
 			echo'
 				 
 				 Žaidėjas jau kovoja arenoje.
 				  ';
 		}
-elseif(mysql_num_rows(mysql_query("SELECT * FROM arena"))  >0){
+elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM arena"))  >0){
 	
 	
 	echo'
@@ -115,8 +115,8 @@ elseif($apie['gyvybes'] < 1){
 		{
 			
 $kodas = mt_rand(1,99999);
-mysql_query("INSERT INTO arena SET nick='$nick',vs='$ka',idd='$kodas', ejimas='$ka', laikas='".(time()+60)."'");
-mysql_query("INSERT INTO arena SET nick='$ka',vs='$nick',idd='$kodas', ejimas='$ka', laikas='".(time()+60)."'");
+mysqli_query($conn,"INSERT INTO arena SET nick='$nick',vs='$ka',idd='$kodas', ejimas='$ka', laikas='".(time()+60)."'");
+mysqli_query($conn,"INSERT INTO arena SET nick='$ka',vs='$nick',idd='$kodas', ejimas='$ka', laikas='".(time()+60)."'");
 header("LOCATION: ?id=kova", true);
 		}
 		
@@ -131,7 +131,7 @@ if($id == 'kova'){
 	
            
            
-		if(mysql_num_rows(mysql_query("SELECT * FROM arena WHERE nick='$nick'"))== false)
+		if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM arena WHERE nick='$nick'"))== false)
 		{
 	header("Location:arena.php");
 		}
@@ -169,7 +169,7 @@ navigacija($g_n);
 if($id == 'ikirts'){
 	
 
-	if(mysql_num_rows(mysql_query("SELECT * FROM arena WHERE nick='$nick'"))== false)
+	if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM arena WHERE nick='$nick'"))== false)
 		{
 			echo'
              <div class="meniuc">
@@ -209,13 +209,13 @@ else{
 			if($arennn['gyvybes'] - $kirtimas < 1)
 			{
 				$piniu = round($xx['pinigai']*50/100,1);
-					mysql_query("UPDATE zaidejai SET gyvybes=gyvybes - $kirtimas WHERE nick='".$arenn['vs']."'");
+					mysqli_query($conn,"UPDATE zaidejai SET gyvybes=gyvybes - $kirtimas WHERE nick='".$arenn['vs']."'");
 				echo'<div class="meniuc"> <b>Tu laimėjai kovą arenoje, gavai '.$piniu.' pinigų.</b></div>';
 				//$mysqli->query("UPDATE user SET pinigai=pinigai+$piniu WHERE id='$nick_id'");
 				//$mysqli->query("UPDATE user SET pinigai=pinigai-$piniu WHERE nick='$x[vs]'");
 $zin = '<b>'.$nick.'</b> nukovė<b>'.$arenn[vs].'</b> gavo pusė jo pinigų!</b>';		
-    mysql_query("INSERT INTO arenos_log SET msg='$zin'");
-				mysql_query("DELETE FROM arena WHERE idd='$arenn[idd]'");
+    mysqli_query($conn,"INSERT INTO arenos_log SET msg='$zin'");
+				mysqli_query($conn,"DELETE FROM arena WHERE idd='$arenn[idd]'");
 			
 		//	$zin = '<b>'.$inf['nick'].'</b> kerta ir nuėma <b>'.$kirtimas.'</b> gyvybių, priešui lieka <b>'.($xx['gyvybes']-$kirtimas).'</b> gyvybių.';
 		//	if($xx['gynyba'] > $inf['gynyba']){
@@ -223,11 +223,11 @@ $zin = '<b>'.$nick.'</b> nukovė<b>'.$arenn[vs].'</b> gavo pusė jo pinigų!</b>
 		}
 		else{
 		
-	mysql_query("UPDATE zaidejai SET gyvybes=gyvybes - $kirtimas WHERE nick='".$arenn['vs']."'");
+	mysqli_query($conn,"UPDATE zaidejai SET gyvybes=gyvybes - $kirtimas WHERE nick='".$arenn['vs']."'");
 	$zin = '<b>'.$nick.'</b> trenkė <b>'.$arenn[vs].'</b> nuimė <b>'.$kirtimas.'</b> gyvybių, dabar <b>'.$arenn[vs].' ėjimas</b>';		
-    mysql_query("INSERT INTO arenos_log SET msg='$zin'");
-	mysql_query("UPDATE arena SET ejimas='$arenn[vs]' ,laikas='".(time()+30)."' WHERE nick='$nick'");
-	mysql_query("UPDATE arena SET ejimas='$arenn[vs]' ,laikas='".(time()+30)."' WHERE nick='$arenn[vs]'");
+    mysqli_query($conn,"INSERT INTO arenos_log SET msg='$zin'");
+	mysqli_query($conn,"UPDATE arena SET ejimas='$arenn[vs]' ,laikas='".(time()+30)."' WHERE nick='$nick'");
+	mysqli_query($conn,"UPDATE arena SET ejimas='$arenn[vs]' ,laikas='".(time()+30)."' WHERE nick='$arenn[vs]'");
 		}}
 		$g_n[] = array("pagrindinis.php?id=","Pagrindinis","arena.php?id=kova","Kova","Kova prieš $arenn[vs]");
 navigacija($g_n);	

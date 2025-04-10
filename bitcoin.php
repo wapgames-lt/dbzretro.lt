@@ -77,7 +77,7 @@ if($id =='eurai2'){
 	          } else {
 	              echo '<div class="meniuc">Atlikta! nusipirkai '.sk($kiekis).'  <img src="img/bicons/euro.png" /></div>';
 	           
-	            mysql_query("UPDATE zaidejai SET sms_litai=sms_litai +'$kiekis', bitcoin=bitcoin-'$kainn' WHERE nick='$nick' ");
+	            mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai +'$kiekis', bitcoin=bitcoin-'$kainn' WHERE nick='$nick' ");
 			  }
 		
 		$g_n[] = array("pagrindinis.php?id=","Pagrindinis","bitcoin.php","BitCoin", "Eurų pirkimas");
@@ -125,7 +125,7 @@ if($id =='auksiniai2'){
 	          } else {
 	              echo '<div class="meniuc">Atlikta! Nusipirkai '.sk($kiekis).'  <img src="img/bicons/auxo.png" /></div>';
 	           
-	            mysql_query("UPDATE zaidejai SET auksiniai=auksiniai +'$kiekis', bitcoin=bitcoin-'$kainn' WHERE nick='$nick' ");
+	            mysqli_query($conn,"UPDATE zaidejai SET auksiniai=auksiniai +'$kiekis', bitcoin=bitcoin-'$kainn' WHERE nick='$nick' ");
 			  }
 		
 		$g_n[] = array("pagrindinis.php?id=","Pagrindinis","bitcoin.php","BitCoin", "Auksinių pirkimas");
@@ -172,7 +172,7 @@ if($id =='kreditai2'){
 	          } else {
 	              echo '<div class="meniuc">Atlikta! Nusipirkai '.sk($kiekis).'  <img src="img/bicons/credit.png" /></div>';
 	           
-	            mysql_query("UPDATE zaidejai SET kred=kred +'$kiekis', bitcoin=bitcoin-'$kainn' WHERE nick='$nick' ");
+	            mysqli_query($conn,"UPDATE zaidejai SET kred=kred +'$kiekis', bitcoin=bitcoin-'$kainn' WHERE nick='$nick' ");
 			  }
 		
 		$g_n[] = array("pagrindinis.php?id=","Pagrindinis","bitcoin.php","BitCoin", "Kreditų pirkimas");
@@ -219,7 +219,7 @@ if($id =='pinigai2'){
 	          } else {
 	              echo '<div class="meniuc">Atlikta! Nusipirkai '.sk($kiekis).'  <img src="img/bicons/pinigai.png" /></div>';
 	           
-	            mysql_query("UPDATE zaidejai SET litai=litai +'$kiekis', bitcoin=bitcoin-'$kainn' WHERE nick='$nick' ");
+	            mysqli_query($conn,"UPDATE zaidejai SET litai=litai +'$kiekis', bitcoin=bitcoin-'$kainn' WHERE nick='$nick' ");
 			  }
 		
 		$g_n[] = array("pagrindinis.php?id=","Pagrindinis","bitcoin.php","BitCoin", "Pinigų pirkimas");
@@ -262,8 +262,8 @@ else{
 				
 	echo'	<div class="meniuc">Nusipirkai <img src="img/bicons/bitcoin.png" /> gavimą!
 </div> ';		
-mysql_query("UPDATE zaidejai SET bitcoin=bitcoin-'300' WHERE nick='$nick' ");
-	mysql_query("UPDATE zaidejai SET bt='$timxx' WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE zaidejai SET bitcoin=bitcoin-'300' WHERE nick='$nick' ");
+	mysqli_query($conn,"UPDATE zaidejai SET bt='$timxx' WHERE nick='$nick' ");
 
 }
 		}
@@ -326,8 +326,8 @@ elseif($id == "bt2"){
 <img src="img/bicons/bitcoin.png" />
  gavimą kovų lauke! </div>';
 	              $timxx = time()+60*60*24*30*$kiekv;
-	              mysql_query("UPDATE zaidejai SET bt='$timxx' WHERE nick='$nick' ");
-				   mysql_query("UPDATE zaidejai SET bitcoin=bitcoin-'$kainn' WHERE nick='$nick' ");
+	              mysqli_query($conn,"UPDATE zaidejai SET bt='$timxx' WHERE nick='$nick' ");
+				   mysqli_query($conn,"UPDATE zaidejai SET bitcoin=bitcoin-'$kainn' WHERE nick='$nick' ");
 			  }   
 		} }else {
         echo '<div class="meniuc">Paslauga tau dar galios: <b>'.laikas($apie['bitcoin']-time(), 1).'</b></div>';

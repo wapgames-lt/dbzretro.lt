@@ -54,10 +54,10 @@ if($id == ''){
 		if($skaicius == $_SESSION['randas']){
 			echo'<div class="meniuc">Atspėjai!! iškrito '.$_SESSION['randas'].'</div>';
 			$laimejimas = $litaia * 2;
-			mysql_query("UPDATE zaidejai SET sms_litai=sms_litai +'$laimejimas' WHERE nick='$nick'")or die(mysql_error());
+			mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai +'$laimejimas' WHERE nick='$nick'")or die(mysqli_error());
 		}else{
 			echo "<div class='meniuc'>Deja pralaimėjai... iškrito ".$_SESSION['randas']."</div>";
-			mysql_query("UPDATE zaidejai SET sms_litai=sms_litai -'$litaia' WHERE nick='$nick'")or die(mysql_error());
+			mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai -'$litaia' WHERE nick='$nick'")or die(mysqli_error());
 		}
 		 
 	}}}} $g_n[] = array("pagrindinis.php?id=","Pagrindinis","miestas.php?id=","Miestas","casino.php", "Kazino", "Kazino žaidimas");

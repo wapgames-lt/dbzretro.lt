@@ -3,8 +3,8 @@ ob_start();
 include_once("cfg/sql.php");
 
 
-$sk = mysql_num_rows(mysql_query("SELECT * FROM zaidejai"));
-$on_viso = mysql_num_rows(mysql_query("SELECT * FROM zaidejai"));
+$sk = mysqli_num_rows(mysqli_query($conn,"SELECT * FROM zaidejai"));
+$on_viso = mysqli_num_rows(mysqli_query($conn,"SELECT * FROM zaidejai"));
 header("Content-type:image/gif"); 
 $image = imagecreatefromgif("img/auros/1.gif"); 
 

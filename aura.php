@@ -9,7 +9,7 @@ head2();
 baneris();
 topbar();
 
-$auraa = mysql_fetch_assoc(mysql_query("SELECT * FROM auros WHERE nick='$nick'"));
+$auraa = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM auros WHERE nick='$nick'"));
 top('Auros');
 
 
@@ -124,8 +124,8 @@ Jūsų <img src="img/bicons/lvl.gif"> yra per mažas!</div>
 }else{
 	$jex= $apie['jega'] + 300;
 	$gyx= $apie['gynyba'] + 900;
-	mysql_query("UPDATE zaidejai SET jega='$jex', gynyba='$gyx' WHERE nick = '$nick'") or die(mysql_error());
-mysql_query("UPDATE auros SET aura1 = '+' WHERE nick = '$nick'") or die(mysql_error());
+	mysqli_query($conn,"UPDATE zaidejai SET jega='$jex', gynyba='$gyx' WHERE nick = '$nick'") or die(mysqli_error());
+mysqli_query($conn,"UPDATE auros SET aura1 = '+' WHERE nick = '$nick'") or die(mysqli_error());
 echo'
 <div class="meniuc">
 Sėkmingai išmokai!</div>
@@ -148,8 +148,8 @@ Jūsų <img src="img/bicons/lvl.gif"> yra per mažas!</div>
 }else{
 	$jex= $apie['jega'] + 600;
 	$gyx= $apie['gynyba'] +1800;
-	mysql_query("UPDATE zaidejai SET jega='$jex', gynyba='$gyx' WHERE nick = '$nick'") or die(mysql_error());
-mysql_query("UPDATE auros SET aura2 = '+' WHERE nick = '$nick'") or die(mysql_error());
+	mysqli_query($conn,"UPDATE zaidejai SET jega='$jex', gynyba='$gyx' WHERE nick = '$nick'") or die(mysqli_error());
+mysqli_query($conn,"UPDATE auros SET aura2 = '+' WHERE nick = '$nick'") or die(mysqli_error());
 echo'
 <div class="meniuc">
 Sėkmingai išmokai!</div>
@@ -172,8 +172,8 @@ Jūsų <img src="img/bicons/lvl.gif"> yra per mažas!</div>
 }else{
 	$jex= $apie['jega'] + 900;
 	$gyx= $apie['gynyba'] + 2700;
-	mysql_query("UPDATE zaidejai SET jega='$jex', gynyba='$gyx' WHERE nick = '$nick'") or die(mysql_error());
-mysql_query("UPDATE auros SET aura3 = '+' WHERE nick = '$nick'") or die(mysql_error());
+	mysqli_query($conn,"UPDATE zaidejai SET jega='$jex', gynyba='$gyx' WHERE nick = '$nick'") or die(mysqli_error());
+mysqli_query($conn,"UPDATE auros SET aura3 = '+' WHERE nick = '$nick'") or die(mysqli_error());
 echo'
 <div class="meniuc">
 Sėkmingai išmokai!</div>
@@ -197,8 +197,8 @@ Jūsų <img src="img/bicons/lvl.gif"> yra per mažas!</div>
 }else{
 	$jex= $apie['jega'] + 1200;
 	$gyx= $apie['gynyba'] + 3600;
-	mysql_query("UPDATE zaidejai SET jega='$jex', gynyba='$gyx' WHERE nick = '$nick'") or die(mysql_error());
-mysql_query("UPDATE auros SET aura4 = '+' WHERE nick = '$nick'") or die(mysql_error());
+	mysqli_query($conn,"UPDATE zaidejai SET jega='$jex', gynyba='$gyx' WHERE nick = '$nick'") or die(mysqli_error());
+mysqli_query($conn,"UPDATE auros SET aura4 = '+' WHERE nick = '$nick'") or die(mysqli_error());
 echo'
 <div class="meniuc">
 Sėkmingai išmokai!</div>
@@ -221,8 +221,8 @@ Jūsų <img src="img/bicons/lvl.gif"> yra per mažas!</div>
 }else{
 	$jex= $apie['jega'] + 1500;
 	$gyx= $apie['gynyba'] + 4500;
-	mysql_query("UPDATE zaidejai SET jega='$jex', gynyba='$gyx' WHERE nick = '$nick'") or die(mysql_error());
-mysql_query("UPDATE auros SET aura5 = '+' WHERE nick = '$nick'") or die(mysql_error());
+	mysqli_query($conn,"UPDATE zaidejai SET jega='$jex', gynyba='$gyx' WHERE nick = '$nick'") or die(mysqli_error());
+mysqli_query($conn,"UPDATE auros SET aura5 = '+' WHERE nick = '$nick'") or die(mysqli_error());
 echo'
 <div class="meniuc">
 Sėkmingai išmokai!</div>
@@ -245,8 +245,8 @@ Jūsų <img src="img/bicons/lvl.gif"> yra per mažas!</div>
 }else{
 	$jex= $apie['jega'] + 2000;
 	$gyx= $apie['gynyba'] + 6000;
-	mysql_query("UPDATE zaidejai SET jega='$jex', gynyba='$gyx' WHERE nick = '$nick'") or die(mysql_error());
-mysql_query("UPDATE auros SET aura6 = '+' WHERE nick = '$nick'") or die(mysql_error());
+	mysqli_query($conn,"UPDATE zaidejai SET jega='$jex', gynyba='$gyx' WHERE nick = '$nick'") or die(mysqli_error());
+mysqli_query($conn,"UPDATE auros SET aura6 = '+' WHERE nick = '$nick'") or die(mysqli_error());
 echo'
 <div class="meniuc">
 Sėkmingai išmokai!</div>
@@ -269,8 +269,8 @@ Jūsų <img src="img/bicons/lvl.gif"> yra per mažas!</div>
 }else{
 	$jex= $apie['jega'] + 40000;
 	$gyx= $apie['gynyba'] + 120000;
-	mysql_query("UPDATE zaidejai SET jega='$jex', gynyba='$gyx' WHERE nick = '$nick'") or die(mysql_error());
-mysql_query("UPDATE auros SET aura7 = '+' WHERE nick = '$nick'") or die(mysql_error());
+	mysqli_query($conn,"UPDATE zaidejai SET jega='$jex', gynyba='$gyx' WHERE nick = '$nick'") or die(mysqli_error());
+mysqli_query($conn,"UPDATE auros SET aura7 = '+' WHERE nick = '$nick'") or die(mysqli_error());
 echo'
 <div class="meniuc">
 Sėkmingai išmokai!</div>
@@ -293,8 +293,8 @@ Jūsų <img src="img/bicons/lvl.gif"> yra per mažas!</div>
 }else{
 	$jex= $apie['jega'] + 400000;
 	$gyx= $apie['gynyba'] + 1200000;
-	mysql_query("UPDATE zaidejai SET jega='$jex', gynyba='$gyx' WHERE nick = '$nick'") or die(mysql_error());
-mysql_query("UPDATE auros SET aura8 = '+' WHERE nick = '$nick'") or die(mysql_error());
+	mysqli_query($conn,"UPDATE zaidejai SET jega='$jex', gynyba='$gyx' WHERE nick = '$nick'") or die(mysqli_error());
+mysqli_query($conn,"UPDATE auros SET aura8 = '+' WHERE nick = '$nick'") or die(mysqli_error());
 echo'
 <div class="meniuc">
 Sėkmingai išmokai!</div>
@@ -318,8 +318,8 @@ Jūsų <img src="img/bicons/lvl.gif"> yra per mažas!</div>
 }else{
 	$jex= $apie['jega'] + 500000;
 	$gyx= $apie['gynyba'] + 1500000;
-	mysql_query("UPDATE zaidejai SET jega='$jex', gynyba='$gyx' WHERE nick = '$nick'") or die(mysql_error());
-mysql_query("UPDATE auros SET aura9 = '+' WHERE nick = '$nick'") or die(mysql_error());
+	mysqli_query($conn,"UPDATE zaidejai SET jega='$jex', gynyba='$gyx' WHERE nick = '$nick'") or die(mysqli_error());
+mysqli_query($conn,"UPDATE auros SET aura9 = '+' WHERE nick = '$nick'") or die(mysqli_error());
 echo'
 <div class="meniuc">
 Sėkmingai išmokai!</div>
@@ -342,8 +342,8 @@ Jūsų <img src="img/bicons/lvl.gif"> yra per mažas!</div>
 }else{
 	$jex= $apie['jega'] + 700000;
 	$gyx= $apie['gynyba'] + 2100000;
-	mysql_query("UPDATE zaidejai SET jega='$jex', gynyba='$gyx' WHERE nick = '$nick'") or die(mysql_error());
-mysql_query("UPDATE auros SET aura10 = '+' WHERE nick = '$nick'") or die(mysql_error());
+	mysqli_query($conn,"UPDATE zaidejai SET jega='$jex', gynyba='$gyx' WHERE nick = '$nick'") or die(mysqli_error());
+mysqli_query($conn,"UPDATE auros SET aura10 = '+' WHERE nick = '$nick'") or die(mysqli_error());
 echo'
 <div class="meniuc">
 Sėkmingai išmokai!</div>
@@ -366,8 +366,8 @@ Jūsų <img src="img/bicons/lvl.gif"> yra per mažas!</div>
 }else{
 	$jex= $apie['jega'] + 1000000;
 	$gyx= $apie['gynyba']  + 3000000;
-	mysql_query("UPDATE zaidejai SET jega='$jex', gynyba='$gyx' WHERE nick = '$nick'") or die(mysql_error());
-mysql_query("UPDATE auros SET aura11 = '+' WHERE nick = '$nick'") or die(mysql_error());
+	mysqli_query($conn,"UPDATE zaidejai SET jega='$jex', gynyba='$gyx' WHERE nick = '$nick'") or die(mysqli_error());
+mysqli_query($conn,"UPDATE auros SET aura11 = '+' WHERE nick = '$nick'") or die(mysqli_error());
 echo'
 <div class="meniuc">
 Sėkmingai išmokai!</div>
@@ -390,8 +390,8 @@ Jūsų <img src="img/bicons/lvl.gif"> yra per mažas!</div>
 }else{
 	$jex= $apie['jega'] + 1500000;
 	$gyx= $apie['gynyba'] + 4500000;
-	mysql_query("UPDATE zaidejai SET jega='$jex', gynyba='$gyx' WHERE nick = '$nick'") or die(mysql_error());
-mysql_query("UPDATE auros SET aura12 = '+' WHERE nick = '$nick'") or die(mysql_error());
+	mysqli_query($conn,"UPDATE zaidejai SET jega='$jex', gynyba='$gyx' WHERE nick = '$nick'") or die(mysqli_error());
+mysqli_query($conn,"UPDATE auros SET aura12 = '+' WHERE nick = '$nick'") or die(mysqli_error());
 echo'
 <div class="meniuc">
 Sėkmingai išmokai!</div>
@@ -414,8 +414,8 @@ Jūsų <img src="img/bicons/lvl.gif"> yra per mažas!</div>
 }else{
 	$jex= $apie['jega'] + 3000000;
 	$gyx= $apie['gynyba'] + 9000000;
-	mysql_query("UPDATE zaidejai SET jega='$jex', gynyba='$gyx' WHERE nick = '$nick'") or die(mysql_error());
-mysql_query("UPDATE auros SET aura13 = '+' WHERE nick = '$nick'") or die(mysql_error());
+	mysqli_query($conn,"UPDATE zaidejai SET jega='$jex', gynyba='$gyx' WHERE nick = '$nick'") or die(mysqli_error());
+mysqli_query($conn,"UPDATE auros SET aura13 = '+' WHERE nick = '$nick'") or die(mysqli_error());
 echo'
 <div class="meniuc">
 Sėkmingai išmokai!</div>
@@ -438,8 +438,8 @@ Jūsų <img src="img/bicons/lvl.gif"> yra per mažas!</div>
 }else{
 	$jex= $apie['jega'] + 7000000;
 	$gyx= $apie['gynyba'] + 21000000;
-	mysql_query("UPDATE zaidejai SET jega='$jex', gynyba='$gyx' WHERE nick = '$nick'") or die(mysql_error());
-mysql_query("UPDATE auros SET aura14 = '+' WHERE nick = '$nick'") or die(mysql_error());
+	mysqli_query($conn,"UPDATE zaidejai SET jega='$jex', gynyba='$gyx' WHERE nick = '$nick'") or die(mysqli_error());
+mysqli_query($conn,"UPDATE auros SET aura14 = '+' WHERE nick = '$nick'") or die(mysqli_error());
 echo'
 <div class="meniuc">
 Sėkmingai išmokai!</div>

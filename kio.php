@@ -9,8 +9,8 @@ head2();
 baneris();
 
 topbar();
-$misija = mysql_fetch_assoc(mysql_query("SELECT * FROM misijos WHERE nick='$nick'"));
-$inv = mysql_fetch_assoc(mysql_query("SELECT * FROM inv WHERE nick='$nick'"));
+$misija = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM misijos WHERE nick='$nick'"));
+$inv = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM inv WHERE nick='$nick'"));
 if($apie[lygis] < 70){
 		top('Kaju planeta');
 echo'<div class="meniuc"><img src="img/kaioshin.png"></br>Į kajų planeta galima tik nuo 70 lygio !</div>
@@ -93,11 +93,11 @@ top('Neptūno misija');
 		$je = $jega *1.00;
 		$gy = $gynyba *1.00;
 		
-		mysql_query("UPDATE zaidejai SET sms_litai=sms_litai+'100' WHERE nick='$nick'")or die(mysql_error());
-		mysql_query("UPDATE inv SET Pragarovaisius=Pragarovaisius-'400', Stone=Stone-'300', Microshem=Microshem-'300' WHERE nick='$nick'")or die(mysql_error());
+		mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai+'100' WHERE nick='$nick'")or die(mysqli_error());
+		mysqli_query($conn,"UPDATE inv SET Pragarovaisius=Pragarovaisius-'400', Stone=Stone-'300', Microshem=Microshem-'300' WHERE nick='$nick'")or die(mysqli_error());
 
 		///
-mysql_query("UPDATE zaidejai SET neptunom='$timxx' WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE zaidejai SET neptunom='$timxx' WHERE nick='$nick' ");
 ///
 	}
 	}
@@ -143,9 +143,9 @@ top('Vakarų kajaus misija');
 		$je = $jega *1.00;
 		$gy = $gynyba *1.00;
 		
-		mysql_query("UPDATE zaidejai SET sms_litai=sms_litai+'150' WHERE nick='$nick'")or die(mysql_error());
-		mysql_query("UPDATE inv SET Fusionfail=Fusionfail-'400', Soul=Soul-'200', Powerstone=Powerstone-'200' WHERE nick='$nick'")or die(mysql_error());
-	mysql_query("UPDATE zaidejai SET vakarum='$timxx' WHERE nick='$nick' ");
+		mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai+'150' WHERE nick='$nick'")or die(mysqli_error());
+		mysqli_query($conn,"UPDATE inv SET Fusionfail=Fusionfail-'400', Soul=Soul-'200', Powerstone=Powerstone-'200' WHERE nick='$nick'")or die(mysqli_error());
+	mysqli_query($conn,"UPDATE zaidejai SET vakarum='$timxx' WHERE nick='$nick' ");
 ///
 	}	
 	}
@@ -190,9 +190,9 @@ top('Senojo kajaus misija');
 		$je = $jega *1.00;
 		$gy = $gynyba *1.00;
 		
-		mysql_query("UPDATE zaidejai SET sms_litai=sms_litai+'200' WHERE nick='$nick'")or die(mysql_error());
-		mysql_query("UPDATE inv SET Goldstone=Goldstone-'150',Majinsroll=Majinsroll-'250',Soul=Soul-'600' WHERE nick='$nick'")or die(mysql_error());
-		mysql_query("UPDATE zaidejai SET senasism='$timxx' WHERE nick='$nick' ");
+		mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai+'200' WHERE nick='$nick'")or die(mysqli_error());
+		mysqli_query($conn,"UPDATE inv SET Goldstone=Goldstone-'150',Majinsroll=Majinsroll-'250',Soul=Soul-'600' WHERE nick='$nick'")or die(mysqli_error());
+		mysqli_query($conn,"UPDATE zaidejai SET senasism='$timxx' WHERE nick='$nick' ");
 ///
 	}	}
 	elseif($apie['senasism']-time() > 0){
@@ -236,9 +236,9 @@ top('Pietų kajaus misija');
 		$je = $jega *1.00;
 		$gy = $gynyba *1.00;
 		
-		mysql_query("UPDATE zaidejai SET sms_litai=sms_litai+'250' WHERE nick='$nick'")or die(mysql_error());
-		mysql_query("UPDATE inv SET Sayiantail=Sayiantail-'400',Goldstone=Goldstone-'200', Magicball=Magicball-'400'  WHERE nick='$nick'")or die(mysql_error());
-		mysql_query("UPDATE zaidejai SET pietum='$timxx' WHERE nick='$nick' ");
+		mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai+'250' WHERE nick='$nick'")or die(mysqli_error());
+		mysqli_query($conn,"UPDATE inv SET Sayiantail=Sayiantail-'400',Goldstone=Goldstone-'200', Magicball=Magicball-'400'  WHERE nick='$nick'")or die(mysqli_error());
+		mysqli_query($conn,"UPDATE zaidejai SET pietum='$timxx' WHERE nick='$nick' ");
 ///
 	}
 	}
@@ -283,9 +283,9 @@ top('Didžiojo kajaus misija');
 		$je = $jega *1.00;
 		$gy = $gynyba *1.00;
 		
-		mysql_query("UPDATE zaidejai SET sms_litai=sms_litai+'300' WHERE nick='$nick'")or die(mysql_error());
-		mysql_query("UPDATE inv SET Sayiantail=Sayiantail-'400',Majinsroll=Majinsroll-'200',Energystone=Energystone-'400' WHERE nick='$nick'")or die(mysql_error());
-		mysql_query("UPDATE zaidejai SET didysism='$timxx' WHERE nick='$nick' ");
+		mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai+'300' WHERE nick='$nick'")or die(mysqli_error());
+		mysqli_query($conn,"UPDATE inv SET Sayiantail=Sayiantail-'400',Majinsroll=Majinsroll-'200',Energystone=Energystone-'400' WHERE nick='$nick'")or die(mysqli_error());
+		mysqli_query($conn,"UPDATE zaidejai SET didysism='$timxx' WHERE nick='$nick' ");
 ///
 	}	}
 	
@@ -342,11 +342,11 @@ elseif($apie[veikejas] == 'Vegeta Ozaru'){
 		echo'<div class="meniuc"><img src="img/veikejai/Vegeta Ozaru-0.png"><br>Sėkmingai tapai Vegeta Ozaru!   </div>';
 		
 		
-		mysql_query("UPDATE zaidejai SET veikejas='Vegeta Ozaru', trans='0' WHERE nick='$nick'")or die(mysql_error());
-		mysql_query("UPDATE inv SET Stone=Stone-'10000' WHERE nick='$nick'")or die(mysql_error());
+		mysqli_query($conn,"UPDATE zaidejai SET veikejas='Vegeta Ozaru', trans='0' WHERE nick='$nick'")or die(mysqli_error());
+		mysqli_query($conn,"UPDATE inv SET Stone=Stone-'10000' WHERE nick='$nick'")or die(mysqli_error());
 	
-	    mysql_query("DELETE FROM transformacijos WHERE nick='$nick'");
-		mysql_query("UPDATE zaidejai SET ozarum='$timxx', kiek_unikaliu=kiek_unikaliu+'1' WHERE nick='$nick' ");
+	    mysqli_query($conn,"DELETE FROM transformacijos WHERE nick='$nick'");
+		mysqli_query($conn,"UPDATE zaidejai SET ozarum='$timxx', kiek_unikaliu=kiek_unikaliu+'1' WHERE nick='$nick' ");
 	}}
 	
 elseif($apie['ozarum']-time() > 0){
@@ -392,7 +392,7 @@ else{
 	top('Z kardas');
 echo'<div class="meniuc"><img src="img/z-sword.jpg" width="150" height="100" border="1"></div>';
 		echo'<div class="titlec">Ištraukei Z kardą</div>';
-	mysql_query("UPDATE inv SET zkardas='1' WHERE nick='$nick'")
+	mysqli_query($conn,"UPDATE inv SET zkardas='1' WHERE nick='$nick'")
 	;	  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","kio.php", "Kaju planeta", "Z kardas");
 	navigacija($g_n);
 	

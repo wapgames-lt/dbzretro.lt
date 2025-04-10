@@ -6,14 +6,14 @@ echo "<!DOCTYPE html PUBLIC '-//WAPFORUM//DTD XHTML Mobile 1.0//EN' 'http://www.
 include_once 'cfg/sql.php';
 include_once 'cfg/funkcijos.php';
 head2();
-$zaidejai = mysql_fetch_assoc(mysql_query("SELECT * FROM zaidejai WHERE nick='$nick'"));
+$zaidejai = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM zaidejai WHERE nick='$nick'"));
 baneris();
 topbar();
 if($id == "auto_off"){
     online('Auto bosų kirtimas');
    
     echo '<div class="meniuc">Auto bosų kirtimas išjungtas!</div>';
-    mysql_query("UPDATE autoboss SET auto='-', autob='-' WHERE nick='$nick' ");
+    mysqli_query($conn,"UPDATE autoboss SET auto='-', autob='-' WHERE nick='$nick' ");
   $g_n[] = array("pagrindinis.php?id=","Pagrindinis","bosai.php?id=","Bosai", "Bosų auto OFF");
 	navigacija($g_n);
   
@@ -22,7 +22,7 @@ if($id == "auto_on"){
     online('Auto bosų kirtimas');
     
     echo '<div class="meniuc">Auto bosų kirtimas  įjungtas!</div>';
-    mysql_query("UPDATE autoboss SET auto='paprastas', autob='+' WHERE nick='$nick' ");
+    mysqli_query($conn,"UPDATE autoboss SET auto='paprastas', autob='+' WHERE nick='$nick' ");
      $g_n[] = array("pagrindinis.php?id=","Pagrindinis","bosai.php?id=","Bosai", "Bosų auto OFF");
 	navigacija($g_n);
 	
@@ -34,7 +34,7 @@ elseif($id == "pap"){
     online('Auto bosų kirtimas');
  
    header('location:bosai.php');
-    mysql_query("UPDATE autoboss SET auto='paprastas'  WHERE nick='$nick' ");
+    mysqli_query($conn,"UPDATE autoboss SET auto='paprastas'  WHERE nick='$nick' ");
    
 	
 }	          
@@ -116,8 +116,8 @@ echo' <div class="meniuc"><img src=img/imgg/bosai.png border="1" width="180" hei
 
    echo '
     <div class="meniu">';
-    $query = mysql_query("SELECT * FROM boss");
-    while($row = mysql_fetch_assoc($query)){
+    $query = mysqli_query($conn,"SELECT * FROM boss");
+    while($row = mysqli_fetch_assoc($query)){
          if($row['prisikels']-time() > 0){
          echo ' <img src="img/veikejaic/'.$row['img'].'.png" alt="IMG" height="42" width="42"><b> '.$row['name'].' </b>užmuštas, galėsite mušti už <b>'.laikas($row['prisikels']-time(), 1).'</b><br/>';
          } else {
@@ -131,7 +131,7 @@ echo' <div class="meniuc"><img src=img/imgg/bosai.png border="1" width="180" hei
 }
 elseif($id == "inf"){
     online('Boss Village');
-    $boss = mysql_fetch_array(mysql_query("SELECT * FROM boss WHERE id='$go'"));
+    $boss = mysqli_fetch_array(mysqli_query($conn,"SELECT * FROM boss WHERE id='$go'"));
 	top(''.$boss['name'].'');
     $tims = $boss['laikas'];
     if($boss['prisikels']-time() > 0){
@@ -139,7 +139,7 @@ elseif($id == "inf"){
         echo '<div class="meniuc"> <img src="img/veikejaic/'.$boss['img'].'.png" height="42" width="42" /></div>';
         echo '<div class="meniuc"><b>'.$boss['name'].'</b>  užmuštas, galėsite mušti už <b>'.laikas($boss['prisikels']-time(), 1).'</b></div>';
     }
-    elseif(mysql_num_rows(mysql_query("SELECT * FROM boss WHERE id='$go' ")) == 0){
+    elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM boss WHERE id='$go' ")) == 0){
        
         echo '<div class="meniuc">Toks bosas neegzistuoja!</div>';
     }
@@ -175,7 +175,7 @@ Meta po <b>'.sk($boss['crit']).' </b>Kritinio lygio!
 elseif($id == "attack"){
     online('Boss Village');
     $KD = $_GET['KD'];
-    $boss = mysql_fetch_array(mysql_query("SELECT * FROM boss WHERE id='$go'"));
+    $boss = mysqli_fetch_array(mysqli_query($conn,"SELECT * FROM boss WHERE id='$go'"));
 top(''.$boss['name'].'');
     $tims = $boss['laikas'];
     if($boss['prisikels']-time() > 0){
@@ -183,7 +183,7 @@ top(''.$boss['name'].'');
         echo '<div class="meniuc"><img src="img/veikejaic/'.$boss['img'].'.png" height="42" width="42" /></div>';
         echo '<div class="meniuc"><b>'.$boss['name'].'</b> užmuštas, galėsite mušti už <b>'.laikas($boss['prisikels']-time(), 1).'</b></div>';
     }
-    elseif(mysql_num_rows(mysql_query("SELECT * FROM boss WHERE id='$go' ")) == 0){
+    elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM boss WHERE id='$go' ")) == 0){
       
         echo '<div class="meniuc">Toks bosas neegzistuoja!</div>';
     }
@@ -202,7 +202,7 @@ top(''.$boss['name'].'');
       
         echo '<div class="meniuc"><img src="img/veikejaic/'.$boss['img'].'.png" height="42" width="42" /></div>';
         echo '<div class="meniuc">Nebeturi '.$hp.'</div>';
- mysql_query("UPDATE zaidejai SET gyvybes='0' WHERE nick='$nick' ");
+ mysqli_query($conn,"UPDATE zaidejai SET gyvybes='0' WHERE nick='$nick' ");
    }
     else {
       
@@ -548,14 +548,14 @@ $critk= rand(0,$crit);
             $_SESSION['refresh'] = $KD;
             $_SESSION['pad'] = time()+1;
 			$smugelis =$smugis+$smugiss;
-            mysql_query("UPDATE zaidejai SET vveiksmai=vveiksmai+'1', gyvybes=gyvybes-'$hit' WHERE nick='$nick' ");
+            mysqli_query($conn,"UPDATE zaidejai SET vveiksmai=vveiksmai+'1', gyvybes=gyvybes-'$hit' WHERE nick='$nick' ");
             if ($nust['dtop_nick'] !== $nick) {
-                if (mysql_num_rows(mysql_query("SELECT * FROM dtop WHERE nick='$nick'")) > 0) mysql_query("UPDATE dtop SET vksm=vksm+1 WHERE nick='$nick'"); else mysql_query("INSERT INTO dtop SET vksm='1', nick='$nick'");
-                if (mysql_num_rows(mysql_query("SELECT * FROM s_top WHERE nick='$nick'")) > 0) mysql_query("UPDATE s_top SET vksm=vksm+1 WHERE nick='$nick'"); else mysql_query("INSERT INTO s_top SET vksm='1', nick='$nick'");
+                if (mysqli_num_rows(mysqli_query($conn,"SELECT * FROM dtop WHERE nick='$nick'")) > 0) mysqli_query($conn,"UPDATE dtop SET vksm=vksm+1 WHERE nick='$nick'"); else mysqli_query($conn,"INSERT INTO dtop SET vksm='1', nick='$nick'");
+                if (mysqli_num_rows(mysqli_query($conn,"SELECT * FROM s_top WHERE nick='$nick'")) > 0) mysqli_query($conn,"UPDATE s_top SET vksm=vksm+1 WHERE nick='$nick'"); else mysqli_query($conn,"INSERT INTO s_top SET vksm='1', nick='$nick'");
             }
-mysql_query("UPDATE boss SET  kiekzalos=kiekzalos+'$smugelis' WHERE id='$go' ");
+mysqli_query($conn,"UPDATE boss SET  kiekzalos=kiekzalos+'$smugelis' WHERE id='$go' ");
 
-            mysql_query("UPDATE boss SET hp='$bosui_liko' WHERE id='$go' ");
+            mysqli_query($conn,"UPDATE boss SET hp='$bosui_liko' WHERE id='$go' ");
 
             
 			if($apie[kyborgas] !=''){
@@ -618,11 +618,11 @@ Padarei <img src="img/veikejaic/'.$boss['img'].'.png" alt="IMG" height="16" widt
             $expx = $boss['exp'];
      $viptx = $boss['vipt'];
 $critx = $boss['crit'];
-            mysql_query("UPDATE zaidejai SET exp=exp+'$expx', litai=litai+'$zenx', kred=kred+'$krdx', vipticket=vipticket+'$viptx', nukirtobosu=nukirtobosu+'1', critical=critical+'$critx' WHERE nick='$nick' ");
-mysql_query("UPDATE boss SET  kiekzalos=kiekzalos='0', kieknukirsta=kieknukirsta+'1', critp=critp+'$critx' WHERE id='$go' ");
+            mysqli_query($conn,"UPDATE zaidejai SET exp=exp+'$expx', litai=litai+'$zenx', kred=kred+'$krdx', vipticket=vipticket+'$viptx', nukirtobosu=nukirtobosu+'1', critical=critical+'$critx' WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE boss SET  kiekzalos=kiekzalos='0', kieknukirsta=kieknukirsta+'1', critp=critp+'$critx' WHERE id='$go' ");
 
             $time = time()+$boss['laikas'];
-            mysql_query("UPDATE boss SET hp='$boss[max_hp]', prisikels='$time', nukirto='$nick' WHERE id='$go'");
+            mysqli_query($conn,"UPDATE boss SET hp='$boss[max_hp]', prisikels='$time', nukirto='$nick' WHERE id='$go'");
 
             echo '<div class="meniuc"><b>Įtrenkei paskutinį smūgį! </b><br>
 Gavai <b>'.sk($krdx).'</b> '.$kreditaii.' , <b>'.sk($zenx).'</b>'.$pinigaii.'  ir <b> '.sk($viptx).' '.$vipt.'</b> bei <b> '.sk($critx).'</b> Kritinio lygio!<br>

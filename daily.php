@@ -8,8 +8,8 @@ head2();
 baneris();
 		topbar();
 		
-		$row = mysql_fetch_assoc(mysql_query("SELECT * FROM daily WHERE nick='$nick'"));
-$dtop2 = mysql_fetch_assoc(mysql_query("SELECT * FROM dtop WHERE nick='$nick'"));
+		$row = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM daily WHERE nick='$nick'"));
+$dtop2 = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM dtop WHERE nick='$nick'"));
 		if($id == ''){
 			top('Dienos misijos');
 			
@@ -155,7 +155,7 @@ if($id == 'dailym1'){
 	top("Daily pasiekimas");
 	
 	
-	$row = mysql_fetch_assoc(mysql_query("SELECT * FROM daily WHERE nick='$nick'"));
+	$row = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM daily WHERE nick='$nick'"));
 	if($apie[dailyp] < 999){
 				echo"<div class='meniuc'>Nepakanka $dailyp !</div>";
 			
@@ -170,9 +170,9 @@ elseif($row['m'] == '+'){
 			else{
 				
 			echo'<div class="meniuc">Įvygdei pasiekimą sėkmingai! Gavai  <b>100 </b> '.$eurui.' !</div>';
-			mysql_query("UPDATE daily SET m='+' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE daily SET m='+' WHERE nick='$nick'");
 	
-			mysql_query("UPDATE zaidejai SET sms_litai=sms_litai+'100'WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai+'100'WHERE nick='$nick'");
 		
 		
 			}
@@ -186,7 +186,7 @@ if($id == 'dailym2'){
 	top("Daily pasiekimas");
 	
 	
-	$row = mysql_fetch_assoc(mysql_query("SELECT * FROM daily WHERE nick='$nick'"));
+	$row = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM daily WHERE nick='$nick'"));
 	if($apie[dailyp] < 1999){
 				echo"<div class='meniuc'>Nepakanka $dailyp !</div>";
 			
@@ -201,9 +201,9 @@ elseif($row['m2'] == '+'){
 			else{
 				
 			echo'<div class="meniuc">Įvygdei pasiekimą sėkmingai! Gavai  <b>150 </b> '.$eurui.' !</div>';
-			mysql_query("UPDATE daily SET m2='+' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE daily SET m2='+' WHERE nick='$nick'");
 	
-			mysql_query("UPDATE zaidejai SET sms_litai=sms_litai+'150'WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai+'150'WHERE nick='$nick'");
 		
 		
 			}
@@ -217,7 +217,7 @@ if($id == 'dailym3'){
 	top("Daily pasiekimas");
 	
 	
-	$row = mysql_fetch_assoc(mysql_query("SELECT * FROM daily WHERE nick='$nick'"));
+	$row = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM daily WHERE nick='$nick'"));
 	if($apie[dailyp] < 3999){
 				echo"<div class='meniuc'>Nepakanka $dailyp !</div>";
 			
@@ -232,9 +232,9 @@ elseif($row['m3'] == '+'){
 			else{
 				
 			echo'<div class="meniuc">Įvygdei pasiekimą sėkmingai! Gavai  <b>200 </b> '.$eurui.' !</div>';
-			mysql_query("UPDATE daily SET m3='+' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE daily SET m3='+' WHERE nick='$nick'");
 	
-			mysql_query("UPDATE zaidejai SET sms_litai=sms_litai+'200'WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai+'200'WHERE nick='$nick'");
 		
 		
 			}
@@ -248,7 +248,7 @@ if($id == 'dailym4'){
 	top("Daily pasiekimas");
 	
 	
-	$row = mysql_fetch_assoc(mysql_query("SELECT * FROM daily WHERE nick='$nick'"));
+	$row = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM daily WHERE nick='$nick'"));
 	if($apie[dailyp] < 6999){
 				echo"<div class='meniuc'>Nepakanka $dailyp !</div>";
 			
@@ -263,9 +263,9 @@ elseif($row['m4'] == '+'){
 			else{
 				
 			echo'<div class="meniuc">Įvygdei pasiekimą sėkmingai! Gavai  <b>300 </b> '.$eurui.' !</div>';
-			mysql_query("UPDATE daily SET m4='+' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE daily SET m4='+' WHERE nick='$nick'");
 	
-			mysql_query("UPDATE zaidejai SET sms_litai=sms_litai+'300'WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai+'300'WHERE nick='$nick'");
 		
 		
 			}
@@ -279,7 +279,7 @@ if($id == 'dailym5'){
 	top("Daily pasiekimas");
 	
 	
-	$row = mysql_fetch_assoc(mysql_query("SELECT * FROM daily WHERE nick='$nick'"));
+	$row = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM daily WHERE nick='$nick'"));
 	if($apie[dailyp] < 11999){
 				echo"<div class='meniuc'>Nepakanka $dailyp !</div>";
 			
@@ -294,9 +294,9 @@ elseif($row['m5'] == '+'){
 			else{
 				
 			echo'<div class="meniuc">Įvygdei pasiekimą sėkmingai! Gavai  <b>500 </b> '.$eurui.' !</div>';
-			mysql_query("UPDATE daily SET m5='+' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE daily SET m5='+' WHERE nick='$nick'");
 	
-			mysql_query("UPDATE zaidejai SET sms_litai=sms_litai+'500'WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai+'500'WHERE nick='$nick'");
 		
 		
 			}
@@ -312,7 +312,7 @@ if($id == 'aukojupin'){
 	top("Daily misija");
 	
 	
-	$row = mysql_fetch_assoc(mysql_query("SELECT * FROM daily WHERE nick='$nick'"));
+	$row = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM daily WHERE nick='$nick'"));
 	if($apie[litai] < 999999999){
 				echo"<div class='meniuc'>Nepakanka '.$pinigaii.' !</div>";
 			
@@ -327,9 +327,9 @@ elseif($row['snd4'] == '+'){
 			else{
 				
 			echo'<div class="meniuc">Įvygdei misiją sėkmingai, gavai  <b>100 </b> '.$dailyp.' !</div>';
-			mysql_query("UPDATE daily SET snd4='+' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE daily SET snd4='+' WHERE nick='$nick'");
 	
-			mysql_query("UPDATE zaidejai SET dailyp=dailyp+'100', litai=litai-'1000000000' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE zaidejai SET dailyp=dailyp+'100', litai=litai-'1000000000' WHERE nick='$nick'");
 		
 		
 			}
@@ -342,7 +342,7 @@ navigacija($g_n);
 if($id == 'turiueur'){
 	top("Daily misija");
 	
-			$row = mysql_fetch_assoc(mysql_query("SELECT * FROM daily WHERE nick='$nick'"));
+			$row = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM daily WHERE nick='$nick'"));
 	
 	if($apie[sms_litai] < 19){
 				echo"<div class='meniuc'>Nepakanka '.$eurui.' !</div>";
@@ -358,8 +358,8 @@ elseif($row[snd] == '+'){
 			echo'<div class="meniuc">Įvygdei sėkmingai, gavai  <b>50</b> '.$dailyp.'!</div>';
 			
 	
-			mysql_query("UPDATE zaidejai SET dailyp=dailyp+'50', sms_litai=sms_litai-'20' WHERE nick='$nick'");
-		mysql_query("UPDATE daily SET snd='+' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE zaidejai SET dailyp=dailyp+'50', sms_litai=sms_litai-'20' WHERE nick='$nick'");
+		mysqli_query($conn,"UPDATE daily SET snd='+' WHERE nick='$nick'");
 		
 			}
 	$g_n[] = array("pagrindinis.php?id=","Pagrindinis","daily.php?id=","Daily Misijos","Daily misija");
@@ -384,10 +384,10 @@ elseif($row[snd3] == '+'){
 			else{
 				
 			echo'<div class="meniuc">Įvygdei sėkmingai, gavai  <b>30 </b>'.$dailyp.'  !</div>';
-			mysql_query("UPDATE daily SET snd3='+' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE daily SET snd3='+' WHERE nick='$nick'");
 	
-			mysql_query("UPDATE zaidejai SET dailyp=dailyp+'30' WHERE nick='$nick'");
-		mysql_query("UPDATE inv SET Majinsroll=Majinsroll-'500' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE zaidejai SET dailyp=dailyp+'30' WHERE nick='$nick'");
+		mysqli_query($conn,"UPDATE inv SET Majinsroll=Majinsroll-'500' WHERE nick='$nick'");
 		
 			}
 	$g_n[] = array("pagrindinis.php?id=","Pagrindinis","daily.php?id=","DAILY MISIJOS","Daily misija");
@@ -411,10 +411,10 @@ elseif($row[snd5] == '+'){
 			else{
 				
 			echo'<div class="meniuc">Įvygdei sėkmingai, gavai  <b>30 </b> '.$dailyp.' !</div>';
-			mysql_query("UPDATE daily SET snd5='+' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE daily SET snd5='+' WHERE nick='$nick'");
 	
-			mysql_query("UPDATE zaidejai SET dailyp=dailyp+'30' WHERE nick='$nick'");
-		mysql_query("UPDATE inv SET Microshem=Microshem-'500' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE zaidejai SET dailyp=dailyp+'30' WHERE nick='$nick'");
+		mysqli_query($conn,"UPDATE inv SET Microshem=Microshem-'500' WHERE nick='$nick'");
 		
 			}
 	$g_n[] = array("pagrindinis.php?id=","Pagrindinis","daily.php?id=","DAILY MISIJOS","Daily misija");
@@ -438,9 +438,9 @@ elseif($row[snd2] == '+'){
 			else{
 				
 			echo'<div class="meniuc">Įvygdei sėkmingai, gavai  <b>40 </b>'.$dailyp.' !</div>';
-			mysql_query("UPDATE daily SET snd2='+' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE daily SET snd2='+' WHERE nick='$nick'");
 	
-			mysql_query("UPDATE zaidejai SET dailyp=dailyp+'40' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE zaidejai SET dailyp=dailyp+'40' WHERE nick='$nick'");
 		
 			}
 	$g_n[] = array("pagrindinis.php?id=","Pagrindinis","daily.php?id=","DAILY MISIJOS","Daily misija");
@@ -453,7 +453,7 @@ if($id == 'aukojupin2'){
 	top("Daily misija");
 	
 	
-	$row = mysql_fetch_assoc(mysql_query("SELECT * FROM daily WHERE nick='$nick'"));
+	$row = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM daily WHERE nick='$nick'"));
 	if($apie[litai] < 4999999999){
 				echo"<div class='meniuc'>Nepakanka '.$pinigaii.' !</div>";
 			
@@ -471,9 +471,9 @@ elseif($row['2snd4'] == '+'){
 			else{
 				
 			echo'<div class="meniuc">Įvygdei misiją sėkmingai, gavai  <b>200 </b> '.$dailyp.' !</div>';
-			mysql_query("UPDATE daily SET 2snd4='+' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE daily SET 2snd4='+' WHERE nick='$nick'");
 	
-			mysql_query("UPDATE zaidejai SET dailyp=dailyp+'200', litai=litai-'5000000000' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE zaidejai SET dailyp=dailyp+'200', litai=litai-'5000000000' WHERE nick='$nick'");
 		
 		
 			}
@@ -486,7 +486,7 @@ navigacija($g_n);
 if($id == 'turiueur2'){
 	top("Daily misija");
 	
-			$row = mysql_fetch_assoc(mysql_query("SELECT * FROM daily WHERE nick='$nick'"));
+			$row = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM daily WHERE nick='$nick'"));
 	
 	if($apie[sms_litai] < 49){
 				echo"<div class='meniuc'>Nepakanka '.$eurui.' !</div>";
@@ -506,8 +506,8 @@ elseif($row['2snd'] == '+'){
 			echo'<div class="meniuc">Įvygdei sėkmingai, gavai  <b>100</b> '.$dailyp.'!</div>';
 			
 	
-			mysql_query("UPDATE zaidejai SET dailyp=dailyp+'100', sms_litai=sms_litai-'50' WHERE nick='$nick'");
-		mysql_query("UPDATE daily SET 2snd='+' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE zaidejai SET dailyp=dailyp+'100', sms_litai=sms_litai-'50' WHERE nick='$nick'");
+		mysqli_query($conn,"UPDATE daily SET 2snd='+' WHERE nick='$nick'");
 		
 			}
 	$g_n[] = array("pagrindinis.php?id=","Pagrindinis","daily.php?id=","Daily Misijos","Daily misija");
@@ -536,10 +536,10 @@ elseif($row['2snd3'] == '+'){
 			else{
 				
 			echo'<div class="meniuc">Įvygdei sėkmingai, gavai  <b>70 </b>'.$dailyp.'  !</div>';
-			mysql_query("UPDATE daily SET 2snd3='+' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE daily SET 2snd3='+' WHERE nick='$nick'");
 	
-			mysql_query("UPDATE zaidejai SET dailyp=dailyp+'70' WHERE nick='$nick'");
-		mysql_query("UPDATE inv SET Majinsroll=Majinsroll-'1000' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE zaidejai SET dailyp=dailyp+'70' WHERE nick='$nick'");
+		mysqli_query($conn,"UPDATE inv SET Majinsroll=Majinsroll-'1000' WHERE nick='$nick'");
 		
 			}
 	$g_n[] = array("pagrindinis.php?id=","Pagrindinis","daily.php?id=","DAILY MISIJOS","Daily misija");
@@ -567,10 +567,10 @@ elseif($row['2snd5'] == '+'){
 			else{
 				
 			echo'<div class="meniuc">Įvygdei sėkmingai, gavai  <b>70 </b> '.$dailyp.' !</div>';
-			mysql_query("UPDATE daily SET 2snd5='+' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE daily SET 2snd5='+' WHERE nick='$nick'");
 	
-			mysql_query("UPDATE zaidejai SET dailyp=dailyp+'70' WHERE nick='$nick'");
-		mysql_query("UPDATE inv SET Microshem=Microshem-'1000' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE zaidejai SET dailyp=dailyp+'70' WHERE nick='$nick'");
+		mysqli_query($conn,"UPDATE inv SET Microshem=Microshem-'1000' WHERE nick='$nick'");
 		
 			}
 	$g_n[] = array("pagrindinis.php?id=","Pagrindinis","daily.php?id=","DAILY MISIJOS","Daily misija");
@@ -598,9 +598,9 @@ elseif($row['2snd2'] == '+'){
 			else{
 				
 			echo'<div class="meniuc">Įvygdei sėkmingai, gavai  <b>90 </b>'.$dailyp.' !</div>';
-			mysql_query("UPDATE daily SET 2snd2='+' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE daily SET 2snd2='+' WHERE nick='$nick'");
 	
-			mysql_query("UPDATE zaidejai SET dailyp=dailyp+'90' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE zaidejai SET dailyp=dailyp+'90' WHERE nick='$nick'");
 		
 			}
 	$g_n[] = array("pagrindinis.php?id=","Pagrindinis","daily.php?id=","DAILY MISIJOS","Daily misija");
@@ -650,11 +650,11 @@ else{
 				
 	echo'	<div class="meniuc"><img src="img/veikejai/Dyspo-0.png"></div><div class="meniuc"> Nusipirkai už <b>50000 </b> <b><font color="red">'.$dailyp.'</b></font>
  </div> ';		
-mysql_query("UPDATE zaidejai SET  dailyp=dailyp-'50000' WHERE nick='$nick'");
-	mysql_query("UPDATE zaidejai SET veikejas='Dyspo', trans='0', sms_litai=sms_litai-'0' , kiek_unikaliu=kiek_unikaliu+'1' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET  dailyp=dailyp-'50000' WHERE nick='$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET veikejas='Dyspo', trans='0', sms_litai=sms_litai-'0' , kiek_unikaliu=kiek_unikaliu+'1' WHERE nick='$nick'");
 
 
-mysql_query("UPDATE zaidejai SET dyspob='$timxx' WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE zaidejai SET dyspob='$timxx' WHERE nick='$nick' ");
 }}
 
 

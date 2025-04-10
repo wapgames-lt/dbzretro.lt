@@ -31,20 +31,23 @@ Atgal</a>
 
 if ($id == "login") {
 
-    top(Prisijungimas);
-//header('Location:pagrindinis.php');
-    $vardas1 = post($_POST['vardas']);
-    $vardas = strtolower($vardas1);
+    top('Prisijungimas');
 
-    $pass = post($_POST['pass']);
-
+    $vardas1 = isset($_POST['vardas']) ? post($_POST['vardas']) : '';
+    $vardas = strtolower(trim($vardas1));
+    $pass = isset($_POST['pass']) ? post($_POST['pass']) : '';
 
     if (empty($vardas)) {
-        echo '<div class="meniuc"><img src="img/bicons/dislike.png" />
-Neįvestas žaidėjo vardas!<img src="img/bicons/dislike.png" /><br>
-<div class="lin"></div>
-<a href="?id=log"><img src="img/bicons/atgal.png" />Atgal</a>
-</div>';
+        echo '
+        <div class="meniuc">
+            <img src="img/bicons/dislike.png" />
+            Neįvestas žaidėjo vardas!
+            <img src="img/bicons/dislike.png" /><br>
+            <div class="lin"></div>
+            <a href="?id=log">
+                <img src="img/bicons/atgal.png" />Atgal
+            </a>
+        </div>';
 
         $g_n[] = array("index.php", "Pagrindinis", "Prisijungimas");
         navigacija($g_n);
@@ -60,7 +63,7 @@ Neįvestas slaptažodis!<img src="img/bicons/dislike.png" /><br>
         $g_n[] = array("index.php", "Pagrindinis", "Prisijungimas");
         navigacija($g_n);
 
-    } elseif (mysql_num_rows(mysql_query("SELECT * FROM zaidejai WHERE nick='$vardas' AND pass='$pass'")) == 0) {
+    } elseif (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM zaidejai WHERE nick='" . mysqli_real_escape_string($conn, $vardas) . "' AND pass='" . mysqli_real_escape_string($conn, $pass) . "'")) == 0) {
         echo '<div class="meniuc"><img src="img/bicons/dislike.png" />
 Blogas žaidėjo vardas arba slaptažodis!<img src="img/bicons/dislike.png" /><br>
 <div class="lin"></div>
@@ -73,7 +76,7 @@ Blogas žaidėjo vardas arba slaptažodis!<img src="img/bicons/dislike.png" /><b
 
     } else {
         echo '<div class="meniuc"><div class="content text-center">' . smile('Sveikas, <b>' . $vardas . '</b> prisijungus prie žaidimo!</br>Gerai praleikite laiką! <img src="img/bicons/log.png" />   ') . '</div>';
-        mysql_query("UPDATE zaidejai SET ip='$ipas' WHERE nick='$vardas'") or die (mysql_error());
+        mysqli_query($conn,"UPDATE zaidejai SET ip='$ipas' WHERE nick='$vardas'") or die (mysqli_error());
         setcookie('vardas', $vardas, time() + 3600 * 12 * 2);
         setcookie('pass', $pass, time() + 3600 * 12 * 2);
 
@@ -92,12 +95,12 @@ Atgal</a></div>
 ';
         if ($vardas !== 'testas1') {
             $message = $vardas . ' prisijungė prie žaidimo!';
-            $isMessageExist = mysql_num_rows(mysql_query("SELECT * FROM pokalbiai WHERE sms = '$message' ORDER BY data DESC LIMIT 1"));
+            $isMessageExist = mysqli_num_rows(mysqli_query($conn,"SELECT * FROM pokalbiai WHERE sms = '$message' ORDER BY data DESC LIMIT 1"));
 
             if (!$isMessageExist) {
 
                 $expiresAt = date('Y-m-d H:i:s', strtotime(' + 5 minutes'));
-                mysql_query("INSERT INTO pokalbiai SET nick='SISTEMA', sms='$message', data='" . time() . "', expired_at='$expiresAt'");
+                mysqli_query($conn,"INSERT INTO pokalbiai SET nick='SISTEMA', sms='$message', data='" . time() . "', expired_at='$expiresAt'");
             }
         }
     }
@@ -124,7 +127,7 @@ El. Paštas</b><br/><input type="text" name="email"/placeholder="Įveskite savo 
 
 
     $pnick = isset($_POST['pnick']) ? preg_replace("/[^a-z0-9_]/", "", $_POST['pnick']) : null;
-    $email = mysql_real_escape_string(stripslashes($_POST['email']));
+    $email = mysqli_real_escape_string(stripslashes($_POST['email']));
 
     if (empty($pnick) or empty($email)) {
         echo '<div class="meniuc"><img src="img/bicons/dislike.png" />
@@ -132,10 +135,10 @@ Paliktas tuščias laukelis <img src="img/bicons/dislike.png" /><br>
 <div class="lin"></div>
 <a href="?id=forget"><img src="img/bicons/atgal.png" />Atgal</a>
 </div>';
-    } elseif (mysql_num_rows(mysql_query("SELECT * FROM zaidejai WHERE nick='$pnick' AND email='$email'")) < 1) {
+    } elseif (mysqli_num_rows(mysqli_query($conn,"SELECT * FROM zaidejai WHERE nick='$pnick' AND email='$email'")) < 1) {
         echo '<div class="meniuc">Blogai įvestas slapyvardis arba El. Paštas.</div>';
     } else {
-        $getinf = mysql_fetch_assoc(mysql_query("SELECT * FROM zaidejai WHERE nick='$pnick'"));
+        $getinf = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM zaidejai WHERE nick='$pnick'"));
         $kam = $email;
         $titlas = 'Slaptažodžio priminimas';
         $messa = 'Tavo slaptažodis yra ' . $getinf['pass'] . ' Pagarbiai testas1 :)';

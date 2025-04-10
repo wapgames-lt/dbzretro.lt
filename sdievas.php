@@ -36,8 +36,8 @@ if ($id == "sdball") {
             echo '<div class="meniuc">';
             if ($ka == 1) {
                 echo 'Jūs išsikeitėte 700 drakono rutulių į <b>Super drakono rutulį</b>! </div>';
-                mysql_query("UPDATE inv  SET sdball=sdball+'1' WHERE nick='$nick' ");
-                mysql_query("UPDATE inv SET dball=dball-'700' WHERE nick='$nick'") or die(mysql_error());
+                mysqli_query($conn,"UPDATE inv  SET sdball=sdball+'1' WHERE nick='$nick' ");
+                mysqli_query($conn,"UPDATE inv SET dball=dball-'700' WHERE nick='$nick'") or die(mysqli_error());
             } else {
                 echo 'Sveikas ' . statusas($nick) . '. Keiskite savo turimus rutulius į Super Rutulius!</div>';
                 echo '<div class="title">
@@ -74,37 +74,37 @@ if ($id == "sdball") {
             echo '<div class="meniuc">';
             if ($co == 1) {
                 echo 'Jūsų noras išpildytas! Gavai 5000  <b>AD17</Bb></div>';
-                mysql_query("UPDATE inv SET ad17=ad17+'5000' WHERE nick='$nick' ");
-                mysql_query("UPDATE inv SET sdball=sdball-'7' WHERE nick='$nick'") or die(mysql_error());
+                mysqli_query($conn,"UPDATE inv SET ad17=ad17+'5000' WHERE nick='$nick' ");
+                mysqli_query($conn,"UPDATE inv SET sdball=sdball-'7' WHERE nick='$nick'") or die(mysqli_error());
             }
             if ($co == 2) {
                 echo 'Jūsų noras išpildytas! Gavai 50 <b>Vegeta Cash</Bb></div>';
-                mysql_query("UPDATE zaidejai SET botas=botas+'50' WHERE nick='$nick' ");
-                mysql_query("UPDATE inv SET sdball=sdball-'7' WHERE nick='$nick'") or die(mysql_error());
+                mysqli_query($conn,"UPDATE zaidejai SET botas=botas+'50' WHERE nick='$nick' ");
+                mysqli_query($conn,"UPDATE inv SET sdball=sdball-'7' WHERE nick='$nick'") or die(mysqli_error());
             }
             if ($co == 3) {
                 echo 'Jūsų noras išpildytas! Gavai 1000000000 <b>Vip Ticket</Bb></div>';
-                mysql_query("UPDATE zaidejai SET vipticket=vipticket+'1000000000' WHERE nick='$nick' ");
-                mysql_query("UPDATE inv SET sdball=sdball-'7' WHERE nick='$nick'") or die(mysql_error());
+                mysqli_query($conn,"UPDATE zaidejai SET vipticket=vipticket+'1000000000' WHERE nick='$nick' ");
+                mysqli_query($conn,"UPDATE inv SET sdball=sdball-'7' WHERE nick='$nick'") or die(mysqli_error());
             }
             if ($co == 4) {
                 echo 'Jūsų noras išpildytas! Gavai 1000000000000 <b>Pinigų</Bb></div>';
-                mysql_query("UPDATE zaidejai SET litai=litai+'1000000000000' WHERE nick='$nick' ");
-                mysql_query("UPDATE inv SET sdball=sdball-'7' WHERE nick='$nick'") or die(mysql_error());
+                mysqli_query($conn,"UPDATE zaidejai SET litai=litai+'1000000000000' WHERE nick='$nick' ");
+                mysqli_query($conn,"UPDATE inv SET sdball=sdball-'7' WHERE nick='$nick'") or die(mysqli_error());
             }
             $timxx = time() + 60 * 60 * 24 * 1000;
             if ($co == 5) {
                 echo 'Jūsų noras išpildytas! Gavai <b>Gokas Ultra Instinct</Bb></div>';
-                mysql_query("UPDATE zaidejai SET veikejas='Gokas Ultra Instinct', trans='0', kiek_unikaliu=kiek_unikaliu+'1' WHERE nick='$nick'");
-                mysql_query("UPDATE zaidejai SET gokasultrab='$timxx' WHERE nick='$nick' ");
-                mysql_query("UPDATE inv SET sdball=sdball-'7' WHERE nick='$nick'") or die(mysql_error());
+                mysqli_query($conn,"UPDATE zaidejai SET veikejas='Gokas Ultra Instinct', trans='0', kiek_unikaliu=kiek_unikaliu+'1' WHERE nick='$nick'");
+                mysqli_query($conn,"UPDATE zaidejai SET gokasultrab='$timxx' WHERE nick='$nick' ");
+                mysqli_query($conn,"UPDATE inv SET sdball=sdball-'7' WHERE nick='$nick'") or die(mysqli_error());
             }
             if ($co == 6 && $apie[vip] - time() < 0) {
                 echo 'Jūsų noras išpildytas! Gavai <b>VIP privilegiją 14 dienų</b></div>';
                 $vip_time = time() + 3600 * 24 * 14;
 
-                mysql_query("UPDATE zaidejai SET vip='$vip_time' WHERE nick='$nick'");
-                mysql_query("UPDATE inv SET sdball=sdball-'7' WHERE nick='$nick'") or die(mysql_error());
+                mysqli_query($conn,"UPDATE zaidejai SET vip='$vip_time' WHERE nick='$nick'");
+                mysqli_query($conn,"UPDATE inv SET sdball=sdball-'7' WHERE nick='$nick'") or die(mysqli_error());
             } else {
                 echo 'Sveikas ' . statusas($nick) . '. Koki norą nori kad išpildyčiau?</div>';
                 echo '<div class="title">

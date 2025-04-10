@@ -51,7 +51,7 @@ $auksiniu=800;
 Kintamuosius padariau tam, kad jei kas netiks pakeistum. :D
 */
 
-mysql_query("UPDATE zaidejai SET kaledine_dovana='+', jega=jega + $jega, gynyba=gynyba+$ginyba, sms_litai=sms_litai+$litu, auksiniai=auksiniai+$auksiniu WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET kaledine_dovana='+', jega=jega + $jega, gynyba=gynyba+$ginyba, sms_litai=sms_litai+$litu, auksiniai=auksiniai+$auksiniu WHERE nick='$nick'");
 
 $g_n[] = array("pagrindinis.php?id=","Pagrindinis", "miestas.php", "Miestas", "Dovanos pasiimimas");
 navigacija($g_n);

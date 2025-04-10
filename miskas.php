@@ -115,10 +115,10 @@ echo'<div class="meniuc"><img src="img/zvejyba.png" border="1"></div>';
 echo'<div class="up">1 LVL Žuvų Gaudymas</div>';
             echo'<div class="meniuc">Viso žuvų: '. $inv['Zuvis'] .' </div>';
 echo'<div class="meniuc">Pagavai<b> '.$randas2.' </b><img src="img/bicons/zuvis.png"><br>Gavai +<font color="red">'.$randas3.'</font><b> Žuvų gaudymo lygio</b></div>';
-	mysql_query("UPDATE inv SET Zuvis=Zuvis+'$randas2' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET zvejybosr=zvejybosr+'$randas3' WHERE nick='$nick'");
-            if (mysql_num_rows(mysql_query("SELECT * FROM dtop WHERE nick='$nick'")) > 0) mysql_query("UPDATE dtop SET vksm=vksm+1 WHERE nick='$nick'"); else mysql_query("INSERT INTO dtop SET vksm='1', nick='$nick'");
-            if (mysql_num_rows(mysql_query("SELECT * FROM s_top WHERE nick='$nick'")) > 0) mysql_query("UPDATE s_top SET vksm=vksm+1 WHERE nick='$nick'"); else mysql_query("INSERT INTO s_top SET vksm='1', nick='$nick'");
+	mysqli_query($conn,"UPDATE inv SET Zuvis=Zuvis+'$randas2' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET zvejybosr=zvejybosr+'$randas3' WHERE nick='$nick'");
+            if (mysqli_num_rows(mysqli_query($conn,"SELECT * FROM dtop WHERE nick='$nick'")) > 0) mysqli_query($conn,"UPDATE dtop SET vksm=vksm+1 WHERE nick='$nick'"); else mysqli_query($conn,"INSERT INTO dtop SET vksm='1', nick='$nick'");
+            if (mysqli_num_rows(mysqli_query($conn,"SELECT * FROM s_top WHERE nick='$nick'")) > 0) mysqli_query($conn,"UPDATE s_top SET vksm=vksm+1 WHERE nick='$nick'"); else mysqli_query($conn,"INSERT INTO s_top SET vksm='1', nick='$nick'");
 		}
 	
 		echo'<div class="meniuc"><a href="?id=zvej1&kodas='.$kodas.'">Gaudyti toliau</a></div>';
@@ -164,10 +164,10 @@ echo'<div class="meniuc"><img src="img/zvejyba.png" border="1"></div>';
 echo'<div class="up">100 LVL Žuvų Gaudymas</div>';
             echo'<div class="meniuc">Viso žuvų: '. $inv['Zuvis'] .' </div>';
 echo'<div class="meniuc">Pagavai<b> '.$randas2.' </b><img src="img/bicons/zuvis.png"><br>Gavai +<font color="red">'.$randas3.'</font><b> Žuvų gaudymo lygio</b></div>';
-	mysql_query("UPDATE inv SET Zuvis=Zuvis+'$randas2' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET zvejybosr=zvejybosr+'$randas3' WHERE nick='$nick'");
-            if (mysql_num_rows(mysql_query("SELECT * FROM dtop WHERE nick='$nick'")) > 0) mysql_query("UPDATE dtop SET vksm=vksm+1 WHERE nick='$nick'"); else mysql_query("INSERT INTO dtop SET vksm='1', nick='$nick'");
-            if (mysql_num_rows(mysql_query("SELECT * FROM s_top WHERE nick='$nick'")) > 0) mysql_query("UPDATE s_top SET vksm=vksm+1 WHERE nick='$nick'"); else mysql_query("INSERT INTO s_top SET vksm='1', nick='$nick'");
+	mysqli_query($conn,"UPDATE inv SET Zuvis=Zuvis+'$randas2' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET zvejybosr=zvejybosr+'$randas3' WHERE nick='$nick'");
+            if (mysqli_num_rows(mysqli_query($conn,"SELECT * FROM dtop WHERE nick='$nick'")) > 0) mysqli_query($conn,"UPDATE dtop SET vksm=vksm+1 WHERE nick='$nick'"); else mysqli_query($conn,"INSERT INTO dtop SET vksm='1', nick='$nick'");
+            if (mysqli_num_rows(mysqli_query($conn,"SELECT * FROM s_top WHERE nick='$nick'")) > 0) mysqli_query($conn,"UPDATE s_top SET vksm=vksm+1 WHERE nick='$nick'"); else mysqli_query($conn,"INSERT INTO s_top SET vksm='1', nick='$nick'");
 		}
 	
 		echo'<div class="meniuc"><a href="?id=zvej2&kodas='.$kodas.'">Gaudyti toliau</a></div>';
@@ -213,10 +213,10 @@ echo'<div class="meniuc"><img src="img/zvejyba.png" border="1"></div>';
 echo'<div class="up">300 LVL Žuvų Gaudymas</div>';
             echo'<div class="meniuc">Viso žuvų: '. $inv['Zuvis'] .' </div>';
 echo'<div class="meniuc">Pagavai<b> '.$randas2.' </b><img src="img/bicons/zuvis.png"><br>Gavai +<font color="red">'.$randas3.'</font><b> Žuvų gaudymo lygio</b></div>';
-	mysql_query("UPDATE inv SET Zuvis=Zuvis+'$randas2' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET zvejybosr=zvejybosr+'$randas3' WHERE nick='$nick'");
-            if (mysql_num_rows(mysql_query("SELECT * FROM dtop WHERE nick='$nick'")) > 0) mysql_query("UPDATE dtop SET vksm=vksm+1 WHERE nick='$nick'"); else mysql_query("INSERT INTO dtop SET vksm='1', nick='$nick'");
-            if (mysql_num_rows(mysql_query("SELECT * FROM s_top WHERE nick='$nick'")) > 0) mysql_query("UPDATE s_top SET vksm=vksm+1 WHERE nick='$nick'"); else mysql_query("INSERT INTO s_top SET vksm='1', nick='$nick'");
+	mysqli_query($conn,"UPDATE inv SET Zuvis=Zuvis+'$randas2' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET zvejybosr=zvejybosr+'$randas3' WHERE nick='$nick'");
+            if (mysqli_num_rows(mysqli_query($conn,"SELECT * FROM dtop WHERE nick='$nick'")) > 0) mysqli_query($conn,"UPDATE dtop SET vksm=vksm+1 WHERE nick='$nick'"); else mysqli_query($conn,"INSERT INTO dtop SET vksm='1', nick='$nick'");
+            if (mysqli_num_rows(mysqli_query($conn,"SELECT * FROM s_top WHERE nick='$nick'")) > 0) mysqli_query($conn,"UPDATE s_top SET vksm=vksm+1 WHERE nick='$nick'"); else mysqli_query($conn,"INSERT INTO s_top SET vksm='1', nick='$nick'");
 		}
 	
 		echo'<div class="meniuc"><a href="?id=zvej3&kodas='.$kodas.'">Gaudyti toliau</a></div>';
@@ -263,10 +263,10 @@ echo'<div class="meniuc"><img src="img/zvejyba.png" border="1"></div>';
 echo'<div class="up">800 LVL Žuvų Gaudymas</div>';
             echo'<div class="meniuc">Viso žuvų: '. $inv['Zuvis'] .' </div>';
 echo'<div class="meniuc">Pagavai<b> '.$randas2.' </b><img src="img/bicons/zuvis.png"><br>Gavai +<font color="red">'.$randas3.'</font><b> Žuvų gaudymo lygio</b></div>';
-	mysql_query("UPDATE inv SET Zuvis=Zuvis+'$randas2' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET zvejybosr=zvejybosr+'$randas3' WHERE nick='$nick'");
-            if (mysql_num_rows(mysql_query("SELECT * FROM dtop WHERE nick='$nick'")) > 0) mysql_query("UPDATE dtop SET vksm=vksm+1 WHERE nick='$nick'"); else mysql_query("INSERT INTO dtop SET vksm='1', nick='$nick'");
-            if (mysql_num_rows(mysql_query("SELECT * FROM s_top WHERE nick='$nick'")) > 0) mysql_query("UPDATE s_top SET vksm=vksm+1 WHERE nick='$nick'"); else mysql_query("INSERT INTO s_top SET vksm='1', nick='$nick'");
+	mysqli_query($conn,"UPDATE inv SET Zuvis=Zuvis+'$randas2' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET zvejybosr=zvejybosr+'$randas3' WHERE nick='$nick'");
+            if (mysqli_num_rows(mysqli_query($conn,"SELECT * FROM dtop WHERE nick='$nick'")) > 0) mysqli_query($conn,"UPDATE dtop SET vksm=vksm+1 WHERE nick='$nick'"); else mysqli_query($conn,"INSERT INTO dtop SET vksm='1', nick='$nick'");
+            if (mysqli_num_rows(mysqli_query($conn,"SELECT * FROM s_top WHERE nick='$nick'")) > 0) mysqli_query($conn,"UPDATE s_top SET vksm=vksm+1 WHERE nick='$nick'"); else mysqli_query($conn,"INSERT INTO s_top SET vksm='1', nick='$nick'");
 		}
 	
 		echo'<div class="meniuc"><a href="?id=zvej4&kodas='.$kodas.'">Gaudyti toliau</a></div>';
@@ -313,10 +313,10 @@ echo'<div class="meniuc"><img src="img/zvejyba.png" border="1"></div>';
 echo'<div class="up">2000 LVL Žuvų Gaudymas</div>';
             echo'<div class="meniuc">Viso žuvų: '. $inv['Zuvis'] .' </div>';
 echo'<div class="meniuc">Pagavai<b> '.$randas2.' </b><img src="img/bicons/zuvis.png"><br>Gavai +<font color="red">'.$randas3.'</font><b> Žuvų gaudymo lygio</b></div>';
-	mysql_query("UPDATE inv SET Zuvis=Zuvis+'$randas2' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET zvejybosr=zvejybosr+'$randas3' WHERE nick='$nick'");
-            if (mysql_num_rows(mysql_query("SELECT * FROM dtop WHERE nick='$nick'")) > 0) mysql_query("UPDATE dtop SET vksm=vksm+1 WHERE nick='$nick'"); else mysql_query("INSERT INTO dtop SET vksm='1', nick='$nick'");
-            if (mysql_num_rows(mysql_query("SELECT * FROM s_top WHERE nick='$nick'")) > 0) mysql_query("UPDATE s_top SET vksm=vksm+1 WHERE nick='$nick'"); else mysql_query("INSERT INTO s_top SET vksm='1', nick='$nick'");
+	mysqli_query($conn,"UPDATE inv SET Zuvis=Zuvis+'$randas2' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET zvejybosr=zvejybosr+'$randas3' WHERE nick='$nick'");
+            if (mysqli_num_rows(mysqli_query($conn,"SELECT * FROM dtop WHERE nick='$nick'")) > 0) mysqli_query($conn,"UPDATE dtop SET vksm=vksm+1 WHERE nick='$nick'"); else mysqli_query($conn,"INSERT INTO dtop SET vksm='1', nick='$nick'");
+            if (mysqli_num_rows(mysqli_query($conn,"SELECT * FROM s_top WHERE nick='$nick'")) > 0) mysqli_query($conn,"UPDATE s_top SET vksm=vksm+1 WHERE nick='$nick'"); else mysqli_query($conn,"INSERT INTO s_top SET vksm='1', nick='$nick'");
 		}
 	
 		echo'<div class="meniuc"><a href="?id=zvej5&kodas='.$kodas.'">Gaudyti toliau</a></div>';
@@ -363,10 +363,10 @@ echo'<div class="meniuc"><img src="img/zvejyba.png" border="1"></div>';
 echo'<div class="up">5000 LVL Žuvų Gaudymas</div>';
             echo'<div class="meniuc">Viso žuvų: '. $inv['Zuvis'] .' </div>';
 echo'<div class="meniuc">Pagavai<b> '.$randas2.' </b><img src="img/bicons/zuvis.png"><br>Gavai +<font color="red">'.$randas3.'</font><b> Žuvų gaudymo lygio</b></div>';
-	mysql_query("UPDATE inv SET Zuvis=Zuvis+'$randas2' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET zvejybosr=zvejybosr+'$randas3' WHERE nick='$nick'");
-            if (mysql_num_rows(mysql_query("SELECT * FROM dtop WHERE nick='$nick'")) > 0) mysql_query("UPDATE dtop SET vksm=vksm+1 WHERE nick='$nick'"); else mysql_query("INSERT INTO dtop SET vksm='1', nick='$nick'");
-            if (mysql_num_rows(mysql_query("SELECT * FROM s_top WHERE nick='$nick'")) > 0) mysql_query("UPDATE s_top SET vksm=vksm+1 WHERE nick='$nick'"); else mysql_query("INSERT INTO s_top SET vksm='1', nick='$nick'");
+	mysqli_query($conn,"UPDATE inv SET Zuvis=Zuvis+'$randas2' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET zvejybosr=zvejybosr+'$randas3' WHERE nick='$nick'");
+            if (mysqli_num_rows(mysqli_query($conn,"SELECT * FROM dtop WHERE nick='$nick'")) > 0) mysqli_query($conn,"UPDATE dtop SET vksm=vksm+1 WHERE nick='$nick'"); else mysqli_query($conn,"INSERT INTO dtop SET vksm='1', nick='$nick'");
+            if (mysqli_num_rows(mysqli_query($conn,"SELECT * FROM s_top WHERE nick='$nick'")) > 0) mysqli_query($conn,"UPDATE s_top SET vksm=vksm+1 WHERE nick='$nick'"); else mysqli_query($conn,"INSERT INTO s_top SET vksm='1', nick='$nick'");
 		}
 	
 		echo'<div class="meniuc"><a href="?id=zvej6&kodas='.$kodas.'">Gaudyti toliau</a></div>';
@@ -415,10 +415,10 @@ echo'<div class="meniuc"><img src="img/miskas.png" border="1"></div>';
 echo'<div class="up">1 LVL Malkų rinkimas</div>';
             echo'<div class="meniuc">Viso malkų: '. $inv['Malkos'] .' </div>';
 echo'<div class="meniuc">Radai<b> '.$randas2.' </b><img src="img/bicons/malka.png"><br>Gavai +<font color="red">'.$randas3.'</font><b> Malkų rinkimo lygio</b></div>';
-	mysql_query("UPDATE inv SET Malkos=Malkos+'$randas2' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET malkur=malkur+'$randas3' WHERE nick='$nick'");
-                if (mysql_num_rows(mysql_query("SELECT * FROM dtop WHERE nick='$nick'")) > 0) mysql_query("UPDATE dtop SET vksm=vksm+1 WHERE nick='$nick'"); else mysql_query("INSERT INTO dtop SET vksm='1', nick='$nick'");
-                if (mysql_num_rows(mysql_query("SELECT * FROM s_top WHERE nick='$nick'")) > 0) mysql_query("UPDATE s_top SET vksm=vksm+1 WHERE nick='$nick'"); else mysql_query("INSERT INTO s_top SET vksm='1', nick='$nick'");
+	mysqli_query($conn,"UPDATE inv SET Malkos=Malkos+'$randas2' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET malkur=malkur+'$randas3' WHERE nick='$nick'");
+                if (mysqli_num_rows(mysqli_query($conn,"SELECT * FROM dtop WHERE nick='$nick'")) > 0) mysqli_query($conn,"UPDATE dtop SET vksm=vksm+1 WHERE nick='$nick'"); else mysqli_query($conn,"INSERT INTO dtop SET vksm='1', nick='$nick'");
+                if (mysqli_num_rows(mysqli_query($conn,"SELECT * FROM s_top WHERE nick='$nick'")) > 0) mysqli_query($conn,"UPDATE s_top SET vksm=vksm+1 WHERE nick='$nick'"); else mysqli_query($conn,"INSERT INTO s_top SET vksm='1', nick='$nick'");
 		}
 	
 		echo'<div class="meniuc"><a href="?id=mal1&kodas='.$kodas.'">Rinkti toliau</a></div>';
@@ -463,10 +463,10 @@ echo'<div class="meniuc"><img src="img/miskas.png" border="1"></div>';
 echo'<div class="up">100 LVL Malkų rinkimas</div>';
             echo'<div class="meniuc">Viso malkų: '. $inv['Malkos'] .' </div>';
 echo'<div class="meniuc">Radai<b> '.$randas2.' </b><img src="img/bicons/malka.png"><br>Gavai +<font color="red">'.$randas3.'</font><b> Malkų rinkimo lygio</b></div>';
-	mysql_query("UPDATE inv SET Malkos=Malkos+'$randas2' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET malkur=malkur+'$randas3' WHERE nick='$nick'");
-            if (mysql_num_rows(mysql_query("SELECT * FROM dtop WHERE nick='$nick'")) > 0) mysql_query("UPDATE dtop SET vksm=vksm+1 WHERE nick='$nick'"); else mysql_query("INSERT INTO dtop SET vksm='1', nick='$nick'");
-            if (mysql_num_rows(mysql_query("SELECT * FROM s_top WHERE nick='$nick'")) > 0) mysql_query("UPDATE s_top SET vksm=vksm+1 WHERE nick='$nick'");
+	mysqli_query($conn,"UPDATE inv SET Malkos=Malkos+'$randas2' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET malkur=malkur+'$randas3' WHERE nick='$nick'");
+            if (mysqli_num_rows(mysqli_query($conn,"SELECT * FROM dtop WHERE nick='$nick'")) > 0) mysqli_query($conn,"UPDATE dtop SET vksm=vksm+1 WHERE nick='$nick'"); else mysqli_query($conn,"INSERT INTO dtop SET vksm='1', nick='$nick'");
+            if (mysqli_num_rows(mysqli_query($conn,"SELECT * FROM s_top WHERE nick='$nick'")) > 0) mysqli_query($conn,"UPDATE s_top SET vksm=vksm+1 WHERE nick='$nick'");
 		}
 	
 		echo'<div class="meniuc"><a href="?id=mal2&kodas='.$kodas.'">Rinkti toliau</a></div>';
@@ -511,10 +511,10 @@ echo'<div class="meniuc"><img src="img/miskas.png" border="1"></div>';
 echo'<div class="up">300 LVL Malkų rinkimas</div>';
             echo'<div class="meniuc">Viso malkų: '. $inv['Malkos'] .' </div>';
 echo'<div class="meniuc">Radai<b> '.$randas2.' </b><img src="img/bicons/malka.png"><br>Gavai +<font color="red">'.$randas3.'</font><b> Malkų rinkimo lygio</b></div>';
-	mysql_query("UPDATE inv SET Malkos=Malkos+'$randas2' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET malkur=malkur+'$randas3' WHERE nick='$nick'");
-            if (mysql_num_rows(mysql_query("SELECT * FROM dtop WHERE nick='$nick'")) > 0) mysql_query("UPDATE dtop SET vksm=vksm+1 WHERE nick='$nick'"); else mysql_query("INSERT INTO dtop SET vksm='1', nick='$nick'");
-            if (mysql_num_rows(mysql_query("SELECT * FROM s_top WHERE nick='$nick'")) > 0) mysql_query("UPDATE s_top SET vksm=vksm+1 WHERE nick='$nick'");
+	mysqli_query($conn,"UPDATE inv SET Malkos=Malkos+'$randas2' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET malkur=malkur+'$randas3' WHERE nick='$nick'");
+            if (mysqli_num_rows(mysqli_query($conn,"SELECT * FROM dtop WHERE nick='$nick'")) > 0) mysqli_query($conn,"UPDATE dtop SET vksm=vksm+1 WHERE nick='$nick'"); else mysqli_query($conn,"INSERT INTO dtop SET vksm='1', nick='$nick'");
+            if (mysqli_num_rows(mysqli_query($conn,"SELECT * FROM s_top WHERE nick='$nick'")) > 0) mysqli_query($conn,"UPDATE s_top SET vksm=vksm+1 WHERE nick='$nick'");
 		}
 	
 		echo'<div class="meniuc"><a href="?id=mal3&kodas='.$kodas.'">Rinkti toliau</a></div>';
@@ -559,10 +559,10 @@ echo'<div class="meniuc"><img src="img/miskas.png" border="1"></div>';
 echo'<div class="up">800 LVL Malkų rinkimas</div>';
             echo'<div class="meniuc">Viso malkų: '. $inv['Malkos'] .' </div>';
 echo'<div class="meniuc">Radai<b> '.$randas2.' </b><img src="img/bicons/malka.png"><br>Gavai +<font color="red">'.$randas3.'</font><b> Malkų rinkimo lygio</b></div>';
-	mysql_query("UPDATE inv SET Malkos=Malkos+'$randas2' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET malkur=malkur+'$randas3' WHERE nick='$nick'");
-            if (mysql_num_rows(mysql_query("SELECT * FROM dtop WHERE nick='$nick'")) > 0) mysql_query("UPDATE dtop SET vksm=vksm+1 WHERE nick='$nick'"); else mysql_query("INSERT INTO dtop SET vksm='1', nick='$nick'");
-            if (mysql_num_rows(mysql_query("SELECT * FROM s_top WHERE nick='$nick'")) > 0) mysql_query("UPDATE s_top SET vksm=vksm+1 WHERE nick='$nick'");
+	mysqli_query($conn,"UPDATE inv SET Malkos=Malkos+'$randas2' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET malkur=malkur+'$randas3' WHERE nick='$nick'");
+            if (mysqli_num_rows(mysqli_query($conn,"SELECT * FROM dtop WHERE nick='$nick'")) > 0) mysqli_query($conn,"UPDATE dtop SET vksm=vksm+1 WHERE nick='$nick'"); else mysqli_query($conn,"INSERT INTO dtop SET vksm='1', nick='$nick'");
+            if (mysqli_num_rows(mysqli_query($conn,"SELECT * FROM s_top WHERE nick='$nick'")) > 0) mysqli_query($conn,"UPDATE s_top SET vksm=vksm+1 WHERE nick='$nick'");
 		}
 	
 		echo'<div class="meniuc"><a href="?id=mal4&kodas='.$kodas.'">Rinkti toliau</a></div>';
@@ -607,10 +607,10 @@ echo'<div class="meniuc"><img src="img/miskas.png" border="1"></div>';
 echo'<div class="up">2000 LVL Malkų rinkimas</div>';
             echo'<div class="meniuc">Viso malkų: '. $inv['Malkos'] .' </div>';
 echo'<div class="meniuc">Radai<b> '.$randas2.' </b><img src="img/bicons/malka.png"><br>Gavai +<font color="red">'.$randas3.'</font><b> Malkų rinkimo lygio</b></div>';
-	mysql_query("UPDATE inv SET Malkos=Malkos+'$randas2' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET malkur=malkur+'$randas3' WHERE nick='$nick'");
-            if (mysql_num_rows(mysql_query("SELECT * FROM dtop WHERE nick='$nick'")) > 0) mysql_query("UPDATE dtop SET vksm=vksm+1 WHERE nick='$nick'"); else mysql_query("INSERT INTO dtop SET vksm='1', nick='$nick'");
-            if (mysql_num_rows(mysql_query("SELECT * FROM s_top WHERE nick='$nick'")) > 0) mysql_query("UPDATE s_top SET vksm=vksm+1 WHERE nick='$nick'");
+	mysqli_query($conn,"UPDATE inv SET Malkos=Malkos+'$randas2' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET malkur=malkur+'$randas3' WHERE nick='$nick'");
+            if (mysqli_num_rows(mysqli_query($conn,"SELECT * FROM dtop WHERE nick='$nick'")) > 0) mysqli_query($conn,"UPDATE dtop SET vksm=vksm+1 WHERE nick='$nick'"); else mysqli_query($conn,"INSERT INTO dtop SET vksm='1', nick='$nick'");
+            if (mysqli_num_rows(mysqli_query($conn,"SELECT * FROM s_top WHERE nick='$nick'")) > 0) mysqli_query($conn,"UPDATE s_top SET vksm=vksm+1 WHERE nick='$nick'");
 		}
 	
 		echo'<div class="meniuc"><a href="?id=mal5&kodas='.$kodas.'">Rinkti toliau</a></div>';
@@ -655,10 +655,10 @@ echo'<div class="meniuc"><img src="img/miskas.png" border="1"></div>';
 echo'<div class="up">5000 LVL Malkų rinkimas</div>';
             echo'<div class="meniuc">Viso malkų: '. $inv['Malkos'] .' </div>';
 echo'<div class="meniuc">Radai<b> '.$randas2.' </b><img src="img/bicons/malka.png"><br>Gavai +<font color="red">'.$randas3.'</font><b> Malkų rinkimo lygio</b></div>';
-	mysql_query("UPDATE inv SET Malkos=Malkos+'$randas2' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET malkur=malkur+'$randas3' WHERE nick='$nick'");
-            if (mysql_num_rows(mysql_query("SELECT * FROM dtop WHERE nick='$nick'")) > 0) mysql_query("UPDATE dtop SET vksm=vksm+1 WHERE nick='$nick'"); else mysql_query("INSERT INTO dtop SET vksm='1', nick='$nick'");
-            if (mysql_num_rows(mysql_query("SELECT * FROM s_top WHERE nick='$nick'")) > 0) mysql_query("UPDATE s_top SET vksm=vksm+1 WHERE nick='$nick'");
+	mysqli_query($conn,"UPDATE inv SET Malkos=Malkos+'$randas2' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET malkur=malkur+'$randas3' WHERE nick='$nick'");
+            if (mysqli_num_rows(mysqli_query($conn,"SELECT * FROM dtop WHERE nick='$nick'")) > 0) mysqli_query($conn,"UPDATE dtop SET vksm=vksm+1 WHERE nick='$nick'"); else mysqli_query($conn,"INSERT INTO dtop SET vksm='1', nick='$nick'");
+            if (mysqli_num_rows(mysqli_query($conn,"SELECT * FROM s_top WHERE nick='$nick'")) > 0) mysqli_query($conn,"UPDATE s_top SET vksm=vksm+1 WHERE nick='$nick'");
 
 		}
 	
@@ -695,14 +695,14 @@ top('Žvejojimas');
 	
 		}
 		if($randas == 2){echo'<div class="meniuc">Pavagai '.$randas2.'  žuvų</div>';
-	mysql_query("UPDATE inv SET Zuvis=Zuvis+'$randas2' WHERE nick='$nick'");
-            if (mysql_num_rows(mysql_query("SELECT * FROM dtop WHERE nick='$nick'")) > 0) mysql_query("UPDATE dtop SET vksm=vksm+1 WHERE nick='$nick'"); else mysql_query("INSERT INTO dtop SET vksm='1', nick='$nick'");
-            if (mysql_num_rows(mysql_query("SELECT * FROM s_top WHERE nick='$nick'")) > 0) mysql_query("UPDATE s_top SET vksm=vksm+1 WHERE nick='$nick'"); else mysql_query("INSERT INTO s_top SET vksm='1', nick='$nick'");
+	mysqli_query($conn,"UPDATE inv SET Zuvis=Zuvis+'$randas2' WHERE nick='$nick'");
+            if (mysqli_num_rows(mysqli_query($conn,"SELECT * FROM dtop WHERE nick='$nick'")) > 0) mysqli_query($conn,"UPDATE dtop SET vksm=vksm+1 WHERE nick='$nick'"); else mysqli_query($conn,"INSERT INTO dtop SET vksm='1', nick='$nick'");
+            if (mysqli_num_rows(mysqli_query($conn,"SELECT * FROM s_top WHERE nick='$nick'")) > 0) mysqli_query($conn,"UPDATE s_top SET vksm=vksm+1 WHERE nick='$nick'"); else mysqli_query($conn,"INSERT INTO s_top SET vksm='1', nick='$nick'");
 		}
 		if($randas == 3){echo'<div class="meniuc">Pagavai '.$randas2.' didelių žuvu</div>';
-	mysql_query("UPDATE inv SET Zuvis=Zuvis+'$randas2' WHERE nick='$nick'");
-                if (mysql_num_rows(mysql_query("SELECT * FROM dtop WHERE nick='$nick'")) > 0) mysql_query("UPDATE dtop SET vksm=vksm+1 WHERE nick='$nick'"); else mysql_query("INSERT INTO dtop SET vksm='1', nick='$nick'");
-                if (mysql_num_rows(mysql_query("SELECT * FROM s_top WHERE nick='$nick'")) > 0) mysql_query("UPDATE s_top SET vksm=vksm+1 WHERE nick='$nick'"); else mysql_query("INSERT INTO s_top SET vksm='1', nick='$nick'");
+	mysqli_query($conn,"UPDATE inv SET Zuvis=Zuvis+'$randas2' WHERE nick='$nick'");
+                if (mysqli_num_rows(mysqli_query($conn,"SELECT * FROM dtop WHERE nick='$nick'")) > 0) mysqli_query($conn,"UPDATE dtop SET vksm=vksm+1 WHERE nick='$nick'"); else mysqli_query($conn,"INSERT INTO dtop SET vksm='1', nick='$nick'");
+                if (mysqli_num_rows(mysqli_query($conn,"SELECT * FROM s_top WHERE nick='$nick'")) > 0) mysqli_query($conn,"UPDATE s_top SET vksm=vksm+1 WHERE nick='$nick'"); else mysqli_query($conn,"INSERT INTO s_top SET vksm='1', nick='$nick'");
 		}
 		echo'<div class="meniuc"><a href="?id=zvej&kodas='.$kodas.'">Rinkti toliau</a></div>';
 		 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","miskas.php", "Miskas", "Žvejojimas");

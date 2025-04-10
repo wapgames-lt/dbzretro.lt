@@ -12,15 +12,15 @@ include_once 'cfg/funkcijos.php';
 	$prizas2 = round($nust['sms_priz']) / 2;
 	$prizas3 = round($nust['sms_priz']) / 3;
  $statusai = array("Mod","Mod2","Mod3","Mod4","Admin");
-$nst = mysql_fetch_assoc(mysql_query("SELECT * FROM turnyras"));
-$new = mysql_fetch_assoc(mysql_query("SELECT * FROM news ORDER BY id DESC LIMIT 1"));
-$xd = mysql_query("SELECT * FROM zaidejai WHERE nick= $nick");
-$inv = mysql_fetch_assoc(mysql_query("SELECT * FROM inv WHERE nick='$nick'"));
+$nst = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM turnyras"));
+$new = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM news ORDER BY id DESC LIMIT 1"));
+$xd = mysqli_query($conn,"SELECT * FROM zaidejai WHERE nick= $nick");
+$inv = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM inv WHERE nick='$nick'"));
 head2();
 if($nust['new_time']-time() > 0){
-    $q = mysql_query("SELECT * FROM news ORDER BY id DESC LIMIT 1");
+    $q = mysqli_query($conn,"SELECT * FROM news ORDER BY id DESC LIMIT 1");
    
-    while($row = mysql_fetch_assoc($q)){
+    while($row = mysqli_fetch_assoc($q)){
         echo '<div class="meniuc">Padarytas atnaujinimas: '.$row[name].'</div>';
       
         unset($row);
@@ -34,7 +34,7 @@ baneris();
 
 	
 		
-if(mysql_num_rows(mysql_query("SELECT * FROM kvietimai_i_komanda WHERE nick2='$nick'")) == true){
+if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM kvietimai_i_komanda WHERE nick2='$nick'")) == true){
 	echo"<div class='meniuc'><font color='red'>Dėmesio! Tu kviečiamas į ".$team_pakv['team']." komandą!</font><br>
 	<a href='komanda.php?id=atmesti&ka=".$team_pakv['team']."'>Atmesti</a> <a href='komanda.php?id=priimti&ka=".$team_pakv['team']."'>Priimti</a>
 	</div>";
@@ -108,7 +108,7 @@ if($id =='vip_privilegija1'){
 	else{
 		$vip_time = time()+ 3600*24;
 		echo '<div class="meniuc">VIP Privilegija nupirkta sėkmingai!</div>';
-		mysql_query("UPDATE zaidejai SET vip='$vip_time', vipticket=vipticket-'$price' WHERE nick='$nick'");
+		mysqli_query($conn,"UPDATE zaidejai SET vip='$vip_time', vipticket=vipticket-'$price' WHERE nick='$nick'");
 	}
 
 	$g_n[] = array("pagrindinis.php?id=","Pagrindinis","vipas.php","VIP", "VIP Privilegijos pirkimas");
@@ -749,9 +749,9 @@ elseif($apie[vip]-time() > 0){
 	else{
 		$vip_time = time()+ 3600*24;
 		 echo '<div class="meniuc">Nusipirkai sėkmingai <b>1 lygio VIP </b>!</div>';
-		mysql_query("UPDATE zaidejai SET vip='$vip_time', vipas1='+', sms_litai=sms_litai-'1000' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET  vipticket=vipticket-'2000' WHERE nick='$nick'");
-mysql_query("UPDATE  inv SET viplvl=viplvl+'1' WHERE nick='$nick'");
+		mysqli_query($conn,"UPDATE zaidejai SET vip='$vip_time', vipas1='+', sms_litai=sms_litai-'1000' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET  vipticket=vipticket-'2000' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE  inv SET viplvl=viplvl+'1' WHERE nick='$nick'");
 	}
 		 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","VIP Pirkimas");
 	navigacija($g_n);
@@ -788,10 +788,10 @@ elseif($apie[vipas2]== '+'){
 	else{
 		$vip_time2 = time()+ 3600*24*7666;
 		 echo '<div class="meniuc">Nusipirkai sėkmingai <b>2 Lygio VIP</b>!</div>';
-		mysql_query("UPDATE zaidejai SET vipas2='+', sms_litai=sms_litai-'0' WHERE nick='$nick'");
-		mysql_query("UPDATE zaidejai SET  vipticket=vipticket-'4000', kred=kred+'60', sms_litai=sms_litai+'10', litai=litai+'50000000' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET vipas1='-', sms_litai=sms_litai-'0' WHERE nick='$nick'");
-mysql_query("UPDATE  inv SET viplvl=viplvl+'1' WHERE nick='$nick'");
+		mysqli_query($conn,"UPDATE zaidejai SET vipas2='+', sms_litai=sms_litai-'0' WHERE nick='$nick'");
+		mysqli_query($conn,"UPDATE zaidejai SET  vipticket=vipticket-'4000', kred=kred+'60', sms_litai=sms_litai+'10', litai=litai+'50000000' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET vipas1='-', sms_litai=sms_litai-'0' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE  inv SET viplvl=viplvl+'1' WHERE nick='$nick'");
 	}
 }
 	 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vipas.php?","Atgal","VIP Pirkimas");
@@ -826,10 +826,10 @@ elseif($apie[vipas3]=='+'){
 	else{
 		
 		 echo '<div class="meniuc">Nusipirkai sėkmingai <b>3 Lygio VIP</b>!</div>';
-		mysql_query("UPDATE zaidejai SET vipas3='+', sms_litai=sms_litai-'0' WHERE nick='$nick'");
-	mysql_query("UPDATE zaidejai SET  vipticket=vipticket-'7000', kred=kred+'120', sms_litai=sms_litai+'25', litai=litai+'150000000' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET vipas2='-', sms_litai=sms_litai-'0' WHERE nick='$nick'");
-mysql_query("UPDATE  inv SET viplvl=viplvl+'1' WHERE nick='$nick'");
+		mysqli_query($conn,"UPDATE zaidejai SET vipas3='+', sms_litai=sms_litai-'0' WHERE nick='$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  vipticket=vipticket-'7000', kred=kred+'120', sms_litai=sms_litai+'25', litai=litai+'150000000' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET vipas2='-', sms_litai=sms_litai-'0' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE  inv SET viplvl=viplvl+'1' WHERE nick='$nick'");
 	}
 }
 	 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vipas.php?","Atgal","VIP Pirkimas");
@@ -863,10 +863,10 @@ elseif($apie[vipas4]=='+'){
 	else{
 		
 		 echo '<div class="meniuc">Nusipirkai sėkmingai <b>4 Lygio VIP</b> </div>';
-		mysql_query("UPDATE zaidejai SET vipas4='+', sms_litai=sms_litai-'0' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET  vipticket=vipticket-'10000', kred=kred+'300', sms_litai=sms_litai+'50', litai=litai+'500000000' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET vipas3='-', sms_litai=sms_litai-'0' WHERE nick='$nick'");
-mysql_query("UPDATE  inv SET viplvl=viplvl+'1' WHERE nick='$nick'");
+		mysqli_query($conn,"UPDATE zaidejai SET vipas4='+', sms_litai=sms_litai-'0' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET  vipticket=vipticket-'10000', kred=kred+'300', sms_litai=sms_litai+'50', litai=litai+'500000000' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET vipas3='-', sms_litai=sms_litai-'0' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE  inv SET viplvl=viplvl+'1' WHERE nick='$nick'");
 	}
 }
 	 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vipas.php?","Atgal","VIP Pirkimas");
@@ -903,11 +903,11 @@ elseif($apie[vipas5]=='+'){
 	else{
 		
 		 echo '<div class="meniuc">Nusipirkai sėkmingai <b>5 Lygio VIP</b>!</div>';
-		mysql_query("UPDATE zaidejai SET vipas5='+', sms_litai=sms_litai-'0' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET  vipticket=vipticket-'15000', kred=kred+'500', sms_litai=sms_litai+'100', litai=litai+'1000000000' WHERE nick='$nick'");
-mysql_query("UPDATE inv SET Magicball=Magicball+'200', Microshem=Microshem+'300' WHERE nick='$nick'")or die(mysql_error());
-mysql_query("UPDATE zaidejai SET vipas4='-', sms_litai=sms_litai-'0' WHERE nick='$nick'");
-mysql_query("UPDATE  inv SET viplvl=viplvl+'1' WHERE nick='$nick'");
+		mysqli_query($conn,"UPDATE zaidejai SET vipas5='+', sms_litai=sms_litai-'0' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET  vipticket=vipticket-'15000', kred=kred+'500', sms_litai=sms_litai+'100', litai=litai+'1000000000' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE inv SET Magicball=Magicball+'200', Microshem=Microshem+'300' WHERE nick='$nick'")or die(mysqli_error());
+mysqli_query($conn,"UPDATE zaidejai SET vipas4='-', sms_litai=sms_litai-'0' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE  inv SET viplvl=viplvl+'1' WHERE nick='$nick'");
 	}
 }
 	 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vipas.php?","Atgal","VIP Pirkimas");
@@ -942,11 +942,11 @@ elseif($apie[vipas6]=='+'){
 	else{
 		
 		 echo '<div class="meniuc">Nusipirkai sėkmingai <b>6 Lygio VIP</b>!</div>';
-		mysql_query("UPDATE zaidejai SET vipas6='+', sms_litai=sms_litai-'0' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET  vipticket=vipticket-'20000', kred=kred+'1000', sms_litai=sms_litai+'150', litai=litai+'2000000000' WHERE nick='$nick'");
-mysql_query("UPDATE inv SET  Magicball=Magicball+'400', Microshem=Microshem+'600', Energystone=Energystone+'200', Powerstone=Powerstone+'200' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET vipas5='-', sms_litai=sms_litai-'0' WHERE nick='$nick'");
-mysql_query("UPDATE  inv SET viplvl=viplvl+'1' WHERE nick='$nick'");
+		mysqli_query($conn,"UPDATE zaidejai SET vipas6='+', sms_litai=sms_litai-'0' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET  vipticket=vipticket-'20000', kred=kred+'1000', sms_litai=sms_litai+'150', litai=litai+'2000000000' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE inv SET  Magicball=Magicball+'400', Microshem=Microshem+'600', Energystone=Energystone+'200', Powerstone=Powerstone+'200' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET vipas5='-', sms_litai=sms_litai-'0' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE  inv SET viplvl=viplvl+'1' WHERE nick='$nick'");
 	}
 }
 	 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vipas.php?","Atgal","VIP Pirkimas");
@@ -982,11 +982,11 @@ elseif($apie[vipas7]=='+'){
 	else{
 		
 		 echo '<div class="meniuc">Nusipirkai sėkmingai <b>7 Lygio VIP</b>!</div>';
-		mysql_query("UPDATE zaidejai SET vipas7='+', sms_litai=sms_litai-'0' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET  vipticket=vipticket-'30000', kred=kred+'1500', sms_litai=sms_litai+'250', litai=litai+'5000000000' WHERE nick='$nick'");
-mysql_query("UPDATE inv SET  Majinsroll=Majinsroll+'400', Sayiantail=Sayiantail+'400', Energystone=Energystone+'500', Powerstone=Powerstone+'500', Fusionfail=Fusionfail+'400' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET vipas6='-', sms_litai=sms_litai-'0' WHERE nick='$nick'");
-mysql_query("UPDATE  inv SET viplvl=viplvl+'1' WHERE nick='$nick'");
+		mysqli_query($conn,"UPDATE zaidejai SET vipas7='+', sms_litai=sms_litai-'0' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET  vipticket=vipticket-'30000', kred=kred+'1500', sms_litai=sms_litai+'250', litai=litai+'5000000000' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE inv SET  Majinsroll=Majinsroll+'400', Sayiantail=Sayiantail+'400', Energystone=Energystone+'500', Powerstone=Powerstone+'500', Fusionfail=Fusionfail+'400' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET vipas6='-', sms_litai=sms_litai-'0' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE  inv SET viplvl=viplvl+'1' WHERE nick='$nick'");
 	}
 }
 	 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vipas.php?","Atgal","VIP Pirkimas");
@@ -1022,11 +1022,11 @@ elseif($apie[vipas8]=='+'){
 	else{
 		
 		 echo '<div class="meniuc">Nusipirkai sėkmingai <b>8 Lygio VIP</b>!</div>';
-		mysql_query("UPDATE zaidejai SET vipas8='+', sms_litai=sms_litai-'0' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET  vipticket=vipticket-'45000', kred=kred+'2000', sms_litai=sms_litai+'50', litai=litai+'10000000000' WHERE nick='$nick'");
-mysql_query("UPDATE inv SET  Majinsroll=Majinsroll+'600', Sayiantail=Sayiantail+'600', Fusionfail=Fusionfail+'400', Money_sword=Money_sword+'1' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET vipas7='-', sms_litai=sms_litai-'0' WHERE nick='$nick'");
-mysql_query("UPDATE  inv SET viplvl=viplvl+'1' WHERE nick='$nick'");
+		mysqli_query($conn,"UPDATE zaidejai SET vipas8='+', sms_litai=sms_litai-'0' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET  vipticket=vipticket-'45000', kred=kred+'2000', sms_litai=sms_litai+'50', litai=litai+'10000000000' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE inv SET  Majinsroll=Majinsroll+'600', Sayiantail=Sayiantail+'600', Fusionfail=Fusionfail+'400', Money_sword=Money_sword+'1' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET vipas7='-', sms_litai=sms_litai-'0' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE  inv SET viplvl=viplvl+'1' WHERE nick='$nick'");
 	}
 }
 	 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vipas.php?","Atgal","VIP Pirkimas");
@@ -1061,11 +1061,11 @@ elseif($apie[vipas9]=='+'){
 	else{
 		
 		 echo '<div class="meniuc">Nusipirkai sėkmingai <b>9 Lygio VIP</b>!</div>';
-		mysql_query("UPDATE zaidejai SET vipas9='+', sms_litai=sms_litai-'0' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET  vipticket=vipticket-'70000', kred=kred+'3000', sms_litai=sms_litai+'500', litai=litai+'20000000000' WHERE nick='$nick'");
-mysql_query("UPDATE inv SET  tobulas=tobulas+'1000', naikinti=naikinti+'1000', angelwing=angelwing+'1000', Money_armor=Money_armor+'1' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET vipas8='-', sms_litai=sms_litai-'0' WHERE nick='$nick'");
-mysql_query("UPDATE  inv SET viplvl=viplvl+'1' WHERE nick='$nick'");
+		mysqli_query($conn,"UPDATE zaidejai SET vipas9='+', sms_litai=sms_litai-'0' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET  vipticket=vipticket-'70000', kred=kred+'3000', sms_litai=sms_litai+'500', litai=litai+'20000000000' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE inv SET  tobulas=tobulas+'1000', naikinti=naikinti+'1000', angelwing=angelwing+'1000', Money_armor=Money_armor+'1' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET vipas8='-', sms_litai=sms_litai-'0' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE  inv SET viplvl=viplvl+'1' WHERE nick='$nick'");
 	}
 }
 	 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vipas.php?","Atgal","VIP Pirkimas");
@@ -1102,13 +1102,13 @@ elseif($apie[vipas10]=='+'){
 		$timxx = time()+60*60*24*1000;
 
 		 echo '<div class="meniuc">Nusipirkai sėkmingai <b>10 Lygio VIP</b>!</div>';
-		mysql_query("UPDATE zaidejai SET vipas10='+', sms_litai=sms_litai-'0' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET  vipticket=vipticket-'100000', kred=kred+'5000', sms_litai=sms_litai+'100', litai=litai+'50000000000', bitcoin=bitcoin+'50' WHERE nick='$nick'");
-mysql_query("UPDATE inv SET  Super_amulet_item=Super_amulet_item+'500', Super_money_armor=Super_money_armor+'1', Super_money_sword=Super_money_sword+'1' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET vipas9='-', sms_litai=sms_litai-'0' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET bts='$timxx' WHERE nick='$nick' ");
-mysql_query("UPDATE  inv SET viplvl=viplvl+'1' WHERE nick='$nick'");
-mysql_query("UPDATE inv SET Soul=Soul-'2000' WHERE nick='$nick' ");
+		mysqli_query($conn,"UPDATE zaidejai SET vipas10='+', sms_litai=sms_litai-'0' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET  vipticket=vipticket-'100000', kred=kred+'5000', sms_litai=sms_litai+'100', litai=litai+'50000000000', bitcoin=bitcoin+'50' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE inv SET  Super_amulet_item=Super_amulet_item+'500', Super_money_armor=Super_money_armor+'1', Super_money_sword=Super_money_sword+'1' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET vipas9='-', sms_litai=sms_litai-'0' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET bts='$timxx' WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE  inv SET viplvl=viplvl+'1' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE inv SET Soul=Soul-'2000' WHERE nick='$nick' ");
 	}
 }
 	 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vipas.php?","Atgal","VIP Pirkimas");
@@ -1144,12 +1144,12 @@ elseif($apie[vipas11]=='+'){
 		$timxx = time()+60*60*24*1000;    
 	
 		 echo '<div class="meniuc">Nusipirkai sėkmingai <b>11 Lygio VIP</b>!</div>';
-		mysql_query("UPDATE zaidejai SET vipas11='+', sms_litai=sms_litai-'0' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET  vipticket=vipticket-'180000', kred=kred+'7000', sms_litai=sms_litai+'200', litai=litai+'100000000000', bitcoin=bitcoin+'70' WHERE nick='$nick'");
-mysql_query("UPDATE inv SET  Naikinimo_amulet_item=Naikinimo_amulet_item+'3000' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET vipas10='-', sms_litai=sms_litai-'0' WHERE nick='$nick'");
+		mysqli_query($conn,"UPDATE zaidejai SET vipas11='+', sms_litai=sms_litai-'0' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET  vipticket=vipticket-'180000', kred=kred+'7000', sms_litai=sms_litai+'200', litai=litai+'100000000000', bitcoin=bitcoin+'70' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE inv SET  Naikinimo_amulet_item=Naikinimo_amulet_item+'3000' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET vipas10='-', sms_litai=sms_litai-'0' WHERE nick='$nick'");
 
-mysql_query("UPDATE  inv SET viplvl=viplvl+'1' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE  inv SET viplvl=viplvl+'1' WHERE nick='$nick'");
 	}
 }
 	 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vipas.php?","Atgal","VIP Pirkimas");
@@ -1184,12 +1184,12 @@ elseif($apie[vipas12]=='+'){
 		$timxx = time()+60*60*24*1000;    
 	
 		 echo '<div class="meniuc">Nusipirkai sėkmingai <b>12 Lygio VIP</b>!</div>';
-		mysql_query("UPDATE zaidejai SET vipas12='+', sms_litai=sms_litai-'0' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET  vipticket=vipticket-'200000', kred=kred+'10000', sms_litai=sms_litai+'500', litai=litai+'150000000000', bitcoin=bitcoin+'100' WHERE nick='$nick'");
+		mysqli_query($conn,"UPDATE zaidejai SET vipas12='+', sms_litai=sms_litai-'0' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET  vipticket=vipticket-'200000', kred=kred+'10000', sms_litai=sms_litai+'500', litai=litai+'150000000000', bitcoin=bitcoin+'100' WHERE nick='$nick'");
 
-mysql_query("UPDATE zaidejai SET vipas11='-', sms_litai=sms_litai-'0' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET vipas11='-', sms_litai=sms_litai-'0' WHERE nick='$nick'");
 
-mysql_query("UPDATE  inv SET viplvl=viplvl+'1' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE  inv SET viplvl=viplvl+'1' WHERE nick='$nick'");
 	}
 }
 	 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vipas.php?","Atgal","VIP Pirkimas");
@@ -1224,12 +1224,12 @@ elseif($apie[vipas13]=='+'){
 		$timxx = time()+60*60*24*1000;    
 	
 		 echo '<div class="meniuc">Nusipirkai sėkmingai <b>13 Lygio VIP</b>!</div>';
-		mysql_query("UPDATE zaidejai SET vipas13='+', sms_litai=sms_litai-'0' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET  vipticket=vipticket-'300000', kred=kred+'12000', sms_litai=sms_litai+'500', litai=litai+'200000000000', bitcoin=bitcoin+'120' WHERE nick='$nick'");
+		mysqli_query($conn,"UPDATE zaidejai SET vipas13='+', sms_litai=sms_litai-'0' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET  vipticket=vipticket-'300000', kred=kred+'12000', sms_litai=sms_litai+'500', litai=litai+'200000000000', bitcoin=bitcoin+'120' WHERE nick='$nick'");
 
-mysql_query("UPDATE zaidejai SET vipas12='-', sms_litai=sms_litai-'0' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET vipas12='-', sms_litai=sms_litai-'0' WHERE nick='$nick'");
 
-mysql_query("UPDATE  inv SET viplvl=viplvl+'1' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE  inv SET viplvl=viplvl+'1' WHERE nick='$nick'");
 	}
 }
 	 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vipas.php?","Atgal","VIP Pirkimas");
@@ -1264,12 +1264,12 @@ elseif($apie[vipas14]=='+'){
 		$timxx = time()+60*60*24*1000;    
 	
 		 echo '<div class="meniuc">Nusipirkai sėkmingai <b>14 Lygio VIP</b>!</div>';
-		mysql_query("UPDATE zaidejai SET vipas14='+', sms_litai=sms_litai-'0' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET  vipticket=vipticket-'500000', kred=kred+'15000', sms_litai=sms_litai+'500', litai=litai+'250000000000', bitcoin=bitcoin+'150' WHERE nick='$nick'");
+		mysqli_query($conn,"UPDATE zaidejai SET vipas14='+', sms_litai=sms_litai-'0' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET  vipticket=vipticket-'500000', kred=kred+'15000', sms_litai=sms_litai+'500', litai=litai+'250000000000', bitcoin=bitcoin+'150' WHERE nick='$nick'");
 
-mysql_query("UPDATE zaidejai SET vipas13='-', sms_litai=sms_litai-'0' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET vipas13='-', sms_litai=sms_litai-'0' WHERE nick='$nick'");
 
-mysql_query("UPDATE  inv SET viplvl=viplvl+'1' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE  inv SET viplvl=viplvl+'1' WHERE nick='$nick'");
 	}
 }
 	 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vipas.php?","Atgal","VIP Pirkimas");
@@ -1306,13 +1306,13 @@ elseif($apie[vipas15]=='+'){
 		$timxx = time()+60*60*24*1000;    
 	
 		 echo '<div class="meniuc">Nusipirkai sėkmingai <b>15 Lygio VIP</b>!</div>';
-		mysql_query("UPDATE zaidejai SET vipas15='+', sms_litai=sms_litai-'0' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET  vipticket=vipticket-'800000', kred=kred+'20000', sms_litai=sms_litai+'500', litai=litai+'350000000000', bitcoin=bitcoin+'200' WHERE nick='$nick'");
+		mysqli_query($conn,"UPDATE zaidejai SET vipas15='+', sms_litai=sms_litai-'0' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET  vipticket=vipticket-'800000', kred=kred+'20000', sms_litai=sms_litai+'500', litai=litai+'350000000000', bitcoin=bitcoin+'200' WHERE nick='$nick'");
 
-mysql_query("UPDATE zaidejai SET vipas14='-', sms_litai=sms_litai-'0' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET vipas14='-', sms_litai=sms_litai-'0' WHERE nick='$nick'");
 
-mysql_query("UPDATE  inv SET viplvl=viplvl+'1' WHERE nick='$nick'");
-		mysql_query("UPDATE inv SET Soul=Soul-'5000' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE  inv SET viplvl=viplvl+'1' WHERE nick='$nick'");
+		mysqli_query($conn,"UPDATE inv SET Soul=Soul-'5000' WHERE nick='$nick'");
 	}
 }
 	 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vipas.php?","Atgal","VIP Pirkimas");
@@ -1348,12 +1348,12 @@ elseif($apie[vipas16]=='+'){
 		$timxx = time()+60*60*24*1000;    
 	
 		 echo '<div class="meniuc">Nusipirkai sėkmingai <b>16 Lygio VIP</b>!</div>';
-		mysql_query("UPDATE zaidejai SET vipas16='+', sms_litai=sms_litai+'500' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET  vipticket=vipticket-'2000000' WHERE nick='$nick'");
+		mysqli_query($conn,"UPDATE zaidejai SET vipas16='+', sms_litai=sms_litai+'500' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET  vipticket=vipticket-'2000000' WHERE nick='$nick'");
 
-mysql_query("UPDATE zaidejai SET vipas15='-', sms_litai=sms_litai-'0' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET vipas15='-', sms_litai=sms_litai-'0' WHERE nick='$nick'");
 
-mysql_query("UPDATE  inv SET viplvl=viplvl+'1' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE  inv SET viplvl=viplvl+'1' WHERE nick='$nick'");
 	}
 }
 	 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vipas.php?","Atgal","VIP Pirkimas");
@@ -1388,12 +1388,12 @@ elseif($apie[vipas17]=='+'){
 		$timxx = time()+60*60*24*1000;    
 	
 		 echo '<div class="meniuc">Nusipirkai sėkmingai <b>17 Lygio VIP</b>!</div>';
-		mysql_query("UPDATE zaidejai SET vipas17='+', sms_litai=sms_litai+'500' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET  vipticket=vipticket-'5000000' WHERE nick='$nick'");
+		mysqli_query($conn,"UPDATE zaidejai SET vipas17='+', sms_litai=sms_litai+'500' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET  vipticket=vipticket-'5000000' WHERE nick='$nick'");
 
-mysql_query("UPDATE zaidejai SET vipas16='-', sms_litai=sms_litai-'0' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET vipas16='-', sms_litai=sms_litai-'0' WHERE nick='$nick'");
 
-mysql_query("UPDATE  inv SET viplvl=viplvl+'1' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE  inv SET viplvl=viplvl+'1' WHERE nick='$nick'");
 	}
 }
 	 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vipas.php?","Atgal","VIP Pirkimas");
@@ -1428,12 +1428,12 @@ elseif($apie[vipas18]=='+'){
 		$timxx = time()+60*60*24*1000;    
 	
 		 echo '<div class="meniuc">Nusipirkai sėkmingai <b>18 Lygio VIP</b>!</div>';
-		mysql_query("UPDATE zaidejai SET vipas18='+', sms_litai=sms_litai+'500' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET  vipticket=vipticket-'10000000' WHERE nick='$nick'");
+		mysqli_query($conn,"UPDATE zaidejai SET vipas18='+', sms_litai=sms_litai+'500' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET  vipticket=vipticket-'10000000' WHERE nick='$nick'");
 
-mysql_query("UPDATE zaidejai SET vipas17='-', sms_litai=sms_litai-'0' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET vipas17='-', sms_litai=sms_litai-'0' WHERE nick='$nick'");
 
-mysql_query("UPDATE  inv SET viplvl=viplvl+'1' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE  inv SET viplvl=viplvl+'1' WHERE nick='$nick'");
 	}
 }
 	 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vipas.php?","Atgal","VIP Pirkimas");
@@ -1468,12 +1468,12 @@ elseif($apie[vipas19]=='+'){
 		$timxx = time()+60*60*24*1000;    
 	
 		 echo '<div class="meniuc">Nusipirkai sėkmingai <b>19 Lygio VIP</b>!</div>';
-		mysql_query("UPDATE zaidejai SET vipas19='+', sms_litai=sms_litai+'500' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET  vipticket=vipticket-'15000000' WHERE nick='$nick'");
+		mysqli_query($conn,"UPDATE zaidejai SET vipas19='+', sms_litai=sms_litai+'500' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET  vipticket=vipticket-'15000000' WHERE nick='$nick'");
 
-mysql_query("UPDATE zaidejai SET vipas18='-', sms_litai=sms_litai-'0' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET vipas18='-', sms_litai=sms_litai-'0' WHERE nick='$nick'");
 
-mysql_query("UPDATE  inv SET viplvl=viplvl+'1' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE  inv SET viplvl=viplvl+'1' WHERE nick='$nick'");
 	}
 }
 	 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vipas.php?","Atgal","VIP Pirkimas");
@@ -1511,13 +1511,13 @@ elseif($apie[vipas20]=='+'){
 		$timxx = time()+60*60*24*1000;    
 	
 		 echo '<div class="meniuc">Nusipirkai sėkmingai <b>20 Lygio VIP</b>!</div>';
-		mysql_query("UPDATE zaidejai SET vipas20='+', sms_litai=sms_litai+'500' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET  vipticket=vipticket-'25000000' WHERE nick='$nick'");
+		mysqli_query($conn,"UPDATE zaidejai SET vipas20='+', sms_litai=sms_litai+'500' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET  vipticket=vipticket-'25000000' WHERE nick='$nick'");
 
-mysql_query("UPDATE zaidejai SET vipas19='-', sms_litai=sms_litai-'0' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET vipas19='-', sms_litai=sms_litai-'0' WHERE nick='$nick'");
 
-mysql_query("UPDATE  inv SET viplvl=viplvl+'1' WHERE nick='$nick'");
-		mysql_query("UPDATE inv SET Zuvis=Zuvis-'20000' WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE  inv SET viplvl=viplvl+'1' WHERE nick='$nick'");
+		mysqli_query($conn,"UPDATE inv SET Zuvis=Zuvis-'20000' WHERE nick='$nick' ");
 	}
 }
 	 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vipas.php?","Atgal","VIP Pirkimas");
@@ -1552,12 +1552,12 @@ elseif($apie[vipas21]=='+'){
 		$timxx = time()+60*60*24*1000;    
 	
 		 echo '<div class="meniuc">Nusipirkai sėkmingai <b>21 Lygio VIP</b>!</div>';
-		mysql_query("UPDATE zaidejai SET vipas21='+', sms_litai=sms_litai+'500' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET  vipticket=vipticket-'50000000' WHERE nick='$nick'");
+		mysqli_query($conn,"UPDATE zaidejai SET vipas21='+', sms_litai=sms_litai+'500' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET  vipticket=vipticket-'50000000' WHERE nick='$nick'");
 
-mysql_query("UPDATE zaidejai SET vipas20='-', sms_litai=sms_litai-'0' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET vipas20='-', sms_litai=sms_litai-'0' WHERE nick='$nick'");
 
-mysql_query("UPDATE  inv SET viplvl=viplvl+'1' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE  inv SET viplvl=viplvl+'1' WHERE nick='$nick'");
 	}
 }
 	 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vipas.php?","Atgal","VIP Pirkimas");
@@ -1593,12 +1593,12 @@ elseif($apie[vipas22]=='+'){
 		$timxx = time()+60*60*24*1000;    
 	
 		 echo '<div class="meniuc">Nusipirkai sėkmingai <b>22 Lygio VIP</b>!</div>';
-		mysql_query("UPDATE zaidejai SET vipas22='+', sms_litai=sms_litai+'500' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET  vipticket=vipticket-'100000000' WHERE nick='$nick'");
+		mysqli_query($conn,"UPDATE zaidejai SET vipas22='+', sms_litai=sms_litai+'500' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET  vipticket=vipticket-'100000000' WHERE nick='$nick'");
 
-mysql_query("UPDATE zaidejai SET vipas21='-', sms_litai=sms_litai-'0' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET vipas21='-', sms_litai=sms_litai-'0' WHERE nick='$nick'");
 
-mysql_query("UPDATE  inv SET viplvl=viplvl+'1' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE  inv SET viplvl=viplvl+'1' WHERE nick='$nick'");
 	}
 }
 	 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vipas.php?","Atgal","VIP Pirkimas");
@@ -1636,13 +1636,13 @@ elseif($apie[vipas23]=='+'){
 		$timxx = time()+60*60*24*1000;    
 	
 		 echo '<div class="meniuc">Nusipirkai sėkmingai <b>23 Lygio VIP</b>!</div>';
-		mysql_query("UPDATE zaidejai SET vipas23='+', sms_litai=sms_litai+'500' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET  vipticket=vipticket-'150000000' WHERE nick='$nick'");
+		mysqli_query($conn,"UPDATE zaidejai SET vipas23='+', sms_litai=sms_litai+'500' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET  vipticket=vipticket-'150000000' WHERE nick='$nick'");
 
-mysql_query("UPDATE zaidejai SET vipas22='-', sms_litai=sms_litai-'0' WHERE nick='$nick'");
-		mysql_query("UPDATE inv SET Malkos=Malkos-'20000' WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE zaidejai SET vipas22='-', sms_litai=sms_litai-'0' WHERE nick='$nick'");
+		mysqli_query($conn,"UPDATE inv SET Malkos=Malkos-'20000' WHERE nick='$nick' ");
 
-mysql_query("UPDATE  inv SET viplvl=viplvl+'1' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE  inv SET viplvl=viplvl+'1' WHERE nick='$nick'");
 	}
 }
 	 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vipas.php?","Atgal","VIP Pirkimas");
@@ -1677,12 +1677,12 @@ elseif($apie[vipas24]=='+'){
 		$timxx = time()+60*60*24*1000;    
 	
 		 echo '<div class="meniuc">Nusipirkai sėkmingai <b>24 Lygio VIP</b>!</div>';
-		mysql_query("UPDATE zaidejai SET vipas24='+', sms_litai=sms_litai+'500' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET  vipticket=vipticket-'250000000' WHERE nick='$nick'");
+		mysqli_query($conn,"UPDATE zaidejai SET vipas24='+', sms_litai=sms_litai+'500' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET  vipticket=vipticket-'250000000' WHERE nick='$nick'");
 
-mysql_query("UPDATE zaidejai SET vipas23='-', sms_litai=sms_litai-'0' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET vipas23='-', sms_litai=sms_litai-'0' WHERE nick='$nick'");
 
-mysql_query("UPDATE  inv SET viplvl=viplvl+'1' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE  inv SET viplvl=viplvl+'1' WHERE nick='$nick'");
 	}
 }
 	 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vipas.php?","Atgal","VIP Pirkimas");
@@ -1720,13 +1720,13 @@ elseif($apie[vipas25]=='+'){
 		$timxx = time()+60*60*24*1000;    
 	
 		 echo '<div class="meniuc">Nusipirkai sėkmingai <b>25 Lygio VIP</b>!</div>';
-		mysql_query("UPDATE zaidejai SET vipas25='+', sms_litai=sms_litai+'500' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET  vipticket=vipticket-'500000000' WHERE nick='$nick'");
+		mysqli_query($conn,"UPDATE zaidejai SET vipas25='+', sms_litai=sms_litai+'500' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET  vipticket=vipticket-'500000000' WHERE nick='$nick'");
 
-mysql_query("UPDATE zaidejai SET vipas24='-', sms_litai=sms_litai-'0' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET vipas24='-', sms_litai=sms_litai-'0' WHERE nick='$nick'");
 
-mysql_query("UPDATE  inv SET viplvl=viplvl+'1' WHERE nick='$nick'");
-		mysql_query("UPDATE inv SET Soul=Soul-'5000' WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE  inv SET viplvl=viplvl+'1' WHERE nick='$nick'");
+		mysqli_query($conn,"UPDATE inv SET Soul=Soul-'5000' WHERE nick='$nick' ");
 	}
 }
 	 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vipas.php?","Atgal","VIP Pirkimas");
@@ -1763,12 +1763,12 @@ if($id == 'vip26'){
 			$timxx = time()+60*60*24*1000;
 
 			echo '<div class="meniuc">Nusipirkai sėkmingai <b>25 Lygio VIP</b>!</div>';
-			mysql_query("UPDATE zaidejai SET vipas26='+', sms_litai=sms_litai+'15000' WHERE nick='$nick'");
-			mysql_query("UPDATE zaidejai SET  vipticket=vipticket-'700000000' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE zaidejai SET vipas26='+', sms_litai=sms_litai+'15000' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE zaidejai SET  vipticket=vipticket-'700000000' WHERE nick='$nick'");
 
-			mysql_query("UPDATE zaidejai SET vipas25='-', sms_litai=sms_litai-'0' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE zaidejai SET vipas25='-', sms_litai=sms_litai-'0' WHERE nick='$nick'");
 
-			mysql_query("UPDATE  inv SET viplvl=viplvl+'1' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE  inv SET viplvl=viplvl+'1' WHERE nick='$nick'");
 		}
 	}
 	$g_n[] = array("pagrindinis.php?id=","Pagrindinis","vipas.php?","Atgal","VIP Pirkimas");
@@ -1827,7 +1827,7 @@ elseif($apie[uvip]-time() > 0){
 	else{
 		$vip_time = time()+ 3600*24*7;
 		 echo '<div class="meniuc">Nusipirkai sėkmingai <b>Ultimate VIP Narystę</b> savaitei!</div>';
-		mysql_query("UPDATE zaidejai SET uvip='$vip_time', sms_litai=sms_litai-'400' WHERE nick='$nick'");
+		mysqli_query($conn,"UPDATE zaidejai SET uvip='$vip_time', sms_litai=sms_litai-'400' WHERE nick='$nick'");
 	}
 	 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vipas.php?","Atgal","Ultimate VIP Pirkimas");
 	navigacija($g_n);

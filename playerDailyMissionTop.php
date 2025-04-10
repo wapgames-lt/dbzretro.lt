@@ -12,7 +12,8 @@ topbar();
 if($id == ""){
 	online('Legendinių dienos misijų TOP');
 	top("TOP vykdytojai(šiandien)");
-    $viso = mysql_result(mysql_query("SELECT COUNT(*) FROM player_daily_mission_top WHERE completed_missions > 0"),0);
+    $viso = mysqli_fetch_row(mysqli_query($conn, "SELECT COUNT(*) FROM player_daily_mission_top WHERE completed_missions > 0"))[0];
+
     if (!$nust['daily_mission_reward'] || !$viso) {
         echo '<div class="titlec">Žaidėjų šiame tope nėra arba šis topas užrakintas.</div>';
         return;
@@ -30,8 +31,8 @@ if($id == ""){
             $puslapiu=ceil($viso/$rezultatu_rodymas);
             
             echo '<div class="meniu">';
-            $query = mysql_query("SELECT * FROM player_daily_mission_top WHERE completed_missions > 0 ORDER BY completed_missions DESC LIMIT $nuo_kiek,$rezultatu_rodymas");
-               while ($row = mysql_fetch_assoc($query)){
+            $query = mysqli_query($conn,"SELECT * FROM player_daily_mission_top WHERE completed_missions > 0 ORDER BY completed_missions DESC LIMIT $nuo_kiek,$rezultatu_rodymas");
+               while ($row = mysqli_fetch_assoc($query)){
                 $nr++;
                 if ($nr === 1) {
                     echo '<font color="green"><b>'.$nr.'</b></font>. ';

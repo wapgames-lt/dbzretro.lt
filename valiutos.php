@@ -12,14 +12,14 @@ include_once 'cfg/funkcijos.php';
 	$prizas2 = round($nust['sms_priz']) / 2;
 	$prizas3 = round($nust['sms_priz']) / 3;
  $statusai = array("Mod","Mod2","Mod3","Mod4","Admin");
-$nst = mysql_fetch_assoc(mysql_query("SELECT * FROM turnyras"));
-$new = mysql_fetch_assoc(mysql_query("SELECT * FROM news ORDER BY id DESC LIMIT 1"));
-$xd = mysql_query("SELECT * FROM zaidejai WHERE nick= $nick");
+$nst = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM turnyras"));
+$new = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM news ORDER BY id DESC LIMIT 1"));
+$xd = mysqli_query($conn,"SELECT * FROM zaidejai WHERE nick= $nick");
 head2();
 if($nust['new_time']-time() > 0){
-    $q = mysql_query("SELECT * FROM news ORDER BY id DESC LIMIT 1");
+    $q = mysqli_query($conn,"SELECT * FROM news ORDER BY id DESC LIMIT 1");
    
-    while($row = mysql_fetch_assoc($q)){
+    while($row = mysqli_fetch_assoc($q)){
         echo '<div class="meniuc">Padarytas atnaujinimas: '.$row[name].'</div>';
       
         unset($row);
@@ -33,7 +33,7 @@ baneris();
 
 	
 		
-if(mysql_num_rows(mysql_query("SELECT * FROM kvietimai_i_komanda WHERE nick2='$nick'")) == true){
+if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM kvietimai_i_komanda WHERE nick2='$nick'")) == true){
 	echo"<div class='meniuc'><font color='red'>Dėmesio! Tu kviečiamas į ".$team_pakv['team']." komandą!</font><br>
 	<a href='komanda.php?id=atmesti&ka=".$team_pakv['team']."'>Atmesti</a> <a href='komanda.php?id=priimti&ka=".$team_pakv['team']."'>Priimti</a>
 	</div>";
@@ -53,7 +53,7 @@ if(mysql_num_rows(mysql_query("SELECT * FROM kvietimai_i_komanda WHERE nick2='$n
 			if(empty($apie['email'])){
  $error='<a href="meniu.php?id=email">Nusistatyk email slaptažodžio priminimui</a>';
 }	
-			if(mysql_num_rows(mysql_query("SELECT * FROM b_rez WHERE nick ='$nick' && bals_id ='1'")) == false){
+			if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM b_rez WHERE nick ='$nick' && bals_id ='1'")) == false){
  $error='<a href="balsavimai.php">Naujas balsavimas kuriame nebalsavai !</a>';
 }	
 			if($apie[daily] != '+'){
@@ -66,7 +66,7 @@ if(mysql_num_rows(mysql_query("SELECT * FROM kvietimai_i_komanda WHERE nick2='$n
 	     echo '<div class="meniuc">'.$error.'</div>';
 		}	
 		
-$pakvietimai = mysql_fetch_assoc(mysql_query("SELECT * FROM pakvietimai WHERE nick='$nick'"));
+$pakvietimai = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM pakvietimai WHERE nick='$nick'"));
 if($pakvietimai > 0 ? $pakvietimai : 0){
   echo '<div class="meniuc">'.statusas($pakvietimai[kviecia]).' Kviečia i draugus !<br/>
     <a href="pagrindinis.php?id=priimti&ID='.$pakvietimai['kviecia'].'">Priimti</a> | <a href="pagrindinis.php?id=atmesti&ID='.$pakvietimai['kviecia'].'">Atmesti</a> 
@@ -77,8 +77,8 @@ if($pakvietimai > 0 ? $pakvietimai : 0){
 	
 }
 /// team pakvietims ++
-$mano_team = mysql_fetch_assoc(mysql_query("SELECT * FROM team WHERE vadas='$nick'"));
-$kvietimas_i_komanda = mysql_fetch_assoc(mysql_query("SELECT * FROM prasosi_i_komanda WHERE komanda='$mano_team[pavadinimas]'"));
+$mano_team = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM team WHERE vadas='$nick'"));
+$kvietimas_i_komanda = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM prasosi_i_komanda WHERE komanda='$mano_team[pavadinimas]'"));
 if($kvietimas_i_komanda  > 0){
   echo '<div class="meniuc">'.statusas($kvietimas_i_komanda[nick]).' Nori i jūsų komanda<br/>
    
@@ -88,8 +88,8 @@ if($kvietimas_i_komanda  > 0){
   </div>';
 	
 }
-if(mysql_num_rows(mysql_query("SELECT * FROM statusai WHERE kam='$nick'")) == true){
-	$st = mysql_fetch_assoc(mysql_query("SELECT * FROM statusai WHERE kam='$nick'"));
+if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM statusai WHERE kam='$nick'")) == true){
+	$st = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM statusai WHERE kam='$nick'"));
 	
 	  echo '<div class="meniuc">'.statusas($st[nick]).' Nori pakeisti draugystės statusas į '.$st['stats'].'<br/>
 	  
@@ -101,7 +101,7 @@ if(mysql_num_rows(mysql_query("SELECT * FROM statusai WHERE kam='$nick'")) == tr
 }
 
    $stt = array("Admin","Mod4","Mod3","Mod2","Mod");
-if(in_array($apie[statusas], $stt) && mysql_num_rows(mysql_query("SELECT * FROM foto WHERE ar_patvirtinta='ne'")) >0){
+if(in_array($apie[statusas], $stt) && mysqli_num_rows(mysqli_query($conn,"SELECT * FROM foto WHERE ar_patvirtinta='ne'")) >0){
 	
  echo'<div class="meniuc"> <a href="meniu.php?id=mod&ka=ft_tikrinimas">Nauja nepatvirtinta nuotrauka</a></div>';
 	
@@ -111,7 +111,7 @@ if($user[kovu_trn] !='+' && $nst[trn_busena] == 0 && $user[rodyti_turnyra] == 1)
 		
 	echo '<div class="meniuc"><b><font color="red">!!!</font> Registracija į turnyrą prasidėjo <font color="red">!!!</font><br/> >>> <a href="trn.php?id=reg">Registruotis</a> <<< </b></div>';
 }
-$sajanas =mysql_fetch_assoc(mysql_query("SELECT * FROM legendinis_sajanas"));
+$sajanas =mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM legendinis_sajanas"));
 if($sajanas[prisikels]-time < 0){
 	echo '<div class="meniuc"><b><a href="legendinis_sajanas.php"><font color="red">Legendinis sajanas prisikėlė</font></a></div>';
 }	

@@ -12,7 +12,7 @@ baneris();
 
 		topbar();
 		
-$lotery = mysql_fetch_assoc(mysql_query("SELECT * FROM loterija WHERE nick ='$nick'"));
+$lotery = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM loterija WHERE nick ='$nick'"));
  if($id == ""){
  	top('Loterija');
       echo'
@@ -67,14 +67,14 @@ if($id =='perkub'){
 	          } else {
 	              echo '<div class="meniuc">Atlikta! Nusipirkai '.sk($kiekis).'  <img src="img/bicons/ticket.png" alt="*"/>!</div>';
 	           
-	   if(!mysql_num_rows(mysql_query("SELECT * FROM loterija WHERE nick='$nick' ")))
+	   if(!mysqli_num_rows(mysqli_query($conn,"SELECT * FROM loterija WHERE nick='$nick' ")))
 {
-	mysql_query("INSERT INTO loterija SET nick='$nick', kiek='$kiekis'");
+	mysqli_query($conn,"INSERT INTO loterija SET nick='$nick', kiek='$kiekis'");
 }else{
-mysql_query("UPDATE loterija SET kiek=kiek+'$kiekis' WHERE nick='$nick'");}
-mysql_query("UPDATE zaidejai SET sms_litai=sms_litai-'$kainn' WHERE nick='$nick'")or die(mysql_error());
+mysqli_query($conn,"UPDATE loterija SET kiek=kiek+'$kiekis' WHERE nick='$nick'");}
+mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai-'$kainn' WHERE nick='$nick'")or die(mysqli_error());
   
-mysql_query("UPDATE nustatymai SET lotery_priz=lotery_priz+'$kiekis'")or die(mysql_error());
+mysqli_query($conn,"UPDATE nustatymai SET lotery_priz=lotery_priz+'$kiekis'")or die(mysqli_error());
 
 
 			  }
@@ -108,14 +108,14 @@ if($id =='remiu2'){
 	          } else {
 	              echo '<div class="meniuc">Atlikta! Parėmei  '.sk($kiekis).'  <img src="img/bicons/euro.png" />!</div>';
 	           
-	   if(!mysql_num_rows(mysql_query("SELECT * FROM loterija WHERE nick='$nick' ")))
+	   if(!mysqli_num_rows(mysqli_query($conn,"SELECT * FROM loterija WHERE nick='$nick' ")))
 {
-	mysql_query("INSERT INTO loterija SET nick='$nick', kiek='$kiekis1'");
+	mysqli_query($conn,"INSERT INTO loterija SET nick='$nick', kiek='$kiekis1'");
 }else{
-mysql_query("UPDATE loterija SET kiek=kiek+'$kiekis11' WHERE nick='$nick'");}
-mysql_query("UPDATE zaidejai SET sms_litai=sms_litai-'$kainn' WHERE nick='$nick'")or die(mysql_error());
+mysqli_query($conn,"UPDATE loterija SET kiek=kiek+'$kiekis11' WHERE nick='$nick'");}
+mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai-'$kainn' WHERE nick='$nick'")or die(mysqli_error());
   
-mysql_query("UPDATE nustatymai SET lotery_priz=lotery_priz+'$kiekis'")or die(mysql_error());
+mysqli_query($conn,"UPDATE nustatymai SET lotery_priz=lotery_priz+'$kiekis'")or die(mysqli_error());
 
 
 			  }

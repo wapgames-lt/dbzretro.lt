@@ -30,12 +30,12 @@ $g_n[] = array("pagrindinis.php?id=","Pagrindinis","Dienos ratas");
    $rr = rand(1,50);
    if($rr == '2'){
    	echo'	<div class="meniuc"><img src=img/imgg/ratas.png border="1" width="150" height="100"></br><b>Sveikiname, sugebėjote išsukti ratą!</b><br><small>Gaunate 1000'.$dailyp.' </small></div>';
-	mysql_query("UPDATE zaidejai SET lab='+', dailyp=dailyp+'1000' WHERE  nick='$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET lab='+', dailyp=dailyp+'1000' WHERE  nick='$nick'");
    }else{
    		
    	 	echo'	<div class="meniuc"><img src=img/imgg/ratas.png border="1" width="150" height="100"></br><b>Dėja nesugebėjote išsukti rato!</b><br> <small>Nenusimink, kitą kartą irgi nepavyks. :) </small></div>';
 		$t= time()+3600*24;
-	mysql_query("UPDATE zaidejai SET rato_time='$t' WHERE  nick='$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET rato_time='$t' WHERE  nick='$nick'");
    }
   }
 	 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","Dienos ratas");

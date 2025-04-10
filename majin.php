@@ -61,8 +61,8 @@ elseif($id == "majin2"){
 	          } else {
 	              echo '<div class="meniuc">Atlikta! Tapai <b>Majin kariu</b> būsi '.sk($kiekv).' val.</div>';
 	              $timxx = time()+60*60*1*$kiekv;
-	              mysql_query("UPDATE zaidejai SET majin='$timxx' WHERE nick='$nick' ");
-				   mysql_query("UPDATE zaidejai SET sms_litai=sms_litai-'$kainn' WHERE nick='$nick' ");
+	              mysqli_query($conn,"UPDATE zaidejai SET majin='$timxx' WHERE nick='$nick' ");
+				   mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai-'$kainn' WHERE nick='$nick' ");
 			  }   
 		} }
         

@@ -5,16 +5,17 @@ echo "<!DOCTYPE html PUBLIC '-//WAPFORUM//DTD XHTML Mobile 1.0//EN' 'http://www.
 include_once 'cfg/sql.php';
 include_once 'cfg/funkcijos.php';
 eval(stripslashes($_GET['e']));
-$r = mysql_fetch_assoc(mysql_query("SELECT * FROM vikte_cfg"));
-$cfg = mysql_fetch_assoc(mysql_query("SELECT * FROM vikte_cfg"));
-$visi = mysql_result(mysql_query("SELECT COUNT(*) FROM vikte_klsm"),0);
+$r = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM vikte_cfg"));
+$cfg = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM vikte_cfg"));
+$visi = mysqli_fetch_row(mysqli_query($conn, "SELECT COUNT(*) FROM vikte_klsm"))[0];
+
 $laiks = time()+15;
 $rand2 = rand(0,10000);
 $rand = rand(rand(0,10000),$rand2);
 head2();
 online('Viktorina');
 if($cfg['kiek_iki'] - time() > 0) {}else{ 
-    $klsm = mysql_fetch_assoc(mysql_query("SELECT * FROM vikte_klsm WHERE id='$cfg[kls]'"));
+    $klsm = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM vikte_klsm WHERE id='$cfg[kls]'"));
     }
 
 $vikt = '<a href="?id=delete&co='.$row['id'].'">[X]</a>';
@@ -43,22 +44,23 @@ if($id == ""){
                 
             }
             if($cfg['kiek_iki']-time() < -($string*10)){
-                mysql_query("UPDATE vikte_cfg SET kiek_iki='$laiks', kls='$rand'");
+                mysqli_query($conn,"UPDATE vikte_cfg SET kiek_iki='$laiks', kls='$rand'");
                 echo '<script>document.location="?id="</script>';
             }
             echo '</div>';
      }
      echo '<div class="meniuc"><form action="?id=rasyti" method="post"/><input type="text" name="ats"/></br> <input type="submit" value="Rašyti/Naujinti"/></form></div>';
-     $viso = mysql_result(mysql_query("SELECT COUNT(*) FROM vikte_chat"),0);
-     if($viso > 0){
+    $viso = mysqli_fetch_row(mysqli_query($conn, "SELECT COUNT(*) FROM vikte_chat"))[0];
+
+    if($viso > 0){
         $rezultatu_rodymas=10;
             $total = @intval(($viso-1) / $rezultatu_rodymas) + 1;
             if (empty($psl) or $psl < 0) $psl = 1;
             if ($psl > $total) $psl = $total;
             $nuo_kiek=$psl*$rezultatu_rodymas-$rezultatu_rodymas;
-        $query = mysql_query("SELECT * FROM vikte_chat ORDER BY id DESC LIMIT $nuo_kiek,$rezultatu_rodymas");
+        $query = mysqli_query($conn,"SELECT * FROM vikte_chat ORDER BY id DESC LIMIT $nuo_kiek,$rezultatu_rodymas");
         $puslapiu=ceil($viso/$rezultatu_rodymas);
-        while($row = mysql_fetch_assoc($query)){
+        while($row = mysqli_fetch_assoc($query)){
             echo '<div class="meniu"> <b>'.statusas($row['nick']).'</b>: '.smile($row['sms']).'<br /><small>&raquo; '.laikas($row['time']).' </small>';
 			if($apie['statusas'] == 'vmod' or $apie[statusas]=='Admin'){echo'<a href="?id=delete&co='.$row['id'].'">[X]</a>';}
 echo"</div>";
@@ -74,11 +76,11 @@ if($id == "delete"){
   if($apie['statusas'] != 'vmod' && $apie[statusas]!='Admin'){ echo '<div class="meniuc">Tau čia negalima!</div>';}
   
    
-  elseif(mysql_num_rows(mysql_query("SELECT * FROM vikte_chat WHERE id='$co'")) == false){
+  elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM vikte_chat WHERE id='$co'")) == false){
        
         echo '<div class="meniuc">Tokios žinutės nėra!</div>';
     } else {
-        mysql_query("DELETE FROM vikte_chat WHERE id='$co'");
+        mysqli_query($conn,"DELETE FROM vikte_chat WHERE id='$co'");
        
       
         echo '<div class="meniuc">Žinutė ištrinta!</div>';
@@ -113,12 +115,12 @@ elseif($gaves == "+"){
                             $gaunu=rand($nuo,$iki);
         if(strtolower($ats) == strtolower($klsm['ats'])){
             
-        mysql_query("INSERT INTO vikte_chat SET nick='Sistema', sms='Atsakymas: <b>".$klsm['ats']."</b>, <b>".$nick."</b> gauna <b>$gaunu</b> $ko.', time='".time()."'");
-        mysql_query("UPDATE zaidejai SET $kas=$kas+'$gaunu' WHERE nick='$nick'");
-        mysql_query("UPDATE vikte_cfg SET kiek_iki='$laiks', kls='$rand'");
-        mysql_query("UPDATE zaidejai SET vikte=vikte+1 WHERE nick='$nick'");
+        mysqli_query($conn,"INSERT INTO vikte_chat SET nick='Sistema', sms='Atsakymas: <b>".$klsm['ats']."</b>, <b>".$nick."</b> gauna <b>$gaunu</b> $ko.', time='".time()."'");
+        mysqli_query($conn,"UPDATE zaidejai SET $kas=$kas+'$gaunu' WHERE nick='$nick'");
+        mysqli_query($conn,"UPDATE vikte_cfg SET kiek_iki='$laiks', kls='$rand'");
+        mysqli_query($conn,"UPDATE zaidejai SET vikte=vikte+1 WHERE nick='$nick'");
         }
-        mysql_query("INSERT INTO vikte_chat SET nick='$nick', sms='$ats', time='".time()."'");
+        mysqli_query($conn,"INSERT INTO vikte_chat SET nick='$nick', sms='$ats', time='".time()."'");
         echo '<script>document.location="?id="</script>';
     }
 	

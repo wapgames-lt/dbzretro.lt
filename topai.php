@@ -73,22 +73,23 @@ if($ID > 20){
      }else{
         online(''.$tp.' TOP\'as');
      top(''.$tp.' topas');
-     
-        $viso = mysql_result(mysql_query("SELECT COUNT(*) FROM zaidejai"),0);
-        
-        if($viso > 0){
+
+    $viso = mysqli_fetch_row(mysqli_query($conn, "SELECT COUNT(*) FROM zaidejai"))[0];
+
+
+    if($viso > 0){
             $rezultatu_rodymas=10;
             $total = @intval(($viso-1) / $rezultatu_rodymas) + 1;
             if (empty($psl) or $psl < 0) $psl = 1;
             if ($psl > $total) $psl = $total;
             $nuo_kiek=$psl*$rezultatu_rodymas-$rezultatu_rodymas;
                 
-            $query = mysql_query("SELECT * FROM zaidejai WHERE  nick != 'CORE' ORDER BY (0+ $pg) DESC LIMIT $nuo_kiek,$rezultatu_rodymas");
+            $query = mysqli_query($conn,"SELECT * FROM zaidejai WHERE  nick != 'CORE' ORDER BY (0+ $pg) DESC LIMIT $nuo_kiek,$rezultatu_rodymas");
             $puslapiu=ceil($viso/$rezultatu_rodymas);
             
             echo '<div class="meniu">';
             if($ID == 11){
-                while($top = mysql_fetch_assoc($query)){
+                while($top = mysqli_fetch_assoc($query)){
                 $vt++;
                 if($top['nick'] == $nick){
                     echo '<font color="red"><b>'.$vt.'</b>.</font> <a href="pagrindinis.php?id=apie&ka='.$top['nick'].'">'.statusas($top['nick']).'</a> (<b>'.laikas($top[$pg], 1).'</b>)<br />';
@@ -98,7 +99,7 @@ if($ID > 20){
             }
             }else{
             	error_reporting(null);
-                while($top = mysql_fetch_assoc($query)){
+                while($top = mysqli_fetch_assoc($query)){
                 $vt++;
                 if($top['nick'] == $nick){
                     echo '<font color="red"><b>'.$vt.'</b>.</font> <a href="pagrindinis.php?id=apie&ka='.$top['nick'].'">'.statusas($top['nick']).'</a> (<b>'.sk($top[$pg]).'</b>) <font color="red">(<b>'.skaicius($top[$pg]).'</b>)</font><br />';

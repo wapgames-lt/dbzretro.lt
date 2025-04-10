@@ -19,10 +19,11 @@ if($id == ""){
 	
 
 		echo'<div class="up">TOP surinkusieji:</div>';
-			
-			$viso = mysql_result(mysql_query("SELECT COUNT(*) FROM pinigai"),0);
-        
-        if($viso > 0){
+
+    $viso = mysqli_fetch_row(mysqli_query($conn, "SELECT COUNT(*) FROM pinigai"))[0];
+
+
+    if($viso > 0){
             $rezultatu_rodymas=10;
             $total = @intval(($viso-1) / $rezultatu_rodymas) + 1;
             if (empty($psl) or $psl < 0) $psl = 1;
@@ -33,8 +34,8 @@ if($id == ""){
             $puslapiu=ceil($viso/$rezultatu_rodymas);
             
             echo '<div class="meniu">';
-            $query = mysql_query("SELECT * FROM pinigai WHERE  nick != 'aNox' ORDER BY surinkta DESC LIMIT 5");
-               while ($row = mysql_fetch_assoc($query)){
+            $query = mysqli_query($conn,"SELECT * FROM pinigai WHERE  nick != 'aNox' ORDER BY surinkta DESC LIMIT 5");
+               while ($row = mysqli_fetch_assoc($query)){
                 $nr++;
                 
                     echo '<b>'.$nr.'</b>. <a href="pagrindinis.php?id=apie&ka='.$row['nick'].'">'.statusas($row['nick']).'</a> yra surinkęs - <b>'.skaicius($row['surinkta']).'</b>'.$pinigaii.'<br />';

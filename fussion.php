@@ -28,8 +28,8 @@ if($id == 'mokytis'){
   if($id == ""){
    	top('Susijungimo šokis');
     online('Susijungimo šokis');
-    $fsn = mysql_fetch_assoc(mysql_query("SELECT * FROM susijungimas WHERE nick='$nick' "));
-    $fsn2 = mysql_fetch_assoc(mysql_query("SELECT * FROM susijungimas WHERE nick='$fsn[kitas_zaidejas]' "));
+    $fsn = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM susijungimas WHERE nick='$nick' "));
+    $fsn2 = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM susijungimas WHERE nick='$fsn[kitas_zaidejas]' "));
     if($fsn['ar_susijungias'] == "") $su_kuo = 'Niekuo'; else $su_kuo = $fsn['kitas_zaidejas'];
     
     echo '<div class="meniuc"><img src="img/fusion_dance.png" alt="*"></div>';
@@ -79,8 +79,8 @@ if($id == 'mokytis'){
           echo '<div class="meniuc">Tu nesi susijunges su <b>'.statusas($ID).'</b>!</div>';
        } else {
           echo '<div class="meniuc">Sėkmingai atsijungei nuo <b>'.statusas($ID).'</b>!</div>';
-          mysql_query("UPDATE susijungimas SET ar_susijungias='', kitas_zaidejas='', uzdirbo_exp='0' WHERE nick='$nick'");
-          mysql_query("UPDATE susijungimas SET ar_susijungias='', kitas_zaidejas='', uzdirbo_exp='0' WHERE nick='$ID'");
+          mysqli_query($conn,"UPDATE susijungimas SET ar_susijungias='', kitas_zaidejas='', uzdirbo_exp='0' WHERE nick='$nick'");
+          mysqli_query($conn,"UPDATE susijungimas SET ar_susijungias='', kitas_zaidejas='', uzdirbo_exp='0' WHERE nick='$ID'");
        }
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php","Skillai","Susijungimo šokis");
 	navigacija($g_n);
@@ -100,9 +100,9 @@ if($id == 'mokytis'){
    
        } else {
           echo '<div class="meniuc">Sėkmingai išmokai <b>Susijungimo šokį</b>.</div>';
-          mysql_query("UPDATE susijungimas SET fusion_dance='+' WHERE nick='$nick' ");
-          mysql_query("UPDATE inv SET Fusionfail=Fusionfail-'500' WHERE nick='$nick' ")or die(mysql_error());
-		  mysql_query("UPDATE zaidejai set potara = '+' WHERE nick = '$nick'");
+          mysqli_query($conn,"UPDATE susijungimas SET fusion_dance='+' WHERE nick='$nick' ");
+          mysqli_query($conn,"UPDATE inv SET Fusionfail=Fusionfail-'500' WHERE nick='$nick' ")or die(mysqli_error());
+		  mysqli_query($conn,"UPDATE zaidejai set potara = '+' WHERE nick = '$nick'");
          
        }
 	  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php","Skillai","Susijungimo šokis");
@@ -134,9 +134,9 @@ if($id == 'mokytis'){
    
        } else {
           echo '<div class="meniuc">Sėkmingai išmokai <b>Susijungimo šokį</b>.</div>';
-          mysql_query("UPDATE susijungimas SET dounble_fusion_dance='+' WHERE nick='$nick' ");
-          mysql_query("UPDATE inv SET Fusionfail=Fusionfail-'1000' WHERE nick='$nick' ")or die(mysql_error());
-		  mysql_query("UPDATE zaidejai set potara = '+' WHERE nick = '$nick'");
+          mysqli_query($conn,"UPDATE susijungimas SET dounble_fusion_dance='+' WHERE nick='$nick' ");
+          mysqli_query($conn,"UPDATE inv SET Fusionfail=Fusionfail-'1000' WHERE nick='$nick' ")or die(mysqli_error());
+		  mysqli_query($conn,"UPDATE zaidejai set potara = '+' WHERE nick = '$nick'");
          
        }
 	  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php","Skillai","Susijungimo šokis");
@@ -149,10 +149,10 @@ if($id == 'mokytis'){
        if(empty($fsn['ar_kvieti'])){
           echo '<div class="meniuc">Tu nieko nekvieti susijungti!</div>';
        } else {
-          $fsnn = mysql_fetch_assoc(mysql_query("SELECT * FROM susijungimas WHERE nick='$nick' "));
+          $fsnn = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM susijungimas WHERE nick='$nick' "));
           echo '<div class="meniuc">Sėkmingai atšauktas kvietmas!</div>';
-          mysql_query("UPDATE susijungimas SET kas_kviecia='' WHERE nick='$fsnn[ka_kvieti]' ");
-          mysql_query("UPDATE susijungimas SET ar_kvieti='', ka_kvieti='' WHERE nick='$nick' ");
+          mysqli_query($conn,"UPDATE susijungimas SET kas_kviecia='' WHERE nick='$fsnn[ka_kvieti]' ");
+          mysqli_query($conn,"UPDATE susijungimas SET ar_kvieti='', ka_kvieti='' WHERE nick='$nick' ");
        } $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php","Skillai","Susijungimo šokis");
 	navigacija($g_n);}
 		 
@@ -161,12 +161,12 @@ if($id == 'mokytis'){
        if(empty($fsn['kas_kviecia'])){
           echo '<div class="meniuc">Taves niekas nekviečia susijungti!</div>';
        }
-       elseif(mysql_num_rows(mysql_query("SELECT * FROM zaidejai WHERE nick='$ID'")) == 0){
+       elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM zaidejai WHERE nick='$ID'")) == 0){
           echo '<div class="meniuc">Toks žaidėjas neegzistuoja!</div>';
        } else {
           echo '<div class="meniuc">Sėkmingai priėmei <b>'.statusas($ID).'</b> pasiūlymą susijungti!</div>';
-          mysql_query("UPDATE susijungimas SET ar_susijungias='+', kitas_zaidejas='$nick', ar_kvieti='', ka_kvieti='' WHERE nick='$ID'");
-          mysql_query("UPDATE susijungimas SET ar_susijungias='+', kitas_zaidejas='$ID', kas_kviecia='' WHERE nick='$nick'");
+          mysqli_query($conn,"UPDATE susijungimas SET ar_susijungias='+', kitas_zaidejas='$nick', ar_kvieti='', ka_kvieti='' WHERE nick='$ID'");
+          mysqli_query($conn,"UPDATE susijungimas SET ar_susijungias='+', kitas_zaidejas='$ID', kas_kviecia='' WHERE nick='$nick'");
        }
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php","Skillai","Susijungimo šokis");
 	navigacija($g_n);
@@ -175,12 +175,12 @@ if($id == 'mokytis'){
        if(empty($fsn['kas_kviecia'])){
           echo '<div class="meniuc">Taves niekas nekviečia susijungti!</div>';
        }
-       elseif(mysql_num_rows(mysql_query("SELECT * FROM zaidejai WHERE nick='$ID'")) == 0){
+       elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM zaidejai WHERE nick='$ID'")) == 0){
           echo '<div class="meniuc">Toks žaidėjas neegzistuoja!</div>';
        } else {
           echo '<div class="meniuc">Sėkmingai priėmei <b>'.statusas($ID).'</b> pasiūlymą susijungti!</div>';
-          mysql_query("UPDATE susijungimas SET ar_susijungias='+', kitas_zaidejas='$nick', ar_kvieti='', ka_kvieti='' WHERE nick='$ID'");
-          mysql_query("UPDATE susijungimas SET ar_susijungias='+', kitas_zaidejas='$ID', kas_kviecia='' WHERE nick='$nick'");
+          mysqli_query($conn,"UPDATE susijungimas SET ar_susijungias='+', kitas_zaidejas='$nick', ar_kvieti='', ka_kvieti='' WHERE nick='$ID'");
+          mysqli_query($conn,"UPDATE susijungimas SET ar_susijungias='+', kitas_zaidejas='$ID', kas_kviecia='' WHERE nick='$nick'");
        }}
   
    if($id == "atmesti"){
@@ -188,19 +188,19 @@ if($id == 'mokytis'){
        if(empty($fsn['kas_kviecia'])){
           echo '<div class="meniuc">Tu nesi susijungęs!</div>';
        }
-       elseif(mysql_num_rows(mysql_query("SELECT * FROM zaidejai WHERE nick='$ID'")) == 0){
+       elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM zaidejai WHERE nick='$ID'")) == 0){
           echo '<div class="meniuc">Toks žaidėjas neegzistuoja!</div>';
        } else {
           echo '<div class="meniuc">Sėkmingai atmetei <b>'.statusas($ID).'</b> pasiūlymą susijungti!</div>';
-          mysql_query("UPDATE susijungimas SET ar_kvieti='', ka_kvieti='' WHERE nick='$ID'");
-	        mysql_query("UPDATE susijungimas SET kas_kviecia='' WHERE nick='$nick'");
+          mysqli_query($conn,"UPDATE susijungimas SET ar_kvieti='', ka_kvieti='' WHERE nick='$ID'");
+	        mysqli_query($conn,"UPDATE susijungimas SET kas_kviecia='' WHERE nick='$nick'");
        } $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php","Skillai","Susijungimo šokis");
 	navigacija($g_n);}
    if($id == 'kviesti'){
    	top("Susijungimo šokis");
 	 if(isset($_POST['submit'])){
           $kak = post($_POST['kvieciu']);
-          $fsnn = mysql_fetch_assoc(mysql_query("SELECT * FROM susijungimas WHERE nick='$kak' "));
+          $fsnn = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM susijungimas WHERE nick='$kak' "));
           if(empty($kak)){
              echo '<div class="meniuc">Palikai tuščią laukelį!</div>';
           }
@@ -227,15 +227,15 @@ if($id == 'mokytis'){
           elseif(!empty($fsnn['kas_kviecia'])){
              echo '<div class="meniuc">Žaidėją <b>'.statusas($kak).'</b> jau kviečia susijungti!</div>';
           }
-          elseif(mysql_num_rows(mysql_query("SELECT * FROM zaidejai WHERE nick='$kak'")) == 0){
+          elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM zaidejai WHERE nick='$kak'")) == 0){
              echo '<div class="meniuc">Toks žaidėjas neegzistuoja!</div>';
           }
           elseif(!empty($fsn['ar_kvieti'])){
              echo '<div class="meniuc">Tu jau kažką kvieti susijungti!</div>';
           } else {
              echo '<div class="meniuc">Kvietimas susijungti sėkmingai išsiūstas žaidėjui <b>'.statusas($kak).'</b>!</div>';
-             mysql_query("UPDATE susijungimas SET ar_kvieti='taip', ka_kvieti='$kak' WHERE nick='$nick' ");
-             mysql_query("UPDATE susijungimas SET kas_kviecia='$nick' WHERE nick='$kak' ");
+             mysqli_query($conn,"UPDATE susijungimas SET ar_kvieti='taip', ka_kvieti='$kak' WHERE nick='$nick' ");
+             mysqli_query($conn,"UPDATE susijungimas SET kas_kviecia='$nick' WHERE nick='$kak' ");
           }
 
        }

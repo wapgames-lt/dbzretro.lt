@@ -18,24 +18,24 @@ if($id == ""){
 		echo'<div class="meniuc">
 <a href="?id=uzsakymas">Įdėti užsakymą</a>
 </div>';
-	if(mysql_num_rows(mysql_query("SELECT * FROM uzsakymai")) == false){
+	if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM uzsakymai")) == false){
 	echo'<div class="meniuc"><b>Užsakymų nėra!</b></div>';
 	}
 	else
 	{
-	  $viso = mysql_result(mysql_query("SELECT COUNT(*) FROM uzsakymai"),0);
-   if($viso > 0){
+		$viso = mysqli_fetch_row(mysqli_query($conn, "SELECT COUNT(*) FROM uzsakymai"))[0];
+		if($viso > 0){
        $rezultatu_rodymas=5;
        $total = @intval(($viso-1) / $rezultatu_rodymas) + 1;
        if (empty($psl) or $psl < 0) $psl = 1;
        if ($psl > $total) $psl = $total;
        $nuo_kiek=$psl*$rezultatu_rodymas-$rezultatu_rodymas;
             
-       $query = mysql_query("SELECT * FROM uzsakymai ORDER BY id DESC LIMIT $nuo_kiek,$rezultatu_rodymas");
+       $query = mysqli_query($conn,"SELECT * FROM uzsakymai ORDER BY id DESC LIMIT $nuo_kiek,$rezultatu_rodymas");
        $puslapiu=ceil($viso/$rezultatu_rodymas);
             
      
-       while($row = mysql_fetch_assoc($query)){
+       while($row = mysqli_fetch_assoc($query)){
 		
 									
 			echo'<div class="meniu">
@@ -136,7 +136,7 @@ if($id == 'uzsakymas2'){
 		
 	}
 	
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM uzsakymai WHERE nick='$nick'")) > 2){
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM uzsakymai WHERE nick='$nick'")) > 2){
 		
 			$error = 'Galima užsakyti tik 3 užsakymus!';
 	}
@@ -148,8 +148,8 @@ if($id == 'uzsakymas2'){
 		
 		echo'<div class="meniuc">Prekė užsakyta</div>';
 		$laix = time()+3600*5;
-		mysql_query("INSERT INTO uzsakymai SET atlygis ='$atlygis', norima='$preke', nick='$nick', kiek='$uzsakoma', laikas='$laix'");
-		mysql_query("UPDATE zaidejai SET litai=litai-'$atlygis' WHERE nick='$nick'");
+		mysqli_query($conn,"INSERT INTO uzsakymai SET atlygis ='$atlygis', norima='$preke', nick='$nick', kiek='$uzsakoma', laikas='$laix'");
+		mysqli_query($conn,"UPDATE zaidejai SET litai=litai-'$atlygis' WHERE nick='$nick'");
 		
 	}
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","miestas.php","Miestas","uzsakymai.php","Prekių užsakymai", "Prekės užsakymas");
@@ -159,12 +159,12 @@ if($id == 'uzsakymas2'){
 		
 	if($id=='buy'){
 		top('Prekės pirkimas');
-		$inv = mysql_fetch_assoc(mysql_query("SELECT * FROM inv WHERE nick='$nick'"));
-$in=mysql_fetch_assoc(mysql_query("SELECT * FROM uzsakymai WHERE id='$ID'"));	
+		$inv = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM inv WHERE nick='$nick'"));
+$in=mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM uzsakymai WHERE id='$ID'"));	
 if($inv[$in['norima']] < $in['kiek']){
 	$error = 'Nepakanka turimų daigtų';
 }		
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM uzsakymai WHERE id='$ID'")) == false){
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM uzsakymai WHERE id='$ID'")) == false){
 		
 		$error = 'Tokio užsakymo nėra';
 	}
@@ -180,12 +180,12 @@ if($inv[$in['norima']] < $in['kiek']){
 		
 			
 			echo'<div class="meniuc">Prekė nupirkta</div>';
-			mysql_query("UPDATE zaidejai SET litai=litai+'$in[atlygis]' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE zaidejai SET litai=litai+'$in[atlygis]' WHERE nick='$nick'");
 			$kas = $in['norima'];
-			mysql_query("UPDATE inv SET $kas=$kas+$in[kiek] WHERE nick='$in[nick]' ");
-			mysql_query("UPDATE inv SET $kas=$kas-$in[kiek] WHERE nick='$nick' ");
-			mysql_query("INSERT INTO pm SET gavejas='$in[nick]', what='SISTEMA', txt='$nick atliko jūsų užsakymą', time='".time()."', nauj='NEW'");		
-			mysql_query("DELETE FROM uzsakymai WHERE id='$ID'");
+			mysqli_query($conn,"UPDATE inv SET $kas=$kas+$in[kiek] WHERE nick='$in[nick]' ");
+			mysqli_query($conn,"UPDATE inv SET $kas=$kas-$in[kiek] WHERE nick='$nick' ");
+			mysqli_query($conn,"INSERT INTO pm SET gavejas='$in[nick]', what='SISTEMA', txt='$nick atliko jūsų užsakymą', time='".time()."', nauj='NEW'");		
+			mysqli_query($conn,"DELETE FROM uzsakymai WHERE id='$ID'");
 		}
 		
 		
@@ -196,9 +196,9 @@ if($inv[$in['norima']] < $in['kiek']){
 	if($id == "delete"){
 	top("Užsakymo atšaukimas");
 	
-	$in=mysql_fetch_assoc(mysql_query("SELECT * FROM uzsakymai WHERE id='$ID'"));	
+	$in=mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM uzsakymai WHERE id='$ID'"));	
 	
-	if(mysql_num_rows(mysql_query("SELECT * FROM uzsakymai WHERE id='$ID'")) == false){
+	if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM uzsakymai WHERE id='$ID'")) == false){
 		
 		$error = 'Tokio užsakymo nėra';
 	}
@@ -215,8 +215,8 @@ if($inv[$in['norima']] < $in['kiek']){
 		
 			
 			echo'<div class="meniuc">Prekė išimta</div>';
-			mysql_query("UPDATE zaidejai SET litai=litai+'$in[atlygis]' WHERE nick='$nick'");
-			mysql_query("DELETE FROM uzsakymai WHERE id='$ID'");
+			mysqli_query($conn,"UPDATE zaidejai SET litai=litai+'$in[atlygis]' WHERE nick='$nick'");
+			mysqli_query($conn,"DELETE FROM uzsakymai WHERE id='$ID'");
 		}
 		
 		

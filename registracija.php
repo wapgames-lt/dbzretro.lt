@@ -54,9 +54,9 @@ navigacija($g_n);
 	}}
 	
 if($id == 'veik'){
- $veik = mysql_fetch_assoc(mysql_query("SELECT * FROM veikejai WHERE id='$ka' "));
+ $veik = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM veikejai WHERE id='$ka' "));
     
-    if(mysql_num_rows(mysql_query("SELECT * FROM veikejai WHERE id='$ka'")) == 0){
+    if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM veikejai WHERE id='$ka'")) == 0){
   
         echo '<div class="meniuc">Tokio veikėjo nėra!</div>';
 		$g_n[] = array("index.php","Pagrindinis", "registracija.php?id=reg","Veikėjo pasirinkimas", "Klaida");
@@ -79,7 +79,7 @@ Gyvybes:<b>  '.$veik['gyvybes'].'%</b><img src="img/bicons/hp.png"></div>
         echo '<div class="up"> Veikėjo informacija</div><div class="meniu">
         '.$ico2.' Veikėjas: <font color="white"><b>'.$veik['name'].'</b><br/></font>
         '.$ico2.' Turi transformacijų: <font color="red"><b>'.$veik['trans'].'</b><br/></font>';
-     echo'   '.$ico2.' Veikėją pasirinko: <font color="white"><b>'.mysql_num_rows(mysql_query("SELECT * FROM zaidejai WHERE veikejas='$veik[name]' ")).'</b> žaidėjų<br/></font>
+     echo'   '.$ico2.' Veikėją pasirinko: <font color="white"><b>'.mysqli_num_rows(mysqli_query($conn,"SELECT * FROM zaidejai WHERE veikejas='$veik[name]' ")).'</b> žaidėjų<br/></font>
      '.$ico2.'<b> Unikali technika</b>: <font color="red"><b>'.$veik['technika'].'</b><br/></font>  
 </div>';
         echo '<div class="meniuc"><a href="?id=reg2&ka='.$veik['name'].'&ID='.$ID.'"><img src="img/bicons/green.png" />
@@ -90,7 +90,7 @@ navigacija($g_n);
    }
 
 elseif($id == 'reg3'){
-	$veik = mysql_fetch_assoc(mysql_query("SELECT * FROM veikejai WHERE name='$ka' "));
+	$veik = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM veikejai WHERE name='$ka' "));
 	
 		echo'<div class="meniuc">
 <img src="img/butonai/reg.png" /></div>';
@@ -108,7 +108,7 @@ if(empty($vardas) OR empty($pass) OR empty($pass2)){
             }
 	
    
-elseif(mysql_num_rows(mysql_query("SELECT * FROM veikejai WHERE name='$ka'")) == 0){
+elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM veikejai WHERE name='$ka'")) == 0){
   
          $klaida = '<div class="meniuc">Tokio veikėjo nėra!</div>';}
 
@@ -158,7 +158,7 @@ Slaptažodis yra per ilgas. Daugiausiai 20 simbolių.
 <img src="img/bicons/dislike.png" />
 ';
             }
-            elseif(mysql_num_rows(mysql_query("SELECT * FROM zaidejai WHERE nick='$vardas' ")) > 0 ){
+            elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM zaidejai WHERE nick='$vardas' ")) > 0 ){
                 $klaida = '<img src="img/bicons/dislike.png" />
 Toks žaidėjas jau užsiregistravęs!
 <img src="img/bicons/dislike.png" />
@@ -170,7 +170,7 @@ Toks žaidėjas jau užsiregistravęs!
 <img src="img/bicons/dislike.png" />
 ';
             }
-			      elseif(mysql_num_rows(mysql_query("SELECT * FROM zaidejai WHERE ip='$ipas'")) > 0 ){
+			      elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM zaidejai WHERE ip='$ipas'")) > 0 ){
                 $klaida = '<font color=red>Registruotis galima tik 1 kartą!!</font>';
 				  }
             elseif($pass != $pass2){
@@ -190,21 +190,21 @@ Dabar galite prisijungti prie žaidimo ! :)</br>Turite kokių klausimų, įdėj�
 				navigacija($g_n);
 				
 				
-                mysql_query("INSERT INTO zaidejai SET nick='$vardas2', pass='$pass', atved='$ID', litai='50000', kred='20', sms_litai='10', veikejas='$ka', css='2', statusas='Žaidėjas', jega='60', gynyba='180', gyvybes='100', max_gyvybes='100', exp='0', expl='50', minichatas='1', mini_chat='1', lygis='1',kai ='-' ,rodymas='10', auksiniai='0', laimeta='0', laimetapl='0', pralaimetapl='0', vip ='$vip_time', pralaimeta='0',ip ='$refip', sword='Neuzdetas', armor='Neuzdetas', amuletas='Neuzdetas', vipticket='0', uzsiregistravo='".time()."' ") or die(mysql_error());
-				mysql_query("INSERT INTO veikejas SET nick='$vardas2', veikejas='$ka' ") or die(mysql_error());
+                mysqli_query($conn,"INSERT INTO zaidejai SET nick='$vardas2', pass='$pass', atved='$ID', litai='50000', kred='20', sms_litai='10', veikejas='$ka', css='2', statusas='Žaidėjas', jega='60', gynyba='180', gyvybes='100', max_gyvybes='100', exp='0', expl='50', minichatas='1', mini_chat='1', lygis='1',kai ='-' ,rodymas='10', auksiniai='0', laimeta='0', laimetapl='0', pralaimetapl='0', vip ='$vip_time', pralaimeta='0',ip ='$refip', sword='Neuzdetas', armor='Neuzdetas', amuletas='Neuzdetas', vipticket='0', uzsiregistravo='".time()."' ") or die(mysqli_error());
+				mysqli_query($conn,"INSERT INTO veikejas SET nick='$vardas2', veikejas='$ka' ") or die(mysqli_error());
 
-                mysql_query("INSERT INTO susijungimas SET nick='$vardas2' ") or die(mysql_error());
-				mysql_query("INSERT INTO auros SET nick='$vardas2' ") or die(mysql_error());
-				mysql_query("INSERT INTO technikos SET nick='$vardas2' ") or die(mysql_error());
-				mysql_query("INSERT INTO pasiekimai SET nick='$vardas2' ") or die(mysql_error());
+                mysqli_query($conn,"INSERT INTO susijungimas SET nick='$vardas2' ") or die(mysqli_error());
+				mysqli_query($conn,"INSERT INTO auros SET nick='$vardas2' ") or die(mysqli_error());
+				mysqli_query($conn,"INSERT INTO technikos SET nick='$vardas2' ") or die(mysqli_error());
+				mysqli_query($conn,"INSERT INTO pasiekimai SET nick='$vardas2' ") or die(mysqli_error());
 $timxx = time()+60*60*24;      
 	
-				mysql_query("UPDATE zaidejai SET antipl='$timxx' WHERE nick='$vardas2' ");
-				mysql_query("UPDATE inv SET viplvl='0' WHERE nick='$vardas2' ");
-                mysql_query("INSERT INTO user SET nick='$vardas2', meniu1='+', meniu2='+', meniu3='+' ") or die(mysql_error());
-				mysql_query("INSERT INTO daily set nick='$vardas2', snd='-', snd2='-', snd3='-', snd4='-', snd5='-', 2snd='-', 2snd2='-', 2snd3='-', 2snd4='-', 2snd5='-', m='-', m2='-', m3='-', m4='-', m5='-' ") or die(mysql_error());
-                mysql_query("UPDATE nustatymai SET new='$vardas2' ");
-				mysql_query("INSERT INTO pm set what='SISTEMA', gavejas='$vardas2', time='".time()."', txt='Sveikas <b>$vardas2!</b>. Tu užsiregistravai į Dragon Ball Super žaidimą!.Kaip naujokas tu gavai 50000 Pinigų ,20 Kreditų ir 10 Eurų.Kodėl būtent verta žaisti šita žaidima? Atnaujinimai daromi dažnai .Puiki administracija .Išklausoma kiekviena žaidejo nuomonė. Tad prisijunkite ir tapkite šio žaidimo dalimi. Prisijungus prie žaidimo siūlome iškart pasiimti legendinę dienos misiją. (Misijos -> Legendinės dienos misijos)', nauj='NEW'") or die(mysql_error());
+				mysqli_query($conn,"UPDATE zaidejai SET antipl='$timxx' WHERE nick='$vardas2' ");
+				mysqli_query($conn,"UPDATE inv SET viplvl='0' WHERE nick='$vardas2' ");
+                mysqli_query($conn,"INSERT INTO user SET nick='$vardas2', meniu1='+', meniu2='+', meniu3='+' ") or die(mysqli_error());
+				mysqli_query($conn,"INSERT INTO daily set nick='$vardas2', snd='-', snd2='-', snd3='-', snd4='-', snd5='-', 2snd='-', 2snd2='-', 2snd3='-', 2snd4='-', 2snd5='-', m='-', m2='-', m3='-', m4='-', m5='-' ") or die(mysqli_error());
+                mysqli_query($conn,"UPDATE nustatymai SET new='$vardas2' ");
+				mysqli_query($conn,"INSERT INTO pm set what='SISTEMA', gavejas='$vardas2', time='".time()."', txt='Sveikas <b>$vardas2!</b>. Tu užsiregistravai į Dragon Ball Super žaidimą!.Kaip naujokas tu gavai 50000 Pinigų ,20 Kreditų ir 10 Eurų.Kodėl būtent verta žaisti šita žaidima? Atnaujinimai daromi dažnai .Puiki administracija .Išklausoma kiekviena žaidejo nuomonė. Tad prisijunkite ir tapkite šio žaidimo dalimi. Prisijungus prie žaidimo siūlome iškart pasiimti legendinę dienos misiją. (Misijos -> Legendinės dienos misijos)', nauj='NEW'") or die(mysqli_error());
 	
 
 
@@ -223,8 +223,8 @@ $timxx = time()+60*60*24;
 
 elseif($id == 'reg2'){
 	
-		$veik = mysql_fetch_assoc(mysql_query("SELECT * FROM veikejai WHERE name='$ka' "));
-    if(mysql_num_rows(mysql_query("SELECT * FROM veikejai WHERE name='$ka'")) == 0){
+		$veik = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM veikejai WHERE name='$ka' "));
+    if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM veikejai WHERE name='$ka'")) == 0){
   
         echo '<div class="meniuc"><img src="img/bicons/dislike.png" />
 Tokio veikėjo nėra!

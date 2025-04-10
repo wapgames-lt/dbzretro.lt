@@ -16,20 +16,20 @@ topbar();
     online('Žiūri prisijungusius');
     top('Prisijunge žaidėjai');
   
-    echo '<div class="meniuc"> Dabar žaidžia: <font color="red"><span class="on">'.mysql_num_rows(mysql_query("SELECT * FROM online")).'</font> | Max. Prisijungusių: <font color="red">'.$nust['max_on'].'</font> |Max. Prisijungusių šiandien:</font> <font color="red"><span class="on">'.$nust['snd_max'].'</font><br /> </div>';
+    echo '<div class="meniuc"> Dabar žaidžia: <font color="red"><span class="on">'.mysqli_num_rows(mysqli_query($conn,"SELECT * FROM online")).'</font> | Max. Prisijungusių: <font color="red">'.$nust['max_on'].'</font> |Max. Prisijungusių šiandien:</font> <font color="red"><span class="on">'.$nust['snd_max'].'</font><br /> </div>';
  echo ' <div class="up"><table> <tr onmouseover=""><td><b></b></td> <td><b>Nikas /</b> </td><td><b>Žaidėjo vieta /</b> </td><td> <i><b>Laikas prisijungus /</b> </i></td><td> <b>Naršyklė</b></td></table></div>';
         
  echo '<div class="meniu"><table>';
 
-  $viso = mysql_result(mysql_query("SELECT COUNT(*) FROM online"),0);
+			$viso = mysqli_fetch_row(mysqli_query($conn, "SELECT COUNT(*) FROM online"))[0];
 
-    if($viso > 0){
+			if($viso > 0){
         $rezultatu_rodymas=15;
             $total = @intval(($viso-1) / $rezultatu_rodymas) + 1;
             if (empty($psl) or $psl < 0) $psl = 1;
             if ($psl > $total) $psl = $total;
             $nuo_kiek=$psl*$rezultatu_rodymas-$rezultatu_rodymas;
-        $query = mysql_query("
+        $query = mysqli_query($conn,"
 		            SELECT 
                        o.nick,
 					   z.nick,
@@ -56,12 +56,12 @@ topbar();
 						DESC,
 						o.nick ASC
 					LIMIT 
-		$nuo_kiek,$rezultatu_rodymas") or die(mysql_error());
+		$nuo_kiek,$rezultatu_rodymas") or die(mysqli_error());
         $puslapiu=ceil($viso/$rezultatu_rodymas);
        
-        while($row = mysql_fetch_assoc($query)){
+        while($row = mysqli_fetch_assoc($query)){
             $s++;
-            $asdf = mysql_fetch_assoc(mysql_query("SELECT * FROM zaidejai WHERE nick='$row[nick]' "));
+            $asdf = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM zaidejai WHERE nick='$row[nick]' "));
            if($asdf['statusas'] == 'Kurejas' OR $asdf['statusas'] == 'Admin'){
              
 				$ka[1] = array("Mylisi su Bulma");

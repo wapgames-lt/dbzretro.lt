@@ -43,7 +43,7 @@ echo'</div>';
 else{
 	echo '<div class="meniuc"><img src="img/imgg/bokstas.png" border="1"></div>';
 echo'<div class="meniuc">Sėkmingai! Užlipote į <b>karino bokštą</b> už <b>5</b><img src="img/bicons/cash.png" />!</div>';
-mysql_query("UPDATE zaidejai SET karinokm=karinokm+'5000', botas=botas-'5' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET karinokm=karinokm+'5000', botas=botas-'5' WHERE nick='$nick'");
 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","karinas.php?id=","Atgal","Karino Bokstas");
 
 	navigacija($g_n);
@@ -82,7 +82,7 @@ $g_n[] = array("pagrindinis.php?id=","Pagrindinis","karinas.php?id=","Atgal","Ka
        echo '<div class="meniuc"><img src="img/imgg/bokstas.png" border="1"></div>';
  echo '<div class="meniuc">Sėkmingai! +<b>10km</b> Išviso užlipęs: <b>'.$apie['karinokm'].'</b>Km!</div>';
 
-mysql_query("UPDATE zaidejai SET karinokm=karinokm+'10' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET karinokm=karinokm+'10' WHERE nick='$nick'");
 echo'<div class="meniuc"><a href="?id=lipukm&kodas='.$kodas.'">Lipti toliau</a></div>';
 }
 
@@ -185,7 +185,7 @@ online('Potion gaminime');
 	              echo '<div class="meniuc">Atlikta! Išsikeitei sėkmingai!<br>Praradai '.$kainn.' <b><img src="img/boxes/anti.png">Anti Potion</b>, Gavai '.$kiekv.'<img src="img/boxes/anti2.png"> <b>10min Anti puolimų potion</b>!</div>';
 	             
 	              
-				   mysql_query("UPDATE inv SET antipotion=antipotion-'$kainn', antipl=antipl+'$kiekv' WHERE nick='$nick' ");
+				   mysqli_query($conn,"UPDATE inv SET antipotion=antipotion-'$kainn', antipl=antipl+'$kiekv' WHERE nick='$nick' ");
 			  }   
 		 }$g_n[] = array("pagrindinis.php?id=","Pagrindinis","karinas.php?id=10min","Atgal","Potion gaminime");
 	navigacija($g_n);
@@ -240,7 +240,7 @@ online('Potion gaminime');
 	              echo '<div class="meniuc">Atlikta! Išsikeitei sėkmingai!<br>Praradai '.$kainn.' <b><img src="img/boxes/anti.png">Anti Potion</b>, Gavai '.$kiekv.'<img src="img/boxes/anti2.png"> <b>30min Anti puolimų potion</b>!</div>';
 	             
 	              
-				   mysql_query("UPDATE inv SET antipotion=antipotion-'$kainn', antipl2=antipl2+'$kiekv' WHERE nick='$nick' ");
+				   mysqli_query($conn,"UPDATE inv SET antipotion=antipotion-'$kainn', antipl2=antipl2+'$kiekv' WHERE nick='$nick' ");
 			  }   
 		 }$g_n[] = array("pagrindinis.php?id=","Pagrindinis","karinas.php?id=30min","Atgal","Potion gaminime");
 	navigacija($g_n);
@@ -293,7 +293,7 @@ online('Potion gaminime');
 	              echo '<div class="meniuc">Atlikta! Išsikeitei sėkmingai!<br>Praradai '.$kainn.' <b><img src="img/boxes/anti.png">Anti Potion</b>, Gavai '.$kiekv.'<img src="img/boxes/anti2.png"> <b>60min Anti puolimų potion</b>!</div>';
 	             
 	              
-				   mysql_query("UPDATE inv SET antipotion=antipotion-'$kainn', antipl3=antipl3+'$kiekv' WHERE nick='$nick' ");
+				   mysqli_query($conn,"UPDATE inv SET antipotion=antipotion-'$kainn', antipl3=antipl3+'$kiekv' WHERE nick='$nick' ");
 			  }   
 		 }$g_n[] = array("pagrindinis.php?id=","Pagrindinis","karinas.php?id=60min","Atgal","Potion gaminime");
 	navigacija($g_n);
@@ -346,7 +346,7 @@ online('Potion gaminime');
 	              echo '<div class="meniuc">Atlikta! Išsikeitei sėkmingai!<br>Praradai '.$kainn.' <b><img src="img/boxes/anti.png">Anti Potion</b>, Gavai '.$kiekv.'<img src="img/boxes/anti2.png"> <b>3h Anti puolimų potion</b>!</div>';
 	             
 	              
-				   mysql_query("UPDATE inv SET antipotion=antipotion-'$kainn', antipl4=antipl4+'$kiekv' WHERE nick='$nick' ");
+				   mysqli_query($conn,"UPDATE inv SET antipotion=antipotion-'$kainn', antipl4=antipl4+'$kiekv' WHERE nick='$nick' ");
 			  }   
 		 }$g_n[] = array("pagrindinis.php?id=","Pagrindinis","karinas.php?id=180min","Atgal","Potion gaminime");
 	navigacija($g_n);
@@ -400,7 +400,7 @@ online('Potion gaminime');
 	              echo '<div class="meniuc">Atlikta! Išsikeitei sėkmingai!<br>Praradai '.$kainn.' <b><img src="img/boxes/anti.png">Anti Potion</b>, Gavai '.$kiekv.'<img src="img/boxes/anti2.png"> <b>6h Anti puolimų potion</b>!</div>';
 	             
 	              
-				   mysql_query("UPDATE inv SET antipotion=antipotion-'$kainn', antipl5=antipl5+'$kiekv' WHERE nick='$nick' ");
+				   mysqli_query($conn,"UPDATE inv SET antipotion=antipotion-'$kainn', antipl5=antipl5+'$kiekv' WHERE nick='$nick' ");
 			  }   
 		 }$g_n[] = array("pagrindinis.php?id=","Pagrindinis","karinas.php?id=6h","Atgal","Potion gaminime");
 	navigacija($g_n);
@@ -454,7 +454,7 @@ online('Potion gaminime');
 	              echo '<div class="meniuc">Atlikta! Išsikeitei sėkmingai!<br>Praradai '.$kainn.' <b><img src="img/boxes/anti.png">Anti Potion</b>, Gavai '.$kiekv.'<img src="img/boxes/anti2.png"> <b>12h Anti puolimų potion</b>!</div>';
 	             
 	              
-				   mysql_query("UPDATE inv SET antipotion=antipotion-'$kainn', antipl6=antipl6+'$kiekv' WHERE nick='$nick' ");
+				   mysqli_query($conn,"UPDATE inv SET antipotion=antipotion-'$kainn', antipl6=antipl6+'$kiekv' WHERE nick='$nick' ");
 			  }   
 		 }$g_n[] = array("pagrindinis.php?id=","Pagrindinis","karinas.php?id=12h","Atgal","Potion gaminime");
 	navigacija($g_n);
@@ -507,7 +507,7 @@ online('Potion gaminime');
 	              echo '<div class="meniuc">Atlikta! Išsikeitei sėkmingai!<br>Praradai '.$kainn.' <b><img src="img/boxes/anti.png">Anti Potion</b>, Gavai '.$kiekv.'<img src="img/boxes/anti2.png"> <b>24h Anti puolimų potion</b>!</div>';
 	             
 	              
-				   mysql_query("UPDATE inv SET antipotion=antipotion-'$kainn', antipl7=antipl7+'$kiekv' WHERE nick='$nick' ");
+				   mysqli_query($conn,"UPDATE inv SET antipotion=antipotion-'$kainn', antipl7=antipl7+'$kiekv' WHERE nick='$nick' ");
 			  }   
 		 }$g_n[] = array("pagrindinis.php?id=","Pagrindinis","karinas.php?id=24h","Atgal","Potion gaminime");
 	navigacija($g_n);
@@ -588,55 +588,55 @@ elseif($id == "karinn"){
        } else {
           if($apie['kmis'] == 1){
                $ko = "50 Lygio taškų!";
-               mysql_query("UPDATE zaidejai SET taskai=taskai+'50' WHERE nick='$nick'");
-               mysql_query("UPDATE inv SET Soul=Soul-'2000' WHERE nick='$nick'")or die(mysql_error());
+               mysqli_query($conn,"UPDATE zaidejai SET taskai=taskai+'50' WHERE nick='$nick'");
+               mysqli_query($conn,"UPDATE inv SET Soul=Soul-'2000' WHERE nick='$nick'")or die(mysqli_error());
           }
           elseif($apie['kmis'] == 2){
                $ko = "".sk(20000000)." Pinigu!";
-                  mysql_query("UPDATE inv SET Stone=Stone-'3000' WHERE nick='$nick'")or die(mysql_error());
-               mysql_query("UPDATE zaidejai SET litai=litai+'20000000' WHERE nick='$nick'");
+                  mysqli_query($conn,"UPDATE inv SET Stone=Stone-'3000' WHERE nick='$nick'")or die(mysqli_error());
+               mysqli_query($conn,"UPDATE zaidejai SET litai=litai+'20000000' WHERE nick='$nick'");
           }
           elseif($apie['kmis'] == 3){
                $ko = "15 kreditus!";
-               mysql_query("UPDATE zaidejai SET  kred=kred+'15' WHERE nick='$nick'");
+               mysqli_query($conn,"UPDATE zaidejai SET  kred=kred+'15' WHERE nick='$nick'");
           }
           elseif($apie['kmis'] == 4){
                $ko = "".sk(2000)." Jėgos!";
-               mysql_query("UPDATE zaidejai SET jega=jega+'2000', kred=kred-'1250' WHERE nick='$nick'");
+               mysqli_query($conn,"UPDATE zaidejai SET jega=jega+'2000', kred=kred-'1250' WHERE nick='$nick'");
           }
           elseif($apie['kmis'] == 5){
                $ko = "".skaicius(9000)." Gynybos!";
-              mysql_query("UPDATE inv SET Microshem=Microshem-'4000' WHERE nick='$nick'")or die(mysql_error());
-               mysql_query("UPDATE zaidejai SET gynyba=gynyba+'9000' WHERE nick='$nick'");
+              mysqli_query($conn,"UPDATE inv SET Microshem=Microshem-'4000' WHERE nick='$nick'")or die(mysqli_error());
+               mysqli_query($conn,"UPDATE zaidejai SET gynyba=gynyba+'9000' WHERE nick='$nick'");
           }
           elseif($apie['kmis'] == 6){
                $ko = "".skaicius(10000)." Gyvybių lygio!";
-                 mysql_query("UPDATE inv SET Sayiantail=Sayiantail-'5000' WHERE nick='$nick'")or die(mysql_error());
-               mysql_query("UPDATE zaidejai SET max_gyvybes=max_gyvybes+'10000' WHERE nick='$nick'");
+                 mysqli_query($conn,"UPDATE inv SET Sayiantail=Sayiantail-'5000' WHERE nick='$nick'")or die(mysqli_error());
+               mysqli_query($conn,"UPDATE zaidejai SET max_gyvybes=max_gyvybes+'10000' WHERE nick='$nick'");
           }
           elseif($apie['kmis'] == 7){
                $ko = "".sk(100)." kreditų!";
-               mysql_query("UPDATE zaidejai SET kred=kred+'100', litai=litai-'5000000000' WHERE nick='$nick'");
+               mysqli_query($conn,"UPDATE zaidejai SET kred=kred+'100', litai=litai-'5000000000' WHERE nick='$nick'");
           }
           elseif($apie['kmis'] == 8){
                $ko = "150mln pinigų!";
-               mysql_query("UPDATE inv SET Fusionfail=Fusionfail-'6000' WHERE nick='$nick'")or die(mysql_error());
-                mysql_query("UPDATE zaidejai SET litai=litai+'150000000' WHERE nick='$nick'")or die(mysql_error());
+               mysqli_query($conn,"UPDATE inv SET Fusionfail=Fusionfail-'6000' WHERE nick='$nick'")or die(mysqli_error());
+                mysqli_query($conn,"UPDATE zaidejai SET litai=litai+'150000000' WHERE nick='$nick'")or die(mysqli_error());
           }
           elseif($apie['kmis'] == 9){
                $ko = "150 kreditų ir ".skaicius(400000000)." pinigu!";
-               mysql_query("UPDATE zaidejai SET litai=litai+'400000000', kred=kred+'150' WHERE nick='$nick'");
+               mysqli_query($conn,"UPDATE zaidejai SET litai=litai+'400000000', kred=kred+'150' WHERE nick='$nick'");
           }
           elseif($apie['kmis'] == 10){
                $ko = "2% savo jėgos ir  6% gynybos. bei lazdelę!";
                $jg = $jega * 2/100;
                $gn = $gynyba * 6/100;
                
-               mysql_query("UPDATE zaidejai SET jega=jega+'$jg, gynyba=gynyba+'$gn' WHERE nick='$nick' ");
-			   mysql_query("UPDATE zaidejai SET lazdele='+' WHERE nick='$nick' ");
+               mysqli_query($conn,"UPDATE zaidejai SET jega=jega+'$jg, gynyba=gynyba+'$gn' WHERE nick='$nick' ");
+			   mysqli_query($conn,"UPDATE zaidejai SET lazdele='+' WHERE nick='$nick' ");
           }
           echo '<div class="meniuc">Užduotis įvygdyta! Gavai '.$ko.'</div>';
-          mysql_query("UPDATE zaidejai SET kmis=kmis+'1' WHERE nick='$nick' ");
+          mysqli_query($conn,"UPDATE zaidejai SET kmis=kmis+'1' WHERE nick='$nick' ");
        }
 
   $g_n[] = array("pagrindinis.php?id=","Pagrindinis","karinas.php", "Karino bokštas", "Karino misijos");
@@ -682,8 +682,8 @@ if($id =='pupos2'){
 	          } else {
 	              echo '<div class="meniuc">Atlikta! <br>Nusipirkai <b>'.sk($kiekis*1).' </b> pupų, sumokėjai <b>'.sk($kiekis*1).'</b> '.$eurui.'!</div>';
 	           
-	            mysql_query("UPDATE inv SET Pupos=Pupos +'$kiekis' WHERE nick='$nick'");
-				mysql_query("UPDATE zaidejai SET sms_litai=sms_litai-'$kiekis' WHERE nick='$nick'")or die(mysql_error());
+	            mysqli_query($conn,"UPDATE inv SET Pupos=Pupos +'$kiekis' WHERE nick='$nick'");
+				mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai-'$kiekis' WHERE nick='$nick'")or die(mysqli_error());
 			
 			  }
 	 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","karinas.php", "Karino bokštas", "Pupu pirkimas");
@@ -724,9 +724,9 @@ else{
 				$k = $apie[gynyba] * 1.00;
 					echo'<div class="meniuc">Išgėriai dieviškojo vandens!<br>Ir už tai gauni <b>'.$kiekcrit.'</b> Critical Stone!</div>';
 		$laikas = time() + 60 * 60 * 3;
-mysql_query("UPDATE zaidejai SET vandensh= '$laikas' WHERE nick = '$nick' ")or die(mysql_error());		
-				mysql_query("UPDATE zaidejai SET sms_litai=sms_litai-'10' WHERE nick='$nick'");
-				mysql_query("UPDATE inv SET critical=critical+'$kiekcrit' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET vandensh= '$laikas' WHERE nick = '$nick' ")or die(mysqli_error());		
+				mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai-'10' WHERE nick='$nick'");
+				mysqli_query($conn,"UPDATE inv SET critical=critical+'$kiekcrit' WHERE nick='$nick'");
 				
 			
 

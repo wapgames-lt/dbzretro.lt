@@ -12,14 +12,14 @@ include_once 'cfg/funkcijos.php';
 	$prizas2 = round($nust['sms_priz']) / 2;
 	$prizas3 = round($nust['sms_priz']) / 3;
  $statusai = array("Mod","Mod2","Mod3","Mod4","Admin");
-$nst = mysql_fetch_assoc(mysql_query("SELECT * FROM turnyras"));
-$new = mysql_fetch_assoc(mysql_query("SELECT * FROM news ORDER BY id DESC LIMIT 1"));
-$xd = mysql_query("SELECT * FROM zaidejai WHERE nick= $nick");
+$nst = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM turnyras"));
+$new = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM news ORDER BY id DESC LIMIT 1"));
+$xd = mysqli_query($conn,"SELECT * FROM zaidejai WHERE nick= $nick");
 head2();
 if($nust['new_time']-time() > 0){
-    $q = mysql_query("SELECT * FROM news ORDER BY id DESC LIMIT 1");
+    $q = mysqli_query($conn,"SELECT * FROM news ORDER BY id DESC LIMIT 1");
    
-    while($row = mysql_fetch_assoc($q)){
+    while($row = mysqli_fetch_assoc($q)){
         echo '<div class="meniuc">Padarytas atnaujinimas: '.$row[name].'</div>';
       
         unset($row);
@@ -33,7 +33,7 @@ baneris();
 
 	
 		
-if(mysql_num_rows(mysql_query("SELECT * FROM kvietimai_i_komanda WHERE nick2='$nick'")) == true){
+if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM kvietimai_i_komanda WHERE nick2='$nick'")) == true){
 	echo"<div class='meniuc'><font color='red'>Dėmesio! Tu kviečiamas į ".$team_pakv['team']." komandą!</font><br>
 	<a href='komanda.php?id=atmesti&ka=".$team_pakv['team']."'>Atmesti</a> <a href='komanda.php?id=priimti&ka=".$team_pakv['team']."'>Priimti</a>
 	</div>";
@@ -99,7 +99,7 @@ echo '<div class="meniuc"><img src="img/imgg/vip.png" border="0" alt="*"></div>'
 
             echo '<div class="titlec">'.$klaida.'</div>';
       } else {
-            mysql_query("UPDATE zaidejai SET jega=jega+'$kgg4', gynyba=gynyba+'$kgg3', litai=litai-'$kkiek' WHERE nick='$nick' ");
+            mysqli_query($conn,"UPDATE zaidejai SET jega=jega+'$kgg4', gynyba=gynyba+'$kgg3', litai=litai-'$kkiek' WHERE nick='$nick' ");
 
             echo '<div class="titlec">Atlikta! Pasitreniravai';
             if($kjega == ""){} else {
@@ -168,7 +168,7 @@ echo '<div class="meniuc"><img src="img/imgg/vip.png" border="0" alt="*"></div>'
 
             echo '<div class="titlec">'.$klaida.'</div>';
       } else {
-            mysql_query("UPDATE zaidejai SET jega=jega+'$kgg4', gynyba=gynyba+'$kgg3', litai=litai-'$kkiek' WHERE nick='$nick' ");
+            mysqli_query($conn,"UPDATE zaidejai SET jega=jega+'$kgg4', gynyba=gynyba+'$kgg3', litai=litai-'$kkiek' WHERE nick='$nick' ");
 
             echo '<div class="titlec">Atlikta! Pasitreniravai';
             if($kjega == ""){} else {
@@ -238,7 +238,7 @@ echo '<div class="meniuc"><img src="img/imgg/vip.png" border="0" alt="*"></div>'
 
             echo '<div class="titlec">'.$klaida.'</div>';
       } else {
-            mysql_query("UPDATE zaidejai SET jega=jega+'$kgg4', gynyba=gynyba+'$kgg3', litai=litai-'$kkiek' WHERE nick='$nick' ");
+            mysqli_query($conn,"UPDATE zaidejai SET jega=jega+'$kgg4', gynyba=gynyba+'$kgg3', litai=litai-'$kkiek' WHERE nick='$nick' ");
 
             echo '<div class="titlec">Atlikta! Pasitreniravai';
             if($kjega == ""){} else {

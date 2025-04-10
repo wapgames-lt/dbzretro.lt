@@ -33,8 +33,8 @@ echo '  <div class="meniuc">
         	<img src="img/bicons/bendravimo.png"></div>';
             echo '<div class="meniuc">'.$klaida.'</div>';
         } else {
-            mysql_query("UPDATE nustatymai SET bendravimo_priz2=bendravimo_priz2+'$kieks' ");
-            mysql_query("UPDATE zaidejai SET vipticket=vipticket-'$kieks' WHERE nick='$nick' ");
+            mysqli_query($conn,"UPDATE nustatymai SET bendravimo_priz2=bendravimo_priz2+'$kieks' ");
+            mysqli_query($conn,"UPDATE zaidejai SET vipticket=vipticket-'$kieks' WHERE nick='$nick' ");
 echo '  <div class="meniuc">
        
         	<img src="img/bicons/sms2.png"></div>';
@@ -75,14 +75,14 @@ echo '  <div class="meniuc">
     <div class="title">
     &raquo; Bendravimo topas baigiasi lygiai <b>00:00</b> , tada visi jūsų taškai anuliuojasi ir vėl galėsite varžytis dėl prizo.<br /></div>
     <div class="up"><b>Šiandien į topą pretenduoja:</b> </div>';
-	if(mysql_num_rows(mysql_query("SELECT * FROM bendravimo_top"))== false){
+	if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM bendravimo_top"))== false){
 		  echo '<div class="meniuc"><font color="red"><b>Dar niekas šiandien nebendravo!</b></font>';
 		
 		
 	}else{
-     $query = mysql_query("SELECT * FROM bendravimo_top WHERE  nick != 'Jomajo' ORDER BY sms DESC LIMIT 10");
+     $query = mysqli_query($conn,"SELECT * FROM bendravimo_top WHERE  nick != 'Jomajo' ORDER BY sms DESC LIMIT 10");
     echo '<div class="meniu">';
-    while($rowas = mysql_fetch_assoc($query)){
+    while($rowas = mysqli_fetch_assoc($query)){
         $vt++;
         echo ' <b>'.$vt.'</b>. <a href="pagrindinis.php?id=apie&ka='.$rowas['nick'].'">'.statusas($rowas['nick']).'</a> Šiandien turi   bendravimo taškų <font color="red"><b>'.$rowas['sms'].'</b></font><img src="img/bicons/sms.png"><br />';
   
@@ -98,9 +98,9 @@ echo '  <div class="meniuc">
 
 
 	 
-    $query = mysql_query("SELECT * FROM bendravimo_log ORDER BY id DESC LIMIT 1");
+    $query = mysqli_query($conn,"SELECT * FROM bendravimo_log ORDER BY id DESC LIMIT 1");
     echo '<div class="meniuc">';
-    while($row = mysql_fetch_assoc($query)){
+    while($row = mysqli_fetch_assoc($query)){
        
        echo'Laimėjo <b>'.$row['nick'].'</b> gavo <b>'.$row['laimejo'].'</b>'.$eurui.'  ir '.$row['laimejo2'].' '.$vipt.' [<small><b>'.laikas($row['laikas']).' </b></small>]<br/>' ;
 

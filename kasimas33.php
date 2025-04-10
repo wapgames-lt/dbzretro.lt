@@ -82,8 +82,8 @@ else{
 			echo'<div class="meniuc"><img src="img/kasimas/kasykla.png" border="1"></div>';	
 	echo'	<div class="meniuc">Nusipirkai sėkmingai <b>Alavo kirtiklį</b>!
 </div> ';		
-mysql_query("UPDATE zaidejai SET sms_litai=sms_litai-'20' WHERE nick='$nick' ");
-	mysql_query("UPDATE inv SET alavok=alavok+'1' WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai-'20' WHERE nick='$nick' ");
+	mysqli_query($conn,"UPDATE inv SET alavok=alavok+'1' WHERE nick='$nick' ");
 
 
 		}
@@ -112,8 +112,8 @@ else{
 			echo'<div class="meniuc"><img src="img/kasimas/kasykla.png" border="1"></div>';	
 	echo'	<div class="meniuc">Nusipirkai sėkmingai <b>Vario kirtiklį</b>!
 </div> ';		
-mysql_query("UPDATE zaidejai SET sms_litai=sms_litai-'40' WHERE nick='$nick' ");
-	mysql_query("UPDATE inv SET variok=variok+'1', alavas=alavas-'75' WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai-'40' WHERE nick='$nick' ");
+	mysqli_query($conn,"UPDATE inv SET variok=variok+'1', alavas=alavas-'75' WHERE nick='$nick' ");
 
 
 		}
@@ -142,8 +142,8 @@ else{
 			echo'<div class="meniuc"><img src="img/kasimas/kasykla.png" border="1"></div>';	
 	echo'	<div class="meniuc">Nusipirkai sėkmingai <b>Kadmio kirtiklį</b>!
 </div> ';		
-mysql_query("UPDATE zaidejai SET sms_litai=sms_litai-'70' WHERE nick='$nick' ");
-	mysql_query("UPDATE inv SET kadmiok=kadmiok+'1', varis=varis-'100' WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai-'70' WHERE nick='$nick' ");
+	mysqli_query($conn,"UPDATE inv SET kadmiok=kadmiok+'1', varis=varis-'100' WHERE nick='$nick' ");
 
 
 		}
@@ -172,8 +172,8 @@ else{
 			echo'<div class="meniuc"><img src="img/kasimas/kasykla.png" border="1"></div>';	
 	echo'	<div class="meniuc">Nusipirkai sėkmingai <b>Cirkonio kirtiklį</b>!
 </div> ';		
-mysql_query("UPDATE zaidejai SET sms_litai=sms_litai-'100' WHERE nick='$nick' ");
-	mysql_query("UPDATE inv SET cirkoniok=cirkoniok+'1', kadmis=kadmis-'120' WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai-'100' WHERE nick='$nick' ");
+	mysqli_query($conn,"UPDATE inv SET cirkoniok=cirkoniok+'1', kadmis=kadmis-'120' WHERE nick='$nick' ");
 
 
 		}
@@ -202,8 +202,8 @@ else{
 			echo'<div class="meniuc"><img src="img/kasimas/kasykla.png" border="1"></div>';	
 	echo'	<div class="meniuc">Nusipirkai sėkmingai <b>Geležies kirtiklį</b>!
 </div> ';		
-mysql_query("UPDATE zaidejai SET sms_litai=sms_litai-'150' WHERE nick='$nick' ");
-	mysql_query("UPDATE inv SET geleziesk=geleziesk+'1', cirkonis=cirkonis-'200' WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai-'150' WHERE nick='$nick' ");
+	mysqli_query($conn,"UPDATE inv SET geleziesk=geleziesk+'1', cirkonis=cirkonis-'200' WHERE nick='$nick' ");
 
 
 		}
@@ -257,8 +257,8 @@ echo'<div class="meniuc"><img src="img/kasimas/kasykla.png" border="1"></div>';
 echo'<div class="meniuc"><img src="img/kasimas/kasykla.png" border="1"></div>';
 echo'<div class="up">1 LVL Rūdu kasimas</div>';
 echo'<div class="meniuc">Iškasei<b> '.$randas2.' </b><img src="img/kasimas/alavo.png" alt="IMG" height="16" width="16"> | Išviso turi: <b>'.$inv['alavas'].'</b><img src="img/kasimas/alavo.png" alt="IMG" height="16" width="16"><br>Gavai +<font color="red">'.$randas3.'</font><b> Rūdų kasimo lygio</b></div>';
-	mysql_query("UPDATE inv SET alavas=alavas+'$randas2' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET kasimolvl=kasimolvl+'$randas3' WHERE nick='$nick'");
+	mysqli_query($conn,"UPDATE inv SET alavas=alavas+'$randas2' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET kasimolvl=kasimolvl+'$randas3' WHERE nick='$nick'");
 		}
 	
 		echo'<div class="meniuc"><a href="?id=alavo&kodas='.$kodas.'">Kasti toliau</a></div>';
@@ -312,8 +312,8 @@ echo'<div class="meniuc"><img src="img/kasimas/kasykla.png" border="1"></div>';
 echo'<div class="meniuc"><img src="img/kasimas/kasykla.png" border="1"></div>';
 echo'<div class="up">200 LVL Rūdu kasimas</div>';
 echo'<div class="meniuc">Iškasei<b> '.$randas2.' </b><img src="img/kasimas/vario.png" alt="IMG" height="16" width="16"> | Išviso turi: <b>'.$inv['varis'].'</b><img src="img/kasimas/vario.png" alt="IMG" height="16" width="16"><br>Gavai +<font color="red">'.$randas3.'</font><b> Rūdų kasimo lygio</b></div>';
-	mysql_query("UPDATE inv SET varis=varis+'$randas2' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET kasimolvl=kasimolvl+'$randas3' WHERE nick='$nick'");
+	mysqli_query($conn,"UPDATE inv SET varis=varis+'$randas2' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET kasimolvl=kasimolvl+'$randas3' WHERE nick='$nick'");
 		}
 	
 		echo'<div class="meniuc"><a href="?id=vario&kodas='.$kodas.'">Kasti toliau</a></div>';
@@ -367,8 +367,8 @@ echo'<div class="meniuc"><img src="img/kasimas/kasykla.png" border="1"></div>';
 echo'<div class="meniuc"><img src="img/kasimas/kasykla.png" border="1"></div>';
 echo'<div class="up">600 LVL Rūdu kasimas</div>';
 echo'<div class="meniuc">Iškasei<b> '.$randas2.' </b><img src="img/kasimas/kadmio.png" alt="IMG" height="16" width="16"> | Išviso turi: <b>'.$inv['kadmis'].'</b><img src="img/kasimas/kadmio.png" alt="IMG" height="16" width="16"><br>Gavai +<font color="red">'.$randas3.'</font><b> Rūdų kasimo lygio</b></div>';
-	mysql_query("UPDATE inv SET kadmis=kadmis+'$randas2' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET kasimolvl=kasimolvl+'$randas3' WHERE nick='$nick'");
+	mysqli_query($conn,"UPDATE inv SET kadmis=kadmis+'$randas2' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET kasimolvl=kasimolvl+'$randas3' WHERE nick='$nick'");
 		}
 	
 		echo'<div class="meniuc"><a href="?id=kadmio&kodas='.$kodas.'">Kasti toliau</a></div>';
@@ -422,8 +422,8 @@ echo'<div class="meniuc"><img src="img/kasimas/kasykla.png" border="1"></div>';
 echo'<div class="meniuc"><img src="img/kasimas/kasykla.png" border="1"></div>';
 echo'<div class="up">1300 LVL Rūdu kasimas</div>';
 echo'<div class="meniuc">Iškasei<b> '.$randas2.' </b><img src="img/kasimas/cirkonio.png" alt="IMG" height="16" width="16"> | Išviso turi: <b>'.$inv['cirkonis'].'</b><img src="img/kasimas/cirkonio.png" alt="IMG" height="16" width="16"><br>Gavai +<font color="red">'.$randas3.'</font><b> Rūdų kasimo lygio</b></div>';
-	mysql_query("UPDATE inv SET cirkonis=cirkonis+'$randas2' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET kasimolvl=kasimolvl+'$randas3' WHERE nick='$nick'");
+	mysqli_query($conn,"UPDATE inv SET cirkonis=cirkonis+'$randas2' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET kasimolvl=kasimolvl+'$randas3' WHERE nick='$nick'");
 		}
 	
 		echo'<div class="meniuc"><a href="?id=cirkonio&kodas='.$kodas.'">Kasti toliau</a></div>';
@@ -478,8 +478,8 @@ echo'<div class="meniuc"><img src="img/kasimas/kasykla.png" border="1"></div>';
 echo'<div class="meniuc"><img src="img/kasimas/kasykla.png" border="1"></div>';
 echo'<div class="up">2000 LVL Rūdu kasimas</div>';
 echo'<div class="meniuc">Iškasei<b> '.$randas2.' </b><img src="img/kasimas/gelezies.png" alt="IMG" height="16" width="16"> | Išviso turi: <b>'.$inv['gelezis'].'</b><img src="img/kasimas/gelezies.png" alt="IMG" height="16" width="16"><br>Gavai +<font color="red">'.$randas3.'</font><b> Rūdų kasimo lygio</b></div>';
-	mysql_query("UPDATE inv SET gelezis=gelezis+'$randas2' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET kasimolvl=kasimolvl+'$randas3' WHERE nick='$nick'");
+	mysqli_query($conn,"UPDATE inv SET gelezis=gelezis+'$randas2' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET kasimolvl=kasimolvl+'$randas3' WHERE nick='$nick'");
 		}
 	
 		echo'<div class="meniuc"><a href="?id=gelezies&kodas='.$kodas.'">Kasti toliau</a></div>';

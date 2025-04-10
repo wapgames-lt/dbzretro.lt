@@ -39,9 +39,9 @@ if($id == "gydo"){
 	
 	
 	
-      mysql_query("UPDATE zaidejai SET gyvybes='$apie[max_gyvybes]' WHERE nick='$nick'");
+      mysqli_query($conn,"UPDATE zaidejai SET gyvybes='$apie[max_gyvybes]' WHERE nick='$nick'");
 	  $ti = time()+30;
-	    mysql_query("INSERT INTO block SET nick = '$nick', uz='gydosi kapsuleja', kas_ban='SUPPORT', time='$ti'");
+	    mysqli_query($conn,"INSERT INTO block SET nick = '$nick', uz='gydosi kapsuleja', kas_ban='SUPPORT', time='$ti'");
 	      echo'<div class="meniuc">Tavo gyvybės papilditos sumokėjai 1 kreditą</div>';
     
   

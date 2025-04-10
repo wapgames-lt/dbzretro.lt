@@ -29,7 +29,7 @@ elseif($gaves == "+"){
         elseif($lygis < 20){
             $klaida = "Tavo lygis per žemas! Reikia 20 lygio.";
         }
-        if(mysql_num_rows(mysql_query("SELECT * FROM pasiulymai WHERE pasiulymas='$pasiulymas'")) > 0 ){
+        if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM pasiulymai WHERE pasiulymas='$pasiulymas'")) > 0 ){
             $klaida = "Toks pasiūlymas jau yra.";
         }
 
@@ -37,7 +37,7 @@ elseif($gaves == "+"){
             echo '<div class="meniuc">'.$klaida.'</div>';
         } else {
             	
-            mysql_query("INSERT INTO pasiulymai SET kas='$nick', pasiulymas='$pasiulymas', laikas='".time()."', busena='Neperžiūrėtas' ");
+            mysqli_query($conn,"INSERT INTO pasiulymai SET kas='$nick', pasiulymas='$pasiulymas', laikas='".time()."', busena='Neperžiūrėtas' ");
             echo '<div class="meniuc">Pasiūlymas sėkmingai pridėtas.</div>';
         }
     }
@@ -56,16 +56,17 @@ echo' <div class="meniuc"><img src=img/imgg/pasiulymai.png border="1" width="180
     <input type="submit" name="submit" value="Rašyti"/>
     </div>';}
 	echo"<div class='meniuc'><a href='?id=watch&k=atlikta'>Atlikti</a> | <a href='?id=watch&k=atmesta'>Atmesti</a> | <a href='?id=watch&k=itraukta i planus'>Itraukti i planus</a> | <a href='?id=watch&k=Neperžiūrėtas'>Neperžiūrėti</a> | <a href='?id=watch&k=Komentuoti'>Komentuoti</a></div>"
- ;   $viso = mysql_result(mysql_query("SELECT COUNT(*) FROM pasiulymai WHERE busena != 'Atmesta'"),0);
+ ;
+    $viso = mysqli_fetch_row(mysqli_query($conn, "SELECT COUNT(*) FROM pasiulymai WHERE busena != 'Atmesta'"))[0];
     if($viso > 0){
     $rezultatu_rodymas=10;
             $total = @intval(($viso-1) / $rezultatu_rodymas) + 1;
             if (empty($psl) or $psl < 0) $psl = 1;
             if ($psl > $total) $psl = $total;
             $nuo_kiek=$psl*$rezultatu_rodymas-$rezultatu_rodymas;
-     $query = mysql_query("SELECT * FROM pasiulymai WHERE busena !='atmesta' ORDER BY id DESC LIMIT $nuo_kiek,$rezultatu_rodymas");
+     $query = mysqli_query($conn,"SELECT * FROM pasiulymai WHERE busena !='atmesta' ORDER BY id DESC LIMIT $nuo_kiek,$rezultatu_rodymas");
      $puslapiu = ceil($viso/$rezultatu_rodymas);
-     while ($row = mysql_fetch_assoc($query)) {
+     while ($row = mysqli_fetch_assoc($query)) {
     
          echo '<div class="meniu">
          '.$ico2.' <a href="pagrindinis.php?id=apie&ka='.$row['kas'].'">'.statusas($row['kas']).'</a>: '.smile($row['pasiulymas']).'  '; 
@@ -80,12 +81,12 @@ echo'<br>'.$ico2.' Įvertinimas:<a href=?id=nrep&co=1&ka='.$row['id'].'><img src
          if($row['komentaras'] == ""){} else {
              echo '<br/>'.$ico.' '.statusas($row[admin]).' Komentaras: <b>'.smile($row['komentaras']).'</b>';
          }
-         echo '<br/>'.$ico.' <a href="pasiulymai.php?id=komentarai&co='.$row['id'].'">Komentarai</a> ('.mysql_num_rows(mysql_query("SELECT * FROM pas_kom WHERE p_id='$row[id]' ")).')';
+         echo '<br/>'.$ico.' <a href="pasiulymai.php?id=komentarai&co='.$row['id'].'">Komentarai</a> ('.mysqli_num_rows(mysqli_query($conn,"SELECT * FROM pas_kom WHERE p_id='$row[id]' ")).')';
          echo '</div>';
          unset($row);
      }
      echo '<div class="meniuc">'.puslapiavimas($puslapiu,$psl,'?id=').'</div>';
-     echo '<div class="meniuc">Viso pasiūlymų: <b>'.mysql_num_rows(mysql_query("SELECT * FROM pasiulymai")).'</b></div>';
+     echo '<div class="meniuc">Viso pasiūlymų: <b>'.mysqli_num_rows(mysqli_query($conn,"SELECT * FROM pasiulymai")).'</b></div>';
    } else {
    echo '<div class="meniuc">Pasiūlymų nėra.</div>';
    }
@@ -95,12 +96,12 @@ navigacija($g_n);
 elseif($id == "edit"){
 	top('Pasiūlimo būsena');
     online('Pasiūlymai');
-	$kieno = mysql_fetch_assoc(mysql_query("SELECT * FROM pasiulymai WHERE id='$co'"));
+	$kieno = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM pasiulymai WHERE id='$co'"));
     if($apie['statusas'] != "Kurejas"){
       
         echo '<div class="meniuc">Tu ne Administratorius!</div>';
     }
-    elseif(mysql_num_rows(mysql_query("SELECT * FROM pasiulymai WHERE id='$co'")) == false){
+    elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM pasiulymai WHERE id='$co'")) == false){
      
         echo '<div class="meniuc">Tokio pasiūlymo nėra!</div>';
     } else {
@@ -114,9 +115,9 @@ elseif($id == "edit"){
             if ($klaida != ""){
                 echo '<div class="meniuc">'.$klaida.'</div>';
             } else {
-                mysql_query("UPDATE pasiulymai SET busena='$st' WHERE id='$co' ");
+                mysqli_query($conn,"UPDATE pasiulymai SET busena='$st' WHERE id='$co' ");
 				$txt='Jūsų pasiulimas buvo : '.$st.'';
-				  mysql_query("INSERT INTO pm SET what='SISTEMA', txt='$txt', gavejas='$kieno[kas]', time='".time()."', nauj='NEW' ") or die(mysql_error());
+				  mysqli_query($conn,"INSERT INTO pm SET what='SISTEMA', txt='$txt', gavejas='$kieno[kas]', time='".time()."', nauj='NEW' ") or die(mysqli_error());
                 echo '<div class="meniuc">Būsena pakeista.</div>';
             }
         }
@@ -144,12 +145,12 @@ elseif($id == "delete"){
       
         echo '<div class="meniuc">Tu ne Administratorius!</div>';
     }
-    elseif(mysql_num_rows(mysql_query("SELECT * FROM pasiulymai WHERE id='$co'")) == false){
+    elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM pasiulymai WHERE id='$co'")) == false){
        
         echo '<div class="meniuc">Tokio pasiūlymo nėra!</div>';
     } else {
-        mysql_query("DELETE FROM pasiulymai WHERE id='$co'");
-        mysql_query("DELETE FROM pas_kom WHERE p_id='$co'");
+        mysqli_query($conn,"DELETE FROM pasiulymai WHERE id='$co'");
+        mysqli_query($conn,"DELETE FROM pas_kom WHERE p_id='$co'");
       
         echo '<div class="meniuc">Pasiūlymas ištrintas!</div>';
     }
@@ -163,7 +164,7 @@ elseif($id == "koment"){
       
         echo '<div class="meniuc">Tu ne Administratorius!</div>';
     }
-    elseif(mysql_num_rows(mysql_query("SELECT * FROM pasiulymai WHERE id='$co'")) == false){
+    elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM pasiulymai WHERE id='$co'")) == false){
      
         echo '<div class="meniuc">Tokio pasiūlymo nėra!</div>';
     } else {
@@ -178,7 +179,7 @@ elseif($id == "koment"){
             if ($klaida != ""){
                 echo '<div class="meniuc">'.$klaida.'</div>';
             } else {
-                mysql_query("UPDATE pasiulymai SET komentaras='$kom',admin='$nick' WHERE id='$co' ");
+                mysqli_query($conn,"UPDATE pasiulymai SET komentaras='$kom',admin='$nick' WHERE id='$co' ");
                 echo '<div class="meniuc">Komentaras parašytas.</div>';
             }
         }
@@ -194,7 +195,7 @@ navigacija($g_n);
 elseif($id == "komentarai"){
 	top('Pasiūlimo komentarai');
     online('Pasiūlymų komentarai');
-    if(mysql_num_rows(mysql_query("SELECT * FROM pasiulymai WHERE id='$co'")) == false){
+    if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM pasiulymai WHERE id='$co'")) == false){
       
         echo '<div class="meniuc">Tokio pasiūlymo nėra!</div>';
     } else {
@@ -214,13 +215,13 @@ echo' <div class="meniuc"><img src=img/imgg/pasiulymai.png border="1" width="180
                 $klaida = "Tavo lygis per žemas! Reikia 20 lygio.";
             }
 
-            if(mysql_num_rows(mysql_query("SELECT * FROM pas_kom WHERE kom='$kom' AND p_id='$co' ")) > 0 ){
+            if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM pas_kom WHERE kom='$kom' AND p_id='$co' ")) > 0 ){
                 $klaida = "Toks komentaras jau yra.";
             }
             if ($klaida != ""){
                 echo '<div class="meniuc">'.$klaida.'</div>';
             } else {
-                mysql_query("INSERT INTO pas_kom SET kas='$nick', kom='$kom', laikas='".time()."', p_id='$co' ");
+                mysqli_query($conn,"INSERT INTO pas_kom SET kas='$nick', kom='$kom', laikas='".time()."', p_id='$co' ");
                 echo '<div class="meniuc">Komentaras parašytas.</div>';
             }
         }
@@ -230,17 +231,17 @@ echo' <div class="meniuc"><img src=img/imgg/pasiulymai.png border="1" width="180
         Komentaras:<br /><textarea name="kom" rows="3"></textarea><br />
         <input type="submit" name="submit" value="Rašyti"/>
         </div>';
-    $viso = mysql_result(mysql_query("SELECT COUNT(*) FROM pas_kom WHERE p_id='$co' "),0);
-    if($viso > 0){
+        $viso = mysqli_fetch_row(mysqli_query($conn, "SELECT COUNT(*) FROM pas_kom WHERE p_id='$co'"))[0];
+        if($viso > 0){
     $rezultatu_rodymas=10;
             $total = @intval(($viso-1) / $rezultatu_rodymas) + 1;
             if (empty($psl) or $psl < 0) $psl = 1;
             if ($psl > $total) $psl = $total;
             $nuo_kiek=$psl*$rezultatu_rodymas-$rezultatu_rodymas;
-     $query = mysql_query("SELECT * FROM pas_kom WHERE p_id='$co' ORDER BY id DESC LIMIT $nuo_kiek,$rezultatu_rodymas");
+     $query = mysqli_query($conn,"SELECT * FROM pas_kom WHERE p_id='$co' ORDER BY id DESC LIMIT $nuo_kiek,$rezultatu_rodymas");
      $puslapiu = ceil($viso/$rezultatu_rodymas);
      $nr = 1+$page_sql;
-     while ($row = mysql_fetch_assoc($query)) {
+     while ($row = mysqli_fetch_assoc($query)) {
          echo '<div class="meniu">
          '.$nr.'. <a href="pagrindinis.php?id=apie&ka='.$row['kas'].'">'.statusas($row['kas']).'</a>: '.smile($row['kom']).'<br/>
          '.laikas($row['laikas']).'';
@@ -268,7 +269,7 @@ top('Pasiūlimų reputacija');
        
         echo '<div class="meniuc">ERROR!</div>';}
 	  
-	  elseif(mysql_num_rows(mysql_query("SELECT * FROM pas_rep WHERE kas='$nick' && kam='$ka'"))){
+	  elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM pas_rep WHERE kas='$nick' && kam='$ka'"))){
         
         echo '<div class="meniuc">Tu jau vertinai šį pasiūlymą!</div>';
 
@@ -283,16 +284,16 @@ top('Pasiūlimų reputacija');
         
         if($co == 1){
           
-    mysql_query("UPDATE pasiulymai SET likes=likes+'1' WHERE id='$ka'")or die(mysql_error());
+    mysqli_query($conn,"UPDATE pasiulymai SET likes=likes+'1' WHERE id='$ka'")or die(mysqli_error());
           
         } else {
            
-            mysql_query("UPDATE pasiulymai SET unlike=unlike-'1' WHERE id='$ka'")or die(mysql_error());
+            mysqli_query($conn,"UPDATE pasiulymai SET unlike=unlike-'1' WHERE id='$ka'")or die(mysqli_error());
           
         }
         echo '<div class="meniuc">Atlikta</div>';
        
-        mysql_query("INSERT INTO pas_rep SET kas='$nick', kam='$ka'")or die(mysql_error());
+        mysqli_query($conn,"INSERT INTO pas_rep SET kas='$nick', kam='$ka'")or die(mysqli_error());
 	  }
 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","pasiulymai.php","Pasiūlymai", "Pasiūlymo reputacija");
 navigacija($g_n);
@@ -302,16 +303,16 @@ navigacija($g_n);
 if($id == 'watch'){
 	top(ucfirst($k));
 
- $viso = mysql_result(mysql_query("SELECT COUNT(*) FROM pasiulymai WHERE busena='$k'"),0);
+    $viso = mysqli_fetch_row(mysqli_query($conn, "SELECT COUNT(*) FROM pasiulymai WHERE busena='$k'"))[0];
     if($viso > 0){
     $rezultatu_rodymas=10;
             $total = @intval(($viso-1) / $rezultatu_rodymas) + 1;
             if (empty($psl) or $psl < 0) $psl = 1;
             if ($psl > $total) $psl = $total;
             $nuo_kiek=$psl*$rezultatu_rodymas-$rezultatu_rodymas;
-     $query = mysql_query("SELECT * FROM pasiulymai WHERE busena='$k' ORDER BY id DESC LIMIT $nuo_kiek,$rezultatu_rodymas");
+     $query = mysqli_query($conn,"SELECT * FROM pasiulymai WHERE busena='$k' ORDER BY id DESC LIMIT $nuo_kiek,$rezultatu_rodymas");
      $puslapiu = ceil($viso/$rezultatu_rodymas);
-     while ($row = mysql_fetch_assoc($query)) {
+     while ($row = mysqli_fetch_assoc($query)) {
          echo '<div class="meniu">
          '.$ico.' <a href="pagrindinis.php?id=apie&ka='.$row['kas'].'">'.statusas($row['kas']).'</a>: '.smile($row['pasiulymas']).'  <a href=?id=nrep&co=1&ka='.$row['id'].'><img src="img/replike.gif"></a>'.$row['likes'].' <a href=?id=nrep&co=2&ka='.$row['id'].'><img src="img/repdislike.gif"></a>'.$row['unlike'].'</br>
          '.$ico.' Būsena: <b>'.$row['busena'].'</b>';
@@ -321,7 +322,7 @@ if($id == 'watch'){
          if($row['komentaras'] == ""){} else {
              echo '<br/>'.$ico.' Admin Komentaras: <b>'.smile($row['komentaras']).'</b>';
          }
-         echo '<br/>'.$ico.' <a href="pasiulymai.php?id=komentarai&co='.$row['id'].'">Komentarai</a> ('.mysql_num_rows(mysql_query("SELECT * FROM pas_kom WHERE p_id='$row[id]' ")).')';
+         echo '<br/>'.$ico.' <a href="pasiulymai.php?id=komentarai&co='.$row['id'].'">Komentarai</a> ('.mysqli_num_rows(mysqli_query($conn,"SELECT * FROM pas_kom WHERE p_id='$row[id]' ")).')';
          echo '</div>';
          unset($row);
      }
@@ -335,24 +336,24 @@ navigacija($g_n);
 }
 
 if($id == 'istrinti'){
-mysql_query("DELETE FROM pasiulymai WHERE busena='Atmesta'");
+mysqli_query($conn,"DELETE FROM pasiulymai WHERE busena='Atmesta'");
 }
 
 
 if($id == 'naujienos'){
 
 if($apie['statusas'] == 'Kurejas'){
-$info = mysql_fetch_assoc(mysql_query("SELECT * FROM pasiulymai WHERE id='$co'"));
+$info = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM pasiulymai WHERE id='$co'"));
 $tmxs = time()+60;
-                    mysql_query("INSERT INTO news SET name='Atliktas <b>".$info['kas']."</b> pasiūlymas: <b>".$info['pasiulymas']."</b>', new='$new', kas='$nick', data='".time()."'");
-                    mysql_query("UPDATE nustatymai SET new_time='$tmxs' ");
+                    mysqli_query($conn,"INSERT INTO news SET name='Atliktas <b>".$info['kas']."</b> pasiūlymas: <b>".$info['pasiulymas']."</b>', new='$new', kas='$nick', data='".time()."'");
+                    mysqli_query($conn,"UPDATE nustatymai SET new_time='$tmxs' ");
                     echo '<div class="meniuc">Naujiena pridėta!</div>';
-					mysql_query("DELETE FROM pasiulymai WHERE id='$co'");
-			mysql_query("UPDATE nustatymai SET sndnew=sndnew+'1' ");
+					mysqli_query($conn,"DELETE FROM pasiulymai WHERE id='$co'");
+			mysqli_query($conn,"UPDATE nustatymai SET sndnew=sndnew+'1' ");
 $txt = "Tavo <b>pasiūlymas</b>  buvo atliktas! Gavai <b>100</b> $eurui ";
-                    mysql_query("INSERT INTO pm SET what='SISTEMA', txt='$txt', time='".time()."', nauj='NEW', gavejas='$info[kas]' ");
+                    mysqli_query($conn,"INSERT INTO pm SET what='SISTEMA', txt='$txt', time='".time()."', nauj='NEW', gavejas='$info[kas]' ");
 
-	mysql_query("UPDATE zaidejai SET sms_litai=sms_litai+'100' WHERE nick='$info[kas]'")or die(mysql_error());
+	mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai+'100' WHERE nick='$info[kas]'")or die(mysqli_error());
 
 
 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","pasiulymai.php","Pasiūlymai", "Naujienos įdėjimas");

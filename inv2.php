@@ -5,7 +5,7 @@ echo "<!DOCTYPE html PUBLIC '-//WAPFORUM//DTD XHTML Mobile 1.0//EN' 'http://www.
 
 include_once 'cfg/sql.php';
 include_once 'cfg/funkcijos.php';
-$invis = mysql_fetch_assoc(mysql_query("SELECT * FROM inv WHERE nick='$nick'"));
+$invis = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM inv WHERE nick='$nick'"));
 head2();
 echo'
 <div class="up">
@@ -39,7 +39,7 @@ echo'<div class="meniuc">Išviso daiktų: <b>'.$suma.'</b></div>
 		if($id == keys){
 	top('Inventorius');
 echo'	<div class="meniu">';		
-//mysql_query("UPDATE inv SET red_key='0', blue_key='0', black_key='0', green_key='0', yellow_key='0'");
+//mysqli_query($conn,"UPDATE inv SET red_key='0', blue_key='0', black_key='0', green_key='0', yellow_key='0'");
 			 if($invis['red_key'] > 0){echo'<img src="img/keys/red_key.gif"> Raudonas raktas: <b>'.$invis['red_key'].'</b></br>';}
 			 if($invis['blue_key'] > 0){echo'<img src="img/keys/blue_key.gif"> Mėlinas raktas: <b>'.$invis['blue_key'].'</b></br>';}
 	 if($invis['yellow_key'] > 0){echo'<img src="img/keys/yellow_key.gif"> Geltonas raktas: <b>'.$invis['yellow_key'].'</b></br>';}
@@ -221,10 +221,10 @@ echo'<div class="meniuc">NEUZDETA!</div>';}
 else{
 		top('Amuleto nuėmimas');
 		echo'<div class="meniuc">Nusiemei <b>Super Amulet</b> sėkmingai!</div>';
-	mysql_query("UPDATE zaidejai SET amuletas ='Neuzdeta' WHERE nick='$nick' ")	;
-mysql_query("UPDATE inv SET Super_amulet=Super_amulet+'1' WHERE nick='$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET amuletas ='Neuzdeta' WHERE nick='$nick' ")	;
+mysqli_query($conn,"UPDATE inv SET Super_amulet=Super_amulet+'1' WHERE nick='$nick'");
 }
-mysql_query("UPDATE zaidejai SET amuletasu ='Neuzdetas' WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE zaidejai SET amuletasu ='Neuzdetas' WHERE nick='$nick' ");
 	 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","inv.php","Inventorius", "Amulet nuėmimas");
 	navigacija($g_n);
 	
@@ -240,8 +240,8 @@ if($apie['Trankso_kardas2'] ==  '+'){
 		top('Ginklo nuėmimas');
 		echo'<div class="meniuc">Nusiemei <b>Trankso karda</b> sėkmingai!</div>';
 	
-mysql_query("UPDATE inv SET Trankso_kardas=Trankso_kardas+'1' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET Trankso_kardas2='-' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE inv SET Trankso_kardas=Trankso_kardas+'1' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET Trankso_kardas2='-' WHERE nick='$nick'");
 
 	 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","inv.php","Inventorius", "Ginklo nuėmimas");
 	navigacija($g_n);
@@ -260,9 +260,9 @@ echo'<div class="meniuc">NEUZDETA!</div>';}
 else{
 		top('Ginklo nuėmimas');
 		echo'<div class="meniuc">Nusiemei <b>Time Sword</b> sėkmingai!</div>';
-	mysql_query("UPDATE zaidejai SET sword ='Neuzdeta' WHERE nick='$nick' ")	;
-mysql_query("UPDATE inv SET Time_sword=Time_sword+'1' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET swordu ='Neuzdetas' WHERE nick='$nick' ");
+	mysqli_query($conn,"UPDATE zaidejai SET sword ='Neuzdeta' WHERE nick='$nick' ")	;
+mysqli_query($conn,"UPDATE inv SET Time_sword=Time_sword+'1' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET swordu ='Neuzdetas' WHERE nick='$nick' ");
 	 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","inv.php","Inventorius", "Ginklo nuėmimas");
 	navigacija($g_n);
 	}
@@ -276,8 +276,8 @@ if($id == 'nuimti_sword'){
 if($invis['Gold_sword'] >0){
 		top('Ginklo nuėmimas');
 		echo'<div class="meniuc">Nusiemei <b>Gold Sword</b> sėkmingai!</div>';
-	mysql_query("UPDATE zaidejai SET sword ='Neuzdeta' WHERE nick='$nick' ")	;
-mysql_query("UPDATE inv SET Gold_sword=Gold_sword+'1' WHERE nick='$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sword ='Neuzdeta' WHERE nick='$nick' ")	;
+mysqli_query($conn,"UPDATE inv SET Gold_sword=Gold_sword+'1' WHERE nick='$nick'");
 
 	 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","inv.php","Inventorius", "Ginklo nuėmimas");
 	navigacija($g_n);
@@ -295,9 +295,9 @@ echo'<div class="meniuc">NEUZDETA!</div>';}
 else{
 		top('Ginklo nuėmimas');
 		echo'<div class="meniuc">Nusiemei <b>Money Sword</b> sėkmingai!</div>';
-	mysql_query("UPDATE zaidejai SET sword ='Neuzdeta' WHERE nick='$nick' ")	;
-mysql_query("UPDATE inv SET Money_sword=Money_sword+'1' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET swordu ='Neuzdetas' WHERE nick='$nick' ");
+	mysqli_query($conn,"UPDATE zaidejai SET sword ='Neuzdeta' WHERE nick='$nick' ")	;
+mysqli_query($conn,"UPDATE inv SET Money_sword=Money_sword+'1' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET swordu ='Neuzdetas' WHERE nick='$nick' ");
 	 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","inv.php","Inventorius", "Ginklo nuėmimas");
 	navigacija($g_n);
 	}
@@ -314,9 +314,9 @@ echo'<div class="meniuc">NEUZDETA!</div>';}
 else{
 		top('Ginklo nuėmimas');
 		echo'<div class="meniuc">Nusiemei <b>Super Money Sword</b> sėkmingai!</div>';
-	mysql_query("UPDATE zaidejai SET sword ='Neuzdeta' WHERE nick='$nick' ")	;
-mysql_query("UPDATE inv SET Super_money_sword=Super_money_sword+'1' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET swordu ='Neuzdetas' WHERE nick='$nick' ");
+	mysqli_query($conn,"UPDATE zaidejai SET sword ='Neuzdeta' WHERE nick='$nick' ")	;
+mysqli_query($conn,"UPDATE inv SET Super_money_sword=Super_money_sword+'1' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET swordu ='Neuzdetas' WHERE nick='$nick' ");
 	 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","inv.php","Inventorius", "Ginklo nuėmimas");
 	navigacija($g_n);
 	}
@@ -333,9 +333,9 @@ echo'<div class="meniuc">NEUZDETA!</div>';}
 else{
 		top('Ginklo nuėmimas');
 		echo'<div class="meniuc">Nusiemei <b>Vieno kircio Sword</b> sėkmingai!</div>';
-	mysql_query("UPDATE zaidejai SET sword ='Neuzdeta' WHERE nick='$nick' ")	;
-mysql_query("UPDATE inv SET One_tap_sword=One_tap_sword+'1' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET swordu ='Neuzdetas' WHERE nick='$nick' ");
+	mysqli_query($conn,"UPDATE zaidejai SET sword ='Neuzdeta' WHERE nick='$nick' ")	;
+mysqli_query($conn,"UPDATE inv SET One_tap_sword=One_tap_sword+'1' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET swordu ='Neuzdetas' WHERE nick='$nick' ");
 	 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","inv.php","Inventorius", "Ginklo nuėmimas");
 	navigacija($g_n);
 	}
@@ -352,9 +352,9 @@ echo'<div class="meniuc">NEUZDETA!</div>';}
 else{
 		top('Ginklo nuėmimas');
 		echo'<div class="meniuc">Nusiemei <b>Galios karda</b> sėkmingai!</div>';
-	mysql_query("UPDATE zaidejai SET sword ='Neuzdeta' WHERE nick='$nick' ")	;
-mysql_query("UPDATE inv SET kg_sword=kg_sword+'1' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET swordu ='Neuzdetas' WHERE nick='$nick' ");
+	mysqli_query($conn,"UPDATE zaidejai SET sword ='Neuzdeta' WHERE nick='$nick' ")	;
+mysqli_query($conn,"UPDATE inv SET kg_sword=kg_sword+'1' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET swordu ='Neuzdetas' WHERE nick='$nick' ");
 	 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","inv.php","Inventorius", "Ginklo nuėmimas");
 	navigacija($g_n);
 	}
@@ -371,9 +371,9 @@ echo'<div class="meniuc">NEUZDETA!</div>';}
 else{
 		top('Ginklo nuėmimas');
 		echo'<div class="meniuc">Nusiemei <b>Infinity Sword</b> sėkmingai!</div>';
-	mysql_query("UPDATE zaidejai SET sword ='Neuzdeta' WHERE nick='$nick' ")	;
-mysql_query("UPDATE inv SET Infinity_sword=Infinity_sword+'1' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET swordu ='Neuzdetas' WHERE nick='$nick' ");
+	mysqli_query($conn,"UPDATE zaidejai SET sword ='Neuzdeta' WHERE nick='$nick' ")	;
+mysqli_query($conn,"UPDATE inv SET Infinity_sword=Infinity_sword+'1' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET swordu ='Neuzdetas' WHERE nick='$nick' ");
 	 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","inv.php","Inventorius", "Ginklo nuėmimas");
 	navigacija($g_n);
 	}
@@ -392,9 +392,9 @@ echo'<div class="meniuc">NEUZDETA!</div>';}
 else{
 		top('Šarvo nuėmimas');
 		echo'<div class="meniuc">Nusiemei <b>Vedzito sarvai</b> sėkmingai!</div>';
-	mysql_query("UPDATE zaidejai SET armor ='Neuzdeta' WHERE nick='$nick' ")	;
-mysql_query("UPDATE inv SET Vedzito_sarvai=Vedzito_sarvai+'1' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET armoru ='Neuzdetas' WHERE nick='$nick' ");
+	mysqli_query($conn,"UPDATE zaidejai SET armor ='Neuzdeta' WHERE nick='$nick' ")	;
+mysqli_query($conn,"UPDATE inv SET Vedzito_sarvai=Vedzito_sarvai+'1' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET armoru ='Neuzdetas' WHERE nick='$nick' ");
 	 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","inv.php","Inventorius", "Armor nuėmimas");
 	navigacija($g_n);
 	}
@@ -410,9 +410,9 @@ echo'<div class="meniuc">NEUZDETA!</div>';}
 else{
 		top('Šarvo nuėmimas');
 		echo'<div class="meniuc">Nusiemei <b>Gold Armor</b> sėkmingai!</div>';
-	mysql_query("UPDATE zaidejai SET armor ='Neuzdeta' WHERE nick='$nick' ")	;
-mysql_query("UPDATE inv SET Gold_armor=Gold_armor+'1' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET armoru ='Neuzdetas' WHERE nick='$nick' ");
+	mysqli_query($conn,"UPDATE zaidejai SET armor ='Neuzdeta' WHERE nick='$nick' ")	;
+mysqli_query($conn,"UPDATE inv SET Gold_armor=Gold_armor+'1' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET armoru ='Neuzdetas' WHERE nick='$nick' ");
 	 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","inv.php","Inventorius", "Armor nuėmimas");
 	navigacija($g_n);
 	}
@@ -429,9 +429,9 @@ echo'<div class="meniuc">NEUZDETA!</div>';}
 else{
 		top('Šarvo nuėmimas');
 		echo'<div class="meniuc">Nusiemei <b>Time Armor</b> sėkmingai!</div>';
-	mysql_query("UPDATE zaidejai SET armor ='Neuzdeta' WHERE nick='$nick' ")	;
-mysql_query("UPDATE inv SET Time_armor=Time_armor+'1' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET armoru ='Neuzdetas' WHERE nick='$nick' ");
+	mysqli_query($conn,"UPDATE zaidejai SET armor ='Neuzdeta' WHERE nick='$nick' ")	;
+mysqli_query($conn,"UPDATE inv SET Time_armor=Time_armor+'1' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET armoru ='Neuzdetas' WHERE nick='$nick' ");
 	 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","inv.php","Inventorius", "Armor nuėmimas");
 	navigacija($g_n);
 	}
@@ -449,9 +449,9 @@ echo'<div class="meniuc">NEUZDETA!</div>';}
 else{
 		top('Šarvo nuėmimas');
 		echo'<div class="meniuc">Nusiemei <b>Money Armor</b> sėkmingai!</div>';
-	mysql_query("UPDATE zaidejai SET armor ='Neuzdeta' WHERE nick='$nick' ")	;
-mysql_query("UPDATE inv SET Money_armor=Money_armor+'1' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET armoru ='Neuzdetas' WHERE nick='$nick' ");
+	mysqli_query($conn,"UPDATE zaidejai SET armor ='Neuzdeta' WHERE nick='$nick' ")	;
+mysqli_query($conn,"UPDATE inv SET Money_armor=Money_armor+'1' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET armoru ='Neuzdetas' WHERE nick='$nick' ");
 	 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","inv.php","Inventorius", "Armor nuėmimas");
 	navigacija($g_n);
 	}
@@ -468,9 +468,9 @@ echo'<div class="meniuc">NEUZDETA!</div>';}
 else{
 		top('Šarvo nuėmimas');
 		echo'<div class="meniuc">Nusiemei <b>Super money Armor</b> sėkmingai!</div>';
-	mysql_query("UPDATE zaidejai SET armor ='Neuzdeta' WHERE nick='$nick' ")	;
-mysql_query("UPDATE inv SET Super_money_armor=Super_money_armor+'1' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET armoru ='Neuzdetas' WHERE nick='$nick' ");
+	mysqli_query($conn,"UPDATE zaidejai SET armor ='Neuzdeta' WHERE nick='$nick' ")	;
+mysqli_query($conn,"UPDATE inv SET Super_money_armor=Super_money_armor+'1' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET armoru ='Neuzdetas' WHERE nick='$nick' ");
 	 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","inv.php","Inventorius", "Armor nuėmimas");
 	navigacija($g_n);
 	}
@@ -487,9 +487,9 @@ echo'<div class="meniuc">NEUZDETA!</div>';}
 else{
 		top('Šarvo nuėmimas');
 		echo'<div class="meniuc">Nusiemei <b>Vieno kircio Armor</b> sėkmingai!</div>';
-	mysql_query("UPDATE zaidejai SET armor ='Neuzdeta' WHERE nick='$nick' ")	;
-mysql_query("UPDATE inv SET One_tap_armor=One_tap_armor+'1' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET armoru ='Neuzdetas' WHERE nick='$nick' ");
+	mysqli_query($conn,"UPDATE zaidejai SET armor ='Neuzdeta' WHERE nick='$nick' ")	;
+mysqli_query($conn,"UPDATE inv SET One_tap_armor=One_tap_armor+'1' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET armoru ='Neuzdetas' WHERE nick='$nick' ");
 	 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","inv.php","Inventorius", "Armor nuėmimas");
 	navigacija($g_n);
 	}
@@ -506,9 +506,9 @@ echo'<div class="meniuc">NEUZDETA!</div>';}
 else{
 		top('Šarvo nuėmimas');
 		echo'<div class="meniuc">Nusiemei <b>Infinity Armor</b> sėkmingai!</div>';
-	mysql_query("UPDATE zaidejai SET armor ='Neuzdeta' WHERE nick='$nick' ")	;
-mysql_query("UPDATE inv SET Infinity_armor=Infinity_armor+'1' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET armoru ='Neuzdetas' WHERE nick='$nick' ");
+	mysqli_query($conn,"UPDATE zaidejai SET armor ='Neuzdeta' WHERE nick='$nick' ")	;
+mysqli_query($conn,"UPDATE inv SET Infinity_armor=Infinity_armor+'1' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET armoru ='Neuzdetas' WHERE nick='$nick' ");
 	 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","inv.php","Inventorius", "Armor nuėmimas");
 	navigacija($g_n);
 	}
@@ -525,9 +525,9 @@ echo'<div class="meniuc">NEUZDETA!</div>';}
 else{
 		top('Šarvo nuėmimas');
 		echo'<div class="meniuc">Nusiemei <b>Galios Armor</b> sėkmingai!</div>';
-	mysql_query("UPDATE zaidejai SET armor ='Neuzdeta' WHERE nick='$nick' ")	;
-mysql_query("UPDATE inv SET kg_armor=kg_armor+'1' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET armoru ='Neuzdetas' WHERE nick='$nick' ");
+	mysqli_query($conn,"UPDATE zaidejai SET armor ='Neuzdeta' WHERE nick='$nick' ")	;
+mysqli_query($conn,"UPDATE inv SET kg_armor=kg_armor+'1' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET armoru ='Neuzdetas' WHERE nick='$nick' ");
 	 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","inv.php","Inventorius", "Armor nuėmimas");
 	navigacija($g_n);
 	}
@@ -540,9 +540,9 @@ if($id == 'use_amulet'){
 	}if($invis['Super_amulet'] > 1){
 		top('Amuleto užsidėjimas');
 		echo'<div class="meniuc">Užsidėjai sėkmingai</div>';
-	mysql_query("UPDATE zaidejai SET amuletas ='$ID' WHERE nick='$nick' ")	;
-mysql_query("UPDATE inv SET Super_amulet=Super_amulet-'1' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET amuletasu ='Uzdetas' WHERE nick='$nick' ");
+	mysqli_query($conn,"UPDATE zaidejai SET amuletas ='$ID' WHERE nick='$nick' ")	;
+mysqli_query($conn,"UPDATE inv SET Super_amulet=Super_amulet-'1' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET amuletasu ='Uzdetas' WHERE nick='$nick' ");
 	 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","inv.php","Inventorius", "Amuleto užsidėjimas");
 	navigacija($g_n);
 	}
@@ -556,9 +556,9 @@ if($id == 'use_armor'){
 	}if($invis['Gold_armor'] > 1){
 		top('Šarvo užsidėjimas');
 		echo'<div class="meniuc">Užsidėjai sėkmingai</div>';
-	mysql_query("UPDATE zaidejai SET armor ='$ID' WHERE nick='$nick' ")	;
-mysql_query("UPDATE inv SET Gold_armor=Gold_armor-'1' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET armoru ='Uzdetas' WHERE nick='$nick' ");
+	mysqli_query($conn,"UPDATE zaidejai SET armor ='$ID' WHERE nick='$nick' ")	;
+mysqli_query($conn,"UPDATE inv SET Gold_armor=Gold_armor-'1' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET armoru ='Uzdetas' WHERE nick='$nick' ");
 	 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","inv.php","Inventorius", "Ginklo užsidėjimas");
 	navigacija($g_n);
 	}
@@ -570,9 +570,9 @@ if($id == 'use_sword'){
 	}if($invis['infinity_sword'] > 1){
 		top('Šarvo užsidėjimas');
 		echo'<div class="meniuc">Užsidėjai sėkmingai</div>';
-	mysql_query("UPDATE zaidejai SET sword ='$ID' WHERE nick='$nick' ")	;
-mysql_query("UPDATE inv SET Infinity_sword=Infinity_sword-'1' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET swordu ='Uzdetas' WHERE nick='$nick' ");
+	mysqli_query($conn,"UPDATE zaidejai SET sword ='$ID' WHERE nick='$nick' ")	;
+mysqli_query($conn,"UPDATE inv SET Infinity_sword=Infinity_sword-'1' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET swordu ='Uzdetas' WHERE nick='$nick' ");
 	 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","inv.php","Inventorius", "Ginklo užsidėjimas");
 	navigacija($g_n);
 	}
@@ -584,9 +584,9 @@ if($id == 'use_armor'){
 	}if($invis['Infinity_armor'] > 1){
 		top('Šarvo užsidėjimas');
 		echo'<div class="meniuc">Užsidėjai sėkmingai</div>';
-	mysql_query("UPDATE zaidejai SET armor ='$ID' WHERE nick='$nick' ")	;
-mysql_query("UPDATE inv SET Infinity_armor=Infinity_armor-'1' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET armoru ='Uzdetas' WHERE nick='$nick' ");
+	mysqli_query($conn,"UPDATE zaidejai SET armor ='$ID' WHERE nick='$nick' ")	;
+mysqli_query($conn,"UPDATE inv SET Infinity_armor=Infinity_armor-'1' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET armoru ='Uzdetas' WHERE nick='$nick' ");
 	 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","inv.php","Inventorius", "Ginklo užsidėjimas");
 	navigacija($g_n);
 	}
@@ -599,9 +599,9 @@ if($id == 'use_armor'){
 	}if($invis['Money_armor'] > 1){
 		top('Šarvo užsidėjimas');
 		echo'<div class="meniuc">Užsidėjai sėkmingai</div>';
-	mysql_query("UPDATE zaidejai SET armor ='$ID' WHERE nick='$nick' ")	;
-mysql_query("UPDATE inv SET Money_armor=Money_armor-'1' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET armoru ='Uzdetas' WHERE nick='$nick' ");
+	mysqli_query($conn,"UPDATE zaidejai SET armor ='$ID' WHERE nick='$nick' ")	;
+mysqli_query($conn,"UPDATE inv SET Money_armor=Money_armor-'1' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET armoru ='Uzdetas' WHERE nick='$nick' ");
 	 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","inv.php","Inventorius", "Ginklo užsidėjimas");
 	navigacija($g_n);
 	}
@@ -613,9 +613,9 @@ if($id == 'use_armor'){
 	}if($invis['Super_money_armor'] > 1){
 		top('Šarvo užsidėjimas');
 		echo'<div class="meniuc">Užsidėjai sėkmingai</div>';
-	mysql_query("UPDATE zaidejai SET armor ='$ID' WHERE nick='$nick' ")	;
-mysql_query("UPDATE inv SET Super_money_armor=Super_money_armor-'1' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET armoru='Uzdetas' WHERE nick='$nick' ");
+	mysqli_query($conn,"UPDATE zaidejai SET armor ='$ID' WHERE nick='$nick' ")	;
+mysqli_query($conn,"UPDATE inv SET Super_money_armor=Super_money_armor-'1' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET armoru='Uzdetas' WHERE nick='$nick' ");
 	 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","inv.php","Inventorius", "Ginklo užsidėjimas");
 	navigacija($g_n);
 	}
@@ -628,9 +628,9 @@ if($id == 'use_armor'){
 	}if($invis['One_tap_armor'] > 1){
 		top('Šarvo užsidėjimas');
 		echo'<div class="meniuc">Užsidėjai sėkmingai</div>';
-	mysql_query("UPDATE zaidejai SET armor ='$ID' WHERE nick='$nick' ")	;
-mysql_query("UPDATE inv SET One_tap_armor=One_tap_armor-'1' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET armoru ='Uzdetas' WHERE nick='$nick' ");
+	mysqli_query($conn,"UPDATE zaidejai SET armor ='$ID' WHERE nick='$nick' ")	;
+mysqli_query($conn,"UPDATE inv SET One_tap_armor=One_tap_armor-'1' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET armoru ='Uzdetas' WHERE nick='$nick' ");
 	 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","inv.php","Inventorius", "Ginklo užsidėjimas");
 	navigacija($g_n);
 	}
@@ -642,9 +642,9 @@ if($id == 'use_armor'){
 	}if($invis['kg_armor'] > 1){
 		top('Šarvo užsidėjimas');
 		echo'<div class="meniuc">Užsidėjai sėkmingai</div>';
-	mysql_query("UPDATE zaidejai SET armor ='$ID' WHERE nick='$nick' ")	;
-mysql_query("UPDATE inv SET kg_armor=kg_armor-'1' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET armoru ='Uzdetas' WHERE nick='$nick' ");
+	mysqli_query($conn,"UPDATE zaidejai SET armor ='$ID' WHERE nick='$nick' ")	;
+mysqli_query($conn,"UPDATE inv SET kg_armor=kg_armor-'1' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET armoru ='Uzdetas' WHERE nick='$nick' ");
 	 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","inv.php","Inventorius", "Ginklo užsidėjimas");
 	navigacija($g_n);
 	}
@@ -656,9 +656,9 @@ if($id == 'use_armor'){
 	}if($invis['Time_armor'] > 1){
 		top('Šarvo užsidėjimas');
 		echo'<div class="meniuc">Užsidėjai sėkmingai</div>';
-	mysql_query("UPDATE zaidejai SET armor ='$ID' WHERE nick='$nick' ")	;
-mysql_query("UPDATE inv SET Time_armor=Time_armor-'1' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET armoru ='Uzdetas' WHERE nick='$nick' ");
+	mysqli_query($conn,"UPDATE zaidejai SET armor ='$ID' WHERE nick='$nick' ")	;
+mysqli_query($conn,"UPDATE inv SET Time_armor=Time_armor-'1' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET armoru ='Uzdetas' WHERE nick='$nick' ");
 	 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","inv.php","Inventorius", "Ginklo užsidėjimas");
 	navigacija($g_n);
 	}
@@ -671,9 +671,9 @@ if($id == 'use_sword'){
 	}if($invis['Gold_sword'] > 1){
 		top('Ginklo užsidėjimas');
 		echo'<div class="meniuc">Užsidėjai sėkmingai</div>';
-	mysql_query("UPDATE zaidejai SET sword ='$ID' WHERE nick='$nick' ")	;
-	mysql_query("UPDATE inv SET Gold_sword=Gold_sword-'1' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET Gold_sword2='+' WHERE nick='$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sword ='$ID' WHERE nick='$nick' ")	;
+	mysqli_query($conn,"UPDATE inv SET Gold_sword=Gold_sword-'1' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET Gold_sword2='+' WHERE nick='$nick'");
 	 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","inv.php","Inventorius", "Ginklo užsidėjimas");
 	navigacija($g_n);
 	}
@@ -684,9 +684,9 @@ if($id == 'use_sword'){
 	}if($invis['Time_sword'] > 1){
 		top('Ginklo užsidėjimas');
 		echo'<div class="meniuc">Užsidėjai sėkmingai</div>';
-	mysql_query("UPDATE zaidejai SET sword ='$ID' WHERE nick='$nick' ")	;
-	mysql_query("UPDATE inv SET Time_sword=Time_sword-'1' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET swordu ='Uzdetas' WHERE nick='$nick' ");
+	mysqli_query($conn,"UPDATE zaidejai SET sword ='$ID' WHERE nick='$nick' ")	;
+	mysqli_query($conn,"UPDATE inv SET Time_sword=Time_sword-'1' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET swordu ='Uzdetas' WHERE nick='$nick' ");
 	 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","inv.php","Inventorius", "Ginklo užsidėjimas");
 	navigacija($g_n);
 	}
@@ -700,9 +700,9 @@ if($invis['Trankso_kardas'] > 0){
 
 		top('Ginklo užsidėjimas');
 		echo'<div class="meniuc">Užsidėjai sėkmingai</div>';
-	mysql_query("UPDATE zaidejai SET sword ='$ID' WHERE nick='$nick' ")	;
-mysql_query("UPDATE inv SET Trankso_kardas=Trankso_kardas-'1' WHERE nick='$nick'");
-	mysql_query("UPDATE zaidejai SET Trankso_kardas2='+' WHERE nick='$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sword ='$ID' WHERE nick='$nick' ")	;
+mysqli_query($conn,"UPDATE inv SET Trankso_kardas=Trankso_kardas-'1' WHERE nick='$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET Trankso_kardas2='+' WHERE nick='$nick'");
 	 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","inv.php","Inventorius", "Ginklo užsidėjimas");
 	navigacija($g_n);
 	}
@@ -714,9 +714,9 @@ if($id == 'use_armor'){
 	}if($invis['Vedzito_sarvai'] > 1){
 		top('Šarvo užsidėjimas');
 		echo'<div class="meniuc">Užsidėjai sėkmingai</div>';
-	mysql_query("UPDATE zaidejai SET armor ='$ID' WHERE nick='$nick' ")	;
-mysql_query("UPDATE inv SET Vedzito_sarvai=Vedzito_sarvai-'1' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET armoru ='Uzdetas' WHERE nick='$nick' ");
+	mysqli_query($conn,"UPDATE zaidejai SET armor ='$ID' WHERE nick='$nick' ")	;
+mysqli_query($conn,"UPDATE inv SET Vedzito_sarvai=Vedzito_sarvai-'1' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET armoru ='Uzdetas' WHERE nick='$nick' ");
 	 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","inv.php","Inventorius", "Ginklo užsidėjimas");
 	navigacija($g_n);
 	}
@@ -729,9 +729,9 @@ if($id == 'use_sword'){
 	}if($invis['Money_sword'] > 1){
 		top('Ginklo užsidėjimas');
 		echo'<div class="meniuc">Užsidėjai sėkmingai</div>';
-	mysql_query("UPDATE zaidejai SET sword ='$ID' WHERE nick='$nick' ")	;
-	mysql_query("UPDATE inv SET Money_sword=Money_sword-'1' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET swordu ='Uzdetas' WHERE nick='$nick' ");
+	mysqli_query($conn,"UPDATE zaidejai SET sword ='$ID' WHERE nick='$nick' ")	;
+	mysqli_query($conn,"UPDATE inv SET Money_sword=Money_sword-'1' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET swordu ='Uzdetas' WHERE nick='$nick' ");
 	 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","inv.php","Inventorius", "Ginklo užsidėjimas");
 	navigacija($g_n);
 	}
@@ -744,9 +744,9 @@ if($id == 'use_sword'){
 	}if($invis['Super_money_sword'] > 1){
 		top('Ginklo užsidėjimas');
 		echo'<div class="meniuc">Užsidėjai sėkmingai</div>';
-	mysql_query("UPDATE zaidejai SET sword ='$ID' WHERE nick='$nick' ")	;
-	mysql_query("UPDATE inv SET Super_money_sword=Super_money_sword-'1' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET swordu ='Uzdetas' WHERE nick='$nick' ");
+	mysqli_query($conn,"UPDATE zaidejai SET sword ='$ID' WHERE nick='$nick' ")	;
+	mysqli_query($conn,"UPDATE inv SET Super_money_sword=Super_money_sword-'1' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET swordu ='Uzdetas' WHERE nick='$nick' ");
 	 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","inv.php","Inventorius", "Ginklo užsidėjimas");
 	navigacija($g_n);
 	}
@@ -760,9 +760,9 @@ if($id == 'use_sword'){
 	}if($invis['One_tap_sword'] > 1){
 		top('Ginklo užsidėjimas');
 		echo'<div class="meniuc">Užsidėjai sėkmingai</div>';
-	mysql_query("UPDATE zaidejai SET sword ='$ID' WHERE nick='$nick' ")	;
-	mysql_query("UPDATE inv SET One_tap_sword=One_tap_sword-'1' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET swordu ='Uzdetas' WHERE nick='$nick' ");
+	mysqli_query($conn,"UPDATE zaidejai SET sword ='$ID' WHERE nick='$nick' ")	;
+	mysqli_query($conn,"UPDATE inv SET One_tap_sword=One_tap_sword-'1' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET swordu ='Uzdetas' WHERE nick='$nick' ");
 	 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","inv.php","Inventorius", "Ginklo užsidėjimas");
 	navigacija($g_n);
 	}
@@ -776,9 +776,9 @@ if($id == 'use_sword'){
 	}if($invis['kg_sword'] > 1){
 		top('Ginklo užsidėjimas');
 		echo'<div class="meniuc">Užsidėjai sėkmingai</div>';
-	mysql_query("UPDATE zaidejai SET sword ='$ID' WHERE nick='$nick' ")	;
-	mysql_query("UPDATE inv SET kg_sword=kg_sword-'1' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET swordu ='Uzdetas' WHERE nick='$nick' ");
+	mysqli_query($conn,"UPDATE zaidejai SET sword ='$ID' WHERE nick='$nick' ")	;
+	mysqli_query($conn,"UPDATE inv SET kg_sword=kg_sword-'1' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET swordu ='Uzdetas' WHERE nick='$nick' ");
 	 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","inv.php","Inventorius", "Ginklo užsidėjimas");
 	navigacija($g_n);
 	}
@@ -861,8 +861,8 @@ elseif($id == "eat"){
     }else{
        
         echo '<div class="meniuc">Suvalgei stebuklingą pupą ir tavo gyvybės vėl pilnos!</div>';
-        mysql_query("UPDATE zaidejai SET gyvybes='$apie[max_gyvybes]' WHERE nick='$nick'");
-        mysql_query("UPDATE inv SET pupos=pupos-'1' WHERE nick='$nick'");
+        mysqli_query($conn,"UPDATE zaidejai SET gyvybes='$apie[max_gyvybes]' WHERE nick='$nick'");
+        mysqli_query($conn,"UPDATE inv SET pupos=pupos-'1' WHERE nick='$nick'");
     }
   $g_n[] = array("pagrindinis.php?id=","Pagrindinis","inv.php", "Inventorius", "Pupu valgymas");
 	navigacija($g_n);

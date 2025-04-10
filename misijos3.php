@@ -11,8 +11,8 @@ echo'
 <img src="img/baneriai/botasm.png" /></div>';
 
 topbar();
-$misija = mysql_fetch_assoc(mysql_query("SELECT * FROM misijos WHERE nick='$nick'"));
-$inv = mysql_fetch_assoc(mysql_query("SELECT * FROM inv WHERE nick='$nick'"));
+$misija = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM misijos WHERE nick='$nick'"));
+$inv = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM inv WHERE nick='$nick'"));
 if($id == ""){
 	top('Daigtų Misijos');
    online('Daigtų Misijose');
@@ -24,12 +24,13 @@ if($nust['misijos'] == "-"){
        }
 else{
 echo '<div class="meniuc"><b>Daigtų Misijos </b> - turite surinkti tam tikrą kiekį daigtų, ta pačia misiją galima vygdyti daug kartų, bet kas tam tikrą laiko tarpą.</div>';
-    $total = mysql_result(mysql_query("SELECT COUNT(*) FROM vietam"),0);
-   if($total > 0){
+    $total = mysqli_fetch_row(mysqli_query($conn, "SELECT COUNT(*) FROM vietam"))[0];
+
+    if($total > 0){
    
    echo '<div class="meniu">';
-   $query = mysql_query("SELECT * FROM vietam");
-   while($row = mysql_fetch_assoc($query)){
+   $query = mysqli_query($conn,"SELECT * FROM vietam");
+   while($row = mysqli_fetch_assoc($query)){
          echo ' '.$ico.'<a href="misijos2.php?id=vieta&ID='.$row['id'].'">'.$row['name'].'</a><br/>';
          unset($row);
    }
@@ -59,24 +60,25 @@ top('Daigtų Misijos');
 else{
 
 
-mysql_query("UPDATE zaidejai SET kda='$KD' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET kda='$KD' WHERE nick='$nick'");
 $ID = sk($_GET['ID']);
    online('Misijose');
-   $lok = mysql_fetch_assoc(mysql_query("SELECT * FROM vietam WHERE id='$ID' "));
-    if(mysql_num_rows(mysql_query("SELECT * FROM  vietam WHERE id='$ID' ")) == 0){
+   $lok = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM vietam WHERE id='$ID' "));
+    if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM  vietam WHERE id='$ID' ")) == 0){
           echo '<div class="up"><b>Klaida!</b></div>';
           echo '<div class="meniuc">Tokios misijos nėra!</div>';
     } else {
-         $total = mysql_result(mysql_query("SELECT COUNT(*) FROM misijos2 WHERE lokacija='$ID'"),0);
-         echo '<div class="up">'.$lok['name'].'</div>';
+        $total = mysqli_fetch_row(mysqli_query($conn, "SELECT COUNT(*) FROM misijos2 WHERE lokacija='$ID'"))[0];
+
+        echo '<div class="up">'.$lok['name'].'</div>';
          if($total > 0){
              echo '<div class="meniu">'.$ico.' <b>Reikia surinkti tam tikrą kiekį daigtų, už tai gausite prizą! </b></div>';
 
 echo '<div class="up"><b>Reikalavimai:</b>)</div>';
 echo'<div class="meniuc"><img src="img/imgg/nmisijos.png"></div>';
              echo '';
-             $query = mysql_query("SELECT * FROM misijos2 WHERE lokacija='$ID' ");
-             while($row = mysql_fetch_assoc($query)){
+             $query = mysqli_query($conn,"SELECT * FROM misijos2 WHERE lokacija='$ID' ");
+             while($row = mysqli_fetch_assoc($query)){
                    echo '<div class="meniuc">
 
 
@@ -101,8 +103,8 @@ echo'<div class="meniuc"><img src="img/imgg/nmisijos.png"></div>';
 }
 elseif($id == "vygdau"){
 
-	$ID = mysql_real_escape_string(htmlspecialchars($_GET['ID']));
-			$VS = mysql_real_escape_string(htmlspecialchars($_GET['VS']));
+	$ID = mysqli_real_escape_string(htmlspecialchars($_GET['ID']));
+			$VS = mysqli_real_escape_string(htmlspecialchars($_GET['VS']));
 	
 
 			
@@ -119,11 +121,11 @@ top('Daigtų Misijos');
 
        }
 else{
-    if(mysql_num_rows(mysql_query("SELECT * FROM vietam WHERE id='$ID' ")) == 0){
+    if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM vietam WHERE id='$ID' ")) == 0){
           echo '<div class="up">Klaida !</div>';
           echo '<div class="meniuc">Tokios misijos nėra!</div></div>';
     } else {
-    if(mysql_num_rows(mysql_query("SELECT * FROM misijos2 WHERE id='$VS' ")) == 0){
+    if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM misijos2 WHERE id='$VS' ")) == 0){
           echo '<div class="up">Klaida !</div>';
           echo '<div class="meniuc">Tokios misijos nėra!</div></div>';
     } }
@@ -142,10 +144,10 @@ echo '<div class="meniuc"><img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">Įvygdei! Gavai '.$misijos2['atlg'].' <img src="img/bicons/euro.png"> </div>';
 		
 		
-		mysql_query("UPDATE zaidejai SET sms_litai=sms_litai+'.$misijos2[atlg].' WHERE nick='$nick'")or die(mysql_error());
-		mysql_query("UPDATE inv SET tobulas=tobulas-'$misijos2[kario]', naikinti=naikinti-'$misijos2[galios]', angelwing=angelwing-'$misijos2[sparnu]' WHERE nick='$nick'")or die(mysql_error());
+		mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai+'.$misijos2[atlg].' WHERE nick='$nick'")or die(mysqli_error());
+		mysqli_query($conn,"UPDATE inv SET tobulas=tobulas-'$misijos2[kario]', naikinti=naikinti-'$misijos2[galios]', angelwing=angelwing-'$misijos2[sparnu]' WHERE nick='$nick'")or die(mysqli_error());
 	
-mysql_query("UPDATE zaidejai SET $misijos2[kas]='$timxx' WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE zaidejai SET $misijos2[kas]='$timxx' WHERE nick='$nick' ");
 ///
 	}	
 	}

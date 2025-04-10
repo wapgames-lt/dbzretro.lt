@@ -9,7 +9,7 @@ head2();
 baneris();
 		topbar();
 		
-		$row = mysql_fetch_assoc(mysql_query("SELECT * FROM quest WHERE nick='$nick'"));
+		$row = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM quest WHERE nick='$nick'"));
 		if($id == ''){
 			top('Dienos misija');
 			if($row['valiuta'] == 1){$pre = 'Microshem';}		
@@ -67,17 +67,17 @@ if($id == 'next'){
 			}else{
 				echo '<div class="meniuc"><img src="img/imgg/nmisijos.png"></div>';
 			echo'<div class="meniuc">Ivygdyta sėkmingai, gavai '.$row[atlygis].' '.$koo.'</div>';
-			mysql_query("UPDATE quest SET snd ='+' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE quest SET snd ='+' WHERE nick='$nick'");
 		if($row[ko] == 1){
-			mysql_query("UPDATE zaidejai SET kred=kred +'$row[atlygis]' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE zaidejai SET kred=kred +'$row[atlygis]' WHERE nick='$nick'");
 		}
 		if($row[ko] == 2){
-			mysql_query("UPDATE zaidejai SET sms_litai=sms_litai +'$row[atlygis]' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai +'$row[atlygis]' WHERE nick='$nick'");
 		}
 		if($row[ko] == 3){
-			mysql_query("UPDATE zaidejai SET litai=litai +'$row[atlygis]' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE zaidejai SET litai=litai +'$row[atlygis]' WHERE nick='$nick'");
 		}
-		mysql_query("UPDATE inv SET $pre=$pre-'$row[reike]' WHERE nick='$nick'")or die(mysql_error());
+		mysqli_query($conn,"UPDATE inv SET $pre=$pre-'$row[reike]' WHERE nick='$nick'")or die(mysqli_error());
 			}
 			}
 	$g_n[] = array("pagrindinis.php?id=","Pagrindinis","misijos.php?id=","Misijos","Dienos misija");

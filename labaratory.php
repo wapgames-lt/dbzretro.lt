@@ -30,12 +30,12 @@ if(empty($apie[lab])){
 			$rr = rand(1,2);
 			if($rr == '2'){
 				echo'	<div class="meniuc"><img src=img/imgg/labaratorija.png border="1" width="150" height="75"></br>Sveikiname radote labaratorija</div>';
-				mysql_query("UPDATE zaidejai SET lab='+' WHERE  nick='$nick'");
+				mysqli_query($conn,"UPDATE zaidejai SET lab='+' WHERE  nick='$nick'");
 			}else{
 
 				echo'	<div class="meniuc"><img src=img/imgg/labaratorija.png border="1" width="150" height="75"></br>Deja neradote labaratorijos</div>';
 				$t= time()+30;
-				mysql_query("UPDATE zaidejai SET lab_time='$t' WHERE  nick='$nick'");
+				mysqli_query($conn,"UPDATE zaidejai SET lab_time='$t' WHERE  nick='$nick'");
 			}
 		}
 		$g_n[] = array("pagrindinis.php?id=","Pagrindinis","Daktaro Gero labaratorija");
@@ -475,7 +475,7 @@ Reikia: 10 <b>AD16</b></div>
 				echo '<div class="meniuc"><img src=img/imgg/labaratorija.png border="1" width="150" height="75"></div><div class="meniuc">Atlikta! Išsikeitei sėkmingai!<br>Praradai '.$kainn.' <b>AD16</b>, Gavai '.$kiekv.' <b>AD17</b>!</div>';
 
 
-				mysql_query("UPDATE inv SET ad16=ad16-'$kainn', ad17=ad17+'$kiekv' WHERE nick='$nick' ");
+				mysqli_query($conn,"UPDATE inv SET ad16=ad16-'$kainn', ad17=ad17+'$kiekv' WHERE nick='$nick' ");
 			}
 		}$g_n[] = array("pagrindinis.php?id=","Pagrindinis","labaratory.php?id=gaminuad17","Atgal","AD17 Gaminimas");
 		navigacija($g_n);
@@ -533,7 +533,7 @@ Reikia: 8 <b>AD17</b></div>
 				echo '<div class="meniuc"><img src=img/imgg/labaratorija.png border="1" width="150" height="75"></div><div class="meniuc">Atlikta! Išsikeitei sėkmingai!<br>Praradai '.$kainn.' <b>AD17</b>, Gavai '.$kiekv.' <b>AD18</b>!</div>';
 
 
-				mysql_query("UPDATE inv SET ad17=ad17-'$kainn', ad18=ad18+'$kiekv' WHERE nick='$nick' ");
+				mysqli_query($conn,"UPDATE inv SET ad17=ad17-'$kainn', ad18=ad18+'$kiekv' WHERE nick='$nick' ");
 			}
 		}$g_n[] = array("pagrindinis.php?id=","Pagrindinis","labaratory.php?id=gaminuad18","Atgal","AD18 Gaminimas");
 		navigacija($g_n);
@@ -589,7 +589,7 @@ Reikia: 6 <b>AD18</b></div>
 				echo '<div class="meniuc"><img src=img/imgg/labaratorija.png border="1" width="150" height="75"></div><div class="meniuc">Atlikta! Išsikeitei sėkmingai!<br>Praradai '.$kainn.' <b>AD18</b>, Gavai '.$kiekv.' <b>AD19</b>!</div>';
 
 
-				mysql_query("UPDATE inv SET ad18=ad18-'$kainn', ad19=ad19+'$kiekv' WHERE nick='$nick' ");
+				mysqli_query($conn,"UPDATE inv SET ad18=ad18-'$kainn', ad19=ad19+'$kiekv' WHERE nick='$nick' ");
 			}
 		}$g_n[] = array("pagrindinis.php?id=","Pagrindinis","labaratory.php?id=gaminuad19","Atgal","AD19 Gaminimas");
 		navigacija($g_n);
@@ -645,7 +645,7 @@ Reikia: 4 <b>AD19</b></div>
 				echo '<div class="meniuc"><img src=img/imgg/labaratorija.png border="1" width="150" height="75"></div><div class="meniuc">Atlikta! Išsikeitei sėkmingai!<br>Praradai '.$kainn.' <b>AD19</b>, Gavai '.$kiekv.' <b>AD20</b>!</div>';
 
 
-				mysql_query("UPDATE inv SET ad19=ad19-'$kainn', ad20=ad20+'$kiekv' WHERE nick='$nick' ");
+				mysqli_query($conn,"UPDATE inv SET ad19=ad19-'$kainn', ad20=ad20+'$kiekv' WHERE nick='$nick' ");
 			}
 		}$g_n[] = array("pagrindinis.php?id=","Pagrindinis","labaratory.php?id=gaminuad20","Atgal","AD20 Gaminimas");
 		navigacija($g_n);
@@ -676,8 +676,8 @@ Reikia: 4 <b>AD19</b></div>
 		}
 
 		else{
-			mysql_query("UPDATE inv SET ad16=ad16-'1500' WHERE nick='$nick'");
-			mysql_query("UPDATE inv SET ad16kard=ad16kard+'1' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE inv SET ad16=ad16-'1500' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE inv SET ad16kard=ad16kard+'1' WHERE nick='$nick'");
 
 			echo'<div class="meniuc"><img src="img/veikejai/Android 16-0.png"><br>Pasigaminai sėkmingai! Gavai <b>AD16 Kardą</b> !</div>';
 		}
@@ -711,8 +711,8 @@ Reikia: 4 <b>AD19</b></div>
 		}
 
 		else{
-			mysql_query("UPDATE inv SET ad16=ad16-'2000' WHERE nick='$nick'");
-			mysql_query("UPDATE inv SET ad16sarv=ad16sarv+'1' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE inv SET ad16=ad16-'2000' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE inv SET ad16sarv=ad16sarv+'1' WHERE nick='$nick'");
 
 			echo'<div class="meniuc"><img src="img/veikejai/Android 16-0.png"><br>Pasigaminai sėkmingai! Gavai <b>AD16 šarvus</b> !</div>';
 		}
@@ -746,8 +746,8 @@ Reikia: 4 <b>AD19</b></div>
 		}
 
 		else{
-			mysql_query("UPDATE inv SET ad16=ad16-'2500' WHERE nick='$nick'");
-			mysql_query("UPDATE inv SET ad16amulet=ad16amulet+'1' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE inv SET ad16=ad16-'2500' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE inv SET ad16amulet=ad16amulet+'1' WHERE nick='$nick'");
 
 			echo'<div class="meniuc"><img src="img/veikejai/Android 16-0.png"><br>Pasigaminai sėkmingai! Gavai <b>AD16 amulet</b> !</div>';
 		}
@@ -784,8 +784,8 @@ Reikia: 4 <b>AD19</b></div>
 		}
 
 		else{
-			mysql_query("UPDATE inv SET ad17=ad17-'1500', ad16kard=ad16kard-'1' WHERE nick='$nick'");
-			mysql_query("UPDATE inv SET ad17kard=ad17kard+'1' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE inv SET ad17=ad17-'1500', ad16kard=ad16kard-'1' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE inv SET ad17kard=ad17kard+'1' WHERE nick='$nick'");
 
 			echo'<div class="meniuc"><img src="img/veikejai/Android 17-0.png"><br>Pasigaminai sėkmingai! Gavai <b>AD17 Kardą</b> !</div>';
 		}
@@ -823,8 +823,8 @@ Reikia: 4 <b>AD19</b></div>
 		}
 
 		else{
-			mysql_query("UPDATE inv SET ad17=ad17-'2000', ad16sarv=ad16sarv-'1' WHERE nick='$nick'");
-			mysql_query("UPDATE inv SET ad17sarv=ad17sarv+'1' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE inv SET ad17=ad17-'2000', ad16sarv=ad16sarv-'1' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE inv SET ad17sarv=ad17sarv+'1' WHERE nick='$nick'");
 
 			echo'<div class="meniuc"><img src="img/veikejai/Android 17-0.png"><br>Pasigaminai sėkmingai! Gavai <b>AD17 šarvus</b> !</div>';
 		}
@@ -862,8 +862,8 @@ Reikia: 4 <b>AD19</b></div>
 		}
 
 		else{
-			mysql_query("UPDATE inv SET ad17=ad17-'2500', ad16amulet=ad16amulet-'1' WHERE nick='$nick'");
-			mysql_query("UPDATE inv SET ad17amulet=ad17amulet+'1' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE inv SET ad17=ad17-'2500', ad16amulet=ad16amulet-'1' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE inv SET ad17amulet=ad17amulet+'1' WHERE nick='$nick'");
 
 			echo'<div class="meniuc"><img src="img/veikejai/Android 17-0.png"><br>Pasigaminai sėkmingai! Gavai <b>AD17 amulet</b> !</div>';
 		}
@@ -899,8 +899,8 @@ Reikia: 4 <b>AD19</b></div>
 		}
 
 		else{
-			mysql_query("UPDATE inv SET ad19=ad19-'1500', ad18kard=ad18kard-'1' WHERE nick='$nick'");
-			mysql_query("UPDATE inv SET ad19kard=ad19kard+'1' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE inv SET ad19=ad19-'1500', ad18kard=ad18kard-'1' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE inv SET ad19kard=ad19kard+'1' WHERE nick='$nick'");
 
 			echo'<div class="meniuc"><img src="img/veikejai/Android 19-0.png"><br>Pasigaminai sėkmingai! Gavai <b>AD19 Kardą</b> !</div>';
 		}
@@ -936,8 +936,8 @@ Reikia: 4 <b>AD19</b></div>
 		}
 
 		else{
-			mysql_query("UPDATE inv SET ad19=ad19-'2000', ad18sarv=ad18sarv-'1' WHERE nick='$nick'");
-			mysql_query("UPDATE inv SET ad19sarv=ad19sarv+'1' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE inv SET ad19=ad19-'2000', ad18sarv=ad18sarv-'1' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE inv SET ad19sarv=ad19sarv+'1' WHERE nick='$nick'");
 
 			echo'<div class="meniuc"><img src="img/veikejai/Android 19-0.png"><br>Pasigaminai sėkmingai! Gavai <b>AD19 šarvus</b> !</div>';
 		}
@@ -973,8 +973,8 @@ Reikia: 4 <b>AD19</b></div>
 		}
 
 		else{
-			mysql_query("UPDATE inv SET ad19=ad19-'2500', ad18amulet=ad18amulet-'1' WHERE nick='$nick'");
-			mysql_query("UPDATE inv SET ad19amulet=ad19amulet+'1' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE inv SET ad19=ad19-'2500', ad18amulet=ad18amulet-'1' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE inv SET ad19amulet=ad19amulet+'1' WHERE nick='$nick'");
 
 			echo'<div class="meniuc"><img src="img/veikejai/Android 19-0.png"><br>Pasigaminai sėkmingai! Gavai <b>AD19 amulet</b> !</div>';
 		}
@@ -1009,8 +1009,8 @@ Reikia: 4 <b>AD19</b></div>
 		}
 
 		else{
-			mysql_query("UPDATE inv SET ad18=ad18-'1500', ad17kard=ad17kard-'1' WHERE nick='$nick'");
-			mysql_query("UPDATE inv SET ad18kard=ad18kard+'1' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE inv SET ad18=ad18-'1500', ad17kard=ad17kard-'1' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE inv SET ad18kard=ad18kard+'1' WHERE nick='$nick'");
 
 			echo'<div class="meniuc"><img src="img/veikejai/Android 18-0.png"><br>Pasigaminai sėkmingai! Gavai <b>AD18 Kardą</b> !</div>';
 		}
@@ -1046,8 +1046,8 @@ Reikia: 4 <b>AD19</b></div>
 		}
 
 		else{
-			mysql_query("UPDATE inv SET ad18=ad18-'2000', ad17sarv=ad17sarv-'1' WHERE nick='$nick'");
-			mysql_query("UPDATE inv SET ad18sarv=ad18sarv+'1' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE inv SET ad18=ad18-'2000', ad17sarv=ad17sarv-'1' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE inv SET ad18sarv=ad18sarv+'1' WHERE nick='$nick'");
 
 			echo'<div class="meniuc"><img src="img/veikejai/Android 18-0.png"><br>Pasigaminai sėkmingai! Gavai <b>AD18 šarvus</b> !</div>';
 		}
@@ -1083,8 +1083,8 @@ Reikia: 4 <b>AD19</b></div>
 		}
 
 		else{
-			mysql_query("UPDATE inv SET ad18=ad18-'2500', ad17amulet=ad17amulet-'1' WHERE nick='$nick'");
-			mysql_query("UPDATE inv SET ad18amulet=ad18amulet+'1' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE inv SET ad18=ad18-'2500', ad17amulet=ad17amulet-'1' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE inv SET ad18amulet=ad18amulet+'1' WHERE nick='$nick'");
 
 			echo'<div class="meniuc"><img src="img/veikejai/Android 18-0.png"><br>Pasigaminai sėkmingai! Gavai <b>AD18 amulet</b> !</div>';
 		}
@@ -1126,8 +1126,8 @@ Reikia: 4 <b>AD19</b></div>
 		}
 
 		else{
-			mysql_query("UPDATE inv SET ad20=ad20-'1500', ad19kard=ad19kard-'1' WHERE nick='$nick'");
-			mysql_query("UPDATE inv SET ad20kard=ad20kard+'1' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE inv SET ad20=ad20-'1500', ad19kard=ad19kard-'1' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE inv SET ad20kard=ad20kard+'1' WHERE nick='$nick'");
 
 			echo'<div class="meniuc"><img src="img/veikejai/Android 20-0.png"><br>Pasigaminai sėkmingai! Gavai <b>AD20 Kardą</b> !</div>';
 		}
@@ -1163,8 +1163,8 @@ Reikia: 4 <b>AD19</b></div>
 		}
 
 		else{
-			mysql_query("UPDATE inv SET ad20=ad20-'2000', ad19sarv=ad19sarv-'1' WHERE nick='$nick'");
-			mysql_query("UPDATE inv SET ad20sarv=ad20sarv+'1' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE inv SET ad20=ad20-'2000', ad19sarv=ad19sarv-'1' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE inv SET ad20sarv=ad20sarv+'1' WHERE nick='$nick'");
 
 			echo'<div class="meniuc"><img src="img/veikejai/Android 20-0.png"><br>Pasigaminai sėkmingai! Gavai <b>AD20 šarvus</b> !</div>';
 		}
@@ -1200,8 +1200,8 @@ Reikia: 4 <b>AD19</b></div>
 		}
 
 		else{
-			mysql_query("UPDATE inv SET ad20=ad20-'2500', ad19amulet=ad19amulet-'1' WHERE nick='$nick'");
-			mysql_query("UPDATE inv SET ad20amulet=ad20amulet+'1' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE inv SET ad20=ad20-'2500', ad19amulet=ad19amulet-'1' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE inv SET ad20amulet=ad20amulet+'1' WHERE nick='$nick'");
 
 			echo'<div class="meniuc"><img src="img/veikejai/Android 20-0.png"><br>Pasigaminai sėkmingai! Gavai <b>AD20 amulet</b> !</div>';
 		}
@@ -1236,9 +1236,9 @@ Reikia: 4 <b>AD19</b></div>
 		}
 
 		else{
-			mysql_query("UPDATE inv SET Microshem=Microshem-'10000', ad20=ad20-'2000' WHERE nick='$nick'");
-			mysql_query("UPDATE zaidejai SET kyborgas='Android 20' WHERE nick='$nick'");
-			mysql_query("UPDATE zaidejai SET ad20='+' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE inv SET Microshem=Microshem-'10000', ad20=ad20-'2000' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE zaidejai SET kyborgas='Android 20' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE zaidejai SET ad20='+' WHERE nick='$nick'");
 			echo'<div class="meniuc"><img src="img/veikejai/Android 20-0.png"><br>Misija vygdyta sėkmingai! Gavai <b>Android 20</b> !</div>';
 		}
 
@@ -1270,9 +1270,9 @@ Reikia: 4 <b>AD19</b></div>
 			echo '<div class="meniuc"><img src="img/veikejai/Android 19-0.png"><br>Tu jau buvai gavęs<b> Android 19</b>!</div>';
 		}
 		else{
-			mysql_query("UPDATE inv SET Microshem=Microshem-'10000', ad19=ad19-'1000' WHERE nick='$nick'");
-			mysql_query("UPDATE zaidejai SET kyborgas='Android 19' WHERE nick='$nick'");
-			mysql_query("UPDATE zaidejai SET ad19='+' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE inv SET Microshem=Microshem-'10000', ad19=ad19-'1000' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE zaidejai SET kyborgas='Android 19' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE zaidejai SET ad19='+' WHERE nick='$nick'");
 			echo'<div class="meniuc"><img src="img/veikejai/Android 19-0.png"><br>Misija vygdyta sėkmingai! Gavai <b>Android 19</b> !</div>';
 		}
 
@@ -1305,9 +1305,9 @@ Reikia: 4 <b>AD19</b></div>
 			echo '<div class="meniuc"><img src="img/veikejai/Android 18-0.png"><br>Tu jau buvai gavęs<b> Android 18</b>!</div>';
 		}
 		else{
-			mysql_query("UPDATE inv SET Microshem=Microshem-'10000', ad18=ad18-'700' WHERE nick='$nick'");
-			mysql_query("UPDATE zaidejai SET kyborgas='Android 18' WHERE nick='$nick'");
-			mysql_query("UPDATE zaidejai SET ad18='+' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE inv SET Microshem=Microshem-'10000', ad18=ad18-'700' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE zaidejai SET kyborgas='Android 18' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE zaidejai SET ad18='+' WHERE nick='$nick'");
 			echo'<div class="meniuc"><img src="img/veikejai/Android 18-0.png"><br>Misija vygdyta sėkmingai! Gavai <b>Android 18</b> !</div>';
 		}
 
@@ -1342,9 +1342,9 @@ Reikia: 4 <b>AD19</b></div>
 		}
 
 		else{
-			mysql_query("UPDATE inv SET Microshem=Microshem-'5000', ad17=ad17-'400' WHERE nick='$nick'");
-			mysql_query("UPDATE zaidejai SET kyborgas='Android 17' WHERE nick='$nick'");
-			mysql_query("UPDATE zaidejai SET ad17='+' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE inv SET Microshem=Microshem-'5000', ad17=ad17-'400' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE zaidejai SET kyborgas='Android 17' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE zaidejai SET ad17='+' WHERE nick='$nick'");
 			echo'<div class="meniuc"><img src="img/veikejai/Android 17-0.png"><br>Misija įvygdyta sėkmingai! Gavai <b>Android 17</b> !</div>';
 		}
 
@@ -1371,9 +1371,9 @@ Reikia: 4 <b>AD19</b></div>
 		}
 		else{
 
-			mysql_query("UPDATE zaidejai SET kyborgas='Android 16' WHERE nick='$nick'");
-			mysql_query("UPDATE zaidejai SET ad16='+' WHERE nick='$nick'");
-			mysql_query("UPDATE inv SET Microshem=Microshem-'3000', ad16=ad16-'200' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE zaidejai SET kyborgas='Android 16' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE zaidejai SET ad16='+' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE inv SET Microshem=Microshem-'3000', ad16=ad16-'200' WHERE nick='$nick'");
 			echo'<div class="meniuc"><img src="img/veikejai/Android 16-0.png"><br>Misija įvygdyta sėkmingai! Gavai <b>Android 16</b> !</div>';
 		}
 

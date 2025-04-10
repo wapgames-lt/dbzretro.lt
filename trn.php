@@ -10,7 +10,7 @@ head2();
 baneris();
 
 		topbar();
-$nst = mysql_fetch_assoc(mysql_query("SELECT * FROM turnyras"));
+$nst = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM turnyras"));
 
 if($id == ''){
 	top('Kovų turnyras');
@@ -23,10 +23,10 @@ Antros vietos užėmėjas gauna:<br>
 
 			  </div>';
 
-		if($nst['trn_busena'] == 0 AND mysql_num_rows(mysql_query("SELECT * FROM user WHERE kovu_trn='+'")) < 8)
+		if($nst['trn_busena'] == 0 AND mysqli_num_rows(mysqli_query($conn,"SELECT * FROM user WHERE kovu_trn='+'")) < 8)
 		{
 			echo'
-				  <div class="meniuc"><b>Iki turnyro pradžios trūksta <font color="red">'.(8-mysql_num_rows(mysql_query("SELECT * FROM user WHERE kovu_trn='+'"))).'</font> dalyvių</b></div>
+				  <div class="meniuc"><b>Iki turnyro pradžios trūksta <font color="red">'.(8-mysqli_num_rows(mysqli_query($conn,"SELECT * FROM user WHERE kovu_trn='+'"))).'</font> dalyvių</b></div>
 				  ';
 		}
 		elseif($nst['trn_busena'] == 1)
@@ -42,10 +42,10 @@ Antros vietos užėmėjas gauna:<br>
 				  ';
  if($apie['statusas'] == "Kurejas"){
 
- $query = mysql_query("SELECT * FROM user ORDER BY kiek_trn DESC LIMIT 8");
+ $query = mysqli_query($conn,"SELECT * FROM user ORDER BY kiek_trn DESC LIMIT 8");
      echo'<div class="up">Pirmaujantys:</div>';
     echo '<div class="meniuc">';
-    while($row = mysql_fetch_assoc($query)){
+    while($row = mysqli_fetch_assoc($query)){
 
    $vt++;
 		  
@@ -66,10 +66,10 @@ echo'</div>';
 				  ';
  if($apie['statusas'] == "Kurejas"){
 
- $query = mysql_query("SELECT * FROM user ORDER BY kiek_trn DESC LIMIT 6");
+ $query = mysqli_query($conn,"SELECT * FROM user ORDER BY kiek_trn DESC LIMIT 6");
      echo'<div class="up">Pirmaujantys:</div>';
     echo '<div class="meniuc">';
-    while($row = mysql_fetch_assoc($query)){
+    while($row = mysqli_fetch_assoc($query)){
 
    $vt++;
 		  
@@ -89,10 +89,10 @@ echo'</div>';
 				  ';
  if($apie['statusas'] == "Kurejas"){
 
- $query = mysql_query("SELECT * FROM user ORDER BY kiek_trn DESC LIMIT 4");
+ $query = mysqli_query($conn,"SELECT * FROM user ORDER BY kiek_trn DESC LIMIT 4");
      echo'<div class="up">Pirmaujantys:</div>';
     echo '<div class="meniuc">';
-    while($row = mysql_fetch_assoc($query)){
+    while($row = mysqli_fetch_assoc($query)){
 
    $vt++;
 		  
@@ -111,10 +111,10 @@ echo'</div>';
 				  ';
  if($apie['statusas'] == "Kurejas"){
 
- $query = mysql_query("SELECT * FROM user ORDER BY kiek_trn DESC LIMIT 2");
+ $query = mysqli_query($conn,"SELECT * FROM user ORDER BY kiek_trn DESC LIMIT 2");
      echo'<div class="up">Pirmaujantys:</div>';
     echo '<div class="meniuc">';
-    while($row = mysql_fetch_assoc($query)){
+    while($row = mysqli_fetch_assoc($query)){
 
    $vt++;
 		  
@@ -149,13 +149,13 @@ if($user['kovu_trn'] == '+')
 		
 			  </div>
 			  ';
-		if($nst['trn_busena'] == 0 AND mysql_num_rows(mysql_query("SELECT * FROM user WHERE kovu_trn='+'")) > 0)
+		if($nst['trn_busena'] == 0 AND mysqli_num_rows(mysqli_query($conn,"SELECT * FROM user WHERE kovu_trn='+'")) > 0)
 		{
 			echo'
 				  <div class="up"><b>Turnyro dalyviai</b></div>
 			  <div class="meniu">
 				  ';
-			if(mysql_num_rows(mysql_query("SELECT * FROM user WHERE kovu_trn='+'")) == false)
+			if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM user WHERE kovu_trn='+'")) == false)
 			{
 				echo'
 					  '.$ic.' <b><font color="red">Turnyre dalyvių nėra.</font></b>
@@ -164,8 +164,8 @@ if($user['kovu_trn'] == '+')
 			else
 			{
 				
-			$query = mysql_query("SELECT * FROM user WHERE kovu_trn = '+'");
-				while($row = mysql_fetch_assoc($query))
+			$query = mysqli_query($conn,"SELECT * FROM user WHERE kovu_trn = '+'");
+				while($row = mysqli_fetch_assoc($query))
 				{
 					$nr++;
 					
@@ -184,8 +184,8 @@ unset($query);
 				  <div class="up"><b>Dalyviai</b></div>
 			  <div class="meniu">
 				  ';
-				$query = mysql_query("SELECT * FROM user WHERE kovu_trn = '+'");
-				while($row = mysql_fetch_assoc($query))
+				$query = mysqli_query($conn,"SELECT * FROM user WHERE kovu_trn = '+'");
+				while($row = mysqli_fetch_assoc($query))
 				{
 					$nr++;
 					
@@ -203,8 +203,8 @@ unset($query);
 				  <div class="up"><b>Pirmojo etapo dalyviai</b></div>
 			  <div class="meniu">
 				  ';
-		$query = mysql_query("SELECT * FROM user WHERE kovu_trn = '+'");
-				while($row = mysql_fetch_assoc($query))
+		$query = mysqli_query($conn,"SELECT * FROM user WHERE kovu_trn = '+'");
+				while($row = mysqli_fetch_assoc($query))
 				{
 					$nr++;
 					
@@ -220,8 +220,8 @@ unset($query);			echo'</div>';
 				  <div class="up"><b>Ketvirtfinalio dalyviai</b></div>
 			  <div class="meniu">
 				  ';
-			$query = mysql_query("SELECT * FROM user WHERE kovu_trn = '+'");
-				while($row = mysql_fetch_assoc($query))
+			$query = mysqli_query($conn,"SELECT * FROM user WHERE kovu_trn = '+'");
+				while($row = mysqli_fetch_assoc($query))
 				{
 					$nr++;
 					
@@ -239,8 +239,8 @@ unset($query);
 				  <div class="up"><b>Pusfinalio dalyviai</b></div>
 			  <div class="meniu">
 				  ';
-		$query = mysql_query("SELECT * FROM user WHERE kovu_trn = '+'");
-				while($row = mysql_fetch_assoc($query))
+		$query = mysqli_query($conn,"SELECT * FROM user WHERE kovu_trn = '+'");
+				while($row = mysqli_fetch_assoc($query))
 				{
 					$nr++;
 					
@@ -258,8 +258,8 @@ unset($query);
 				  <div class="up"><b>Finalo dalyviai</b></div>
 			  <div class="meniu">
 				  ';
-			$query = mysql_query("SELECT * FROM user WHERE kovu_trn = '+'");
-				while($row = mysql_fetch_assoc($query))
+			$query = mysqli_query($conn,"SELECT * FROM user WHERE kovu_trn = '+'");
+				while($row = mysqli_fetch_assoc($query))
 				{
 					$nr++;
 					
@@ -278,10 +278,10 @@ unset($query);
 echo'<div class="up">Paskutinis laimėtojas</div>
 <div class="meniuc"><a href="pagrindinis.php?id=apie&ka='.$nst['trn_last'].'"><b>'.$nst['trn_last'].'</b></a></div>';
 
-$query = mysql_query("SELECT * FROM zaidejai ORDER BY kiek_trn DESC LIMIT 5");
+$query = mysqli_query($conn,"SELECT * FROM zaidejai ORDER BY kiek_trn DESC LIMIT 5");
      echo'<div class="up">Laimėtų turnyrų TOP:</div>';
     echo '<div class="meniuc">';
-    while($row = mysql_fetch_assoc($query)){
+    while($row = mysqli_fetch_assoc($query)){
 
    $vt++;
 		  
@@ -303,7 +303,7 @@ if($id == 'reg'){
 		echo'
 			 <div class="meniuc">
 			  ';
-		if(mysql_num_rows(mysql_query("SELECT * FROM user WHERE kovu_trn='+'")) == 8)
+		if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM user WHERE kovu_trn='+'")) == 8)
 		{
 			echo'
 				
@@ -336,7 +336,7 @@ if($id == 'reg_yes'){
 			
 			  <div class="meniuc">
 			  ';
-		if(mysql_num_rows(mysql_query("SEELCT * FROM user WHERE kovu_trn='+'")) == 8)
+		if(mysqli_num_rows(mysqli_query($conn,"SEELCT * FROM user WHERE kovu_trn='+'")) == 8)
 		{
 			echo'
 			
@@ -370,8 +370,8 @@ if($id == 'reg_yes'){
 				 
 				  '.$ic.' Sėkmingai užsiregistravote į turnyrą.
 				  ';
-			mysql_query("UPDATE zaidejai SET kred=kred-500 WHERE nick='$nick'");
-			mysql_query("UPDATE user SET kovu_trn='+' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE zaidejai SET kred=kred-500 WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE user SET kovu_trn='+' WHERE nick='$nick'");
 			
 		
 		}

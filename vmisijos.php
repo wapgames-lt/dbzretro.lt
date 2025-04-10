@@ -6,7 +6,7 @@ echo "<!DOCTYPE html PUBLIC '-//WAPFORUM//DTD XHTML Mobile 1.0//EN' 'http://www.
 
 include_once 'cfg/sql.php';
 include_once 'cfg/funkcijos.php';
- $ii = mysql_fetch_assoc(mysql_query("SELECT * FROM tikslas WHERE nick = '$nick'"));
+ $ii = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM tikslas WHERE nick = '$nick'"));
 
 head2();
 baneris();
@@ -170,8 +170,8 @@ Neturi šio veikėjo!</div>';
 				
 	echo'	<div class="meniuc">Sėkmingai įvydei misiją!<br> Gauni 10 <img src="img/bicons/euro.png">
 </div> ';		
-mysql_query("UPDATE zaidejai SET sms_litai=sms_litai+'10' WHERE nick='$nick' ");
-	mysql_query("UPDATE zaidejai SET kabav='$timxx' WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai+'10' WHERE nick='$nick' ");
+	mysqli_query($conn,"UPDATE zaidejai SET kabav='$timxx' WHERE nick='$nick' ");
 
 }
 		}
@@ -239,8 +239,8 @@ Neesi įvygdęs prieš tai misijos!</div>';
 				
 	echo'	<div class="meniuc">Sėkmingai įvydei misiją!<br> Gauni 20 <img src="img/bicons/euro.png">
 </div> ';		
-mysql_query("UPDATE zaidejai SET sms_litai=sms_litai+'20' WHERE nick='$nick' ");
-	mysql_query("UPDATE zaidejai SET kalev='$timxx' WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai+'20' WHERE nick='$nick' ");
+	mysqli_query($conn,"UPDATE zaidejai SET kalev='$timxx' WHERE nick='$nick' ");
 
 }
 		}
@@ -310,8 +310,8 @@ Neesi įvygdęs prieš tai misijos!</div>';
 	echo'	<div class="meniuc">Sėkmingai įvydei misiją!<br> Gauni 30 <img src="img/bicons/euro.png">
 <br>Gauni 1 <img src="img/bicons/bitcoin.png">
 </div> ';		
-mysql_query("UPDATE zaidejai SET sms_litai=sms_litai+'30', bitcoin=bitcoin+'1' WHERE nick='$nick' ");
-	mysql_query("UPDATE zaidejai SET omegav='$timxx' WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai+'30', bitcoin=bitcoin+'1' WHERE nick='$nick' ");
+	mysqli_query($conn,"UPDATE zaidejai SET omegav='$timxx' WHERE nick='$nick' ");
 
 }
 		}
@@ -380,8 +380,8 @@ Neesi įvygdęs prieš tai misijos!</div>';
 	echo'	<div class="meniuc">Sėkmingai įvydei misiją!<br> Gauni 40 <img src="img/bicons/euro.png">
 <br>Gauni 2 <img src="img/bicons/bitcoin.png">
 </div> ';		
-mysql_query("UPDATE zaidejai SET sms_litai=sms_litai+'40', bitcoin=bitcoin+'2' WHERE nick='$nick' ");
-	mysql_query("UPDATE zaidejai SET botamov='$timxx' WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai+'40', bitcoin=bitcoin+'2' WHERE nick='$nick' ");
+	mysqli_query($conn,"UPDATE zaidejai SET botamov='$timxx' WHERE nick='$nick' ");
 
 }
 		}
@@ -449,8 +449,8 @@ Neesi įvygdęs prieš tai misijos!</div>';
 	echo'	<div class="meniuc">Sėkmingai įvydei misiją!<br> Gauni 50 <img src="img/bicons/euro.png">
 <br>Gauni 4 <img src="img/bicons/bitcoin.png">
 </div> ';		
-mysql_query("UPDATE zaidejai SET sms_litai=sms_litai+'50',bitcoin=bitcoin+'4' WHERE nick='$nick' ");
-	mysql_query("UPDATE zaidejai SET buuv='$timxx' WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai+'50',bitcoin=bitcoin+'4' WHERE nick='$nick' ");
+	mysqli_query($conn,"UPDATE zaidejai SET buuv='$timxx' WHERE nick='$nick' ");
 
 }
 		}
@@ -517,8 +517,8 @@ Neesi įvygdęs prieš tai misijos!</div>';
 	echo'	<div class="meniuc">Sėkmingai įvydei misiją!<br> Gauni 60 <img src="img/bicons/euro.png">
 <br>Gauni 6 <img src="img/bicons/bitcoin.png">
 </div> ';		
-mysql_query("UPDATE zaidejai SET sms_litai=sms_litai+'60', bitcoin=bitcoin+'6' WHERE nick='$nick' ");
-	mysql_query("UPDATE zaidejai SET babyv='$timxx' WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai+'60', bitcoin=bitcoin+'6' WHERE nick='$nick' ");
+	mysqli_query($conn,"UPDATE zaidejai SET babyv='$timxx' WHERE nick='$nick' ");
 
 }
 		}
@@ -586,8 +586,8 @@ Neesi įvygdęs prieš tai misijos!</div>';
 	echo'	<div class="meniuc">Sėkmingai įvydei misiją!<br> Gauni 70 <img src="img/bicons/euro.png">
 <br>Gauni 8 <img src="img/bicons/bitcoin.png">
 </div> ';		
-mysql_query("UPDATE zaidejai SET sms_litai=sms_litai+'70', bitcoin=bitcoin+'8' WHERE nick='$nick' ");
-	mysql_query("UPDATE zaidejai SET fryzasv='$timxx' WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai+'70', bitcoin=bitcoin+'8' WHERE nick='$nick' ");
+	mysqli_query($conn,"UPDATE zaidejai SET fryzasv='$timxx' WHERE nick='$nick' ");
 
 }
 		}
@@ -654,8 +654,8 @@ Neesi įvygdęs prieš tai misijos!</div>';
 <br>Gauni 10 <img src="img/bicons/bitcoin.png"><br>
 Gauni 200 <img src="img/bicons/credit.png">!
 </div> ';		
-mysql_query("UPDATE zaidejai SET sms_litai=sms_litai+'100', bitcoin=bitcoin+'10', kred=kred+'200' WHERE nick='$nick' ");
-	mysql_query("UPDATE zaidejai SET prizas1='$timxx' WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai+'100', bitcoin=bitcoin+'10', kred=kred+'200' WHERE nick='$nick' ");
+	mysqli_query($conn,"UPDATE zaidejai SET prizas1='$timxx' WHERE nick='$nick' ");
 
 }
 		}
@@ -723,8 +723,8 @@ Neesi įvygdęs prieš tai misijos!</div>';
 	echo'	<div class="meniuc">Sėkmingai įvydei misiją!<br> Gauni 80 <img src="img/bicons/euro.png">
 <br>Gauni 10 <img src="img/bicons/bitcoin.png">
 </div> ';		
-mysql_query("UPDATE zaidejai SET sms_litai=sms_litai+'80', bitcoin=bitcoin+'10' WHERE nick='$nick' ");
-	mysql_query("UPDATE zaidejai SET finalgokas='$timxx' WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai+'80', bitcoin=bitcoin+'10' WHERE nick='$nick' ");
+	mysqli_query($conn,"UPDATE zaidejai SET finalgokas='$timxx' WHERE nick='$nick' ");
 
 }
 		}
@@ -793,8 +793,8 @@ Neesi įvygdęs prieš tai misijos!</div>';
 	echo'	<div class="meniuc">Sėkmingai įvydei misiją!<br> Gauni 100 <img src="img/bicons/euro.png">
 <br>Gauni 10 <img src="img/bicons/bitcoin.png">
 </div> ';		
-mysql_query("UPDATE zaidejai SET sms_litai=sms_litai+'100', bitcoin=bitcoin+'10' WHERE nick='$nick' ");
-	mysql_query("UPDATE zaidejai SET vegetav='$timxx' WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai+'100', bitcoin=bitcoin+'10' WHERE nick='$nick' ");
+	mysqli_query($conn,"UPDATE zaidejai SET vegetav='$timxx' WHERE nick='$nick' ");
 
 }
 		}
@@ -872,8 +872,8 @@ Neesi įvygdęs prieš tai misijos!</div>';
 	echo'	<div class="meniuc">Sėkmingai įvydei misiją!<br> Gauni 110 <img src="img/bicons/euro.png">
 <br>Gauni 11 <img src="img/bicons/bitcoin.png">
 </div> ';		
-mysql_query("UPDATE zaidejai SET sms_litai=sms_litai+'110', bitcoin=bitcoin+'11' WHERE nick='$nick' ");
-	mysql_query("UPDATE zaidejai SET hitasv='$timxx' WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai+'110', bitcoin=bitcoin+'11' WHERE nick='$nick' ");
+	mysqli_query($conn,"UPDATE zaidejai SET hitasv='$timxx' WHERE nick='$nick' ");
 
 }
 		}
@@ -951,8 +951,8 @@ Neesi įvygdęs prieš tai misijos!</div>';
 	echo'	<div class="meniuc">Sėkmingai įvydei misiją!<br> Gauni 120 <img src="img/bicons/euro.png">
 <br>Gauni 12 <img src="img/bicons/bitcoin.png">
 </div> ';		
-mysql_query("UPDATE zaidejai SET sms_litai=sms_litai+'120', bitcoin=bitcoin+'12' WHERE nick='$nick' ");
-	mysql_query("UPDATE zaidejai SET gokasv='$timxx' WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai+'120', bitcoin=bitcoin+'12' WHERE nick='$nick' ");
+	mysqli_query($conn,"UPDATE zaidejai SET gokasv='$timxx' WHERE nick='$nick' ");
 
 }
 		}
@@ -1029,8 +1029,8 @@ Neesi įvygdęs prieš tai misijos!</div>';
 	echo'	<div class="meniuc">Sėkmingai įvydei misiją!<br> Gauni 130 <img src="img/bicons/euro.png">
 <br>Gauni 13 <img src="img/bicons/bitcoin.png">
 </div> ';		
-mysql_query("UPDATE zaidejai SET sms_litai=sms_litai+'130', bitcoin=bitcoin+'13' WHERE nick='$nick' ");
-	mysql_query("UPDATE zaidejai SET maxfryzasv='$timxx' WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai+'130', bitcoin=bitcoin+'13' WHERE nick='$nick' ");
+	mysqli_query($conn,"UPDATE zaidejai SET maxfryzasv='$timxx' WHERE nick='$nick' ");
 
 }
 		}
@@ -1107,8 +1107,8 @@ Neesi įvygdęs prieš tai misijos!</div>';
 	echo'	<div class="meniuc">Sėkmingai įvydei misiją!<br> Gauni 140 <img src="img/bicons/euro.png">
 <br>Gauni 14 <img src="img/bicons/bitcoin.png">
 </div> ';		
-mysql_query("UPDATE zaidejai SET sms_litai=sms_litai+'140', bitcoin=bitcoin+'14' WHERE nick='$nick' ");
-	mysql_query("UPDATE zaidejai SET sidrav='$timxx' WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai+'140', bitcoin=bitcoin+'14' WHERE nick='$nick' ");
+	mysqli_query($conn,"UPDATE zaidejai SET sidrav='$timxx' WHERE nick='$nick' ");
 
 }
 		}
@@ -1185,8 +1185,8 @@ Neesi įvygdęs prieš tai misijos!</div>';
 	echo'	<div class="meniuc">Sėkmingai įvydei misiją!<br> Gauni 150 <img src="img/bicons/euro.png">
 <br>Gauni 15 <img src="img/bicons/bitcoin.png">
 </div> ';		
-mysql_query("UPDATE zaidejai SET sms_litai=sms_litai+'150', bitcoin=bitcoin+'15' WHERE nick='$nick' ");
-	mysql_query("UPDATE zaidejai SET billsv='$timxx' WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai+'150', bitcoin=bitcoin+'15' WHERE nick='$nick' ");
+	mysqli_query($conn,"UPDATE zaidejai SET billsv='$timxx' WHERE nick='$nick' ");
 
 }
 		}
@@ -1265,8 +1265,8 @@ Neesi įvygdęs prieš tai misijos!</div>';
 	echo'	<div class="meniuc">Sėkmingai įvydei misiją!<br> Gauni 200 <img src="img/bicons/euro.png">
 <br>Gauni 25 <img src="img/bicons/bitcoin.png">
 </div> ';		
-mysql_query("UPDATE zaidejai SET sms_litai=sms_litai+'200', bitcoin=bitcoin+'25' WHERE nick='$nick' ");
-	mysql_query("UPDATE zaidejai SET prizas2='$timxx' WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai+'200', bitcoin=bitcoin+'25' WHERE nick='$nick' ");
+	mysqli_query($conn,"UPDATE zaidejai SET prizas2='$timxx' WHERE nick='$nick' ");
 
 }
 		}

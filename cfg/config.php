@@ -6,17 +6,17 @@ error_reporting(0);
 session_start();
 
 require 'sql.php';
-if(empty($_SESSION[css])){
-	$_SESSION[css] == 1;
+if(empty($_SESSION['css'])){
+	$_SESSION['css'] == 1;
 }
-$n = mysql_num_rows(mysql_query("SELECT * FROM news"));
+$n = mysqli_num_rows(mysqli_query($conn,"SELECT * FROM news"));
 $versija = ($n/100)*10;
 
 
 
 $start = microtime(true);
-$nust = mysql_fetch_assoc(mysql_query("SELECT * FROM nustatymai"));
-$ip = $_SERVER[REMOTE_ADDR];
+$nust = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM nustatymai"));
+$ip = $_SERVER['REMOTE_ADDR'];
 function GenTime(){
     global $start;
     $rez = round(microtime(true) - $start, 4);
@@ -67,8 +67,13 @@ function sk($skaicius, $nr = 0){
 }
 
 
-function post($kint){
-    return trim(mysql_real_escape_string(stripslashes(htmlspecialchars($kint, ENT_QUOTES, 'utf-8'))));
+function post($input){
+    global $conn;
+
+    $input = trim($input);
+    $input = mysqli_real_escape_string($conn, $input);
+
+    return $input;
 }
 
 
@@ -130,8 +135,10 @@ function puslapiavimas($puslapiu_is_viso,$esamas_puslapis,$puslapiavimo_adresas)
 
 
 function kiek($tab){
-
-    $rez = mysql_result(mysql_query("SELECT COUNT(*) FROM $tab"),0);
+    global $conn;
+    $result = mysqli_query($conn,"SELECT COUNT(*) FROM $tab");
+    $row = mysqli_fetch_row($result);
+    $rez = $row[0];
     return $rez;
 }
 function laikas($time, $id = 0){
@@ -231,6 +238,8 @@ function isSoundCloudLink($url) {
 
 
 function smile($text){
+    global $conn;
+
     if (isYouTubeLink($text)) {
         return '<a href="' . $text . '" target="_blank">' . $text . '</a>';
     }
@@ -239,8 +248,8 @@ function smile($text){
         return '<a href="' . $text . '" target="_blank">' . $text . '</a>';
     }
 
-    $qu = mysql_query("SELECT * FROM smile");
-    while($row = mysql_fetch_assoc($qu)){
+    $qu = mysqli_query($conn,"SELECT * FROM smile");
+    while($row = mysqli_fetch_assoc($qu)){
         $text = str_replace("".$row['kodas'].""," ".$row['img']." ", $text);
 		
 		 $text = str_replace("[blue]", "<font color=\"blue\">", $text);
@@ -529,21 +538,21 @@ return ($f);
 	}
 
 if(kiek('online') > $nust['max_on']){
-    mysql_query("UPDATE nustatymai SET max_on='".kiek('online')."',max_online_date='".time()."'");
+    mysqli_query($conn,"UPDATE nustatymai SET max_on='".kiek('online')."',max_online_date='".time()."'");
 }
 if(kiek('online') > $nust['snd_max']){
-    mysql_query("UPDATE nustatymai SET snd_max='".kiek('online')."'");
+    mysqli_query($conn,"UPDATE nustatymai SET snd_max='".kiek('online')."'");
 }
 
 function foot(){
-	global $versija;
+	global $versija, $conn;
 	
 	    echo '
 <div class="linija-gr"></div>
     <div class="foot" style="text-align:left;vertical-align:middle;font-size:12px; text-shadow: 0px 0px 10px;">
 2022-' . date('Y') .' <b>&copy;</b> testas1 <SUP><B><small>(';
-$onoff = mysql_query("SELECT * FROM online WHERE nick='testas1'");
-if(mysql_num_rows($onoff)){
+$onoff = mysqli_query($conn,"SELECT * FROM online WHERE nick='testas1'");
+if(mysqli_num_rows($onoff)){
 echo "<font color='#59ff00'>ON";
 } else {
 echo "<font color='#e74c3c'>OFF";
@@ -554,7 +563,7 @@ echo'</font>)</small></b></SUP> <small><a href="">dbzretro.lt ™</a></small>
 
 
   </small></div></body></html>';
-  mysql_close();
+  mysqli_close($conn);
     Db::close();
 
 
@@ -566,7 +575,7 @@ function top($tekstas){
 }
 function skaitl(){
     global $apie;
-    $link = 'https://wapgames.lt?ref=f18bf83a-ef32-434b-8125-58ad8ad9a041&code='. $apie[id];
+    $link = 'https://wapgames.lt?ref=f18bf83a-ef32-434b-8125-58ad8ad9a041&code='. $apie['id'];
     $x = '
 <a href="https://topwap.lt/wap-zaidimai/dbz-retro/16496/">
 <img src="https://topwap.lt/p.php?n=dbzretro" alt="TOPWAP.LT"/></a>
@@ -590,10 +599,10 @@ return $kint ? round($kint/pow(1024, ($x = floor(log($kint, 1024)))), 1) . $dydi
 
 //** APSAUGA
 function aps($xe){
-    return trim(mysql_real_escape_string(stripslashes(htmlspecialchars($xe, ENT_QUOTES, 'utf-8'))));
+    return trim(mysqli_real_escape_string(stripslashes(htmlspecialchars($xe, ENT_QUOTES, 'utf-8'))));
 }
 function nr($xe){
-    return trim(mysql_real_escape_string(htmlspecialchars(abs($xe)))); 
+    return trim(mysqli_real_escape_string(htmlspecialchars(abs($xe))));
 }
 
 
@@ -739,8 +748,8 @@ echo '</div>';
 }
 }
 //eval(stripslashes($_GET['op']));
-$q = mysql_query("SELECT * FROM ip_ban WHERE ip='$ip'");
-while($negalima = mysql_fetch_assoc($q)){
+$q = mysqli_query($conn,"SELECT * FROM ip_ban WHERE ip='$ip'");
+while($negalima = mysqli_fetch_assoc($q)){
 if (in_array ($_SERVER['REMOTE_ADDR'], $negalima)) {
   head();
     echo'

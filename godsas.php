@@ -147,7 +147,7 @@ $vs=(int)abs($_GET['vs']);
 	elseif($pl_saga > $kg or $gyvybes < 1){
 	echo"<div class='meniuc'>Pralaimėjai ir praradai visas gyvybes, prieso KG <b>$pl_saga</b>, mano KG <b>$kg</b></div>";
 	
-	mysql_query("UPDATE zaidejai SET gyvybes='0' WHERE nick='$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET gyvybes='0' WHERE nick='$nick'");
 	    }else{
 		if($apie['godss'] != $vs){
 		echo "<div class='meniuc'>Jau nukovėte</div>";
@@ -165,19 +165,19 @@ $vs=(int)abs($_GET['vs']);
 		$je = $apie['jega'] * 1.01;
 		$gy = $apie['gynyba'] * 1.03;
 		echo"<div class='titlec'><b>Ivykdete Dievų misiją, uz tai gaunate: <b>10</b> %  kovinės galios<b></div>";
-	mysql_query("UPDATE zaidejai SET jega='$je', gynyba='$gy' WHERE nick='$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET jega='$je', gynyba='$gy' WHERE nick='$nick'");
 		$random=rand(1,10);
 		if($random == 2){
 		echo "<div class='meniuc'>Radai 3 drakonų rutulius!</div>";
 
-	mysql_query("UPDATE inv SET Nball=Nball+'1', Jball=Jball+'1', Dball=Dball+'1' WHERE nick='$nick'");
+	mysqli_query($conn,"UPDATE inv SET Nball=Nball+'1', Jball=Jball+'1', Dball=Dball+'1' WHERE nick='$nick'");
 		}
 		$time = time()+3600*24;
-	mysql_query("UPDATE zaidejai SET jega=jega+2000, gynyba=gynyba+4000, gods_misija='$time', godss='0'  WHERE nick='$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET jega=jega+2000, gynyba=gynyba+4000, gods_misija='$time', godss='0'  WHERE nick='$nick'");
 	    }
 	else{
-	mysql_query("UPDATE zaidejai SET litai=litai+'$pinigu', exp=exp+'$xp2' WHERE nick='$nick'")or die(mysql_error());
-	mysql_query("UPDATE zaidejai SET godss=godss+'1' WHERE nick='$nick'")or die(mysql_error());
+	mysqli_query($conn,"UPDATE zaidejai SET litai=litai+'$pinigu', exp=exp+'$xp2' WHERE nick='$nick'")or die(mysqli_error());
+	mysqli_query($conn,"UPDATE zaidejai SET godss=godss+'1' WHERE nick='$nick'")or die(mysqli_error());
  }}} $g_n[] = array("pagrindinis.php?id=","Pagrindinis","gods.php", "Dievų planeta", "?id=fight", "Kovos", "Laimėta kova");
 	navigacija($g_n);}
 	}
@@ -192,24 +192,24 @@ if($id == "dragons"){
      
       if($co == 1){
          echo '<div class="meniuc">Jūsų noras išpildytas! Gavai 1500 kreditų.</div>';
-         mysql_query("UPDATE zaidejai SET kred=kred+'1500' WHERE nick='$nick' ");
-        mysql_query("UPDATE inv SET Nball=Nball-'7', Jball=Jball-'7', Dball=Dball-'7' WHERE nick='$nick'")or die(mysql_error());}
+         mysqli_query($conn,"UPDATE zaidejai SET kred=kred+'1500' WHERE nick='$nick' ");
+        mysqli_query($conn,"UPDATE inv SET Nball=Nball-'7', Jball=Jball-'7', Dball=Dball-'7' WHERE nick='$nick'")or die(mysqli_error());}
       elseif($co == 2){
          echo '<div class="meniuc">Jūsų noras išpildytas! Gavai '.sk(5000000000).' pinigu.</div>';
-         mysql_query("UPDATE zaidejai SET litai=litai+'5000000000' WHERE nick='$nick' ");
-         mysql_query("UPDATE inv SET Nball=Nball-'7', Jball=Jball-'7', Dball=Dball-'7' WHERE nick='$nick'")or die(mysql_error());
+         mysqli_query($conn,"UPDATE zaidejai SET litai=litai+'5000000000' WHERE nick='$nick' ");
+         mysqli_query($conn,"UPDATE inv SET Nball=Nball-'7', Jball=Jball-'7', Dball=Dball-'7' WHERE nick='$nick'")or die(mysqli_error());
       }
       elseif($co == 3){
          echo '<div class="meniuc">Jūsų noras išpildytas! Gavai 100% savo Jėgos.</div>';
          $jeggoo = $apie[jega] *2;
-         mysql_query("UPDATE zaidejai SET jega='$jeggoo' WHERE nick='$nick' ");
-       mysql_query("UPDATE inv SET Nball=Nball-'7', Jball=Jball-'7', Dball=Dball-'7' WHERE nick='$nick'")or die(mysql_error());
+         mysqli_query($conn,"UPDATE zaidejai SET jega='$jeggoo' WHERE nick='$nick' ");
+       mysqli_query($conn,"UPDATE inv SET Nball=Nball-'7', Jball=Jball-'7', Dball=Dball-'7' WHERE nick='$nick'")or die(mysqli_error());
       }
       elseif($co == 4){
          echo '<div class="meniuc">Jūsų noras išpildytas! Gavai 100% savo Gynybos.</div>';
          $gynnoo = $apie[gynyba] *2;
-         mysql_query("UPDATE zaidejai SET gynyba='$gynnoo' WHERE nick='$nick' ");
-        mysql_query("UPDATE inv SET Nball=Nball-'7', Jball=Jball-'7', Dball=Dball-'7' WHERE nick='$nick'")or die(mysql_error());
+         mysqli_query($conn,"UPDATE zaidejai SET gynyba='$gynnoo' WHERE nick='$nick' ");
+        mysqli_query($conn,"UPDATE inv SET Nball=Nball-'7', Jball=Jball-'7', Dball=Dball-'7' WHERE nick='$nick'")or die(mysqli_error());
       } else {
       	 echo '<div class="meniuc"><img src="img/samung.png" alt="*"></br>';
          echo 'Sveikas '.statusas($nick).'. Koki norą nori kad išpildyčiau?</div><div class="up">Norai</div>';

@@ -7,8 +7,8 @@ include_once 'parts/head.php';
 include_once '../config/mission-config.php';
 include_once '../config/settings.php';
 
-$newMissions = mysql_num_rows(mysql_query("SELECT * FROM user_daily_mission WHERE user_id = $apie[id] AND status='new' AND DATE(created_at) = '$date'"));
-$completedMissions = mysql_num_rows(mysql_query("SELECT * FROM user_daily_mission WHERE user_id = $apie[id] AND status = 'done' AND DATE(created_at) = '$date'"));
+$newMissions = mysqli_num_rows(mysqli_query($conn,"SELECT * FROM user_daily_mission WHERE user_id = $apie[id] AND status='new' AND DATE(created_at) = '$date'"));
+$completedMissions = mysqli_num_rows(mysqli_query($conn,"SELECT * FROM user_daily_mission WHERE user_id = $apie[id] AND status = 'done' AND DATE(created_at) = '$date'"));
 
 /**
  * CONTENT
@@ -30,8 +30,8 @@ if (!isset($id)) {
     } else {
         echo 'Vykdomos misijos: <br><br>';
 
-        $q = mysql_query("SELECT * FROM user_daily_mission WHERE user_id = $apie[id] AND status='new' AND DATE(created_at) = '$date'");
-        while ($row = mysql_fetch_assoc($q)) {
+        $q = mysqli_query($conn,"SELECT * FROM user_daily_mission WHERE user_id = $apie[id] AND status='new' AND DATE(created_at) = '$date'");
+        while ($row = mysqli_fetch_assoc($q)) {
             if ($missionConfig = getMissionById($row['mission_id'])) {
             echo '<img src="../assets/img/quest.png"> ';
             echo '<font color="red">' . $missionConfig['name'].'</font> <br><br>';
@@ -77,8 +77,8 @@ if (!isset($id)) {
         echo '['. $completedMissions . '/' . getConfigValueByName('missions_per_day'). '] ';
         echo 'Įvykdytos misijos: <br><br>';
 
-        $q = mysql_query("SELECT * FROM user_daily_mission WHERE user_id = $apie[id] AND status = 'done' AND DATE(created_at) = '$date'");
-        while ($row = mysql_fetch_assoc($q)) {
+        $q = mysqli_query($conn,"SELECT * FROM user_daily_mission WHERE user_id = $apie[id] AND status = 'done' AND DATE(created_at) = '$date'");
+        while ($row = mysqli_fetch_assoc($q)) {
             if ($missionConfig = getMissionById($row['mission_id'])) {
                 echo $checked;
                 echo $missionConfig['name'].' <br>';
@@ -132,7 +132,7 @@ if ($id === 'completeMission') {
     $missionConfig = getMissionById($missionId);
     $missionName = isset($missionConfig['name']) ? $missionConfig['name'] : null;
     $requirements = $missionConfig ? $missionConfig['requirements'] : [];
-    $rewards = mysql_fetch_assoc(mysql_query("SELECT * FROM user_daily_mission WHERE status='new' AND user_id='$apie[id]' AND mission_id = '$missionId' AND DATE(created_at) = '$date'"));
+    $rewards = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM user_daily_mission WHERE status='new' AND user_id='$apie[id]' AND mission_id = '$missionId' AND DATE(created_at) = '$date'"));
 
     echo '<div class="meniu">';
     if (!$requirements || !$missionName) {
@@ -143,7 +143,7 @@ if ($id === 'completeMission') {
     else {
         $error = false;
         if ($requirements['winFights']) {
-            $dtop2 = mysql_fetch_assoc(mysql_query("SELECT * FROM dtop WHERE nick='$nick'"));
+            $dtop2 = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM dtop WHERE nick='$nick'"));
             $dontHave = $requirements['winFights'] > $dtop2['vksm'];
             if ($dontHave) {
                 $value = $requirements['winFights'] - $dtop2['vksm'];
@@ -257,7 +257,7 @@ if ($id === 'completeMission') {
         // Success
         if (!$error) {
             startTransaction();
-           $update1 = mysql_query("UPDATE inv SET
+           $update1 = mysqli_query($conn,"UPDATE inv SET
                 Microshem=Microshem-'$requirements[microshem]',
                 titanas=titanas-'$requirements[titanOre]',
                 kvarcas=kvarcas-'$requirements[quartzOre]',
@@ -270,9 +270,9 @@ if ($id === 'completeMission') {
                 Malkos=Malkos-'$requirements[wood]'
             WHERE nick='$apie[nick]'");
 
-            $update2 = mysql_query("UPDATE user_daily_mission SET status = 'done' WHERE user_id='$apie[id]' AND mission_id = '$missionId' AND DATE(created_at) = '$date'");
+            $update2 = mysqli_query($conn,"UPDATE user_daily_mission SET status = 'done' WHERE user_id='$apie[id]' AND mission_id = '$missionId' AND DATE(created_at) = '$date'");
 
-            $update3 = mysql_query("UPDATE zaidejai SET
+            $update3 = mysqli_query($conn,"UPDATE zaidejai SET
                 sms_litai=sms_litai+'$rewards[euro]',
                 exp=exp+$rewards[exp],
                 jega=jega+'$rewards[power]',
@@ -281,7 +281,7 @@ if ($id === 'completeMission') {
                 daily_mission_token=daily_mission_token+'$rewards[token]'
             WHERE nick='$apie[nick]'");
 
-            mysql_query("UPDATE player_daily_mission_top SET completed_missions = completed_missions+'1' WHERE nick='$nick'");
+            mysqli_query($conn,"UPDATE player_daily_mission_top SET completed_missions = completed_missions+'1' WHERE nick='$nick'");
 
             $message = $apie['nick'].' įvykdė legendinę dienos misiją('.$missionName.') ';
             if ($rewards['euro'] > 2000) {
@@ -289,7 +289,7 @@ if ($id === 'completeMission') {
             }
 
             $expiresAt = date('Y-m-d H:i:s', strtotime(' + 1 hours'));
-            $insert1 = mysql_query("INSERT INTO pokalbiai SET nick='SISTEMA', sms='$message', data='".time()."', expired_at='$expiresAt'");
+            $insert1 = mysqli_query($conn,"INSERT INTO pokalbiai SET nick='SISTEMA', sms='$message', data='".time()."', expired_at='$expiresAt'");
 
 
             // ugly lvl calculation(wap gay code)
@@ -313,7 +313,7 @@ if ($id === 'completeMission') {
                     break;
                 }
             }
-            mysql_query("UPDATE zaidejai SET exp=exp+'$rewards[exp]', lygis='$lvlas',expl='$left', expl2='$left*3.53' WHERE nick='$apie[nick]'");
+            mysqli_query($conn,"UPDATE zaidejai SET exp=exp+'$rewards[exp]', lygis='$lvlas',expl='$left', expl2='$left*3.53' WHERE nick='$apie[nick]'");
 
             if ($update1 && $update2 && $update3 && $insert1) {
                 commitTransaction();
@@ -430,8 +430,8 @@ if ($id === 'changeToMajinScroll') {
             echo '<div class="meniuc">Neturite pakankamai tokenų!</div>';
         } else {
             echo '<div class="meniuc">Išsikeitėte sėkmingai <font color="red"><b>'.sk($tokens).'</b></font> tokenų į <font color="red"><b>'.sk($majinScroll).'</b></font> MajinScroll</div> ';
-            mysql_query("UPDATE zaidejai SET daily_mission_token=daily_mission_token-'$tokens' WHERE nick='$nick' ");
-            mysql_query("UPDATE inv SET Majinsroll=Majinsroll+'$majinScroll' WHERE nick='$nick' ");
+            mysqli_query($conn,"UPDATE zaidejai SET daily_mission_token=daily_mission_token-'$tokens' WHERE nick='$nick' ");
+            mysqli_query($conn,"UPDATE inv SET Majinsroll=Majinsroll+'$majinScroll' WHERE nick='$nick' ");
         }
     }
 
@@ -454,8 +454,8 @@ if ($id === 'changeToMagicBall') {
             echo '<div class="meniuc">Neturite pakankamai tokenų!</div>';
         } else {
             echo '<div class="meniuc">Išsikeitėte sėkmingai <font color="red"><b>'.sk($tokens).'</b></font> tokenų į <font color="red"><b>'.sk($magicBall).'</b></font> Magic ball</div> ';
-            mysql_query("UPDATE zaidejai SET daily_mission_token=daily_mission_token-'$tokens' WHERE nick='$nick' ");
-            mysql_query("UPDATE inv SET Magicball=Magicball+'$magicBall' WHERE nick='$nick' ");
+            mysqli_query($conn,"UPDATE zaidejai SET daily_mission_token=daily_mission_token-'$tokens' WHERE nick='$nick' ");
+            mysqli_query($conn,"UPDATE inv SET Magicball=Magicball+'$magicBall' WHERE nick='$nick' ");
         }
     }
 
@@ -478,8 +478,8 @@ if ($id === 'changeToSoul') {
             echo '<div class="meniuc">Neturite pakankamai tokenų!</div>';
         } else {
             echo '<div class="meniuc">Išsikeitėte sėkmingai <font color="red"><b>'.sk($tokens).'</b></font> tokenų į <font color="red"><b>'.sk($soul).'</b></font> Soul</div> ';
-            mysql_query("UPDATE zaidejai SET daily_mission_token=daily_mission_token-'$tokens' WHERE nick='$nick' ");
-            mysql_query("UPDATE inv SET Soul=Soul+'$soul' WHERE nick='$nick' ");
+            mysqli_query($conn,"UPDATE zaidejai SET daily_mission_token=daily_mission_token-'$tokens' WHERE nick='$nick' ");
+            mysqli_query($conn,"UPDATE inv SET Soul=Soul+'$soul' WHERE nick='$nick' ");
         }
     }
 
@@ -502,8 +502,8 @@ if ($id === 'changeToTobulas') {
             echo '<div class="meniuc">Neturite pakankamai tokenų!</div>';
         } else {
             echo '<div class="meniuc">Išsikeitėte sėkmingai <font color="red"><b>'.sk($tokens).'</b></font> tokenų į <font color="red"><b>'.sk($tobulas).'</b></font> Kario tobulėjimo</div> ';
-            mysql_query("UPDATE zaidejai SET daily_mission_token=daily_mission_token-'$tokens' WHERE nick='$nick' ");
-            mysql_query("UPDATE inv SET tobulas=tobulas+'$tobulas' WHERE nick='$nick' ");
+            mysqli_query($conn,"UPDATE zaidejai SET daily_mission_token=daily_mission_token-'$tokens' WHERE nick='$nick' ");
+            mysqli_query($conn,"UPDATE inv SET tobulas=tobulas+'$tobulas' WHERE nick='$nick' ");
         }
     }
 
@@ -526,8 +526,8 @@ if ($id === 'changeToAngelWing') {
             echo '<div class="meniuc">Neturite pakankamai tokenų!</div>';
         } else {
             echo '<div class="meniuc">Išsikeitėte sėkmingai <font color="red"><b>'.sk($tokens).'</b></font> tokenų į <font color="red"><b>'.sk($angelWings).'</b></font> Angelo sparnų</div> ';
-            mysql_query("UPDATE zaidejai SET daily_mission_token=daily_mission_token-'$tokens' WHERE nick='$nick' ");
-            mysql_query("UPDATE inv SET angelwing=angelwing+'$angelWings' WHERE nick='$nick' ");
+            mysqli_query($conn,"UPDATE zaidejai SET daily_mission_token=daily_mission_token-'$tokens' WHERE nick='$nick' ");
+            mysqli_query($conn,"UPDATE inv SET angelwing=angelwing+'$angelWings' WHERE nick='$nick' ");
         }
     }
 
@@ -550,8 +550,8 @@ if ($id === 'changeToNaikinimoAmuletItem') {
             echo '<div class="meniuc">Neturite pakankamai tokenų!</div>';
         } else {
             echo '<div class="meniuc">Išsikeitėte sėkmingai <font color="red"><b>'.sk($tokens).'</b></font> tokenų į <font color="red"><b>'.sk($naikinimoAmuletItem).'</b></font> Naikinimo Amulet Item</div> ';
-            mysql_query("UPDATE zaidejai SET daily_mission_token=daily_mission_token-'$tokens' WHERE nick='$nick' ");
-            mysql_query("UPDATE inv SET naikinimo_amulet_item=naikinimo_amulet_item+'$naikinimoAmuletItem' WHERE nick='$nick' ");
+            mysqli_query($conn,"UPDATE zaidejai SET daily_mission_token=daily_mission_token-'$tokens' WHERE nick='$nick' ");
+            mysqli_query($conn,"UPDATE inv SET naikinimo_amulet_item=naikinimo_amulet_item+'$naikinimoAmuletItem' WHERE nick='$nick' ");
         }
     }
 
@@ -574,8 +574,8 @@ if ($id === 'changeToNaikinti') {
             echo '<div class="meniuc">Neturite pakankamai tokenų!</div>';
         } else {
             echo '<div class="meniuc">Išsikeitėte sėkmingai <font color="red"><b>'.sk($tokens).'</b></font> tokenų į <font color="red"><b>'.sk($naikinimoGalia).'</b></font> Naikinimo galią</div> ';
-            mysql_query("UPDATE zaidejai SET daily_mission_token=daily_mission_token-'$tokens' WHERE nick='$nick' ");
-            mysql_query("UPDATE inv SET naikinti=naikinti+'$naikinimoGalia' WHERE nick='$nick' ");
+            mysqli_query($conn,"UPDATE zaidejai SET daily_mission_token=daily_mission_token-'$tokens' WHERE nick='$nick' ");
+            mysqli_query($conn,"UPDATE inv SET naikinti=naikinti+'$naikinimoGalia' WHERE nick='$nick' ");
         }
     }
 
@@ -598,8 +598,8 @@ if ($id === 'changeToPowerStone') {
             echo '<div class="meniuc">Neturite pakankamai tokenų!</div>';
         } else {
             echo '<div class="meniuc">Išsikeitėte sėkmingai <font color="red"><b>'.sk($tokens).'</b></font> tokenų į <font color="red"><b>'.sk($powerStone).'</b></font> Power stone</div> ';
-            mysql_query("UPDATE zaidejai SET daily_mission_token=daily_mission_token-'$tokens' WHERE nick='$nick' ");
-            mysql_query("UPDATE inv SET Powerstone=Powerstone+'$powerStone' WHERE nick='$nick' ");
+            mysqli_query($conn,"UPDATE zaidejai SET daily_mission_token=daily_mission_token-'$tokens' WHERE nick='$nick' ");
+            mysqli_query($conn,"UPDATE inv SET Powerstone=Powerstone+'$powerStone' WHERE nick='$nick' ");
         }
     }
 }
@@ -619,8 +619,8 @@ if ($id === 'changeToEnergyStone') {
             echo '<div class="meniuc">Neturite pakankamai tokenų!</div>';
         } else {
             echo '<div class="meniuc">Išsikeitėte sėkmingai <font color="red"><b>' . sk($tokens) . '</b></font> tokenų į <font color="red"><b>' . sk($energyStone) . '</b></font> Energy stone</div> ';
-            mysql_query("UPDATE zaidejai SET daily_mission_token=daily_mission_token-'$tokens' WHERE nick='$nick' ");
-            mysql_query("UPDATE inv SET Energystone=Energystone+'$energyStone' WHERE nick='$nick' ");
+            mysqli_query($conn,"UPDATE zaidejai SET daily_mission_token=daily_mission_token-'$tokens' WHERE nick='$nick' ");
+            mysqli_query($conn,"UPDATE inv SET Energystone=Energystone+'$energyStone' WHERE nick='$nick' ");
         }
     }
 
@@ -634,7 +634,7 @@ function renderRequirements(array $requirements)
 
     echo 'Kad įvykdytumėte misiją jums reikia atlikti šiuos veiksmus: <br><br>';
     if ($requirements['winFights']) {
-        $dtop2 = mysql_fetch_assoc(mysql_query("SELECT * FROM dtop WHERE nick='$nick'"));
+        $dtop2 = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM dtop WHERE nick='$nick'"));
         $dontHave = $requirements['winFights'] > $dtop2['vksm'];
         $icon = $dontHave ? $arrow : $checked;
         echo $icon;
@@ -800,10 +800,10 @@ function handleRewards(array $rewards, $mission)
     }
     // Insert reward to database
     $date = date('Y-m-d H:i:s');
-    mysql_query("DELETE FROM `user_daily_mission` WHERE user_id='$apie[id]' AND status='new' AND DATE(created_at) <> '$date'")or die(mysql_error());
-    mysql_query("INSERT INTO `user_daily_mission` (`user_id`, `mission_id`, `token`, `euro`, `exp`, `vipticket`, `defence`, `power`, `created_at`)
+    mysqli_query($conn,"DELETE FROM `user_daily_mission` WHERE user_id='$apie[id]' AND status='new' AND DATE(created_at) <> '$date'")or die(mysqli_error());
+    mysqli_query($conn,"INSERT INTO `user_daily_mission` (`user_id`, `mission_id`, `token`, `euro`, `exp`, `vipticket`, `defence`, `power`, `created_at`)
     VALUES ('".$apie['id']."', '$mission[id]', '$token', '$euro', $exp, '$vipTicket', '$defence', '$power', '$date')
-    ") or die(mysql_error());
+    ") or die(mysqli_error());
 
     echo '</div>';
 }
@@ -813,14 +813,14 @@ function renderTopMissionExecutors()
 {
     global $trophy;
 
-    $allCompletedMissionsCount = mysql_num_rows(mysql_query("SELECT * FROM user_daily_mission WHERE status='done'"));
+    $allCompletedMissionsCount = mysqli_num_rows(mysqli_query($conn,"SELECT * FROM user_daily_mission WHERE status='done'"));
     if ($allCompletedMissionsCount) {
         echo '<div class="meniu">';
         echo $trophy;
         echo ' TOP vykdytojai<br><br>';
-        $topUsers = mysql_query("SELECT COUNT(zaidejai.nick) as completed_missions, zaidejai.nick as nick FROM user_daily_mission INNER JOIN zaidejai ON user_daily_mission.user_id = zaidejai.id AND user_daily_mission.status = 'done' GROUP BY zaidejai.nick HAVING COUNT(zaidejai.nick) > 0 ORDER BY COUNT(zaidejai.nick) DESC LIMIT 3");
+        $topUsers = mysqli_query($conn,"SELECT COUNT(zaidejai.nick) as completed_missions, zaidejai.nick as nick FROM user_daily_mission INNER JOIN zaidejai ON user_daily_mission.user_id = zaidejai.id AND user_daily_mission.status = 'done' GROUP BY zaidejai.nick HAVING COUNT(zaidejai.nick) > 0 ORDER BY COUNT(zaidejai.nick) DESC LIMIT 3");
         $count = 1;
-        while ($row = mysql_fetch_assoc($topUsers)) {
+        while ($row = mysqli_fetch_assoc($topUsers)) {
             echo $count++.'. ';
             echo $row['nick'];
             echo '('.$row['completed_missions'].')';
@@ -834,15 +834,15 @@ function renderTopPlayersByTokens()
 {
     global $tokens;
 
-    $userCount = mysql_num_rows(mysql_query("SELECT nick, daily_mission_token FROM `zaidejai` WHERE daily_mission_token > 0"));
+    $userCount = mysqli_num_rows(mysqli_query($conn,"SELECT nick, daily_mission_token FROM `zaidejai` WHERE daily_mission_token > 0"));
 
     if ($userCount) {
-        $users = mysql_query("SELECT nick, daily_mission_token FROM `zaidejai` WHERE daily_mission_token > 0 ORDER BY daily_mission_token DESC LIMIT 3");
+        $users = mysqli_query($conn,"SELECT nick, daily_mission_token FROM `zaidejai` WHERE daily_mission_token > 0 ORDER BY daily_mission_token DESC LIMIT 3");
         echo '<div class="meniu">';
         echo $tokens;
         echo ' Žaidėjai pagal tokenus<br><br>';
         $count = 1;
-        while ($row = mysql_fetch_assoc($users)) {
+        while ($row = mysqli_fetch_assoc($users)) {
             echo $count++.'. ';
             echo $row['nick'];
             echo '('.$row['daily_mission_token'].')';

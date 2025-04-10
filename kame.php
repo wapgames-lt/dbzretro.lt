@@ -111,7 +111,7 @@ elseif($id == "tren2"){
        if($klaida != ""){
             echo '<div class="meniuc">'.$klaida.'</div>';
       } else {
-            mysql_query("UPDATE zaidejai SET jega=jega+'$kjega', litai=litai-'$kkiek' WHERE nick='$nick' ");
+            mysqli_query($conn,"UPDATE zaidejai SET jega=jega+'$kjega', litai=litai-'$kkiek' WHERE nick='$nick' ");
             echo '<div class="meniuc">Atlikta! Pasitreniravai';
             if($kjega == ""){} else {
                  echo ' <b>'.sk($kjega).'</b> Jėgos';
@@ -154,7 +154,7 @@ elseif($id == "tren3"){
        if($klaida != ""){
             echo '<div class="meniuc">'.$klaida.'</div>';
       } else {
-            mysql_query("UPDATE zaidejai SET gynyba=gynyba+'$kgynyba', litai=litai-'$kkiek' WHERE nick='$nick' ");
+            mysqli_query($conn,"UPDATE zaidejai SET gynyba=gynyba+'$kgynyba', litai=litai-'$kkiek' WHERE nick='$nick' ");
             echo '<div class="meniuc">Atlikta! Pasitreniravai';
             if($kjega == ""){} else {
                  echo ' <b>'.sk($kjega).'</b> Jėgos';
@@ -200,8 +200,8 @@ echo '<div class="meniuc"><img src="img/kate.png"></div>';
    else{
 echo '<div class="meniuc"><img src="img/kate.png"></div>';
       echo '<div class="meniuc">Misija ivygdei gauni Puara!</div>';
-       mysql_query("UPDATE inv SET Stone=Stone-'2000' WHERE nick='$nick' ");
-      mysql_query("UPDATE zaidejai SET kate='+' WHERE nick='$nick' ");}
+       mysqli_query($conn,"UPDATE inv SET Stone=Stone-'2000' WHERE nick='$nick' ");
+      mysqli_query($conn,"UPDATE zaidejai SET kate='+' WHERE nick='$nick' ");}
  
     $g_n[] = array("pagrindinis.php?id=","Pagrindinis","kame.php", "Vežlio sala", "Puaro Misija");
 	navigacija($g_n);
@@ -235,8 +235,8 @@ echo '<div class="meniuc"><img src="img/giras.png"></div>';
    else{
 echo '<div class="meniuc"><img src="img/giras.png"></div>';
       echo '<div class="meniuc">Misija ivygdei gauni Girą!</div>';
-       mysql_query("UPDATE inv SET dball=dball-'100' WHERE nick='$nick' ");
-      mysql_query("UPDATE zaidejai SET giras='+' WHERE nick='$nick' ");}
+       mysqli_query($conn,"UPDATE inv SET dball=dball-'100' WHERE nick='$nick' ");
+      mysqli_query($conn,"UPDATE zaidejai SET giras='+' WHERE nick='$nick' ");}
  
     $g_n[] = array("pagrindinis.php?id=","Pagrindinis","kame.php", "Vežlio sala", "Giro misija");
 	navigacija($g_n);
@@ -331,7 +331,7 @@ $vs=(int)abs($_GET['vs']);
 	elseif($pl_saga > $kg or $gyvybes < 1){
 	echo"<div class='main_l'>Pralaimėjai ir praradai visas gyvybes, prieso KG <b>$pl_saga</b>, mano KG <b>$kg</b></div>";
 	atgal('Atgal-kame.php?i= &I Pradžia-game.php?i=');
-	mysql_query("UPDATE zaidejai SET gyvybes='0' WHERE nick='$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET gyvybes='0' WHERE nick='$nick'");
 	    }else{
 		if($zaidejai['vezlys'] != $vs){
 		echo "<div class='meniuc'>Jau nukovėte</div>";
@@ -350,18 +350,18 @@ $vs=(int)abs($_GET['vs']);
 		$je = $apie['jega'] * 1.01;
 		$gy = $apie['gynyba'] * 1.03;
 		echo"<div class='titlec'><b>Ivykdete Master Dzino Vezlio misija, uz tai gaunate: <b>0.2</b> %, o Gynyba <b>0.8</b> % <b></div>";
-		mysql_query("UPDATE zaidejai SET jega='$je', gynyba='$gy' WHERE nick='$nick'");
+		mysqli_query($conn,"UPDATE zaidejai SET jega='$je', gynyba='$gy' WHERE nick='$nick'");
 		$random=rand(1,100);
 		if($random == 1 OR $random == 2){
 		echo "<div class='meniuc'>Radai Drakono rutulį!</div>";
 		
-		mysql_query("UPDATE inv SET Dball=Dball+'1' WHERE nick='$nick'");
+		mysqli_query($conn,"UPDATE inv SET Dball=Dball+'1' WHERE nick='$nick'");
 		}
 		$time = time()+3600;
-		mysql_query("UPDATE zaidejai SET jega=jega+2000, gynyba=gynyba+4000, dzinas='$time', vezlys='0'  WHERE nick='$nick'");
+		mysqli_query($conn,"UPDATE zaidejai SET jega=jega+2000, gynyba=gynyba+4000, dzinas='$time', vezlys='0'  WHERE nick='$nick'");
 	    }
 		else{
-		mysql_query("UPDATE zaidejai SET litai=litai+$pinigu, exp=exp+$xp2, pveiksmai=pveiksmai+1, vezlys=vezlys+1 WHERE nick='$nick'");
+		mysqli_query($conn,"UPDATE zaidejai SET litai=litai+$pinigu, exp=exp+$xp2, pveiksmai=pveiksmai+1, vezlys=vezlys+1 WHERE nick='$nick'");
 
  }
  }}

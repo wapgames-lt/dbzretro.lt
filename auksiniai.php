@@ -54,7 +54,7 @@ if($id == ""){
 			
 			$je = $apie[jega] * 1.02;
 			$gy = $apie[gynyba] * 1.06;
-			mysql_query("UPDATE zaidejai SET jega='$je', gynyba ='$gy', auksiniai =auksiniai-'10000' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE zaidejai SET jega='$je', gynyba ='$gy', auksiniai =auksiniai-'10000' WHERE nick='$nick'");
 			echo'<div class="meniuc">Įgavai 2% kovinės galios!     </div>';
 			 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","auksiniai.php", "Auksiniai", "Auksinių keitimas");
 	navigacija($g_n);		}
@@ -77,8 +77,8 @@ if($id == ""){
 		}else{
 			
 		
-			mysql_query("UPDATE zaidejai SET auksiniai = auksiniai-'1000' WHERE nick='$nick'");
-				mysql_query("UPDATE inv SET Dball".$ID."=Dball".$ID."+'1' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE zaidejai SET auksiniai = auksiniai-'1000' WHERE nick='$nick'");
+				mysqli_query($conn,"UPDATE inv SET Dball".$ID."=Dball".$ID."+'1' WHERE nick='$nick'");
 			
 			echo'<div class="meniuc">Gavai drakono rutulį</div>';
 			 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","auksiniai.php", "Auksiniai", "Auksinių keitimas");
@@ -95,8 +95,8 @@ if($id == 'jbaljjl'){
 		}else{
 			
 		
-			mysql_query("UPDATE zaidejai SET auksiniai = auksiniai-'2000' WHERE nick='$nick'");
-				mysql_query("UPDATE inv SET Jball =Jball+'1' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE zaidejai SET auksiniai = auksiniai-'2000' WHERE nick='$nick'");
+				mysqli_query($conn,"UPDATE inv SET Jball =Jball+'1' WHERE nick='$nick'");
 			
 			echo'<div class="meniuc">Gavai juodajį drakono rutulį</div>';
 			 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","auksiniai.php", "Auksiniai", "Auksinių keitimas");
@@ -114,8 +114,8 @@ if($id == 'nballkk'){
 		}else{
 			
 		
-			mysql_query("UPDATE zaidejai SET auksiniai = auksiniai-'3000' WHERE nick='$nick'");
-				mysql_query("UPDATE inv SET Nball =Nball+'1' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE zaidejai SET auksiniai = auksiniai-'3000' WHERE nick='$nick'");
+				mysqli_query($conn,"UPDATE inv SET Nball =Nball+'1' WHERE nick='$nick'");
 			
 			echo'<div class="meniuc">Gavai namek drakono ruTulį,/�iv>';
 			 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","auksiniai.php", "Auksiniai", "Auksinių keitimas");
@@ -167,8 +167,8 @@ elseif($id == "goku2"){
 else{
 				
 	echo'	<div class="meniuc">	<img src="img/veikejai/Final goku gods-0.png"><br>Nusipirkai už 5,000,000 <img src="img/coin.png"> </div> ';		
-	mysql_query("UPDATE zaidejai SET veikejas='Final goku gods', trans='0', auksiniai=auksiniai-'5000000' , kiek_unikaliu=kiek_unikaliu+'1' WHERE nick='$nick'");
-		mysql_query("UPDATE zaidejai SET finalgokub='$timxx' WHERE nick='$nick' ");
+	mysqli_query($conn,"UPDATE zaidejai SET veikejas='Final goku gods', trans='0', auksiniai=auksiniai-'5000000' , kiek_unikaliu=kiek_unikaliu+'1' WHERE nick='$nick'");
+		mysqli_query($conn,"UPDATE zaidejai SET finalgokub='$timxx' WHERE nick='$nick' ");
 }
 	
 }
@@ -224,9 +224,9 @@ if($apie['omegab']-time() < 0){
 else{
 				
 	echo'	<div class="meniuc"> <img src="img/veikejai/Fusion omega cooler-0.png"><br> Nusipirkai už 25000 <img src="img/coin.png">  </div> ';		
-	mysql_query("UPDATE zaidejai SET veikejas='Fusion omega cooler', trans='0', auksiniai=auksiniai-'25000', kiek_unikaliu=kiek_unikaliu+'1' WHERE nick='$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET veikejas='Fusion omega cooler', trans='0', auksiniai=auksiniai-'25000', kiek_unikaliu=kiek_unikaliu+'1' WHERE nick='$nick'");
 		
-	mysql_query("UPDATE zaidejai SET omegab='$timxx' WHERE nick='$nick' ");
+	mysqli_query($conn,"UPDATE zaidejai SET omegab='$timxx' WHERE nick='$nick' ");
 }
 }
 			
@@ -280,8 +280,8 @@ elseif($id == "sidra2"){
 else{
 				
 	echo'	<div class="meniuc"><img src="img/acc/15-0.png">   <br>Nusipirkai už 100000 <img src="img/coin.png">  </div> ';		
-	mysql_query("UPDATE zaidejai SET veikejas='Sidra', trans='0', auksiniai=auksiniai-'100000' , kiek_unikaliu=kiek_unikaliu+'1' WHERE nick='$nick'");
-		mysql_query("UPDATE zaidejai SET sidrab='$timxx' WHERE nick='$nick' ");
+	mysqli_query($conn,"UPDATE zaidejai SET veikejas='Sidra', trans='0', auksiniai=auksiniai-'100000' , kiek_unikaliu=kiek_unikaliu+'1' WHERE nick='$nick'");
+		mysqli_query($conn,"UPDATE zaidejai SET sidrab='$timxx' WHERE nick='$nick' ");
 }
 	
 }
@@ -336,8 +336,8 @@ if($apie['blackb']-time() < 0){
 else{
 				
 	echo'	<div class="meniuc"><img src="img/acc/bgoku-0.png">   <br>Nusipirkai už 200000 <img src="img/coin.png">  </div> ';		
-	mysql_query("UPDATE zaidejai SET veikejas='Black Goku Rose', trans='0', auksiniai=auksiniai-'200000', kiek_unikaliu=kiek_unikaliu+'1' WHERE nick='$nick'");
-		mysql_query("UPDATE zaidejai SET blackb='$timxx' WHERE nick='$nick' ");
+	mysqli_query($conn,"UPDATE zaidejai SET veikejas='Black Goku Rose', trans='0', auksiniai=auksiniai-'200000', kiek_unikaliu=kiek_unikaliu+'1' WHERE nick='$nick'");
+		mysqli_query($conn,"UPDATE zaidejai SET blackb='$timxx' WHERE nick='$nick' ");
 }
 	
 }
@@ -391,8 +391,8 @@ if($apie['hoppb']-time() < 0){
 else{
 				
 	echo'	<div class="meniuc"><img src="img/veikejai/Hopp-0.png"alt="IMG" height="140" width="140">   <br>Nusipirkai už '.skaicius(1000000).' <img src="img/coin.png">  </div> ';		
-	mysql_query("UPDATE zaidejai SET veikejas='Hopp', trans='0', auksiniai=auksiniai-'1000000', kiek_unikaliu=kiek_unikaliu+'1' WHERE nick='$nick'");
-		mysql_query("UPDATE zaidejai SET hoppb='$timxx' WHERE nick='$nick' ");
+	mysqli_query($conn,"UPDATE zaidejai SET veikejas='Hopp', trans='0', auksiniai=auksiniai-'1000000', kiek_unikaliu=kiek_unikaliu+'1' WHERE nick='$nick'");
+		mysqli_query($conn,"UPDATE zaidejai SET hoppb='$timxx' WHERE nick='$nick' ");
 }
 	
 }
@@ -443,7 +443,7 @@ if($id =='euru2'){
 	          } else {
 	              echo '<div class="meniuc">Atlikta! Nusipirkai <b>'.sk($kiekis).'  </b><img src="img/bicons/euro.png" /></div>';
 	           
-	            mysql_query("UPDATE zaidejai SET sms_litai=sms_litai +'$kiekis', auksiniai=auksiniai-'$kainn' WHERE nick='$nick' ");
+	            mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai +'$kiekis', auksiniai=auksiniai-'$kainn' WHERE nick='$nick' ");
 			  }
 		
 		$g_n[] = array("pagrindinis.php?id=","Pagrindinis","auksiniai.php","Auksiniai", "Eurų pirkimas");
@@ -485,7 +485,7 @@ if($id =='krd2'){
 	          } else {
 	              echo '<div class="meniuc">Atlikta! Nusipirkai <b>'.sk($kiekis).' </b> <img src="img/bicons/credit.png" /></div>';
 	           
-	            mysql_query("UPDATE zaidejai SET kred=kred +'$kiekis', auksiniai=auksiniai-'$kainn' WHERE nick='$nick' ");
+	            mysqli_query($conn,"UPDATE zaidejai SET kred=kred +'$kiekis', auksiniai=auksiniai-'$kainn' WHERE nick='$nick' ");
 			  }
 		
 		$g_n[] = array("pagrindinis.php?id=","Pagrindinis","auksiniai.php","Auksiniai", "Kreditų pirkimas");
@@ -526,8 +526,8 @@ if($id =='dball2'){
 	              echo '<div class="meniuc">Neturi pakankamai  <img src="img/bicons/auxo.png" />!</div>';
 	          } else {
 	              echo '<div class="meniuc">Atlikta! Nusipirkai <b>'.sk($kiekis).' </b> Drakono rutulių!</div>';
-	           mysql_query("UPDATE inv SET dball=dball+'$kiekis' WHERE nick='$nick' ");
-	            mysql_query("UPDATE zaidejai SET auksiniai=auksiniai-'$kainn' WHERE nick='$nick' ");
+	           mysqli_query($conn,"UPDATE inv SET dball=dball+'$kiekis' WHERE nick='$nick' ");
+	            mysqli_query($conn,"UPDATE zaidejai SET auksiniai=auksiniai-'$kainn' WHERE nick='$nick' ");
 			  }
 		
 		$g_n[] = array("pagrindinis.php?id=","Pagrindinis","auksiniai.php","Auksiniai", "Rutulių pirkimas");
@@ -568,8 +568,8 @@ if($id =='jball2'){
 	              echo '<div class="meniuc">Neturi pakankamai  <img src="img/bicons/auxo.png" />!</div>';
 	          } else {
 	              echo '<div class="meniuc">Atlikta! Nusipirkai <b>'.sk($kiekis).' </b> Juodųjų Drakono rutulių!</div>';
-	           mysql_query("UPDATE inv SET jball=jball+'$kiekis' WHERE nick='$nick' ");
-	            mysql_query("UPDATE zaidejai SET auksiniai=auksiniai-'$kainn' WHERE nick='$nick' ");
+	           mysqli_query($conn,"UPDATE inv SET jball=jball+'$kiekis' WHERE nick='$nick' ");
+	            mysqli_query($conn,"UPDATE zaidejai SET auksiniai=auksiniai-'$kainn' WHERE nick='$nick' ");
 			  }
 		
 		$g_n[] = array("pagrindinis.php?id=","Pagrindinis","auksiniai.php","Auksiniai", "Rutulių pirkimas");

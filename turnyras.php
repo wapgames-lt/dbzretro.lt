@@ -9,11 +9,11 @@ head2();
 baneris();
 
 		topbar();
-$nst = mysql_fetch_assoc(mysql_query("SELECT * FROM turnyras"));
+$nst = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM turnyras"));
 if($id == ""){
 	top('Kovų turnyras');
 	echo'<div class="meniuc"><img src="img/xp_turnyras.jpg" border="1"></div>';
-$user = mysql_fetch_assoc(mysql_query("SELECT * FROM user WHERE nick='$nick'"));
+$user = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM user WHERE nick='$nick'"));
 if($nst['ar_prasidejo'] == '+'){
 echo'
 <div class="meniuc">Turnyras prasidėjo, reikia laimėti '.$nst['trn_kiek'].' kovų</div>
@@ -67,16 +67,16 @@ if($user['kovu_trn'] == '+')
 		top('Turnyro dalyviai');
 	echo'
 	';
-	if(!mysql_num_rows(mysql_query("SELECT * FROM user WHERE kovu_trn='+'")))
+	if(!mysqli_num_rows(mysqli_query($conn,"SELECT * FROM user WHERE kovu_trn='+'")))
 	{
 		echo'<div class="meniuc"> Dalyvių nėra</div>';
 	}
 	else
 	{
 		echo'<div class="meniu">';
-		$viso = mysql_query("SELECT * FROM user WHERE kovu_trn='+'");
+		$viso = mysqli_query($conn,"SELECT * FROM user WHERE kovu_trn='+'");
 		$nr = 1;
-		while($vs = mysql_fetch_assoc($viso))
+		while($vs = mysqli_fetch_assoc($viso))
 		{
 			echo'
 			<b>'.$nr.'.</b> <a href="pagrindinis.php?id=apie&ka='.$vs['nick'].'">'.$vs['nick'].'</a><br>
@@ -96,7 +96,7 @@ if($id == 'reg'){
 	
 	<div class="meniuc">
 	';
-	$user = mysql_fetch_assoc(mysql_query("SELECT * FROM user WHERE nick='$nick'"));
+	$user = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM user WHERE nick='$nick'"));
 	if($user['kovu_trn'] == '+')
 	{
 		echo'Tu jau užsiregistravęs kovų turnyre.';
@@ -113,8 +113,8 @@ if($id == 'reg'){
 	else
 	{
 		echo' Sėkmingai užsiregistravai į turnyrą.';
-		mysql_query("UPDATE zaidejai SET auksiniai=auksiniai-1 WHERE nick='$nick'")or die(mysql_error());
-		mysql_query("UPDATE user SET kovu_trn='+', kiek_trn='0' WHERE nick='$nick'")or die(mysql_error());
+		mysqli_query($conn,"UPDATE zaidejai SET auksiniai=auksiniai-1 WHERE nick='$nick'")or die(mysqli_error());
+		mysqli_query($conn,"UPDATE user SET kovu_trn='+', kiek_trn='0' WHERE nick='$nick'")or die(mysqli_error());
 	}
 
 echo"</div>";

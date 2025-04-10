@@ -141,7 +141,7 @@ else{
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos2.png"></div>';
 	echo '<div class="meniuc"><b>Sekmingai įvygdei Namek misiją!</b></div>';
-	mysql_query("UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
 
 }
 }	
@@ -155,8 +155,8 @@ else{
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos2.png"></div>';
 	echo '<div class="meniuc"><b>Sekmingai įvygdei Namek misiją!</b></div>';
-	mysql_query("UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
-	mysql_query("UPDATE inv SET  Majinsroll=Majinsroll-'500' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE inv SET  Majinsroll=Majinsroll-'500' WHERE nick = '$nick'");
 
 }
 }	
@@ -170,8 +170,8 @@ else{
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos2.png"></div>';
 	echo '<div class="meniuc"><b>Sekmingai įvygdei Namek misiją!</b></div>';
-	mysql_query("UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
-	mysql_query("UPDATE zaidejai SET  auksiniai=auksiniai-'20000' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  auksiniai=auksiniai-'20000' WHERE nick = '$nick'");
 
 }
 }	
@@ -185,8 +185,8 @@ else{
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos2.png"></div>';
 	echo '<div class="meniuc"><b>Sekmingai įvygdei Namek misiją!</b></div>';
-	mysql_query("UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
-	mysql_query("UPDATE zaidejai SET  sms_litai=sms_litai-'200' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  sms_litai=sms_litai-'200' WHERE nick = '$nick'");
 
 }
 }	
@@ -200,8 +200,8 @@ else{
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos2.png"></div>';
 	echo '<div class="meniuc"><b>Sekmingai įvygdei Namek misiją!</b></div>';
-	mysql_query("UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
-	mysql_query("UPDATE inv SET  Powerstone=Powerstone-'800' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE inv SET  Powerstone=Powerstone-'800' WHERE nick = '$nick'");
 
 }
 }	
@@ -215,8 +215,8 @@ else{
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos2.png"></div>';
 	echo '<div class="meniuc"><b>Sekmingai įvygdei Namek misiją!</b></div>';
-	mysql_query("UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
-	mysql_query("UPDATE inv SET  Microshem=Microshem-'1200' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE inv SET  Microshem=Microshem-'1200' WHERE nick = '$nick'");
 
 }
 }	
@@ -230,8 +230,8 @@ else{
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos2.png"></div>';
 echo '<div class="meniuc"><b>Sekmingai įvygdei Namek misiją!</b></div>';
-	mysql_query("UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
-	mysql_query("UPDATE inv SET  dball=dball-'60' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE inv SET  dball=dball-'60' WHERE nick = '$nick'");
 
 }
 }	
@@ -245,8 +245,8 @@ else{
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos2.png"></div>';
 	echo '<div class="meniuc"><b>Sekmingai įvygdei Namek misiją!</b></div>';
-	mysql_query("UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
-	mysql_query("UPDATE inv SET  angelwing=angelwing-'1600' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE inv SET  angelwing=angelwing-'1600' WHERE nick = '$nick'");
 
 }
 }	
@@ -260,8 +260,8 @@ else{
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos2.png"></div>';
 	echo '<div class="meniuc"><b>Sekmingai įvygdei Namek misiją!</b></div>';
-	mysql_query("UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
-	mysql_query("UPDATE inv SET  Fusionfail=Fusionfail-'2000' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE inv SET  Fusionfail=Fusionfail-'2000' WHERE nick = '$nick'");
 
 }
 }	
@@ -275,9 +275,9 @@ else{
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos2.png"></div>';
 	echo '<div class="meniuc"><b>Sekmingai įvygdei Namek misiją!</b><br><small>Įvygdei 10 Namek misijų!</small><br>Už tai gauni po <b>5000 </b> Κario tobulėjimo, Angelo sparnų,` Naikinimo galios!</div>';
-	mysql_query("UPDATE zaidejai SET  namekm=namekm+'1'  WHERE nick = '$nick'");
-	mysql_query("UPDATE inv SET  tobulas=tobulas+'5000', angelwing=angelwing+'5000', naikinti=naikinti+'5000' WHERE nick = '$nick'");
-mysql_query("INSERT INTO pokalbiai SET nick='SISTEMA', sms='Žaidėjas <b>".$apie['nick']."</b> įvygdė <small>10 Namek misijų!</small> :) ', data='".time()."'");
+	mysqli_query($conn,"UPDATE zaidejai SET  namekm=namekm+'1'  WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE inv SET  tobulas=tobulas+'5000', angelwing=angelwing+'5000', naikinti=naikinti+'5000' WHERE nick = '$nick'");
+mysqli_query($conn,"INSERT INTO pokalbiai SET nick='SISTEMA', sms='Žaidėjas <b>".$apie['nick']."</b> įvygdė <small>10 Namek misijų!</small> :) ', data='".time()."'");
 }
 }	
 if($apie[namekm] == 11){
@@ -290,7 +290,7 @@ else{
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos2.png"></div>';
 	echo '<div class="meniuc"><b>Sekmingai įvygdei Namek misiją!</b></div>';
-	mysql_query("UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
 
 }
 }	
@@ -304,8 +304,8 @@ else{
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos2.png"></div>';
 	echo '<div class="meniuc"><b>Sekmingai įvygdei Namek misiją!</b></div>';
-	mysql_query("UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
-	mysql_query("UPDATE inv SET  Majinsroll=Majinsroll-'5000' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE inv SET  Majinsroll=Majinsroll-'5000' WHERE nick = '$nick'");
 
 }
 }	
@@ -319,8 +319,8 @@ else{
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos2.png"></div>';
 	echo '<div class="meniuc"><b>Sekmingai įvygdei Namek misiją!</b></div>';
-	mysql_query("UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
-	mysql_query("UPDATE zaidejai SET  auksiniai=auksiniai-'200000' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  auksiniai=auksiniai-'200000' WHERE nick = '$nick'");
 
 }
 }	
@@ -334,8 +334,8 @@ else{
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos2.png"></div>';
 	echo '<div class="meniuc"><b>Sekmingai įvygdei Namek misiją!</b></div>';
-	mysql_query("UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
-	mysql_query("UPDATE zaidejai SET  sms_litai=sms_litai-'2000' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  sms_litai=sms_litai-'2000' WHERE nick = '$nick'");
 
 }
 }	
@@ -349,8 +349,8 @@ else{
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos2.png"></div>';
 	echo '<div class="meniuc"><b>Sekmingai įvygdei Namek misiją!</b></div>';
-	mysql_query("UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
-	mysql_query("UPDATE inv SET  Powerstone=Powerstone-'8000' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE inv SET  Powerstone=Powerstone-'8000' WHERE nick = '$nick'");
 
 }
 }	
@@ -364,8 +364,8 @@ else{
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos2.png"></div>';
 	echo '<div class="meniuc"><b>Sekmingai įvygdei Namek misiją!</b></div>';
-	mysql_query("UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
-	mysql_query("UPDATE inv SET  Microshem=Microshem-'12000' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE inv SET  Microshem=Microshem-'12000' WHERE nick = '$nick'");
 
 }
 }	
@@ -379,8 +379,8 @@ else{
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos2.png"></div>';
 echo '<div class="meniuc"><b>Sekmingai įvygdei Namek misiją!</b></div>';
-	mysql_query("UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
-	mysql_query("UPDATE inv SET  dball=dball-'600' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE inv SET  dball=dball-'600' WHERE nick = '$nick'");
 
 }
 }	
@@ -394,8 +394,8 @@ else{
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos2.png"></div>';
 	echo '<div class="meniuc"><b>Sekmingai įvygdei Namek misiją!</b></div>';
-	mysql_query("UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
-	mysql_query("UPDATE inv SET  angelwing=angelwing-'16000' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE inv SET  angelwing=angelwing-'16000' WHERE nick = '$nick'");
 
 }
 }	
@@ -409,8 +409,8 @@ else{
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos2.png"></div>';
 	echo '<div class="meniuc"><b>Sekmingai įvygdei Namek misiją!</b></div>';
-	mysql_query("UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
-	mysql_query("UPDATE inv SET  Fusionfail=Fusionfail-'20000' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE inv SET  Fusionfail=Fusionfail-'20000' WHERE nick = '$nick'");
 
 }
 }	
@@ -424,9 +424,9 @@ else{
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos2.png"></div>';
 	echo '<div class="meniuc"><b>Sekmingai įvygdei Namek misiją!</b><br><small>Įvygdei 20 Namek misijų!</small><br>Už tai gauni po <b>10,000 </b> Κario tobulėjimo, Angelo sparnų,` Naikinimo galios!</div>';
-	mysql_query("UPDATE zaidejai SET  namekm=namekm+'1'  WHERE nick = '$nick'");
-	mysql_query("UPDATE inv SET  tobulas=tobulas+'10000', angelwing=angelwing+'10000', naikinti=naikinti+'10000', naikinti=naikinti-'22000'  WHERE nick = '$nick'");
-mysql_query("INSERT INTO pokalbiai SET nick='SISTEMA', sms='Žaidėjas <b>".$apie['nick']."</b> įvygdė <small>20 Namek misijų!</small> :) ', data='".time()."'");
+	mysqli_query($conn,"UPDATE zaidejai SET  namekm=namekm+'1'  WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE inv SET  tobulas=tobulas+'10000', angelwing=angelwing+'10000', naikinti=naikinti+'10000', naikinti=naikinti-'22000'  WHERE nick = '$nick'");
+mysqli_query($conn,"INSERT INTO pokalbiai SET nick='SISTEMA', sms='Žaidėjas <b>".$apie['nick']."</b> įvygdė <small>20 Namek misijų!</small> :) ', data='".time()."'");
 }
 }	
 if($apie[namekm] == 21){
@@ -439,8 +439,8 @@ else{
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos2.png"></div>';
 	echo '<div class="meniuc"><b>Sekmingai įvygdei Namek misiją!</b></div>';
-	mysql_query("UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
-	mysql_query("UPDATE zaidejai SET  sms_litai=sms_litai-'500' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  sms_litai=sms_litai-'500' WHERE nick = '$nick'");
 
 }
 }	
@@ -454,8 +454,8 @@ else{
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos2.png"></div>';
 	echo '<div class="meniuc"><b>Sekmingai įvygdei Namek misiją!</b></div>';
-	mysql_query("UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
-	mysql_query("UPDATE zaidejai SET  sms_litai=sms_litai-'1000' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  sms_litai=sms_litai-'1000' WHERE nick = '$nick'");
 
 }
 }	
@@ -469,8 +469,8 @@ else{
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos2.png"></div>';
 	echo '<div class="meniuc"><b>Sekmingai įvygdei Namek misiją!</b></div>';
-	mysql_query("UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
-	mysql_query("UPDATE zaidejai SET  sms_litai=sms_litai-'1500' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  sms_litai=sms_litai-'1500' WHERE nick = '$nick'");
 
 }
 }	
@@ -484,8 +484,8 @@ else{
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos2.png"></div>';
 	echo '<div class="meniuc"><b>Sekmingai įvygdei Namek misiją!</b></div>';
-	mysql_query("UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
-	mysql_query("UPDATE zaidejai SET  sms_litai=sms_litai-'2000' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  sms_litai=sms_litai-'2000' WHERE nick = '$nick'");
 
 }
 }	
@@ -499,8 +499,8 @@ else{
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos2.png"></div>';
 	echo '<div class="meniuc"><b>Sekmingai įvygdei Namek misiją!</b></div>';
-	mysql_query("UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
-	mysql_query("UPDATE zaidejai SET  sms_litai=sms_litai-'2500' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  sms_litai=sms_litai-'2500' WHERE nick = '$nick'");
 
 }
 }	
@@ -514,8 +514,8 @@ else{
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos2.png"></div>';
 	echo '<div class="meniuc"><b>Sekmingai įvygdei Namek misiją!</b></div>';
-	mysql_query("UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
-	mysql_query("UPDATE zaidejai SET  sms_litai=sms_litai-'3000' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  sms_litai=sms_litai-'3000' WHERE nick = '$nick'");
 
 }
 }	
@@ -529,8 +529,8 @@ else{
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos2.png"></div>';
 	echo '<div class="meniuc"><b>Sekmingai įvygdei Namek misiją!</b></div>';
-	mysql_query("UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
-	mysql_query("UPDATE zaidejai SET  sms_litai=sms_litai-'3500' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  sms_litai=sms_litai-'3500' WHERE nick = '$nick'");
 
 }
 }	
@@ -544,8 +544,8 @@ else{
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos2.png"></div>';
 	echo '<div class="meniuc"><b>Sekmingai įvygdei Namek misiją!</b></div>';
-	mysql_query("UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
-	mysql_query("UPDATE zaidejai SET  sms_litai=sms_litai-'4000' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  sms_litai=sms_litai-'4000' WHERE nick = '$nick'");
 
 }
 }	
@@ -559,8 +559,8 @@ else{
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos2.png"></div>';
 	echo '<div class="meniuc"><b>Sekmingai įvygdei Namek misiją!</b></div>';
-	mysql_query("UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
-	mysql_query("UPDATE zaidejai SET  sms_litai=sms_litai-'4500' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  sms_litai=sms_litai-'4500' WHERE nick = '$nick'");
 
 }
 }	
@@ -574,9 +574,9 @@ else{
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos2.png"></div>';
 	echo '<div class="meniuc"><b>Sekmingai įvygdei Namek misiją!</b><br><small>Įvygdei 30 Namek misijų!</small><br>Už tai gauni <b>20,000 </b> VIP tickets!</div>';
-	mysql_query("UPDATE zaidejai SET  namekm=namekm+'1', sms_litai=sms_litai-'5000',  vipticket=vipticket+'20000' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  namekm=namekm+'1', sms_litai=sms_litai-'5000',  vipticket=vipticket+'20000' WHERE nick = '$nick'");
 	
-mysql_query("INSERT INTO pokalbiai SET nick='SISTEMA', sms='Žaidėjas <b>".$apie['nick']."</b> įvygdė <small>30 Namek misijų!</small> :) ', data='".time()."'");
+mysqli_query($conn,"INSERT INTO pokalbiai SET nick='SISTEMA', sms='Žaidėjas <b>".$apie['nick']."</b> įvygdė <small>30 Namek misijų!</small> :) ', data='".time()."'");
 }
 }	
 if($apie[namekm] == 31){
@@ -589,8 +589,8 @@ else{
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos2.png"></div>';
 	echo '<div class="meniuc"><b>Sekmingai įvygdei Namek misiją!</b></div>';
-	mysql_query("UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
-	mysql_query("UPDATE zaidejai SET  kred=kred-'10000' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  kred=kred-'10000' WHERE nick = '$nick'");
 
 }
 }	
@@ -604,8 +604,8 @@ else{
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos2.png"></div>';
 	echo '<div class="meniuc"><b>Sekmingai įvygdei Namek misiją!</b></div>';
-	mysql_query("UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
-	mysql_query("UPDATE zaidejai SET  kred=kred-'20000' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  kred=kred-'20000' WHERE nick = '$nick'");
 
 }
 }	
@@ -619,8 +619,8 @@ else{
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos2.png"></div>';
 	echo '<div class="meniuc"><b>Sekmingai įvygdei Namek misiją!</b></div>';
-	mysql_query("UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
-	mysql_query("UPDATE zaidejai SET  kred=kred-'30000' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  kred=kred-'30000' WHERE nick = '$nick'");
 
 }
 }	
@@ -634,8 +634,8 @@ else{
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos2.png"></div>';
 	echo '<div class="meniuc"><b>Sekmingai įvygdei Namek misiją!</b></div>';
-	mysql_query("UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
-	mysql_query("UPDATE zaidejai SET  kred=kred-'40000' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  kred=kred-'40000' WHERE nick = '$nick'");
 
 }
 }	
@@ -649,8 +649,8 @@ else{
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos2.png"></div>';
 	echo '<div class="meniuc"><b>Sekmingai įvygdei Namek misiją!</b></div>';
-	mysql_query("UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
-	mysql_query("UPDATE zaidejai SET  kred=kred-'50000' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  kred=kred-'50000' WHERE nick = '$nick'");
 
 }
 }	
@@ -664,8 +664,8 @@ else{
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos2.png"></div>';
 	echo '<div class="meniuc"><b>Sekmingai įvygdei Namek misiją!</b></div>';
-	mysql_query("UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
-	mysql_query("UPDATE zaidejai SET  kred=kred-'60000' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  kred=kred-'60000' WHERE nick = '$nick'");
 
 }
 }	
@@ -679,8 +679,8 @@ else{
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos2.png"></div>';
 	echo '<div class="meniuc"><b>Sekmingai įvygdei Namek misiją!</b></div>';
-	mysql_query("UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
-	mysql_query("UPDATE zaidejai SET  kred=kred-'70000' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  kred=kred-'70000' WHERE nick = '$nick'");
 
 }
 }	
@@ -694,8 +694,8 @@ else{
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos2.png"></div>';
 	echo '<div class="meniuc"><b>Sekmingai įvygdei Namek misiją!</b></div>';
-	mysql_query("UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
-	mysql_query("UPDATE zaidejai SET  kred=kred-'80000' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  kred=kred-'80000' WHERE nick = '$nick'");
 
 }
 }	
@@ -709,8 +709,8 @@ else{
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos2.png"></div>';
 	echo '<div class="meniuc"><b>Sekmingai įvygdei Namek misiją!</b></div>';
-	mysql_query("UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
-	mysql_query("UPDATE zaidejai SET  kred=kred-'90000' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  kred=kred-'90000' WHERE nick = '$nick'");
 
 }
 }	
@@ -724,9 +724,9 @@ else{
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos2.png"></div>';
 	echo '<div class="meniuc"><b>Sekmingai įvygdei Namek misiją!</b><br><small>Įvygdei 40 Namek misijų!</small><br>Už tai gauni  <b>50,000 </b> VIP tickets!</div>';
-	mysql_query("UPDATE zaidejai SET  namekm=namekm+'1', kred=kred-'100000',  vipticket=vipticket+'50000' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  namekm=namekm+'1', kred=kred-'100000',  vipticket=vipticket+'50000' WHERE nick = '$nick'");
 	
-mysql_query("INSERT INTO pokalbiai SET nick='SISTEMA', sms='Žaidėjas <b>".$apie['nick']."</b> įvygdė <small>40 Namek misijų!</small> :) ', data='".time()."'");
+mysqli_query($conn,"INSERT INTO pokalbiai SET nick='SISTEMA', sms='Žaidėjas <b>".$apie['nick']."</b> įvygdė <small>40 Namek misijų!</small> :) ', data='".time()."'");
 }
 }	
 if($apie[namekm] == 41){
@@ -739,8 +739,8 @@ else{
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos2.png"></div>';
 	echo '<div class="meniuc"><b>Sekmingai įvygdei Namek misiją!</b></div>';
-	mysql_query("UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
-	mysql_query("UPDATE zaidejai SET  bitcoin=bitcoin-'50' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  bitcoin=bitcoin-'50' WHERE nick = '$nick'");
 
 }
 }	
@@ -754,8 +754,8 @@ else{
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos2.png"></div>';
 	echo '<div class="meniuc"><b>Sekmingai įvygdei Namek misiją!</b></div>';
-	mysql_query("UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
-	mysql_query("UPDATE zaidejai SET  bitcoin=bitcoin-'60' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  bitcoin=bitcoin-'60' WHERE nick = '$nick'");
 
 }
 }	
@@ -769,8 +769,8 @@ else{
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos2.png"></div>';
 	echo '<div class="meniuc"><b>Sekmingai įvygdei Namek misiją!</b></div>';
-	mysql_query("UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
-	mysql_query("UPDATE zaidejai SET  bitcoin=bitcoin-'70' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  bitcoin=bitcoin-'70' WHERE nick = '$nick'");
 
 }
 }	
@@ -784,8 +784,8 @@ else{
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos2.png"></div>';
 	echo '<div class="meniuc"><b>Sekmingai įvygdei Namek misiją!</b></div>';
-	mysql_query("UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
-	mysql_query("UPDATE zaidejai SET  bitcoin=bitcoin-'80' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  bitcoin=bitcoin-'80' WHERE nick = '$nick'");
 
 }
 }	
@@ -799,8 +799,8 @@ else{
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos2.png"></div>';
 	echo '<div class="meniuc"><b>Sekmingai įvygdei Namek misiją!</b></div>';
-	mysql_query("UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
-	mysql_query("UPDATE zaidejai SET  bitcoin=bitcoin-'90' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  bitcoin=bitcoin-'90' WHERE nick = '$nick'");
 
 }
 }	
@@ -814,8 +814,8 @@ else{
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos2.png"></div>';
 	echo '<div class="meniuc"><b>Sekmingai įvygdei Namek misiją!</b></div>';
-	mysql_query("UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
-	mysql_query("UPDATE zaidejai SET  bitcoin=bitcoin-'100' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  bitcoin=bitcoin-'100' WHERE nick = '$nick'");
 
 }
 }	
@@ -829,8 +829,8 @@ else{
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos2.png"></div>';
 	echo '<div class="meniuc"><b>Sekmingai įvygdei Namek misiją!</b></div>';
-	mysql_query("UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
-	mysql_query("UPDATE zaidejai SET  bitcoin=bitcoin-'110' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  bitcoin=bitcoin-'110' WHERE nick = '$nick'");
 
 }
 }	
@@ -844,8 +844,8 @@ else{
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos2.png"></div>';
 	echo '<div class="meniuc"><b>Sekmingai įvygdei Namek misiją!</b></div>';
-	mysql_query("UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
-	mysql_query("UPDATE zaidejai SET  bitcoin=bitcoin-'120' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  bitcoin=bitcoin-'120' WHERE nick = '$nick'");
 
 }
 }	
@@ -858,8 +858,8 @@ else{
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos2.png"></div>';
 	echo '<div class="meniuc"><b>Sekmingai įvygdei Namek misiją!</b></div>';
-	mysql_query("UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
-	mysql_query("UPDATE zaidejai SET  bitcoin=bitcoin-'130' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  namekm=namekm+'1' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  bitcoin=bitcoin-'130' WHERE nick = '$nick'");
 
 }
 }	
@@ -874,9 +874,9 @@ else{
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos2.png"></div>';
 	echo '<div class="meniuc"><b>Sekmingai įvygdei Namek misiją!</b><br><small>Įvygdei 50 Namek misijų!</small><br>Už tai gauni  <b>100,000 </b> VIP tickets!</div>';
-	mysql_query("UPDATE zaidejai SET  namekm=namekm+'1', bitcoin=bitcoin-'150',  vipticket=vipticket+'100000' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET  namekm=namekm+'1', bitcoin=bitcoin-'150',  vipticket=vipticket+'100000' WHERE nick = '$nick'");
 	
-mysql_query("INSERT INTO pokalbiai SET nick='SISTEMA', sms='Žaidėjas <b>".$apie['nick']."</b> įvygdė <small>50 Namek misijų!</small> :) ', data='".time()."'");
+mysqli_query($conn,"INSERT INTO pokalbiai SET nick='SISTEMA', sms='Žaidėjas <b>".$apie['nick']."</b> įvygdė <small>50 Namek misijų!</small> :) ', data='".time()."'");
 }
 }	
 

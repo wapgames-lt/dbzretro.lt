@@ -29,13 +29,14 @@ else{
 if($apie['pvisi'] > 0){echo' <div class="meniuc"><font color="black">Įvygdęs pasiekimų:</font> <b>'.$apie['pvisi'].'</b> iš <b>100</b></div>';}
 echo'
  ';
-   
-  	   $total = mysql_result(mysql_query("SELECT COUNT(*) FROM pasiek"),0);
-   if($total > 0){
+
+    $total = mysqli_fetch_row(mysqli_query($conn, "SELECT COUNT(*) FROM pasiek"))[0];
+
+    if($total > 0){
    echo '<div class="up"> Pasirinkimas:</div>';
    echo '<div class="meniu">';
-   $query = mysql_query("SELECT * FROM pasiek");
-   while($row = mysql_fetch_assoc($query)){
+   $query = mysqli_query($conn,"SELECT * FROM pasiek");
+   while($row = mysqli_fetch_assoc($query)){
          echo ' <img src="img/bicons/'.$row['img'].'.png"height="16" width="16" /><a href="pasiekimai.php?id=pasiek&ID='.$row['id'].'">'.$row['name'].'</a><br>';
          unset($row);
    }
@@ -55,7 +56,7 @@ echo'
 
 elseif($id == "pasiek"){
 $KD = rand(9999,99999);
-mysql_query("UPDATE zaidejai SET kda='$KD' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET kda='$KD' WHERE nick='$nick'");
 $ID = sk($_GET['ID']);
    online('Pasiekimuose');
 
@@ -64,20 +65,21 @@ if($nust['pasiekimai'] == "-"){
 
        }
 else{
-   $pasiek = mysql_fetch_assoc(mysql_query("SELECT * FROM pasiek WHERE id='$ID' "));
-    if(mysql_num_rows(mysql_query("SELECT * FROM pasiek WHERE id='$ID' ")) == 0){
+   $pasiek = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM pasiek WHERE id='$ID' "));
+    if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM pasiek WHERE id='$ID' ")) == 0){
           echo '<div class="up"><b>Klaida!</b></div>';
           echo '<div class="meniuc">Tokio pasiekimo nėra!</div>';
     } else {
-         $total = mysql_result(mysql_query("SELECT COUNT(*) FROM pasiek2 WHERE kas='$ID'"),0);
-         echo '<div class="up">'.$pasiek['name'].'</div>';
+        $total = mysqli_fetch_row(mysqli_query($conn, "SELECT COUNT(*) FROM pasiek2 WHERE kas='$ID'"))[0];
+
+        echo '<div class="up">'.$pasiek['name'].'</div>';
          if($total > 0){
 echo '<div class="meniuc"><img src="img/imgg/pasiekimai.png"></br></div>';
              echo '<div class="meniu">'.$ico.' Pasiekimas / Kiek ir ko reikia</div>';
 echo '<div class="up">'.$ico.'<b>Reikalavimai: </b></div>';
              echo '';
-             $query = mysql_query("SELECT * FROM pasiek2 WHERE kas='$ID' ");
-             while($row = mysql_fetch_assoc($query)){
+             $query = mysqli_query($conn,"SELECT * FROM pasiek2 WHERE kas='$ID' ");
+             while($row = mysqli_fetch_assoc($query)){
                    echo '<div class="meniuc"><b></b> 
 <a href="pasiekimai.php?id=siekiu&ID='.$row['kas'].'&VS='.$row['id'].'&KA='.$row['ka'].'&KD='.$KD.'"><b>'.$row['name'].' </b></a> <b>'.skaicius($row['kiek']).'</b>
   <img src="img/bicons/'.$row['img'].'.png" height="16" width="16"/>'.$row['ko'].'';
@@ -113,23 +115,23 @@ if($nust['pasiekimai'] == "-"){
        }
 else{
 
-$ID = mysql_real_escape_string(htmlspecialchars($_GET['ID']));
-			$VS = mysql_real_escape_string(htmlspecialchars($_GET['VS']));
-		$KA = mysql_real_escape_string(htmlspecialchars($_GET['KA']));
+$ID = mysqli_real_escape_string(htmlspecialchars($_GET['ID']));
+			$VS = mysqli_real_escape_string(htmlspecialchars($_GET['VS']));
+		$KA = mysqli_real_escape_string(htmlspecialchars($_GET['KA']));
 
 			$KD = rand(9999,99999);
 $ID = post($_GET['ID']);
 $VS = post($_GET['VS']);
 $KA = post($_GET['KA']);
 $KD = post($_GET['KD']);
-    $siek = mysql_fetch_assoc(mysql_query("SELECT * FROM pasiek2 WHERE id='$VS' "));
-$pasiekimai = mysql_fetch_assoc(mysql_query("SELECT * FROM pasiekimai WHERE nick='$nick'"));
-   $m = mysql_fetch_array(mysql_query("SELECT * FROM zaidejai WHERE nick='$nick'"));
-if(mysql_num_rows(mysql_query("SELECT * FROM pasiek WHERE id='$ID' ")) == 0){
+    $siek = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM pasiek2 WHERE id='$VS' "));
+$pasiekimai = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM pasiekimai WHERE nick='$nick'"));
+   $m = mysqli_fetch_array(mysqli_query($conn,"SELECT * FROM zaidejai WHERE nick='$nick'"));
+if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM pasiek WHERE id='$ID' ")) == 0){
           echo '<div class="up">Klaida !</div>';
           echo '<div class="meniuc"><div class="error">Tokio pasiekimo nėra!</div></div>';
     } else {
-    if(mysql_num_rows(mysql_query("SELECT * FROM pasiek2 WHERE id='$VS' ")) == 0){
+    if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM pasiek2 WHERE id='$VS' ")) == 0){
           echo '<div class="up">Klaida !</div>';
           echo '<div class="meniuc"><div class="error">Tokio pasiekimo nėra!</div></div>';
     } }
@@ -146,10 +148,10 @@ else{
 		echo'<div class="meniuc"><b>Sėkmingai įvygdei pasiekimą!</b> Gavai <font color="red"> '.$siek['pt'].' </font> <b><img src="img/bicons/pt.png" /> bei <font color="red"> '.$siek['eur'].' <img src="img/bicons/euro.png" /></b></font></div>';
 	
 		     
-		mysql_query("UPDATE inv SET unikalus=unikalus+'$siek[pt]' WHERE nick='$nick'")or die(mysql_error());
+		mysqli_query($conn,"UPDATE inv SET unikalus=unikalus+'$siek[pt]' WHERE nick='$nick'")or die(mysqli_error());
 
-mysql_query("UPDATE zaidejai SET pvisi=pvisi+'1', sms_litai=sms_litai+'$siek[eur]' WHERE nick='$nick'")or die(mysql_error());
-mysql_query("UPDATE pasiekimai SET $siek[ka]='$timxx' WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE zaidejai SET pvisi=pvisi+'1', sms_litai=sms_litai+'$siek[eur]' WHERE nick='$nick'")or die(mysqli_error());
+mysqli_query($conn,"UPDATE pasiekimai SET $siek[ka]='$timxx' WHERE nick='$nick' ");
 }
 		}
 elseif($pasiekimai[$siek['ka']]-time() > 0){

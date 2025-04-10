@@ -160,7 +160,7 @@ $vs=(int)abs($_GET['vs']);
   if($gyvybes == 100 or $pl_saga > $kg){
  echo"<div class='meniuc'>Tu per silpnas!</div>";
 
- mysql_query("UPDATE zaidejai SET gyvybes='0' WHERE nick='$nick'");
+ mysqli_query($conn,"UPDATE zaidejai SET gyvybes='0' WHERE nick='$nick'");
      }
   elseif($zaidejai['perejo'] != $vs){
   echo "<div class='meniuc'>Drakoną jau nukovėte</div>";
@@ -181,11 +181,11 @@ $vs=(int)abs($_GET['vs']);
 
   
   $time = time()+60 * 60 * 24;
-  mysql_query("UPDATE zaidejai SET jega=jega+0, gynyba=gynyba+0, drakonai='$time', perejo='0'  WHERE nick='$nick'");
-     mysql_query("UPDATE inv SET jball=jball+'1' WHERE nick='$nick'")or die(mysql_error());
+  mysqli_query($conn,"UPDATE zaidejai SET jega=jega+0, gynyba=gynyba+0, drakonai='$time', perejo='0'  WHERE nick='$nick'");
+     mysqli_query($conn,"UPDATE inv SET jball=jball+'1' WHERE nick='$nick'")or die(mysqli_error());
      }
   else{
-  mysql_query("UPDATE zaidejai SET litai=litai+$pinigu, exp=exp+$xp2, pveiksmai=pveiksmai+0, perejo=perejo+1 WHERE nick='$nick'");
+  mysqli_query($conn,"UPDATE zaidejai SET litai=litai+$pinigu, exp=exp+$xp2, pveiksmai=pveiksmai+0, perejo=perejo+1 WHERE nick='$nick'");
 
  }}
 

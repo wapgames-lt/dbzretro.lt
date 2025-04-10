@@ -1,8 +1,8 @@
 <?
 require_once '../core/system.php';
 $header = 'Покупка удочки';
-$req = mysql_query("SELECT * from `ban` where `id_us` = '".$user['id']."'  and `time`>'".$_SERVER['REQUEST_TIME']."'");
-$ban = mysql_fetch_array($req);
+$req = mysqli_query($conn,"SELECT * from `ban` where `id_us` = '".$user['id']."'  and `time`>'".$_SERVER['REQUEST_TIME']."'");
+$ban = mysqli_fetch_array($req);
 if($ban['ban'] == 3){
 header('Location: /moduls/ban');
 }
@@ -32,10 +32,10 @@ require_once '../core/head.php';
 
 
 
-$fish = mysql_query('SELECT * FROM `fish` WHERE `user` = "'.$user['id'].'"');      
-$fish = mysql_fetch_array($fish);
+$fish = mysqli_query($conn,'SELECT * FROM `fish` WHERE `user` = "'.$user['id'].'"');
+$fish = mysqli_fetch_array($fish);
 if(!$fish) {
-mysql_query('INSERT INTO `fish` (`user`) VALUES ("'.$user['id'].'")');
+mysqli_query($conn,'INSERT INTO `fish` (`user`) VALUES ("'.$user['id'].'")');
 header('location:index.php');
 exit;
 
@@ -60,8 +60,8 @@ exit;
 }
 
 
-mysql_query('UPDATE `fish` SET `iznos`='.$bs.' WHERE `user` = "'.$user['id'].'"');   
-mysql_query('UPDATE `user` SET `gold` = `gold` - '.$bsg.' WHERE `id` = "'.$user['id'].'"');   
+mysqli_query($conn,'UPDATE `fish` SET `iznos`='.$bs.' WHERE `user` = "'.$user['id'].'"');
+mysqli_query($conn,'UPDATE `user` SET `gold` = `gold` - '.$bsg.' WHERE `id` = "'.$user['id'].'"');
 $_SESSION['we']='<center><font color=green>Удочка успешно починена!</font></center>'; header('location:buy_rod.php');exit;
 
 }
@@ -102,8 +102,8 @@ exit;
 }
 
 
-mysql_query('UPDATE `fish` SET `udo4ka` ='.$udo4ka.',`iznos`='.$iznos.' WHERE `user` = "'.$user['id'].'"');   
-mysql_query('UPDATE `user` SET `gold` = `gold` - '.$gold.' WHERE `id` = "'.$user['id'].'"');   
+mysqli_query($conn,'UPDATE `fish` SET `udo4ka` ='.$udo4ka.',`iznos`='.$iznos.' WHERE `user` = "'.$user['id'].'"');
+mysqli_query($conn,'UPDATE `user` SET `gold` = `gold` - '.$gold.' WHERE `id` = "'.$user['id'].'"');
 $_SESSION['notic']='<center><font color=green>Вы купили новую удочку!</font></center>';
 header('location:index.php');
 exit;

@@ -6,9 +6,9 @@ echo "<!DOCTYPE html PUBLIC '-//WAPFORUM//DTD XHTML Mobile 1.0//EN' 'http://www.
 include'cfg/sql.php';
 include_once 'cfg/funkcijos.php';
 head2();
-$apie = mysql_fetch_assoc(mysql_query("SELECT * FROM zaidejai WHERE nick='$nick'"));
- $fsn = mysql_fetch_assoc(mysql_query("SELECT * FROM susijungimas WHERE nick='$nick' "));
-    $fsn2 = mysql_fetch_assoc(mysql_query("SELECT * FROM susijungimas WHERE nick='$fsn[kitas_zaidejas]' "));
+$apie = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM zaidejai WHERE nick='$nick'"));
+ $fsn = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM susijungimas WHERE nick='$nick' "));
+    $fsn2 = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM susijungimas WHERE nick='$fsn[kitas_zaidejas]' "));
 
 baneris();
 topbar();
@@ -197,7 +197,7 @@ elseif($apie['Kamehameha']=='+'){
 }
 else{echo'<div class="meniuc">Sėkmingai gavai techniką!</div>';
 
-mysql_query("UPDATE zaidejai SET Kamehameha='+' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET Kamehameha='+' WHERE nick='$nick'");
 }
 }
 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unikali savybe");
@@ -215,7 +215,7 @@ elseif($apie['Finalflash']=='+'){
  echo "<div class='meniuc'>Tu jau turi šią  technika!</div>";
 }
 else{echo'<div class="meniuc">Sėkmingai gavai techniką!</div>';
-mysql_query("UPDATE zaidejai SET Finalflash='+' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET Finalflash='+' WHERE nick='$nick'");
 }
 }
 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unikali savybe");
@@ -233,7 +233,7 @@ elseif($apie['Masenko']=='+'){
  echo "<div class='meniuc'>Tu jau turi šią  technika!</div>";
 }
 else{echo'<div class="meniuc">Sėkmingai gavai techniką!</div>';
-mysql_query("UPDATE zaidejai SET Finalflash='+' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET Finalflash='+' WHERE nick='$nick'");
 }
 }
 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unikali savybe");
@@ -250,7 +250,7 @@ elseif($apie['Galickgun']=='+'){
     echo '<div class="meniuc"><img src=img/unisavybes/galickgun.jpg border="1" width="180" height="90"></div>';
  echo "<div class='meniuc'>Tu jau turi šią  technika!</div>";
 }
-mysql_query("UPDATE zaidejai SET Galickgun='+' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET Galickgun='+' WHERE nick='$nick'");
 
 }
 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unikali savybe");
@@ -269,7 +269,7 @@ elseif($apie['Deathlaser']=='+'){
  echo "<div class='meniuc'>Tu jau turi šią  technika!</div>";
 }
 else{echo'<div class="meniuc">Sėkmingai gavai techniką!</div>';
-mysql_query("UPDATE zaidejai SET Deathlaser='+' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET Deathlaser='+' WHERE nick='$nick'");
 }
 }
 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unikali savybe");
@@ -287,7 +287,7 @@ elseif($apie['Gack']=='+'){
  echo "<div class='meniuc'>Tu jau turi šią  technika!</div>";
 }
 else{echo'<div class="meniuc">Sėkmingai gavai techniką!</div>';
-mysql_query("UPDATE zaidejai SET Gack='+' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET Gack='+' WHERE nick='$nick'");
 }
 }
 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unikali savybe");
@@ -305,7 +305,7 @@ elseif($apie['Sayanpower']=='+'){
  echo "<div class='meniuc'>Tu jau turi šią  technika!</div>";
 }
 else{echo'<div class="meniuc">Sėkmingai gavai techniką!</div>';
-mysql_query("UPDATE zaidejai SET Sayanpower='+' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET Sayanpower='+' WHERE nick='$nick'");
 }
 }
 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unikali savybe");
@@ -323,7 +323,7 @@ elseif($apie['Makosen']=='+'){
  echo "<div class='meniuc'>Tu jau turi šią  technika!</div>";
 }
 else{echo'<div class="meniuc">Sėkmingai gavai techniką!</div>';
-mysql_query("UPDATE zaidejai SET Makosen='+' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET Makosen='+' WHERE nick='$nick'");
 }
 }
 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unikali savybe");
@@ -341,7 +341,7 @@ elseif($apie['Kamehameha2']=='+'){
  echo "<div class='meniuc'>Tu jau turi šią  technika!</div>";
 }
 else{echo'<div class="meniuc">Sėkmingai gavai techniką!</div>';
-mysql_query("UPDATE zaidejai SET Kamehameha2='+' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET Kamehameha2='+' WHERE nick='$nick'");
 }
 }
 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unikali savybe");
@@ -359,7 +359,7 @@ elseif($apie['Changed']=='+'){
  echo "<div class='meniuc'>Tu jau turi šią  technika!</div>";
 }
 else{echo'<div class="meniuc">Sėkmingai gavai techniką!</div>';
-mysql_query("UPDATE zaidejai SET Changed='+' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET Changed='+' WHERE nick='$nick'");
 }
 }
 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unikali savybe");
@@ -377,7 +377,7 @@ elseif($apie['Begone']=='+'){
  echo "<div class='meniuc'>Tu jau turi šią  technika!</div>";
 }
 else{echo'<div class="meniuc">Sėkmingai gavai techniką!</div>';
-mysql_query("UPDATE zaidejai SET Begone='+' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET Begone='+' WHERE nick='$nick'");
 }
 }
 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unikali savybe");
@@ -395,7 +395,7 @@ elseif($apie['Regeneration']=='+'){
  echo "<div class='meniuc'>Tu jau turi šią  technika!</div>";
 }
 else{echo'<div class="meniuc">Sėkmingai gavai techniką!</div>';
-mysql_query("UPDATE zaidejai SET Regeneration='+' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET Regeneration='+' WHERE nick='$nick'");
 }
 }
 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unikali savybe");
@@ -415,7 +415,7 @@ elseif($apie['ArmBreak']=='+'){
  echo "<div class='meniuc'>Tu jau turi šią  technika!</div>";
 }
 else{echo'<div class="meniuc">Sėkmingai gavai techniką!</div>';
-mysql_query("UPDATE zaidejai SET ArmBreak='+' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET ArmBreak='+' WHERE nick='$nick'");
 }
 }
 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unikali savybe");
@@ -433,7 +433,7 @@ elseif($apie['Healing']=='+'){
  echo "<div class='meniuc'>Tu jau turi šią  technika!</div>";
 }
 else{echo'<div class="meniuc">Sėkmingai gavai techniką!</div>';
-mysql_query("UPDATE zaidejai SET Healing='+' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET Healing='+' WHERE nick='$nick'");
 }
 }
 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unikali savybe");
@@ -452,7 +452,7 @@ elseif($apie['AngryBulma']=='+'){
  echo "<div class='meniuc'>Tu jau turi šią  technika!</div>";
 }
 else{echo'<div class="meniuc">Sėkmingai gavai techniką!</div>';
-mysql_query("UPDATE zaidejai SET AngryBulma='+' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET AngryBulma='+' WHERE nick='$nick'");
 }
 }
 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unikali savybe");
@@ -513,7 +513,7 @@ echo'</div>';
 else{
 echo '<div class="meniuc"><img src=img/unisavybes/kamehameha.jpg border="1" width="180" height="90"></div>';
 echo'<div class="meniuc">Sėkmingai! Sukaupėte visą <b>Kamehameha</b> '.$energyi.' energiją už <b>2000</b>'.$eurui.'!</div>';
-mysql_query("UPDATE zaidejai SET kenergija=kenergija+'50000', sms_litai=sms_litai-'2000', Kamehameha='+' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET kenergija=kenergija+'50000', sms_litai=sms_litai-'2000', Kamehameha='+' WHERE nick='$nick'");
 
 }
 
@@ -568,7 +568,7 @@ echo'</div>';
        echo '<div class="meniuc"><img src=img/unisavybes/kamehameha.jpg border="1" width="180" height="90"></div>';
  echo '<div class="meniuc">Sėkmingai! +<b>100 '.$energyi.'energijos</b> Išviso sukaupęs: <b>'.$apie['kenergija'].'</b> '.$energyi.'energijos!</div>';
 
-mysql_query("UPDATE zaidejai SET kenergija=kenergija+'100', sms_litai=sms_litai-'2' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET kenergija=kenergija+'100', sms_litai=sms_litai-'2' WHERE nick='$nick'");
 echo'<div class="meniuc"><a href="?id=kaupiu&kodas='.$kodas.'">Kaupti toliau</a></div>';
 }
 }
@@ -627,7 +627,7 @@ echo'</div>';
 else{
 echo '<div class="meniuc"><img src=img/unisavybes/finalflash.jpg border="1" width="180" height="90"></div>';
 echo'<div class="meniuc">Sėkmingai! Sukaupėte visą <b>Final Flash</b> '.$energyi.'energiją už <b>2000</b>'.$eurui.'!</div>';
-mysql_query("UPDATE zaidejai SET kenergija2=kenergija2+'50000', sms_litai=sms_litai-'2000', Finalflash='+' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET kenergija2=kenergija2+'50000', sms_litai=sms_litai-'2000', Finalflash='+' WHERE nick='$nick'");
 
 }
 
@@ -682,7 +682,7 @@ echo'</div>';
        echo '<div class="meniuc"><img src=img/unisavybes/finalflash.jpg border="1" width="180" height="90"></div>';
  echo '<div class="meniuc">Sėkmingai! +<b> 100 '.$energyi.'energijos</b> Išviso sukaupęs: <b>'.$apie['kenergija2'].'</b> '.$energyi.'energijos!</div>';
 
-mysql_query("UPDATE zaidejai SET kenergija2=kenergija2+'100', sms_litai=sms_litai-'2' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET kenergija2=kenergija2+'100', sms_litai=sms_litai-'2' WHERE nick='$nick'");
 echo'<div class="meniuc"><a href="?id=kaupiu2&kodas='.$kodas.'">Kaupti toliau</a></div>';
 }
 }
@@ -743,7 +743,7 @@ echo'</div>';
 else{
 echo '<div class="meniuc"><img src=img/unisavybes/masenko.jpeg border="1" width="180" height="90"></div>';
 echo'<div class="meniuc">Sėkmingai! Sukaupėte visą <b>Masenko</b> '.$energyi.' energiją už <b>1000</b>'.$eurui.'!</div>';
-mysql_query("UPDATE zaidejai SET kenergija3=kenergija3+'50000', sms_litai=sms_litai-'1000', Masenko='+' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET kenergija3=kenergija3+'50000', sms_litai=sms_litai-'1000', Masenko='+' WHERE nick='$nick'");
 
 }
 
@@ -798,7 +798,7 @@ echo'</div>';
        echo '<div class="meniuc"><img src=img/unisavybes/masenko.jpeg border="1" width="180" height="90"></div>';
  echo '<div class="meniuc">Sėkmingai! +<b> 100 '.$energyi.' energijos</b> Išviso sukaupęs: <b>'.$apie['kenergija3'].'</b> '.$energyi.' energijos!</div>';
 
-mysql_query("UPDATE zaidejai SET kenergija3=kenergija3+'100', sms_litai=sms_litai-'1' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET kenergija3=kenergija3+'100', sms_litai=sms_litai-'1' WHERE nick='$nick'");
 echo'<div class="meniuc"><a href="?id=kaupiu3&kodas='.$kodas.'">Kaupti toliau</a></div>';
 }
 }
@@ -858,7 +858,7 @@ echo'</div>';
 else{
 echo '<div class="meniuc"><img src=img/unisavybes/galickgun.jpg border="1" width="180" height="90"></div>';
 echo'<div class="meniuc">Sėkmingai! Sukaupėte visą <b>Galick Gun</b> '.$energyi.' energiją už <b>3000</b>'.$eurui.'!</div>';
-mysql_query("UPDATE zaidejai SET kenergija4=kenergija4+'50000', sms_litai=sms_litai-'3000', Galickgun='+' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET kenergija4=kenergija4+'50000', sms_litai=sms_litai-'3000', Galickgun='+' WHERE nick='$nick'");
 
 }
 
@@ -913,7 +913,7 @@ echo'</div>';
        echo '<div class="meniuc"><img src=img/unisavybes/galickgun.jpg border="1" width="180" height="90"></div>';
  echo '<div class="meniuc">Sėkmingai! +<b> 100 '.$energyi.' energijos</b> Išviso sukaupęs: <b>'.$apie['kenergija4'].'</b> '.$energyi.' energijos!</div>';
 
-mysql_query("UPDATE zaidejai SET kenergija4=kenergija4+'100', sms_litai=sms_litai-'3' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET kenergija4=kenergija4+'100', sms_litai=sms_litai-'3' WHERE nick='$nick'");
 echo'<div class="meniuc"><a href="?id=kaupiu4&kodas='.$kodas.'">Kaupti toliau</a></div>';
 }
 }
@@ -973,7 +973,7 @@ echo'</div>';
 else{
 echo '<div class="meniuc"><img src=img/unisavybes/deathlaser.jpg border="1" width="180" height="90"></div>';
 echo'<div class="meniuc">Sėkmingai! Sukaupėte visą <b>Death Laser</b> '.$energyi.' energiją už <b>2000</b>'.$eurui.'!</div>';
-mysql_query("UPDATE zaidejai SET kenergija5=kenergija5+'50000', sms_litai=sms_litai-'2000', Deathlaser='+' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET kenergija5=kenergija5+'50000', sms_litai=sms_litai-'2000', Deathlaser='+' WHERE nick='$nick'");
 
 }
 
@@ -1028,7 +1028,7 @@ echo'</div>';
        echo '<div class="meniuc"><img src=img/unisavybes/deathlaser.jpg border="1" width="180" height="90"></div>';
  echo '<div class="meniuc">Sėkmingai! +<b> 100 '.$energyi.' energijos</b> Išviso sukaupęs: <b>'.$apie['kenergija5'].'</b> '.$energyi.' energijos!</div>';
 
-mysql_query("UPDATE zaidejai SET kenergija5=kenergija5+'100', sms_litai=sms_litai-'2' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET kenergija5=kenergija5+'100', sms_litai=sms_litai-'2' WHERE nick='$nick'");
 echo'<div class="meniuc"><a href="?id=kaupiu5&kodas='.$kodas.'">Kaupti toliau</a></div>';
 }
 }
@@ -1093,7 +1093,7 @@ echo'</div>';
 else{
 echo '<div class="meniuc"><img src=img/unisavybes/'.$tech.'.jpg border="1" width="180" height="90"></div>';
 echo'<div class="meniuc">Sėkmingai! Sukaupėte visą <b>'.$tech2.'</b> '.$energyi.' energiją už <b>1000</b>'.$eurui.'!</div>';
-mysql_query("UPDATE zaidejai SET kenergija6=kenergija6+'50000', sms_litai=sms_litai-'1000', Gack='+' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET kenergija6=kenergija6+'50000', sms_litai=sms_litai-'1000', Gack='+' WHERE nick='$nick'");
 
 }
 
@@ -1152,7 +1152,7 @@ echo'</div>';
        echo '<div class="meniuc"><img src=img/unisavybes/'.$tech.'.jpg border="1" width="180" height="90"></div>';
  echo '<div class="meniuc">Sėkmingai! +<b> 100 '.$energyi.' energijos</b> Išviso sukaupęs: <b>'.$apie[$energija].'</b> '.$energyi.' energijos!</div>';
 
-mysql_query("UPDATE zaidejai SET kenergija6=kenergija6+'100', sms_litai=sms_litai-'1' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET kenergija6=kenergija6+'100', sms_litai=sms_litai-'1' WHERE nick='$nick'");
 echo'<div class="meniuc"><a href="?id=kaupiu6&kodas='.$kodas.'">Kaupti toliau</a></div>';
 }
 }
@@ -1217,7 +1217,7 @@ echo'</div>';
 else{
 echo '<div class="meniuc"><img src=img/unisavybes/'.$tech.'.jpg border="1" width="180" height="90"></div>';
 echo'<div class="meniuc">Sėkmingai! Sukaupėte visą <b>'.$tech2.'</b> '.$energyi.' energiją už <b>4000</b>'.$eurui.'!</div>';
-mysql_query("UPDATE zaidejai SET kenergija7=kenergija7+'50000', sms_litai=sms_litai-'4000', Sayanpower='+' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET kenergija7=kenergija7+'50000', sms_litai=sms_litai-'4000', Sayanpower='+' WHERE nick='$nick'");
 
 }
 
@@ -1276,7 +1276,7 @@ echo'</div>';
        echo '<div class="meniuc"><img src=img/unisavybes/'.$tech.'.jpg border="1" width="180" height="90"></div>';
  echo '<div class="meniuc">Sėkmingai! +<b> 100 '.$energyi.' energijos</b> Išviso sukaupęs: <b>'.$apie[$energija].'</b> '.$energyi.' energijos!</div>';
 
-mysql_query("UPDATE zaidejai SET kenergija7=kenergija7+'100', sms_litai=sms_litai-'4' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET kenergija7=kenergija7+'100', sms_litai=sms_litai-'4' WHERE nick='$nick'");
 echo'<div class="meniuc"><a href="?id=kaupiu7&kodas='.$kodas.'">Kaupti toliau</a></div>';
 }
 }
@@ -1341,7 +1341,7 @@ echo'</div>';
 else{
 echo '<div class="meniuc"><img src=img/unisavybes/'.$tech.'.jpg border="1" width="180" height="90"></div>';
 echo'<div class="meniuc">Sėkmingai! Sukaupėte visą <b>'.$tech2.'</b> '.$energyi.' energiją už <b>5000</b>'.$eurui.'!</div>';
-mysql_query("UPDATE zaidejai SET kenergija8=kenergija8+'50000', sms_litai=sms_litai-'5000', Makosen='+' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET kenergija8=kenergija8+'50000', sms_litai=sms_litai-'5000', Makosen='+' WHERE nick='$nick'");
 
 }
 
@@ -1400,7 +1400,7 @@ echo'</div>';
        echo '<div class="meniuc"><img src=img/unisavybes/'.$tech.'.jpg border="1" width="180" height="90"></div>';
  echo '<div class="meniuc">Sėkmingai! +<b> 100 '.$energyi.' energijos</b> Išviso sukaupęs: <b>'.$apie[$energija].'</b> '.$energyi.' energijos!</div>';
 
-mysql_query("UPDATE zaidejai SET kenergija8=kenergija8+'100', sms_litai=sms_litai-'5' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET kenergija8=kenergija8+'100', sms_litai=sms_litai-'5' WHERE nick='$nick'");
 echo'<div class="meniuc"><a href="?id=kaupiu8&kodas='.$kodas.'">Kaupti toliau</a></div>';
 }
 }
@@ -1466,7 +1466,7 @@ echo'</div>';
 else{
 echo '<div class="meniuc"><img src=img/unisavybes/'.$tech.'.jpg border="1" width="180" height="90"></div>';
 echo'<div class="meniuc">Sėkmingai! Sukaupėte visą <b>'.$tech2.'</b> '.$energyi.' energiją už <b>2000</b>'.$eurui.'!</div>';
-mysql_query("UPDATE zaidejai SET kenergija9=kenergija9+'50000', sms_litai=sms_litai-'2000', Kamehameha2='+' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET kenergija9=kenergija9+'50000', sms_litai=sms_litai-'2000', Kamehameha2='+' WHERE nick='$nick'");
 
 }
 
@@ -1525,7 +1525,7 @@ echo'</div>';
        echo '<div class="meniuc"><img src=img/unisavybes/'.$tech.'.jpg border="1" width="180" height="90"></div>';
  echo '<div class="meniuc">Sėkmingai! +<b> 100 '.$energyi.' energijos</b> Išviso sukaupęs: <b>'.$apie[$energija].'</b> '.$energyi.' energijos!</div>';
 
-mysql_query("UPDATE zaidejai SET kenergija9=kenergija9+'100', sms_litai=sms_litai-'2' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET kenergija9=kenergija9+'100', sms_litai=sms_litai-'2' WHERE nick='$nick'");
 echo'<div class="meniuc"><a href="?id=kaupiu9&kodas='.$kodas.'">Kaupti toliau</a></div>';
 }
 }
@@ -1591,7 +1591,7 @@ echo'</div>';
 else{
 echo '<div class="meniuc"><img src=img/unisavybes/'.$tech.'.jpg border="1" width="180" height="90"></div>';
 echo'<div class="meniuc">Sėkmingai! Sukaupėte visą <b>'.$tech2.'</b> '.$energyi.' energiją už <b>3000</b>'.$eurui.'!</div>';
-mysql_query("UPDATE zaidejai SET kenergija10=kenergija10+'50000', sms_litai=sms_litai-'3000', Changed='+' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET kenergija10=kenergija10+'50000', sms_litai=sms_litai-'3000', Changed='+' WHERE nick='$nick'");
 
 }
 
@@ -1650,7 +1650,7 @@ echo'</div>';
        echo '<div class="meniuc"><img src=img/unisavybes/'.$tech.'.jpg border="1" width="180" height="90"></div>';
  echo '<div class="meniuc">Sėkmingai! +<b> 100 '.$energyi.' energijos</b> Išviso sukaupęs: <b>'.$apie[$energija].'</b> '.$energyi.' energijos!</div>';
 
-mysql_query("UPDATE zaidejai SET kenergija10=kenergija10+'100', sms_litai=sms_litai-'3' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET kenergija10=kenergija10+'100', sms_litai=sms_litai-'3' WHERE nick='$nick'");
 echo'<div class="meniuc"><a href="?id=kaupiu10&kodas='.$kodas.'">Kaupti toliau</a></div>';
 }
 }
@@ -1717,7 +1717,7 @@ echo'</div>';
 else{
 echo '<div class="meniuc"><img src=img/unisavybes/'.$tech.'.jpg border="1" width="180" height="90"></div>';
 echo'<div class="meniuc">Sėkmingai! Sukaupėte visą <b>'.$tech2.'</b> '.$energyi.' energiją už <b>3000</b>'.$eurui.'!</div>';
-mysql_query("UPDATE zaidejai SET kenergija11=kenergija11+'50000', sms_litai=sms_litai-'3000', Begone='+' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET kenergija11=kenergija11+'50000', sms_litai=sms_litai-'3000', Begone='+' WHERE nick='$nick'");
 
 }
 
@@ -1776,7 +1776,7 @@ echo'</div>';
        echo '<div class="meniuc"><img src=img/unisavybes/'.$tech.'.jpg border="1" width="180" height="90"></div>';
  echo '<div class="meniuc">Sėkmingai! +<b> 100 '.$energyi.' energijos</b> Išviso sukaupęs: <b>'.$apie[$energija].'</b> '.$energyi.' energijos!</div>';
 
-mysql_query("UPDATE zaidejai SET kenergija11=kenergija11+'100', sms_litai=sms_litai-'3' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET kenergija11=kenergija11+'100', sms_litai=sms_litai-'3' WHERE nick='$nick'");
 echo'<div class="meniuc"><a href="?id=kaupiu11&kodas='.$kodas.'">Kaupti toliau</a></div>';
 }
 }
@@ -1843,7 +1843,7 @@ echo'</div>';
 else{
 echo '<div class="meniuc"><img src=img/unisavybes/'.$tech.'.jpg border="1" width="180" height="90"></div>';
 echo'<div class="meniuc">Sėkmingai! Sukaupėte visą <b>'.$tech2.'</b> '.$energyi.' energiją už <b>6000</b>'.$eurui.'!</div>';
-mysql_query("UPDATE zaidejai SET kenergija12=kenergija12+'50000', sms_litai=sms_litai-'6000', Regeneration='+' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET kenergija12=kenergija12+'50000', sms_litai=sms_litai-'6000', Regeneration='+' WHERE nick='$nick'");
 
 }
 
@@ -1902,7 +1902,7 @@ echo'</div>';
        echo '<div class="meniuc"><img src=img/unisavybes/'.$tech.'.jpg border="1" width="180" height="90"></div>';
  echo '<div class="meniuc">Sėkmingai! +<b> 100 '.$energyi.' energijos</b> Išviso sukaupęs: <b>'.$apie[$energija].'</b> '.$energyi.' energijos!</div>';
 
-mysql_query("UPDATE zaidejai SET kenergija12=kenergija12+'100', sms_litai=sms_litai-'6' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET kenergija12=kenergija12+'100', sms_litai=sms_litai-'6' WHERE nick='$nick'");
 echo'<div class="meniuc"><a href="?id=kaupiu12&kodas='.$kodas.'">Kaupti toliau</a></div>';
 }
 }
@@ -1969,7 +1969,7 @@ echo'</div>';
 else{
 echo '<div class="meniuc"><img src=img/unisavybes/'.$tech.'.jpg border="1" width="180" height="90"></div>';
 echo'<div class="meniuc">Sėkmingai! Sukaupėte visą <b>'.$tech2.'</b> '.$energyi.' energiją už <b>5000</b>'.$eurui.'!</div>';
-mysql_query("UPDATE zaidejai SET kenergija13=kenergija13+'50000', sms_litai=sms_litai-'5000', ArmBreak='+' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET kenergija13=kenergija13+'50000', sms_litai=sms_litai-'5000', ArmBreak='+' WHERE nick='$nick'");
 
 }
 
@@ -2028,7 +2028,7 @@ echo'</div>';
        echo '<div class="meniuc"><img src=img/unisavybes/'.$tech.'.jpg border="1" width="180" height="90"></div>';
  echo '<div class="meniuc">Sėkmingai! +<b> 100 '.$energyi.' energijos</b> Išviso sukaupęs: <b>'.$apie[$energija].'</b> '.$energyi.' energijos!</div>';
 
-mysql_query("UPDATE zaidejai SET kenergija13=kenergija13+'100', sms_litai=sms_litai-'5' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET kenergija13=kenergija13+'100', sms_litai=sms_litai-'5' WHERE nick='$nick'");
 echo'<div class="meniuc"><a href="?id=kaupiu13&kodas='.$kodas.'">Kaupti toliau</a></div>';
 }
 }
@@ -2095,7 +2095,7 @@ echo'</div>';
 else{
 echo '<div class="meniuc"><img src=img/unisavybes/'.$tech.'.jpg border="1" width="180" height="90"></div>';
 echo'<div class="meniuc">Sėkmingai! Sukaupėte visą <b>'.$tech2.'</b> '.$energyi.' energiją už <b>7000</b>'.$eurui.'!</div>';
-mysql_query("UPDATE zaidejai SET kenergija14=kenergija14+'50000', sms_litai=sms_litai-'7000', Healing='+' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET kenergija14=kenergija14+'50000', sms_litai=sms_litai-'7000', Healing='+' WHERE nick='$nick'");
 
 }
 
@@ -2154,7 +2154,7 @@ echo'</div>';
        echo '<div class="meniuc"><img src=img/unisavybes/'.$tech.'.jpg border="1" width="180" height="90"></div>';
  echo '<div class="meniuc">Sėkmingai! +<b> 100 '.$energyi.' energijos</b> Išviso sukaupęs: <b>'.$apie[$energija].'</b> '.$energyi.' energijos!</div>';
 
-mysql_query("UPDATE zaidejai SET kenergija14=kenergija14+'100', sms_litai=sms_litai-'7' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET kenergija14=kenergija14+'100', sms_litai=sms_litai-'7' WHERE nick='$nick'");
 echo'<div class="meniuc"><a href="?id=kaupiu14&kodas='.$kodas.'">Kaupti toliau</a></div>';
 }
 }
@@ -2220,7 +2220,7 @@ echo'</div>';
 else{
 echo '<div class="meniuc"><img src=img/unisavybes/'.$tech.'.jpg border="1" width="180" height="90"></div>';
 echo'<div class="meniuc">Sėkmingai! Sukaupėte visą <b>'.$tech2.'</b> '.$energyi.' energiją už <b>6000</b>'.$eurui.'!</div>';
-mysql_query("UPDATE zaidejai SET kenergija15=kenergija15+'50000', sms_litai=sms_litai-'6000', AngryBulma='+' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET kenergija15=kenergija15+'50000', sms_litai=sms_litai-'6000', AngryBulma='+' WHERE nick='$nick'");
 
 }
 
@@ -2279,7 +2279,7 @@ echo'</div>';
        echo '<div class="meniuc"><img src=img/unisavybes/'.$tech.'.jpg border="1" width="180" height="90"></div>';
  echo '<div class="meniuc">Sėkmingai! +<b> 100 '.$energyi.' energijos</b> Išviso sukaupęs: <b>'.$apie[$energija].'</b> '.$energyi.' energijos!</div>';
 
-mysql_query("UPDATE zaidejai SET kenergija15=kenergija15+'100', sms_litai=sms_litai-'6' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET kenergija15=kenergija15+'100', sms_litai=sms_litai-'6' WHERE nick='$nick'");
 echo'<div class="meniuc"><a href="?id=kaupiu15&kodas='.$kodas.'">Kaupti toliau</a></div>';
 }
 }
@@ -2332,9 +2332,9 @@ else{
 	echo'	<div class="meniuc">	<img src="img/veikejai/Vegito-0.png"><br> Nusipirkai už 1250  <b><font color="red">Pasiekimų taškų</b></font> , 500 <img src="img/bicons/credit.png">,  200 <img src="img/bicons/euro.png">
  </div> ';		
 
-mysql_query("UPDATE inv SET  unikalus=unikalus-'1250' WHERE nick='$nick'");
-	mysql_query("UPDATE zaidejai SET veikejas='Vegito', trans='0', sms_litai=sms_litai-'200', kred=kred-'500' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET billsb='$timxx' WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE inv SET  unikalus=unikalus-'1250' WHERE nick='$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET veikejas='Vegito', trans='0', sms_litai=sms_litai-'200', kred=kred-'500' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET billsb='$timxx' WHERE nick='$nick' ");
 }
 
 if($apie['vedzekasb']-time() > 0){
@@ -2364,8 +2364,8 @@ elseif($id == "vegito1112"){
 		
         
    
-	    mysql_query("UPDATE zaidejai SET  veikejas='Vegito', trans='0', vegito='+' WHERE nick='$nick'");
-		  mysql_query("DELETE FROM transformacijos WHERE nick='$nick'");
+	    mysqli_query($conn,"UPDATE zaidejai SET  veikejas='Vegito', trans='0', vegito='+' WHERE nick='$nick'");
+		  mysqli_query($conn,"DELETE FROM transformacijos WHERE nick='$nick'");
     }
  
 	}}
@@ -2404,8 +2404,8 @@ elseif($id == "gotenks2"){
 		
         
    
-	    mysql_query("UPDATE zaidejai SET  veikejas='Gotenks', trans='0', gotenks='+' WHERE nick='$nick'");
-	      mysql_query("DELETE FROM transformacijos WHERE nick='$nick'");
+	    mysqli_query($conn,"UPDATE zaidejai SET  veikejas='Gotenks', trans='0', gotenks='+' WHERE nick='$nick'");
+	      mysqli_query($conn,"DELETE FROM transformacijos WHERE nick='$nick'");
     }}
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php","Skilai","Gotenks");
 	navigacija($g_n);
@@ -2413,7 +2413,7 @@ elseif($id == "gotenks2"){
 if($id == "trans"){
     online('Transformacijos');
    top('Trasnsformacijos');
-   $rrr =	mysql_fetch_assoc(mysql_query("SELECT * FROM veikejai WHERE name = '$apie[veikejas]'"));
+   $rrr =	mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM veikejai WHERE name = '$apie[veikejas]'"));
     if($ka == "OK"){
         if($apie['trans'] >= $rrr[trans]){
             echo '<div class="meniuc">Jūs daugiau nebegalitę transformuotis!</div>';
@@ -2431,7 +2431,7 @@ if($id == "trans"){
             $tr = $apie['trans']+1;
             
            
-            mysql_query("UPDATE zaidejai SET jega='$trans_jegos2', gynyba='$trans_gynybos2', trans=trans+'1' WHERE nick='$nick' ") or die(mysql_meniuc());
+            mysqli_query($conn,"UPDATE zaidejai SET jega='$trans_jegos2', gynyba='$trans_gynybos2', trans=trans+'1' WHERE nick='$nick' ") or die(mysqli_meniuc());
             
         }
     } else {
@@ -2493,8 +2493,8 @@ if($id == 'mokau_kita'){
 	
 top("Susijungimo šokis");
 $mokau = post($_POST[mokau]);
-$k_zai = mysql_fetch_assoc(mysql_query("SELECT * FROM susijungimas WHERE nick='$mokau'"));
-if(mysql_num_rows(mysql_query("SELECT * FROM zaidejai WHERE nick='$mokau'"))== false){
+$k_zai = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM susijungimas WHERE nick='$mokau'"));
+if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM zaidejai WHERE nick='$mokau'"))== false){
 	
 	 echo '<div class="meniuc">Tokio žaidėjo nėra</div>';
 	
@@ -2511,11 +2511,11 @@ elseif($k_zai['fusion_dance'] == '+'){
    
        } else {
           echo '<div class="meniuc">Sėkmingai išmokiai '.statusas($mokau).' <b>Susijungimo šokio</b>.</div>';
-          mysql_query("UPDATE susijungimas SET fusion_dance='+' WHERE nick='$mokau' ");
-          mysql_query("UPDATE inv SET Fusionfail=Fusionfail-'500' WHERE nick='$nick' ")or die(mysql_error());
-		  mysql_query("UPDATE zaidejai set potara = '+' WHERE nick = '$mokau'");
+          mysqli_query($conn,"UPDATE susijungimas SET fusion_dance='+' WHERE nick='$mokau' ");
+          mysqli_query($conn,"UPDATE inv SET Fusionfail=Fusionfail-'500' WHERE nick='$nick' ")or die(mysqli_error());
+		  mysqli_query($conn,"UPDATE zaidejai set potara = '+' WHERE nick = '$mokau'");
 		  $txt =''.statusas($nick).' išmokė tave susijungimo šokio.';	
-		    mysql_query("INSERT INTO pm SET what='SUPPORT', txt='$txt', gavejas='$mokau', time='".time()."', nauj='NEW' ") or die(mysql_error());
+		    mysqli_query($conn,"INSERT INTO pm SET what='SUPPORT', txt='$txt', gavejas='$mokau', time='".time()."', nauj='NEW' ") or die(mysqli_error());
          
        }
 	  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php","Skillai","Susijungimo šokis");
@@ -2528,8 +2528,8 @@ elseif($k_zai['fusion_dance'] == '+'){
   if($id == "fusion"){
    	top('Susijungimo šokis');
     online('Susijungimo šokis');
-    $fsn = mysql_fetch_assoc(mysql_query("SELECT * FROM susijungimas WHERE nick='$nick' "));
-    $fsn2 = mysql_fetch_assoc(mysql_query("SELECT * FROM susijungimas WHERE nick='$fsn[kitas_zaidejas]' "));
+    $fsn = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM susijungimas WHERE nick='$nick' "));
+    $fsn2 = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM susijungimas WHERE nick='$fsn[kitas_zaidejas]' "));
     if($fsn['ar_susijungias'] == "") $su_kuo = 'Niekuo'; else $su_kuo = $fsn['kitas_zaidejas'];
     
     echo '<div class="meniuc"><img src="img/imgg/sokis.png" alt="*"></div>';
@@ -2579,8 +2579,8 @@ elseif($k_zai['fusion_dance'] == '+'){
           echo '<div class="meniuc">Tu nesi susijunges su <b>'.statusas($ID).'</b>!</div>';
        } else {
           echo '<div class="meniuc">Sėkmingai atsijungei nuo <b>'.statusas($ID).'</b>!</div>';
-          mysql_query("UPDATE susijungimas SET ar_susijungias='', kitas_zaidejas='', uzdirbo_exp='0' WHERE nick='$nick'");
-          mysql_query("UPDATE susijungimas SET ar_susijungias='', kitas_zaidejas='', uzdirbo_exp='0' WHERE nick='$ID'");
+          mysqli_query($conn,"UPDATE susijungimas SET ar_susijungias='', kitas_zaidejas='', uzdirbo_exp='0' WHERE nick='$nick'");
+          mysqli_query($conn,"UPDATE susijungimas SET ar_susijungias='', kitas_zaidejas='', uzdirbo_exp='0' WHERE nick='$ID'");
        }
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php","Skillai","Susijungimo šokis");
 	navigacija($g_n);
@@ -2600,9 +2600,9 @@ elseif($k_zai['fusion_dance'] == '+'){
    
        } else {
           echo '<div class="meniuc">Sėkmingai išmokai <b>Susijungimo šokį</b>.</div>';
-          mysql_query("UPDATE susijungimas SET fusion_dance='+' WHERE nick='$nick' ");
-          mysql_query("UPDATE inv SET Fusionfail=Fusionfail-'500' WHERE nick='$nick' ")or die(mysql_error());
-		  mysql_query("UPDATE zaidejai set potara = '+' WHERE nick = '$nick'");
+          mysqli_query($conn,"UPDATE susijungimas SET fusion_dance='+' WHERE nick='$nick' ");
+          mysqli_query($conn,"UPDATE inv SET Fusionfail=Fusionfail-'500' WHERE nick='$nick' ")or die(mysqli_error());
+		  mysqli_query($conn,"UPDATE zaidejai set potara = '+' WHERE nick = '$nick'");
          
        }
 	  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php","Skillai","Susijungimo šokis");
@@ -2634,9 +2634,9 @@ elseif($k_zai['fusion_dance'] == '+'){
    
        } else {
           echo '<div class="meniuc">Sėkmingai išmokai <b>Susijungimo šokį</b>.</div>';
-          mysql_query("UPDATE susijungimas SET double_fussion_dance='+' WHERE nick='$nick' ");
-          mysql_query("UPDATE inv SET Fusionfail=Fusionfail-'500' WHERE nick='$nick' ")or die(mysql_error());
-		  mysql_query("UPDATE zaidejai set potara = '+' WHERE nick = '$nick'");
+          mysqli_query($conn,"UPDATE susijungimas SET double_fussion_dance='+' WHERE nick='$nick' ");
+          mysqli_query($conn,"UPDATE inv SET Fusionfail=Fusionfail-'500' WHERE nick='$nick' ")or die(mysqli_error());
+		  mysqli_query($conn,"UPDATE zaidejai set potara = '+' WHERE nick = '$nick'");
          
        }
 	  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php","Skillai","Susijungimo šokis");
@@ -2649,10 +2649,10 @@ elseif($k_zai['fusion_dance'] == '+'){
        if(empty($fsn['ar_kvieti'])){
           echo '<div class="meniuc">Tu nieko nekvieti susijungti!</div>';
        } else {
-          $fsnn = mysql_fetch_assoc(mysql_query("SELECT * FROM susijungimas WHERE nick='$nick' "));
+          $fsnn = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM susijungimas WHERE nick='$nick' "));
           echo '<div class="meniuc">Sėkmingai atšauktas kvietmas!</div>';
-          mysql_query("UPDATE susijungimas SET kas_kviecia='' WHERE nick='$fsnn[ka_kvieti]' ");
-          mysql_query("UPDATE susijungimas SET ar_kvieti='', ka_kvieti='' WHERE nick='$nick' ");
+          mysqli_query($conn,"UPDATE susijungimas SET kas_kviecia='' WHERE nick='$fsnn[ka_kvieti]' ");
+          mysqli_query($conn,"UPDATE susijungimas SET ar_kvieti='', ka_kvieti='' WHERE nick='$nick' ");
        } $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php","Skillai","Susijungimo šokis");
 	navigacija($g_n);}
 		 
@@ -2661,12 +2661,12 @@ elseif($k_zai['fusion_dance'] == '+'){
        if(empty($fsn['kas_kviecia'])){
           echo '<div class="meniuc">Taves niekas nekviečia susijungti!</div>';
        }
-       elseif(mysql_num_rows(mysql_query("SELECT * FROM zaidejai WHERE nick='$ID'")) == 0){
+       elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM zaidejai WHERE nick='$ID'")) == 0){
           echo '<div class="meniuc">Toks žaidėjas neegzistuoja!</div>';
        } else {
           echo '<div class="meniuc">Sėkmingai priėmei <b>'.statusas($ID).'</b> pasiūlymą susijungti!</div>';
-          mysql_query("UPDATE susijungimas SET ar_susijungias='+', kitas_zaidejas='$nick', ar_kvieti='', ka_kvieti='' WHERE nick='$ID'");
-          mysql_query("UPDATE susijungimas SET ar_susijungias='+', kitas_zaidejas='$ID', kas_kviecia='' WHERE nick='$nick'");
+          mysqli_query($conn,"UPDATE susijungimas SET ar_susijungias='+', kitas_zaidejas='$nick', ar_kvieti='', ka_kvieti='' WHERE nick='$ID'");
+          mysqli_query($conn,"UPDATE susijungimas SET ar_susijungias='+', kitas_zaidejas='$ID', kas_kviecia='' WHERE nick='$nick'");
        }
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php","Skillai","Susijungimo šokis");
 	navigacija($g_n);
@@ -2675,12 +2675,12 @@ elseif($k_zai['fusion_dance'] == '+'){
        if(empty($fsn['kas_kviecia'])){
           echo '<div class="meniuc">Taves niekas nekviečia susijungti!</div>';
        }
-       elseif(mysql_num_rows(mysql_query("SELECT * FROM zaidejai WHERE nick='$ID'")) == 0){
+       elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM zaidejai WHERE nick='$ID'")) == 0){
           echo '<div class="meniuc">Toks žaidėjas neegzistuoja!</div>';
        } else {
           echo '<div class="meniuc">Sėkmingai priėmei <b>'.statusas($ID).'</b> pasiūlymą susijungti!</div>';
-          mysql_query("UPDATE susijungimas SET ar_susijungias='+', kitas_zaidejas='$nick', ar_kvieti='', ka_kvieti='' WHERE nick='$ID'");
-          mysql_query("UPDATE susijungimas SET ar_susijungias='+', kitas_zaidejas='$ID', kas_kviecia='' WHERE nick='$nick'");
+          mysqli_query($conn,"UPDATE susijungimas SET ar_susijungias='+', kitas_zaidejas='$nick', ar_kvieti='', ka_kvieti='' WHERE nick='$ID'");
+          mysqli_query($conn,"UPDATE susijungimas SET ar_susijungias='+', kitas_zaidejas='$ID', kas_kviecia='' WHERE nick='$nick'");
        }}
   
    if($id == "atmesti"){
@@ -2688,19 +2688,19 @@ elseif($k_zai['fusion_dance'] == '+'){
        if(empty($fsn['kas_kviecia'])){
           echo '<div class="meniuc">Tu nesi susijungęs!</div>';
        }
-       elseif(mysql_num_rows(mysql_query("SELECT * FROM zaidejai WHERE nick='$ID'")) == 0){
+       elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM zaidejai WHERE nick='$ID'")) == 0){
           echo '<div class="meniuc">Toks žaidėjas neegzistuoja!</div>';
        } else {
           echo '<div class="meniuc">Sėkmingai atmetei <b>'.statusas($ID).'</b> pasiūlymą susijungti!</div>';
-          mysql_query("UPDATE susijungimas SET ar_kvieti='', ka_kvieti='' WHERE nick='$ID'");
-	        mysql_query("UPDATE susijungimas SET kas_kviecia='' WHERE nick='$nick'");
+          mysqli_query($conn,"UPDATE susijungimas SET ar_kvieti='', ka_kvieti='' WHERE nick='$ID'");
+	        mysqli_query($conn,"UPDATE susijungimas SET kas_kviecia='' WHERE nick='$nick'");
        } $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php","Skillai","Susijungimo šokis");
 	navigacija($g_n);}
    if($id == 'kviesti'){
    	top("Susijungimo šokis");
 	 if(isset($_POST['submit'])){
           $kak = post($_POST['kvieciu']);
-          $fsnn = mysql_fetch_assoc(mysql_query("SELECT * FROM susijungimas WHERE nick='$kak' "));
+          $fsnn = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM susijungimas WHERE nick='$kak' "));
           if(empty($kak)){
              echo '<div class="meniuc">Palikai tuščią laukelį!</div>';
           }
@@ -2727,15 +2727,15 @@ elseif($k_zai['fusion_dance'] == '+'){
           elseif(!empty($fsnn['kas_kviecia'])){
              echo '<div class="meniuc">Žaidėją <b>'.statusas($kak).'</b> jau kviečia susijungti!</div>';
           }
-          elseif(mysql_num_rows(mysql_query("SELECT * FROM zaidejai WHERE nick='$kak'")) == 0){
+          elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM zaidejai WHERE nick='$kak'")) == 0){
              echo '<div class="meniuc">Toks žaidėjas neegzistuoja!</div>';
           }
           elseif(!empty($fsn['ar_kvieti'])){
              echo '<div class="meniuc">Tu jau kažką kvieti susijungti!</div>';
           } else {
              echo '<div class="meniuc">Kvietimas susijungti sėkmingai išsiūstas žaidėjui <b>'.statusas($kak).'</b>!</div>';
-             mysql_query("UPDATE susijungimas SET ar_kvieti='taip', ka_kvieti='$kak' WHERE nick='$nick' ");
-             mysql_query("UPDATE susijungimas SET kas_kviecia='$nick' WHERE nick='$kak' ");
+             mysqli_query($conn,"UPDATE susijungimas SET ar_kvieti='taip', ka_kvieti='$kak' WHERE nick='$nick' ");
+             mysqli_query($conn,"UPDATE susijungimas SET kas_kviecia='$nick' WHERE nick='$kak' ");
           }
 
        }
@@ -2784,8 +2784,8 @@ if($id == 'improve2'){
 	
 	else{
 		
-		mysql_query("UPDATE zaidejai SET jega='$jeggg', gynyba = '$gynnn', sms_litai=sms_litai-'$eur' WHERE nick='$nick'")or die(mysql_error());
-		mysql_query("UPDATE user SET tech=tech+'1' WHERE nick='$nick'")or die(mysql_error());
+		mysqli_query($conn,"UPDATE zaidejai SET jega='$jeggg', gynyba = '$gynnn', sms_litai=sms_litai-'$eur' WHERE nick='$nick'")or die(mysqli_error());
+		mysqli_query($conn,"UPDATE user SET tech=tech+'1' WHERE nick='$nick'")or die(mysqli_error());
 		echo'	<div class="meniuc"><img src="img/bicons/lvl.gif"> sėkmingai pakeltas!<br> Už pakeltą <img src="img/bicons/lvl.gif"> gavai: <b>'.$jeg2.' </b> <img src="img/bicons/attack.png"> ir <b>'.$gyn2.' <img src="img/bicons/shield.png">!</div>';	
 	}
 	
@@ -2829,8 +2829,8 @@ if($id == suka444upti){
 		else{
 			
 			
-			mysql_query("UPDATE inv SET Pupos=Pupos-'1' WHERE nick='$nick'");
-			mysql_query("UPDATE zaidejai SET energy='$apie[energy_max]' WHERE nick='$nick'");	
+			mysqli_query($conn,"UPDATE inv SET Pupos=Pupos-'1' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE zaidejai SET energy='$apie[energy_max]' WHERE nick='$nick'");	
 			echo'<div class="meniuc">Energija sukaupta</div>';
 			
 				}
@@ -2876,7 +2876,7 @@ if($id =='didinti2'){
 	          } else {
 	              echo '<div class="meniuc">Atlikta! Pasididinai energijos antplitude</div>';
 	           
-	            mysql_query("UPDATE zaidejai SET energy_max=energy_max +'$kiekis', kred=kred-'$lvl' WHERE nick='$nick' ");
+	            mysqli_query($conn,"UPDATE zaidejai SET energy_max=energy_max +'$kiekis', kred=kred-'$lvl' WHERE nick='$nick' ");
 			  }
 		
 	  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php","Skillai","skill.php?id=energy","Energijos anplitude", "Energijos anplitudės didinimas");
@@ -2924,7 +2924,7 @@ echo "<div class='meniuc'>Šį manevrą tu jau moki!</div>";
 }
 else{
 echo "<div class='meniuc'>Sėkmingai išmokai persikėlimo manevrą</div>";
-mysql_query("UPDATE zaidejai SET sms_litai=sms_litai-30, kred=kred-1000, persikelimo_manevras='+' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai-30, kred=kred-1000, persikelimo_manevras='+' WHERE nick='$nick'");
 }
 
 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php","Skillai","?id=persikelimas", "Persikėlimo manevras", "Persikėlimo manevro mokymasis");

@@ -9,11 +9,10 @@ include_once 'cfg/sql.php';
 
 head();
 baneris();
-echo'';
-elseif($id == "news"){
+if($id == "news"){
           top('Naujienos');
 	
-          $viso = mysql_result(mysql_query("SELECT COUNT(*) FROM news"),0);
+          $viso = mysqli_fetch_row(mysqli_query($conn, "SELECT COUNT(*) FROM news"))[0];
 		   echo'<div class="meniuc">Viso atnaujinimu : '.$viso.'</div>';
        if($viso > 0){
         $rezultatu_rodymas=7;
@@ -21,9 +20,9 @@ elseif($id == "news"){
             if (empty($psl) or $psl < 0) $psl = 1;
             if ($psl > $total) $psl = $total;
             $nuo_kiek=$psl*$rezultatu_rodymas-$rezultatu_rodymas;
-          $q = mysql_query("SELECT * FROM news ORDER BY id DESC LIMIT $nuo_kiek, $rezultatu_rodymas");
+          $q = mysqli_query($conn,"SELECT * FROM news ORDER BY id DESC LIMIT $nuo_kiek, $rezultatu_rodymas");
           $puslapiu = ceil($viso/$rezultatu_rodymas);
-          while($row = mysql_fetch_assoc($q)){
+          while($row = mysqli_fetch_assoc($q)){
           	echo'<div class="meniu">
            '.$ico.'  <b>Atnaujinimas</b>: '.smile($row['name']).'</a><br/>
            '.$ico.'   <b>Atliko atnaujinimą</b> : @'.$row[kas].'<br/>

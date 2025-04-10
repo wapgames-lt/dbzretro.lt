@@ -28,8 +28,8 @@ Iki šios savaitės TOP'o pabaigos liko <b>".laikas($nust['savaites_topas_liko']
 
 echo "<div class='up'>Šios savaitės TOP3:</div>";
 echo "<div class='meniu'>";
-$query = mysql_query("SELECT * FROM s_top ORDER BY (0+ vksm) DESC LIMIT 0,3");
-while($row = mysql_fetch_assoc($query)){
+$query = mysqli_query($conn,"SELECT * FROM s_top ORDER BY (0+ vksm) DESC LIMIT 0,3");
+while($row = mysqli_fetch_assoc($query)){
 $vt++;
 echo " <b>".$vt."</b>. <a href='pagrindinis.php?id=apie&ka=".$row['nick']."'>  ".$row['nick']."</a> -  ".sk($row['vksm'])." <img src='img/bicons/attack1.png'/><br/>";
 }

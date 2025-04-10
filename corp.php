@@ -318,10 +318,10 @@ else{
       echo '<div class="meniuc">Pasigaminai <b>Trankso kardą </b>sėkmingai!</div>
 <div class="meniuc">Sumokėjai <font color="red">2000 </font><b>Fusion Fail, </b><font color="blue">2</font>mlrd. <img src="img/bicons/pinigai.png"> bei <font color="blue">50 </font><img src="img/bicons/euro.png">
 </div>';
-     mysql_query("UPDATE inv SET Fusionfail=Fusionfail-'2000' WHERE nick='$nick'")or die(mysql_error());
-   mysql_query("UPDATE zaidejai SET litai=litai-'1999999999', sms_litai=sms_litai-'50' WHERE nick='$nick'")or die(mysql_error());
-     mysql_query("UPDATE inv SET Trankso_kardas=Trankso_kardas+'1' WHERE nick='$nick'");
-  mysql_query("UPDATE zaidejai SET sword='Trankso kardas' WHERE nick='$nick'");
+     mysqli_query($conn,"UPDATE inv SET Fusionfail=Fusionfail-'2000' WHERE nick='$nick'")or die(mysqli_error());
+   mysqli_query($conn,"UPDATE zaidejai SET litai=litai-'1999999999', sms_litai=sms_litai-'50' WHERE nick='$nick'")or die(mysqli_error());
+     mysqli_query($conn,"UPDATE inv SET Trankso_kardas=Trankso_kardas+'1' WHERE nick='$nick'");
+  mysqli_query($conn,"UPDATE zaidejai SET sword='Trankso kardas' WHERE nick='$nick'");
    }
   $g_n[] = array("pagrindinis.php?id=","Pagrindinis","corp.php", "Kapsulių korporacija", "Ginklo gaminimas");
 	navigacija($g_n);
@@ -361,10 +361,10 @@ else{
 
 
 </div>';
-     mysql_query("UPDATE inv SET Goldstone=Goldstone-'4000' WHERE nick='$nick'")or die(mysql_error());
-   mysql_query("UPDATE zaidejai SET litai=litai-'1999999999', sms_litai=sms_litai-'120' WHERE nick='$nick'")or die(mysql_error());
-     mysql_query("UPDATE inv SET Gold_sword=Gold_sword+'1' WHERE nick='$nick'");
-  mysql_query("UPDATE zaidejai SET sword='Gold sword' WHERE nick='$nick'");
+     mysqli_query($conn,"UPDATE inv SET Goldstone=Goldstone-'4000' WHERE nick='$nick'")or die(mysqli_error());
+   mysqli_query($conn,"UPDATE zaidejai SET litai=litai-'1999999999', sms_litai=sms_litai-'120' WHERE nick='$nick'")or die(mysqli_error());
+     mysqli_query($conn,"UPDATE inv SET Gold_sword=Gold_sword+'1' WHERE nick='$nick'");
+  mysqli_query($conn,"UPDATE zaidejai SET sword='Gold sword' WHERE nick='$nick'");
    }
   $g_n[] = array("pagrindinis.php?id=","Pagrindinis","corp.php", "Kapsulių korporacija", "Ginklo gaminimas");
 	navigacija($g_n);
@@ -404,10 +404,10 @@ else{
 
 
 </div>';
-     mysql_query("UPDATE inv SET Energystone=Energystone-'7000' WHERE nick='$nick'")or die(mysql_error());
-   mysql_query("UPDATE zaidejai SET litai=litai-'3999999999', sms_litai=sms_litai-'150' WHERE nick='$nick'")or die(mysql_error());
-     mysql_query("UPDATE inv SET Gold_armor=Gold_armor+'1' WHERE nick='$nick'");
-  mysql_query("UPDATE zaidejai SET armor='Gold armor' WHERE nick='$nick'");
+     mysqli_query($conn,"UPDATE inv SET Energystone=Energystone-'7000' WHERE nick='$nick'")or die(mysqli_error());
+   mysqli_query($conn,"UPDATE zaidejai SET litai=litai-'3999999999', sms_litai=sms_litai-'150' WHERE nick='$nick'")or die(mysqli_error());
+     mysqli_query($conn,"UPDATE inv SET Gold_armor=Gold_armor+'1' WHERE nick='$nick'");
+  mysqli_query($conn,"UPDATE zaidejai SET armor='Gold armor' WHERE nick='$nick'");
    }
   $g_n[] = array("pagrindinis.php?id=","Pagrindinis","corp.php", "Kapsulių korporacija", "Armor gaminimas");
 	navigacija($g_n);
@@ -447,10 +447,10 @@ else{
 
 
 </div>';
-     mysql_query("UPDATE inv SET Powerstone=Powerstone-'5000' WHERE nick='$nick'")or die(mysql_error());
-   mysql_query("UPDATE zaidejai SET litai=litai-'4999999999', sms_litai=sms_litai-'250' WHERE nick='$nick'")or die(mysql_error());
-     mysql_query("UPDATE inv SET Time_sword=Time_sword+'1' WHERE nick='$nick'");
-  mysql_query("UPDATE zaidejai SET sword='Time sword' WHERE nick='$nick'");
+     mysqli_query($conn,"UPDATE inv SET Powerstone=Powerstone-'5000' WHERE nick='$nick'")or die(mysqli_error());
+   mysqli_query($conn,"UPDATE zaidejai SET litai=litai-'4999999999', sms_litai=sms_litai-'250' WHERE nick='$nick'")or die(mysqli_error());
+     mysqli_query($conn,"UPDATE inv SET Time_sword=Time_sword+'1' WHERE nick='$nick'");
+  mysqli_query($conn,"UPDATE zaidejai SET sword='Time sword' WHERE nick='$nick'");
    }
   $g_n[] = array("pagrindinis.php?id=","Pagrindinis","corp.php", "Kapsulių korporacija", "Ginklo gaminimas");
 	navigacija($g_n);
@@ -490,10 +490,10 @@ else{
 
 
 </div>';
-     mysql_query("UPDATE inv SET Magicball=Magicball-'10000' WHERE nick='$nick'")or die(mysql_error());
-   mysql_query("UPDATE zaidejai SET litai=litai-'7999999999', sms_litai=sms_litai-'300' WHERE nick='$nick'")or die(mysql_error());
-     mysql_query("UPDATE inv SET Money_armor=Money_armor+'1' WHERE nick='$nick'");
-  mysql_query("UPDATE zaidejai SET armor='Money armor' WHERE nick='$nick'");
+     mysqli_query($conn,"UPDATE inv SET Magicball=Magicball-'10000' WHERE nick='$nick'")or die(mysqli_error());
+   mysqli_query($conn,"UPDATE zaidejai SET litai=litai-'7999999999', sms_litai=sms_litai-'300' WHERE nick='$nick'")or die(mysqli_error());
+     mysqli_query($conn,"UPDATE inv SET Money_armor=Money_armor+'1' WHERE nick='$nick'");
+  mysqli_query($conn,"UPDATE zaidejai SET armor='Money armor' WHERE nick='$nick'");
    }
   $g_n[] = array("pagrindinis.php?id=","Pagrindinis","corp.php", "Kapsulių korporacija", "Armor gaminimas");
 	navigacija($g_n);
@@ -536,11 +536,11 @@ else{
 
 
 </div>';
-     mysql_query("UPDATE inv SET Sayiantail=Sayiantail-'10000' WHERE nick='$nick'")or die(mysql_error());
-   mysql_query("UPDATE zaidejai SET litai=litai-'14999999999', sms_litai=sms_litai-'400' WHERE nick='$nick'")or die(mysql_error());
-     mysql_query("UPDATE inv SET Super_money_armor=Super_money_armor+'1', Money_armor=Money_armor-'1' WHERE nick='$nick'");
+     mysqli_query($conn,"UPDATE inv SET Sayiantail=Sayiantail-'10000' WHERE nick='$nick'")or die(mysqli_error());
+   mysqli_query($conn,"UPDATE zaidejai SET litai=litai-'14999999999', sms_litai=sms_litai-'400' WHERE nick='$nick'")or die(mysqli_error());
+     mysqli_query($conn,"UPDATE inv SET Super_money_armor=Super_money_armor+'1', Money_armor=Money_armor-'1' WHERE nick='$nick'");
   }
-  mysql_query("UPDATE zaidejai SET armor='Super money armor' WHERE nick='$nick'"); 
+  mysqli_query($conn,"UPDATE zaidejai SET armor='Super money armor' WHERE nick='$nick'"); 
   $g_n[] = array("pagrindinis.php?id=","Pagrindinis","corp.php", "Kapsulių korporacija", "Armor gaminimas");
 	navigacija($g_n);
    }
@@ -578,10 +578,10 @@ else{
 <div class="meniuc">Sumokėjai <font color="red">8000 </font><b>Majin Scroll, Mikroskemų </b><font color="blue">40</font>mlrd. <img src="img/bicons/pinigai.png"> bei <font color="blue">500 </font><img src="img/bicons/euro.png"><br>Bei atidavei <b>Super Money Armor</b>!
 
 </div>';
-     mysql_query("UPDATE inv SET Majinsroll=Majinsroll-'10000', Microshem=Microshem-'10000' WHERE nick='$nick'")or die(mysql_error());
-   mysql_query("UPDATE zaidejai SET litai=litai-'39999999999', sms_litai=sms_litai-'500' WHERE nick='$nick'")or die(mysql_error());
-     mysql_query("UPDATE inv SET One_tap_armor=One_tap_armor+'1', Super_money_armor=Super_money_armor-'1' WHERE nick='$nick'");
-  mysql_query("UPDATE zaidejai SET armor='Vieno kircio armor' WHERE nick='$nick'");
+     mysqli_query($conn,"UPDATE inv SET Majinsroll=Majinsroll-'10000', Microshem=Microshem-'10000' WHERE nick='$nick'")or die(mysqli_error());
+   mysqli_query($conn,"UPDATE zaidejai SET litai=litai-'39999999999', sms_litai=sms_litai-'500' WHERE nick='$nick'")or die(mysqli_error());
+     mysqli_query($conn,"UPDATE inv SET One_tap_armor=One_tap_armor+'1', Super_money_armor=Super_money_armor-'1' WHERE nick='$nick'");
+  mysqli_query($conn,"UPDATE zaidejai SET armor='Vieno kircio armor' WHERE nick='$nick'");
    }
   $g_n[] = array("pagrindinis.php?id=","Pagrindinis","corp.php", "Kapsulių korporacija", "Armor gaminimas");
 	navigacija($g_n);
@@ -620,10 +620,10 @@ else{
 <div class="meniuc">Sumokėjai <font color="red">5000 </font><b>Energy, Power Stone </b><font color="blue">80</font>mlrd. <img src="img/bicons/pinigai.png"> bei <font color="blue">800 </font><img src="img/bicons/euro.png"><br>Bei atidavei <b>Vieno kirčio Armor</b>!
 
 </div>';
-     mysql_query("UPDATE inv SET Powerstone=Powerstone-'5000', Energystone=Energystone-'4000' WHERE nick='$nick'")or die(mysql_error());
-   mysql_query("UPDATE zaidejai SET litai=litai-'79999999999', sms_litai=sms_litai-'800' WHERE nick='$nick'")or die(mysql_error());
-     mysql_query("UPDATE inv SET kg_armor=kg_armor+'1', One_tap_armor=One_tap_armor-'1' WHERE nick='$nick'");
-  mysql_query("UPDATE zaidejai SET armor='Galios armor' WHERE nick='$nick'");
+     mysqli_query($conn,"UPDATE inv SET Powerstone=Powerstone-'5000', Energystone=Energystone-'4000' WHERE nick='$nick'")or die(mysqli_error());
+   mysqli_query($conn,"UPDATE zaidejai SET litai=litai-'79999999999', sms_litai=sms_litai-'800' WHERE nick='$nick'")or die(mysqli_error());
+     mysqli_query($conn,"UPDATE inv SET kg_armor=kg_armor+'1', One_tap_armor=One_tap_armor-'1' WHERE nick='$nick'");
+  mysqli_query($conn,"UPDATE zaidejai SET armor='Galios armor' WHERE nick='$nick'");
    }
   $g_n[] = array("pagrindinis.php?id=","Pagrindinis","corp.php", "Kapsulių korporacija", "Armor gaminimas");
 	navigacija($g_n);
@@ -664,10 +664,10 @@ else{
 <div class="meniuc">Sumokėjai <font color="red">11000 </font><b>Energy Stone </b><font color="blue">220</font>mlrd. <img src="img/bicons/pinigai.png"> bei <font color="blue">2000 </font><img src="img/bicons/euro.png"><br>Bei atidavei <b>Galios Armor</b>!
 
 </div>';
-     mysql_query("UPDATE inv SET  Energystone=Energystone-'11000' WHERE nick='$nick'")or die(mysql_error());
-   mysql_query("UPDATE zaidejai SET litai=litai-'219999999999', sms_litai=sms_litai-'2000' WHERE nick='$nick'")or die(mysql_error());
-     mysql_query("UPDATE inv SET Infinity_armor=Infinity_armor+'1', kg_armor=kg_armor-'1' WHERE nick='$nick'");
-  mysql_query("UPDATE zaidejai SET armor='Infinity armor' WHERE nick='$nick'");
+     mysqli_query($conn,"UPDATE inv SET  Energystone=Energystone-'11000' WHERE nick='$nick'")or die(mysqli_error());
+   mysqli_query($conn,"UPDATE zaidejai SET litai=litai-'219999999999', sms_litai=sms_litai-'2000' WHERE nick='$nick'")or die(mysqli_error());
+     mysqli_query($conn,"UPDATE inv SET Infinity_armor=Infinity_armor+'1', kg_armor=kg_armor-'1' WHERE nick='$nick'");
+  mysqli_query($conn,"UPDATE zaidejai SET armor='Infinity armor' WHERE nick='$nick'");
    }
 }
   $g_n[] = array("pagrindinis.php?id=","Pagrindinis","corp.php", "Kapsulių korporacija", "Armor gaminimas");
@@ -710,10 +710,10 @@ else{
 <div class="meniuc">Sumokėjai <font color="red">25000 </font><b>Atgimimo Item </b><font color="blue">100</font>kvar. <img src="img/bicons/pinigai.png"> bei <font color="blue">20000 </font><img src="img/bicons/euro.png"><br>Bei atidavei <small><b>Mirties Armor, Sword ,  amulet</b></small>!
 
 </div>';
-     mysql_query("UPDATE inv SET  atgimimo_item=atgimimo_item-'25000' WHERE nick='$nick'")or die(mysql_error());
-   mysql_query("UPDATE zaidejai SET litai=litai-'99999999999999999', sms_litai=sms_litai-'20000' WHERE nick='$nick'")or die(mysql_error());
-     mysql_query("UPDATE inv SET atgimimo_armor=atgimimo_armor+'1', mirties_armor=mirties_armor-'1', mirties_sword=mirties_sword-'1', mirties_amulet=mirties_amulet-'1' WHERE nick='$nick'");
-  mysql_query("UPDATE zaidejai SET armor='Atgimimo armor' WHERE nick='$nick'");
+     mysqli_query($conn,"UPDATE inv SET  atgimimo_item=atgimimo_item-'25000' WHERE nick='$nick'")or die(mysqli_error());
+   mysqli_query($conn,"UPDATE zaidejai SET litai=litai-'99999999999999999', sms_litai=sms_litai-'20000' WHERE nick='$nick'")or die(mysqli_error());
+     mysqli_query($conn,"UPDATE inv SET atgimimo_armor=atgimimo_armor+'1', mirties_armor=mirties_armor-'1', mirties_sword=mirties_sword-'1', mirties_amulet=mirties_amulet-'1' WHERE nick='$nick'");
+  mysqli_query($conn,"UPDATE zaidejai SET armor='Atgimimo armor' WHERE nick='$nick'");
    }
 }
   $g_n[] = array("pagrindinis.php?id=","Pagrindinis","corp.php", "Kapsulių korporacija", "Armor gaminimas");
@@ -755,10 +755,10 @@ else{
 <div class="meniuc">Sumokėjai <font color="red">25000 </font><b>Atgimimo Item </b><font color="blue">200</font>kvad. <img src="img/bicons/pinigai.png"> bei <font color="blue">25000 </font><img src="img/bicons/euro.png"><br>Bei atidavei <small><b>Mirties Armor, Sword ,  amulet</b></small>!
 
 </div>';
-     mysql_query("UPDATE inv SET  atgimimo_item=atgimimo_item-'25000' WHERE nick='$nick'")or die(mysql_error());
-   mysql_query("UPDATE zaidejai SET litai=litai-'199999999999999999', sms_litai=sms_litai-'25000' WHERE nick='$nick'")or die(mysql_error());
-     mysql_query("UPDATE inv SET atgimimo_sword=atgimimo_sword+'1', mirties_armor=mirties_armor-'1', mirties_sword=mirties_sword-'1', mirties_amulet=mirties_amulet-'1' WHERE nick='$nick'");
-  mysql_query("UPDATE zaidejai SET armor='Atgimimo sword' WHERE nick='$nick'");
+     mysqli_query($conn,"UPDATE inv SET  atgimimo_item=atgimimo_item-'25000' WHERE nick='$nick'")or die(mysqli_error());
+   mysqli_query($conn,"UPDATE zaidejai SET litai=litai-'199999999999999999', sms_litai=sms_litai-'25000' WHERE nick='$nick'")or die(mysqli_error());
+     mysqli_query($conn,"UPDATE inv SET atgimimo_sword=atgimimo_sword+'1', mirties_armor=mirties_armor-'1', mirties_sword=mirties_sword-'1', mirties_amulet=mirties_amulet-'1' WHERE nick='$nick'");
+  mysqli_query($conn,"UPDATE zaidejai SET armor='Atgimimo sword' WHERE nick='$nick'");
    }
 }
   $g_n[] = array("pagrindinis.php?id=","Pagrindinis","corp.php", "Kapsulių korporacija", "Armor gaminimas");
@@ -800,10 +800,10 @@ else{
 <div class="meniuc">Sumokėjai <font color="red">30000 </font><b>Atgimimo item, </b><font color="blue">1</font>kvint. <img src="img/bicons/pinigai.png"> bei <font color="blue">40000 </font><img src="img/bicons/euro.png"><br>Bei atidavei  <b>Atgimimo sword, armor</b>!
 
 </div>';
-     mysql_query("UPDATE inv SET  atgimimo_item=atgimimo_item-'30000' WHERE nick='$nick'")or die(mysql_error());
-   mysql_query("UPDATE zaidejai SET litai=litai-'999999999999999999', sms_litai=sms_litai-'40000' WHERE nick='$nick'")or die(mysql_error());
-     mysql_query("UPDATE inv SET atgimimo_amulet=atgimimo_amulet+'1', atgimimo_sword=atgimimo_sword-'1', atgimimo_armor=atgimimo_armor-'1' WHERE nick='$nick'");
-  mysql_query("UPDATE zaidejai SET amuletas='Atgimimo amulet' WHERE nick='$nick'");
+     mysqli_query($conn,"UPDATE inv SET  atgimimo_item=atgimimo_item-'30000' WHERE nick='$nick'")or die(mysqli_error());
+   mysqli_query($conn,"UPDATE zaidejai SET litai=litai-'999999999999999999', sms_litai=sms_litai-'40000' WHERE nick='$nick'")or die(mysqli_error());
+     mysqli_query($conn,"UPDATE inv SET atgimimo_amulet=atgimimo_amulet+'1', atgimimo_sword=atgimimo_sword-'1', atgimimo_armor=atgimimo_armor-'1' WHERE nick='$nick'");
+  mysqli_query($conn,"UPDATE zaidejai SET amuletas='Atgimimo amulet' WHERE nick='$nick'");
 }
    }
   $g_n[] = array("pagrindinis.php?id=","Pagrindinis","corp.php", "Kapsulių korporacija", "Amuleto gaminimas");
@@ -853,10 +853,10 @@ else{
 <div class="meniuc">Sumokėjai <font color="red">25000 </font><b>Mirties Item </b><font color="blue">100</font>trln. <img src="img/bicons/pinigai.png"> bei <font color="blue">12000 </font><img src="img/bicons/euro.png"><br>Bei atidavei <small><b>Infinity Armor, Sword , Naikinomo amulet</b></small>!
 
 </div>';
-     mysql_query("UPDATE inv SET  mirties_item=mirties_item-'25000' WHERE nick='$nick'")or die(mysql_error());
-   mysql_query("UPDATE zaidejai SET litai=litai-'99999999999999', sms_litai=sms_litai-'12000' WHERE nick='$nick'")or die(mysql_error());
-     mysql_query("UPDATE inv SET mirties_armor=mirties_armor+'1', Infinity_armor=Infinity_armor-'1', naikinimo_amulet=naikinimo_amulet-'1' WHERE nick='$nick'");
-  mysql_query("UPDATE zaidejai SET armor='Mirties armor' WHERE nick='$nick'");
+     mysqli_query($conn,"UPDATE inv SET  mirties_item=mirties_item-'25000' WHERE nick='$nick'")or die(mysqli_error());
+   mysqli_query($conn,"UPDATE zaidejai SET litai=litai-'99999999999999', sms_litai=sms_litai-'12000' WHERE nick='$nick'")or die(mysqli_error());
+     mysqli_query($conn,"UPDATE inv SET mirties_armor=mirties_armor+'1', Infinity_armor=Infinity_armor-'1', naikinimo_amulet=naikinimo_amulet-'1' WHERE nick='$nick'");
+  mysqli_query($conn,"UPDATE zaidejai SET armor='Mirties armor' WHERE nick='$nick'");
    }
 }
   $g_n[] = array("pagrindinis.php?id=","Pagrindinis","corp.php", "Kapsulių korporacija", "Armor gaminimas");
@@ -903,10 +903,10 @@ else{
 <div class="meniuc">Sumokėjai <font color="red">20000 </font><b>Mirties Item </b><font color="blue">80</font>trln. <img src="img/bicons/pinigai.png"> bei <font color="blue">10000 </font><img src="img/bicons/euro.png"><br>Bei atidavei <small><b>Infinity Armor, Sword , Naikinomo amulet</b></small>!
 
 </div>';
-     mysql_query("UPDATE inv SET  mirties_item=mirties_item-'20000' WHERE nick='$nick'")or die(mysql_error());
-   mysql_query("UPDATE zaidejai SET litai=litai-'79999999999999', sms_litai=sms_litai-'10000' WHERE nick='$nick'")or die(mysql_error());
-     mysql_query("UPDATE inv SET mirties_sword=mirties_sword+'1', Infinity_armor=Infinity_armor-'1', Infinity_sword=Infinity_sword-'1', naikinimo_amulet=naikinimo_amulet-'1' WHERE nick='$nick'");
-  mysql_query("UPDATE zaidejai SET sword='Mirties sword' WHERE nick='$nick'");
+     mysqli_query($conn,"UPDATE inv SET  mirties_item=mirties_item-'20000' WHERE nick='$nick'")or die(mysqli_error());
+   mysqli_query($conn,"UPDATE zaidejai SET litai=litai-'79999999999999', sms_litai=sms_litai-'10000' WHERE nick='$nick'")or die(mysqli_error());
+     mysqli_query($conn,"UPDATE inv SET mirties_sword=mirties_sword+'1', Infinity_armor=Infinity_armor-'1', Infinity_sword=Infinity_sword-'1', naikinimo_amulet=naikinimo_amulet-'1' WHERE nick='$nick'");
+  mysqli_query($conn,"UPDATE zaidejai SET sword='Mirties sword' WHERE nick='$nick'");
    }
 }
   $g_n[] = array("pagrindinis.php?id=","Pagrindinis","corp.php", "Kapsulių korporacija", "Sword gaminimas");
@@ -949,10 +949,10 @@ else{
 <div class="meniuc">Sumokėjai <font color="red">30000 </font><b>Mirties item, </b><font color="blue">1</font>kvadr. <img src="img/bicons/pinigai.png"> bei <font color="blue">20000 </font><img src="img/bicons/euro.png"><br>Bei atidavei  <b>Mirties sword, armor</b>!
 
 </div>';
-     mysql_query("UPDATE inv SET  mirties_item=mirties_item-'30000' WHERE nick='$nick'")or die(mysql_error());
-   mysql_query("UPDATE zaidejai SET litai=litai-'999999999999999', sms_litai=sms_litai-'20000' WHERE nick='$nick'")or die(mysql_error());
-     mysql_query("UPDATE inv SET mirties_amulet=mirties_amulet+'1', mirties_sword=mirties_sword-'1', mirties_armor=mirties_armor-'1' WHERE nick='$nick'");
-  mysql_query("UPDATE zaidejai SET amuletas='Mirties amulet' WHERE nick='$nick'");
+     mysqli_query($conn,"UPDATE inv SET  mirties_item=mirties_item-'30000' WHERE nick='$nick'")or die(mysqli_error());
+   mysqli_query($conn,"UPDATE zaidejai SET litai=litai-'999999999999999', sms_litai=sms_litai-'20000' WHERE nick='$nick'")or die(mysqli_error());
+     mysqli_query($conn,"UPDATE inv SET mirties_amulet=mirties_amulet+'1', mirties_sword=mirties_sword-'1', mirties_armor=mirties_armor-'1' WHERE nick='$nick'");
+  mysqli_query($conn,"UPDATE zaidejai SET amuletas='Mirties amulet' WHERE nick='$nick'");
 }
    }
   $g_n[] = array("pagrindinis.php?id=","Pagrindinis","corp.php", "Kapsulių korporacija", "Amuleto gaminimas");
@@ -1000,10 +1000,10 @@ else{
 
 
 </div>';
-     mysql_query("UPDATE inv SET Magicball=Magicball-'8000' WHERE nick='$nick'")or die(mysql_error());
-   mysql_query("UPDATE zaidejai SET litai=litai-'11999999999', sms_litai=sms_litai-'370' WHERE nick='$nick'")or die(mysql_error());
-     mysql_query("UPDATE inv SET Money_sword=Money_sword+'1' WHERE nick='$nick'");
- mysql_query("UPDATE zaidejai SET sword='Money sword' WHERE nick='$nick'"); 
+     mysqli_query($conn,"UPDATE inv SET Magicball=Magicball-'8000' WHERE nick='$nick'")or die(mysqli_error());
+   mysqli_query($conn,"UPDATE zaidejai SET litai=litai-'11999999999', sms_litai=sms_litai-'370' WHERE nick='$nick'")or die(mysqli_error());
+     mysqli_query($conn,"UPDATE inv SET Money_sword=Money_sword+'1' WHERE nick='$nick'");
+ mysqli_query($conn,"UPDATE zaidejai SET sword='Money sword' WHERE nick='$nick'"); 
    }
   $g_n[] = array("pagrindinis.php?id=","Pagrindinis","corp.php", "Kapsulių korporacija", "Ginklo gaminimas");
 	navigacija($g_n);
@@ -1046,10 +1046,10 @@ else{
 
 
 </div>';
-     mysql_query("UPDATE inv SET Sayiantail=Sayiantail-'9000' WHERE nick='$nick'")or die(mysql_error());
-   mysql_query("UPDATE zaidejai SET litai=litai-'19999999999', sms_litai=sms_litai-'450' WHERE nick='$nick'")or die(mysql_error());
-     mysql_query("UPDATE inv SET Super_money_sword=Super_money_sword+'1', Money_sword=Money_sword-'1' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET sword='Super money sword' WHERE nick='$nick'");
+     mysqli_query($conn,"UPDATE inv SET Sayiantail=Sayiantail-'9000' WHERE nick='$nick'")or die(mysqli_error());
+   mysqli_query($conn,"UPDATE zaidejai SET litai=litai-'19999999999', sms_litai=sms_litai-'450' WHERE nick='$nick'")or die(mysqli_error());
+     mysqli_query($conn,"UPDATE inv SET Super_money_sword=Super_money_sword+'1', Money_sword=Money_sword-'1' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET sword='Super money sword' WHERE nick='$nick'");
   }
    
   $g_n[] = array("pagrindinis.php?id=","Pagrindinis","corp.php", "Kapsulių korporacija", "Ginklo gaminimas");
@@ -1093,10 +1093,10 @@ else{
 <div class="meniuc">Sumokėjai <font color="red">10000 </font><b>Majin Scroll, Mikroskemų </b><font color="blue">50</font>mlrd. <img src="img/bicons/pinigai.png"> bei <font color="blue">620 </font><img src="img/bicons/euro.png"><br>Bei atidavei <b>Super Money Sword</b>!
 
 </div>';
-     mysql_query("UPDATE inv SET Majinsroll=Majinsroll-'10000', Microshem=Microshem-'10000' WHERE nick='$nick'")or die(mysql_error());
-   mysql_query("UPDATE zaidejai SET litai=litai-'49999999999', sms_litai=sms_litai-'620' WHERE nick='$nick'")or die(mysql_error());
-     mysql_query("UPDATE inv SET One_tap_sword=One_tap_sword+'1', Super_money_sword=Super_money_sword-'1' WHERE nick='$nick'");
-  mysql_query("UPDATE zaidejai SET sword='Vieno kircio sword' WHERE nick='$nick'");
+     mysqli_query($conn,"UPDATE inv SET Majinsroll=Majinsroll-'10000', Microshem=Microshem-'10000' WHERE nick='$nick'")or die(mysqli_error());
+   mysqli_query($conn,"UPDATE zaidejai SET litai=litai-'49999999999', sms_litai=sms_litai-'620' WHERE nick='$nick'")or die(mysqli_error());
+     mysqli_query($conn,"UPDATE inv SET One_tap_sword=One_tap_sword+'1', Super_money_sword=Super_money_sword-'1' WHERE nick='$nick'");
+  mysqli_query($conn,"UPDATE zaidejai SET sword='Vieno kircio sword' WHERE nick='$nick'");
    }
   $g_n[] = array("pagrindinis.php?id=","Pagrindinis","corp.php", "Kapsulių korporacija", "Ginklo gaminimas");
 	navigacija($g_n);
@@ -1137,10 +1137,10 @@ else{
 <div class="meniuc">Sumokėjai <font color="red">5000 </font><b>Energy, Power Stone </b><font color="blue">100</font>mlrd. <img src="img/bicons/pinigai.png"> bei <font color="blue">1020 </font><img src="img/bicons/euro.png"><br>Bei atidavei <b>Vieno kirčio kardą</b>!
 
 </div>';
-     mysql_query("UPDATE inv SET Powerstone=Powerstone-'5000', Energystone=Energystone-'5000' WHERE nick='$nick'")or die(mysql_error());
-   mysql_query("UPDATE zaidejai SET litai=litai-'99999999999', sms_litai=sms_litai-'1020' WHERE nick='$nick'")or die(mysql_error());
-     mysql_query("UPDATE inv SET kg_sword=kg_sword+'1', One_tap_sword=One_tap_sword-'1' WHERE nick='$nick'");
-  mysql_query("UPDATE zaidejai SET sword='Galios sword' WHERE nick='$nick'");
+     mysqli_query($conn,"UPDATE inv SET Powerstone=Powerstone-'5000', Energystone=Energystone-'5000' WHERE nick='$nick'")or die(mysqli_error());
+   mysqli_query($conn,"UPDATE zaidejai SET litai=litai-'99999999999', sms_litai=sms_litai-'1020' WHERE nick='$nick'")or die(mysqli_error());
+     mysqli_query($conn,"UPDATE inv SET kg_sword=kg_sword+'1', One_tap_sword=One_tap_sword-'1' WHERE nick='$nick'");
+  mysqli_query($conn,"UPDATE zaidejai SET sword='Galios sword' WHERE nick='$nick'");
    }
   $g_n[] = array("pagrindinis.php?id=","Pagrindinis","corp.php", "Kapsulių korporacija", "Ginklo gaminimas");
 	navigacija($g_n);
@@ -1182,10 +1182,10 @@ else{
 <div class="meniuc">Sumokėjai <font color="red">12000 </font><b>Magic Ball, </b><font color="blue">200</font>mlrd. <img src="img/bicons/pinigai.png"> bei <font color="blue">1800 </font><img src="img/bicons/euro.png"><br>Bei atidavei <b>Galios Karda</b>!
 
 </div>';
-     mysql_query("UPDATE inv SET  Magicball=Magicball-'12000' WHERE nick='$nick'")or die(mysql_error());
-   mysql_query("UPDATE zaidejai SET litai=litai-'199999999999', sms_litai=sms_litai-'1800' WHERE nick='$nick'")or die(mysql_error());
-     mysql_query("UPDATE inv SET Infinity_sword=Infinity_sword+'1', kg_sword=kg_sword-'1' WHERE nick='$nick'");
-  mysql_query("UPDATE zaidejai SET sword='Infinity sword' WHERE nick='$nick'");
+     mysqli_query($conn,"UPDATE inv SET  Magicball=Magicball-'12000' WHERE nick='$nick'")or die(mysqli_error());
+   mysqli_query($conn,"UPDATE zaidejai SET litai=litai-'199999999999', sms_litai=sms_litai-'1800' WHERE nick='$nick'")or die(mysqli_error());
+     mysqli_query($conn,"UPDATE inv SET Infinity_sword=Infinity_sword+'1', kg_sword=kg_sword-'1' WHERE nick='$nick'");
+  mysqli_query($conn,"UPDATE zaidejai SET sword='Infinity sword' WHERE nick='$nick'");
    }
 }
   $g_n[] = array("pagrindinis.php?id=","Pagrindinis","corp.php", "Kapsulių korporacija", "Kardo gaminimas");
@@ -1229,12 +1229,12 @@ else{
 <div class="meniuc">Sumokėjai <font color="red">10000 </font><b>Super Amulet item, </b><font color="blue">500</font>mlrd. <img src="img/bicons/pinigai.png"> bei <font color="blue">3000 </font><img src="img/bicons/euro.png"><br>Bei atidavei <b>Infinity Sword</b> ir <b>Infinity Armor</b>!
 
 </div>';
-     mysql_query("UPDATE inv SET  Super_amulet_item=Super_amulet_item-'10000' WHERE nick='$nick'")or die(mysql_error());
-   mysql_query("UPDATE zaidejai SET litai=litai-'499999999999', sms_litai=sms_litai-'3000' WHERE nick='$nick'")or die(mysql_error());
-     mysql_query("UPDATE inv SET Super_amulet=Super_amulet+'1', Infinity_sword=Infinity_sword-'1', Infinity_armor=Infinity_armor-'1' WHERE nick='$nick'");
-  mysql_query("UPDATE zaidejai SET amuletas='Super amulet' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET armor='Neuzdetas' WHERE nick='$nick'");
-mysql_query("UPDATE zaidejai SET sword='Neuzdetas' WHERE nick='$nick'");
+     mysqli_query($conn,"UPDATE inv SET  Super_amulet_item=Super_amulet_item-'10000' WHERE nick='$nick'")or die(mysqli_error());
+   mysqli_query($conn,"UPDATE zaidejai SET litai=litai-'499999999999', sms_litai=sms_litai-'3000' WHERE nick='$nick'")or die(mysqli_error());
+     mysqli_query($conn,"UPDATE inv SET Super_amulet=Super_amulet+'1', Infinity_sword=Infinity_sword-'1', Infinity_armor=Infinity_armor-'1' WHERE nick='$nick'");
+  mysqli_query($conn,"UPDATE zaidejai SET amuletas='Super amulet' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET armor='Neuzdetas' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET sword='Neuzdetas' WHERE nick='$nick'");
    }
 }
   $g_n[] = array("pagrindinis.php?id=","Pagrindinis","corp.php", "Kapsulių korporacija", "Amuleto gaminimas");
@@ -1277,10 +1277,10 @@ else{
 <div class="meniuc">Sumokėjai <font color="red">5000 </font><b>Naikinimo Amulet item, </b><font color="blue">1</font>trln. <img src="img/bicons/pinigai.png"> bei <font color="blue">5000 </font><img src="img/bicons/euro.png"><br>Bei atidavei  <b>Super Amulet</b>!
 
 </div>';
-     mysql_query("UPDATE inv SET  naikinimo_amulet_item=naikinimo_amulet_item-'5000' WHERE nick='$nick'")or die(mysql_error());
-   mysql_query("UPDATE zaidejai SET litai=litai-'999999999999', sms_litai=sms_litai-'5000' WHERE nick='$nick'")or die(mysql_error());
-     mysql_query("UPDATE inv SET Super_amulet=Super_amulet-'1', naikinimo_amulet=naikinimo_amulet+'1' WHERE nick='$nick'");
-  mysql_query("UPDATE zaidejai SET amuletas='Naikinimo amulet' WHERE nick='$nick'");
+     mysqli_query($conn,"UPDATE inv SET  naikinimo_amulet_item=naikinimo_amulet_item-'5000' WHERE nick='$nick'")or die(mysqli_error());
+   mysqli_query($conn,"UPDATE zaidejai SET litai=litai-'999999999999', sms_litai=sms_litai-'5000' WHERE nick='$nick'")or die(mysqli_error());
+     mysqli_query($conn,"UPDATE inv SET Super_amulet=Super_amulet-'1', naikinimo_amulet=naikinimo_amulet+'1' WHERE nick='$nick'");
+  mysqli_query($conn,"UPDATE zaidejai SET amuletas='Naikinimo amulet' WHERE nick='$nick'");
 }
    }
   $g_n[] = array("pagrindinis.php?id=","Pagrindinis","corp.php", "Kapsulių korporacija", "Amuleto gaminimas");
@@ -1322,10 +1322,10 @@ else{
 <div class="meniuc">Sumokėjai <font color="red">3000 </font><b>Majin scroll, </b><font color="blue">7</font>mlrd. <img src="img/bicons/pinigai.png"> bei <font color="blue">220 </font><img src="img/bicons/euro.png">
 
 </div>';
-     mysql_query("UPDATE inv SET Majinsroll=Majinsroll-'3000' WHERE nick='$nick'")or die(mysql_error());
-   mysql_query("UPDATE zaidejai SET litai=litai-'6999999999', sms_litai=sms_litai-'220' WHERE nick='$nick'")or die(mysql_error());
-     mysql_query("UPDATE inv SET Time_armor=Time_armor+'1' WHERE nick='$nick'");
-  mysql_query("UPDATE zaidejai SET armor='Time armor' WHERE nick='$nick'");
+     mysqli_query($conn,"UPDATE inv SET Majinsroll=Majinsroll-'3000' WHERE nick='$nick'")or die(mysqli_error());
+   mysqli_query($conn,"UPDATE zaidejai SET litai=litai-'6999999999', sms_litai=sms_litai-'220' WHERE nick='$nick'")or die(mysqli_error());
+     mysqli_query($conn,"UPDATE inv SET Time_armor=Time_armor+'1' WHERE nick='$nick'");
+  mysqli_query($conn,"UPDATE zaidejai SET armor='Time armor' WHERE nick='$nick'");
    }
   $g_n[] = array("pagrindinis.php?id=","Pagrindinis","corp.php", "Kapsulių korporacija", "Armor gaminimas");
 	navigacija($g_n);
@@ -1359,10 +1359,10 @@ else{
 <div class="meniuc">Sumokėjai <font color="red">2000 </font><b>Majin Scroll, </b><font color="blue">500</font>mln. <img src="img/bicons/pinigai.png"> bei <font color="blue">50 </font><img src="img/bicons/euro.png">
 
 </div>';
-      mysql_query("UPDATE inv SET Majinsroll=Majinsroll-'2000' WHERE nick='$nick'")or die(mysql_error());
-   mysql_query("UPDATE zaidejai SET litai=litai-'499999999', sms_litai=sms_litai-'50' WHERE nick='$nick'")or die(mysql_error());
-     mysql_query("UPDATE inv SET Vedzito_sarvai=Vedzito_sarvai+'1' WHERE nick='$nick'");
-  mysql_query("UPDATE zaidejai SET armor='Vedzito sarvai' WHERE nick='$nick'");
+      mysqli_query($conn,"UPDATE inv SET Majinsroll=Majinsroll-'2000' WHERE nick='$nick'")or die(mysqli_error());
+   mysqli_query($conn,"UPDATE zaidejai SET litai=litai-'499999999', sms_litai=sms_litai-'50' WHERE nick='$nick'")or die(mysqli_error());
+     mysqli_query($conn,"UPDATE inv SET Vedzito_sarvai=Vedzito_sarvai+'1' WHERE nick='$nick'");
+  mysqli_query($conn,"UPDATE zaidejai SET armor='Vedzito sarvai' WHERE nick='$nick'");
    }
     $g_n[] = array("pagrindinis.php?id=","Pagrindinis","corp.php", "Kapsulių korporacija", "Ginklo gaminimas");
 	navigacija($g_n);
@@ -1401,9 +1401,9 @@ else{
 <div class="meniuc">Sumokėjai <font color="red">1000 </font><b>Mikroskemų, </b><font color="blue">100</font>mln. <img src="img/bicons/pinigai.png"> bei <font color="blue">10 </font><img src="img/bicons/euro.png">
 
 </div>';
-      mysql_query("UPDATE inv SET Microshem=Microshem-'1000' WHERE nick='$nick'")or die(mysql_error());
-   mysql_query("UPDATE zaidejai SET litai=litai-'99999999', sms_litai=sms_litai-'10' WHERE nick='$nick'")or die(mysql_error());
- mysql_query("UPDATE inv SET radaras=radaras+'1' WHERE nick='$nick'");
+      mysqli_query($conn,"UPDATE inv SET Microshem=Microshem-'1000' WHERE nick='$nick'")or die(mysqli_error());
+   mysqli_query($conn,"UPDATE zaidejai SET litai=litai-'99999999', sms_litai=sms_litai-'10' WHERE nick='$nick'")or die(mysqli_error());
+ mysqli_query($conn,"UPDATE inv SET radaras=radaras+'1' WHERE nick='$nick'");
   
    }
 
@@ -1441,9 +1441,9 @@ echo'<div class="meniuc"><b>Jau turi pasigaminęs KG rodymo prietaisą</b>!</div
 <div class="meniuc">Sumokėjai <font color="red">5000 </font><b>Mikroskemų, </b><font color="blue">2</font>mlrd. <img src="img/bicons/pinigai.png"> bei <font color="blue">120 </font><img src="img/bicons/euro.png">
 
 </div>';
-         mysql_query("UPDATE inv SET Microshem=Microshem-'1500' WHERE nick='$nick'")or die(mysql_error());
-   mysql_query("UPDATE zaidejai SET litai=litai-'199999999', sms_litai=sms_litai-'30' WHERE nick='$nick'")or die(mysql_error());
-     mysql_query("UPDATE inv SET ki=ki+'1' WHERE nick='$nick'");
+         mysqli_query($conn,"UPDATE inv SET Microshem=Microshem-'1500' WHERE nick='$nick'")or die(mysqli_error());
+   mysqli_query($conn,"UPDATE zaidejai SET litai=litai-'199999999', sms_litai=sms_litai-'30' WHERE nick='$nick'")or die(mysqli_error());
+     mysqli_query($conn,"UPDATE inv SET ki=ki+'1' WHERE nick='$nick'");
    
    }
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","corp.php", "Kapsulių korporacija", "KG rodymo gaminimas");
@@ -1478,10 +1478,10 @@ else{
 <div class="meniuc">Sumokėjai <font color="red">2500 </font><b>Mikroskemų, </b><font color="blue">1</font>mlrd. <img src="img/bicons/pinigai.png"> bei <font color="blue">70 </font><img src="img/bicons/euro.png">
 
 </div>';
-         mysql_query("UPDATE inv SET Microshem=Microshem-'2500' WHERE nick='$nick'")or die(mysql_error());
-   mysql_query("UPDATE zaidejai SET litai=litai-'999999999', sms_litai=sms_litai-'70' WHERE nick='$nick'")or die(mysql_error());
-     mysql_query("UPDATE zaidejai SET k_laivas='1' WHERE nick='$nick'");
-     mysql_query("UPDATE inv SET  laivas=laivas+'1' WHERE nick='$nick'");
+         mysqli_query($conn,"UPDATE inv SET Microshem=Microshem-'2500' WHERE nick='$nick'")or die(mysqli_error());
+   mysqli_query($conn,"UPDATE zaidejai SET litai=litai-'999999999', sms_litai=sms_litai-'70' WHERE nick='$nick'")or die(mysqli_error());
+     mysqli_query($conn,"UPDATE zaidejai SET k_laivas='1' WHERE nick='$nick'");
+     mysqli_query($conn,"UPDATE inv SET  laivas=laivas+'1' WHERE nick='$nick'");
    }
 
 

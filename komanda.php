@@ -9,14 +9,14 @@ head2();
 baneris();
 
 		topbar();
-$in = mysql_fetch_assoc(mysql_query("SELECT * FROM team WHERE pavadinimas='$co'"));
-		$info = mysql_fetch_array(mysql_query("SELECT * FROM team WHERE pavadinimas='$ka'"));
-$info2 = mysql_fetch_array(mysql_query("SELECT * FROM team WHERE pavadinimas='$ka'"));
-		$nust = mysql_fetch_assoc(mysql_query("SELECT * FROM nustatymai"));
-$koma = mysql_fetch_array(mysql_query("SELECT * FROM team"));
-$komanda = mysql_fetch_array(mysql_query("SELECT * FROM team WHERE vadas='$nick'"));
-$team2 = mysql_fetch_array(mysql_query("SELECT * FROM team WHERE dienosmedal='$id'"));
-$ismok = mysql_num_rows(mysql_query("SELECT * FROM user WHERE team !=''"));
+$in = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$co'"));
+		$info = mysqli_fetch_array(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$ka'"));
+$info2 = mysqli_fetch_array(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$ka'"));
+		$nust = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM nustatymai"));
+$koma = mysqli_fetch_array(mysqli_query($conn,"SELECT * FROM team"));
+$komanda = mysqli_fetch_array(mysqli_query($conn,"SELECT * FROM team WHERE vadas='$nick'"));
+$team2 = mysqli_fetch_array(mysqli_query($conn,"SELECT * FROM team WHERE dienosmedal='$id'"));
+$ismok = mysqli_num_rows(mysqli_query($conn,"SELECT * FROM user WHERE team !=''"));
 
 if(empty($id)){
 	top('Komandos');
@@ -73,16 +73,16 @@ echo'<div class="meniuc">
 <div class='meniuc'>
 
 	<b>TOP 5 Komandos</b>:<br></div>";
-	if(mysql_num_rows(mysql_query("SELECT * FROM team")) == false){
+	if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team")) == false){
 		
 			echo"<div class='meniuc'>Dar niekas neturi kovų.</div>";
 		
 	}else{
 		
 
- $query = mysql_query("SELECT * FROM team ORDER BY viso_laimejo_kovu DESC LIMIT 5");
+ $query = mysqli_query($conn,"SELECT * FROM team ORDER BY viso_laimejo_kovu DESC LIMIT 5");
     echo '<div class="meniu">';
-    while($row = mysql_fetch_assoc($query)){
+    while($row = mysqli_fetch_assoc($query)){
         $vt++;
 		  
         echo ' <b>'.$vt.'</b>.<a href="?id=info&ka='.$row['pavadinimas'].'"><b>'.$row['pavadinimas'].'</b></a> - <b>'.$row['viso_laimejo_kovu'].'</b><small> Laimėjo kovų</small><br>';
@@ -104,16 +104,16 @@ echo'<div class="meniuc">
 <div class='meniuc'>
 
 	<b>TOP 5 Komandos</b>:<br></div>";
-	if(mysql_num_rows(mysql_query("SELECT * FROM team")) == false){
+	if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team")) == false){
 		
 			echo"<div class='meniuc'>Dar niekas neturi pinigų.</div>";
 		
 	}else{
 		
 
- $query = mysql_query("SELECT * FROM team ORDER BY pinigai DESC LIMIT 5");
+ $query = mysqli_query($conn,"SELECT * FROM team ORDER BY pinigai DESC LIMIT 5");
     echo '<div class="meniu">';
-    while($row = mysql_fetch_assoc($query)){
+    while($row = mysqli_fetch_assoc($query)){
         $vt++;
 		  
         echo ' <b>'.$vt.'</b>.<a href="?id=info&ka='.$row['pavadinimas'].'"><b>'.$row['pavadinimas'].'</b></a> - '.skaicius($row['pinigai']).' '.$pinigaii.'</b><br>';
@@ -135,16 +135,16 @@ echo'<div class="meniuc">
 <div class='meniuc'>
 
 	<b>TOP 5 Komandos</b>:<br></div>";
-	if(mysql_num_rows(mysql_query("SELECT * FROM team")) == false){
+	if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team")) == false){
 		
 			echo"<div class='meniuc'>Dar niekas neturi eurų.</div>";
 		
 	}else{
 		
 
- $query = mysql_query("SELECT * FROM team ORDER BY eurai DESC LIMIT 5");
+ $query = mysqli_query($conn,"SELECT * FROM team ORDER BY eurai DESC LIMIT 5");
     echo '<div class="meniu">';
-    while($row = mysql_fetch_assoc($query)){
+    while($row = mysqli_fetch_assoc($query)){
         $vt++;
 		  
         echo ' <b>'.$vt.'</b>.<a href="?id=info&ka='.$row['pavadinimas'].'"><b>'.$row['pavadinimas'].'</b></a> - '.$row['eurai'].' '.$eurui.'</b><br>';
@@ -166,16 +166,16 @@ echo'<div class="meniuc">
 <div class='meniuc'>
 
 	<b>TOP 5 Komandos</b>:<br></div>";
-	if(mysql_num_rows(mysql_query("SELECT * FROM team")) == false){
+	if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team")) == false){
 		
 			echo"<div class='meniuc'>Dar nemoka algų.</div>";
 		
 	}else{
 		
 
- $query = mysql_query("SELECT * FROM team ORDER BY uz_500_kovu DESC LIMIT 5");
+ $query = mysqli_query($conn,"SELECT * FROM team ORDER BY uz_500_kovu DESC LIMIT 5");
     echo '<div class="meniu">';
-    while($row = mysql_fetch_assoc($query)){
+    while($row = mysqli_fetch_assoc($query)){
         $vt++;
 		  
         echo ' <b>'.$vt.'</b>.<a href="?id=info&ka='.$row['pavadinimas'].'"><b>'.$row['pavadinimas'].'</b></a> - '.skaicius($row['uz_500_kovu']).' '.$pinigaii.' </small><br>';
@@ -198,16 +198,16 @@ echo'<div class="meniuc">
 <div class='meniuc'>
 
 	<b>TOP 5 Komandos</b>:<br></div>";
-	if(mysql_num_rows(mysql_query("SELECT * FROM team ")) == false){
+	if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team ")) == false){
 		
 			echo"<div class='meniuc'>Dar niekas nelaimėjo.</div>";
 		
 	}else{
 		
 
- $query = mysql_query("SELECT * FROM team ORDER BY laimetu_dtop DESC LIMIT 5");
+ $query = mysqli_query($conn,"SELECT * FROM team ORDER BY laimetu_dtop DESC LIMIT 5");
     echo '<div class="meniu">';
-    while($row = mysql_fetch_assoc($query)){
+    while($row = mysqli_fetch_assoc($query)){
         $vt++;
 		  
         echo ' <b>'.$vt.'</b>.<a href="?id=info&ka='.$row['pavadinimas'].'"><b>'.$row['pavadinimas'].'</b></a> - <b>'.skaicius($row['laimetu_dtop']).' </b><small>Dienos TOP laimėjimų</small><br>';
@@ -226,9 +226,9 @@ if($id == 'all'){
 echo'<div class="meniuc">
 	<img src="img/imgg/komandos.png"></div>';
 	echo'<div class="meniu">';
-		
-		 $viso = mysql_result(mysql_query("SELECT COUNT(*) FROM team"),0);
-    if($viso > 0){
+
+	$viso = mysqli_fetch_row(mysqli_query($conn, "SELECT COUNT(*) FROM team"))[0];
+	if($viso > 0){
         $rezultatu_rodymas=20;
             $total = @intval(($viso-1) / $rezultatu_rodymas) + 1;
             if (empty($psl) or $psl < 0) $psl = 1;
@@ -236,8 +236,8 @@ echo'<div class="meniuc">
             $nuo_kiek=$psl*$rezultatu_rodymas-$rezultatu_rodymas;
       
         $puslapiu=ceil($viso/$rezultatu_rodymas);}
- $nst = mysql_query("SELECT * FROM team ORDER BY id LIMIT $nuo_kiek,$rezultatu_rodymas");
-while($nt = mysql_fetch_assoc($nst)){
+ $nst = mysqli_query($conn,"SELECT * FROM team ORDER BY id LIMIT $nuo_kiek,$rezultatu_rodymas");
+while($nt = mysqli_fetch_assoc($nst)){
 	
 	$nr++;
 	echo"<b>".$nr.".</b> <a href='?id=info2&co=".$nt['pavadinimas']."&ka=".$ka."'>".$nt['pavadinimas']."</a><br>";
@@ -283,7 +283,7 @@ navigacija($g_n);
             elseif(strlen($teamas) > 20){
                 $klaida = 'Max 20 simboliu.';
             }
-			 elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='$teamas' ")) == true ){
+			 elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$teamas' ")) == true ){
                 $klaida = 'Tokia komada jau yra!';
             }
 			elseif ($apie['komanda_time'] > time()) {
@@ -297,14 +297,14 @@ navigacija($g_n);
                 $klaida = 'Negalima naudoti spec. simbolių!';
             }else{
             	echo"<div class='meniuc'>Komanda ikurta</div>";
-				mysql_query("INSERT INTO team SET vadas='$nick', pavadinimas='$teamas',topic='Nenustatytas', max='5', kritinislvl='0' ");
+				mysqli_query($conn,"INSERT INTO team SET vadas='$nick', pavadinimas='$teamas',topic='Nenustatytas', max='5', kritinislvl='0' ");
 
 
-				mysql_query("UPDATE user SET team='$teamas', iki_algos='1000', iki_algos2='1000' WHERE nick='$nick'");
-				mysql_query("UPDATE zaidejai SET sms_litai=sms_litai-'500' WHERE nick='$nick'");
+				mysqli_query($conn,"UPDATE user SET team='$teamas', iki_algos='1000', iki_algos2='1000' WHERE nick='$nick'");
+				mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai-'500' WHERE nick='$nick'");
 
 				$time = time() + 60 * 60 * 48;
-				mysql_query("UPDATE zaidejai SET komanda_time='$time' WHERE nick='$nick'");
+				mysqli_query($conn,"UPDATE zaidejai SET komanda_time='$time' WHERE nick='$nick'");
             }
 			 if(isset($klaida)){
                 echo '<div class="meniuc">'.$klaida.'</div>';
@@ -317,9 +317,9 @@ navigacija($g_n);
 	
 if($id == 'info'){
 
-$info = mysql_fetch_assoc(mysql_query("SELECT * FROM team WHERE pavadinimas='$ka'"));
+$info = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$ka'"));
 top(''.$ka.' komanda');
-if(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='$ka'")) == false){
+if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$ka'")) == false){
 echo"<div class='meniuc'>Tokios komandos nėra</div>";
 }else{
 if(apsas($ka) == apsas($ka)){
@@ -335,32 +335,32 @@ echo'
 Topic: <b>'.$info['topic'].'</b></div>';
 echo'<div class="up">Komandos prizai</div>';
 echo'<div class="meniuc">';
-if(mysql_num_rows(mysql_query("SELECT * FROM teammedal WHERE pavadinimas='$ka'")) == 0){
+if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM teammedal WHERE pavadinimas='$ka'")) == 0){
 	echo'Apdovanojimų ši komanda neturi!';
 }else{
-$qq = mysql_query("SELECT * FROM teammedal WHERE pavadinimas='$ka'");
-while($rr = mysql_fetch_assoc($qq))
+$qq = mysqli_query($conn,"SELECT * FROM teammedal WHERE pavadinimas='$ka'");
+while($rr = mysqli_fetch_assoc($qq))
 {
 
 echo'<a href="?id=medal&ka='.$ka.'&ID='.$rr[id].'"><img src="img/teammedal/'.$rr[medalis].'.png" width="30" height="30"/></a>'	;
 	
 }
-$qq = mysql_query("SELECT * FROM teammedal2 WHERE pavadinimas='$ka'");
-while($rr = mysql_fetch_assoc($qq))
+$qq = mysqli_query($conn,"SELECT * FROM teammedal2 WHERE pavadinimas='$ka'");
+while($rr = mysqli_fetch_assoc($qq))
 {
 
 echo'<a href="?id=medal2&ka='.$ka.'&ID='.$rr[id].'"><img src="img/teammedal/'.$rr[medalis].'.png" width="30" height="30"/></a>'	;
 	
 }
-$qq = mysql_query("SELECT * FROM teammedal3 WHERE pavadinimas='$ka'");
-while($rr = mysql_fetch_assoc($qq))
+$qq = mysqli_query($conn,"SELECT * FROM teammedal3 WHERE pavadinimas='$ka'");
+while($rr = mysqli_fetch_assoc($qq))
 {
 
 echo'<a href="?id=medal3&ka='.$ka.'&ID='.$rr[id].'"><img src="img/teammedal/'.$rr[medalis].'.png" width="30" height="30"/></a>'	;
 	
 }
-$qq = mysql_query("SELECT * FROM teammedals WHERE pavadinimas='$ka'");
-while($rr = mysql_fetch_assoc($qq))
+$qq = mysqli_query($conn,"SELECT * FROM teammedals WHERE pavadinimas='$ka'");
+while($rr = mysqli_fetch_assoc($qq))
 {
 
 echo'<a href="?id=medals&ka='.$ka.'&ID='.$rr[id].'"><img src="img/teammedal/'.$rr[medalis].'.png" width="30" height="30"/></a>'	;
@@ -430,17 +430,17 @@ if(apsas($user['team']) == apsas($ka)){echo"<div class='meniu'>".$ico." <a href=
 echo'<div class="up">Nariai</div><div class="meniu">';
 $kiekis= number_format($nt['win_in_team']);
 
-$viso = mysql_result(mysql_query("SELECT COUNT(*) FROM user WHERE team ='$ka'"),0);
+	$viso = mysqli_fetch_row(mysqli_query($conn, "SELECT COUNT(*) FROM user WHERE team ='$ka'"))[0];
     if($viso > 0){
         $rezultatu_rodymas=10;
             $total = @intval(($viso-1) / $rezultatu_rodymas) + 1;
             if (empty($psl) or $psl < 0) $psl = 1;
             if ($psl > $total) $psl = $total;
             $nuo_kiek=$psl*$rezultatu_rodymas-$rezultatu_rodymas;
-        $query = mysql_query("SELECT * FROM user WHERE team='$ka' ORDER BY win_in_team DESC LIMIT $nuo_kiek,$rezultatu_rodymas");
+        $query = mysqli_query($conn,"SELECT * FROM user WHERE team='$ka' ORDER BY win_in_team DESC LIMIT $nuo_kiek,$rezultatu_rodymas");
         $puslapiu=ceil($viso/$rezultatu_rodymas);
-$nst = mysql_query("SELECT * FROM user WHERE team='$ka' ORDER BY win_");
-while($nt = mysql_fetch_assoc($query)){
+$nst = mysqli_query($conn,"SELECT * FROM user WHERE team='$ka' ORDER BY win_");
+while($nt = mysqli_fetch_assoc($query)){
 	
 	$nr++;
 	echo"<b>".$nr.".</b> <a href='pagrindinis.php?id=apie&ka=".$nt['nick']."'>".$nt['nick']." </a>-  Laimėjo kovų: <b>".number_format($nt[win_in_team])."</b><br>";
@@ -461,9 +461,9 @@ navigacija($g_n);
 	
 if($id == 'info2'){
 
-$in = mysql_fetch_assoc(mysql_query("SELECT * FROM team WHERE pavadinimas='$co'"));
+$in = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$co'"));
 top(''.$co.' komanda');
-if(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='$co'")) == false){
+if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$co'")) == false){
 echo"<div class='meniuc'>Tokios komandos nėra</div>";
 }else{
 
@@ -479,32 +479,32 @@ echo'
 Topic: <b>'.$in['topic'].'</b></div>';
 echo'<div class="up">Komandos prizai</div>';
 echo'<div class="meniuc">';
-if(mysql_num_rows(mysql_query("SELECT * FROM teammedal WHERE pavadinimas='$co'")) == 0){
+if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM teammedal WHERE pavadinimas='$co'")) == 0){
 	echo'Apdovanojimų ši komanda neturi!';
 }else{
-$qq = mysql_query("SELECT * FROM teammedal WHERE pavadinimas='$co'");
-while($rr = mysql_fetch_assoc($qq))
+$qq = mysqli_query($conn,"SELECT * FROM teammedal WHERE pavadinimas='$co'");
+while($rr = mysqli_fetch_assoc($qq))
 {
 
 echo'<a href="?id=medal&co='.$co.'&ID='.$rr[id].'"><img src="img/teammedal/'.$rr[medalis].'.png" width="30" height="30"/></a>'	;
 	
 }
-$qq = mysql_query("SELECT * FROM teammedal2 WHERE pavadinimas='$co'");
-while($rr = mysql_fetch_assoc($qq))
+$qq = mysqli_query($conn,"SELECT * FROM teammedal2 WHERE pavadinimas='$co'");
+while($rr = mysqli_fetch_assoc($qq))
 {
 
 echo'<a href="?id=medal2&co='.$co.'&ID='.$rr[id].'"><img src="img/teammedal/'.$rr[medalis].'.png" width="30" height="30"/></a>'	;
 	
 }
-$qq = mysql_query("SELECT * FROM teammedal3 WHERE pavadinimas='$co'");
-while($rr = mysql_fetch_assoc($qq))
+$qq = mysqli_query($conn,"SELECT * FROM teammedal3 WHERE pavadinimas='$co'");
+while($rr = mysqli_fetch_assoc($qq))
 {
 
 echo'<a href="?id=medal3&co='.$co.'&ID='.$rr[id].'"><img src="img/teammedal/'.$rr[medalis].'.png" width="30" height="30"/></a>'	;
 	
 }
-$qq = mysql_query("SELECT * FROM teammedals WHERE pavadinimas='$co'");
-while($rr = mysql_fetch_assoc($qq))
+$qq = mysqli_query($conn,"SELECT * FROM teammedals WHERE pavadinimas='$co'");
+while($rr = mysqli_fetch_assoc($qq))
 {
 
 echo'<a href="?id=medals&co='.$co.'&ID='.$rr[id].'"><img src="img/teammedal/'.$rr[medalis].'.png" width="30" height="30"/></a>'	;
@@ -558,17 +558,17 @@ echo'';
 echo'<div class="up">Nariai</div><div class="meniu">';
 $kiekis= number_format($nt['win_in_team']);
 
-$viso = mysql_result(mysql_query("SELECT COUNT(*) FROM user WHERE team ='$co'"),0);
+	$viso = mysqli_fetch_row(mysqli_query($conn, "SELECT COUNT(*) FROM user WHERE team ='$co'"))[0];
     if($viso > 0){
         $rezultatu_rodymas=10;
             $total = @intval(($viso-1) / $rezultatu_rodymas) + 1;
             if (empty($psl) or $psl < 0) $psl = 1;
             if ($psl > $total) $psl = $total;
             $nuo_kiek=$psl*$rezultatu_rodymas-$rezultatu_rodymas;
-        $query = mysql_query("SELECT * FROM user WHERE team='$co' ORDER BY win_in_team DESC LIMIT $nuo_kiek,$rezultatu_rodymas");
+        $query = mysqli_query($conn,"SELECT * FROM user WHERE team='$co' ORDER BY win_in_team DESC LIMIT $nuo_kiek,$rezultatu_rodymas");
         $puslapiu=ceil($viso/$rezultatu_rodymas);
-$nst = mysql_query("SELECT * FROM user WHERE team='$ka' ORDER BY win_");
-while($nt = mysql_fetch_assoc($query)){
+$nst = mysqli_query($conn,"SELECT * FROM user WHERE team='$ka' ORDER BY win_");
+while($nt = mysqli_fetch_assoc($query)){
 	
 	$nr++;
 	echo"<b>".$nr.".</b> <a href='pagrindinis.php?id=apie&ka=".$nt['nick']."'>".$nt['nick']." </a>-  Laimėjo kovų: <b>".number_format($nt[win_in_team])."</b><br>";
@@ -588,19 +588,19 @@ navigacija($g_n);
 }
 /// dienos medal info 1vt 
 if($id == 'medal'){
-	$med_inf = mysql_fetch_assoc(mysql_query("SELECT * FROM teammedal WHERE id='$ID'"));
-	if(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='$ka'")) == false){
+	$med_inf = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM teammedal WHERE id='$ID'"));
+	if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$ka'")) == false){
 		
 		header("location:pagrindinis.php");
 	}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM teammedal WHERE id='$ID'")) == false){
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM teammedal WHERE id='$ID'")) == false){
 			header("location:pagrindinis.php");
 	}
 	else{
 				top('Dienos komandos kovų prizas');
 	online('žiūri komandos prizus');
-$query = mysql_query("SELECT * FROM team WHERE pavadinimas='$ka'");
-while($row = mysql_fetch_assoc($query)){
+$query = mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$ka'");
+while($row = mysqli_fetch_assoc($query)){
 	echo'<div class="meniuc"><img src="img/teammedal/'.$med_inf[medalis].'.png"></div>';
  if($row['dienosmedaltime']-time() < 0){echo'<div class="meniuc"><b><small><font color="red">Ši komanda šio prizo nebeturi!</small></font></b></div>';}
 if($row['dienosmedaltime']-time() > 0){
@@ -622,19 +622,19 @@ echo'	<div class="meniuc"><b><small>Prizas už</small></b>: <font color="red"><s
 }}
 /// dienos medal info 2vt 
 if($id == 'medal2'){
-	$med_inf = mysql_fetch_assoc(mysql_query("SELECT * FROM teammedal2 WHERE id='$ID'"));
-	if(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='$ka'")) == false){
+	$med_inf = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM teammedal2 WHERE id='$ID'"));
+	if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$ka'")) == false){
 		
 		header("location:pagrindinis.php");
 	}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM teammedal2 WHERE id='$ID'")) == false){
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM teammedal2 WHERE id='$ID'")) == false){
 			header("location:pagrindinis.php");
 	}
 	else{
 				top('Dienos komandos kovų prizas');
 	online('žiūri komandos prizus');
-$query = mysql_query("SELECT * FROM team WHERE pavadinimas='$ka'");
-while($row = mysql_fetch_assoc($query)){
+$query = mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$ka'");
+while($row = mysqli_fetch_assoc($query)){
 	echo'<div class="meniuc"><img src="img/teammedal/'.$med_inf[medalis].'.png"></div>';
   if($row['dienosmedaltime2']-time() < 0){echo'<div class="meniuc"><b><small><font color="red">Ši komanda šio prizo nebeturi!</small></font></b></div>';}
 if($row['dienosmedaltime2']-time() > 0){
@@ -657,19 +657,19 @@ echo'	<div class="meniuc"><b><small>Prizas už</small></b>: <font color="red"><s
 
 /// dienos medal info 3vt 
 if($id == 'medal3'){
-	$med_inf = mysql_fetch_assoc(mysql_query("SELECT * FROM teammedal3 WHERE id='$ID'"));
-	if(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='$ka'")) == false){
+	$med_inf = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM teammedal3 WHERE id='$ID'"));
+	if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$ka'")) == false){
 		
 		header("location:pagrindinis.php");
 	}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM teammedal3 WHERE id='$ID'")) == false){
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM teammedal3 WHERE id='$ID'")) == false){
 			header("location:pagrindinis.php");
 	}
 	else{
 				top('Dienos komandos kovų prizas');
 	online('žiūri komandos prizus');
-$query = mysql_query("SELECT * FROM team WHERE pavadinimas='$ka'");
-while($row = mysql_fetch_assoc($query)){
+$query = mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$ka'");
+while($row = mysqli_fetch_assoc($query)){
 	echo'<div class="meniuc"><img src="img/teammedal/'.$med_inf[medalis].'.png"></div>';
   if($row['dienosmedaltime3']-time() < 0){echo'<div class="meniuc"><b><small><font color="red">Ši komanda šio prizo nebeturi!</small></font></b></div>';}
 if($row['dienosmedaltime3']-time() > 0){
@@ -691,19 +691,19 @@ echo'	<div class="meniuc"><b><small>Prizas už</small></b>: <font color="red"><s
 }}
 /// sav medal info 
 if($id == 'medals'){
-	$med_inf = mysql_fetch_assoc(mysql_query("SELECT * FROM teammedals WHERE id='$ID'"));
-	if(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='$ka'")) == false){
+	$med_inf = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM teammedals WHERE id='$ID'"));
+	if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$ka'")) == false){
 		
 		header("location:pagrindinis.php");
 	}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM teammedals WHERE id='$ID'")) == false){
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM teammedals WHERE id='$ID'")) == false){
 			header("location:pagrindinis.php");
 	}
 	else{
 				top('Savaitės komandos kovų taurė');
 	online('Žiūri komandos taures');
-$query = mysql_query("SELECT * FROM team WHERE pavadinimas='$ka'");
-while($row = mysql_fetch_assoc($query)){
+$query = mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$ka'");
+while($row = mysqli_fetch_assoc($query)){
 	echo'<div class="meniuc"><img src="img/teammedal/'.$med_inf[medalis].'.png"></div>';
 if($row['savmedaltime']-time() < 0){
   echo '<div class="meniuc"><b><font color="red"><small>Taurės nebeturi ši komanda</small></font>!</div>';
@@ -732,7 +732,7 @@ echo'	<div class="meniuc"><b><small>Taurė už</small></b>: <font color="red"><s
 	top(' Puolimas prieš '.$co.' ');
 	if($user['team'] !== $ka){echo"<div class='meniuc'>Tu nesi šitoje komandoje</div>";}
 elseif($info['vadas'] !== $nick){echo"<div class='meniuc'>Tu neesi šios komandos vadas</div>";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'Tokios komandos nėra</div>";}
 else{
 echo'<div class="meniuc">Užpuolę komandą, ir ją nugalėję, gausite <b>komandos taškų</b>!<br><small>Norint laimėti tavo komandos  '.$jegai.' turi būti didesnė nei kitos komandos '.$gynybai.'!</small><br><b>Pulti komandas galima kas 3 valandas!</div>';
 echo'<div class="meniuc">';
@@ -749,7 +749,7 @@ if($id == 'pultiteam2'){
 	top(' Užpuolei komandą  '.$co.' ');
 
 
-$in = mysql_fetch_assoc(mysql_query("SELECT * FROM team WHERE pavadinimas='$co'"));
+$in = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$co'"));
 if($info['viso_laimejo_kovu'] <4999){
 echo'<div class="meniuc">Pulti galima tik laimėjus 5000<b> kovų</b>!</div>';}
 elseif($in['viso_laimejo_kovu'] <4999){
@@ -764,8 +764,8 @@ else{
 
 
 
-    $query = mysql_query("SELECT * FROM team WHERE pavadinimas='$ka'");
-    while($row = mysql_fetch_assoc($query)){
+    $query = mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$ka'");
+    while($row = mysqli_fetch_assoc($query)){
 
 	if($row['ataka']>$in['gynyba']){
 
@@ -780,10 +780,10 @@ echo'Pulti kita komanda galėsi už <b>3</b> valandų!</div>'	;
 $timxx = time()+3600*3;      
 
 	
-mysql_query("UPDATE team SET teamp=teamp+'500', win=win+'1', pllaikas='$timxx' WHERE pavadinimas='$ka' ");
-mysql_query("UPDATE team SET lose=lose+'1' WHERE pavadinimas='$co' ");
+mysqli_query($conn,"UPDATE team SET teamp=teamp+'500', win=win+'1', pllaikas='$timxx' WHERE pavadinimas='$ka' ");
+mysqli_query($conn,"UPDATE team SET lose=lose+'1' WHERE pavadinimas='$co' ");
 $txt = "Tavo komanda užpuolė <b>".$ka."</b>, ir tavo komanda <b>pralaimėjo</b>! ";
-                    mysql_query("INSERT INTO pm SET what='SISTEMA', txt='$txt', time='".time()."', nauj='NEW', gavejas='$in[vadas]' ");
+                    mysqli_query($conn,"INSERT INTO pm SET what='SISTEMA', txt='$txt', time='".time()."', nauj='NEW', gavejas='$in[vadas]' ");
 
 echo'</div>';}
 
@@ -798,11 +798,11 @@ Pulti kita komanda galėsi už <b>3</b> valandų!<br>
 
 
 $timxx = time()+3600*3;      
-	mysql_query("UPDATE team SET  pllaikas='$timxx' WHERE pavadinimas='$ka' ");
-mysql_query("UPDATE team SET lose=lose+'1' WHERE pavadinimas='$ka' ");
-mysql_query("UPDATE team SET teamp=teamp+'250', win=win+'1' WHERE pavadinimas='$co' ");
+	mysqli_query($conn,"UPDATE team SET  pllaikas='$timxx' WHERE pavadinimas='$ka' ");
+mysqli_query($conn,"UPDATE team SET lose=lose+'1' WHERE pavadinimas='$ka' ");
+mysqli_query($conn,"UPDATE team SET teamp=teamp+'250', win=win+'1' WHERE pavadinimas='$co' ");
 $txt = "Tavo komanda užpuolė <b> ".$ka."</b>, bet tavo komanda <b>Laimėjo</b> , ir gavo<b> 250</b><small> komandos taškų</small> ! ";
-                    mysql_query("INSERT INTO pm SET what='SISTEMA', txt='$txt', time='".time()."', nauj='NEW', gavejas='$in[vadas]' ");
+                    mysqli_query($conn,"INSERT INTO pm SET what='SISTEMA', txt='$txt', time='".time()."', nauj='NEW', gavejas='$in[vadas]' ");
 }
 }
 }
@@ -817,18 +817,18 @@ $txt = "Tavo komanda užpuolė <b> ".$ka."</b>, bet tavo komanda <b>Laimėjo</b>
 if($id == "team_boss"){
     online('Komandos Bosai');
 	top('Komandos Bosai');
-$team_boss= mysql_fetch_assoc(mysql_query("SELECT * FROM team WHERE pavadinimas='$ka'"));
+$team_boss= mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$ka'"));
 	if($user['team'] !== $ka){echo"<div class='meniuc'>Tu nesi šitoje komandoje</div>";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
 echo' <div class="meniuc"><img src=img/imgg/bosai.png border="1" width="180" height="90"><alt="**"></div>';
     echo '<div class="meniuc"><b>Komandos Bosai</b> - tai stipriausiai priešai.<br>Norint kirsti daugiau <b>Komandos Bosui</b> turite kelti '.$kgi.', arba turėti gerą <b>Sword</b><br>Norint, kad jums <b>Komandos Bosas</b> kirstų mažiau turite turėti <b>Armor</b>.<br><b>Kritinis lygis</b> - kiek turėsite <b>kritinio lygio</b> tiek daugiau kirsite <b> komandos bosams</b>!<br><font color="red"><b>1 </b> </font>Kritinio lygio '.$lygu.' <b><font color="red">5</font></b> daromos <b>komandos bosui</b> žalos!<br><font color="red"><b>1 </b> </font>Komandos Kritinio lygio '.$lygu.' <b><font color="red">1</font></b> daromos <b>komandos bosui</b> žalos!<br><b>Šiuos komandos bosus gali daužyti tik šios komandos nariai!</b></div>';
   
-    $query = mysql_query("SELECT * FROM team WHERE pavadinimas='$ka'");
-    while($row = mysql_fetch_assoc($query)){
+    $query = mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$ka'");
+    while($row = mysqli_fetch_assoc($query)){
     if($row['kovm1']-time() < 0){echo'<div class="meniuc"><b><font color="red">Norint kirsti komandų bosus, pirma turi jūsų komanda atsirakinti</b></font>!</div>';}}
 echo'<div class="meniu">';
-    $query = mysql_query("SELECT * FROM team_boss WHERE pavadinimas='$ka'");
-    while($row = mysql_fetch_assoc($query)){
+    $query = mysqli_query($conn,"SELECT * FROM team_boss WHERE pavadinimas='$ka'");
+    while($row = mysqli_fetch_assoc($query)){
 
          if($row['prisikels']-time() > 0){
          echo ' <img src="img/veikejaic/'.$row['img'].'.png" alt="IMG" height="42" width="42"><b> '.$row['name'].' </b>užmuštas, galėsite mušti už <b>'.laikas($row['prisikels']-time(), 1).'</b><br/>';
@@ -844,10 +844,10 @@ echo'<div class="meniu">';
 }
 elseif($id == "inf"){
     online('Boss Village');
-    $boss = mysql_fetch_array(mysql_query("SELECT * FROM team_boss WHERE id='$go'"));
+    $boss = mysqli_fetch_array(mysqli_query($conn,"SELECT * FROM team_boss WHERE id='$go'"));
 	top(''.$boss['name'].'');
    	if($user['team'] !== $ka){echo"<div class='meniuc'>Tu nesi šitoje komandoje</div>";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
 
  $tims = $boss['laikas'];
     if($boss['prisikels']-time() > 0){
@@ -855,7 +855,7 @@ elseif($id == "inf"){
         echo '<div class="meniuc"> <img src="img/veikejaic/'.$boss['img'].'.png" /></div>';
         echo '<div class="meniuc"><b>'.$boss['name'].'</b>  užmuštas, galėsite mušti už <b>'.laikas($boss['prisikels']-time(), 1).'</b></div>';
     }
-    elseif(mysql_num_rows(mysql_query("SELECT * FROM team_boss WHERE id='$go' ")) == 0){
+    elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team_boss WHERE id='$go' ")) == 0){
        
         echo '<div class="meniuc">Toks bosas neegzistuoja!</div>';
     }
@@ -891,17 +891,17 @@ elseif($id == "inf"){
 elseif($id == "attack"){
     online('Boss Village');
     $KD = $_GET['KD'];
-    $boss = mysql_fetch_array(mysql_query("SELECT * FROM team_boss WHERE id='$go'"));
+    $boss = mysqli_fetch_array(mysqli_query($conn,"SELECT * FROM team_boss WHERE id='$go'"));
 top(''.$boss['name'].'');
 	if($user['team'] !== $ka){echo"<div class='meniuc'>Tu nesi šitoje komandoje</div>";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
     $tims = $boss['laikas'];
     if($boss['prisikels']-time() > 0){
        
         echo '<div class="meniuc"><img src="img/veikejaic/'.$boss['img'].'.png" /></div>';
         echo '<div class="meniuc"><b>'.$boss['name'].'</b> užmuštas, galėsite mušti už <b>'.laikas($boss['prisikels']-time(), 1).'</b></div>';
     }
-    elseif(mysql_num_rows(mysql_query("SELECT * FROM team_boss WHERE id='$go' ")) == 0){
+    elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team_boss WHERE id='$go' ")) == 0){
       
         echo '<div class="meniuc">Toks bosas neegzistuoja!</div>';
     }
@@ -920,7 +920,7 @@ top(''.$boss['name'].'');
       
         echo '<div class="meniuc"><img src="img/veikejaic/'.$boss['img'].'.png" /></div>';
         echo '<div class="meniuc">Nebeturi '.$hp.'</div>';
- mysql_query("UPDATE zaidejai SET gyvybes='0' WHERE nick='$nick' ");
+ mysqli_query($conn,"UPDATE zaidejai SET gyvybes='0' WHERE nick='$nick' ");
    }
     else {
       
@@ -1181,8 +1181,8 @@ if($apie['sword'] == 'Infinity sword'){
          		
          	$smugis2 = 10000;
          }    
-$query = mysql_query("SELECT * FROM team WHERE pavadinimas='$ka'");
-    while($row = mysql_fetch_assoc($query)){
+$query = mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$ka'");
+    while($row = mysqli_fetch_assoc($query)){
 $teamcrit=rand(0,$row[kritinislvl]*1);
 }
          if($kg > '58'){
@@ -1214,10 +1214,10 @@ $critk= rand(0,$crit);
             $KD = rand(9999,99999);
             $_SESSION['refresh'] = $KD;
             $_SESSION['pad'] = time()+1;
-            mysql_query("UPDATE zaidejai SET vveiksmai=vveiksmai+'1', gyvybes=gyvybes-'$hit' WHERE nick='$nick' ");
-mysql_query("UPDATE team_boss SET  kiekzalos=kiekzalos+'$smugis' WHERE id='$go' ");
+            mysqli_query($conn,"UPDATE zaidejai SET vveiksmai=vveiksmai+'1', gyvybes=gyvybes-'$hit' WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE team_boss SET  kiekzalos=kiekzalos+'$smugis' WHERE id='$go' ");
 
-            mysql_query("UPDATE team_boss SET hp='$bosui_liko' WHERE id='$go' ");
+            mysqli_query($conn,"UPDATE team_boss SET hp='$bosui_liko' WHERE id='$go' ");
 
             
 			if($apie[kyborgas] !=''){
@@ -1283,8 +1283,8 @@ if(apsas($user['team']) == apsas($ka)){
 
 
             $time = time()+$boss['laikas'];
-            mysql_query("UPDATE team_boss SET hp='$boss[max_hp]',  nukirtobosu=nukirtobosu+'1', prisikels='$time', nukirto='$nick' WHERE id='$go'");
-mysql_query("UPDATE team SET pinigai=pinigai+'$zenxx', eurai=eurai+'$eurxx', nukirtobosu=nukirtobosu+'1' WHERE pavadinimas='$ka' ");
+            mysqli_query($conn,"UPDATE team_boss SET hp='$boss[max_hp]',  nukirtobosu=nukirtobosu+'1', prisikels='$time', nukirto='$nick' WHERE id='$go'");
+mysqli_query($conn,"UPDATE team SET pinigai=pinigai+'$zenxx', eurai=eurai+'$eurxx', nukirtobosu=nukirtobosu+'1' WHERE pavadinimas='$ka' ");
 
             echo '<div class="meniuc"><b>Įtrenkei paskutinį smūgį! </b><br>Tavo komanda gavo <b>'.sk($eurxx).'</b> '.$eurui.' , <b>'.sk($zenxx).'</b>'.$pinigaii.'  !</div>';
         }
@@ -1299,7 +1299,7 @@ elseif($id == "keltigynyba"){
     online('Leidžia komandos eurus');
 	top('Komandos gynybos pirkimas');
 	if($info['vadas'] !== $nick){echo"<div class='meniuc'>Tu neesi šios komandos vadas</div>";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'Tokios komandos nėra</div>";}
 	else{
 echo'<div class="meniuc">
 	<img src="img/imgg/komandos.png"></div><div class="up">Komandos gynybos kėlimas</div> ';
@@ -1318,8 +1318,8 @@ if($id =='keltigynyba2'){
 		
  top('Komandos gynybos pirkimas');
 
-   $query = mysql_query("SELECT * FROM team WHERE pavadinimas='$ka'");
-    while($row = mysql_fetch_assoc($query)){
+   $query = mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$ka'");
+    while($row = mysqli_fetch_assoc($query)){
    
         if(isset($_POST['submit'])){
             $gynyba= isset($_POST['gynyba']) ? preg_replace("/[^0-9]/","",$_POST['gynyba']) : null;
@@ -1336,7 +1336,7 @@ if($id =='keltigynyba2'){
 	          } else {
 	              echo '<div class="meniuc">Atlikta! Nupirkai komandai <b>'.sk($kiekis).' </b> <img src="img/bicons/shield.png" /> !</div>';
 	           
-	            mysql_query("UPDATE team SET gynyba=gynyba +'$kiekis', eurai=eurai-'$kainn' WHERE pavadinimas='$ka' ");
+	            mysqli_query($conn,"UPDATE team SET gynyba=gynyba +'$kiekis', eurai=eurai-'$kainn' WHERE pavadinimas='$ka' ");
 			  }
 		
 }
@@ -1350,7 +1350,7 @@ elseif($id == "keltiataka"){
     online('Leidžia komandos eurus');
 	top('Komandos atakos pirkimas');
 	if($info['vadas'] !== $nick){echo"<div class='meniuc'>Tu neesi šios komandos vadas</div>";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'Tokios komandos nėra</div>";}
 	else{
 echo'<div class="meniuc">
 	<img src="img/imgg/komandos.png"></div><div class="up">Komandos atakos kėlimas</div> ';
@@ -1369,8 +1369,8 @@ if($id =='keltiataka2'){
 		
  top('Komandos atakos pirkimas');
 
-   $query = mysql_query("SELECT * FROM team WHERE pavadinimas='$ka'");
-    while($row = mysql_fetch_assoc($query)){
+   $query = mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$ka'");
+    while($row = mysqli_fetch_assoc($query)){
    
         if(isset($_POST['submit'])){
             $ataka= isset($_POST['ataka']) ? preg_replace("/[^0-9]/","",$_POST['ataka']) : null;
@@ -1387,8 +1387,8 @@ if($id =='keltiataka2'){
 	          } else {
 	              echo '<div class="meniuc">Atlikta! Nupirkai komandai <b>'.sk($kiekis).' </b> <img src="img/bicons/attack.png" /> !</div>';
 	           
-	            mysql_query("UPDATE team SET ataka=ataka +'$kiekis', eurai=eurai-'$kainn' WHERE pavadinimas='$ka' ");
-mysql_query("UPDATE user SET ataka=ataka +'$kiekis' WHERE team='$ka' ");
+	            mysqli_query($conn,"UPDATE team SET ataka=ataka +'$kiekis', eurai=eurai-'$kainn' WHERE pavadinimas='$ka' ");
+mysqli_query($conn,"UPDATE user SET ataka=ataka +'$kiekis' WHERE team='$ka' ");
 			  }
 		
 }
@@ -1401,7 +1401,7 @@ elseif($id == "shopeuru"){
     online('Leidžia komandos taškus');
 	top('Komandos eurų pirkimas');
 	if($info['vadas'] !== $nick){echo"<div class='meniuc'>Tu neesi šios komandos vadas</div>";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'Tokios komandos nėra</div>";}
 	else{
 echo'<div class="meniuc">
 	<img src="img/imgg/komandos.png"><br>Komandos Eurų Pirkimas</div> ';
@@ -1420,8 +1420,8 @@ if($id =='shopeuru2'){
 		
  top('Komandos eurų pirkimas');
 
-   $query = mysql_query("SELECT * FROM team WHERE pavadinimas='$ka'");
-    while($row = mysql_fetch_assoc($query)){
+   $query = mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$ka'");
+    while($row = mysqli_fetch_assoc($query)){
    
         if(isset($_POST['submit'])){
             $euru= isset($_POST['euru']) ? preg_replace("/[^0-9]/","",$_POST['euru']) : null;
@@ -1438,7 +1438,7 @@ if($id =='shopeuru2'){
 	          } else {
 	              echo '<div class="meniuc">Atlikta! Nupirkai komandai <b>'.sk($kainn).' </b> <img src="img/bicons/euro.png" /> !</div>';
 	           
-	            mysql_query("UPDATE team SET eurai=eurai +'$kainn', teamp=teamp-'$kiekis' WHERE pavadinimas='$ka' ");
+	            mysqli_query($conn,"UPDATE team SET eurai=eurai +'$kainn', teamp=teamp-'$kiekis' WHERE pavadinimas='$ka' ");
 			  }
 		
 }
@@ -1457,10 +1457,10 @@ if($id == 'shopbosstoppo'){
 	top('Boso Pirkimas');
 	
 	if($user['team'] !== $ka){echo"<div class='meniuc'>Tu nesi šitoje komandoje</div>";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'Tokios komandos nėra</div>";}
 	
-    $query = mysql_query("SELECT * FROM team WHERE pavadinimas='$ka'");
-    while($row = mysql_fetch_assoc($query)){
+    $query = mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$ka'");
+    while($row = mysqli_fetch_assoc($query)){
 	if($row['Toppo']-time() < 0){
 	       $timxx = time()+60*60*24*1000;      
 			if($row['teamp'] < 49999){
@@ -1473,8 +1473,8 @@ else{
 <div class="meniuc">	Jūsų komanda sėkmingai nusipirko <b>Toppo</b> bosą</div> ';		
 
 
-	mysql_query("INSERT INTO team_boss SET name='Toppo', img='Toppo', zen='150000000000',   hp='120000000000', max_hp='120000000000', laikas='72000', max_hit='20000', min_hit='15000', eur='1000', pavadinimas='$ka' ");
-mysql_query("UPDATE team SET Toppo='$timxx' WHERE pavadinimas='$ka' ");
+	mysqli_query($conn,"INSERT INTO team_boss SET name='Toppo', img='Toppo', zen='150000000000',   hp='120000000000', max_hp='120000000000', laikas='72000', max_hit='20000', min_hit='15000', eur='1000', pavadinimas='$ka' ");
+mysqli_query($conn,"UPDATE team SET Toppo='$timxx' WHERE pavadinimas='$ka' ");
 }}
 
 elseif($row['Toppo']-time() > 0){
@@ -1494,10 +1494,10 @@ if($id == 'shopbossdyspo'){
 	top('Boso Pirkimas');
 	
 		if($user['team'] !== $ka){echo"<div class='meniuc'>Tu nesi šitoje komandoje</div>";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'Tokios komandos nėra</div>";}
 	
-    $query = mysql_query("SELECT * FROM team WHERE pavadinimas='$ka'");
-    while($row = mysql_fetch_assoc($query)){
+    $query = mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$ka'");
+    while($row = mysqli_fetch_assoc($query)){
 	if($row['Dyspo']-time() < 0){
 	       $timxx = time()+60*60*24*1000;      
 			if($row['teamp'] < 19999){
@@ -1510,8 +1510,8 @@ else{
 <div class="meniuc">	Jūsų komanda sėkmingai nusipirko <b>Dyspo</b> bosą</div> ';		
 
 
-	mysql_query("INSERT INTO team_boss SET name='Dyspo', img='Dyspo', zen='100000000000',   hp='80000000000', max_hp='80000000000', laikas='36000', max_hit='16000', min_hit='10000', eur='800', pavadinimas='$ka' ");
-mysql_query("UPDATE team SET Dyspo='$timxx' WHERE pavadinimas='$ka' ");
+	mysqli_query($conn,"INSERT INTO team_boss SET name='Dyspo', img='Dyspo', zen='100000000000',   hp='80000000000', max_hp='80000000000', laikas='36000', max_hit='16000', min_hit='10000', eur='800', pavadinimas='$ka' ");
+mysqli_query($conn,"UPDATE team SET Dyspo='$timxx' WHERE pavadinimas='$ka' ");
 }}
 
 elseif($row['Dyspo']-time() > 0){
@@ -1532,7 +1532,7 @@ if($id == 'shopboss'){
 	top('Komandos Bosų Parduotuvė');
 	
 if($info['vadas'] !== $nick){echo"<div class='meniuc'>Tu neesi šios komandos vadas</div>";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'Tokios komandos nėra</div>";}
 	else{
 
 echo'<div class="meniuc">
@@ -1557,7 +1557,7 @@ if($id == 'shop'){
 	top('Komandos Parduotuvė');
 	
 	if($user['team'] !== $ka){echo"<div class='meniuc'>Tu nesi šitoje komandoje</div>";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
 	else{
 
 echo'<div class="meniuc">
@@ -1579,7 +1579,7 @@ navigacija($g_n);
 {
 	top('Žinutės siuntimas komandos nariams');
 	if($info['vadas'] != $nick && $info['pavadotuojas'] != $nick){echo"<div class='meniuc'>Tu nesi šios komandos vadas</div>";}
-		if(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='$ka'")) == false)
+		if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$ka'")) == false)
 	{echo"<div class='meniuc'>Tokios komandos nėra</div>";}
 	else{
 echo"
@@ -1602,7 +1602,7 @@ if( $id =='visiems2')
 	$pm = post($_POST['pm']);
 	top('Žinutės siuntimas komandos nariams');
 if($info['vadas'] != $nick && $info['pavadotuojas'] != $nick){echo"<div class='meniuc'>Tu nesi šios komandos vadas</div>";}
-elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='$ka'")) == false){
+elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$ka'")) == false){
 	echo"<div class='meniuc'>Tokios komandos nėra</div>";}
 elseif(empty($pm)){
 	echo"<div class='meniuc'>Žinutė tuščia</div>";
@@ -1611,10 +1611,10 @@ else{
 
 
 
-$on=mysql_query("SELECT * FROM user WHERE team='$ka' ORDER BY id");
-while ($onn = mysql_fetch_row($on))
+$on=mysqli_query($conn,"SELECT * FROM user WHERE team='$ka' ORDER BY id");
+while ($onn = mysqli_fetch_row($on))
 {
-mysql_query("INSERT INTO pms SET what='$nick', txt='$pm', gavejas='$onn[1]', time='".time()."', nauj='NEW' ") or die(mysql_error());
+mysqli_query($conn,"INSERT INTO pms SET what='$nick', txt='$pm', gavejas='$onn[1]', time='".time()."', nauj='NEW' ") or die(mysqli_error());
 
 
 }
@@ -1630,8 +1630,8 @@ if($id == "isimtift")
 {
     top('Foto išėmimas');
 if($info['vadas'] != $nick && $info['pavadotuojas'] != $nick)echo"<div class='meniuc>Tu nesi šios komandos vadas</div>";
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
-mysql_query("UPDATE user SET foto='' WHERE team= $ka");
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
+mysqli_query($conn,"UPDATE user SET foto='' WHERE team= $ka");
 echo "<div class='meniuc'>Ištrinta </div>";
 	$g_n[] = array("pagrindinis.php?id=","Pagrindinis","komanda.php","Komandos","komanda.php?id=info&ka=$ka"," $ka komanda", "Foto trinimas");
 navigacija($g_n);
@@ -1643,7 +1643,7 @@ top('Foto idėjimas');
 	
 	
 	if($info['vadas'] != $nick && $info['pavadotuojas'] != $nick)echo"<div class='meniuc>Tu nesi šios komandos vadas</div>";
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
 	else{  echo '<div class="meniuc">
    <form action="?id=foto2&ka='.$ka.'" method="post"/>
    Nuotraukos adresas:<br /><input type="text" name="foto"/><br />
@@ -1659,13 +1659,13 @@ if($id == "foto2")
 {
 	top('Foto idėjimas');
 	$foto = post($_POST[foto]);
-   $info = mysql_fetch_array(mysql_query("SELECT * FROM team WHERE pavadinimas='$ka'"));
+   $info = mysqli_fetch_array(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$ka'"));
 	
 	if($info['vadas'] != $nick && $info['pavadotuojas'] != $nick)echo"<div class='meniuc'>Tu nesi šios komandos vadas</div>";
 	
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
 echo'<div class="meniuc">Nuotrauka pakeista</div>';
-	mysql_query("UPDATE team SET foto='$foto' WHERE pavadinimas ='$ka'")or die(mysql_error());
+	mysqli_query($conn,"UPDATE team SET foto='$foto' WHERE pavadinimas ='$ka'")or die(mysqli_error());
 	$g_n[] = array("pagrindinis.php?id=","Pagrindinis","komanda.php","Komandos","komanda.php?id=info&ka=$ka"," $ka komanda", "Foto ikėlimas");
 navigacija($g_n);
 	
@@ -1675,10 +1675,10 @@ if($id == 'misijoskrit10'){
 	top('Kritinio Lygio Misijos');
 	
 	if($user['team'] !== $ka){echo"<div class='meniuc'>Tu nesi šitoje komandoje</div>";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
 	elseif($info['vadas'] !== $nick){echo"<div class='meniuc'>Tu neesi šios komandos vadas</div>";}
-$query = mysql_query("SELECT * FROM team WHERE pavadinimas='$ka'");
-    while($row = mysql_fetch_assoc($query)){
+$query = mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$ka'");
+    while($row = mysqli_fetch_assoc($query)){
 	if($row['kritm10']-time() < 0){
 	       $timxx = time()+60*60*24*1000;      
 			if($row['kritinislvl'] < 2999999){
@@ -1694,8 +1694,8 @@ else{
 Jūsų komanda sėkmingai įvygdė šią misiją</b>! <br>Į iždą gavote <b>15,000</b> <font color="red"><b><img src="img/bicons/teamp.png">Komandos taškų</b></font> ! </div> ';		
 
 
-	mysql_query("UPDATE team SET teamp=teamp+'15000' WHERE pavadinimas='$ka' ");
-mysql_query("UPDATE team SET kritm10='$timxx' WHERE pavadinimas='$ka' ");
+	mysqli_query($conn,"UPDATE team SET teamp=teamp+'15000' WHERE pavadinimas='$ka' ");
+mysqli_query($conn,"UPDATE team SET kritm10='$timxx' WHERE pavadinimas='$ka' ");
 }}
 
 elseif($row['kritm10']-time() > 0){
@@ -1716,10 +1716,10 @@ if($id == 'misijoskrit9'){
 	top('Kritinio Lygio Misijos');
 	
 	if($user['team'] !== $ka){echo"<div class='meniuc'>Tu nesi šitoje komandoje</div>";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
 	elseif($info['vadas'] !== $nick){echo"<div class='meniuc'>Tu neesi šios komandos vadas</div>";}
-$query = mysql_query("SELECT * FROM team WHERE pavadinimas='$ka'");
-    while($row = mysql_fetch_assoc($query)){
+$query = mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$ka'");
+    while($row = mysqli_fetch_assoc($query)){
 	if($row['kritm9']-time() < 0){
 	       $timxx = time()+60*60*24*1000;      
 			if($row['kritinislvl'] < 1999999){
@@ -1735,8 +1735,8 @@ else{
 Jūsų komanda sėkmingai įvygdė šią misiją</b>! <br>Į iždą gavote <b>12,000</b> <font color="red"><b><img src="img/bicons/teamp.png">Komandos taškų</b></font> ! </div> ';		
 
 
-	mysql_query("UPDATE team SET teamp=teamp+'12000' WHERE pavadinimas='$ka' ");
-mysql_query("UPDATE team SET kritm9='$timxx' WHERE pavadinimas='$ka' ");
+	mysqli_query($conn,"UPDATE team SET teamp=teamp+'12000' WHERE pavadinimas='$ka' ");
+mysqli_query($conn,"UPDATE team SET kritm9='$timxx' WHERE pavadinimas='$ka' ");
 }}
 
 elseif($row['kritm9']-time() > 0){
@@ -1756,10 +1756,10 @@ if($id == 'misijoskrit8'){
 	top('Kritinio Lygio Misijos');
 	
 	if($user['team'] !== $ka){echo"<div class='meniuc'>Tu nesi šitoje komandoje</div>";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
 	elseif($info['vadas'] !== $nick){echo"<div class='meniuc'>Tu neesi šios komandos vadas</div>";}
-$query = mysql_query("SELECT * FROM team WHERE pavadinimas='$ka'");
-    while($row = mysql_fetch_assoc($query)){
+$query = mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$ka'");
+    while($row = mysqli_fetch_assoc($query)){
 	if($row['kritm8']-time() < 0){
 	       $timxx = time()+60*60*24*1000;      
 			if($row['kritinislvl'] < 1599999){
@@ -1775,8 +1775,8 @@ else{
 Jūsų komanda sėkmingai įvygdė šią misiją</b>! <br>Į iždą gavote <b>10,000</b> <font color="red"><b><img src="img/bicons/teamp.png">Komandos taškų</b></font> ! </div> ';		
 
 
-	mysql_query("UPDATE team SET teamp=teamp+'10000' WHERE pavadinimas='$ka' ");
-mysql_query("UPDATE team SET kritm8='$timxx' WHERE pavadinimas='$ka' ");
+	mysqli_query($conn,"UPDATE team SET teamp=teamp+'10000' WHERE pavadinimas='$ka' ");
+mysqli_query($conn,"UPDATE team SET kritm8='$timxx' WHERE pavadinimas='$ka' ");
 }}
 
 elseif($row['kritm8']-time() > 0){
@@ -1797,10 +1797,10 @@ if($id == 'misijoskrit7'){
 	top('Kritinio Lygio Misijos');
 	
 	if($user['team'] !== $ka){echo"<div class='meniuc'>Tu nesi šitoje komandoje</div>";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
 	elseif($info['vadas'] !== $nick){echo"<div class='meniuc'>Tu neesi šios komandos vadas</div>";}
-$query = mysql_query("SELECT * FROM team WHERE pavadinimas='$ka'");
-    while($row = mysql_fetch_assoc($query)){
+$query = mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$ka'");
+    while($row = mysqli_fetch_assoc($query)){
 	if($row['kritm7']-time() < 0){
 	       $timxx = time()+60*60*24*1000;      
 			if($row['kritinislvl'] < 1199999){
@@ -1816,8 +1816,8 @@ else{
 Jūsų komanda sėkmingai įvygdė šią misiją</b>! <br>Į iždą gavote <b>8,000</b> <font color="red"><b><img src="img/bicons/teamp.png">Komandos taškų</b></font> ! </div> ';		
 
 
-	mysql_query("UPDATE team SET teamp=teamp+'8000' WHERE pavadinimas='$ka' ");
-mysql_query("UPDATE team SET kritm7='$timxx' WHERE pavadinimas='$ka' ");
+	mysqli_query($conn,"UPDATE team SET teamp=teamp+'8000' WHERE pavadinimas='$ka' ");
+mysqli_query($conn,"UPDATE team SET kritm7='$timxx' WHERE pavadinimas='$ka' ");
 }}
 
 elseif($row['kritm7']-time() > 0){
@@ -1838,10 +1838,10 @@ if($id == 'misijoskrit6'){
 	top('Kritinio Lygio Misijos');
 	
 	if($user['team'] !== $ka){echo"<div class='meniuc'>Tu nesi šitoje komandoje</div>";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
 	elseif($info['vadas'] !== $nick){echo"<div class='meniuc'>Tu neesi šios komandos vadas</div>";}
-$query = mysql_query("SELECT * FROM team WHERE pavadinimas='$ka'");
-    while($row = mysql_fetch_assoc($query)){
+$query = mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$ka'");
+    while($row = mysqli_fetch_assoc($query)){
 	if($row['kritm6']-time() < 0){
 	       $timxx = time()+60*60*24*1000;      
 			if($row['kritinislvl'] < 799999){
@@ -1857,8 +1857,8 @@ else{
 Jūsų komanda sėkmingai įvygdė šią misiją</b>! <br>Į iždą gavote <b>6,000</b> <font color="red"><b><img src="img/bicons/teamp.png">Komandos taškų</b></font> ! </div> ';		
 
 
-	mysql_query("UPDATE team SET teamp=teamp+'6000' WHERE pavadinimas='$ka' ");
-mysql_query("UPDATE team SET kritm6='$timxx' WHERE pavadinimas='$ka' ");
+	mysqli_query($conn,"UPDATE team SET teamp=teamp+'6000' WHERE pavadinimas='$ka' ");
+mysqli_query($conn,"UPDATE team SET kritm6='$timxx' WHERE pavadinimas='$ka' ");
 }}
 
 elseif($row['kritm6']-time() > 0){
@@ -1879,10 +1879,10 @@ if($id == 'misijoskrit5'){
 	top('Kritinio Lygio Misijos');
 	
 	if($user['team'] !== $ka){echo"<div class='meniuc'>Tu nesi šitoje komandoje</div>";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
 	elseif($info['vadas'] !== $nick){echo"<div class='meniuc'>Tu neesi šios komandos vadas</div>";}
-$query = mysql_query("SELECT * FROM team WHERE pavadinimas='$ka'");
-    while($row = mysql_fetch_assoc($query)){
+$query = mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$ka'");
+    while($row = mysqli_fetch_assoc($query)){
 	if($row['kritm5']-time() < 0){
 	       $timxx = time()+60*60*24*1000;      
 			if($row['kritinislvl'] < 399999){
@@ -1898,8 +1898,8 @@ else{
 Jūsų komanda sėkmingai įvygdė šią misiją</b>! <br>Į iždą gavote <b>4,000</b> <font color="red"><b><img src="img/bicons/teamp.png">Komandos taškų</b></font> ! </div> ';		
 
 
-	mysql_query("UPDATE team SET teamp=teamp+'4000' WHERE pavadinimas='$ka' ");
-mysql_query("UPDATE team SET kritm5='$timxx' WHERE pavadinimas='$ka' ");
+	mysqli_query($conn,"UPDATE team SET teamp=teamp+'4000' WHERE pavadinimas='$ka' ");
+mysqli_query($conn,"UPDATE team SET kritm5='$timxx' WHERE pavadinimas='$ka' ");
 }}
 
 elseif($row['kritm5']-time() > 0){
@@ -1919,10 +1919,10 @@ if($id == 'misijoskrit4'){
 	top('Kritinio Lygio Misijos');
 	
 	if($user['team'] !== $ka){echo"<div class='meniuc'>Tu nesi šitoje komandoje</div>";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
 	elseif($info['vadas'] !== $nick){echo"<div class='meniuc'>Tu neesi šios komandos vadas</div>";}
-$query = mysql_query("SELECT * FROM team WHERE pavadinimas='$ka'");
-    while($row = mysql_fetch_assoc($query)){
+$query = mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$ka'");
+    while($row = mysqli_fetch_assoc($query)){
 	if($row['kritm4']-time() < 0){
 	       $timxx = time()+60*60*24*1000;      
 			if($row['kritinislvl'] < 199999){
@@ -1938,8 +1938,8 @@ else{
 Jūsų komanda sėkmingai įvygdė šią misiją</b>! <br>Į iždą gavote <b>2,000</b> <font color="red"><b><img src="img/bicons/teamp.png">Komandos taškų</b></font> ! </div> ';		
 
 
-	mysql_query("UPDATE team SET teamp=teamp+'2000' WHERE pavadinimas='$ka' ");
-mysql_query("UPDATE team SET kritm4='$timxx' WHERE pavadinimas='$ka' ");
+	mysqli_query($conn,"UPDATE team SET teamp=teamp+'2000' WHERE pavadinimas='$ka' ");
+mysqli_query($conn,"UPDATE team SET kritm4='$timxx' WHERE pavadinimas='$ka' ");
 }}
 
 elseif($row['kritm4']-time() > 0){
@@ -1958,10 +1958,10 @@ if($id == 'misijoskrit3'){
 	top('Kritinio Lygio Misijos');
 	
 	if($user['team'] !== $ka){echo"<div class='meniuc'>Tu nesi šitoje komandoje</div>";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
 	elseif($info['vadas'] !== $nick){echo"<div class='meniuc'>Tu neesi šios komandos vadas</div>";}
-$query = mysql_query("SELECT * FROM team WHERE pavadinimas='$ka'");
-    while($row = mysql_fetch_assoc($query)){
+$query = mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$ka'");
+    while($row = mysqli_fetch_assoc($query)){
 	if($row['kritm3']-time() < 0){
 	       $timxx = time()+60*60*24*1000;      
 			if($row['kritinislvl'] < 99999){
@@ -1977,8 +1977,8 @@ else{
 Jūsų komanda sėkmingai įvygdė šią misiją</b>! <br>Į iždą gavote <b>1,000</b> <font color="red"><b><img src="img/bicons/teamp.png">Komandos taškų</b></font> ! </div> ';		
 
 
-	mysql_query("UPDATE team SET teamp=teamp+'1000' WHERE pavadinimas='$ka' ");
-mysql_query("UPDATE team SET kritm3='$timxx' WHERE pavadinimas='$ka' ");
+	mysqli_query($conn,"UPDATE team SET teamp=teamp+'1000' WHERE pavadinimas='$ka' ");
+mysqli_query($conn,"UPDATE team SET kritm3='$timxx' WHERE pavadinimas='$ka' ");
 }}
 
 elseif($row['kritm3']-time() > 0){
@@ -1997,10 +1997,10 @@ if($id == 'misijoskrit2'){
 	top('Kritinio Lygio Misijos');
 	
 	if($user['team'] !== $ka){echo"<div class='meniuc'>Tu nesi šitoje komandoje</div>";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
 	elseif($info['vadas'] !== $nick){echo"<div class='meniuc'>Tu neesi šios komandos vadas</div>";}
-$query = mysql_query("SELECT * FROM team WHERE pavadinimas='$ka'");
-    while($row = mysql_fetch_assoc($query)){
+$query = mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$ka'");
+    while($row = mysqli_fetch_assoc($query)){
 	if($row['kritm2']-time() < 0){
 	       $timxx = time()+60*60*24*1000;      
 			if($row['kritinislvl'] < 49999){
@@ -2016,8 +2016,8 @@ else{
 Jūsų komanda sėkmingai įvygdė šią misiją</b>! <br>Į iždą gavote <b>500</b> <font color="red"><b><img src="img/bicons/teamp.png">Komandos taškų</b></font> ! </div> ';		
 
 
-	mysql_query("UPDATE team SET teamp=teamp+'500' WHERE pavadinimas='$ka' ");
-mysql_query("UPDATE team SET kritm2='$timxx' WHERE pavadinimas='$ka' ");
+	mysqli_query($conn,"UPDATE team SET teamp=teamp+'500' WHERE pavadinimas='$ka' ");
+mysqli_query($conn,"UPDATE team SET kritm2='$timxx' WHERE pavadinimas='$ka' ");
 }}
 
 elseif($row['kritm2']-time() > 0){
@@ -2038,10 +2038,10 @@ if($id == 'misijoskrit1'){
 	top('Kritinio Lygio Misijos');
 	
 	if($user['team'] !== $ka){echo"<div class='meniuc'>Tu nesi šitoje komandoje</div>";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
 	elseif($info['vadas'] !== $nick){echo"<div class='meniuc'>Tu neesi šios komandos vadas</div>";}
-$query = mysql_query("SELECT * FROM team WHERE pavadinimas='$ka'");
-    while($row = mysql_fetch_assoc($query)){
+$query = mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$ka'");
+    while($row = mysqli_fetch_assoc($query)){
 	if($row['kritm1']-time() < 0){
 	       $timxx = time()+60*60*24*1000;      
 			if($row['kritinislvl'] < 9999){
@@ -2057,8 +2057,8 @@ else{
 Jūsų komanda sėkmingai įvygdė šią misiją</b>! <br>Į iždą gavote <b>200</b> <font color="red"><b><img src="img/bicons/teamp.png">Komandos taškų</b></font> ! </div> ';		
 
 
-	mysql_query("UPDATE team SET teamp=teamp+'200' WHERE pavadinimas='$ka' ");
-mysql_query("UPDATE team SET kritm1='$timxx' WHERE pavadinimas='$ka' ");
+	mysqli_query($conn,"UPDATE team SET teamp=teamp+'200' WHERE pavadinimas='$ka' ");
+mysqli_query($conn,"UPDATE team SET kritm1='$timxx' WHERE pavadinimas='$ka' ");
 }}
 
 elseif($row['kritm1']-time() > 0){
@@ -2081,10 +2081,10 @@ if($id == 'misijoseuru10'){
 	top('Eurų Misijos');
 	
 	if($user['team'] !== $ka){echo"<div class='meniuc'>Tu nesi šitoje komandoje</div>";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
 	elseif($info['vadas'] !== $nick){echo"<div class='meniuc'>Tu neesi šios komandos vadas</div>";}
-$query = mysql_query("SELECT * FROM team WHERE pavadinimas='$ka'");
-    while($row = mysql_fetch_assoc($query)){
+$query = mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$ka'");
+    while($row = mysqli_fetch_assoc($query)){
 	if($row['eurm10']-time() < 0){
 	       $timxx = time()+60*60*24*1000;      
 			if($row['eurai'] < 29999){
@@ -2100,8 +2100,8 @@ else{
 Jūsų komanda sėkmingai įvygdė šią misiją</b>! <br>Į iždą gavote <b>30,000</b> <font color="red"><b>Kritinio lygio</b></font> ! </div> ';		
 
 
-	mysql_query("UPDATE team SET kritinislvl=kritinislvl+'30000' WHERE pavadinimas='$ka' ");
-mysql_query("UPDATE team SET eurm10='$timxx' WHERE pavadinimas='$ka' ");
+	mysqli_query($conn,"UPDATE team SET kritinislvl=kritinislvl+'30000' WHERE pavadinimas='$ka' ");
+mysqli_query($conn,"UPDATE team SET eurm10='$timxx' WHERE pavadinimas='$ka' ");
 }}
 
 elseif($row['eurm10']-time() > 0){
@@ -2120,10 +2120,10 @@ if($id == 'misijoseuru9'){
 	top('Eurų Misijos');
 	
 	if($user['team'] !== $ka){echo"<div class='meniuc'>Tu nesi šitoje komandoje</div>";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
 	elseif($info['vadas'] !== $nick){echo"<div class='meniuc'>Tu neesi šios komandos vadas</div>";}
-$query = mysql_query("SELECT * FROM team WHERE pavadinimas='$ka'");
-    while($row = mysql_fetch_assoc($query)){
+$query = mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$ka'");
+    while($row = mysqli_fetch_assoc($query)){
 	if($row['eurm9']-time() < 0){
 	       $timxx = time()+60*60*24*1000;      
 			if($row['eurai'] < 19999){
@@ -2139,8 +2139,8 @@ else{
 Jūsų komanda sėkmingai įvygdė šią misiją</b>! <br>Į iždą gavote <b>25,000</b> <font color="red"><b>Kritinio lygio</b></font> ! </div> ';		
 
 
-	mysql_query("UPDATE team SET kritinislvl=kritinislvl+'25000' WHERE pavadinimas='$ka' ");
-mysql_query("UPDATE team SET eurm9='$timxx' WHERE pavadinimas='$ka' ");
+	mysqli_query($conn,"UPDATE team SET kritinislvl=kritinislvl+'25000' WHERE pavadinimas='$ka' ");
+mysqli_query($conn,"UPDATE team SET eurm9='$timxx' WHERE pavadinimas='$ka' ");
 }}
 
 elseif($row['eurm9']-time() > 0){
@@ -2162,10 +2162,10 @@ if($id == 'misijoseuru8'){
 	top('Eurų Misijos');
 	
 	if($user['team'] !== $ka){echo"<div class='meniuc'>Tu nesi šitoje komandoje</div>";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
 	elseif($info['vadas'] !== $nick){echo"<div class='meniuc'>Tu neesi šios komandos vadas</div>";}
-$query = mysql_query("SELECT * FROM team WHERE pavadinimas='$ka'");
-    while($row = mysql_fetch_assoc($query)){
+$query = mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$ka'");
+    while($row = mysqli_fetch_assoc($query)){
 	if($row['eurm8']-time() < 0){
 	       $timxx = time()+60*60*24*1000;      
 			if($row['eurai'] < 11999){
@@ -2181,8 +2181,8 @@ else{
 Jūsų komanda sėkmingai įvygdė šią misiją</b>! <br>Į iždą gavote <b>20,000</b> <font color="red"><b>Kritinio lygio</b></font> ! </div> ';		
 
 
-	mysql_query("UPDATE team SET kritinislvl=kritinislvl+'20000' WHERE pavadinimas='$ka' ");
-mysql_query("UPDATE team SET eurm8='$timxx' WHERE pavadinimas='$ka' ");
+	mysqli_query($conn,"UPDATE team SET kritinislvl=kritinislvl+'20000' WHERE pavadinimas='$ka' ");
+mysqli_query($conn,"UPDATE team SET eurm8='$timxx' WHERE pavadinimas='$ka' ");
 }}
 
 elseif($row['eurm8']-time() > 0){
@@ -2203,10 +2203,10 @@ if($id == 'misijoseuru7'){
 	top('Eurų Misijos');
 	
 	if($user['team'] !== $ka){echo"<div class='meniuc'>Tu nesi šitoje komandoje</div>";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
 	elseif($info['vadas'] !== $nick){echo"<div class='meniuc'>Tu neesi šios komandos vadas</div>";}
-$query = mysql_query("SELECT * FROM team WHERE pavadinimas='$ka'");
-    while($row = mysql_fetch_assoc($query)){
+$query = mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$ka'");
+    while($row = mysqli_fetch_assoc($query)){
 	if($row['eurm7']-time() < 0){
 	       $timxx = time()+60*60*24*1000;      
 			if($row['eurai'] < 6999){
@@ -2222,8 +2222,8 @@ else{
 Jūsų komanda sėkmingai įvygdė šią misiją</b>! <br>Į iždą gavote <b>16,000</b> <font color="red"><b>Kritinio lygio</b></font> ! </div> ';		
 
 
-	mysql_query("UPDATE team SET kritinislvl=kritinislvl+'16000' WHERE pavadinimas='$ka' ");
-mysql_query("UPDATE team SET eurm7='$timxx' WHERE pavadinimas='$ka' ");
+	mysqli_query($conn,"UPDATE team SET kritinislvl=kritinislvl+'16000' WHERE pavadinimas='$ka' ");
+mysqli_query($conn,"UPDATE team SET eurm7='$timxx' WHERE pavadinimas='$ka' ");
 }}
 
 elseif($row['eurm7']-time() > 0){
@@ -2242,10 +2242,10 @@ if($id == 'misijoseuru6'){
 	top('Eurų Misijos');
 	
 	if($user['team'] !== $ka){echo"<div class='meniuc'>Tu nesi šitoje komandoje</div>";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
 	elseif($info['vadas'] !== $nick){echo"<div class='meniuc'>Tu neesi šios komandos vadas</div>";}
-$query = mysql_query("SELECT * FROM team WHERE pavadinimas='$ka'");
-    while($row = mysql_fetch_assoc($query)){
+$query = mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$ka'");
+    while($row = mysqli_fetch_assoc($query)){
 	if($row['eurm6']-time() < 0){
 	       $timxx = time()+60*60*24*1000;      
 			if($row['eurai'] < 3999){
@@ -2261,8 +2261,8 @@ else{
 Jūsų komanda sėkmingai įvygdė šią misiją</b>! <br>Į iždą gavote <b>12,000</b> <font color="red"><b>Kritinio lygio</b></font> ! </div> ';		
 
 
-	mysql_query("UPDATE team SET kritinislvl=kritinislvl+'12000' WHERE pavadinimas='$ka' ");
-mysql_query("UPDATE team SET eurm6='$timxx' WHERE pavadinimas='$ka' ");
+	mysqli_query($conn,"UPDATE team SET kritinislvl=kritinislvl+'12000' WHERE pavadinimas='$ka' ");
+mysqli_query($conn,"UPDATE team SET eurm6='$timxx' WHERE pavadinimas='$ka' ");
 }}
 
 elseif($row['eurm6']-time() > 0){
@@ -2284,10 +2284,10 @@ if($id == 'misijoseuru5'){
 	top('Eurų Misijos');
 	
 	if($user['team'] !== $ka){echo"<div class='meniuc'>Tu nesi šitoje komandoje</div>";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
 	elseif($info['vadas'] !== $nick){echo"<div class='meniuc'>Tu neesi šios komandos vadas</div>";}
-$query = mysql_query("SELECT * FROM team WHERE pavadinimas='$ka'");
-    while($row = mysql_fetch_assoc($query)){
+$query = mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$ka'");
+    while($row = mysqli_fetch_assoc($query)){
 	if($row['eurm5']-time() < 0){
 	       $timxx = time()+60*60*24*1000;      
 			if($row['eurai'] < 1999){
@@ -2303,8 +2303,8 @@ else{
 Jūsų komanda sėkmingai įvygdė šią misiją</b>! <br>Į iždą gavote <b>8,000</b> <font color="red"><b>Kritinio lygio</b></font> ! </div> ';		
 
 
-	mysql_query("UPDATE team SET kritinislvl=kritinislvl+'8000' WHERE pavadinimas='$ka' ");
-mysql_query("UPDATE team SET eurm5='$timxx' WHERE pavadinimas='$ka' ");
+	mysqli_query($conn,"UPDATE team SET kritinislvl=kritinislvl+'8000' WHERE pavadinimas='$ka' ");
+mysqli_query($conn,"UPDATE team SET eurm5='$timxx' WHERE pavadinimas='$ka' ");
 }}
 
 elseif($row['eurm5']-time() > 0){
@@ -2324,10 +2324,10 @@ if($id == 'misijoseuru4'){
 	top('Eurų Misijos');
 	
 	if($user['team'] !== $ka){echo"<div class='meniuc'>Tu nesi šitoje komandoje</div>";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
 	elseif($info['vadas'] !== $nick){echo"<div class='meniuc'>Tu neesi šios komandos vadas</div>";}
-$query = mysql_query("SELECT * FROM team WHERE pavadinimas='$ka'");
-    while($row = mysql_fetch_assoc($query)){
+$query = mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$ka'");
+    while($row = mysqli_fetch_assoc($query)){
 	if($row['eurm4']-time() < 0){
 	       $timxx = time()+60*60*24*1000;      
 			if($row['eurai'] < 999){
@@ -2343,8 +2343,8 @@ else{
 Jūsų komanda sėkmingai įvygdė šią misiją</b>! <br>Į iždą gavote <b>4,000</b> <font color="red"><b>Kritinio lygio</b></font> ! </div> ';		
 
 
-	mysql_query("UPDATE team SET kritinislvl=kritinislvl+'4000' WHERE pavadinimas='$ka' ");
-mysql_query("UPDATE team SET eurm4='$timxx' WHERE pavadinimas='$ka' ");
+	mysqli_query($conn,"UPDATE team SET kritinislvl=kritinislvl+'4000' WHERE pavadinimas='$ka' ");
+mysqli_query($conn,"UPDATE team SET eurm4='$timxx' WHERE pavadinimas='$ka' ");
 }}
 
 elseif($row['eurm4']-time() > 0){
@@ -2363,10 +2363,10 @@ if($id == 'misijoseuru3'){
 	top('Eurų Misijos');
 	
 
-	if(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
+	if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
 	elseif($info['vadas'] !== $nick){echo"<div class='meniuc'>Tu neesi šios komandos vadas</div>";}
-$query = mysql_query("SELECT * FROM team WHERE pavadinimas='$ka'");
-    while($row = mysql_fetch_assoc($query)){
+$query = mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$ka'");
+    while($row = mysqli_fetch_assoc($query)){
 	if($row['eurm3']-time() < 0){
 	       $timxx = time()+60*60*24*1000;      
 			if($row['eurai'] < 499){
@@ -2382,8 +2382,8 @@ else{
 Jūsų komanda sėkmingai įvygdė šią misiją</b>! <br>Į iždą gavote <b>2,000</b> <font color="red"><b>Kritinio lygio</b></font> ! </div> ';		
 
 
-	mysql_query("UPDATE team SET kritinislvl=kritinislvl+'2000' WHERE pavadinimas='$ka' ");
-mysql_query("UPDATE team SET eurm3='$timxx' WHERE pavadinimas='$ka' ");
+	mysqli_query($conn,"UPDATE team SET kritinislvl=kritinislvl+'2000' WHERE pavadinimas='$ka' ");
+mysqli_query($conn,"UPDATE team SET eurm3='$timxx' WHERE pavadinimas='$ka' ");
 }}
 
 elseif($row['eurm3']-time() > 0){
@@ -2402,10 +2402,10 @@ if($id == 'misijoseuru2'){
 	top('Eurų Misijos');
 	
 	if($user['team'] !== $ka){echo"<div class='meniuc'>Tu nesi šitoje komandoje</div>";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
 	elseif($info['vadas'] !== $nick){echo"<div class='meniuc'>Tu neesi šios komandos vadas</div>";}
-$query = mysql_query("SELECT * FROM team WHERE pavadinimas='$ka'");
-    while($row = mysql_fetch_assoc($query)){
+$query = mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$ka'");
+    while($row = mysqli_fetch_assoc($query)){
 	if($row['eurm2']-time() < 0){
 	       $timxx = time()+60*60*24*1000;      
 			if($row['eurai'] < 249){
@@ -2421,8 +2421,8 @@ else{
 Jūsų komanda sėkmingai įvygdė šią misiją</b>! <br>Į iždą gavote <b>1,000</b> <font color="red"><b>Kritinio lygio</b></font> ! </div> ';		
 
 
-	mysql_query("UPDATE team SET kritinislvl=kritinislvl+'1000' WHERE pavadinimas='$ka' ");
-mysql_query("UPDATE team SET eurm2='$timxx' WHERE pavadinimas='$ka' ");
+	mysqli_query($conn,"UPDATE team SET kritinislvl=kritinislvl+'1000' WHERE pavadinimas='$ka' ");
+mysqli_query($conn,"UPDATE team SET eurm2='$timxx' WHERE pavadinimas='$ka' ");
 }}
 
 elseif($row['eurm2']-time() > 0){
@@ -2441,10 +2441,10 @@ if($id == 'misijoseuru1'){
 	top('Eurų Misijos');
 
 	if($user['team'] !== $ka){echo"<div class='meniuc'>Tu nesi šitoje komandoje</div>";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
 	elseif($info['vadas'] !== $nick){echo"<div class='meniuc'>Tu neesi šios komandos vadas</div>";}
-$query = mysql_query("SELECT * FROM team WHERE pavadinimas='$ka'");
-    while($row = mysql_fetch_assoc($query)){
+$query = mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$ka'");
+    while($row = mysqli_fetch_assoc($query)){
 	if($row['eurm1']-time() < 0){
 	       $timxx = time()+60*60*24*1000;
 			if($row['eurai'] < 99){
@@ -2460,8 +2460,8 @@ else{
 Jūsų komanda sėkmingai įvygdė šią misiją</b>! <br>Į iždą gavote <b>500</b> <font color="red"><b>Kritinio lygio</b></font> ! </div> ';
 
 
-	mysql_query("UPDATE team SET kritinislvl=kritinislvl+'500' WHERE pavadinimas='$ka' ");
-mysql_query("UPDATE team SET eurm1='$timxx' WHERE pavadinimas='$ka' ");
+	mysqli_query($conn,"UPDATE team SET kritinislvl=kritinislvl+'500' WHERE pavadinimas='$ka' ");
+mysqli_query($conn,"UPDATE team SET eurm1='$timxx' WHERE pavadinimas='$ka' ");
 }}
 
 elseif($row['eurm1']-time() > 0){
@@ -2479,10 +2479,10 @@ if($id == 'misijospinigu10'){
 	top('Pinigų Misijos');
 
 	if($user['team'] !== $ka){echo"<div class='meniuc'>Tu nesi šitoje komandoje</div>";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
 	elseif($info['vadas'] !== $nick){echo"<div class='meniuc'>Tu neesi šios komandos vadas</div>";}
-$query = mysql_query("SELECT * FROM team WHERE pavadinimas='$ka'");
-    while($row = mysql_fetch_assoc($query)){
+$query = mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$ka'");
+    while($row = mysqli_fetch_assoc($query)){
 	if($row['pinm10']-time() < 0){
 	       $timxx = time()+60*60*24*1000;
 			if($row['pinigai'] < 49999999999999){
@@ -2498,8 +2498,8 @@ else{
 Jūsų komanda sėkmingai įvygdė šią misiją</b>! <br>Į iždą buvo pridėti <b>700</b>'.$eurui.' ! </div> ';
 
 
-	mysql_query("UPDATE team SET eurai=eurai+'700' WHERE pavadinimas='$ka' ");
-mysql_query("UPDATE team SET pinm10='$timxx' WHERE pavadinimas='$ka' ");
+	mysqli_query($conn,"UPDATE team SET eurai=eurai+'700' WHERE pavadinimas='$ka' ");
+mysqli_query($conn,"UPDATE team SET pinm10='$timxx' WHERE pavadinimas='$ka' ");
 }}
 
 elseif($row['pinm10']-time() > 0){
@@ -2519,10 +2519,10 @@ if($id == 'misijospinigu9'){
 	top('Pinigų Misijos');
 
 	if($user['team'] !== $ka){echo"<div class='meniuc'>Tu nesi šitoje komandoje</div>";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
 	elseif($info['vadas'] !== $nick){echo"<div class='meniuc'>Tu neesi šios komandos vadas</div>";}
-$query = mysql_query("SELECT * FROM team WHERE pavadinimas='$ka'");
-    while($row = mysql_fetch_assoc($query)){
+$query = mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$ka'");
+    while($row = mysqli_fetch_assoc($query)){
 	if($row['pinm9']-time() < 0){
 	       $timxx = time()+60*60*24*1000;
 			if($row['pinigai'] < 19999999999999){
@@ -2538,8 +2538,8 @@ else{
 Jūsų komanda sėkmingai įvygdė šią misiją</b>! <br>Į iždą buvo pridėti <b>500</b>'.$eurui.' ! </div> ';
 
 
-	mysql_query("UPDATE team SET eurai=eurai+'500' WHERE pavadinimas='$ka' ");
-mysql_query("UPDATE team SET pinm9='$timxx' WHERE pavadinimas='$ka' ");
+	mysqli_query($conn,"UPDATE team SET eurai=eurai+'500' WHERE pavadinimas='$ka' ");
+mysqli_query($conn,"UPDATE team SET pinm9='$timxx' WHERE pavadinimas='$ka' ");
 }}
 
 elseif($row['pinm9']-time() > 0){
@@ -2559,10 +2559,10 @@ if($id == 'misijospinigu8'){
 	top('Pinigų Misijos');
 
 	if($user['team'] !== $ka){echo"<div class='meniuc'>Tu nesi šitoje komandoje</div>";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
 	elseif($info['vadas'] !== $nick){echo"<div class='meniuc'>Tu neesi šios komandos vadas</div>";}
-$query = mysql_query("SELECT * FROM team WHERE pavadinimas='$ka'");
-    while($row = mysql_fetch_assoc($query)){
+$query = mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$ka'");
+    while($row = mysqli_fetch_assoc($query)){
 	if($row['pinm8']-time() < 0){
 	       $timxx = time()+60*60*24*1000;
 			if($row['pinigai'] < 4999999999999){
@@ -2578,8 +2578,8 @@ else{
 Jūsų komanda sėkmingai įvygdė šią misiją</b>! <br>Į iždą buvo pridėti <b>300</b>'.$eurui.' ! </div> ';
 
 
-	mysql_query("UPDATE team SET eurai=eurai+'300' WHERE pavadinimas='$ka' ");
-mysql_query("UPDATE team SET pinm8='$timxx' WHERE pavadinimas='$ka' ");
+	mysqli_query($conn,"UPDATE team SET eurai=eurai+'300' WHERE pavadinimas='$ka' ");
+mysqli_query($conn,"UPDATE team SET pinm8='$timxx' WHERE pavadinimas='$ka' ");
 }}
 
 elseif($row['pinm8']-time() > 0){
@@ -2599,10 +2599,10 @@ if($id == 'misijospinigu7'){
 	top('Pinigų Misijos');
 
 	if($user['team'] !== $ka){echo"<div class='meniuc'>Tu nesi šitoje komandoje</div>";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
 	elseif($info['vadas'] !== $nick){echo"<div class='meniuc'>Tu neesi šios komandos vadas</div>";}
-$query = mysql_query("SELECT * FROM team WHERE pavadinimas='$ka'");
-    while($row = mysql_fetch_assoc($query)){
+$query = mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$ka'");
+    while($row = mysqli_fetch_assoc($query)){
 	if($row['pinm7']-time() < 0){
 	       $timxx = time()+60*60*24*1000;
 			if($row['pinigai'] < 1499999999999){
@@ -2618,8 +2618,8 @@ else{
 Jūsų komanda sėkmingai įvygdė šią misiją</b>! <br>Į iždą buvo pridėti <b>200</b>'.$eurui.' ! </div> ';
 
 
-	mysql_query("UPDATE team SET eurai=eurai+'200' WHERE pavadinimas='$ka' ");
-mysql_query("UPDATE team SET pinm7='$timxx' WHERE pavadinimas='$ka' ");
+	mysqli_query($conn,"UPDATE team SET eurai=eurai+'200' WHERE pavadinimas='$ka' ");
+mysqli_query($conn,"UPDATE team SET pinm7='$timxx' WHERE pavadinimas='$ka' ");
 }}
 
 elseif($row['pinm7']-time() > 0){
@@ -2639,10 +2639,10 @@ if($id == 'misijospinigu6'){
 	top('Pinigų Misijos');
 
 	if($user['team'] !== $ka){echo"<div class='meniuc'>Tu nesi šitoje komandoje</div>";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
 	elseif($info['vadas'] !== $nick){echo"<div class='meniuc'>Tu neesi šios komandos vadas</div>";}
-$query = mysql_query("SELECT * FROM team WHERE pavadinimas='$ka'");
-    while($row = mysql_fetch_assoc($query)){
+$query = mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$ka'");
+    while($row = mysqli_fetch_assoc($query)){
 	if($row['pinm6']-time() < 0){
 	       $timxx = time()+60*60*24*1000;
 			if($row['pinigai'] < 499999999999){
@@ -2658,8 +2658,8 @@ else{
 Jūsų komanda sėkmingai įvygdė šią misiją</b>! <br>Į iždą buvo pridėti <b>150</b>'.$eurui.' ! </div> ';
 
 
-	mysql_query("UPDATE team SET eurai=eurai+'150' WHERE pavadinimas='$ka' ");
-mysql_query("UPDATE team SET pinm6='$timxx' WHERE pavadinimas='$ka' ");
+	mysqli_query($conn,"UPDATE team SET eurai=eurai+'150' WHERE pavadinimas='$ka' ");
+mysqli_query($conn,"UPDATE team SET pinm6='$timxx' WHERE pavadinimas='$ka' ");
 }}
 
 elseif($row['pinm6']-time() > 0){
@@ -2677,10 +2677,10 @@ if($id == 'misijospinigu5'){
 	top('Pinigų Misijos');
 
 	if($user['team'] !== $ka){echo"<div class='meniuc'>Tu nesi šitoje komandoje</div>";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
 	elseif($info['vadas'] !== $nick){echo"<div class='meniuc'>Tu neesi šios komandos vadas</div>";}
-$query = mysql_query("SELECT * FROM team WHERE pavadinimas='$ka'");
-    while($row = mysql_fetch_assoc($query)){
+$query = mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$ka'");
+    while($row = mysqli_fetch_assoc($query)){
 	if($row['pinm5']-time() < 0){
 	       $timxx = time()+60*60*24*1000;
 			if($row['pinigai'] < 149999999999){
@@ -2696,8 +2696,8 @@ else{
 Jūsų komanda sėkmingai įvygdė šią misiją</b>! <br>Į iždą buvo pridėti <b>100</b>'.$eurui.' ! </div> ';
 
 
-	mysql_query("UPDATE team SET eurai=eurai+'100' WHERE pavadinimas='$ka' ");
-mysql_query("UPDATE team SET pinm5='$timxx' WHERE pavadinimas='$ka' ");
+	mysqli_query($conn,"UPDATE team SET eurai=eurai+'100' WHERE pavadinimas='$ka' ");
+mysqli_query($conn,"UPDATE team SET pinm5='$timxx' WHERE pavadinimas='$ka' ");
 }}
 
 elseif($row['pinm5']-time() > 0){
@@ -2718,10 +2718,10 @@ if($id == 'misijospinigu4'){
 	top('Pinigų Misijos');
 
 	if($user['team'] !== $ka){echo"<div class='meniuc'>Tu nesi šitoje komandoje</div>";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
 	elseif($info['vadas'] !== $nick){echo"<div class='meniuc'>Tu neesi šios komandos vadas</div>";}
-$query = mysql_query("SELECT * FROM team WHERE pavadinimas='$ka'");
-    while($row = mysql_fetch_assoc($query)){
+$query = mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$ka'");
+    while($row = mysqli_fetch_assoc($query)){
 	if($row['pinm4']-time() < 0){
 	       $timxx = time()+60*60*24*1000;
 			if($row['pinigai'] < 49999999999){
@@ -2737,8 +2737,8 @@ else{
 Jūsų komanda sėkmingai įvygdė šią misiją</b>! <br>Į iždą buvo pridėti <b>80</b>'.$eurui.' ! </div> ';
 
 
-	mysql_query("UPDATE team SET eurai=eurai+'80' WHERE pavadinimas='$ka' ");
-mysql_query("UPDATE team SET pinm4='$timxx' WHERE pavadinimas='$ka' ");
+	mysqli_query($conn,"UPDATE team SET eurai=eurai+'80' WHERE pavadinimas='$ka' ");
+mysqli_query($conn,"UPDATE team SET pinm4='$timxx' WHERE pavadinimas='$ka' ");
 }}
 
 elseif($row['pinm4']-time() > 0){
@@ -2758,10 +2758,10 @@ if($id == 'misijospinigu3'){
 	top('Pinigų Misijos');
 
 	if($user['team'] !== $ka){echo"<div class='meniuc'>Tu nesi šitoje komandoje</div>";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
 	elseif($info['vadas'] !== $nick){echo"<div class='meniuc'>Tu neesi šios komandos vadas</div>";}
-$query = mysql_query("SELECT * FROM team WHERE pavadinimas='$ka'");
-    while($row = mysql_fetch_assoc($query)){
+$query = mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$ka'");
+    while($row = mysqli_fetch_assoc($query)){
 	if($row['pinm3']-time() < 0){
 	       $timxx = time()+60*60*24*1000;
 			if($row['pinigai'] < 19999999999){
@@ -2777,8 +2777,8 @@ else{
 Jūsų komanda sėkmingai įvygdė šią misiją</b>! <br>Į iždą buvo pridėti <b>60</b>'.$eurui.' ! </div> ';
 
 
-	mysql_query("UPDATE team SET eurai=eurai+'60' WHERE pavadinimas='$ka' ");
-mysql_query("UPDATE team SET pinm3='$timxx' WHERE pavadinimas='$ka' ");
+	mysqli_query($conn,"UPDATE team SET eurai=eurai+'60' WHERE pavadinimas='$ka' ");
+mysqli_query($conn,"UPDATE team SET pinm3='$timxx' WHERE pavadinimas='$ka' ");
 }}
 
 elseif($row['pinm3']-time() > 0){
@@ -2796,10 +2796,10 @@ if($id == 'misijospinigu2'){
 	top('Pinigų Misijos');
 
 	if($user['team'] !== $ka){echo"<div class='meniuc'>Tu nesi šitoje komandoje</div>";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
 	elseif($info['vadas'] !== $nick){echo"<div class='meniuc'>Tu neesi šios komandos vadas</div>";}
-$query = mysql_query("SELECT * FROM team WHERE pavadinimas='$ka'");
-    while($row = mysql_fetch_assoc($query)){
+$query = mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$ka'");
+    while($row = mysqli_fetch_assoc($query)){
 	if($row['pinm2']-time() < 0){
 	       $timxx = time()+60*60*24*1000;
 			if($row['pinigai'] < 4999999999){
@@ -2815,8 +2815,8 @@ else{
 Jūsų komanda sėkmingai įvygdė šią misiją</b>! <br>Į iždą buvo pridėti <b>40</b>'.$eurui.' ! </div> ';
 
 
-	mysql_query("UPDATE team SET eurai=eurai+'40' WHERE pavadinimas='$ka' ");
-mysql_query("UPDATE team SET pinm2='$timxx' WHERE pavadinimas='$ka' ");
+	mysqli_query($conn,"UPDATE team SET eurai=eurai+'40' WHERE pavadinimas='$ka' ");
+mysqli_query($conn,"UPDATE team SET pinm2='$timxx' WHERE pavadinimas='$ka' ");
 }}
 
 elseif($row['pinm2']-time() > 0){
@@ -2836,10 +2836,10 @@ if($id == 'misijospinigu1'){
 	top('Pinigų Misijos');
 
 	if($user['team'] !== $ka){echo"<div class='meniuc'>Tu nesi šitoje komandoje</div>";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
 	elseif($info['vadas'] !== $nick){echo"<div class='meniuc'>Tu neesi šios komandos vadas</div>";}
-$query = mysql_query("SELECT * FROM team WHERE pavadinimas='$ka'");
-    while($row = mysql_fetch_assoc($query)){
+$query = mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$ka'");
+    while($row = mysqli_fetch_assoc($query)){
 	if($row['pinm1']-time() < 0){
 	       $timxx = time()+60*60*24*1000;
 			if($row['pinigai'] < 999999999){
@@ -2855,8 +2855,8 @@ else{
 Jūsų komanda sėkmingai įvygdė šią misiją</b>! <br>Į iždą buvo pridėti <b>20</b>'.$eurui.' ! </div> ';
 
 
-	mysql_query("UPDATE team SET eurai=eurai+'20' WHERE pavadinimas='$ka' ");
-mysql_query("UPDATE team SET pinm1='$timxx' WHERE pavadinimas='$ka' ");
+	mysqli_query($conn,"UPDATE team SET eurai=eurai+'20' WHERE pavadinimas='$ka' ");
+mysqli_query($conn,"UPDATE team SET pinm1='$timxx' WHERE pavadinimas='$ka' ");
 }}
 
 elseif($row['pinm1']-time() > 0){
@@ -2877,10 +2877,10 @@ if($id == 'misijoskovu10'){
 	top('Kovų Misijos');
 	
 	if($user['team'] !== $ka){echo"<div class='meniuc'>Tu nesi šitoje komandoje</div>";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
 	elseif($info['vadas'] !== $nick){echo"<div class='meniuc'>Tu neesi šios komandos vadas</div>";}
-$query = mysql_query("SELECT * FROM team WHERE pavadinimas='$ka'");
-    while($row = mysql_fetch_assoc($query)){
+$query = mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$ka'");
+    while($row = mysqli_fetch_assoc($query)){
 	if($row['kovm10']-time() < 0){
 	       $timxx = time()+60*60*24*1000;      
 			if($row['viso_laimejo_kovu'] < 7999999){
@@ -2894,8 +2894,8 @@ else{
 <div class="meniuc">	<b>Jūsų komanda sėkmingai įvygdė šią misiją</b>! <br>Atrakinote <b>Dešimtąjį komandos bosą</b>! </div> ';		
 
 
-	mysql_query("INSERT INTO team_boss SET name='Hopp', img='Hopp', zen='60000000000',   hp='50000000000', max_hp='50000000000', laikas='28800', max_hit='13000', min_hit='8000', eur='600', pavadinimas='$ka' ");
-mysql_query("UPDATE team SET kovm10='$timxx' WHERE pavadinimas='$ka' ");
+	mysqli_query($conn,"INSERT INTO team_boss SET name='Hopp', img='Hopp', zen='60000000000',   hp='50000000000', max_hp='50000000000', laikas='28800', max_hit='13000', min_hit='8000', eur='600', pavadinimas='$ka' ");
+mysqli_query($conn,"UPDATE team SET kovm10='$timxx' WHERE pavadinimas='$ka' ");
 }}
 
 elseif($row['kovm10']-time() > 0){
@@ -2911,10 +2911,10 @@ if($id == 'misijoskovu9'){
 	top('Kovų Misijos');
 	
 	if($user['team'] !== $ka){echo"<div class='meniuc'>Tu nesi šitoje komandoje</div>";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
 	elseif($info['vadas'] !== $nick){echo"<div class='meniuc'>Tu neesi šios komandos vadas</div>";}
-$query = mysql_query("SELECT * FROM team WHERE pavadinimas='$ka'");
-    while($row = mysql_fetch_assoc($query)){
+$query = mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$ka'");
+    while($row = mysqli_fetch_assoc($query)){
 	if($row['kovm9']-time() < 0){
 	       $timxx = time()+60*60*24*1000;      
 			if($row['viso_laimejo_kovu'] < 4999999){
@@ -2928,8 +2928,8 @@ else{
 <div class="meniuc">	<b>Jūsų komanda sėkmingai įvygdė šią misiją</b>! <br>Atrakinote <b>Devintąjį komandos bosą</b>! </div> ';		
 
 
-	mysql_query("INSERT INTO team_boss SET name='Bergamo', img='Bergamo', zen='30000000000',   hp='20000000000', max_hp='20000000000', laikas='25200', max_hit='10000', min_hit='6000', eur='400', pavadinimas='$ka' ");
-mysql_query("UPDATE team SET kovm9='$timxx' WHERE pavadinimas='$ka' ");
+	mysqli_query($conn,"INSERT INTO team_boss SET name='Bergamo', img='Bergamo', zen='30000000000',   hp='20000000000', max_hp='20000000000', laikas='25200', max_hit='10000', min_hit='6000', eur='400', pavadinimas='$ka' ");
+mysqli_query($conn,"UPDATE team SET kovm9='$timxx' WHERE pavadinimas='$ka' ");
 }}
 
 elseif($row['kovm9']-time() > 0){
@@ -2945,10 +2945,10 @@ if($id == 'misijoskovu8'){
 	top('Kovų Misijos');
 	
 	if($user['team'] !== $ka){echo"<div class='meniuc'>Tu nesi šitoje komandoje</div>";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
 	elseif($info['vadas'] !== $nick){echo"<div class='meniuc'>Tu neesi šios komandos vadas</div>";}
-$query = mysql_query("SELECT * FROM team WHERE pavadinimas='$ka'");
-    while($row = mysql_fetch_assoc($query)){
+$query = mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$ka'");
+    while($row = mysqli_fetch_assoc($query)){
 	if($row['kovm8']-time() < 0){
 	       $timxx = time()+60*60*24*1000;      
 			if($row['viso_laimejo_kovu'] < 2999999){
@@ -2962,8 +2962,8 @@ else{
 <div class="meniuc">	<b>Jūsų komanda sėkmingai įvygdė šią misiją</b>! <br>Atrakinote <b>Aštuntąjį komandos bosą</b>! </div> ';		
 
 
-	mysql_query("INSERT INTO team_boss SET name='Frost', img='Frost', zen='15000000000',   hp='10000000000', max_hp='10000000000', laikas='21600', max_hit='8000', min_hit='4000', eur='300', pavadinimas='$ka' ");
-mysql_query("UPDATE team SET kovm8='$timxx' WHERE pavadinimas='$ka' ");
+	mysqli_query($conn,"INSERT INTO team_boss SET name='Frost', img='Frost', zen='15000000000',   hp='10000000000', max_hp='10000000000', laikas='21600', max_hit='8000', min_hit='4000', eur='300', pavadinimas='$ka' ");
+mysqli_query($conn,"UPDATE team SET kovm8='$timxx' WHERE pavadinimas='$ka' ");
 }}
 
 elseif($row['kovm8']-time() > 0){
@@ -2978,10 +2978,10 @@ if($id == 'misijoskovu7'){
 	top('Kovų Misijos');
 	
 	if($user['team'] !== $ka){echo"<div class='meniuc'>Tu nesi šitoje komandoje</div>";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
 	elseif($info['vadas'] !== $nick){echo"<div class='meniuc'>Tu neesi šios komandos vadas</div>";}
-$query = mysql_query("SELECT * FROM team WHERE pavadinimas='$ka'");
-    while($row = mysql_fetch_assoc($query)){
+$query = mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$ka'");
+    while($row = mysqli_fetch_assoc($query)){
 	if($row['kovm7']-time() < 0){
 	       $timxx = time()+60*60*24*1000;      
 			if($row['viso_laimejo_kovu'] < 1499999){
@@ -2995,8 +2995,8 @@ else{
 <div class="meniuc">	<b>Jūsų komanda sėkmingai įvygdė šią misiją</b>! <br>Atrakinote <b>Septintąjį komandos bosą</b>! </div> ';		
 
 
-	mysql_query("INSERT INTO team_boss SET name='Basil', img='Basil', zen='8000000000',   hp='4000000000', max_hp='4000000000', laikas='18000', max_hit='6000', min_hit='3000', eur='200', pavadinimas='$ka' ");
-mysql_query("UPDATE team SET kovm7='$timxx' WHERE pavadinimas='$ka' ");
+	mysqli_query($conn,"INSERT INTO team_boss SET name='Basil', img='Basil', zen='8000000000',   hp='4000000000', max_hp='4000000000', laikas='18000', max_hit='6000', min_hit='3000', eur='200', pavadinimas='$ka' ");
+mysqli_query($conn,"UPDATE team SET kovm7='$timxx' WHERE pavadinimas='$ka' ");
 }}
 
 elseif($row['kovm7']-time() > 0){
@@ -3011,10 +3011,10 @@ if($id == 'misijoskovu6'){
 	top('Kovų Misijos');
 	
 	if($user['team'] !== $ka){echo"<div class='meniuc'>Tu nesi šitoje komandoje</div>";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
 	elseif($info['vadas'] !== $nick){echo"<div class='meniuc'>Tu neesi šios komandos vadas</div>";}
-$query = mysql_query("SELECT * FROM team WHERE pavadinimas='$ka'");
-    while($row = mysql_fetch_assoc($query)){
+$query = mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$ka'");
+    while($row = mysqli_fetch_assoc($query)){
 	if($row['kovm6']-time() < 0){
 	       $timxx = time()+60*60*24*1000;      
 			if($row['viso_laimejo_kovu'] < 799999){
@@ -3028,8 +3028,8 @@ else{
 <div class="meniuc">	<b>Jūsų komanda sėkmingai įvygdė šią misiją</b>! <br>Atrakinote <b>Šeštajį komandos bosą</b>! </div> ';		
 
 
-	mysql_query("INSERT INTO team_boss SET name='Botamo', img='Botamo', zen='4000000000',   hp='2000000000', max_hp='2000000000', laikas='14400', max_hit='4000', min_hit='2000', eur='150', pavadinimas='$ka' ");
-mysql_query("UPDATE team SET kovm6='$timxx' WHERE pavadinimas='$ka' ");
+	mysqli_query($conn,"INSERT INTO team_boss SET name='Botamo', img='Botamo', zen='4000000000',   hp='2000000000', max_hp='2000000000', laikas='14400', max_hit='4000', min_hit='2000', eur='150', pavadinimas='$ka' ");
+mysqli_query($conn,"UPDATE team SET kovm6='$timxx' WHERE pavadinimas='$ka' ");
 }}
 
 elseif($row['kovm6']-time() > 0){
@@ -3044,10 +3044,10 @@ if($id == 'misijoskovu5'){
 	top('Kovų Misijos');
 	
 	if($user['team'] !== $ka){echo"<div class='meniuc'>Tu nesi šitoje komandoje</div>";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
 	elseif($info['vadas'] !== $nick){echo"<div class='meniuc'>Tu neesi šios komandos vadas</div>";}
-$query = mysql_query("SELECT * FROM team WHERE pavadinimas='$ka'");
-    while($row = mysql_fetch_assoc($query)){
+$query = mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$ka'");
+    while($row = mysqli_fetch_assoc($query)){
 	if($row['kovm5']-time() < 0){
 	       $timxx = time()+60*60*24*1000;      
 			if($row['viso_laimejo_kovu'] < 399999){
@@ -3061,8 +3061,8 @@ else{
 <div class="meniuc">	<b>Jūsų komanda sėkmingai įvygdė šią misiją</b>! <br>Atrakinote <b>Penktajį komandos bosą</b>! </div> ';		
 
 
-	mysql_query("INSERT INTO team_boss SET name='Android 17', img='A17', zen='2000000000',   hp='1000000000', max_hp='1000000000', laikas='10800', max_hit='3000', min_hit='1500', eur='100', pavadinimas='$ka' ");
-mysql_query("UPDATE team SET kovm5='$timxx' WHERE pavadinimas='$ka' ");
+	mysqli_query($conn,"INSERT INTO team_boss SET name='Android 17', img='A17', zen='2000000000',   hp='1000000000', max_hp='1000000000', laikas='10800', max_hit='3000', min_hit='1500', eur='100', pavadinimas='$ka' ");
+mysqli_query($conn,"UPDATE team SET kovm5='$timxx' WHERE pavadinimas='$ka' ");
 }}
 
 elseif($row['kovm5']-time() > 0){
@@ -3079,10 +3079,10 @@ if($id == 'misijoskovu4'){
 	top('Kovų Misijos');
 	
 	if($user['team'] !== $ka){echo"<div class='meniuc'>Tu nesi šitoje komandoje</div>";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
 	elseif($info['vadas'] !== $nick){echo"<div class='meniuc'>Tu neesi šios komandos vadas</div>";}
-$query = mysql_query("SELECT * FROM team WHERE pavadinimas='$ka'");
-    while($row = mysql_fetch_assoc($query)){
+$query = mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$ka'");
+    while($row = mysqli_fetch_assoc($query)){
 	if($row['kovm4']-time() < 0){
 	       $timxx = time()+60*60*24*1000;      
 			if($row['viso_laimejo_kovu'] < 199999){
@@ -3096,8 +3096,8 @@ else{
 <div class="meniuc">	<b>Jūsų komanda sėkmingai įvygdė šią misiją</b>! <br>Atrakinote <b>Ketvirtajį komandos bosą</b>! </div> ';		
 
 
-	mysql_query("INSERT INTO team_boss SET name='Hitas', img='Hitas', zen='1000000000',   hp='400000000', max_hp='400000000', laikas='7200', max_hit='2000', min_hit='1000', eur='50', pavadinimas='$ka' ");
-mysql_query("UPDATE team SET kovm4='$timxx' WHERE pavadinimas='$ka' ");
+	mysqli_query($conn,"INSERT INTO team_boss SET name='Hitas', img='Hitas', zen='1000000000',   hp='400000000', max_hp='400000000', laikas='7200', max_hit='2000', min_hit='1000', eur='50', pavadinimas='$ka' ");
+mysqli_query($conn,"UPDATE team SET kovm4='$timxx' WHERE pavadinimas='$ka' ");
 }}
 
 elseif($row['kovm4']-time() > 0){
@@ -3112,10 +3112,10 @@ if($id == 'misijoskovu3'){
 	top('Kovų Misijos');
 	
 	if($user['team'] !== $ka){echo"<div class='meniuc'>Tu nesi šitoje komandoje</div>";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
 	elseif($info['vadas'] !== $nick){echo"<div class='meniuc'>Tu neesi šios komandos vadas</div>";}
-$query = mysql_query("SELECT * FROM team WHERE pavadinimas='$ka'");
-    while($row = mysql_fetch_assoc($query)){
+$query = mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$ka'");
+    while($row = mysqli_fetch_assoc($query)){
 	if($row['kovm3']-time() < 0){
 	       $timxx = time()+60*60*24*1000;      
 			if($row['viso_laimejo_kovu'] < 99999){
@@ -3129,8 +3129,8 @@ else{
 <div class="meniuc">	<b>Jūsų komanda sėkmingai įvygdė šią misiją</b>! <br>Atrakinote <b>Trečiajį komandos bosą</b>! </div> ';		
 
 
-	mysql_query("INSERT INTO team_boss SET name='Buu', img='Buu2', zen='500000000',   hp='200000000', max_hp='200000000', laikas='3600', max_hit='1200', min_hit='500', eur='30', pavadinimas='$ka' ");
-mysql_query("UPDATE team SET kovm3='$timxx' WHERE pavadinimas='$ka' ");
+	mysqli_query($conn,"INSERT INTO team_boss SET name='Buu', img='Buu2', zen='500000000',   hp='200000000', max_hp='200000000', laikas='3600', max_hit='1200', min_hit='500', eur='30', pavadinimas='$ka' ");
+mysqli_query($conn,"UPDATE team SET kovm3='$timxx' WHERE pavadinimas='$ka' ");
 }}
 
 elseif($row['kovm3']-time() > 0){
@@ -3148,10 +3148,10 @@ if($id == 'misijoskovu2'){
 	top('Kovų Misijos');
 	
 if($user['team'] !== $ka){echo"<div class='meniuc'>Tu nesi šitoje komandoje</div>";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
 	elseif($info['vadas'] !== $nick){echo"<div class='meniuc'>Tu neesi šios komandos vadas</div>";}
-$query = mysql_query("SELECT * FROM team WHERE pavadinimas='$ka'");
-    while($row = mysql_fetch_assoc($query)){
+$query = mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$ka'");
+    while($row = mysqli_fetch_assoc($query)){
 	if($row['kovm2']-time() < 0){
 	       $timxx = time()+60*60*24*1000;      
 			if($row['viso_laimejo_kovu'] < 49999){
@@ -3165,8 +3165,8 @@ else{
 <div class="meniuc">	<b>Jūsų komanda sėkmingai įvygdė šią misiją</b>! <br>Atrakinote <b>Antrajį komandos bosą</b>! </div> ';		
 
 
-	mysql_query("INSERT INTO team_boss SET name='Fryzas', img='Fryzas2', zen='300000000',   hp='100000000', max_hp='100000000', laikas='1800', max_hit='700', min_hit='200', eur='20', pavadinimas='$ka' ");
-mysql_query("UPDATE team SET kovm2='$timxx' WHERE pavadinimas='$ka' ");
+	mysqli_query($conn,"INSERT INTO team_boss SET name='Fryzas', img='Fryzas2', zen='300000000',   hp='100000000', max_hp='100000000', laikas='1800', max_hit='700', min_hit='200', eur='20', pavadinimas='$ka' ");
+mysqli_query($conn,"UPDATE team SET kovm2='$timxx' WHERE pavadinimas='$ka' ");
 }}
 
 elseif($row['kovm2']-time() > 0){
@@ -3181,10 +3181,10 @@ if($id == 'misijoskovu1'){
 	top('Kovų Misijos');
 	
 	if($user['team'] !== $ka){echo"<div class='meniuc'>Tu nesi šitoje komandoje</div>";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
 	elseif($info['vadas'] !== $nick){echo"<div class='meniuc'>Tu neesi šios komandos vadas</div>";}
-$query = mysql_query("SELECT * FROM team WHERE pavadinimas='$ka'");
-    while($row = mysql_fetch_assoc($query)){
+$query = mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$ka'");
+    while($row = mysqli_fetch_assoc($query)){
 	if($row['kovm1']-time() < 0){
 	       $timxx = time()+60*60*24*1000;      
 			if($row['viso_laimejo_kovu'] < 9999){
@@ -3200,8 +3200,8 @@ else{
 Jūsų komanda sėkmingai įvygdė šią misiją</b>! <br>Atrakinote <b>Pirmajį komandos bosą</b>! </div> ';		
 
 
-	mysql_query("INSERT INTO team_boss SET name='Kaba', img='Kaba', zen='100000000',   hp='50000000', max_hp='50000000', laikas='1800', max_hit='500', min_hit='100', eur='10', pavadinimas='$ka' ");
-mysql_query("UPDATE team SET kovm1='$timxx' WHERE pavadinimas='$ka' ");
+	mysqli_query($conn,"INSERT INTO team_boss SET name='Kaba', img='Kaba', zen='100000000',   hp='50000000', max_hp='50000000', laikas='1800', max_hit='500', min_hit='100', eur='10', pavadinimas='$ka' ");
+mysqli_query($conn,"UPDATE team SET kovm1='$timxx' WHERE pavadinimas='$ka' ");
 }}
 
 elseif($row['kovm1']-time() > 0){
@@ -3218,13 +3218,13 @@ if($id == 'misijoskrit'){
 	top('Kritinio lygio Misijos');
 	
 if($user['team'] !== $ka){echo"<div class='meniuc'>Tu nesi šitoje komandoje</div>";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
 	elseif($info['vadas'] !== $nick){echo"<div class='meniuc'>Tu neesi šios komandos vadas</div>";}
 
 	else{
 		
-	$query = mysql_query("SELECT * FROM team WHERE pavadinimas='$ka'");
-    while($row = mysql_fetch_assoc($query)){	
+	$query = mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$ka'");
+    while($row = mysqli_fetch_assoc($query)){
 echo'<div class="meniuc">
 	<img src="img/imgg/komandos.png"></div>';
 	echo'
@@ -3263,13 +3263,13 @@ if($id == 'misijoseuru'){
 	top('Eurų Misijos');
 	
 if($user['team'] !== $ka){echo"<div class='meniuc'>Tu nesi šitoje komandoje</div>";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
 	elseif($info['vadas'] !== $nick){echo"<div class='meniuc'>Tu neesi šios komandos vadas</div>";}
 
 	else{
 		
-	$query = mysql_query("SELECT * FROM team WHERE pavadinimas='$ka'");
-    while($row = mysql_fetch_assoc($query)){	
+	$query = mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$ka'");
+    while($row = mysqli_fetch_assoc($query)){
 echo'<div class="meniuc">
 	<img src="img/imgg/komandos.png"></div>';
 	echo'
@@ -3309,13 +3309,13 @@ if($id == 'misijospinigu'){
 	top('Pinigų Misijos');
 	
 	if($user['team'] !== $ka){echo"<div class='meniuc'>Tu nesi šitoje komandoje</div>";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
 	elseif($info['vadas'] !== $nick){echo"<div class='meniuc'>Tu neesi šios komandos vadas</div>";}
 
 	else{
 		
-	$query = mysql_query("SELECT * FROM team WHERE pavadinimas='$ka'");
-    while($row = mysql_fetch_assoc($query)){	
+	$query = mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$ka'");
+    while($row = mysqli_fetch_assoc($query)){
 echo'<div class="meniuc">
 	<img src="img/imgg/komandos.png"></div>';
 	echo'
@@ -3357,13 +3357,13 @@ if($id == 'misijoskovu'){
 	top('Kovų Misijos');
 	
 	if($user['team'] !== $ka){echo"<div class='meniuc'>Tu nesi šitoje komandoje</div>";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
 	elseif($info['vadas'] !== $nick){echo"<div class='meniuc'>Tu neesi šios komandos vadas</div>";}
 
 	else{
 		
-	$query = mysql_query("SELECT * FROM team WHERE pavadinimas='$ka'");
-    while($row = mysql_fetch_assoc($query)){	
+	$query = mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$ka'");
+    while($row = mysqli_fetch_assoc($query)){
 echo'<div class="meniuc">
 	<img src="img/imgg/komandos.png"></div>';
 	echo'
@@ -3403,7 +3403,7 @@ if($id == 'kmisijos'){
 	top('Komandos Misijos');
 	
 	if($user['team'] !== $ka){echo"<div class='meniuc'>Tu nesi šitoje komandoje</div>";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
 	else{
 
 echo'<div class="meniuc">
@@ -3426,7 +3426,7 @@ if($id == 'nario_cp'){
 	top('Nario cp');
 	
 	if($user['team'] !== $ka){echo"<div class='meniuc'>Tu nesi šitoje komandoje</div>";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
 	else{
 		echo"<div class='meniu'>
 		
@@ -3442,10 +3442,10 @@ navigacija($g_n);
 if($id == 'leave'){
 	top('Išėjimas iš komandos');
 	if($user['team'] != $ka){echo"<div class='meniuc'>Tu nesi šitoje komandoje</div>";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
 	else{
 		echo"<div class='meniuc'>Atlikta</div>";
-		mysql_query("UPDATE user SET team='',win_in_team='0',kiek_paaukojo_i_team='0' WHERE nick='$nick'");
+		mysqli_query($conn,"UPDATE user SET team='',win_in_team='0',kiek_paaukojo_i_team='0' WHERE nick='$nick'");
 	}
 	$g_n[] = array("pagrindinis.php?id=","Pagrindinis","komanda.php","Komandos","komanda.php?id=info&ka=$ka"," $ka komanda", "Išėjimas iš komandos");
 navigacija($g_n);
@@ -3458,7 +3458,7 @@ if($id == 'pinigai'){
 	
 top('Pinigų pervedimas');
 	if($user['team'] !== $ka){echo"<div class='meniuc'>Tu nesi šitoje komandoje</div>";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
 	else{
 		echo"<div class='meniuc'><b>Kiek:</b><br>
 		<form action='komanda.php?id=pervedu_pinigus&ka=$ka' method='post'>
@@ -3475,16 +3475,16 @@ if($id == 'pervedu_pinigus'){
 	
 
 if($user['team'] !== $ka){echo"<div class='meniuc'>Tu nesi šitoje komandoje</div>";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
 	elseif(empty($kiek)){echo"<div class='meniuc'>Neįrašei kiek pervesi</div>";}
 	elseif($apie[litai] < $kiek){echo"<div class='meniuc'>Neturi tiek pinigų</div>";}
 	else{
 		echo"<div class='meniuc'><b>Atlikta</b></div>";
 		$kiek2= $apie[litai] - $kiek;
 		$kiek3 = $info[pinigai] + $kiek;
-		mysql_query("UPDATE zaidejai SET litai='$kiek2' WHERE nick='$nick'");
-		mysql_query("UPDATE team SET pinigai='$kiek3' WHERE pavadinimas='$ka'");
-		mysql_query("UPDATE user SET kiek_paaukojo_i_team='$kiek3' WHERE nick ='$nick'");
+		mysqli_query($conn,"UPDATE zaidejai SET litai='$kiek2' WHERE nick='$nick'");
+		mysqli_query($conn,"UPDATE team SET pinigai='$kiek3' WHERE pavadinimas='$ka'");
+		mysqli_query($conn,"UPDATE user SET kiek_paaukojo_i_team='$kiek3' WHERE nick ='$nick'");
 		
 	}
 	$g_n[] = array("pagrindinis.php?id=","Pagrindinis","komanda.php","Komandos","komanda.php?id=info&ka=$ka"," $ka komanda", "Pinigų pervedimas");
@@ -3495,7 +3495,7 @@ if($id == 'eurai'){
 	
 top('Eurų pervedimas');
 	if($user['team'] !== $ka){echo"<div class='meniuc'>Tu nesi šitoje komandoje</div>";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
 	else{
 		echo"<div class='meniuc'><b>Kiek:</b><br>
 		<form action='komanda.php?id=pervedu_eurus&ka=$ka' method='post'>
@@ -3512,16 +3512,16 @@ if($id == 'pervedu_eurus'){
 	
 
 if($user['team'] !== $ka){echo"<div class='meniuc'>Tu nesi šitoje komandoje</div>";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
 	elseif(empty($kiek)){echo"<div class='meniuc'>Neįrašei kiek pervesi</div>";}
 	elseif($apie[sms_litai] < $kiek){echo"<div class='meniuc'>Neturi tiek eurų</div>";}
 	else{
 		echo"<div class='meniuc'><b>Atlikta</b></div>";
 		$kiek2= $apie[sms_litai] - $kiek;
 		$kiek3 = $info[eurai] + $kiek;
-		mysql_query("UPDATE zaidejai SET sms_litai='$kiek2' WHERE nick='$nick'");
-		mysql_query("UPDATE team SET eurai='$kiek3' WHERE pavadinimas='$ka'");
-		mysql_query("UPDATE user SET kiek_paaukojo_i_team2='$kiek3' WHERE nick ='$nick'");
+		mysqli_query($conn,"UPDATE zaidejai SET sms_litai='$kiek2' WHERE nick='$nick'");
+		mysqli_query($conn,"UPDATE team SET eurai='$kiek3' WHERE pavadinimas='$ka'");
+		mysqli_query($conn,"UPDATE user SET kiek_paaukojo_i_team2='$kiek3' WHERE nick ='$nick'");
 		
 	}
 	$g_n[] = array("pagrindinis.php?id=","Pagrindinis","komanda.php","Komandos","komanda.php?id=info&ka=$ka"," $ka komanda", "Eurų pervedimas");
@@ -3532,7 +3532,7 @@ navigacija($g_n);
 if($id == 'topic'){
 	top('Topikas');
 if($user['team'] !== $ka){echo"<div class='meniuc'>Tu nesi šitoje komandoje</div>";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
 	else{
 		echo"<div class='meniuc'><b>Naujas Topic</b><br>
 		<form action='komanda.php?id=keiciu_topic&ka=$ka' method='post'>
@@ -3548,11 +3548,11 @@ if($id == 'keiciu_topic'){
 	$topic = post($_POST['topic']);
     
 	if($user['team'] !== $ka){echo"<div class='meniuc'>Tu nesi šitoje komandoje</div>";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
 	elseif(empty($topic)){echo"<div class='meniuc'>Neįrašei topic</div>";}
 	else{
 		echo"<div class='meniuc'><b>Atlikta</b></div>";
-		mysql_query("UPDATE team SET topic='$topic' WHERE pavadinimas='$ka'");
+		mysqli_query($conn,"UPDATE team SET topic='$topic' WHERE pavadinimas='$ka'");
 	}
 	$g_n[] = array("pagrindinis.php?id=","Pagrindinis","komanda.php","Komandos","komanda.php?id=info&ka=$ka"," $ka komanda", "Keisti topika");
 navigacija($g_n);
@@ -3562,7 +3562,7 @@ if($id == 'pv_cp'){
 	top('Pavaduotojo cp');
 	
 	if($info['pavadotuojas'] !== $nick){echo"<div class='meniuc'>Tu neesi šios komandos pavaduotojas</div>";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'Tokios komandos nėra</div>";}
 	else{
 		echo"<div class='meniu'>
 		
@@ -3586,7 +3586,7 @@ if($id == 'admin_cp'){
 	top('Vado cp');
 	
 	if($info['vadas'] !== $nick){echo"<div class='meniuc'>Tu neesi šios komandos vadas</div>";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'Tokios komandos nėra</div>";}
 	else{
 		echo"<div class='meniu'>
 		
@@ -3615,7 +3615,7 @@ if($id == 'veduospin'){
 	
 top('Pinigų pervedimas');
 		if($info['vadas'] !== $nick){echo"Tu nesi šios komandos vadas";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"Tokios komandos nėra";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"Tokios komandos nėra";}
 	else{
 		echo"<div class='meniuc'><b>Kiek persivesi ".$pinigaii."</b><br>
 		<form action='komanda.php?id=persivedu_pinigus&ka=$ka' method='post'>
@@ -3632,15 +3632,15 @@ if($id == 'persivedu_pinigus'){
 	
 
 if($info['vadas'] !== $nick){echo"Tu nesi šios komandos vadas";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"Tokios komandos nėra";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"Tokios komandos nėra";}
 	elseif(empty($kiek)){echo"<div class='meniuc'>Neįrašei kiek pervesi!</div>";}
 	elseif($info[pinigai] < $kiek){echo"<div class='meniuc'>Nėra tiek pinigų!</div>";}
 	else{
 		echo"<div class='meniuc'><b>Atlikta! Persivedei <b>".$kiek2." </b> ".$pinigaii." !</b></div>";
 		$kiek2= $apie[litai] + $kiek;
 		$kiek3 = $info[pinigai] - $kiek;
-		mysql_query("UPDATE zaidejai SET litai='$kiek2' WHERE nick='$nick'");
-		mysql_query("UPDATE team SET pinigai='$kiek3' WHERE pavadinimas='$ka'");
+		mysqli_query($conn,"UPDATE zaidejai SET litai='$kiek2' WHERE nick='$nick'");
+		mysqli_query($conn,"UPDATE team SET pinigai='$kiek3' WHERE pavadinimas='$ka'");
 		
 		
 	}
@@ -3654,7 +3654,7 @@ if($id == 'veduoseur'){
 	
 top('Eurų pervedimas');
 		if($info['vadas'] !== $nick){echo"Tu nesi šios komandos vadas";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"Tokios komandos nėra";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"Tokios komandos nėra";}
 	else{
 		echo"<div class='meniuc'><b>Kiek persivesi ".$eurui." </b><br>
 		<form action='komanda.php?id=persivedu_eurus&ka=$ka' method='post'>
@@ -3671,15 +3671,15 @@ if($id == 'persivedu_eurus'){
 	
 
 if($info['vadas'] !== $nick){echo"Tu nesi šios komandos vadas";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"Tokios komandos nėra";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"Tokios komandos nėra";}
 	elseif(empty($kiek)){echo"<div class='meniuc'>Neįrašei kiek pervesi!</div>";}
 	elseif($info[eurai] < $kiek){echo"<div class='meniuc'>Nėra tiek eurų!</div>";}
 	else{
 		echo"<div class='meniuc'><b>Atlikta! Persivedei <b> ".$kiek2."</b> ".$eurui." !</b></div>";
 		$kiek2= $apie[sms_litai] + $kiek;
 		$kiek3 = $info[eurai] - $kiek;
-		mysql_query("UPDATE zaidejai SET sms_litai='$kiek2' WHERE nick='$nick'");
-		mysql_query("UPDATE team SET eurai='$kiek3' WHERE pavadinimas='$ka'");
+		mysqli_query($conn,"UPDATE zaidejai SET sms_litai='$kiek2' WHERE nick='$nick'");
+		mysqli_query($conn,"UPDATE team SET eurai='$kiek3' WHERE pavadinimas='$ka'");
 		
 		
 	}
@@ -3691,7 +3691,7 @@ navigacija($g_n);
 if($id == 'keist_kiek'){
     top('Algos nustatymas kas kiek kovų');
 	if($info['vadas'] != $nick && $info['pavadotuojas'] != $nick)echo"<div class='meniuc>Tu nesi šios komandos vadas </div>";
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
 	else{
 		echo"<div class='meniuc'>
 		 <b>Kas kiek kovų mokėsi</b><br>
@@ -3709,15 +3709,15 @@ if($id == 'keist_kiek2'){
     $alga = preg_replace("/[^0-9]/", "", $_POST['alga']);
 
 	if($info['vadas'] != $nick && $info['pavadotuojas'] != $nick)echo"<div class='meniuc'>Tu nesi šios komandos vadas</div>";
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc>Tokios komandos nėra</div>";}
 	
 	elseif(empty($alga)){ echo"<div class='meniuc'>Neįrašei kiekio !</div>";}
 	else{
 	echo"<div class='meniuc'><b>Atlikta, algos kovų kiekis pakeistas!</b></div>";
-	mysql_query("UPDATE user SET iki_algos='$alga' WHERE team='$ka'");
-mysql_query("UPDATE user SET iki_algos2='$alga' WHERE team='$ka'");
-mysql_query("UPDATE team SET iki_algos='$alga' WHERE pavadinimas='$ka'");
-mysql_query("UPDATE team SET iki_algos2='$alga' WHERE pavadinimas='$ka'");
+	mysqli_query($conn,"UPDATE user SET iki_algos='$alga' WHERE team='$ka'");
+mysqli_query($conn,"UPDATE user SET iki_algos2='$alga' WHERE team='$ka'");
+mysqli_query($conn,"UPDATE team SET iki_algos='$alga' WHERE pavadinimas='$ka'");
+mysqli_query($conn,"UPDATE team SET iki_algos2='$alga' WHERE pavadinimas='$ka'");
 }
 	$g_n[] = array("pagrindinis.php?id=","Pagrindinis","komanda.php","Komandos","komanda.php?id=info&ka=$ka"," $ka komanda", "Algos nustatymas");
 navigacija($g_n);
@@ -3725,7 +3725,7 @@ navigacija($g_n);
 if($id == 'statyt_alga'){
     top('Algos nustatymas pinigais');
 	if($info['vadas'] != $nick && $info['pavadotuojas'] != $nick)echo"<div class='meniuc>Tu nesi šios komandos vadas </div>";
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
 	else{
 		echo"<div class='meniuc'>
 		 <b>Nauja alga $pinigaii</b><br>
@@ -3743,12 +3743,12 @@ if($id == 'keiciu_alga'){
     $alga = preg_replace("/[^0-9]/", "", $_POST['alga']);
 
 	if($info['vadas'] != $nick && $info['pavadotuojas'] != $nick)echo"<div class='meniuc'>Tu nesi šios komandos vadas</div>";
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc>Tokios komandos nėra</div>";}
 	elseif($info['pinigai'] < 0){echo"<div class='meniuc'>Komandoje tiek $pinigaii nėra!</div>";}
 	elseif(empty($alga)){ echo"<div class='meniuc'>Neįrašei algos $pinigaii !</div>";}
 	else{
 	echo"<div class='meniuc'><b>Atlikta, alga pakeista!</b></div>";
-	mysql_query("UPDATE team SET uz_500_kovu='$alga' WHERE pavadinimas='$ka'");
+	mysqli_query($conn,"UPDATE team SET uz_500_kovu='$alga' WHERE pavadinimas='$ka'");
 }
 	$g_n[] = array("pagrindinis.php?id=","Pagrindinis","komanda.php","Komandos","komanda.php?id=info&ka=$ka"," $ka komanda", "Algos nustatymas");
 navigacija($g_n);
@@ -3756,7 +3756,7 @@ navigacija($g_n);
 if($id == 'statyt_alga2'){
     top('Algos nustatymas eurais');
 	if($info['vadas'] != $nick && $info['pavadotuojas'] != $nick)echo"<div class='meniuc>Tu nesi šios komandos vadas </div>";
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
 	else{
 		echo"<div class='meniuc'>
 		 <b>Nauja alga $eurui</b><br>
@@ -3774,12 +3774,12 @@ if($id == 'keiciu_alga2'){
     $alga = preg_replace("/[^0-9]/", "", $_POST['alga']);
 
 	if($info['vadas'] != $nick && $info['pavadotuojas'] != $nick)echo"<div class='meniuc'>Tu nesi šios komandos vadas</div>";
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc>Tokios komandos nėra</div>";}
 	elseif($info['eurai'] < 1){echo"<div class='meniuc'>Komandoje tiek $eurui nėra!</div>";}
 	elseif(empty($alga)){ echo"<div class='meniuc'>Neįrašei algos $eurui !</div>";}
 	else{
 	echo"<div class='meniuc'><b>Atlikta, alga pakeista!</b></div>";
-	mysql_query("UPDATE team SET uz_500_kovu2='$alga' WHERE pavadinimas='$ka'");
+	mysqli_query($conn,"UPDATE team SET uz_500_kovu2='$alga' WHERE pavadinimas='$ka'");
 }
 	$g_n[] = array("pagrindinis.php?id=","Pagrindinis","komanda.php","Komandos","komanda.php?id=info&ka=$ka"," $ka komanda", "Algos nustatymas");
 navigacija($g_n);
@@ -3800,14 +3800,14 @@ if($id == 'delete_team'){
 	
 top('Komandos ištrinimas');
 	if($info['vadas'] != $nick)echo"<div class='meniuc'>Tu nesi šios komandos vadas</div>";
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc>Tokios komandos nėra</div>";}
 	else{
 		 echo"<div class='meniuc'>Komanda ištrinta</div>";
-		 mysql_query("DELETE FROM team WHERE pavadinimas='$ka'");
-	     $inf = mysql_query("SELECT * FROM user WHERE team = '$ka'");
-	     while($info = mysql_fetch_assoc($inf)){
-			 $del = mysql_fetch_array(mysql_query("SELECT * FROM user WHERE nick='".$info['nick']."'"));
-			 mysql_query("UPDATE user SET team='',win_in_team='0',kiek_paaukojo_i_team='0' WHERE nick='".$info['nick']."'");
+		 mysqli_query($conn,"DELETE FROM team WHERE pavadinimas='$ka'");
+	     $inf = mysqli_query($conn,"SELECT * FROM user WHERE team = '$ka'");
+	     while($info = mysqli_fetch_assoc($inf)){
+			 $del = mysqli_fetch_array(mysqli_query($conn,"SELECT * FROM user WHERE nick='".$info['nick']."'"));
+			 mysqli_query($conn,"UPDATE user SET team='',win_in_team='0',kiek_paaukojo_i_team='0' WHERE nick='".$info['nick']."'");
 			 	
 		     unset($info);
 		 }
@@ -3818,13 +3818,13 @@ navigacija($g_n);
 if($id == 'aukos2'){
 	top('Komandos eurų aukojimo statistika');
 if($info['vadas'] != $nick && $info['pavadotuojas'] != $nick)echo"<div class='meniuc'>Tu nesi šios komandos vadas</div>";
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc>Tokios komandos nėra</div>";}
 	else{
 echo"<div class='meniuc'><b>Pagal ".$eurui."</b> aukojimą: </div>";
 	echo"<div class='meniu'>
 	";
-    $nst = mysql_query("SELECT * FROM user WHERE team='$ka'");
-  while($nt = mysql_fetch_assoc($nst)){
+    $nst = mysqli_query($conn,"SELECT * FROM user WHERE team='$ka'");
+  while($nt = mysqli_fetch_assoc($nst)){
 	
 	$nr++;
 	echo"<b> ".$nr.".</b> <a href='pagrindinis.php?id=apie&ka=".$nt['nick']."'>".$nt['nick']."</a> - <b>".$nt['kiek_paaukojo_i_team2']." ".$eurui."</b><br>";
@@ -3843,14 +3843,14 @@ navigacija($g_n);
 if($id == 'aukos'){
 	top('Komandos pinigų aukojimo statistika');
 if($info['vadas'] != $nick && $info['pavadotuojas'] != $nick)echo"<div class='meniuc'>Tu nesi šios komandos vadas</div>";
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc>Tokios komandos nėra</div>";}
 	else{
 	
 echo"<div class='meniuc'><b>Pagal ".$pinigaii."</b> aukojimą: </div>";
 echo"<div class='meniu'>
 	";
-    $nst = mysql_query("SELECT * FROM user WHERE team='$ka'");
-  while($nt = mysql_fetch_assoc($nst)){
+    $nst = mysqli_query($conn,"SELECT * FROM user WHERE team='$ka'");
+  while($nt = mysqli_fetch_assoc($nst)){
 	
 	$nr++;
 	echo"<b> ".$nr.".</b> <a href='pagrindinis.php?id=apie&ka=".$nt['nick']."'>".$nt['nick']."</a> - <b>".$nt['kiek_paaukojo_i_team']." ".$pinigaii."</b><br>";
@@ -3868,14 +3868,14 @@ navigacija($g_n);
 if($id == 'log'){
 	top('Kovų logas');
 if($info['vadas'] != $nick && $info['pavadotuojas'] != $nick)echo"<div class='meniuc'>Tu nesi šios komandos vadas</div>";
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc>Tokios komandos nėra</div>";}
 	else{
 	echo"<div class='meniu'>
 	";
 	
-    $nst = mysql_query("SELECT * FROM team_logas WHERE team='$ka' ORDER BY id DESC LIMIT 0,10");
+    $nst = mysqli_query($conn,"SELECT * FROM team_logas WHERE team='$ka' ORDER BY id DESC LIMIT 0,10");
 
-    while($nt = mysql_fetch_assoc($nst)){
+    while($nt = mysqli_fetch_assoc($nst)){
 	$nr++;
 	
 	echo"<b>".$nr.".</b> ".$nt[msg]."<br>";
@@ -3894,7 +3894,7 @@ if($id == 'delete_player_from_team'){
 
 
 	if($info['vadas'] != $nick && $info['pavadotuojas'] != $nick)echo"<div class='meniuc'>Tu nesi šios komandos vadas</div>";
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc>Tokios komandos nėra</div>";}
 	else{
 		echo"<div class='meniuc'>
 		Ką išmesi iš komandos?<br>
@@ -3910,24 +3910,24 @@ if($id == 'metu'){
 	top('Narių šalinimas');
     $kas = post($_POST['kas']);
 
-	$info2 = mysql_fetch_array(mysql_query("SELECT * FROM user WHERE nick='".$kas."'"));
+	$info2 = mysqli_fetch_array(mysqli_query($conn,"SELECT * FROM user WHERE nick='".$kas."'"));
 if($info['vadas'] != $nick && $info['pavadotuojas'] != $nick)echo"<div class='meniuc'>Tu nesi šios komandos vadas</div>";
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc>Tokios komandos nėra</div>";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM zaidejai WHERE nick='".$kas."'")) == false){echo"<div class='meniuc>Tokio vartotojo nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM zaidejai WHERE nick='".$kas."'")) == false){echo"<div class='meniuc>Tokio vartotojo nėra</div>";}
 	elseif($info2['team'] !== $ka){echo"<div class='meniuc'>Šis žaidėjas ne tavo komandoje</div>";}
 	elseif($kas == $nick){echo"<div class='meniuc'>Savęs išmesti negalite</div>";}
 	else{
 		echo"<div class='meniuc'>Atlikta, <b>$kas</b> išmestas iš tavo komandos</div>";
-		mysql_query("UPDATE user SET team='',win_in_team='0',kiek_paaukojo_i_team='0' WHERE nick='$kas'");
+		mysqli_query($conn,"UPDATE user SET team='',win_in_team='0',kiek_paaukojo_i_team='0' WHERE nick='$kas'");
 	}
 	$g_n[] = array("pagrindinis.php?id=","Pagrindinis","komanda.php","Komandos","komanda.php?id=info&ka=$ka"," $ka komanda", "Narių šalinimas");
 navigacija($g_n);
 }
 if($id == 'kviesti'){
 top('Žaidėju pakvietimas');
-	$info2 = mysql_fetch_array(mysql_query("SELECT * FROM user WHERE nick='".$kas."'"));
+	$info2 = mysqli_fetch_array(mysqli_query($conn,"SELECT * FROM user WHERE nick='".$kas."'"));
 if($info['vadas'] != $nick && $info['pavadotuojas'] != $nick)echo"<div class='meniuc'>Tu nesi šios komandos vadas</div>";
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc>Tokios komandos nėra</div>";}
 	else{
 		echo"<div class='meniuc'>Ką kviesi į komandą:<br>
 		<form action='komanda.php?id=kvieciu&ka=$ka' method='post'>
@@ -3943,49 +3943,49 @@ if($id == 'kvieciu'){
 	$kas = post($_POST['kas']);
 
 	
-	$info2 = mysql_fetch_array(mysql_query("SELECT * FROM user WHERE nick='".$kas."'"));
+	$info2 = mysqli_fetch_array(mysqli_query($conn,"SELECT * FROM user WHERE nick='".$kas."'"));
 	if($info['vadas'] != $nick && $info['pavadotuojas'] != $nick)echo"<div class='meniuc'>Tu nesi šios komandos vadas</div>";
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc>Tokios komandos nėra</div>";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM zaidejai WHERE nick='".$kas."'")) == false){echo"<div class='meniuc'>Tokio vartotojo nėra</div>";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM kvietimai_i_komanda WHERE nick2='$kas'")) == TRUE){echo"<div class='meniuc'>Šiam žaidėjui jau išsiųstas pakvietimas</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM zaidejai WHERE nick='".$kas."'")) == false){echo"<div class='meniuc'>Tokio vartotojo nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM kvietimai_i_komanda WHERE nick2='$kas'")) == TRUE){echo"<div class='meniuc'>Šiam žaidėjui jau išsiųstas pakvietimas</div>";}
 	elseif($kas == $nick){echo"<div clas='meniuc'>Savęs kviesti negalima</div>";}
 	elseif(!empty($info2['team'])){echo"<div class='meniuc'><b>$kas</b> žaidėjas jau yra komandoje</div>";}
 	elseif(empty($kas)){echo"<div class='meniuc'>Neįrašei ką kvieti</div>";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM user WHERE team='$ka'")) >=$info['max']){
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM user WHERE team='$ka'")) >=$info['max']){
 		echo"<div class='meniuc'>Narių gali būti tik <b>5</b>!</div>";
 	}
 	else{
 		echo"<div class='meniuc'><b>$kas</b> išsiųstas pakvietimas įstoti į <b>$ka</b> komandą. Laukite atsakymo</div>";
-		mysql_query("INSERT INTO kvietimai_i_komanda SET kas='$nick', nick2='$kas',team='$ka'");
+		mysqli_query($conn,"INSERT INTO kvietimai_i_komanda SET kas='$nick', nick2='$kas',team='$ka'");
 	}
 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","komanda.php","Komandos","komanda.php?id=info&ka=$ka"," $ka komanda", "Žaidėjų pakvietimas");
 navigacija($g_n);
 }
 if($id == 'priimti'){
 	top('Narių priemimas');
-	$infa = mysql_fetch_array(mysql_query("SELECT * FROM kvietimai_i_komanda WHERE nick2='$nick'"));
+	$infa = mysqli_fetch_array(mysqli_query($conn,"SELECT * FROM kvietimai_i_komanda WHERE nick2='$nick'"));
 
-	if(mysql_num_rows(mysql_query("SELECT * FROM kvietimai_i_komanda WHERE nick2='$nick'")) == false){echo"<div class='meniuc'>Tavęs nieks nekviečia į komandą</div>";}
+	if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM kvietimai_i_komanda WHERE nick2='$nick'")) == false){echo"<div class='meniuc'>Tavęs nieks nekviečia į komandą</div>";}
 	elseif($ka != $infa['team']){echo"<div class='meniuc'>Tavęs ši komanda nekviečia</div>";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$infa['team']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$infa['team']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
 	elseif(!empty($user['team'])){echo"<div class='meniuc'>Tu jau esi komandoje</div>";}
 	else{
 		echo"<div class='meniuc'>Atlikta,įstojai į ".$infa['team']." komandą</div>";
-		mysql_query("UPDATE user SET team='".$infa['team']."',iki_algos='2000' WHERE nick='$nick'");
-		mysql_query("DELETE FROM kvietimai_i_komanda WHERE nick2='$nick'") or die(mysql_error());
+		mysqli_query($conn,"UPDATE user SET team='".$infa['team']."',iki_algos='2000' WHERE nick='$nick'");
+		mysqli_query($conn,"DELETE FROM kvietimai_i_komanda WHERE nick2='$nick'") or die(mysqli_error());
 		}
 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","komanda.php","Komandos","komanda.php?id=info&ka=$ka"," $ka komanda", "Narių priėmimas");
 navigacija($g_n);
 }
 if($id == 'atmesti'){
 top('Narių kvietimų atšaukimas');
-	$info = mysql_fetch_array(mysql_query("SELECT * FROM kvietimai_i_komanda WHERE nick2='$nick'"));
-	if(mysql_num_rows(mysql_query("SELECT * FROM kvietimai_i_komanda WHERE nick2='$nick'")) == FALSE){echo"<div class='meniuc'>Tavęs nieks nekviečia į komandą</div>";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM team WHERE pavadinimas='".$info['team']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
+	$info = mysqli_fetch_array(mysqli_query($conn,"SELECT * FROM kvietimai_i_komanda WHERE nick2='$nick'"));
+	if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM kvietimai_i_komanda WHERE nick2='$nick'")) == FALSE){echo"<div class='meniuc'>Tavęs nieks nekviečia į komandą</div>";}
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['team']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
 	elseif(!empty($user['team'])){echo"<div class='meniuc'>Tu jau esi komandoje</div>";}
 	else{
 		echo"<div class='meniuc'><b>Atmetei</b></div>";
-		mysql_query("DELETE FROM kvietimai_i_komanda WHERE nick2='$nick'") or die(mysql_error());
+		mysqli_query($conn,"DELETE FROM kvietimai_i_komanda WHERE nick2='$nick'") or die(mysqli_error());
 	}
 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","komanda.php","Komandos","komanda.php?id=info&ka=$ka"," $ka komanda", "Narių kvietimų atšaukimas");
 navigacija($g_n);
@@ -3993,19 +3993,19 @@ navigacija($g_n);
 
 if($id == 'priimti_kv'){
 	top('Narių priemimas');
-$mano_team = mysql_fetch_assoc(mysql_query("SELECT * FROM team WHERE vadas='$nick'"));
-$kvietimas_i_komanda = mysql_fetch_assoc(mysql_query("SELECT * FROM prasosi_i_komanda WHERE komanda='$mano_team[pavadinimas]'"));
+$mano_team = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM team WHERE vadas='$nick'"));
+$kvietimas_i_komanda = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM prasosi_i_komanda WHERE komanda='$mano_team[pavadinimas]'"));
 
-	if(mysql_num_rows(mysql_query("SELECT * FROM prasosi_i_komanda WHERE nick='$kvietimas_i_komanda[nick]'")) == false)
+	if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM prasosi_i_komanda WHERE nick='$kvietimas_i_komanda[nick]'")) == false)
 	{echo"<div class='meniuc'>Šis žaidėjas nesiprašo į jūsų komanda</div>";}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM user WHERE team='$mano_team[pavadinimas]'")) >=$mano_team['max']){
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM user WHERE team='$mano_team[pavadinimas]'")) >=$mano_team['max']){
 		echo"<div class='meniuc'>Narių gali būti tik ".$mano_team['max']."</div>";
 	}
 else{
 		echo"<div class='meniuc'>Priiemei sėkmingai</div>";
-		mysql_query("UPDATE user SET team='".$kvietimas_i_komanda[komanda]."',iki_algos='2000' WHERE nick='$kvietimas_i_komanda[nick]'");
-		mysql_query("DELETE FROM prasosi_i_komanda WHERE nick='$kvietimas_i_komanda[nick]'") or die(mysql_error());
-		 mysql_query("INSERT INTO pm SET what='SUPPORT', txt='Jus priimtas į $kvietimas_i_komanda[komanda] komandą', gavejas='$kvietimas_i_komanda[nick]', time='".time()."', nauj='NEW' ") or die(mysql_error());
+		mysqli_query($conn,"UPDATE user SET team='".$kvietimas_i_komanda[komanda]."',iki_algos='2000' WHERE nick='$kvietimas_i_komanda[nick]'");
+		mysqli_query($conn,"DELETE FROM prasosi_i_komanda WHERE nick='$kvietimas_i_komanda[nick]'") or die(mysqli_error());
+		 mysqli_query($conn,"INSERT INTO pm SET what='SUPPORT', txt='Jus priimtas į $kvietimas_i_komanda[komanda] komandą', gavejas='$kvietimas_i_komanda[nick]', time='".time()."', nauj='NEW' ") or die(mysqli_error());
 		}
 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","komanda.php","Komandos","komanda.php?id=info&ka=$ka"," $ka komanda", "Narių priėmimas");
 navigacija($g_n);
@@ -4013,16 +4013,16 @@ navigacija($g_n);
 
 if($id == 'atmesti_kv'){
 	top('Narių priemimas');
-$mano_team = mysql_fetch_assoc(mysql_query("SELECT * FROM team WHERE vadas='$nick'"));
-$kvietimas_i_komanda = mysql_fetch_assoc(mysql_query("SELECT * FROM prasosi_i_komanda WHERE komanda='$mano_team[pavadinimas]'"));
+$mano_team = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM team WHERE vadas='$nick'"));
+$kvietimas_i_komanda = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM prasosi_i_komanda WHERE komanda='$mano_team[pavadinimas]'"));
 
-	if(mysql_num_rows(mysql_query("SELECT * FROM prasosi_i_komanda WHERE nick='$kvietimas_i_komanda[nick]'")) == false)
+	if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM prasosi_i_komanda WHERE nick='$kvietimas_i_komanda[nick]'")) == false)
 	{echo"<div class='meniuc'>Šis žaidėjas nesiprašo į jūsų komanda</div>";}
 	
 else{
 		echo"<div class='meniuc'>Atmesta sėkmingai</div>";
-	 mysql_query("INSERT INTO pm SET what='SUPPORT', txt='Jus prašimasis į $kvietimas_i_komanda[komanda] komandą, atmestas', gavejas='$kvietimas_i_komanda[nick]', time='".time()."', nauj='NEW' ") or die(mysql_error());
-		mysql_query("DELETE FROM prasosi_i_komanda WHERE nick='$kvietimas_i_komanda[nick]'") or die(mysql_error());
+	 mysqli_query($conn,"INSERT INTO pm SET what='SUPPORT', txt='Jus prašimasis į $kvietimas_i_komanda[komanda] komandą, atmestas', gavejas='$kvietimas_i_komanda[nick]', time='".time()."', nauj='NEW' ") or die(mysqli_error());
+		mysqli_query($conn,"DELETE FROM prasosi_i_komanda WHERE nick='$kvietimas_i_komanda[nick]'") or die(mysqli_error());
 		}
 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","komanda.php","Komandos","komanda.php?id=info&ka=$ka"," $ka komanda", "Narių priėmimas");
 navigacija($g_n);
@@ -4039,16 +4039,16 @@ echo'<div class="meniuc">
 
 	<div class='up'>
 	<b>TOP 5 Komandos</b>:<br></div>";
-	if(mysql_num_rows(mysql_query("SELECT * FROM komandu_dtop")) == false){
+	if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM komandu_dtop")) == false){
 		
 			echo"<div class='meniuc'>Dar niekas nekovojo</div>";
 		
 	}else{
 		
 
- $query = mysql_query("SELECT * FROM komandu_dtop ORDER BY laimejo_kovu DESC LIMIT 5");
+ $query = mysqli_query($conn,"SELECT * FROM komandu_dtop ORDER BY laimejo_kovu DESC LIMIT 5");
     echo '<div class="meniu">';
-    while($row = mysql_fetch_assoc($query)){
+    while($row = mysqli_fetch_assoc($query)){
         $vt++;
 		  if($row['team'] == $nust['last2']){$last2_team = '<s>'.$row['team'].'</s>'; }
                            else {$last2_team = ''.$row['team'].''; }
@@ -4065,9 +4065,9 @@ echo'</div>';
 
 
 	 
-    $query = mysql_query("SELECT * FROM komandos_dtop_log ORDER BY laimejo DESC LIMIT 1");
+    $query = mysqli_query($conn,"SELECT * FROM komandos_dtop_log ORDER BY laimejo DESC LIMIT 1");
     echo '<div class="meniuc">';
-    while($row = mysql_fetch_assoc($query)){
+    while($row = mysqli_fetch_assoc($query)){
        
        echo' <b><img src="img/teammedal/1.png" width="16" height="16"> '.$row['pavadinimas'].'</b><small> [<b>'.$row['laimejo'].'</b> kovų]</small>
 <br/>' ;
@@ -4090,14 +4090,14 @@ echo '<div class="meniuc"><small>Komandos Savaitės kovų TOP baigsis: <b>'.laik
 echo"
 	<div class='up'>
 	<b>TOP 5 Komandos</b>:<br></div>";
-	if(mysql_num_rows(mysql_query("SELECT * FROM komandu_sav_dtop")) == false){
+	if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM komandu_sav_dtop")) == false){
 		
 			echo"<div class='meniuc'>Dar niekas nepadarė kovų.</div>";
 		
 	}else{
-		$query = mysql_query("SELECT * FROM komandu_sav_dtop ORDER BY laimejo_kovu DESC LIMIT 5");
+		$query = mysqli_query($conn,"SELECT * FROM komandu_sav_dtop ORDER BY laimejo_kovu DESC LIMIT 5");
     echo '<div class="meniu">';
-    while($row = mysql_fetch_assoc($query)){
+    while($row = mysqli_fetch_assoc($query)){
         $vt++;
 		  if($row['team'] == $nust['last3']){$last3_team = '<s>'.$row['team'].'</s>'; }
                            else {$last3_team = ''.$row['team'].''; }
@@ -4114,9 +4114,9 @@ echo'</div>';
 
 
 	 
-    $query = mysql_query("SELECT * FROM komandos_sav_log ORDER BY laimejo DESC LIMIT 1");
+    $query = mysqli_query($conn,"SELECT * FROM komandos_sav_log ORDER BY laimejo DESC LIMIT 1");
     echo '<div class="meniuc">';
-    while($row = mysql_fetch_assoc($query)){
+    while($row = mysqli_fetch_assoc($query)){
        
        echo' <b><img src="img/teammedal/2.png" width="16" height="16"> '.$row['pavadinimas'].'</b><small> [<b>'.$row['laimejo'].'</b> kovų]</small>
 <br/>' ;
@@ -4132,14 +4132,14 @@ if($id =='prasytis'){
 top('Prašymasis į komanda');	
 if(!empty($user[team])){
 	echo'<div class="meniuv">Tu jau turi komanda!</div>';
-}	elseif (mysql_num_rows(mysql_query("SELECT * FROM prasosi_i_komanda WHERE nick='$nick'")) == true) {
+}	elseif (mysqli_num_rows(mysqli_query($conn,"SELECT * FROM prasosi_i_komanda WHERE nick='$nick'")) == true) {
 	echo'<div class="meniuc">Tu jau esi išsiuntęs prašymą į komandą!</div>';
 }
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM user WHERE team='$co'")) >=$in['max']){
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM user WHERE team='$co'")) >=$in['max']){
 		echo"<div class='meniuc'><b>$co</b> komandoje telpa tik <b> ".$in['max']."</b> narių!</div>";
 	}
 else{
-	mysql_query("INSERT INTO prasosi_i_komanda SET nick='$nick', komanda='$co'");
+	mysqli_query($conn,"INSERT INTO prasosi_i_komanda SET nick='$nick', komanda='$co'");
 		echo'<div class="meniuc">Sėkmingai išsiuntei prašymą į <b>'.$co.'</b> komandą!</div>';
 	
 	
@@ -4169,24 +4169,24 @@ navigacija($g_n);
 	if($kam == $nick){
 	echo '<div class="meniuc">Sau dėti negalima!</div>';}
 					  
-            elseif(mysql_num_rows(mysql_query("SELECT * FROM zaidejai WHERE nick='$kam'")) == 0){
+            elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM zaidejai WHERE nick='$kam'")) == 0){
 			echo '<div class="meniuc">Toks žaidėjas neegzistuoja!</div>';}
-					elseif(mysql_num_rows(mysql_query("SELECT * FROM user WHERE team='".$kam."'")) == false){
+					elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM user WHERE team='".$kam."'")) == false){
 						echo"<div class='meniuc'>Šis žaidejas nėra komandos narys</div>";}
 	
             
             else{
                 if($kaa == 1){
-                    mysql_query("UPDATE team SET pavadotuojas='$kam' WHERE pavadinimas='$ka' ");
+                    mysqli_query($conn,"UPDATE team SET pavadotuojas='$kam' WHERE pavadinimas='$ka' ");
                     $txt = "$nick Suteike komados pavaduotojo statusą.";
-                    mysql_query("INSERT INTO pm SET what='SISTEMA', txt='$txt', time='".time()."', nauj='NEW', gavejas='$kam' ");
+                    mysqli_query($conn,"INSERT INTO pm SET what='SISTEMA', txt='$txt', time='".time()."', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Suteikiai '.$kam.' komandos pavaduotojo statusą.</div>';
                 
 				                }
                 elseif($kaa == 2){
-					mysql_query("UPDATE team SET pavadotuojas='' WHERE pavadinimas='$ka' ");
+					mysqli_query($conn,"UPDATE team SET pavadotuojas='' WHERE pavadinimas='$ka' ");
                     $txt = "$nick Nuėme tavo komandos pavaduotojo statusą.";
-                    mysql_query("INSERT INTO pm SET what='SISTEMA', txt='$txt', time='".time()."', nauj='NEW', gavejas='$kam' ");
+                    mysqli_query($conn,"INSERT INTO pm SET what='SISTEMA', txt='$txt', time='".time()."', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Nuėmei '.$kam.' komandos pavaduotojo statusą.</div>';
                 }
 

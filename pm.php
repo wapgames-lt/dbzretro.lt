@@ -37,16 +37,16 @@ elseif($id == "gautos_all"){
     top("Gautos žinutės");
     echo'<div class="meniuc"><a href="?id=ok">Žymėti visas kaip skaitytas</div>';
 
-    $viso = mysql_result(mysql_query("SELECT COUNT(*) FROM pms WHERE gavejas='$nick' "),0);
+    $viso = mysqli_fetch_row(mysqli_query($conn, "SELECT COUNT(*) FROM pms WHERE gavejas='$nick'"))[0];
     if($viso > 0){
         $rezultatu_rodymas=10;
         $total = @intval(($viso-1) / $rezultatu_rodymas) + 1;
         if (empty($psl) or $psl < 0) $psl = 1;
         if ($psl > $total) $psl = $total;
         $nuo_kiek=$psl*$rezultatu_rodymas-$rezultatu_rodymas;
-        $query = mysql_query("SELECT * FROM pms WHERE gavejas='$nick' ORDER BY id DESC LIMIT $nuo_kiek,$rezultatu_rodymas");
+        $query = mysqli_query($conn,"SELECT * FROM pms WHERE gavejas='$nick' ORDER BY id DESC LIMIT $nuo_kiek,$rezultatu_rodymas");
         $puslapiu = ceil($viso/$rezultatu_rodymas);
-        while($row = mysql_fetch_assoc($query)){
+        while($row = mysqli_fetch_assoc($query)){
 
 
             echo '<div class="meniu">';
@@ -93,16 +93,16 @@ elseif($id == "issiustos_all"){
     top("Gautos žinutės");
 
 
-    $viso = mysql_result(mysql_query("SELECT COUNT(*) FROM pms2 WHERE gavejas='$nick' "),0);
+    $viso = mysqli_fetch_row(mysqli_query($conn, "SELECT COUNT(*) FROM pms2 WHERE gavejas='$nick'"))[0];
     if($viso > 0){
         $rezultatu_rodymas=10;
         $total = @intval(($viso-1) / $rezultatu_rodymas) + 1;
         if (empty($psl) or $psl < 0) $psl = 1;
         if ($psl > $total) $psl = $total;
         $nuo_kiek=$psl*$rezultatu_rodymas-$rezultatu_rodymas;
-        $query = mysql_query("SELECT * FROM pms2 WHERE gavejas='$nick' ORDER BY id DESC LIMIT $nuo_kiek,$rezultatu_rodymas");
+        $query = mysqli_query($conn,"SELECT * FROM pms2 WHERE gavejas='$nick' ORDER BY id DESC LIMIT $nuo_kiek,$rezultatu_rodymas");
         $puslapiu = ceil($viso/$rezultatu_rodymas);
-        while($row = mysql_fetch_assoc($query)){
+        while($row = mysqli_fetch_assoc($query)){
 
             if($row['nauj'] == 'send'){
                 echo '<div class="meniu">';
@@ -146,7 +146,7 @@ elseif($id == "issiustos_all"){
 elseif($id == "read"){
 
 
-    $pmr = mysql_fetch_assoc(mysql_query("SELECT * FROM pms WHERE id='$ID' "));
+    $pmr = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM pms WHERE id='$ID' "));
     online('Skaito Gautą žinutę');
 
     if(apsas($pmr[gavejas]) != apsas($nick)){
@@ -157,7 +157,7 @@ elseif($id == "read"){
         top('Žinutė nuo '.statusas($pmr[what]).'');
 
 
-        mysql_query("UPDATE pms SET nauj='OLD' WHERE id='$ID' ");
+        mysqli_query($conn,"UPDATE pms SET nauj='OLD' WHERE id='$ID' ");
         echo '<div class="meniuc"> <b>'.statusas($pmr['what']).'</b>: '.smile($pmr['txt']).'<br/>
       '.laikas($pmr['time']).'</div>';
         if($pmr['what'] != 'SUPPORT'){
@@ -201,7 +201,7 @@ elseif($id == "write"){
     if(empty($txt) ){
         echo '<div class="meniuc">Paliktai kažkurį tuščią laukelį!</div>';
     } else {
-        $isReceiverAdmin = mysql_num_rows(mysql_query("SELECT * FROM zaidejai WHERE nick='$kam' AND statusas IN ('Kurejas', 'Admin')")) == 1;
+        $isReceiverAdmin = mysqli_num_rows(mysqli_query($conn,"SELECT * FROM zaidejai WHERE nick='$kam' AND statusas IN ('Kurejas', 'Admin')")) == 1;
         if(apsas($kam) == apsas($nick)){
             echo '<div class="meniuc">Sau siųsti žinutės negalimą!</div>';
         } else {
@@ -216,7 +216,7 @@ elseif($id == "write"){
                 if($apie['veiksmai'] < 0 && apsas($kam) != apsas(erika)){
                     echo '<div class="meniuc">Rašyti galima atlikus bent 0 veiksmų</div>';
                 } else {
-                    if(mysql_num_rows(mysql_query("SELECT * FROM zaidejai WHERE nick='$kam'")) == 0){
+                    if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM zaidejai WHERE nick='$kam'")) == 0){
                         echo '<div class="meniuc">Tokio žaidėjo nėra!</div>';
                     } else {
                         if($_SESSION['pm_flood']-time() > 0){
@@ -224,7 +224,7 @@ elseif($id == "write"){
 
                         }
                         else{
-                            if(mysql_num_rows(mysql_query("SELECT * FROM pm_ban WHERE baned='$nick' AND kas='$kam'")) == true){
+                            if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM pm_ban WHERE baned='$nick' AND kas='$kam'")) == true){
 
 
                                 echo '<div class="meniuc">'.statusas($kam).' jus užblokavo</div>';
@@ -234,14 +234,14 @@ elseif($id == "write"){
 
                             else{
 
-                                mysql_query("INSERT INTO pms SET what='$nick', txt='$txt', gavejas='$kam', time='".time()."', nauj='NEW' ") or die(mysql_error());
-                                mysql_query("INSERT INTO pms2 SET what='$kam', txt='$txt', gavejas='$nick', time='".time()."', nauj='send' ") or die(mysql_error());
+                                mysqli_query($conn,"INSERT INTO pms SET what='$nick', txt='$txt', gavejas='$kam', time='".time()."', nauj='NEW' ") or die(mysqli_error());
+                                mysqli_query($conn,"INSERT INTO pms2 SET what='$kam', txt='$txt', gavejas='$nick', time='".time()."', nauj='send' ") or die(mysqli_error());
                                 $_SESSION['pm_flood'] = time()+5;
                                 echo '<div class="meniuc"><img src="img/bicons/pm1.png" />Žinutė išsiųsta <b>'.$kam.'</b>!</div>';
                                 echo '<div class="titlec"><img src="img/bicons/pm2.png" />Žinutė: <b>'.smile($txt).'</b></div>';
 
-                                mysql_query("UPDATE zaidejai SET  pliusai=pliusai+5 WHERE nick='$nick'");
-                                mysql_query("UPDATE bendravimo_top SET sms=sms+'1'  WHERE nick='$nick'");
+                                mysqli_query($conn,"UPDATE zaidejai SET  pliusai=pliusai+5 WHERE nick='$nick'");
+                                mysqli_query($conn,"UPDATE bendravimo_top SET sms=sms+'1'  WHERE nick='$nick'");
                             }
                         }
                     }}
@@ -254,7 +254,7 @@ elseif($id == "delete_gautos"){
     top('Žinučiu trinimas');
     if($co == "yes"){
         echo '<div class="meniuc">Visos gautos žinutės ištrintos.</div>';
-        mysql_query("DELETE FROM pms WHERE gavejas='$nick' ");
+        mysqli_query($conn,"DELETE FROM pms WHERE gavejas='$nick' ");
     } else {
         echo '<div class="meniuc">Ar tikrai norite ištrinti visas gautas žinutes?<br/>
    <a href="pm.php?id=delete_gautos&co=yes">Taip</a> | <a href="pm.php?id=">Ne</a>
@@ -268,7 +268,7 @@ elseif($id == "delete_issiustos"){
     top('Žinučiu trinimas');
     if($co == "yes"){
         echo '<div class="meniuc">Visos išsiųstos žinutės ištrintos.</div>';
-        mysql_query("DELETE FROM pms2 WHERE gavejas='$nick' ");
+        mysqli_query($conn,"DELETE FROM pms2 WHERE gavejas='$nick' ");
     } else {
         echo '<div class="meniuc">Ar tikrai norite ištrinti visas išsiųstas žinutes?<br/>
    <a href="pm.php?id=delete_issiustos&co=yes">Taip</a> | <a href="pm.php?id=">Ne</a>
@@ -283,7 +283,7 @@ elseif($id == "delete_sys"){
     top('Žinučiu trinimas');
     if($co == "yes"){
         echo '<div class="meniuc">Visos žinutės ištrintos.</div>';
-        mysql_query("DELETE FROM pm WHERE gavejas='$nick' ");
+        mysqli_query($conn,"DELETE FROM pm WHERE gavejas='$nick' ");
     } else {
         echo '<div class="meniuc">Ar tikrai norite ištrinti visas sistemines žinutes?<br/>
    <a href="pm.php?id=delete_sys&co=yes">Taip</a> | <a href="pm.php?id=">Ne</a>
@@ -296,17 +296,17 @@ elseif($id == "sys"){
     online('Žiūri Gautas žinutęs');
     top("Gautos sistemos žinutės");
 
-    mysql_query("UPDATE pm SET nauj='OLD' WHERE gavejas='$nick'");
-    $viso = mysql_result(mysql_query("SELECT COUNT(*) FROM pm WHERE gavejas='$nick' AND what='SISTEMA'"),0);
+    mysqli_query($conn,"UPDATE pm SET nauj='OLD' WHERE gavejas='$nick'");
+    $viso = mysqli_fetch_row(mysqli_query($conn, "SELECT COUNT(*) FROM pm WHERE gavejas='$nick' AND what='SISTEMA'"))[0];
     if($viso > 0){
         $rezultatu_rodymas=10;
         $total = @intval(($viso-1) / $rezultatu_rodymas) + 1;
         if (empty($psl) or $psl < 0) $psl = 1;
         if ($psl > $total) $psl = $total;
         $nuo_kiek=$psl*$rezultatu_rodymas-$rezultatu_rodymas;
-        $query = mysql_query("SELECT * FROM pm WHERE gavejas='$nick' and what ='SISTEMA' ORDER BY id DESC LIMIT $nuo_kiek,$rezultatu_rodymas");
+        $query = mysqli_query($conn,"SELECT * FROM pm WHERE gavejas='$nick' and what ='SISTEMA' ORDER BY id DESC LIMIT $nuo_kiek,$rezultatu_rodymas");
         $puslapiu = ceil($viso/$rezultatu_rodymas);
-        while($row = mysql_fetch_assoc($query)){
+        while($row = mysqli_fetch_assoc($query)){
 
             echo '<div class="meniu">';
 
@@ -327,7 +327,7 @@ elseif($id == "sys"){
 }
 if($id == 'ok'){
 
-    mysql_query("UPDATE pms SET nauj='OLD' WHERE gavejas='$nick'");
+    mysqli_query($conn,"UPDATE pms SET nauj='OLD' WHERE gavejas='$nick'");
 
     header("location:pm.php?id=gautos_all");
 }

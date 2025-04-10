@@ -14,22 +14,22 @@ if($id == ""){
 echo'<div class="meniuc">	<a href="?id=ideti">Idėti prekę</a></div><div class="up">Prekės</div>';
 	
 		
-		if(mysql_num_rows(mysql_query("SELECT * FROM turgus")) == false){
+		if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM turgus")) == false){
 	echo'<div class="meniuc"><b>Kolkas preki&#371; n&#279;ra!</b></div>';
 	}
 	else
 	{
-	  $viso = mysql_result(mysql_query("SELECT COUNT(*) FROM turgus"),0);
-   if($viso > 0){
+        $viso = mysqli_fetch_row(mysqli_query($conn, "SELECT COUNT(*) FROM turgus"))[0];
+        if($viso > 0){
        $rezultatu_rodymas=5;
        $total = @intval(($viso-1) / $rezultatu_rodymas) + 1;
        if (empty($psl) or $psl < 0) $psl = 1;
        if ($psl > $total) $psl = $total;
        $nuo_kiek=$psl*$rezultatu_rodymas-$rezultatu_rodymas;
             
-       $query = mysql_query("SELECT * FROM turgus ORDER BY id DESC LIMIT $nuo_kiek,$rezultatu_rodymas");
+       $query = mysqli_query($conn,"SELECT * FROM turgus ORDER BY id DESC LIMIT $nuo_kiek,$rezultatu_rodymas");
        $puslapiu=ceil($viso/$rezultatu_rodymas);
-	     while($row = mysql_fetch_assoc($query)){
+	     while($row = mysqli_fetch_assoc($query)){
 	     	if($row[preke] = litai){$pre = 'Pinigai';}
 echo'	<div class="meniu">
 	[&#187;] <b>Pardav&#279;jas:</b> <a href="pagrindinis.php?id=apie&ka='.$row['nick'].'">'.$row['nick'].'</a><br>
@@ -80,13 +80,13 @@ if($id == 'ideti2'){
 		$klaida = 'Tuščias laukelis';	
 		
 	}
-	elseif(mysql_num_rows(mysql_query("SELECT * FROM turgus WHERE nick='$nick'")) == true){
+	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM turgus WHERE nick='$nick'")) == true){
 	$klaida = 'Galima dėti tik vieną preke';}
 	else{
 		$timux = time() +60*60*5;
 	
-	mysql_query("INSERT INTO turgus SET nick='$nick', preke='litai', kaina='sms_litai', kiek='$kiek', kiekis='$kaina', laikas = '$timux' ");
-mysql_query("UPDATE zaidejai SET sms_litai = sms_litai-'$kiek' WHERE nick ='$nick'");
+	mysqli_query($conn,"INSERT INTO turgus SET nick='$nick', preke='litai', kaina='sms_litai', kiek='$kiek', kiekis='$kaina', laikas = '$timux' ");
+mysqli_query($conn,"UPDATE zaidejai SET sms_litai = sms_litai-'$kiek' WHERE nick ='$nick'");
 		echo'<div class="meniuc">Prekė įdėta</div>';
 	}
 	if(isset($klaida)){
@@ -99,9 +99,9 @@ mysql_query("UPDATE zaidejai SET sms_litai = sms_litai-'$kiek' WHERE nick ='$nic
 if($id == 'pirkti'){
 	top('Prekės pirkimas');
 	$nr = (int)abs($_GET['nr']);
-$apie_pr = mysql_fetch_array(mysql_query("SELECT * FROM turgus WHERE id='$nr'"))or die(mysql_error());	
+$apie_pr = mysqli_fetch_array(mysqli_query($conn,"SELECT * FROM turgus WHERE id='$nr'"))or die(mysqli_error());	
 	
-	if(mysql_num_rows(mysql_query("SELECT * FROM turgus WHERE id='$nr'")) == false){
+	if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM turgus WHERE id='$nr'")) == false){
 		$klaida = 'Tokios prekės nėra';
 	}
 	elseif($apie_pr['nick'] == $nick){
@@ -111,10 +111,10 @@ $apie_pr = mysql_fetch_array(mysql_query("SELECT * FROM turgus WHERE id='$nr'"))
 		$klaida = 'Tau nepakanka pinigų';
 	}else{
 		$zinute = "Tavo preke turgelije nupirko $nick";
-		mysql_query("INSERT INTO pm SET gavejas='$apie_pr[nick]', what='SISTEMA', txt='$zinute', time='".time()."', nauj='NEW'")or die(mysql_error());
-	mysql_query("UPDATE zaidejai SET sms_litai=sms_litai+'$apie_pr[kiek]', litai=litai-'$apie_pr[kiekis]' WHERE nick='$nick'")or die(mysql_error());
-	mysql_query("UPDATE zaidejai SET litai=litai+'$apie_pr[kiekis]' WHERE nick ='$apie_pr[nick]'");	
-	mysql_query("DELETE FROM turgus WHERE id='$nr'")or die(mysql_error());
+		mysqli_query($conn,"INSERT INTO pm SET gavejas='$apie_pr[nick]', what='SISTEMA', txt='$zinute', time='".time()."', nauj='NEW'")or die(mysqli_error());
+	mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai+'$apie_pr[kiek]', litai=litai-'$apie_pr[kiekis]' WHERE nick='$nick'")or die(mysqli_error());
+	mysqli_query($conn,"UPDATE zaidejai SET litai=litai+'$apie_pr[kiekis]' WHERE nick ='$apie_pr[nick]'");	
+	mysqli_query($conn,"DELETE FROM turgus WHERE id='$nr'")or die(mysqli_error());
 		echo'<div class="meniuc">Nupirkta sėkmingai</div>';
 	}
 	if(isset($klaida)){

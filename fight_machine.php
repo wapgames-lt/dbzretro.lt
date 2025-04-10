@@ -26,13 +26,13 @@ echo'
 echo '<div class="meniuc"><b>Galingiausią smūgį</b> įkirtęs žaidėjas laimi prizą.</br>Smūgis yra atsitiktinis, nereikia turėti jokių statusų, reikia tik sekmės!<br><b>Prizą</b>  gaus tas kuris įkirto didžiausią smūgį po 24 valandos!<br>Įkirtęs didžiausią galimą smūgį žaidėjas gaus <b>100</b>'.$eurui.'</div>
 <div class="meniuc"> <a href="?id=smogti"><input type="submit" Value="Trenkti"></a></div>';
 echo'<div class="up">Šiandien daugiausiai itrenkę:</div>';
-if(mysql_num_rows(mysql_query("SELECT * FROM machine")) == false){
+if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM machine")) == false){
 	
 	echo'<div class="meniu">Šiandien dar niekas netrenkė!</div>';
 }else{
 	echo'<div class="meniu">';
-$query = mysql_query("SELECT * FROM machine ORDER BY smugis DESC LIMIT 0,10");
-while($row = mysql_fetch_assoc($query)){
+$query = mysqli_query($conn,"SELECT * FROM machine ORDER BY smugis DESC LIMIT 0,10");
+while($row = mysqli_fetch_assoc($query)){
 	$nr ++;
 	
 	echo'<b>'.$nr.'. </b><a href="pagrindinis.php?id=apie&ka='.$row['nick'].'">'.statusas($row[nick]).'</a> įtrenkė <b>'.$row[smugis].'</b> žalos</a></br>';	
@@ -51,7 +51,7 @@ echo'</div>';
 if($id == 'smogti'){
 	top('Kovų mašina');
 	$smugis = rand(350,10000);
-	if(mysql_num_rows(mysql_query("SELECT * FROM machine WHERE nick='$nick'")) == true){
+	if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM machine WHERE nick='$nick'")) == true){
 	echo'
 <div class="meniuc">
 <img src="img/imgg/zona.png" /></div>';
@@ -62,8 +62,8 @@ echo'
 <div class="meniuc">
 <img src="img/imgg/zona.png" /></div>';
 echo'<div class="meniuc">Įtrenkei<b> '.$smugis.'</b>, tai yra didžiausias smūgis ! Gauni 100 '.$eurui.'</div>';	
-		mysql_query("INSERT INTO machine SET nick='$nick',smugis ='$smugis'");
-		mysql_query("UPDATE zaidejai SET sms_litai=sms_litai +'100' WHERE nick='$nick'");
+		mysqli_query($conn,"INSERT INTO machine SET nick='$nick',smugis ='$smugis'");
+		mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai +'100' WHERE nick='$nick'");
 }	else{
 	
 	echo'
@@ -72,7 +72,7 @@ echo'<div class="meniuc">Įtrenkei<b> '.$smugis.'</b>, tai yra didžiausias smū
 	
 echo'<div class="meniuc">Įtrenkei <b>'.$smugis.'</b> žalos!</div>';
 	
-	mysql_query("INSERT INTO machine SET nick='$nick',smugis ='$smugis'");
+	mysqli_query($conn,"INSERT INTO machine SET nick='$nick',smugis ='$smugis'");
 	
 }}
 

@@ -17,7 +17,7 @@ $_SESSION['msg'] = '<div class="text center"><font color="tomato">Недоста
 header('Location: /shop.php?runs&item='.$item);
 exit();
 }
-mysql_query("UPDATE `users` SET `run_".$item."_param` = '".($user['run_'.$item.'_param'] + $stats)."', `str` = '".($user['str'] + $stats)."', `max_health` = '".($user['max_health'] + $stats)."', `gold` = '".($user['gold'] - $price)."', `def` = '".($user['def'] + $stats)."', `run_".$item."` = '$pay' WHERE `id` = '".$user['id']."'");
+mysqli_query($conn,"UPDATE `users` SET `run_".$item."_param` = '".($user['run_'.$item.'_param'] + $stats)."', `str` = '".($user['str'] + $stats)."', `max_health` = '".($user['max_health'] + $stats)."', `gold` = '".($user['gold'] - $price)."', `def` = '".($user['def'] + $stats)."', `run_".$item."` = '$pay' WHERE `id` = '".$user['id']."'");
 		$_SESSION['msg'] = '<div class="text center"><font color="lime">Руна приобретена</font></div>';
 		header('Location: /shop.php?runs&item='.$item);
 		exit();

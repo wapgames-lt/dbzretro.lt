@@ -16,8 +16,8 @@ include_once '../config/settings.php';
 
 $playerActiveBuffs = CurrentPlayer::get()->getActiveJungleKingBosBuffs();
 
-$newMissions = mysql_num_rows(mysql_query("SELECT * FROM jungle_king_bosses WHERE user_id = $apie[id] AND (status = 'alive' OR status = 'prepared') AND DATE(created_at) = '$date'"));
-$completedMissions = mysql_num_rows(mysql_query("SELECT * FROM jungle_king_bosses WHERE user_id = $apie[id] AND status = 'dead' AND DATE(created_at) = '$date'"));
+$newMissions = mysqli_num_rows(mysqli_query($conn,"SELECT * FROM jungle_king_bosses WHERE user_id = $apie[id] AND (status = 'alive' OR status = 'prepared') AND DATE(created_at) = '$date'"));
+$completedMissions = mysqli_num_rows(mysqli_query($conn,"SELECT * FROM jungle_king_bosses WHERE user_id = $apie[id] AND status = 'dead' AND DATE(created_at) = '$date'"));
 
 /**
  * CONTENT
@@ -39,8 +39,8 @@ if (!isset($id)) {
     } else {
         echo 'Bosai: <br><br>';
 
-        $q = mysql_query("SELECT * FROM jungle_king_bosses WHERE user_id = $apie[id] AND (status = 'alive' OR status = 'prepared') AND DATE(created_at) = '$date'");
-        while ($row = mysql_fetch_assoc($q)) {
+        $q = mysqli_query($conn,"SELECT * FROM jungle_king_bosses WHERE user_id = $apie[id] AND (status = 'alive' OR status = 'prepared') AND DATE(created_at) = '$date'");
+        while ($row = mysqli_fetch_assoc($q)) {
             if ($missionConfig = getBossById($row['boss_id'])) {
                 echo '<img src="../assets/img/quest.png"> ';
                 echo '<font color="red">' . $missionConfig['name'].'</font> <br><br>';
@@ -93,8 +93,8 @@ if (!isset($id)) {
         echo '['. $completedMissions . '/' . getConfigValueByName('missions_per_day'). '] ';
         echo 'Nukauti bosai: <br><br>';
 
-        $q = mysql_query("SELECT * FROM jungle_king_bosses WHERE user_id = $apie[id] AND status = 'dead' AND DATE(created_at) = '$date'");
-        while ($row = mysql_fetch_assoc($q)) {
+        $q = mysqli_query($conn,"SELECT * FROM jungle_king_bosses WHERE user_id = $apie[id] AND status = 'dead' AND DATE(created_at) = '$date'");
+        while ($row = mysqli_fetch_assoc($q)) {
             if ($missionConfig = getBossById($row['boss_id'])) {
                 echo $checked;
                 echo $missionConfig['name'].' <br>';
@@ -152,7 +152,7 @@ if ($id === 'attack') {
     $playerDefence = round($apie['gynyba']);
     $playerMaxHealth = round($apie['max_gyvybes']);
 
-    $boss = mysql_fetch_assoc(mysql_query("SELECT * FROM jungle_king_bosses WHERE status='alive' AND health > 0 AND user_id='$apie[id]' AND boss_id = '$bossId' AND DATE(created_at) = '$date'"));
+    $boss = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM jungle_king_bosses WHERE status='alive' AND health > 0 AND user_id='$apie[id]' AND boss_id = '$bossId' AND DATE(created_at) = '$date'"));
     echo '<div class="meniu">';
     if (!$bossConfig) {
         echo 'Bloga boso konfigūracija, kreipkitės į administracija';
@@ -184,11 +184,11 @@ if ($id === 'attack') {
         echo '</div>';
     } else {
         $time = time();
-        mysql_query("UPDATE zaidejai SET last_fight_time='$time' WHERE nick='$nick' ");
+        mysqli_query($conn,"UPDATE zaidejai SET last_fight_time='$time' WHERE nick='$nick' ");
         $ip = $_SERVER['REMOTE_ADDR'];
         $browser = $_SERVER['HTTP_USER_AGENT'];
         $location = 'jungle_king_bosses';
-        mysql_query("INSERT INTO `player_actions` SET player_id = '$apie[id]', location='$location', ip='$ip', browser='$browser'");
+        mysqli_query($conn,"INSERT INTO `player_actions` SET player_id = '$apie[id]', location='$location', ip='$ip', browser='$browser'");
 
         // looking for gays
         $tenSecondsAgo = date('Y-m-d H:i:s', strtotime('-10 seconds'));
@@ -198,15 +198,15 @@ if ($id === 'attack') {
                                     AND created_at >= '$tenSecondsAgo' 
                                     ORDER BY created_at DESC 
                                     LIMIT 1";
-        $exist = mysql_num_rows(mysql_query($sql));
+        $exist = mysqli_num_rows(mysqli_query($conn,$sql));
         if ($exist) {
             $message = 'Seniokas ' . $nick . ' daro labai daug užklausų ir labai apkrauna serverį.';
             error_log($message);
             $b_laikas2 = time()+60;
             $kasBan = 'testas1';
-            mysql_query("INSERT INTO pm SET gavejas='testas1', what='SISTEMA', txt='$message', time='" . time() . "', nauj='NEW'")or die(mysql_error());
-            mysql_query("INSERT INTO ban_logai SET nick='$nick', uz='$message', time='$b_laikas2', kas_ban='$kasBan'")or die(mysql_error());
-            mysql_query("INSERT INTO block SET nick='$nick', uz='$message', time='$b_laikas2', kas_ban='$kasBan'")or die(mysql_error());
+            mysqli_query($conn,"INSERT INTO pm SET gavejas='testas1', what='SISTEMA', txt='$message', time='" . time() . "', nauj='NEW'")or die(mysqli_error());
+            mysqli_query($conn,"INSERT INTO ban_logai SET nick='$nick', uz='$message', time='$b_laikas2', kas_ban='$kasBan'")or die(mysqli_error());
+            mysqli_query($conn,"INSERT INTO block SET nick='$nick', uz='$message', time='$b_laikas2', kas_ban='$kasBan'")or die(mysqli_error());
             header('Refresh: 1; url=pagrindinis.php');
         }
 
@@ -335,7 +335,7 @@ if ($id === 'attack') {
 
         if ($playerHealth === 0) {
             echo '<font color="red"><b>Tu pralaimėjai!</b></font><br>';
-            mysql_query("UPDATE zaidejai SET gyvybes='0' WHERE nick='$nick' ");
+            mysqli_query($conn,"UPDATE zaidejai SET gyvybes='0' WHERE nick='$nick' ");
             echo '</div>';
             $g_n[] = array("index.php","Jungle King bosai","Pulti bosą");
             navigacija($g_n);
@@ -370,7 +370,7 @@ if ($id === 'attack') {
                 echo '<img src="../assets/img/reward.png"> Token: ' . sk($boss['token']);
                 echo '<br>';
             }
-                $update3 = mysql_query("UPDATE zaidejai SET
+                $update3 = mysqli_query($conn,"UPDATE zaidejai SET
                 sms_litai=sms_litai+'$boss[euro]',
                 exp=exp+$boss[exp],
                 jega=jega+'$boss[power]',
@@ -387,9 +387,9 @@ if ($id === 'attack') {
 
             $expiresAt = date('Y-m-d H:i:s', strtotime(' + 1 hours'));
             if ($apie['nick'] !== 'testas1') {
-                $insert1 = mysql_query("INSERT INTO pokalbiai SET nick='SISTEMA', sms='$message', data='" . time() . "', expired_at='$expiresAt'");
+                $insert1 = mysqli_query($conn,"INSERT INTO pokalbiai SET nick='SISTEMA', sms='$message', data='" . time() . "', expired_at='$expiresAt'");
             }
-            $update2 = mysql_query("UPDATE jungle_king_bosses SET status = 'dead', health = 0 WHERE user_id='$apie[id]' AND status='alive' AND boss_id = '$bossId' AND DATE(created_at) = '$date'");
+            $update2 = mysqli_query($conn,"UPDATE jungle_king_bosses SET status = 'dead', health = 0 WHERE user_id='$apie[id]' AND status='alive' AND boss_id = '$bossId' AND DATE(created_at) = '$date'");
             echo '</div>';
 
             // ugly lvl calculation(wap gay code)
@@ -413,7 +413,7 @@ if ($id === 'attack') {
                     break;
                 }
             }
-            mysql_query("UPDATE zaidejai SET exp=exp+'$boss[exp]', lygis='$lvlas',expl='$left', expl2='$left*3.53' WHERE nick='$apie[nick]'");
+            mysqli_query($conn,"UPDATE zaidejai SET exp=exp+'$boss[exp]', lygis='$lvlas',expl='$left', expl2='$left*3.53' WHERE nick='$apie[nick]'");
 
             $g_n[] = array("index.php","Jungle King bosai","Pulti bosą");
             navigacija($g_n);
@@ -431,8 +431,8 @@ if ($id === 'attack') {
             echo 'Tavo žala: ' . $playerDamage . '<br>';
 
             // handle boss and player
-            mysql_query("UPDATE jungle_king_bosses SET health='$bossHealth' WHERE status='alive' AND user_id='$apie[id]' AND boss_id='$bossId' AND DATE(created_at) = '$date'");
-            mysql_query("UPDATE zaidejai SET vveiksmai=vveiksmai+'1', gyvybes=gyvybes-'$bossDamage' WHERE nick='$nick' AND gyvybes > 0");
+            mysqli_query($conn,"UPDATE jungle_king_bosses SET health='$bossHealth' WHERE status='alive' AND user_id='$apie[id]' AND boss_id='$bossId' AND DATE(created_at) = '$date'");
+            mysqli_query($conn,"UPDATE zaidejai SET vveiksmai=vveiksmai+'1', gyvybes=gyvybes-'$bossDamage' WHERE nick='$nick' AND gyvybes > 0");
         }
         echo '<br>';
         $_SESSION['pad-jungle-king'] = time() + 2;
@@ -490,7 +490,7 @@ if ($id === 'completeMission') {
     $missionConfig = getBossById($bossId);
     $missionName = isset($missionConfig['name']) ? $missionConfig['name'] : null;
     $requirements = $missionConfig ? $missionConfig['requirements'] : [];
-    $rewards = mysql_fetch_assoc(mysql_query("SELECT * FROM jungle_king_bosses WHERE status='prepared' AND user_id='$apie[id]' AND boss_id = '$bossId' AND DATE(created_at) = '$date'"));
+    $rewards = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM jungle_king_bosses WHERE status='prepared' AND user_id='$apie[id]' AND boss_id = '$bossId' AND DATE(created_at) = '$date'"));
 
     echo '<div class="meniu">';
     if (!$requirements || !$missionName) {
@@ -501,7 +501,7 @@ if ($id === 'completeMission') {
     else {
         $error = false;
         if ($requirements['winFights']) {
-            $dtop2 = mysql_fetch_assoc(mysql_query("SELECT * FROM dtop WHERE nick='$nick'"));
+            $dtop2 = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM dtop WHERE nick='$nick'"));
             $dontHave = $requirements['winFights'] > $dtop2['vksm'];
             if ($dontHave) {
                 $value = $requirements['winFights'] - $dtop2['vksm'];
@@ -615,7 +615,7 @@ if ($id === 'completeMission') {
         // Success
         if (!$error) {
             startTransaction();
-            $update1 = mysql_query("UPDATE inv SET
+            $update1 = mysqli_query($conn,"UPDATE inv SET
                 Microshem=Microshem-'$requirements[microshem]',
                 titanas=titanas-'$requirements[titanOre]',
                 kvarcas=kvarcas-'$requirements[quartzOre]',
@@ -628,9 +628,9 @@ if ($id === 'completeMission') {
                 Malkos=Malkos-'$requirements[wood]'
             WHERE nick='$apie[nick]'");
 
-            $update2 = mysql_query("UPDATE jungle_king_bosses SET status = 'alive' WHERE status='prepared' AND user_id='$apie[id]' AND boss_id = '$bossId' AND DATE(created_at) = '$date'");
+            $update2 = mysqli_query($conn,"UPDATE jungle_king_bosses SET status = 'alive' WHERE status='prepared' AND user_id='$apie[id]' AND boss_id = '$bossId' AND DATE(created_at) = '$date'");
 
-//            $update3 = mysql_query("UPDATE zaidejai SET
+//            $update3 = mysqli_query($conn,"UPDATE zaidejai SET
 //                sms_litai=sms_litai+'$rewards[euro]',
 //                exp=exp+$rewards[exp],
 //                jega=jega+'$rewards[power]',
@@ -645,7 +645,7 @@ if ($id === 'completeMission') {
 //            }
 //
 //            $expiresAt = date('Y-m-d H:i:s', strtotime(' + 1 hours'));
-//            $insert1 = mysql_query("INSERT INTO pokalbiai SET nick='SISTEMA', sms='$message', data='".time()."', expired_at='$expiresAt'");
+//            $insert1 = mysqli_query($conn,"INSERT INTO pokalbiai SET nick='SISTEMA', sms='$message', data='".time()."', expired_at='$expiresAt'");
 
             if ($update1 && $update2) {
                 commitTransaction();
@@ -721,8 +721,8 @@ if ($id === 'changeToMirtiesItem') {
             echo '<div class="meniuc">Neturite pakankamai tokenų!</div>';
         } else {
             echo '<div class="meniuc">Išsikeitėte sėkmingai <font color="red"><b>'.sk($tokens).'</b></font> tokenų į <font color="red"><b>'.sk($mirtiesItem).'</b></font> MirtiesItem</div> ';
-            mysql_query("UPDATE zaidejai SET jungle_king_token=jungle_king_token-'$tokens' WHERE nick='$nick' ");
-            mysql_query("UPDATE inv SET mirties_item=mirties_item+'$mirtiesItem' WHERE nick='$nick' ");
+            mysqli_query($conn,"UPDATE zaidejai SET jungle_king_token=jungle_king_token-'$tokens' WHERE nick='$nick' ");
+            mysqli_query($conn,"UPDATE inv SET mirties_item=mirties_item+'$mirtiesItem' WHERE nick='$nick' ");
         }
     }
 
@@ -745,8 +745,8 @@ if ($id === 'changeToAtgimimoItem') {
             echo '<div class="meniuc">Neturite pakankamai tokenų!</div>';
         } else {
             echo '<div class="meniuc">Išsikeitėte sėkmingai <font color="red"><b>'.sk($tokens).'</b></font> tokenų į <font color="red"><b>'.sk($atgimimoItem).'</b></font> AtgimimoItem</div> ';
-            mysql_query("UPDATE zaidejai SET jungle_king_token=jungle_king_token-'$tokens' WHERE nick='$nick' ");
-            mysql_query("UPDATE inv SET atgimimo_item=atgimimo_item+'$atgimimoItem' WHERE nick='$nick' ");
+            mysqli_query($conn,"UPDATE zaidejai SET jungle_king_token=jungle_king_token-'$tokens' WHERE nick='$nick' ");
+            mysqli_query($conn,"UPDATE inv SET atgimimo_item=atgimimo_item+'$atgimimoItem' WHERE nick='$nick' ");
         }
     }
 
@@ -769,8 +769,8 @@ if ($id === 'changeToSayiantail') {
             echo '<div class="meniuc">Neturite pakankamai tokenų!</div>';
         } else {
             echo '<div class="meniuc">Išsikeitėte sėkmingai <font color="red"><b>'.sk($tokens).'</b></font> tokenų į <font color="red"><b>'.sk($sayiantail).'</b></font> Sayiantail</div> ';
-            mysql_query("UPDATE zaidejai SET jungle_king_token=jungle_king_token-'$tokens' WHERE nick='$nick' ");
-            mysql_query("UPDATE inv SET Sayiantail=Sayiantail+'$sayiantail' WHERE nick='$nick' ");
+            mysqli_query($conn,"UPDATE zaidejai SET jungle_king_token=jungle_king_token-'$tokens' WHERE nick='$nick' ");
+            mysqli_query($conn,"UPDATE inv SET Sayiantail=Sayiantail+'$sayiantail' WHERE nick='$nick' ");
         }
     }
 
@@ -784,7 +784,7 @@ function renderRequirements(array $requirements)
 
     echo 'Kad susikautumėte su bosu Jums reikia atlikti šiuos veiksmus: <br><br>';
     if ($requirements['winFights']) {
-        $dtop2 = mysql_fetch_assoc(mysql_query("SELECT * FROM dtop WHERE nick='$nick'"));
+        $dtop2 = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM dtop WHERE nick='$nick'"));
         $dontHave = $requirements['winFights'] > $dtop2['vksm'];
         $icon = $dontHave ? $arrow : $checked;
         echo $icon;
@@ -950,10 +950,10 @@ function handleRewards(array $rewards, $boosConfig)
     }
     // Insert reward to database
     $date = date('Y-m-d H:i:s');
-    mysql_query("DELETE FROM `jungle_king_bosses` WHERE user_id='$apie[id]' AND (status = 'alive' OR status = 'prepared') AND DATE(created_at) <> '$date'")or die(mysql_error());
-    mysql_query("INSERT INTO `jungle_king_bosses` (`user_id`, `boss_id`, `health`, `token`, `euro`, `exp`, `vipticket`, `defence`, `power`, `created_at`)
+    mysqli_query($conn,"DELETE FROM `jungle_king_bosses` WHERE user_id='$apie[id]' AND (status = 'alive' OR status = 'prepared') AND DATE(created_at) <> '$date'")or die(mysqli_error());
+    mysqli_query($conn,"INSERT INTO `jungle_king_bosses` (`user_id`, `boss_id`, `health`, `token`, `euro`, `exp`, `vipticket`, `defence`, `power`, `created_at`)
     VALUES ('".$apie['id']."', '$boosConfig[id]', '$boosConfig[health]', '$token', '$euro', $exp, '$vipTicket', '$defence', '$power', '$date')
-    ") or die(mysql_error());
+    ") or die(mysqli_error());
 
     echo '</div>';
 }
@@ -963,14 +963,14 @@ function renderTopBossKillers()
 {
     global $trophy;
 
-    $allCompletedMissionsCount = mysql_num_rows(mysql_query("SELECT * FROM jungle_king_bosses WHERE status='dead'"));
+    $allCompletedMissionsCount = mysqli_num_rows(mysqli_query($conn,"SELECT * FROM jungle_king_bosses WHERE status='dead'"));
     if ($allCompletedMissionsCount) {
         echo '<div class="meniu">';
         echo $trophy;
         echo ' TOP kovotojai<br><br>';
-        $topUsers = mysql_query("SELECT COUNT(zaidejai.nick) as completed_missions, zaidejai.nick as nick FROM jungle_king_bosses INNER JOIN zaidejai ON jungle_king_bosses.user_id = zaidejai.id AND jungle_king_bosses.status = 'dead' GROUP BY zaidejai.nick HAVING COUNT(zaidejai.nick) > 0 ORDER BY COUNT(zaidejai.nick) DESC LIMIT 3");
+        $topUsers = mysqli_query($conn,"SELECT COUNT(zaidejai.nick) as completed_missions, zaidejai.nick as nick FROM jungle_king_bosses INNER JOIN zaidejai ON jungle_king_bosses.user_id = zaidejai.id AND jungle_king_bosses.status = 'dead' GROUP BY zaidejai.nick HAVING COUNT(zaidejai.nick) > 0 ORDER BY COUNT(zaidejai.nick) DESC LIMIT 3");
         $count = 1;
-        while ($row = mysql_fetch_assoc($topUsers)) {
+        while ($row = mysqli_fetch_assoc($topUsers)) {
             echo $count++.'. ';
             echo $row['nick'];
             echo '('.$row['completed_missions'].')';
@@ -984,15 +984,15 @@ function renderTopPlayersByTokens()
 {
     global $tokens;
 
-    $userCount = mysql_num_rows(mysql_query("SELECT nick, jungle_king_token FROM `zaidejai` WHERE jungle_king_token > 0"));
+    $userCount = mysqli_num_rows(mysqli_query($conn,"SELECT nick, jungle_king_token FROM `zaidejai` WHERE jungle_king_token > 0"));
 
     if ($userCount) {
-        $users = mysql_query("SELECT nick, jungle_king_token FROM `zaidejai` WHERE jungle_king_token > 0 ORDER BY jungle_king_token DESC LIMIT 3");
+        $users = mysqli_query($conn,"SELECT nick, jungle_king_token FROM `zaidejai` WHERE jungle_king_token > 0 ORDER BY jungle_king_token DESC LIMIT 3");
         echo '<div class="meniu">';
         echo $tokens;
         echo ' Žaidėjai pagal tokenus<br><br>';
         $count = 1;
-        while ($row = mysql_fetch_assoc($users)) {
+        while ($row = mysqli_fetch_assoc($users)) {
             echo $count++.'. ';
             echo $row['nick'];
             echo '('.$row['jungle_king_token'].')';

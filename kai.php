@@ -50,7 +50,7 @@ echo '<div class="meniuc"><img src="img/imgg/kajus.png" border="0" alt="*"></br>
        if($klaida != ""){
             echo '<div class="titlec">'.$klaida.'</div>';
       } else {
-            mysql_query("UPDATE zaidejai SET jega=jega+'$kgg4', gynyba=gynyba+'$kgg3', litai=litai-'$kkiek' WHERE nick='$nick' ");
+            mysqli_query($conn,"UPDATE zaidejai SET jega=jega+'$kgg4', gynyba=gynyba+'$kgg3', litai=litai-'$kkiek' WHERE nick='$nick' ");
             echo '<div class="titlec">Atlikta! Pasitreniravai';
             if($kjega == ""){} else {
                  echo ' <b>'.sk($kjega).'</b> Jėgos';

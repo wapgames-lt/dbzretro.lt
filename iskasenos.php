@@ -7,7 +7,7 @@ include_once 'cfg/sql.php';
 include_once 'cfg/config.php';;
 include_once 'cfg/funkcijos.php';;
 head2();
-$zaidejai = mysql_fetch_assoc(mysql_query("SELECT * FROM zaidejai WHERE nick='$nick'"));
+$zaidejai = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM zaidejai WHERE nick='$nick'"));
 baneris();
 
 topbar();
@@ -96,8 +96,8 @@ echo' <div class="meniuc"><img src=img/kasimas/kasykla.png border="1" width="180
 	              echo '<div class="meniuc">Atlikta! Išsikeitei sėkmingai!<br>Praradai '.$kainn.' <b><img src="img/kasimas/alavo.png"height="16" width="16">Alavo rūdų</b>, Gavai '.$kiekv.' <b>'.$vipt.' VIP TICKET</b>!</div>';
 	             
 	              
-				   mysql_query("UPDATE inv SET alavas=alavas-'$kainn' WHERE nick='$nick' ");
-mysql_query("UPDATE zaidejai SET vipticket=vipticket+'$kiekv' WHERE nick='$nick' ");
+				   mysqli_query($conn,"UPDATE inv SET alavas=alavas-'$kainn' WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE zaidejai SET vipticket=vipticket+'$kiekv' WHERE nick='$nick' ");
 
 			  }   
 		 }
@@ -161,8 +161,8 @@ echo' <div class="meniuc"><img src=img/kasimas/kasykla.png border="1" width="180
 	              echo '<div class="meniuc">Atlikta! Išsikeitei sėkmingai!<br>Praradai '.$kainn.' <b><img src="img/kasimas/vario.png"height="16" width="16">Vario rūdų</b>, Gavai '.$kiekv.' <b>'.$vipt.' VIP TICKET</b>!</div>';
 	             
 	              
-				   mysql_query("UPDATE inv SET varis=varis-'$kainn' WHERE nick='$nick' ");
-mysql_query("UPDATE zaidejai SET vipticket=vipticket+'$kiekv' WHERE nick='$nick' ");
+				   mysqli_query($conn,"UPDATE inv SET varis=varis-'$kainn' WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE zaidejai SET vipticket=vipticket+'$kiekv' WHERE nick='$nick' ");
 
 			  }   
 		 }$g_n[] = array("pagrindinis.php?id=","Pagrindinis","kasimas.php?id=","Kasykla","iskasenos.php","Atgal","Keitykla");
@@ -223,8 +223,8 @@ echo' <div class="meniuc"><img src=img/kasimas/kasykla.png border="1" width="180
 	              echo '<div class="meniuc">Atlikta! Išsikeitei sėkmingai!<br>Praradai '.$kainn.' <b><img src="img/kasimas/kadmio.png"height="16" width="16">Kadmio rūdų</b>, Gavai '.$kiekv.' <b>'.$vipt.' VIP TICKET</b>!</div>';
 	             
 	              
-				   mysql_query("UPDATE inv SET kadmis=kadmis-'$kainn' WHERE nick='$nick' ");
-mysql_query("UPDATE zaidejai SET vipticket=vipticket+'$kiekv' WHERE nick='$nick' ");
+				   mysqli_query($conn,"UPDATE inv SET kadmis=kadmis-'$kainn' WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE zaidejai SET vipticket=vipticket+'$kiekv' WHERE nick='$nick' ");
 
 			  }   
 		 }$g_n[] = array("pagrindinis.php?id=","Pagrindinis","kasimas.php?id=","Kasykla","iskasenos.php","Atgal","Keitykla");
@@ -285,8 +285,8 @@ echo' <div class="meniuc"><img src=img/kasimas/kasykla.png border="1" width="180
 	              echo '<div class="meniuc">Atlikta! Išsikeitei sėkmingai!<br>Praradai '.$kainn.' <b><img src="img/kasimas/cirkonio.png"height="16" width="16">Cirkonio rūdų</b>, Gavai '.$kiekv.' <b>'.$vipt.' VIP TICKET</b>!</div>';
 	             
 	              
-				   mysql_query("UPDATE inv SET cirkonis=cirkonis-'$kainn' WHERE nick='$nick' ");
-mysql_query("UPDATE zaidejai SET vipticket=vipticket+'$kiekv' WHERE nick='$nick' ");
+				   mysqli_query($conn,"UPDATE inv SET cirkonis=cirkonis-'$kainn' WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE zaidejai SET vipticket=vipticket+'$kiekv' WHERE nick='$nick' ");
 
 			  }   
 		 }$g_n[] = array("pagrindinis.php?id=","Pagrindinis","kasimas.php?id=","Kasykla","iskasenos.php","Atgal","Keitykla");
@@ -350,8 +350,8 @@ echo' <div class="meniuc"><img src=img/kasimas/kasykla.png border="1" width="180
 	              echo '<div class="meniuc">Atlikta! Išsikeitei sėkmingai!<br>Praradai '.$kainn.' <b><img src="img/kasimas/'.$ruda2.'.png"height="16" width="16">'.$ruda.' rūdų</b>, Gavai '.$kiekv.' <b>'.$vipt.' VIP TICKET</b>!</div>';
 	             
 	              
-				   mysql_query("UPDATE inv SET $ruda3=$ruda3-'$kainn' WHERE nick='$nick' ");
-mysql_query("UPDATE zaidejai SET vipticket=vipticket+'$kiekv' WHERE nick='$nick' ");
+				   mysqli_query($conn,"UPDATE inv SET $ruda3=$ruda3-'$kainn' WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE zaidejai SET vipticket=vipticket+'$kiekv' WHERE nick='$nick' ");
 
 			  }   
 		 }$g_n[] = array("pagrindinis.php?id=","Pagrindinis","kasimas.php?id=","Kasykla","iskasenos.php","Atgal","Keitykla");
@@ -416,8 +416,8 @@ echo' <div class="meniuc"><img src=img/kasimas/kasykla.png border="1" width="180
 	              echo '<div class="meniuc">Atlikta! Išsikeitei sėkmingai!<br>Praradai '.$kainn.' <b><img src="img/kasimas/'.$ruda2.'.png"height="16" width="16">'.$ruda.' rūdų</b>, Gavai '.$kiekv.' <b>'.$vipt.' VIP TICKET</b>!</div>';
 	             
 	              
-				   mysql_query("UPDATE inv SET $ruda3=$ruda3-'$kainn' WHERE nick='$nick' ");
-mysql_query("UPDATE zaidejai SET vipticket=vipticket+'$kiekv' WHERE nick='$nick' ");
+				   mysqli_query($conn,"UPDATE inv SET $ruda3=$ruda3-'$kainn' WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE zaidejai SET vipticket=vipticket+'$kiekv' WHERE nick='$nick' ");
 
 			  }   
 		 }$g_n[] = array("pagrindinis.php?id=","Pagrindinis","kasimas.php?id=","Kasykla","iskasenos.php","Atgal","Keitykla");
@@ -482,8 +482,8 @@ echo' <div class="meniuc"><img src=img/kasimas/kasykla.png border="1" width="180
 	              echo '<div class="meniuc">Atlikta! Išsikeitei sėkmingai!<br>Praradai '.$kainn.' <b><img src="img/kasimas/'.$ruda2.'.png"height="16" width="16">'.$ruda.' rūdų</b>, Gavai '.$kiekv.' <b>'.$vipt.' VIP TICKET</b>!</div>';
 	             
 	              
-				   mysql_query("UPDATE inv SET $ruda3=$ruda3-'$kainn' WHERE nick='$nick' ");
-mysql_query("UPDATE zaidejai SET vipticket=vipticket+'$kiekv' WHERE nick='$nick' ");
+				   mysqli_query($conn,"UPDATE inv SET $ruda3=$ruda3-'$kainn' WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE zaidejai SET vipticket=vipticket+'$kiekv' WHERE nick='$nick' ");
 
 			  }   
 		 }$g_n[] = array("pagrindinis.php?id=","Pagrindinis","kasimas.php?id=","Kasykla","iskasenos.php","Atgal","Keitykla");
@@ -549,8 +549,8 @@ echo' <div class="meniuc"><img src=img/kasimas/kasykla.png border="1" width="180
 	              echo '<div class="meniuc">Atlikta! Išsikeitei sėkmingai!<br>Praradai '.$kainn.' <b><img src="img/kasimas/'.$ruda2.'.png"height="16" width="16">'.$ruda.' rūdų</b>, Gavai '.$kiekv.' <b>'.$vipt.' VIP TICKET</b>!</div>';
 	             
 	              
-				   mysql_query("UPDATE inv SET $ruda3=$ruda3-'$kainn' WHERE nick='$nick' ");
-mysql_query("UPDATE zaidejai SET vipticket=vipticket+'$kiekv' WHERE nick='$nick' ");
+				   mysqli_query($conn,"UPDATE inv SET $ruda3=$ruda3-'$kainn' WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE zaidejai SET vipticket=vipticket+'$kiekv' WHERE nick='$nick' ");
 
 			  }   
 		 }$g_n[] = array("pagrindinis.php?id=","Pagrindinis","kasimas.php?id=","Kasykla","iskasenos.php","Atgal","Keitykla");
@@ -616,8 +616,8 @@ echo' <div class="meniuc"><img src=img/kasimas/kasykla.png border="1" width="180
 	              echo '<div class="meniuc">Atlikta! Išsikeitei sėkmingai!<br>Praradai '.$kainn.' <b><img src="img/kasimas/'.$ruda2.'.png"height="16" width="16">'.$ruda.' rūdų</b>, Gavai '.$kiekv.' <b>'.$vipt.' VIP TICKET</b>!</div>';
 	             
 	              
-				   mysql_query("UPDATE inv SET $ruda3=$ruda3-'$kainn' WHERE nick='$nick' ");
-mysql_query("UPDATE zaidejai SET vipticket=vipticket+'$kiekv' WHERE nick='$nick' ");
+				   mysqli_query($conn,"UPDATE inv SET $ruda3=$ruda3-'$kainn' WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE zaidejai SET vipticket=vipticket+'$kiekv' WHERE nick='$nick' ");
 
 			  }   
 		 }$g_n[] = array("pagrindinis.php?id=","Pagrindinis","kasimas.php?id=","Kasykla","iskasenos.php","Atgal","Keitykla");
@@ -681,8 +681,8 @@ echo' <div class="meniuc"><img src=img/kasimas/kasykla.png border="1" width="180
 	              echo '<div class="meniuc">Atlikta! Išsikeitei sėkmingai!<br>Praradai '.$kainn.' <b><img src="img/kasimas/'.$ruda2.'.png"height="16" width="16">'.$ruda.' rūdų</b>, Gavai '.$kiekv.' <b>'.$vipt.' VIP TICKET</b>!</div>';
 	             
 	              
-				   mysql_query("UPDATE inv SET $ruda3=$ruda3-'$kainn' WHERE nick='$nick' ");
-mysql_query("UPDATE zaidejai SET vipticket=vipticket+'$kiekv' WHERE nick='$nick' ");
+				   mysqli_query($conn,"UPDATE inv SET $ruda3=$ruda3-'$kainn' WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE zaidejai SET vipticket=vipticket+'$kiekv' WHERE nick='$nick' ");
 
 			  }   
 		 }$g_n[] = array("pagrindinis.php?id=","Pagrindinis","kasimas.php?id=","Kasykla","iskasenos.php","Atgal","Keitykla");
@@ -747,8 +747,8 @@ echo' <div class="meniuc"><img src=img/kasimas/kasykla.png border="1" width="180
 	              echo '<div class="meniuc">Atlikta! Išsikeitei sėkmingai!<br>Praradai '.$kainn.' <b><img src="img/kasimas/'.$ruda2.'.png"height="16" width="16">'.$ruda.' rūdų</b>, Gavai '.$kiekv.' <b>'.$vipt.' VIP TICKET</b>!</div>';
 	             
 	              
-				   mysql_query("UPDATE inv SET $ruda3=$ruda3-'$kainn' WHERE nick='$nick' ");
-mysql_query("UPDATE zaidejai SET vipticket=vipticket+'$kiekv' WHERE nick='$nick' ");
+				   mysqli_query($conn,"UPDATE inv SET $ruda3=$ruda3-'$kainn' WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE zaidejai SET vipticket=vipticket+'$kiekv' WHERE nick='$nick' ");
 
 			  }   
 		 }$g_n[] = array("pagrindinis.php?id=","Pagrindinis","kasimas.php?id=","Kasykla","iskasenos.php","Atgal","Keitykla");
@@ -812,8 +812,8 @@ echo' <div class="meniuc"><img src=img/kasimas/kasykla.png border="1" width="180
 	              echo '<div class="meniuc">Atlikta! Išsikeitei sėkmingai!<br>Praradai '.$kainn.' <b><img src="img/kasimas/'.$ruda2.'.png"height="16" width="16">'.$ruda.' rūdų</b>, Gavai '.$kiekv.' <b>'.$vipt.' VIP TICKET</b>!</div>';
 	             
 	              
-				   mysql_query("UPDATE inv SET $ruda3=$ruda3-'$kainn' WHERE nick='$nick' ");
-mysql_query("UPDATE zaidejai SET vipticket=vipticket+'$kiekv' WHERE nick='$nick' ");
+				   mysqli_query($conn,"UPDATE inv SET $ruda3=$ruda3-'$kainn' WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE zaidejai SET vipticket=vipticket+'$kiekv' WHERE nick='$nick' ");
 
 			  }   
 		 }$g_n[] = array("pagrindinis.php?id=","Pagrindinis","kasimas.php?id=","Kasykla","iskasenos.php","Atgal","Keitykla");
@@ -876,8 +876,8 @@ echo' <div class="meniuc"><img src=img/kasimas/kasykla.png border="1" width="180
 	              echo '<div class="meniuc">Atlikta! Išsikeitei sėkmingai!<br>Praradai '.$kainn.' <b><img src="img/kasimas/'.$ruda2.'.png"height="16" width="16">'.$ruda.' rūdų</b>, Gavai '.$kiekv.' <b>'.$vipt.' VIP TICKET</b>!</div>';
 	             
 	              
-				   mysql_query("UPDATE inv SET $ruda3=$ruda3-'$kainn' WHERE nick='$nick' ");
-mysql_query("UPDATE zaidejai SET vipticket=vipticket+'$kiekv' WHERE nick='$nick' ");
+				   mysqli_query($conn,"UPDATE inv SET $ruda3=$ruda3-'$kainn' WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE zaidejai SET vipticket=vipticket+'$kiekv' WHERE nick='$nick' ");
 
 			  }   
 		 }$g_n[] = array("pagrindinis.php?id=","Pagrindinis","kasimas.php?id=","Kasykla","iskasenos.php","Atgal","Keitykla");
@@ -940,8 +940,8 @@ echo' <div class="meniuc"><img src=img/kasimas/kasykla.png border="1" width="180
 	              echo '<div class="meniuc">Atlikta! Išsikeitei sėkmingai!<br>Praradai '.$kainn.' <b><img src="img/kasimas/'.$ruda2.'.png"height="16" width="16">'.$ruda.' rūdų</b>, Gavai '.$kiekv.' <b>'.$vipt.' VIP TICKET</b>!</div>';
 	             
 	              
-				   mysql_query("UPDATE inv SET $ruda3=$ruda3-'$kainn' WHERE nick='$nick' ");
-mysql_query("UPDATE zaidejai SET vipticket=vipticket+'$kiekv' WHERE nick='$nick' ");
+				   mysqli_query($conn,"UPDATE inv SET $ruda3=$ruda3-'$kainn' WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE zaidejai SET vipticket=vipticket+'$kiekv' WHERE nick='$nick' ");
 
 			  }   
 		 }$g_n[] = array("pagrindinis.php?id=","Pagrindinis","kasimas.php?id=","Kasykla","iskasenos.php","Atgal","Keitykla");
@@ -1004,8 +1004,8 @@ echo' <div class="meniuc"><img src=img/kasimas/kasykla.png border="1" width="180
 	              echo '<div class="meniuc">Atlikta! Išsikeitei sėkmingai!<br>Praradai '.$kainn.' <b><img src="img/kasimas/'.$ruda2.'.png"height="16" width="16">'.$ruda.' rūdų</b>, Gavai '.$kiekv.' <b>'.$vipt.' VIP TICKET</b>!</div>';
 	             
 	              
-				   mysql_query("UPDATE inv SET $ruda3=$ruda3-'$kainn' WHERE nick='$nick' ");
-mysql_query("UPDATE zaidejai SET vipticket=vipticket+'$kiekv' WHERE nick='$nick' ");
+				   mysqli_query($conn,"UPDATE inv SET $ruda3=$ruda3-'$kainn' WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE zaidejai SET vipticket=vipticket+'$kiekv' WHERE nick='$nick' ");
 
 			  }   
 		 }$g_n[] = array("pagrindinis.php?id=","Pagrindinis","kasimas.php?id=","Kasykla","iskasenos.php","Atgal","Keitykla");

@@ -82,12 +82,12 @@ if(isset($_POST['submit'])){
 		
 		if(empty($kiek)){
             echo '<div class="meniuc">Sėkmingai padėjai visus pinigus į banką!</div>';
-			mysql_query("UPDATE zaidejai SET b_zenu=b_zenu+'$apie[litai]', litai='0' WHERE nick='$nick' ");
+			mysqli_query($conn,"UPDATE zaidejai SET b_zenu=b_zenu+'$apie[litai]', litai='0' WHERE nick='$nick' ");
         }
         elseif ($klaida != ""){
             echo '<div class="meniuc">'.$klaida.'</div>';
         } else {
-            mysql_query("UPDATE zaidejai SET litai=litai-'$kiek', b_zenu=b_zenu+'$kiek' WHERE nick='$nick' ");
+            mysqli_query($conn,"UPDATE zaidejai SET litai=litai-'$kiek', b_zenu=b_zenu+'$kiek' WHERE nick='$nick' ");
             echo '<div class="meniuc">Atlikta, į banka padėjai <b>'.sk($kiek).'</b> '.$ka.'.</div>';
 		
         }} $g_n[] = array("pagrindinis.php?id=","Pagrindinis","miestas.php?id=","Miestas","bank.php", "Banka", "Pinigų padėjimas");
@@ -106,12 +106,12 @@ if(isset($_POST['submit'])){
 		
 		if(empty($kiek)){
             echo '<div class="meniuc">Sėkmingai pasiimiai visus pinigus iš banko!</div>';
-			mysql_query("UPDATE zaidejai SET litai=litai+'$apie[b_zenu]', b_zenu='0' WHERE nick='$nick' ");
+			mysqli_query($conn,"UPDATE zaidejai SET litai=litai+'$apie[b_zenu]', b_zenu='0' WHERE nick='$nick' ");
         }
         elseif ($klaida != ""){
             echo '<div class="meniuc">'.$klaida.'</div>';
         } else {
-            mysql_query("UPDATE zaidejai SET b_zenu=b_zenu-'$kiek', litai=litai+'$kiek' WHERE nick='$nick' ");
+            mysqli_query($conn,"UPDATE zaidejai SET b_zenu=b_zenu-'$kiek', litai=litai+'$kiek' WHERE nick='$nick' ");
             echo '<div class="meniuc">Atlikta, iš banko pasiėmei <b>'.sk($kiek).'</b> pinigu.</div>';
         
     }
@@ -138,7 +138,7 @@ if(isset($_POST['submit'])){
         if ($klaida != ""){
             echo '<div class="meniuc">'.$klaida.'</div>';
         } else {
-            mysql_query("UPDATE zaidejai SET sms_litai=sms_litai-'$kiek', b_ltl=b_ltl+'$kiek' WHERE nick='$nick' ");
+            mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai-'$kiek', b_ltl=b_ltl+'$kiek' WHERE nick='$nick' ");
             echo '<div class="meniuc">Atlikta, į banka padėjai <b>'.sk($kiek).'</b> eurų.</div>';
 		
         }} $g_n[] = array("pagrindinis.php?id=","Pagrindinis","miestas.php?id=","Miestas","bank.php", "Banka", "Pinigų padėjimas");
@@ -159,7 +159,7 @@ if(isset($_POST['submit'])){
         if ($klaida != ""){
             echo '<div class="meniuc">'.$klaida.'</div>';
         } else {
-            mysql_query("UPDATE zaidejai SET b_ltl=b_ltl-'$kiek', sms_litai=sms_litai+'$kiek' WHERE nick='$nick' ");
+            mysqli_query($conn,"UPDATE zaidejai SET b_ltl=b_ltl-'$kiek', sms_litai=sms_litai+'$kiek' WHERE nick='$nick' ");
             echo '<div class="meniuc">Atlikta, iš banko pasiėmei <b>'.sk($kiek).'</b> eurų.</div>';
         
     }

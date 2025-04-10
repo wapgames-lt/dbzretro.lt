@@ -5,7 +5,7 @@ include_once 'cfg/funkcijos.php';
 head2();
 baneris();
 topbar();
-$sajanas =mysql_fetch_assoc(mysql_query("SELECT * FROM legendinis_sajanas"));
+$sajanas =mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM legendinis_sajanas"));
 switch ($id) {
 default: 
 $kodas = rand(11111,99999);
@@ -60,49 +60,49 @@ echo'<div class="meniu">
 '.$ico.' Tau liko: <b>'.$leftu.'</b><br/>
 </div>';
 echo'<div class="meniuc"><a href="?id=go&ID='.$_SESSION[kodas].'">Pulti vėl</a></div>';
-mysql_query("UPDATE legendinis_sajanas SET hp='$left'");
+mysqli_query($conn,"UPDATE legendinis_sajanas SET hp='$left'");
 $_SESSION[stime] = time()+2;
-mysql_query("UPDATE zaidejai SET gyvybes='$leftu' WHERE nick='$nick'");
-mysql_query("UPDATE user SET smoge_sjn=smoge_sjn+'1' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET gyvybes='$leftu' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE user SET smoge_sjn=smoge_sjn+'1' WHERE nick='$nick'");
 if($smugis > $user[sjn]){
-mysql_query("UPDATE user SET sjn='$smugis' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE user SET sjn='$smugis' WHERE nick='$nick'");
 	
 }
 if($left < 1){
 $jegaaaa = round($apie[jega]*20/100);
 $gynybaaaa = round($apie[gynyba]*20/100);
-			mysql_query("UPDATE zaidejai SET jega=jega+'$jegaaaa',gynyba=gynyba+'$gynybaaaa',botas=botas+'100',sms_litai=sms_litai+'1500',vipticket=vipticket+'1000000000' WHERE nick='$row[nick]'");
-mysql_query("UPDATE legendinis_sajanas SET nukirto ='$nick'");
-$q = mysql_query("SELECT * FROM user ORDER BY sjn DESC LIMIT 1");
-	while($row = mysql_fetch_assoc($q)){
+			mysqli_query($conn,"UPDATE zaidejai SET jega=jega+'$jegaaaa',gynyba=gynyba+'$gynybaaaa',botas=botas+'100',sms_litai=sms_litai+'1500',vipticket=vipticket+'1000000000' WHERE nick='$row[nick]'");
+mysqli_query($conn,"UPDATE legendinis_sajanas SET nukirto ='$nick'");
+$q = mysqli_query($conn,"SELECT * FROM user ORDER BY sjn DESC LIMIT 1");
+	while($row = mysqli_fetch_assoc($q)){
 	$zi++;	
 		if($zi==1){
 			$jegaaaa = round($apie[jega]*5/100);
 			$gynybaaaa = round($apie[gynyba]*5/100);
-			mysql_query("UPDATE zaidejai SET jega=jega+'$jegaaaa',gynyba=gynyba+'$gynybaaaa',botas=botas+'5',sms_litai=sms_litai+'700',vipticket=vipticket+'1000000' WHERE nick='$row[nick]'");
+			mysqli_query($conn,"UPDATE zaidejai SET jega=jega+'$jegaaaa',gynyba=gynyba+'$gynybaaaa',botas=botas+'5',sms_litai=sms_litai+'700',vipticket=vipticket+'1000000' WHERE nick='$row[nick]'");
 			
-			  mysql_query("INSERT INTO pm SET what='SISTEMA', txt='Jūs ikirtote didžiausią smūgį cumber, gaunate 5 % jėgos ir 15% gynybos, 700 euru, 5 vegeta cash, 1000000 vipticket', gavejas='$row[nick]', time='".time()."', nauj='NEW' ") or die(mysql_error());
+			  mysqli_query($conn,"INSERT INTO pm SET what='SISTEMA', txt='Jūs ikirtote didžiausią smūgį cumber, gaunate 5 % jėgos ir 15% gynybos, 700 euru, 5 vegeta cash, 1000000 vipticket', gavejas='$row[nick]', time='".time()."', nauj='NEW' ") or die(mysqli_error());
 		}
 	
 	}
 	
 UNset($q);
-$qq = mysql_query("SELECT * FROM user ORDER BY smoge_sjn DESC LIMIT 1");
-	while($rowas = mysql_fetch_assoc($qq)){
+$qq = mysqli_query($conn,"SELECT * FROM user ORDER BY smoge_sjn DESC LIMIT 1");
+	while($rowas = mysqli_fetch_assoc($qq)){
 	$z++;	
 		if($z==1){
 				$jegaaaa = round($apie[jega]*5/100);
 			$gynybaaaa = round($apie[gynyba]*5/100);					
 							
-	mysql_query("UPDATE zaidejai SET jega=jega+'$jegaaaa',gynyba=gynyba+'$gynybaaaa',botas=botas+'100',sms_litai=sms_litai+'10000',vipticket=vipticket+'10000' WHERE nick='$row[nick]'");
+	mysqli_query($conn,"UPDATE zaidejai SET jega=jega+'$jegaaaa',gynyba=gynyba+'$gynybaaaa',botas=botas+'100',sms_litai=sms_litai+'10000',vipticket=vipticket+'10000' WHERE nick='$row[nick]'");
 
 		}}
 	unset($qq)	;
 	$pr = time() +3600 * rand(10,24)*rand(2,4);
-	mysql_query("UPDATE legendinis_sajanas SET hp='$sajanas[hp_max]',prisikels='$pr'");
+	mysqli_query($conn,"UPDATE legendinis_sajanas SET hp='$sajanas[hp_max]',prisikels='$pr'");
 			
 }
-mysql_query("UPDATE user SET sjn='0', smoge_sjn='0'");
+mysqli_query($conn,"UPDATE user SET sjn='0', smoge_sjn='0'");
 
 
 }

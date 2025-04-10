@@ -10,8 +10,8 @@ head2();
 baneris();
 topbar();
 
- $rrr =	mysql_fetch_assoc(mysql_query("SELECT * FROM veikejai WHERE name = '$apie[veikejas]'"));
- $tru = mysql_fetch_assoc(mysql_query("SELECT * FROM transformacijos WHERE nick='$nick'"));
+ $rrr =	mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM veikejai WHERE name = '$apie[veikejas]'"));
+ $tru = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM transformacijos WHERE nick='$nick'"));
  if($ka == 0){
 	$reike_level = 10;
     $trans_jegos = 10000;
@@ -165,7 +165,7 @@ elseif($ka > $rrr['trans']){
             echo '<div class="meniuc">Transformacijai neužtenka <img src="img/bicons/shield.png">!</div>';
         } 
 		elseif($tru['tr'.$ka.''] == '+'){
-			  mysql_query("UPDATE zaidejai SET trans='$ka' WHERE nick='$nick' ") or die(mysql_error());
+			  mysqli_query($conn,"UPDATE zaidejai SET trans='$ka' WHERE nick='$nick' ") or die(mysqli_error());
 			header("location:?id=");		}
         
         
@@ -173,9 +173,9 @@ elseif($ka > $rrr['trans']){
             echo '<div class="meniuc">Transformaciją pavyko! Gavai <b>'.$kiek_j.' <img src="img/bicons/attack.png"> ,   '.$kiek_g.'  <img src="img/bicons/shield.png"> </b>.</div>';
           
         
-     mysql_query("UPDATE transformacijos SET tr$ka='+' WHERE nick='$nick'")or die(mysql_error());
-     mysql_query("UPDATE zaidejai SET trans='$ka' WHERE nick='$nick' ") or die(mysql_error());
-     mysql_query("UPDATE zaidejai SET jega='$trans_jegos2', gynyba='$trans_gynybos2' WHERE nick='$nick' ") or die(mysql_meniuc());
+     mysqli_query($conn,"UPDATE transformacijos SET tr$ka='+' WHERE nick='$nick'")or die(mysqli_error());
+     mysqli_query($conn,"UPDATE zaidejai SET trans='$ka' WHERE nick='$nick' ") or die(mysqli_error());
+     mysqli_query($conn,"UPDATE zaidejai SET jega='$trans_jegos2', gynyba='$trans_gynybos2' WHERE nick='$nick' ") or die(mysqli_meniuc());
             
         }
 		$g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php","Skillai","Transformacijos");

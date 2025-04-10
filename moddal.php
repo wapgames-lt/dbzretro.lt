@@ -19,8 +19,8 @@ echo "<div class='meniuc'><a href='moddal.php?id=regas'><font color='red'><b>->S
 echo "<div class='up'>Usiregistravusiu:</div>";
 echo "<div class='meniu'>";
 
-$query = mysql_query("SELECT * FROM moddal ORDER BY (0+ vksm) DESC LIMIT 0,20");
-while($row = mysql_fetch_assoc($query)){
+$query = mysqli_query($conn,"SELECT * FROM moddal ORDER BY (0+ vksm) DESC LIMIT 0,20");
+while($row = mysqli_fetch_assoc($query)){
 $vt++;
 echo " <b>".$vt."</b>. <a href='pagrindinis.php?id=apie&ka=".$row['nick']."'>  ".$row['nick']."</a><br/>";
 
@@ -38,11 +38,11 @@ elseif($id == "regas"){
 top('MOD FORTUNA RATAS');
 online('MOD FORTUNA RATAS');
 
-        if(mysql_num_rows(mysql_query("SELECT * FROM moddal WHERE nick='$nick' ")) > 0 ){
+        if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM moddal WHERE nick='$nick' ")) > 0 ){
 				echo '<div class="meniuc"><img src="img/fortuna.png"></br></div>';
                 echo '<div class="meniuc">Tu jau usiregistraves!</div>';
             }else{
-            	mysql_query("INSERT INTO moddal SET nick='$nick'");
+            	mysqli_query($conn,"INSERT INTO moddal SET nick='$nick'");
 				echo '<div class="meniuc"><img src="img/fortuna.png"></br></div>';
             	echo'<div class="meniuc"><b>Sėkmingai usiregistravai!</b></font></div>';	
             }

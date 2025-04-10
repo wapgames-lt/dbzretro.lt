@@ -93,11 +93,11 @@ else{
 				
 	echo'	<div class="meniuc"><img src="img/veikejai/Mojito-0.png"><br> Nusipirkai už 5000 <b><font color="red">Pasiekimų taškų!</b></font>
  </div> ';		
-mysql_query("UPDATE inv SET  unikalus=unikalus-'5000' WHERE nick='$nick'");
-	mysql_query("UPDATE zaidejai SET veikejas='Mojito', trans='0', sms_litai=sms_litai-'0' , kiek_unikaliu=kiek_unikaliu+'1' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE inv SET  unikalus=unikalus-'5000' WHERE nick='$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET veikejas='Mojito', trans='0', sms_litai=sms_litai-'0' , kiek_unikaliu=kiek_unikaliu+'1' WHERE nick='$nick'");
 
 
-mysql_query("UPDATE zaidejai SET mojitob='$timxx' WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE zaidejai SET mojitob='$timxx' WHERE nick='$nick' ");
 }}
 
 
@@ -153,11 +153,11 @@ else{
 				
 	echo'	<div class="meniuc"><img src="img/veikejai/Iwan-0.png"><br> Nusipirkai už 7000 <b><font color="red">Pasiekimų taškų!</b></font>
  </div> ';		
-mysql_query("UPDATE inv SET  unikalus=unikalus-'7000' WHERE nick='$nick'");
-	mysql_query("UPDATE zaidejai SET veikejas='Iwan', trans='0', sms_litai=sms_litai-'0' , kiek_unikaliu=kiek_unikaliu+'1' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE inv SET  unikalus=unikalus-'7000' WHERE nick='$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET veikejas='Iwan', trans='0', sms_litai=sms_litai-'0' , kiek_unikaliu=kiek_unikaliu+'1' WHERE nick='$nick'");
 
 
-mysql_query("UPDATE zaidejai SET iwanb='$timxx' WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE zaidejai SET iwanb='$timxx' WHERE nick='$nick' ");
 }}
 
 
@@ -212,11 +212,11 @@ else{
 				
 	echo'	<div class="meniuc"><img src="img/veikejai/Geene-0.png"><br> Nusipirkai už 10000 <b><font color="red">Pasiekimų taškų!</b></font>
  </div> ';		
-mysql_query("UPDATE inv SET  unikalus=unikalus-'10000' WHERE nick='$nick'");
-	mysql_query("UPDATE zaidejai SET veikejas='Iwan', trans='0', sms_litai=sms_litai-'0' , kiek_unikaliu=kiek_unikaliu+'1' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE inv SET  unikalus=unikalus-'10000' WHERE nick='$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET veikejas='Iwan', trans='0', sms_litai=sms_litai-'0' , kiek_unikaliu=kiek_unikaliu+'1' WHERE nick='$nick'");
 
 
-mysql_query("UPDATE zaidejai SET geeneb='$timxx' WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE zaidejai SET geeneb='$timxx' WHERE nick='$nick' ");
 }}
 
 
@@ -263,8 +263,8 @@ if($id =='euru2'){
 	          } else {
 	              echo '<div class="meniuc">Atlikta! Nusipirkai <b>'.sk($kiekis).'  </b><img src="img/bicons/euro.png" /></div>';
 	           
-	            mysql_query("UPDATE zaidejai SET sms_litai=sms_litai +'$kiekis' WHERE nick='$nick' ");
-				mysql_query("UPDATE inv SET unikalus=unikalus-'$kainn' WHERE nick='$nick' ");
+	            mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai +'$kiekis' WHERE nick='$nick' ");
+				mysqli_query($conn,"UPDATE inv SET unikalus=unikalus-'$kainn' WHERE nick='$nick' ");
 			  }
 		
 		$g_n[] = array("pagrindinis.php?id=","Pagrindinis","ptshop.php","PT Parduotuvė", "Eurų pirkimas");
@@ -306,8 +306,8 @@ if($id =='auksiniai2'){
 	          } else {
 	              echo '<div class="meniuc">Atlikta! Nusipirkai <b>'.sk($kiekis).'  </b><img src="img/bicons/auxo.png" /></div>';
 	           
-	            mysql_query("UPDATE zaidejai SET auksiniai=auksiniai +'$kiekis' WHERE nick='$nick' ");
-				mysql_query("UPDATE inv SET unikalus=unikalus-'$kainn' WHERE nick='$nick' ");
+	            mysqli_query($conn,"UPDATE zaidejai SET auksiniai=auksiniai +'$kiekis' WHERE nick='$nick' ");
+				mysqli_query($conn,"UPDATE inv SET unikalus=unikalus-'$kainn' WHERE nick='$nick' ");
 			  }
 		
 		$g_n[] = array("pagrindinis.php?id=","Pagrindinis","ptshop.php","PT Parduotuvė", "Auksinių pirkimas");
@@ -349,8 +349,8 @@ if($id =='kreditai2'){
 	          } else {
 	              echo '<div class="meniuc">Atlikta! Nusipirkai <b>'.sk($kiekis).'  </b><img src="img/bicons/credit.png" /></div>';
 	           
-	            mysql_query("UPDATE zaidejai SET kred=kred +'$kiekis' WHERE nick='$nick' ");
-				mysql_query("UPDATE inv SET unikalus=unikalus-'$kainn' WHERE nick='$nick' ");
+	            mysqli_query($conn,"UPDATE zaidejai SET kred=kred +'$kiekis' WHERE nick='$nick' ");
+				mysqli_query($conn,"UPDATE inv SET unikalus=unikalus-'$kainn' WHERE nick='$nick' ");
 			  }
 		
 		$g_n[] = array("pagrindinis.php?id=","Pagrindinis","ptshop.php","PT Parduotuvė", "Kreditų pirkimas");

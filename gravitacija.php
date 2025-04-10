@@ -67,8 +67,8 @@ else{
     $je = $zaidejai['jega'] + $powerReward;
     $gy = $zaidejai['gynyba'] + $defenceReward;
 $laikas = time() + 60 * 60 * 3;
-mysql_query("UPDATE zaidejai SET gravitacija = '$laikas' WHERE nick = '$nick' ")or die(mysql_error());
-mysql_query("UPDATE zaidejai SET jega='$je', gynyba = '$gy', sms_litai=sms_litai+'5' WHERE nick = '$nick' ")or die(mysql_error());}
+mysqli_query($conn,"UPDATE zaidejai SET gravitacija = '$laikas' WHERE nick = '$nick' ")or die(mysqli_error());
+mysqli_query($conn,"UPDATE zaidejai SET jega='$je', gynyba = '$gy', sms_litai=sms_litai+'5' WHERE nick = '$nick' ")or die(mysqli_error());}
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","gravitacija.php?id=","Atgal","Gravitacijos kambarys");
 	navigacija($g_n);}
 
@@ -109,8 +109,8 @@ else{
     $je = $zaidejai['jega'] + $powerReward;
     $gy = $zaidejai['gynyba'] + $defenceReward;
     $laikas = time() + 60 * 60 * 6;
-mysql_query("UPDATE zaidejai SET gravitacija2 = '$laikas' WHERE nick = '$nick' ")or die(mysql_error());
-mysql_query("UPDATE zaidejai SET jega='$je', gynyba = '$gy', sms_litai=sms_litai+'20' WHERE nick = '$nick' ")or die(mysql_error());}
+mysqli_query($conn,"UPDATE zaidejai SET gravitacija2 = '$laikas' WHERE nick = '$nick' ")or die(mysqli_error());
+mysqli_query($conn,"UPDATE zaidejai SET jega='$je', gynyba = '$gy', sms_litai=sms_litai+'20' WHERE nick = '$nick' ")or die(mysqli_error());}
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","gravitacija.php?id=","Atgal","Gravitacijos kambarys");
 	navigacija($g_n);}
 
@@ -150,8 +150,8 @@ else{
     $je = $zaidejai['jega'] + $powerReward;
     $gy = $zaidejai['gynyba'] + $defenceReward;
 $laikas = time() + 60 * 60 * 12;
-mysql_query("UPDATE zaidejai SET gravitacija3 = '$laikas' WHERE nick = '$nick' ")or die(mysql_error());
-mysql_query("UPDATE zaidejai SET jega='$je', gynyba = '$gy', sms_litai=sms_litai+'30' WHERE nick = '$nick' ")or die(mysql_error());}
+mysqli_query($conn,"UPDATE zaidejai SET gravitacija3 = '$laikas' WHERE nick = '$nick' ")or die(mysqli_error());
+mysqli_query($conn,"UPDATE zaidejai SET jega='$je', gynyba = '$gy', sms_litai=sms_litai+'30' WHERE nick = '$nick' ")or die(mysqli_error());}
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","gravitacija.php?id=","Atgal","Gravitacijos kambarys");
 	navigacija($g_n);}
 elseif($id == 'treniruotis4'){
@@ -185,8 +185,8 @@ else{
 $je= $zaidejai['jega'] + $powerReward;
 $gy=$zaidejai['gynyba'] + $defenceReward;
 $laikas = time() + 60 * 60 * 24;
-mysql_query("UPDATE zaidejai SET gravitacija4 = '$laikas' WHERE nick = '$nick' ")or die(mysql_error());
-mysql_query("UPDATE zaidejai SET jega='$je', gynyba = '$gy', sms_litai=sms_litai+'40' WHERE nick = '$nick' ")or die(mysql_error());}
+mysqli_query($conn,"UPDATE zaidejai SET gravitacija4 = '$laikas' WHERE nick = '$nick' ")or die(mysqli_error());
+mysqli_query($conn,"UPDATE zaidejai SET jega='$je', gynyba = '$gy', sms_litai=sms_litai+'40' WHERE nick = '$nick' ")or die(mysqli_error());}
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","gravitacija.php?id=","Atgal","Gravitacijos kambarys");
 	navigacija($g_n);}
 
@@ -217,8 +217,8 @@ else{
 $je= $zaidejai['jega'] + 100000000;
 $gy=$zaidejai['gynyba'] + 300000000;
 $laikas = time() + 60 * 60 * 48;
-mysql_query("UPDATE zaidejai SET gravitacija5 = '$laikas' WHERE nick = '$nick' ")or die(mysql_error());
-mysql_query("UPDATE zaidejai SET jega='$je', gynyba = '$gy', sms_litai=sms_litai+'80' WHERE nick = '$nick' ")or die(mysql_error());}
+mysqli_query($conn,"UPDATE zaidejai SET gravitacija5 = '$laikas' WHERE nick = '$nick' ")or die(mysqli_error());
+mysqli_query($conn,"UPDATE zaidejai SET jega='$je', gynyba = '$gy', sms_litai=sms_litai+'80' WHERE nick = '$nick' ")or die(mysqli_error());}
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","gravitacija.php?id=","Atgal","Gravitacijos kambarys");
 	navigacija($g_n);}
 

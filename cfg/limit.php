@@ -23,7 +23,7 @@ function limit_requests($nr=10,$t=1) {
         $message = '[Security-Alert][' . date('Y-m-d H:i') . ']: Galima DDOS ataka. Fiksuojama labai daug užklausų iš IP: ' . $_SERVER['REMOTE_ADDR'];
         error_log($message);
 
-        mysql_query("INSERT INTO logs (`message`) VALUES ('$message')") or die(mysql_error());
+        mysqli_query($conn,"INSERT INTO logs (`message`) VALUES ('$message')") or die(mysqli_error());
 
         $random = mt_rand(1, 5);
         if ($random === 1) {

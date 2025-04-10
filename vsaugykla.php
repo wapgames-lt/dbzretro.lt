@@ -9,7 +9,7 @@ head2();
 baneris();
 
 topbar();
-$veikejas = mysql_fetch_assoc(mysql_query("SELECT * FROM veikejas WHERE nick='$nick'"));
+$veikejas = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM veikejas WHERE nick='$nick'"));
 
 if($id == ""){
 	 online('Žiūri savo veikėjus');
@@ -427,7 +427,7 @@ Neturi šio veikėjo!</div>';
 				
 	echo'	<div class="meniuc"><br><img src="img/veikejai/Cognac-0.png" alt="IMG" height="140" width="140"><br>
 <font color="red">Užsidėjai sėkmingai</div> </font>';		
-	mysql_query("UPDATE zaidejai SET veikejas='Cognac', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
+	mysqli_query($conn,"UPDATE zaidejai SET veikejas='Cognac', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
 
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vsaugykla.php","Veikėjų saugykla", "Veikejo užsidėjimas");
 	navigacija($g_n);
@@ -482,7 +482,7 @@ Neturi šio veikėjo!</div>';
 				
 	echo'	<div class="meniuc"><br><img src="img/veikejai/Hopp-0.png" alt="IMG" height="140" width="140"><br>
 <font color="red">Užsidėjai sėkmingai</div> </font>';		
-	mysql_query("UPDATE zaidejai SET veikejas='Hopp', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
+	mysqli_query($conn,"UPDATE zaidejai SET veikejas='Hopp', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
 
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vsaugykla.php","Veikėjų saugykla", "Veikejo užsidėjimas");
 	navigacija($g_n);
@@ -573,7 +573,7 @@ Neturi šio veikėjo!</div>';
 
 		echo'	<div class="meniuc"><br><img src="img/veikejai/Kefla-0.png"><br>
 <font color="red">Užsidėjai sėkmingai</div> </font>';
-		mysql_query("UPDATE zaidejai SET veikejas='Kefla', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
+		mysqli_query($conn,"UPDATE zaidejai SET veikejas='Kefla', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
 
 	$g_n[] = array("pagrindinis.php?id=","Pagrindinis","vsaugykla.php","Veikėjų Saugykla", "vsaugykla.php?id=kiti", "Kiti", "Kefla");
 	navigacija($g_n);
@@ -597,7 +597,7 @@ Neturi šio veikėjo!</div>';
 				
 	echo'	<div class="meniuc"><br><img src="img/veikejai/Lord bills-0.png"><br>
 <font color="red">Užsidėjai sėkmingai</div> </font>';		
-	mysql_query("UPDATE zaidejai SET veikejas='Lord bills', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
+	mysqli_query($conn,"UPDATE zaidejai SET veikejas='Lord bills', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
 
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vsaugykla.php","Veikėjų saugykla", "vsaugykla.php?id=naikintojai", "Naikintojai", "Veikejo užsidėjimas");
 	navigacija($g_n);
@@ -633,8 +633,8 @@ Neturi šio veikėjo!</div>';
 	echo'	<div class="meniuc"><br><img src="img/veikejai/Lord bills-0.png"></div>
 <font color="red"><div class="meniuc">Pardavei veikėją, gavai <b>300</b>'.$eurui.'</div> </font>';		
 	
-mysql_query("UPDATE zaidejai SET billsb='0', sms_litai=sms_litai+'300',  kiek_unikaliu=kiek_unikaliu-'1'WHERE nick='$nick' ");
-mysql_query("UPDATE zaidejai SET veikejas='$veikejas[veikejas]', trans='0' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET billsb='0', sms_litai=sms_litai+'300',  kiek_unikaliu=kiek_unikaliu-'1'WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE zaidejai SET veikejas='$veikejas[veikejas]', trans='0' WHERE nick='$nick'");
 }
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vsaugykla.php","Veikėjų saugykla", "vsaugykla.php?id=naikintojai", "Naikintojai", "Veikejo pardavimas");
 	navigacija($g_n);
@@ -700,12 +700,12 @@ echo' <div class="meniuc">	EROR</div>';
 				
 	echo'	<div class="meniuc"><br><img src="img/veikejai/Champa-0.png"><br>
 <font color="red">Užsidėjai sėkmingai</div> </font>';		
-	mysql_query("UPDATE zaidejai SET veikejas='Champa', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
+	mysqli_query($conn,"UPDATE zaidejai SET veikejas='Champa', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
 
 if($uzsidedu_champa > 1){
 echo' Taip negalima!';
 $ti = time()+5;
-	    mysql_query("INSERT INTO block SET nick = '$nick', uz='Nebugink!', kas_ban='SISTEMA', time='$ti'");
+	    mysqli_query($conn,"INSERT INTO block SET nick = '$nick', uz='Nebugink!', kas_ban='SISTEMA', time='$ti'");
 }
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vsaugykla.php","Veikėjų saugykla", "vsaugykla.php?id=naikintojai", "Naikintojai", "Veikejo užsidėjimas");
 	navigacija($g_n);
@@ -772,7 +772,7 @@ Neturi šio veikėjo!</div>';
 				
 	echo'	<div class="meniuc"><br><img src="img/veikejai/Cukatail-0.png"><br>
 <font color="red">Užsidėjai sėkmingai</div> </font>';		
-	mysql_query("UPDATE zaidejai SET veikejas='Cukatail', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
+	mysqli_query($conn,"UPDATE zaidejai SET veikejas='Cukatail', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
 
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vsaugykla.php","Veikėjų saugykla", "vsaugykla.php?id=sajanai", "Sajanai", "Veikejo užsidėjimas");
 	navigacija($g_n);
@@ -826,7 +826,7 @@ Neturi šio veikėjo!</div>';
 				
 	echo'	<div class="meniuc"><br><img src="img/veikejai/Zamasu-0.png"><br>
 <font color="red">Užsidėjai sėkmingai</div> </font>';		
-	mysql_query("UPDATE zaidejai SET veikejas='Zamasu', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
+	mysqli_query($conn,"UPDATE zaidejai SET veikejas='Zamasu', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
 
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vsaugykla.php","Veikėjų saugykla", "vsaugykla.php?id=kiti", "Kiti", "Veikejo užsidėjimas");
 	navigacija($g_n);
@@ -852,8 +852,8 @@ Neturi šio veikėjo!</div>';
 	echo'	<div class="meniuc"><br><img src="img/veikejai/Champa-0.png"></div>
 <font color="red"><div class="meniuc">Pardavei veikėją, gavai <b>500</b>'.$eurui.'</div> </font>';		
 	
-mysql_query("UPDATE zaidejai SET champab='0', sms_litai=sms_litai+'500',  kiek_unikaliu=kiek_unikaliu-'1'WHERE nick='$nick' ");
-mysql_query("UPDATE zaidejai SET veikejas='$veikejas[veikejas]', trans='0' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET champab='0', sms_litai=sms_litai+'500',  kiek_unikaliu=kiek_unikaliu-'1'WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE zaidejai SET veikejas='$veikejas[veikejas]', trans='0' WHERE nick='$nick'");
 }
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vsaugykla.php","Veikėjų saugykla","Veikejo pardavimas");
 	navigacija($g_n);
@@ -922,7 +922,7 @@ echo' <div class="meniuc">Šį veikėją jau esate užsidėjęs!</div>';
 <font color="red">Užsidėjai sėkmingai</div> </font>';		
 }
 
-	mysql_query("UPDATE zaidejai SET veikejas='Quitela', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET veikejas='Quitela', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");
 
 
 
@@ -960,8 +960,8 @@ Neturi šio veikėjo!</div>';
 	echo'	<div class="meniuc"><br><img src="img/veikejai/Quitela-0.png"></div>
 <font color="red"><div class="meniuc">Pardavei veikėją, gavai <b>1666</b>'.$eurui.'</div> </font>';		
 	
-mysql_query("UPDATE zaidejai SET quitelab='0', sms_litai=sms_litai+'1666',  kiek_unikaliu=kiek_unikaliu-'1'WHERE nick='$nick' ");
-mysql_query("UPDATE zaidejai SET veikejas='$veikejas[veikejas]', trans='0' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET quitelab='0', sms_litai=sms_litai+'1666',  kiek_unikaliu=kiek_unikaliu-'1'WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE zaidejai SET veikejas='$veikejas[veikejas]', trans='0' WHERE nick='$nick'");
 }
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vsaugykla.php","Veikėjų saugykla","Veikejo pardavimas");
 	navigacija($g_n);
@@ -1018,7 +1018,7 @@ Neturi šio veikėjo!</div>';
 						if($apie['moscob']-time() > 0){
 	echo'	<div class="meniuc"><br><img src="img/veikejai/Mosco-0.png"><br>
 <font color="red">Užsidėjai sėkmingai</div> </font>';		
-	mysql_query("UPDATE zaidejai SET veikejas='Mosco', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET veikejas='Mosco', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");
 
 
 }
@@ -1057,8 +1057,8 @@ Neturi šio veikėjo!</div>';
 	echo'	<div class="meniuc"><br><img src="img/veikejai/Mosco-0.png"></div>
 <font color="red"><div class="meniuc">Pardavei veikėją, gavai <b>2333</b>'.$eurui.'</div> </font>';		
 	
-mysql_query("UPDATE zaidejai SET moscob='0', sms_litai=sms_litai+'2333',  kiek_unikaliu=kiek_unikaliu-'1'WHERE nick='$nick' ");
-mysql_query("UPDATE zaidejai SET veikejas='$veikejas[veikejas]', trans='0' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET moscob='0', sms_litai=sms_litai+'2333',  kiek_unikaliu=kiek_unikaliu-'1'WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE zaidejai SET veikejas='$veikejas[veikejas]', trans='0' WHERE nick='$nick'");
 }
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vsaugykla.php","Veikėjų saugykla","Veikejo pardavimas");
 	navigacija($g_n);
@@ -1114,7 +1114,7 @@ Neturi šio veikėjo!</div>';
 		if($apie['moscob']-time() > 0){
 	echo'	<div class="meniuc"><br><img src="img/veikejai/Arack-0.png"><br>
 <font color="red">Užsidėjai sėkmingai</div> </font>';		
-	mysql_query("UPDATE zaidejai SET veikejas='Arack', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
+	mysqli_query($conn,"UPDATE zaidejai SET veikejas='Arack', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
 
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vsaugykla.php","Veikėjų saugykla", "vsaugykla.php?id=naikintojai", "Naikintojai", "Veikejo užsidėjimas");
 	navigacija($g_n);
@@ -1150,8 +1150,8 @@ Neturi šio veikėjo!</div>';
 	echo'	<div class="meniuc"><br><img src="img/veikejai/Arack-0.png"></div>
 <font color="red"><div class="meniuc">Pardavei veikėją, gavai <b>5000</b>'.$eurui.'</div> </font>';		
 	
-mysql_query("UPDATE zaidejai SET arackb='0', sms_litai=sms_litai+'5000',  kiek_unikaliu=kiek_unikaliu-'1'WHERE nick='$nick' ");
-mysql_query("UPDATE zaidejai SET veikejas='$veikejas[veikejas]', trans='0' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET arackb='0', sms_litai=sms_litai+'5000',  kiek_unikaliu=kiek_unikaliu-'1'WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE zaidejai SET veikejas='$veikejas[veikejas]', trans='0' WHERE nick='$nick'");
 }
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vsaugykla.php","Veikėjų saugykla","Veikejo pardavimas");
 	navigacija($g_n);
@@ -1209,7 +1209,7 @@ Neturi šio veikėjo!</div>';
 						if($apie['visasb']-time() > 0){
 	echo'	<div class="meniuc"><br><img src="img/veikejai/Wiss-0.png"><br>
 <font color="red">Užsidėjai sėkmingai</div> </font>';		
-	mysql_query("UPDATE zaidejai SET veikejas='Wiss', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
+	mysqli_query($conn,"UPDATE zaidejai SET veikejas='Wiss', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
 
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vsaugykla.php","Veikėjų saugykla", "vsaugykla.php?id=angelai", "Angelai", "Veikejo užsidėjimas");
 	navigacija($g_n);
@@ -1245,8 +1245,8 @@ Neturi šio veikėjo!</div>';
 	echo'	<div class="meniuc"><br><img src="img/veikejai/Wiss-0.png"></div>
 <font color="red"><div class="meniuc">Pardavei veikėją, gavai <b>666</b>'.$eurui.'</div> </font>';		
 	
-mysql_query("UPDATE zaidejai SET visasb='0', sms_litai=sms_litai+'666',  kiek_unikaliu=kiek_unikaliu-'1'WHERE nick='$nick' ");
-mysql_query("UPDATE zaidejai SET veikejas='$veikejas[veikejas]', trans='0' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET visasb='0', sms_litai=sms_litai+'666',  kiek_unikaliu=kiek_unikaliu-'1'WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE zaidejai SET veikejas='$veikejas[veikejas]', trans='0' WHERE nick='$nick'");
 }
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vsaugykla.php","Veikėjų saugykla","Veikejo pardavimas");
 	navigacija($g_n);
@@ -1304,7 +1304,7 @@ Neturi šio veikėjo!</div>';
 						if($apie['vadoseb']-time() > 0){
 	echo'	<div class="meniuc"><br><img src="img/veikejai/Vadose-0.png"><br>
 <font color="red">Užsidėjai sėkmingai</div> </font>';		
-	mysql_query("UPDATE zaidejai SET veikejas='Vadose', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
+	mysqli_query($conn,"UPDATE zaidejai SET veikejas='Vadose', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
 
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vsaugykla.php","Veikėjų saugykla", "vsaugykla.php?id=angelai", "Angelai", "Veikejo užsidėjimas");
 	navigacija($g_n);
@@ -1369,7 +1369,7 @@ Neturi šio veikėjo!</div>';
 						if($apie['gokasultrab']-time() > 0){
 	echo'	<div class="meniuc"><br><img src="img/veikejai/Gokas Ultra Instinct-0.png"><br>
 <font color="red">Užsidėjai sėkmingai</div> </font>';		
-	mysql_query("UPDATE zaidejai SET veikejas='Gokas Ultra Instinct', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
+	mysqli_query($conn,"UPDATE zaidejai SET veikejas='Gokas Ultra Instinct', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
 
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vsaugykla.php","Veikėjų saugykla", "vsaugykla.php?id=sajanai", "Sajanai", "Veikejo užsidėjimas");
 	navigacija($g_n);
@@ -1421,7 +1421,7 @@ Neturi šio veikėjo!</div>';
 						if($apie['gokasultramb']-time() > 0){
 	echo'	<div class="meniuc"><br><img src="img/veikejai/Gokas Mastered Ultra Instinct-0.png"><br>
 <font color="red">Užsidėjai sėkmingai</div> </font>';		
-	mysql_query("UPDATE zaidejai SET veikejas='Gokas Mastered Ultra Instinct', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
+	mysqli_query($conn,"UPDATE zaidejai SET veikejas='Gokas Mastered Ultra Instinct', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
 
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vsaugykla.php","Veikėjų saugykla", "vsaugykla.php?id=sajanai", "Sajanai", "Veikejo užsidėjimas");
 	navigacija($g_n);
@@ -1473,7 +1473,7 @@ Neturi šio veikėjo!</div>';
 						if($apie['gohanultrab']-time() > 0){
 	echo'	<div class="meniuc"><br><img src="img/veikejai/Gohanas Ultra Instinct-0.png"><br>
 <font color="red">Užsidėjai sėkmingai</div> </font>';		
-	mysql_query("UPDATE zaidejai SET veikejas='Gohanas Ultra Instinct', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
+	mysqli_query($conn,"UPDATE zaidejai SET veikejas='Gohanas Ultra Instinct', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
 
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vsaugykla.php","Veikėjų saugykla", "vsaugykla.php?id=sajanai", "Sajanai", "Veikejo užsidėjimas");
 	navigacija($g_n);
@@ -1525,7 +1525,7 @@ Neturi šio veikėjo!</div>';
 						if($apie['toppomb']-time() > 0){
 	echo'	<div class="meniuc"><br><img src="img/veikejai/Toppo-0.png"><br>
 <font color="red">Užsidėjai sėkmingai</div> </font>';		
-	mysql_query("UPDATE zaidejai SET veikejas='Toppo', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
+	mysqli_query($conn,"UPDATE zaidejai SET veikejas='Toppo', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
 
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vsaugykla.php","Veikėjų saugykla", "vsaugykla.php?id=sajanai", "Sajanai", "Veikejo užsidėjimas");
 	navigacija($g_n);
@@ -1577,7 +1577,7 @@ Neturi šio veikėjo!</div>';
 						if($apie['jirenmb']-time() > 0){
 	echo'	<div class="meniuc"><br><img src="img/veikejai/Max Form Jiren-0.png"><br>
 <font color="red">Užsidėjai sėkmingai</div> </font>';		
-	mysql_query("UPDATE zaidejai SET veikejas='Max Form Jiren', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
+	mysqli_query($conn,"UPDATE zaidejai SET veikejas='Max Form Jiren', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
 
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vsaugykla.php","Veikėjų saugykla", "vsaugykla.php?id=sajanai", "Sajanai", "Veikejo užsidėjimas");
 	navigacija($g_n);
@@ -1629,7 +1629,7 @@ Neturi šio veikėjo!</div>';
 						if($apie['vegetaultrab']-time() > 0){
 	echo'	<div class="meniuc"><br><img src="img/veikejai/Vegeta Ultra Instinct-0.png"><br>
 <font color="red">Užsidėjai sėkmingai</div> </font>';		
-	mysql_query("UPDATE zaidejai SET veikejas='Vegeta Ultra Instinct', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
+	mysqli_query($conn,"UPDATE zaidejai SET veikejas='Vegeta Ultra Instinct', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
 
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vsaugykla.php","Veikėjų saugykla", "vsaugykla.php?id=sajanai", "Sajanai", "Veikejo užsidėjimas");
 	navigacija($g_n);
@@ -1681,7 +1681,7 @@ Neturi šio veikėjo!</div>';
 						if($apie['vegitoultrab']-time() > 0){
 	echo'	<div class="meniuc"><br><img src="img/veikejai/Vegito Ultra Instinct-0.png"><br>
 <font color="red">Užsidėjai sėkmingai</div> </font>';		
-	mysql_query("UPDATE zaidejai SET veikejas='Vegito Ultra Instinct', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
+	mysqli_query($conn,"UPDATE zaidejai SET veikejas='Vegito Ultra Instinct', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
 
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vsaugykla.php","Veikėjų saugykla", "vsaugykla.php?id=sajanai", "Sajanai", "Veikejo užsidėjimas");
 	navigacija($g_n);
@@ -1735,7 +1735,7 @@ Neturi šio veikėjo!</div>';
 						if($apie['ozarum']-time() > 0){
 	echo'	<div class="meniuc"><br><img src="img/veikejai/Vegeta Ozaru-0.png"><br>
 <font color="red">Užsidėjai sėkmingai</div> </font>';		
-	mysql_query("UPDATE zaidejai SET veikejas='Vegeta Ozaru', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
+	mysqli_query($conn,"UPDATE zaidejai SET veikejas='Vegeta Ozaru', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
 
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vsaugykla.php","Veikėjų saugykla", "vsaugykla.php?id=sajanai", "Sajanai", "Veikejo užsidėjimas");
 	navigacija($g_n);
@@ -1758,8 +1758,8 @@ Neturi šio veikėjo!</div>';
 	echo'	<div class="meniuc"><br><img src="img/veikejai/Vadose-0.png"></div>
 <font color="red"><div class="meniuc">Pardavei veikėją, gavai <b>833</b>'.$eurui.'</div> </font>';		
 	
-mysql_query("UPDATE zaidejai SET vadoseb='0', sms_litai=sms_litai+'833',  kiek_unikaliu=kiek_unikaliu-'1'WHERE nick='$nick' ");
-mysql_query("UPDATE zaidejai SET veikejas='$veikejas[veikejas]', trans='0' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET vadoseb='0', sms_litai=sms_litai+'833',  kiek_unikaliu=kiek_unikaliu-'1'WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE zaidejai SET veikejas='$veikejas[veikejas]', trans='0' WHERE nick='$nick'");
 }
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vsaugykla.php","Veikėjų saugykla","Veikejo pardavimas");
 	navigacija($g_n);
@@ -1816,7 +1816,7 @@ Neturi šio veikėjo!</div>';
 						if($apie['cusb']-time() > 0){
 	echo'	<div class="meniuc"><br><img src="img/veikejai/Cus-0.png"><br>
 <font color="red">Užsidėjai sėkmingai</div> </font>';		
-	mysql_query("UPDATE zaidejai SET veikejas='Cus', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
+	mysqli_query($conn,"UPDATE zaidejai SET veikejas='Cus', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
 
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vsaugykla.php","Veikėjų saugykla", "vsaugykla.php?id=angelai", "Angelai", "Veikejo užsidėjimas");
 	navigacija($g_n);
@@ -1852,8 +1852,8 @@ Neturi šio veikėjo!</div>';
 	echo'	<div class="meniuc"><br><img src="img/veikejai/Cus-0.png"></div>
 <font color="red"><div class="meniuc">Pardavei veikėją, gavai <b>6666</b>'.$eurui.'</div> </font>';		
 	
-mysql_query("UPDATE zaidejai SET cusb='0', sms_litai=sms_litai+'6666',  kiek_unikaliu=kiek_unikaliu-'1'WHERE nick='$nick' ");
-mysql_query("UPDATE zaidejai SET veikejas='$veikejas[veikejas]', trans='0' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET cusb='0', sms_litai=sms_litai+'6666',  kiek_unikaliu=kiek_unikaliu-'1'WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE zaidejai SET veikejas='$veikejas[veikejas]', trans='0' WHERE nick='$nick'");
 }
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vsaugykla.php","Veikėjų saugykla","Veikejo pardavimas");
 	navigacija($g_n);
@@ -1912,7 +1912,7 @@ Neturi šio veikėjo!</div>';
 						if($apie['kabab']-time() > 0){
 	echo'	<div class="meniuc"><br><img src="img/veikejai/Kaba-0.png"><br>
 <font color="red">Užsidėjai sėkmingai</div> </font>';		
-	mysql_query("UPDATE zaidejai SET veikejas='Kaba', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
+	mysqli_query($conn,"UPDATE zaidejai SET veikejas='Kaba', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
 
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vsaugykla.php","Veikėjų saugykla", "vsaugykla.php?id=sajanai", "Sajanai", "Veikejo užsidėjimas");
 	navigacija($g_n);
@@ -1948,8 +1948,8 @@ Neturi šio veikėjo!</div>';
 	echo'	<div class="meniuc"><br><img src="img/veikejai/Kaba-0.png"></div>
 <font color="red"><div class="meniuc">Pardavei veikėją, gavai <b>5</b>'.$eurui.'</div> </font>';		
 	
-mysql_query("UPDATE zaidejai SET kabab='0', sms_litai=sms_litai+'5',  kiek_unikaliu=kiek_unikaliu-'1'WHERE nick='$nick' ");
-mysql_query("UPDATE zaidejai SET veikejas='$veikejas[veikejas]', trans='0' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET kabab='0', sms_litai=sms_litai+'5',  kiek_unikaliu=kiek_unikaliu-'1'WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE zaidejai SET veikejas='$veikejas[veikejas]', trans='0' WHERE nick='$nick'");
 
 }
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vsaugykla.php","Veikėjų saugykla","Veikejo pardavimas");
@@ -2007,7 +2007,7 @@ Neturi šio veikėjo!</div>';
 				
 	echo'	<div class="meniuc"><br><img src="img/veikejai/Vegeta gods-0.png"><br>
 <font color="red">Užsidėjai sėkmingai</div> </font>';		
-	mysql_query("UPDATE zaidejai SET veikejas='Vegeta gods', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
+	mysqli_query($conn,"UPDATE zaidejai SET veikejas='Vegeta gods', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
 
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vsaugykla.php","Veikėjų saugykla", "vsaugykla.php?id=angelai", "Angelai", "Veikejo užsidėjimas");
 	navigacija($g_n);
@@ -2043,8 +2043,8 @@ Neturi šio veikėjo!</div>';
 	echo'	<div class="meniuc"><br><img src="img/veikejai/Vegeta gods-0.png"></div>
 <font color="red"><div class="meniuc">Pardavei veikėją, gavai <b>133</b>'.$eurui.'</div> </font>';		
 	
-mysql_query("UPDATE zaidejai SET vegetab='0', sms_litai=sms_litai+'133',  kiek_unikaliu=kiek_unikaliu-'1'WHERE nick='$nick' ");
-mysql_query("UPDATE zaidejai SET veikejas='$veikejas[veikejas]', trans='0' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET vegetab='0', sms_litai=sms_litai+'133',  kiek_unikaliu=kiek_unikaliu-'1'WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE zaidejai SET veikejas='$veikejas[veikejas]', trans='0' WHERE nick='$nick'");
 }
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vsaugykla.php","Veikėjų saugykla","Veikejo pardavimas");
 	navigacija($g_n);
@@ -2101,7 +2101,7 @@ Neturi šio veikėjo!</div>';
 				
 	echo'	<div class="meniuc"><br><img src="img/veikejai/Goku Gods-0.png"><br>
 <font color="red">Užsidėjai sėkmingai</div> </font>';		
-	mysql_query("UPDATE zaidejai SET veikejas='Goku Gods', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
+	mysqli_query($conn,"UPDATE zaidejai SET veikejas='Goku Gods', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
 
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vsaugykla.php","Veikėjų saugykla", "vsaugykla.php?id=angelai", "Angelai", "Veikejo užsidėjimas");
 	navigacija($g_n);
@@ -2137,8 +2137,8 @@ Neturi šio veikėjo!</div>';
 	echo'	<div class="meniuc"><br><img src="img/veikejai/Goku Gods-0.png"></div>
 <font color="red"><div class="meniuc">Pardavei veikėją, gavai <b>166</b>'.$eurui.'</div> </font>';		
 	
-mysql_query("UPDATE zaidejai SET gokasb='0', sms_litai=sms_litai+'166',  kiek_unikaliu=kiek_unikaliu-'1'WHERE nick='$nick' ");
-mysql_query("UPDATE zaidejai SET veikejas='$veikejas[veikejas]', trans='0' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET gokasb='0', sms_litai=sms_litai+'166',  kiek_unikaliu=kiek_unikaliu-'1'WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE zaidejai SET veikejas='$veikejas[veikejas]', trans='0' WHERE nick='$nick'");
 }
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vsaugykla.php","Veikėjų saugykla","Veikejo pardavimas");
 	navigacija($g_n);
@@ -2195,7 +2195,7 @@ Neturi šio veikėjo!</div>';
 				
 	echo'	<div class="meniuc"><br><img src="img/veikejai/Gokas SSJGB Kaioken 20x-0.png"><br>
 <font color="red">Užsidėjai sėkmingai</div> </font>';		
-	mysql_query("UPDATE zaidejai SET veikejas='Gokas SSJGB Kaioken 20x', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
+	mysqli_query($conn,"UPDATE zaidejai SET veikejas='Gokas SSJGB Kaioken 20x', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
 
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vsaugykla.php","Veikėjų saugykla", "vsaugykla.php?id=angelai", "Angelai", "Veikejo užsidėjimas");
 	navigacija($g_n);
@@ -2231,8 +2231,8 @@ Neturi šio veikėjo!</div>';
 	echo'	<div class="meniuc"><br><img src="img/veikejai/Gokas SSJGB Kaioken 20x-0.png"></div>
 <font color="red"><div class="meniuc">Pardavei veikėją, gavai <b>3333</b>'.$eurui.'</div> </font>';		
 	
-mysql_query("UPDATE zaidejai SET gokas20xb='0', sms_litai=sms_litai+'1333',  kiek_unikaliu=kiek_unikaliu-'1'WHERE nick='$nick' ");
-mysql_query("UPDATE zaidejai SET veikejas='$veikejas[veikejas]', trans='0' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET gokas20xb='0', sms_litai=sms_litai+'1333',  kiek_unikaliu=kiek_unikaliu-'1'WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE zaidejai SET veikejas='$veikejas[veikejas]', trans='0' WHERE nick='$nick'");
 }
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vsaugykla.php","Veikėjų saugykla","Veikejo pardavimas");
 	navigacija($g_n);
@@ -2291,7 +2291,7 @@ Neturi šio veikėjo!</div>';
 				
 	echo'	<div class="meniuc"><br><img src="img/veikejai/Botamo-0.png"><br>
 <font color="red">Užsidėjai sėkmingai</div> </font>';		
-	mysql_query("UPDATE zaidejai SET veikejas='Botamo', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
+	mysqli_query($conn,"UPDATE zaidejai SET veikejas='Botamo', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
 
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vsaugykla.php","Veikėjų saugykla", "vsaugykla.php?id=kiti", "Kiti", "Veikejo užsidėjimas");
 	navigacija($g_n);
@@ -2327,8 +2327,8 @@ Neturi šio veikėjo!</div>';
 	echo'	<div class="meniuc"><br><img src="img/veikejai/Botamo-0.png"></div>
 <font color="red"><div class="meniuc">Pardavei veikėją, gavai <b>10</b>'.$eurui.'</div> </font>';		
 	
-mysql_query("UPDATE zaidejai SET magetab='0', sms_litai=sms_litai+'10',  kiek_unikaliu=kiek_unikaliu-'1'WHERE nick='$nick' ");
-mysql_query("UPDATE zaidejai SET veikejas='$veikejas[veikejas]', trans='0' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET magetab='0', sms_litai=sms_litai+'10',  kiek_unikaliu=kiek_unikaliu-'1'WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE zaidejai SET veikejas='$veikejas[veikejas]', trans='0' WHERE nick='$nick'");
 
 }
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vsaugykla.php","Veikėjų saugykla","Veikejo pardavimas");
@@ -2386,7 +2386,7 @@ Neturi šio veikėjo!</div>';
 						if($apie['buub']-time() > 0){
 	echo'	<div class="meniuc"><br><img src="img/veikejai/Majin Buu-0.png"><br>
 <font color="red">Užsidėjai sėkmingai</div> </font>';		
-	mysql_query("UPDATE zaidejai SET veikejas='Majin Buu', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
+	mysqli_query($conn,"UPDATE zaidejai SET veikejas='Majin Buu', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
 
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vsaugykla.php","Veikėjų saugykla", "vsaugykla.php?id=kiti", "Kiti", "Veikejo užsidėjimas");
 	navigacija($g_n);
@@ -2422,8 +2422,8 @@ Neturi šio veikėjo!</div>';
 	echo'	<div class="meniuc"><br><img src="img/veikejai/Majin Buu-0.png"></div>
 <font color="red"><div class="meniuc">Pardavei veikėją, gavai <b>15</b>'.$eurui.'</div> </font>';		
 	
-mysql_query("UPDATE zaidejai SET buub='0', sms_litai=sms_litai+'15',  kiek_unikaliu=kiek_unikaliu-'1'WHERE nick='$nick' ");
-mysql_query("UPDATE zaidejai SET veikejas='$veikejas[veikejas]', trans='0' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET buub='0', sms_litai=sms_litai+'15',  kiek_unikaliu=kiek_unikaliu-'1'WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE zaidejai SET veikejas='$veikejas[veikejas]', trans='0' WHERE nick='$nick'");
 }
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vsaugykla.php","Veikėjų saugykla","Veikejo pardavimas");
 	navigacija($g_n);
@@ -2481,7 +2481,7 @@ Neturi šio veikėjo!</div>';
 				
 	echo'	<div class="meniuc"><br><img src="img/veikejai/Baby Vegeta-0.png"><br>
 <font color="red">Užsidėjai sėkmingai</div> </font>';		
-	mysql_query("UPDATE zaidejai SET veikejas='Baby Vegeta', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
+	mysqli_query($conn,"UPDATE zaidejai SET veikejas='Baby Vegeta', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
 
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vsaugykla.php","Veikėjų saugykla", "vsaugykla.php?id=kiti", "Kiti", "Veikejo užsidėjimas");
 	navigacija($g_n);
@@ -2517,8 +2517,8 @@ Neturi šio veikėjo!</div>';
 	echo'	<div class="meniuc"><br><img src="img/veikejai/Baby Vegeta-0.png"></div>
 <font color="red"><div class="meniuc">Pardavei veikėją, gavai <b>35</b>'.$eurui.'</div> </font>';		
 	
-mysql_query("UPDATE zaidejai SET babyb='0', sms_litai=sms_litai+'35',  kiek_unikaliu=kiek_unikaliu-'1'WHERE nick='$nick' ");
-mysql_query("UPDATE zaidejai SET veikejas='$veikejas[veikejas]', trans='0' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET babyb='0', sms_litai=sms_litai+'35',  kiek_unikaliu=kiek_unikaliu-'1'WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE zaidejai SET veikejas='$veikejas[veikejas]', trans='0' WHERE nick='$nick'");
 }
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vsaugykla.php","Veikėjų saugykla","Veikejo pardavimas");
 	navigacija($g_n);
@@ -2575,7 +2575,7 @@ Neturi šio veikėjo!</div>';
 				
 	echo'	<div class="meniuc"><br><img src="img/veikejai/Super Android 17-0.png"><br>
 <font color="red">Užsidėjai sėkmingai</div> </font>';		
-	mysql_query("UPDATE zaidejai SET veikejas='Super Android 17', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
+	mysqli_query($conn,"UPDATE zaidejai SET veikejas='Super Android 17', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
 
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vsaugykla.php","Veikėjų saugykla", "vsaugykla.php?id=kiti", "Kiti", "Veikejo užsidėjimas");
 	navigacija($g_n);
@@ -2611,8 +2611,8 @@ Neturi šio veikėjo!</div>';
 	echo'	<div class="meniuc"><br><img src="img/veikejai/Super Android 17-0.png"></div>
 <font color="red"><div class="meniuc">Pardavei veikėją, gavai <b>50</b>'.$eurui.'</div> </font>';		
 	
-mysql_query("UPDATE zaidejai SET s17b='0', sms_litai=sms_litai+'50',  kiek_unikaliu=kiek_unikaliu-'1'WHERE nick='$nick' ");
-mysql_query("UPDATE zaidejai SET veikejas='$veikejas[veikejas]', trans='0' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET s17b='0', sms_litai=sms_litai+'50',  kiek_unikaliu=kiek_unikaliu-'1'WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE zaidejai SET veikejas='$veikejas[veikejas]', trans='0' WHERE nick='$nick'");
 }
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vsaugykla.php","Veikėjų saugykla","Veikejo pardavimas");
 	navigacija($g_n);
@@ -2669,7 +2669,7 @@ Neturi šio veikėjo!</div>';
 		if($apie['dyspob']-time() > 0){	
 	echo'	<div class="meniuc"><br><img src="img/veikejai/Dyspo-0.png"><br>
 <font color="red">Užsidėjai sėkmingai</div> </font>';		
-	mysql_query("UPDATE zaidejai SET veikejas='Dyspo', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
+	mysqli_query($conn,"UPDATE zaidejai SET veikejas='Dyspo', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
 
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vsaugykla.php","Veikėjų saugykla", "vsaugykla.php?id=kiti", "Kiti", "Veikejo užsidėjimas");
 	navigacija($g_n);
@@ -2745,7 +2745,7 @@ Neturi šio veikėjo!</div>';
 		if($apie['goldozarub']-time() > 0){	
 	echo'	<div class="meniuc"><br><img src="img/veikejai/Gold Ozaru Baby-0.png"><br>
 <font color="red">Užsidėjai sėkmingai</div> </font>';		
-	mysql_query("UPDATE zaidejai SET veikejas='Gold Ozaru Baby', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
+	mysqli_query($conn,"UPDATE zaidejai SET veikejas='Gold Ozaru Baby', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
 
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vsaugykla.php","Veikėjų saugykla", "vsaugykla.php?id=kiti", "Kiti", "Veikejo užsidėjimas");
 	navigacija($g_n);
@@ -2781,8 +2781,8 @@ Neturi šio veikėjo!</div>';
 	echo'	<div class="meniuc"><br><img src="img/veikejai/Gold Ozaru Baby-0.png"></div>
 <font color="red"><div class="meniuc">Pardavei veikėją, gavai <b>65</b>'.$eurui.'</div> </font>';		
 	
-mysql_query("UPDATE zaidejai SET goldozarub='0', sms_litai=sms_litai+'65',  kiek_unikaliu=kiek_unikaliu-'1'WHERE nick='$nick' ");
-mysql_query("UPDATE zaidejai SET veikejas='$veikejas[veikejas]', trans='0' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET goldozarub='0', sms_litai=sms_litai+'65',  kiek_unikaliu=kiek_unikaliu-'1'WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE zaidejai SET veikejas='$veikejas[veikejas]', trans='0' WHERE nick='$nick'");
 }
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vsaugykla.php","Veikėjų saugykla","Veikejo pardavimas");
 	navigacija($g_n);
@@ -2874,7 +2874,7 @@ Neturi šio veikėjo!</div>';
 						if($apie['fryzasb']-time() > 0){
 	echo'	<div class="meniuc"><br><img src="img/veikejai/Gold Fryzas-0.png"><br>
 <font color="red">Užsidėjai sėkmingai</div> </font>';		
-	mysql_query("UPDATE zaidejai SET veikejas='Gold Fryzas', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
+	mysqli_query($conn,"UPDATE zaidejai SET veikejas='Gold Fryzas', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
 
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vsaugykla.php","Veikėjų saugykla", "vsaugykla.php?id=kiti", "Kiti", "Veikejo užsidėjimas");
 	navigacija($g_n);
@@ -2910,8 +2910,8 @@ Neturi šio veikėjo!</div>';
 	echo'	<div class="meniuc"><br><img src="img/veikejai/Gold Fryzas-0.png"></div>
 <font color="red"><div class="meniuc">Pardavei veikėją, gavai <b>100</b>'.$eurui.'</div> </font>';		
 	
-mysql_query("UPDATE zaidejai SET fryzasb='0', sms_litai=sms_litai+'100',  kiek_unikaliu=kiek_unikaliu-'1'WHERE nick='$nick' ");
-mysql_query("UPDATE zaidejai SET veikejas='$veikejas[veikejas]', trans='0' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET fryzasb='0', sms_litai=sms_litai+'100',  kiek_unikaliu=kiek_unikaliu-'1'WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE zaidejai SET veikejas='$veikejas[veikejas]', trans='0' WHERE nick='$nick'");
 }
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vsaugykla.php","Veikėjų saugykla","Veikejo pardavimas");
 	navigacija($g_n);
@@ -2968,7 +2968,7 @@ Neturi šio veikėjo!</div>';
 				
 	echo'	<div class="meniuc"><br><img src="img/veikejai/Hitas-0.png"><br>
 <font color="red">Užsidėjai sėkmingai</div> </font>';		
-	mysql_query("UPDATE zaidejai SET veikejas='Hitas', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
+	mysqli_query($conn,"UPDATE zaidejai SET veikejas='Hitas', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
 
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vsaugykla.php","Veikėjų saugykla", "vsaugykla.php?id=kiti", "Kiti", "Veikejo užsidėjimas");
 	navigacija($g_n);
@@ -3004,8 +3004,8 @@ Neturi šio veikėjo!</div>';
 	echo'	<div class="meniuc"><br><img src="img/veikejai/Hitas-0.png"></div>
 <font color="red"><div class="meniuc">Pardavei veikėją, gavai <b>230</b>'.$eurui.'</div> </font>';		
 	
-mysql_query("UPDATE zaidejai SET hitasb='0', sms_litai=sms_litai+'230',  kiek_unikaliu=kiek_unikaliu-'1'WHERE nick='$nick' ");
-mysql_query("UPDATE zaidejai SET veikejas='$veikejas[veikejas]', trans='0' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET hitasb='0', sms_litai=sms_litai+'230',  kiek_unikaliu=kiek_unikaliu-'1'WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE zaidejai SET veikejas='$veikejas[veikejas]', trans='0' WHERE nick='$nick'");
 
 }
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vsaugykla.php","Veikėjų saugykla","Veikejo pardavimas");
@@ -3060,7 +3060,7 @@ Neturi šio veikėjo!</div>';
 				
 	echo'	<div class="meniuc"><br><img src="img/veikejai/Mojito-0.png"><br>
 <font color="red">Užsidėjai sėkmingai</div> </font>';		
-	mysql_query("UPDATE zaidejai SET veikejas='Mojito', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
+	mysqli_query($conn,"UPDATE zaidejai SET veikejas='Mojito', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
 
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vsaugykla.php","Veikėjų saugykla", "vsaugykla.php?id=angelai", "Angelai", "Veikejo užsidėjimas");
 	navigacija($g_n);
@@ -3113,7 +3113,7 @@ Neturi šio veikėjo!</div>';
 				
 	echo'	<div class="meniuc"><br><img src="img/veikejai/Iwan-0.png"><br>
 <font color="red">Užsidėjai sėkmingai</div> </font>';		
-	mysql_query("UPDATE zaidejai SET veikejas='Iwan', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
+	mysqli_query($conn,"UPDATE zaidejai SET veikejas='Iwan', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
 
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vsaugykla.php","Veikėjų saugykla", "vsaugykla.php?id=naikintojai", "Naikintojai", "Veikejo užsidėjimas");
 	navigacija($g_n);
@@ -3166,7 +3166,7 @@ Neturi šio veikėjo!</div>';
 				
 	echo'	<div class="meniuc"><br><img src="img/veikejai/Geene-0.png"><br>
 <font color="red">Užsidėjai sėkmingai</div> </font>';		
-	mysql_query("UPDATE zaidejai SET veikejas='Geene', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
+	mysqli_query($conn,"UPDATE zaidejai SET veikejas='Geene', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
 
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vsaugykla.php","Veikėjų saugykla", "vsaugykla.php?id=naikintojai", "Naikintojai", "Veikejo užsidėjimas");
 	navigacija($g_n);
@@ -3219,7 +3219,7 @@ Neturi šio veikėjo!</div>';
 				
 	echo'	<div class="meniuc"><br><img src="img/veikejai/Grand Prest-0.png"><br>
 <font color="red">Užsidėjai sėkmingai</div> </font>';		
-	mysql_query("UPDATE zaidejai SET veikejas='Grand Prest', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
+	mysqli_query($conn,"UPDATE zaidejai SET veikejas='Grand Prest', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
 
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vsaugykla.php","Veikėjų saugykla", "vsaugykla.php?id=dievai", "DIEVAI", "Veikejo užsidėjimas");
 	navigacija($g_n);
@@ -3305,7 +3305,7 @@ Neturi šio veikėjo!</div>';
 				
 	echo'	<div class="meniuc"><br><img src="img/veikejai/Omniking-0.png"><br>
 <font color="red">Užsidėjai sėkmingai</div> </font>';		
-	mysql_query("UPDATE zaidejai SET veikejas='OmniKing', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
+	mysqli_query($conn,"UPDATE zaidejai SET veikejas='OmniKing', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
 
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vsaugykla.php","Veikėjų saugykla", "vsaugykla.php?id=dievai", "DIEVAI", "Veikejo užsidėjimas");
 	navigacija($g_n);
@@ -3327,7 +3327,7 @@ Neturi šio veikėjo!</div>';
 				
 	echo'	<div class="meniuc"><br><img src="img/veikejai/Zeno Sama-0.png"><br>
 <font color="red">Užsidėjai sėkmingai</div> </font>';		
-	mysql_query("UPDATE zaidejai SET veikejas='Zeno Sama', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
+	mysqli_query($conn,"UPDATE zaidejai SET veikejas='Zeno Sama', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
 
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vsaugykla.php","Veikėjų saugykla", "vsaugykla.php?id=dievai", "DIEVAI", "Veikejo užsidėjimas");
 	navigacija($g_n);
@@ -3384,7 +3384,7 @@ Neturi šio veikėjo!</div>';
 				
 	echo'	<div class="meniuc"><br><img src="img/veikejai/MAX Power Gold Fryzas-0.png"><br>
 <font color="red">Užsidėjai sėkmingai</div> </font>';		
-	mysql_query("UPDATE zaidejai SET veikejas='MAX Power Gold Fryzas', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
+	mysqli_query($conn,"UPDATE zaidejai SET veikejas='MAX Power Gold Fryzas', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
 
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vsaugykla.php","Veikėjų saugykla", "vsaugykla.php?id=kiti", "Kiti", "Veikejo užsidėjimas");
 	navigacija($g_n);
@@ -3420,8 +3420,8 @@ Neturi šio veikėjo!</div>';
 	echo'	<div class="meniuc"><br><img src="img/veikejai/MAX Power Gold Fryzas-0.png"></div>
 <font color="red"><div class="meniuc">Pardavei veikėją, gavai <b>330</b>'.$eurui.'</div> </font>';		
 	
-mysql_query("UPDATE zaidejai SET maxfryzasb='0', sms_litai=sms_litai+'330',  kiek_unikaliu=kiek_unikaliu-'1'WHERE nick='$nick' ");
-mysql_query("UPDATE zaidejai SET veikejas='$veikejas[veikejas]', trans='0' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET maxfryzasb='0', sms_litai=sms_litai+'330',  kiek_unikaliu=kiek_unikaliu-'1'WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE zaidejai SET veikejas='$veikejas[veikejas]', trans='0' WHERE nick='$nick'");
 }
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vsaugykla.php","Veikėjų saugykla","Veikejo pardavimas");
 	navigacija($g_n);
@@ -3478,7 +3478,7 @@ Neturi šio veikėjo!</div>';
 				
 	echo'	<div class="meniuc"><br><img src="img/veikejai/Jiren-0.png"><br>
 <font color="red">Užsidėjai sėkmingai</div> </font>';		
-	mysql_query("UPDATE zaidejai SET veikejas='Jiren', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
+	mysqli_query($conn,"UPDATE zaidejai SET veikejas='Jiren', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
 
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vsaugykla.php","Veikėjų saugykla", "vsaugykla.php?id=kiti", "Kiti", "Veikejo užsidėjimas");
 	navigacija($g_n);
@@ -3514,8 +3514,8 @@ Neturi šio veikėjo!</div>';
 	echo'	<div class="meniuc"><br><img src="img/veikejai/Jiren-0.png"></div>
 <font color="red"><div class="meniuc">Pardavei veikėją, gavai <b>1000</b>'.$eurui.'</div> </font>';		
 	
-mysql_query("UPDATE zaidejai SET jirenb='0', sms_litai=sms_litai+'1000',  kiek_unikaliu=kiek_unikaliu-'1'WHERE nick='$nick' ");
-mysql_query("UPDATE zaidejai SET veikejas='$veikejas[veikejas]', trans='0' WHERE nick='$nick'");
+mysqli_query($conn,"UPDATE zaidejai SET jirenb='0', sms_litai=sms_litai+'1000',  kiek_unikaliu=kiek_unikaliu-'1'WHERE nick='$nick' ");
+mysqli_query($conn,"UPDATE zaidejai SET veikejas='$veikejas[veikejas]', trans='0' WHERE nick='$nick'");
 }
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vsaugykla.php","Veikėjų saugykla","Veikejo pardavimas");
 	navigacija($g_n);
@@ -3568,7 +3568,7 @@ Neturi šio veikėjo!</div>';
 				
 	echo'	<div class="meniuc"><br><img src="img/veikejai/Fusion omega cooler-0.png"><br>
 <font color="red">Užsidėjai sėkmingai</div> </font>';		
-	mysql_query("UPDATE zaidejai SET veikejas='Fusion omega cooler', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
+	mysqli_query($conn,"UPDATE zaidejai SET veikejas='Fusion omega cooler', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
 
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vsaugykla.php","Veikėjų saugykla", "vsaugykla.php?id=aukskredai", "Atgal", "Veikejo užsidėjimas");
 	navigacija($g_n);
@@ -3621,7 +3621,7 @@ Neturi šio veikėjo!</div>';
 				
 	echo'	<div class="meniuc"><br><img src="img/veikejai/Final goku gods-0.png"><br>
 <font color="red">Užsidėjai sėkmingai</div> </font>';		
-	mysql_query("UPDATE zaidejai SET veikejas='Final goku gods', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
+	mysqli_query($conn,"UPDATE zaidejai SET veikejas='Final goku gods', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
 
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vsaugykla.php","Veikėjų saugykla", "vsaugykla.php?id=aukskredai", "Atgal", "Veikejo užsidėjimas");
 	navigacija($g_n);
@@ -3674,7 +3674,7 @@ Neturi šio veikėjo!</div>';
 				
 	echo'	<div class="meniuc"><br><img src="img/veikejai/Sidra-0.png"><br>
 <font color="red">Užsidėjai sėkmingai</div> </font>';		
-	mysql_query("UPDATE zaidejai SET veikejas='Sidra', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
+	mysqli_query($conn,"UPDATE zaidejai SET veikejas='Sidra', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
 
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vsaugykla.php","Veikėjų saugykla", "vsaugykla.php?id=aukskredai", "Atgal", "Veikejo užsidėjimas");
 	navigacija($g_n);
@@ -3726,7 +3726,7 @@ Neturi šio veikėjo!</div>';
 				
 	echo'	<div class="meniuc"><br><img src="img/veikejai/Black Goku Rose-0.png"><br>
 <font color="red">Užsidėjai sėkmingai</div> </font>';		
-	mysql_query("UPDATE zaidejai SET veikejas='Black Goku Rose', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
+	mysqli_query($conn,"UPDATE zaidejai SET veikejas='Black Goku Rose', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
 
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vsaugykla.php","Veikėjų saugykla", "vsaugykla.php?id=aukskredai", "Atgal", "Veikejo užsidėjimas");
 	navigacija($g_n);
@@ -3783,7 +3783,7 @@ Neturi šio veikėjo!</div>';
 				
 	echo'	<div class="meniuc"><br><img src="img/veikejai/Kale-0.png"><br>
 <font color="red">Užsidėjai sėkmingai</div> </font>';		
-	mysql_query("UPDATE zaidejai SET veikejas='Kale', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
+	mysqli_query($conn,"UPDATE zaidejai SET veikejas='Kale', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");}
 
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","vsaugykla.php","Veikėjų saugykla", "vsaugykla.php?id=aukskredai", "Atgal", "Veikejo užsidėjimas");
 	navigacija($g_n);

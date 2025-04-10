@@ -12,14 +12,14 @@ include_once 'cfg/funkcijos.php';
 	$prizas2 = round($nust['sms_priz']) / 2;
 	$prizas3 = round($nust['sms_priz']) / 3;
  $statusai = array("Mod","Mod2","Mod3","Mod4","Admin");
-$nst = mysql_fetch_assoc(mysql_query("SELECT * FROM turnyras"));
-$new = mysql_fetch_assoc(mysql_query("SELECT * FROM news ORDER BY id DESC LIMIT 1"));
-$xd = mysql_query("SELECT * FROM zaidejai WHERE nick= $nick");
+$nst = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM turnyras"));
+$new = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM news ORDER BY id DESC LIMIT 1"));
+$xd = mysqli_query($conn,"SELECT * FROM zaidejai WHERE nick= $nick");
 head2();
 if($nust['new_time']-time() > 0){
-    $q = mysql_query("SELECT * FROM news ORDER BY id DESC LIMIT 1");
+    $q = mysqli_query($conn,"SELECT * FROM news ORDER BY id DESC LIMIT 1");
    
-    while($row = mysql_fetch_assoc($q)){
+    while($row = mysqli_fetch_assoc($q)){
         echo '<div class="meniuc">Padarytas atnaujinimas: '.$row[name].'</div>';
       
         unset($row);
@@ -33,7 +33,7 @@ baneris();
 
 	
 		
-if(mysql_num_rows(mysql_query("SELECT * FROM kvietimai_i_komanda WHERE nick2='$nick'")) == true){
+if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM kvietimai_i_komanda WHERE nick2='$nick'")) == true){
 	echo"<div class='meniuc'><font color='red'>Dėmesio! Tu kviečiamas į ".$team_pakv['team']." komandą!</font><br>
 	<a href='komanda.php?id=atmesti&ka=".$team_pakv['team']."'>Atmesti</a> <a href='komanda.php?id=priimti&ka=".$team_pakv['team']."'>Priimti</a>
 	</div>";
@@ -110,9 +110,9 @@ elseif($apie['vip1m'] == '+'){
 			else{
 			echo'<div class="meniuc"><img src="img/imgg/vip.png" /></div>';	
 			echo'<div class="meniuc">Įvygdei misiją sėkmingai! Gavai  <b>200 </b> '.$vipt.' !</div>';
-			mysql_query("UPDATE zaidejai SET vip1m='+' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE zaidejai SET vip1m='+' WHERE nick='$nick'");
 	
-			mysql_query("UPDATE zaidejai SET vipticket=vipticket+'200', sms_litai=sms_litai-'20' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE zaidejai SET vipticket=vipticket+'200', sms_litai=sms_litai-'20' WHERE nick='$nick'");
 		
 		
 			}
@@ -178,9 +178,9 @@ elseif($apie['vip3m'] == '+'){
 			else{
 			echo'<div class="meniuc"><img src="img/imgg/vip.png" /></div>';	
 			echo'<div class="meniuc">Įvygdei misiją sėkmingai! Gavai  <b>500 </b> '.$vipt.' !</div>';
-			mysql_query("UPDATE zaidejai SET vip3m='+' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE zaidejai SET vip3m='+' WHERE nick='$nick'");
 	
-			mysql_query("UPDATE zaidejai SET vipticket=vipticket+'500', sms_litai=sms_litai-'40' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE zaidejai SET vipticket=vipticket+'500', sms_litai=sms_litai-'40' WHERE nick='$nick'");
 		
 		
 			}
@@ -238,9 +238,9 @@ elseif($apie['vip5m'] == '+'){
 			else{
 			echo'<div class="meniuc"><img src="img/imgg/vip.png" /></div>';	
 			echo'<div class="meniuc">Įvygdei misiją sėkmingai! Gavai  <b>1,000 </b> '.$vipt.' !</div>';
-			mysql_query("UPDATE zaidejai SET vip5m='+' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE zaidejai SET vip5m='+' WHERE nick='$nick'");
 	
-			mysql_query("UPDATE zaidejai SET vipticket=vipticket+'1000', sms_litai=sms_litai-'70'WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE zaidejai SET vipticket=vipticket+'1000', sms_litai=sms_litai-'70'WHERE nick='$nick'");
 		
 		
 			}
@@ -306,9 +306,9 @@ elseif($apie['vip7m'] == '+'){
 			else{
 			echo'<div class="meniuc"><img src="img/imgg/vip.png" /></div>';	
 			echo'<div class="meniuc">Įvygdei misiją sėkmingai! Gavai  <b>5,000 </b> '.$vipt.' !</div>';
-			mysql_query("UPDATE zaidejai SET vip7m='+' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE zaidejai SET vip7m='+' WHERE nick='$nick'");
 	
-			mysql_query("UPDATE zaidejai SET vipticket=vipticket+'5000', sms_litai=sms_litai-'120' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE zaidejai SET vipticket=vipticket+'5000', sms_litai=sms_litai-'120' WHERE nick='$nick'");
 		
 		
 			}
@@ -374,9 +374,9 @@ elseif($apie['vip10m'] == '+'){
 			else{
 			echo'<div class="meniuc"><img src="img/imgg/vip.png" /></div>';	
 			echo'<div class="meniuc">Įvygdei misiją sėkmingai! Gavai  <b>15,000 </b> '.$vipt.' !</div>';
-			mysql_query("UPDATE zaidejai SET vip10m='+' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE zaidejai SET vip10m='+' WHERE nick='$nick'");
 	
-			mysql_query("UPDATE zaidejai SET vipticket=vipticket+'15000', sms_litai=sms_litai-'200'WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE zaidejai SET vipticket=vipticket+'15000', sms_litai=sms_litai-'200'WHERE nick='$nick'");
 		
 		
 			}
@@ -442,9 +442,9 @@ elseif($apie['vip12m'] < '+'){
 			else{
 			echo'<div class="meniuc"><img src="img/imgg/vip.png" /></div>';	
 			echo'<div class="meniuc">Įvygdei misiją sėkmingai! Gavai  <b>50,000 </b> '.$vipt.' !</div>';
-			mysql_query("UPDATE zaidejai SET vip12m='+' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE zaidejai SET vip12m='+' WHERE nick='$nick'");
 	
-			mysql_query("UPDATE zaidejai SET vipticket=vipticket+'50000', sms_litai=sms_litai-'400'WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE zaidejai SET vipticket=vipticket+'50000', sms_litai=sms_litai-'400'WHERE nick='$nick'");
 		
 		
 			}
@@ -510,9 +510,9 @@ elseif($apie['vip15m'] < '+'){
 			else{
 			echo'<div class="meniuc"><img src="img/imgg/vip.png" /></div>';	
 			echo'<div class="meniuc">Įvygdei misiją sėkmingai! Gavai  <b>100,000 </b> '.$vipt.' !</div>';
-			mysql_query("UPDATE zaidejai SET vip15m='+' WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE zaidejai SET vip15m='+' WHERE nick='$nick'");
 	
-			mysql_query("UPDATE zaidejai SET vipticket=vipticket+'100000', sms_litai=sms_litai-'700'WHERE nick='$nick'");
+			mysqli_query($conn,"UPDATE zaidejai SET vipticket=vipticket+'100000', sms_litai=sms_litai-'700'WHERE nick='$nick'");
 		
 		
 			}

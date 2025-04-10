@@ -129,9 +129,9 @@ if ($randas == 2){
 	echo'
 	<div class="meniuc">Radai juodąjį drakono rutulį!</div>
 '; 
-   mysql_query("UPDATE inv SET jball=jball+'1' WHERE nick='$nick'")or die(mysql_error());
+   mysqli_query($conn,"UPDATE inv SET jball=jball+'1' WHERE nick='$nick'")or die(mysqli_error());
 $ko = time() + 21600;
-mysql_query("UPDATE zaidejai SET jbal = '$ko' WHERE nick = '$nick' ");
+mysqli_query($conn,"UPDATE zaidejai SET jbal = '$ko' WHERE nick = '$nick' ");
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","juodap.php","Juodoji Planeta","Planeta");
 	navigacija($g_n);
 	
@@ -143,7 +143,7 @@ echo'
 	<div class="meniuc">Neradai rutulio.</div>
 	'; 
 	$ko = time() + 21600;
-mysql_query("UPDATE zaidejai SET jbal = '$ko' WHERE nick = '$nick' ");}
+mysqli_query($conn,"UPDATE zaidejai SET jbal = '$ko' WHERE nick = '$nick' ");}
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","juodap.php","Juodoji Planeta","Planeta");
 	navigacija($g_n);
 	
@@ -169,29 +169,29 @@ mysql_query("UPDATE zaidejai SET jbal = '$ko' WHERE nick = '$nick' ");}
       if($co == 1){
          echo '<div class="meniuc">Jūsų noras išpildytas! Gavai 15% savo Jėgos.</div>';
          $jeggoo = round($jega*1/100);
-         mysql_query("UPDATE zaidejai SET jega=jega+'$jeggoo' WHERE nick='$nick' ");
-           mysql_query("UPDATE inv SET jball=jball-'7' WHERE nick='$nick'")or die(mysql_error());
+         mysqli_query($conn,"UPDATE zaidejai SET jega=jega+'$jeggoo' WHERE nick='$nick' ");
+           mysqli_query($conn,"UPDATE inv SET jball=jball-'7' WHERE nick='$nick'")or die(mysqli_error());
       }
 	elseif($co == 2){
          echo '<div class="meniuc">Jūsų noras išpildytas! Gavai 15% savo Gynybos.</div>';
          $gynnoo = round($gynyba*3/100);
-         mysql_query("UPDATE zaidejai SET gynyba=gynyba+'$gynnoo' WHERE nick='$nick' ");
-           mysql_query("UPDATE inv SET jball=jball-'7' WHERE nick='$nick'")or die(mysql_error());
+         mysqli_query($conn,"UPDATE zaidejai SET gynyba=gynyba+'$gynnoo' WHERE nick='$nick' ");
+           mysqli_query($conn,"UPDATE inv SET jball=jball-'7' WHERE nick='$nick'")or die(mysqli_error());
 	}
 		   elseif($co == 3){
          echo '<div class="meniuc">Jūsų noras išpildytas! Gavai 20 Bitcoins!</div>';
 
-         mysql_query("UPDATE zaidejai SET gynyba=gynyba+'$gynnoo' WHERE nick='$nick' ");
-		    mysql_query("UPDATE zaidejai SET bitcoin=bitcoin+'20' WHERE nick='$nick' ");
-           mysql_query("UPDATE inv SET jball=jball-'7' WHERE nick='$nick'")or die(mysql_error());
+         mysqli_query($conn,"UPDATE zaidejai SET gynyba=gynyba+'$gynnoo' WHERE nick='$nick' ");
+		    mysqli_query($conn,"UPDATE zaidejai SET bitcoin=bitcoin+'20' WHERE nick='$nick' ");
+           mysqli_query($conn,"UPDATE inv SET jball=jball-'7' WHERE nick='$nick'")or die(mysqli_error());
            
       }
 elseif($co == 4){
          echo '<div class="meniuc">Jūsų noras išpildytas! Gavai 100 '.$eurui.' !</div>';
 
-         mysql_query("UPDATE zaidejai SET gynyba=gynyba+'$gynnoo' WHERE nick='$nick' ");
-		    mysql_query("UPDATE zaidejai SET sms_litai=sms_litai+'100' WHERE nick='$nick' ");
-           mysql_query("UPDATE inv SET jball=jball-'7' WHERE nick='$nick'")or die(mysql_error());
+         mysqli_query($conn,"UPDATE zaidejai SET gynyba=gynyba+'$gynnoo' WHERE nick='$nick' ");
+		    mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai+'100' WHERE nick='$nick' ");
+           mysqli_query($conn,"UPDATE inv SET jball=jball-'7' WHERE nick='$nick'")or die(mysqli_error());
            
       } 
 

@@ -53,9 +53,9 @@ $gaus[5] = array("vipticket","10000","15000","$vipt");
 			$duoda = rand($min,$max);
        echo' <div class="meniuc"><img src=img/imgg/pavasario.png border="1" width="180" height="90"><alt="**"></div>';   
   echo '<div class="meniuc">Pasiėmei <img src="img/boxes/eventp.png">prizą ir gavai <b>'.sk($duoda).'</b> '.$ko.' <b></div>';
-            mysql_query("UPDATE zaidejai SET $statusas=$statusas+'$duoda' WHERE nick='$nick' ");
-       mysql_query("UPDATE inv SET $statusas=$statusas+'$duoda' WHERE nick='$nick' ");
-        mysql_query("UPDATE inv SET event1=event1-'250', event2=event2-'250', event3=event3-'250', event4=event4-'250' WHERE nick='$nick'");
+            mysqli_query($conn,"UPDATE zaidejai SET $statusas=$statusas+'$duoda' WHERE nick='$nick' ");
+       mysqli_query($conn,"UPDATE inv SET $statusas=$statusas+'$duoda' WHERE nick='$nick' ");
+        mysqli_query($conn,"UPDATE inv SET event1=event1-'250', event2=event2-'250', event3=event3-'250', event4=event4-'250' WHERE nick='$nick'");
        }
      $g_n[] = array("pagrindinis.php?id=","Pagrindinis", "Vasaros eventas");
 	navigacija($g_n);
@@ -134,7 +134,7 @@ echo' <div class="meniuc"><img src=img/imgg/pavasario.png border="1" width="180"
 	              echo '<div class="meniuc">Atlikta! Išsikeitei sėkmingai!<br>Praradai '.$kainn.' <b><img src="img/boxes/1.png">Rožių</b>, Gavai '.$kiekv.' <b><img src="img/boxes/2.png">Lapelių</b>!</div>';
 	             
 	              
-				   mysql_query("UPDATE inv SET event1=event1-'$kainn', event2=event2+'$kiekv' WHERE nick='$nick' ");
+				   mysqli_query($conn,"UPDATE inv SET event1=event1-'$kainn', event2=event2+'$kiekv' WHERE nick='$nick' ");
 			  }   
 		 }$g_n[] = array("pagrindinis.php?id=","Pagrindinis","event.php?id=keiciu1","Atgal","Rožių keitime");
 	navigacija($g_n);
@@ -191,7 +191,7 @@ echo' <div class="meniuc"><img src=img/imgg/pavasario.png border="1" width="180"
 	              echo '<div class="meniuc">Atlikta! Išsikeitei sėkmingai!<br>Praradai '.$kainn.' <b><img src="img/boxes/2.png">Lapelių</b>, Gavai '.$kiekv.' <b><img src="img/boxes/3.png">Vyšnių</b>!</div>';
 	             
 	              
-				   mysql_query("UPDATE inv SET event2=event2-'$kainn', event3=event3+'$kiekv' WHERE nick='$nick' ");
+				   mysqli_query($conn,"UPDATE inv SET event2=event2-'$kainn', event3=event3+'$kiekv' WHERE nick='$nick' ");
 			  }   
 		 }$g_n[] = array("pagrindinis.php?id=","Pagrindinis","event.php?id=keiciu1","Atgal","Lapelių keitime");
 	navigacija($g_n);
@@ -247,7 +247,7 @@ echo' <div class="meniuc"><img src=img/imgg/pavasario.png border="1" width="180"
 	              echo '<div class="meniuc">Atlikta! Išsikeitei sėkmingai!<br>Praradai '.$kainn.' <b><img src="img/boxes/3.png">Vyšnių</b>, Gavai '.$kiekv.' <b><img src="img/boxes/4.png">Drugelių</b>!</div>';
 	             
 	              
-				   mysql_query("UPDATE inv SET event3=event3-'$kainn', event4=event4+'$kiekv' WHERE nick='$nick' ");
+				   mysqli_query($conn,"UPDATE inv SET event3=event3-'$kainn', event4=event4+'$kiekv' WHERE nick='$nick' ");
 			  }   
 		 }$g_n[] = array("pagrindinis.php?id=","Pagrindinis","event.php?id=keiciu1","Atgal","Vyšnių keitime");
 	navigacija($g_n);
@@ -304,7 +304,7 @@ echo' <div class="meniuc"><img src=img/imgg/pavasario.png border="1" width="180"
 	              echo '<div class="meniuc">Atlikta! Išsikeitei sėkmingai!<br>Praradai '.$kainn.' <b><img src="img/boxes/4.png">Drugelių</b>, Gavai '.$kiekv.' <b><img src="img/boxes/1.png">Rožių</b>!</div>';
 	             
 	              
-				   mysql_query("UPDATE inv SET event4=event4-'$kainn', event1=event1+'$kiekv' WHERE nick='$nick' ");
+				   mysqli_query($conn,"UPDATE inv SET event4=event4-'$kainn', event1=event1+'$kiekv' WHERE nick='$nick' ");
 			  }   
 		 }$g_n[] = array("pagrindinis.php?id=","Pagrindinis","event.php?id=keiciu1","Atgal","Drugelių keitime");
 	navigacija($g_n);
