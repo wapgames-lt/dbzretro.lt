@@ -80,8 +80,8 @@ echo'
         echo '<div class="title">';
         while($rr = mysqli_fetch_assoc($q)){
 			$nr++;
-			 	 	if($apie[statusas] == 'Admin' or $apie[statusas] == 'Mod' or $apie[statusas] == 'Mod2' or $apie[statusas] == 'Mod3' or $apie[statusas] == 'Mod4'){ $goo = '<a href="pagrindinis.php?id=delete&ka='.$rr['id'].'"><small>[x]</small></a>';}
-			echo '<b>'.$nr.'.</b> <a href="pagrindinis.php?id=apie&ka='.$rr['nick'].'"><b>'.statusas($rr['nick']).'</b></a> - '.smile($rr['sms']).' <small>('.lai($rr['data']).')</small>';
+			 	 	if($apie['statusas'] == 'Admin' or $apie['statusas'] == 'Mod' or $apie['statusas'] == 'Mod2' or $apie['statusas'] == 'Mod3' or $apie['statusas'] == 'Mod4'){ $goo = '<a href="pagrindinis.php?id=delete&ka='.$rr['id'].'"><small>[x]</small></a>';}
+			echo ' <a href="pagrindinis.php?id=apie&ka='.$rr['nick'].'"><b>'.statusas($rr['nick']).'</b></a> - '.smile($rr['sms']).' <small>('.lai($rr['data']).')</small>';
 			echo ' <a href="?id=&ka='.$rr['nick'].'#"><small>[A]</small></a>'.$goo.'<br />';
       
 	    }

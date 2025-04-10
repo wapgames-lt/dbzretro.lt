@@ -1227,7 +1227,7 @@ echo '
                     if (in_array($apie['statusas'], ['Admin', 'Mod', 'Mod2', 'Mod3', 'Mod4', 'Kurejas'])) {
                         $goo = '<a href="?id=delete&ka=' . $rr['id'] . '"><small>[x]</small></a>';
                     }
-                    echo '<b>' . $nr . '.</b> <a href="?id=apie&ka=' . $rr['nick'] . '"><b>' . statusas($rr['nick']) . '</b></a> -';
+                    echo '<a href="?id=apie&ka=' . $rr['nick'] . '"><b>' . statusas($rr['nick']) . '</b></a> -';
                     if ($apie['statusas'] == 'Žaidėjas') {
                         echo ' <font color="white">' . smile($rr['sms']) . '</font>';
                     } elseif ($apie['statusas'] == 'Kurejas') {
@@ -2464,7 +2464,7 @@ if ($id == 'inventorius') {
             echo " Tuščia<br/>";
         } else {
             while ($komentarai = mysqli_fetch_assoc($mquery)) {
-                echo ++$nr . '. <a href="?id=apie&ka=' . $komentarai['kas2'] . '">' . statusas($komentarai['kas2']) . '</a>: ' . smile($komentarai['komentaras']) . ' <small>[' . $komentarai['laikas'] . ']</small><a href="?id=kom_del&ka=' . $nick . '&ID=' . $komentarai[id] . '">[x]</a><br/>';
+                echo ' <a href="?id=apie&ka=' . $komentarai['kas2'] . '">' . statusas($komentarai['kas2']) . '</a>: ' . smile($komentarai['komentaras']) . ' <small>[' . $komentarai['laikas'] . ']</small><a href="?id=kom_del&ka=' . $nick . '&ID=' . $komentarai[id] . '">[x]</a><br/>';
             }
         }
         echo '
@@ -2506,7 +2506,7 @@ if ($id == 'inventorius') {
             echo " Tuščia<br/>";
         } else {
             while ($komentarai = mysqli_fetch_assoc($mquery)) {
-                echo ++$nr . ". <a href='?id=apie&ka=" . $komentarai['kas2'] . "'>" . statusas($komentarai['kas2']) . "</a>: " . smile($komentarai['komentaras']) . " <small>[" . $komentarai['laikas'] . "]</small>
+                echo ". <a href='?id=apie&ka=" . $komentarai['kas2'] . "'>" . statusas($komentarai['kas2']) . "</a>: " . smile($komentarai['komentaras']) . " <small>[" . $komentarai['laikas'] . "]</small>
                             <br/>";
             }
         }
