@@ -1,9 +1,9 @@
 <?php
 
-namespace LegacyDbz\Skills\Repositories;
+namespace LegacyDbz\Players\Repositories;
 
 use LegacyDbz\Core\Collection;
-use LegacyDbz\Skills\DTO\PlayerSkill;
+use LegacyDbz\Players\DTO\PlayerSkill;
 
 class PlayerSkillsRepository
 {
@@ -21,5 +21,19 @@ class PlayerSkillsRepository
         }
 
         return new Collection($buffsArray);
+    }
+
+    public function getActive($playerId)
+    {
+        $playerBuffsQuery = mysql_query("SELECT skill_id, player_id, icon, name, description, category, power, ends_at, cooldown FROM player_skills JOIN skills ON player_skills.skill_id = skills.id WHERE player_id = '$playerId'
+                                                        AND ends_at > NOW()
+                                                        ORDER BY ends_at");
+        $skills = [];
+        while ($skill = mysql_fetch_assoc($playerBuffsQuery)) {
+            $playerSkill = PlayerSkill::fromArray($skill);
+            $skills[] = $playerSkill;
+        }
+
+        return new Collection($skills);
     }
 }

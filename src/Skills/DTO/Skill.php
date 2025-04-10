@@ -19,6 +19,8 @@ class Skill
         self::BUFF_NAME_CROSS_OF_BLOOD,
     ];
 
+    const CATEGORY_BUFF = 'buff';
+
     private $id;
 
     private $name;

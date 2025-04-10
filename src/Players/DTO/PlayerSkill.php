@@ -1,8 +1,9 @@
 <?php
 
-namespace LegacyDbz\Skills\DTO;
+namespace LegacyDbz\Players\DTO;
 
 use DateTime;
+use LegacyDbz\Skills\DTO\Skill;
 
 class PlayerSkill
 {

@@ -5,17 +5,16 @@
  */
 
 use LegacyDbz\Core\Collection;
-use LegacyDbz\Skills\DTO\PlayerSkill;
+use LegacyDbz\Players\DTO\PlayerSkill;
+use LegacyDbz\Players\Repositories\PlayerSkillsRepository;
+use LegacyDbz\Players\Services\CurrentPlayer;
 use LegacyDbz\Skills\DTO\Skill;
-use LegacyDbz\Skills\Repositories\PlayerSkillsRepository;
 
 include_once 'parts/head.php';
 include_once '../config/boss-config.php';
 include_once '../config/settings.php';
 
-$playerSkillsRepository = new PlayerSkillsRepository();
-/** @var PlayerSkill[]|Collection $playerActiveBuffs */
-$playerActiveBuffs = $playerSkillsRepository->getActiveBuffs($apie['id'], Skill::JUNGLE_KING_BOSSES_BUFFS);
+$playerActiveBuffs = CurrentPlayer::get()->getActiveJungleKingBosBuffs();
 
 $newMissions = mysql_num_rows(mysql_query("SELECT * FROM jungle_king_bosses WHERE user_id = $apie[id] AND (status = 'alive' OR status = 'prepared') AND DATE(created_at) = '$date'"));
 $completedMissions = mysql_num_rows(mysql_query("SELECT * FROM jungle_king_bosses WHERE user_id = $apie[id] AND status = 'dead' AND DATE(created_at) = '$date'"));

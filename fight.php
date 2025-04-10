@@ -1,8 +1,9 @@
 <?php
 
-use LegacyDbz\Skills\DTO\PlayerSkill;
+use LegacyDbz\Players\DTO\PlayerSkill;
+use LegacyDbz\Players\Repositories\PlayerSkillsRepository;
+use LegacyDbz\Players\Services\CurrentPlayer;
 use LegacyDbz\Skills\DTO\Skill;
-use LegacyDbz\Skills\Repositories\PlayerSkillsRepository;
 
 ob_start();
 
@@ -15,9 +16,7 @@ baneris();
 
 topbar();
 
-$playerSkillsRepository = new PlayerSkillsRepository();
-/** @var PlayerSkill[]|\LegacyDbz\Core\Collection $playerActiveBuffs */
-$playerActiveBuffs = $playerSkillsRepository->getActiveBuffs($apie['id'], Skill::FIGHT_ZONE_BUFFS);
+$playerActiveBuffs = CurrentPlayer::get()->getActiveFightZoneBuffs();
 
 if (empty($apie[kovos])) {
 
@@ -1012,9 +1011,7 @@ Nukovėte ' . $mob['name'] . '
                             echo '<div class="health-bar-fill" style="width: ' . $healthPercentage . '%;"></div>';
                             echo '<div class="bar-text">' . round($healthPercentage) . '%</div>';
                             echo '</div>';
-                            $divineProsperityBuff = $playerActiveBuffs->first(function (PlayerSkill $playerSkill) {
-                                return $playerSkill->skill()->name() === Skill::BUFF_NAME_DIVINE_PROSPERITY;
-                            });
+                            $divineProsperityBuff = CurrentPlayer::get()->getFirstActiveFightZoneBuff(Skill::BUFF_NAME_DIVINE_PROSPERITY);
                             if ($divineProsperityBuff) {
                                 echo '<br>';
                                 echo 'Nepraradote gyvybių, dėl ' . $divineProsperityBuff->skill()->name() . ' buff';
@@ -1261,9 +1258,7 @@ Turite: <img src="img/bicons/exp.png" />
                             echo '
 <div class="meniuc">';
 
-                            $moneyBuff = $playerActiveBuffs->first(function (PlayerSkill $playerSkill) {
-                                return $playerSkill->skill()->name() === Skill::BUFF_NAME_MONEY_DROP;
-                            });
+                            $moneyBuff = CurrentPlayer::get()->getFirstActiveFightZoneBuff(Skill::BUFF_NAME_MONEY_DROP);
                             if ($moneyBuff) {
                                 $mob['pin'] *= $moneyBuff->skill()->power();
                             }

@@ -2,14 +2,16 @@
 
 namespace LegacyDbz\Players\DTO;
 
+use LegacyDbz\Core\Collection;
 use LegacyDbz\Players\Repositories\InventoryRepository;
+use LegacyDbz\Players\Repositories\PlayerSkillsRepository;
 use LegacyDbz\Players\Traits\CharacterTrait;
 use LegacyDbz\Players\Traits\InventoryTrait;
+use LegacyDbz\Players\Traits\PlayerSkillTrait;
 
 class Player
 {
-    use CharacterTrait;
-    use InventoryTrait;
+    use CharacterTrait, InventoryTrait, PlayerSkillTrait;
 
     private $id;
 
@@ -25,19 +27,26 @@ class Player
     private $inventory;
 
     /**
+     * @var Collection|PlayerSkill[]
+     */
+    private $activeSkills;
+
+    /**
      * @param $id
-     * @param $username
+     * @param $nick
      * @param $ip
      * @param $character
      * @param Inventory $inventory
+     * @param Collection|PlayerSkill[] $activeSkills
      */
-    public function __construct($id, $username, $ip, $character, $inventory)
+    public function __construct($id, $nick, $ip, $character, Inventory $inventory, $activeSkills)
     {
         $this->id = $id;
-        $this->nick = $username;
+        $this->nick = $nick;
         $this->ip = $ip;
         $this->character = $character;
         $this->inventory = $inventory;
+        $this->activeSkills = $activeSkills;
     }
 
 
@@ -78,17 +87,29 @@ class Player
         return $this->inventory;
     }
 
+    /**
+     * @return Collection|PlayerSkill[]
+     */
+    public function activeSkills()
+    {
+        return $this->activeSkills;
+    }
+
     public static function fromArray(array $data)
     {
         $inventoryRepository = new InventoryRepository();
         $inventory = $inventoryRepository->findByNick($data['nick']);
+        $playerSkillsRepository = new PlayerSkillsRepository();
+        /** @var PlayerSkill[]|Collection $skills */
+        $activeSkills = $playerSkillsRepository->getActive($data['id']);
 
         return new self(
             $data['id'],
             $data['nick'],
             $data['ip'],
             $data['veikejas'],
-            $inventory
+            $inventory,
+            $activeSkills
         );
     }
 }
