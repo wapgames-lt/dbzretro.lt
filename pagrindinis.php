@@ -1164,7 +1164,7 @@ echo '
                 mysqli_query($conn,"INSERT INTO pokalbiai SET nick='$nick', sms='$zin', data='" . time() . "'");
                 include 'snekute.php';
             }
-            if ($apie['pliusaib'] - time() < 0) {
+            if ((int) $apie['pliusaib'] - time() < 0) {
                 mysqli_query($conn,"UPDATE zaidejai SET chate=chate+1, pliusai=pliusai+5 WHERE nick='$nick'");
                 echo '<script>document.location="?id=#"</script>';
             }
@@ -1177,23 +1177,29 @@ echo '
         $apie = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM zaidejai WHERE nick='$nick'"));
 
         if ($apie['minichatas'] != 1) {
-            echo '<div class="meniuc">
-            <form action="?id=&ka=rasyti#" method="post" style="text-align:center;">
-            <textarea name="zinute" cols="25" rows="2" placeholder="Bendraujam :)" required>' . $ats . '</textarea><br />
-            <div class="line"></div>
-            <input type="submit" value="Rašyti" style="cursor: pointer;">
-            </form></div>
-            <div class="l"></div>
-            <div class="title">';
+            echo '
+            <form action="?id=&ka=rasyti#" method="post">
+                <div class="chat-input-container">
+                    <textarea class="chat-textarea" name="zinute" placeholder="Rašyk savo žinutę čia..." required><center>' . $ats . '</center></textarea>
+                    <div class="chat-controls">
+                        <button type="submit" class="chat-send-button">
+                            <i class="fa-duotone fa-paper-plane-top"></i> Siųsti
+                        </button>
+                    </div>
+                </div>
+            </form>';
         } else {
-            echo '<div class="meniuc">
-            <form action="?id=&ka=rasyti#" method="post" style="text-align:center;">
-            <textarea name="zinute" cols="25" rows="2" placeholder="Bendraujam :)" required>' . $ats . '</textarea><br />
-            <div class="line"></div>
-            <input type="submit" value="Rašyti" style="cursor: pointer;">
-            </form></div>
-            <div class="l"></div>
-            <div class="title">';
+            echo '
+<div class="chat-input-container">
+            <textarea class="chat-textarea" id="minichatzin" name="zinute" placeholder="Rašyk savo žinutę čia...">' . $ats . '</textarea>
+            <input id="minichatusername" name="nick" style="display:none;" readonly />
+            <div class="chat-controls">
+                <button type="button" onclick="minichatwrite()" class="chat-send-button" style="margin:0 auto; display:block;">
+                    <i class="fa-duotone fa-paper-plane-top"></i> Siųsti
+                </button>
+            </div>
+            </div>';
+            echo '</div><div class="title">';
         }
 
         mysqli_query($conn,"DELETE FROM pokalbiai WHERE expired_at < NOW()");

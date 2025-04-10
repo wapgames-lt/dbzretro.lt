@@ -4,7 +4,7 @@ namespace LegacyDbz\Core;
 
 class Collection
 {
-    protected $items;
+    private array $items;
 
     public function __construct(array $items = [])
     {

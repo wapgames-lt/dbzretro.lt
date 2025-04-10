@@ -8,7 +8,7 @@ include_once 'cfg/funkcijos.php';
  $statusai = array("Mod","Mod2","Mod3","Mod4","Admin");
 $zin =post($_GET['zinute']);
 
-$nick = $_COOKIE[vardas];
+$nick = $_COOKIE['vardas'];
         if(empty($zin)){
             echo '<font color="red">Tuščia žinutė!</font><br/>';}
 
@@ -19,7 +19,7 @@ $nick = $_COOKIE[vardas];
  echo '<div class="meniuc"><b>Klaida!</b> Tu esi užtildytas!</div>';
 
 }
-			  elseif($apie[veiksmai] < 4999 && !in_array($apie['statusas'], ['Kurejas', 'Admin'])){
+			  elseif($apie['veiksmai'] < 4999 && !in_array($apie['statusas'], ['Kurejas', 'Admin'])){
                echo '<font color="red">Rašyti galima nuo 5000 laimėtų kovų</font><br/>';
             }
 			
@@ -33,7 +33,7 @@ echo 'Antiflood!! rašyti galesi už <b>'.laikas($_SESSION['chet']-time(), 1).' 
 
         } 
 		
-		elseif(apsas($zin) == apsas('/clean') AND in_array($apie[statusas],$statusai)){
+		elseif(apsas($zin) == apsas('/clean') AND in_array($apie['statusas'],$statusai)){
 			
 			mysqli_query($conn,"TRUNCATE pokalbiai");
 		   mysqli_query($conn,"INSERT INTO pokalbiai SET nick='".$nick."', sms='Išvaliau pokalbius :)', data='".time()."'");	

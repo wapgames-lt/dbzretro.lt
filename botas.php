@@ -36,31 +36,31 @@ if($id == ""){
 
 
 
-if($apie['botas5x']-time() > 0){
+if((int)$apie['botas5x']-time() > 0){
 echo'
 '.$ico.' <a href="?id=botas5x">Daugiau 
  <img src="img/bicons/pinigai.png" /> ,  <img src="img/bicons/exp.png" /> </a>';
     if($apie['botas5x']-time() > 0){
 echo'
-(<font color="green"><b>'.laikas($apie["botas5x"]-time(), 1).'</b></font>)<br>';
+(<font color="green"><b>'.laikas((int)$apie["botas5x"]-time(), 1).'</b></font>)<br>';
 }
 }
-if($apie['botas5x']-time() < 0){
+if((int)$apie['botas5x']-time() < 0){
 echo'
 '.$ico.' <a href="?id=botas5x">Daugiau 
  <img src="img/bicons/pinigai.png" /> ,  <img src="img/bicons/exp.png" /> </a>(<font color="red"><b>Neužsakyta</b></font>)<br>';
 
 }
-if($apie['20xpin']-time() > 0){
+if((int)$apie['20xpin']-time() > 0){
 echo'
 '.$ico.' <a href="?id=botas20x">Daugiau 
  <img src="img/bicons/pinigai.png" /> ,  <img src="img/bicons/exp.png" /> </a>';
-    if($apie['20xpin']-time() > 0){
+    if((int)$apie['20xpin']-time() > 0){
 echo'
 (<font color="green"><b>'.laikas($apie["20xpin"]-time(), 1).'</b></font>)<br>';
 }
 }
-if($apie['20xpin']-time() < 0){
+if((int)$apie['20xpin']-time() < 0){
 echo'
 '.$ico.' <a href="?id=botas20x">Daugiau 20x
  <img src="img/bicons/pinigai.png" /> ,  <img src="img/bicons/exp.png" /> </a>(<font color="red"><b>Neužsakyta</b></font>)<br>';
