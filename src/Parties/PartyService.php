@@ -22,9 +22,7 @@ class PartyService
         Db::beginTransaction();
 
         try {
-            $playerId = $player->id();
-
-            $party = new Party(null, $playerId, $name, null);
+            $party = new Party(null, $player->id(), $name, null);
             $this->partiesRepository->save($party);
 
             $inventory = $player->inventory();
