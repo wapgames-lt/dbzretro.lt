@@ -11,7 +11,7 @@ include_once('cfg/limit.php');
 $id = isset($_GET['id']) ? preg_replace("/[^A-Za-z0-9_ ]/", '', $_GET['id']) : null;
 
 if ($id === 'referral') {
-	$siteApiKey = '33aa35a1-46f6-4666-8a1c-0ec30500240a';
+	$siteApiKey = getenv('WAP_GAMES_API_KEY');
 
 	$apiKey = isset($_GET['api_key']) ? preg_replace("/[^A-Za-z0-9- ]/", '', $_GET['api_key']) : null;
 	if (!$apiKey) {

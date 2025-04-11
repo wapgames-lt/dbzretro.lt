@@ -21,7 +21,7 @@ class Inventory
     /**
      * @var array Stores original values for dirty checking
      */
-    private $original = [];
+    private array $original = [];
 
     /**
      * @param $id

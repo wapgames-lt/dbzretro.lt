@@ -10,38 +10,22 @@ use LegacyDbz\Skills\DTO\Skill;
 
 trait PlayerSkillTrait
 {
-    /**
-     * @param string $name
-     *
-     * @return PlayerSkill|null
-     */
-    public function getFirstActiveFightZoneBuff($name)
+    public function getFirstActiveFightZoneBuff(string $name): ?PlayerSkill
     {
         return $this->getFirstActiveBuffByNameAndList($name, Skill::FIGHT_ZONE_BUFFS);
     }
 
-    /**
-     * @return Collection
-     */
-    public function getActiveFightZoneBuffs()
+    public function getActiveFightZoneBuffs(): Collection
     {
         return $this->getActiveBuffsByList(Skill::FIGHT_ZONE_BUFFS);
     }
 
-    /**
-     * @param string $name
-     *
-     * @return PlayerSkill|null
-     */
-    public function getFirstActiveJungleKingBosBuff($name)
+    public function getFirstActiveJungleKingBosBuff(string $name): ?PlayerSkill
     {
         return $this->getFirstActiveBuffByNameAndList($name, Skill::JUNGLE_KING_BOSSES_BUFFS);
     }
 
-    /**
-     * @return Collection
-     */
-    public function getActiveJungleKingBosBuffs()
+    public function getActiveJungleKingBosBuffs(): Collection
     {
         return $this->getActiveBuffsByList(Skill::JUNGLE_KING_BOSSES_BUFFS);
     }

@@ -16,7 +16,7 @@ class Logger
     public static function getLogger(): MonologLogger
     {
         if (self::$logger === null) {
-            self::$logger = new MonologLogger('app_logger');
+            self::$logger = new MonologLogger(getenv('APP_NAME'));
 
             $dateFormat = 'Y-m-d H:i:s.v';
             $output = "[%datetime%] %channel%.%level_name%: %message% %context% %extra%\n";
@@ -30,28 +30,35 @@ class Logger
         return self::$logger;
     }
 
-    public static function logWarning(string $message): void
+    public static function logWarning(string $message, array $context = []): void
     {
-        self::getLogger()->warning($message);
+        self::getLogger()->warning($message, array_merge(self::getDefaultContext(), $context));
     }
 
-    public static function logError(string $message): void
+    public static function logError(string $message, array $context = []): void
     {
-        self::getLogger()->error($message);
+        self::getLogger()->error($message, array_merge(self::getDefaultContext(), $context));
     }
 
-    public static function logInfo(string $message): void
+    public static function logInfo(string $message, array $context = []): void
     {
-        self::getLogger()->info($message);
+        self::getLogger()->info($message, array_merge(self::getDefaultContext(), $context));
     }
 
-    public static function logDebug(string $message): void
+    public static function logDebug(string $message, array $context = []): void
     {
-        self::getLogger()->debug($message);
+        self::getLogger()->debug($message, array_merge(self::getDefaultContext(), $context));
     }
 
-    public static function logCritical(string $message): void
+    public static function logCritical(string $message, array $context = []): void
     {
-        self::getLogger()->critical($message);
+        self::getLogger()->critical($message, array_merge(self::getDefaultContext(), $context));
+    }
+
+    private static function getDefaultContext(): array
+    {
+        return [
+            'ip' => $_SERVER['REMOTE_ADDR'] ?? 'unknown',
+        ];
     }
 }

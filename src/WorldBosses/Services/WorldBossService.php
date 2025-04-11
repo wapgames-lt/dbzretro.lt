@@ -586,7 +586,7 @@ class WorldBossService
         return $filteredBossList[$randomKey];
     }
 
-    private function getBossConfigById($bossId)
+    private function getBossConfigById(int $bossId)
     {
         foreach ($this->bossList as $boss) {
             if ((int)$boss['id'] === $bossId) {

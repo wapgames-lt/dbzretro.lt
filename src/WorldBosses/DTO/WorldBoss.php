@@ -21,7 +21,7 @@ class WorldBoss
      * @param $startsAt
      * @param $endsAt
      */
-    public function __construct(private $id, private $bossId, private $firstHitPlayerId, private $lastHitPlayerId, private $health, private $damageType, private $switchDamageAt, private $freezeEndsAt, private $startsAt, private $endsAt)
+    public function __construct(private readonly int $id, private $bossId, private $firstHitPlayerId, private $lastHitPlayerId, private $health, private $damageType, private $switchDamageAt, private $freezeEndsAt, private $startsAt, private $endsAt)
     {
     }
 
@@ -29,7 +29,7 @@ class WorldBoss
     /**
      * @return int
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
