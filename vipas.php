@@ -736,7 +736,7 @@ if($id == 'vip1'){
 		elseif($apie[cash] < 0){
 		 echo '<div class="meniuc">Nepakanka  <img src="img/bicons/cash.png" />!</div>';
 	}
-	elseif($apie[sms_litai] < 1000){
+	elseif($apie['sms_litai'] < 1000){
 		echo '<div class="meniuc">Nepakanka  <img src="img/bicons/euro.png" />!</div>';
 	}
 elseif((int)$apie['vip']-time() > 0){
@@ -1814,7 +1814,7 @@ echo'<div class="up">'.$ico.' Ultimate VIP Pirkimas</div>
 if($id == 'uvip2'){
 	top('Ultimate VIP Pirkimas');
 	online('Ultimate VIP Pirkime');
-	if($apie[sms_litai] < 399){
+	if($apie['sms_litai'] < 399){
 		 echo '<div class="meniuc">Nepakanka  <img src="img/bicons/euro.png" />!</div>';
 	}
 elseif($apie[uvip]-time() > 0){

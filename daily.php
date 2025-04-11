@@ -313,7 +313,7 @@ if($id == 'aukojupin'){
 	
 	
 	$row = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM daily WHERE nick='$nick'"));
-	if($apie[litai] < 999999999){
+	if($apie['litai'] < 999999999){
 				echo"<div class='meniuc'>Nepakanka '.$pinigaii.' !</div>";
 			
 }			
@@ -344,7 +344,7 @@ if($id == 'turiueur'){
 	
 			$row = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM daily WHERE nick='$nick'"));
 	
-	if($apie[sms_litai] < 19){
+	if($apie['sms_litai'] < 19){
 				echo"<div class='meniuc'>Nepakanka '.$eurui.' !</div>";
 			
 }			
@@ -454,7 +454,7 @@ if($id == 'aukojupin2'){
 	
 	
 	$row = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM daily WHERE nick='$nick'"));
-	if($apie[litai] < 4999999999){
+	if($apie['litai'] < 4999999999){
 				echo"<div class='meniuc'>Nepakanka '.$pinigaii.' !</div>";
 			
 }			
@@ -488,7 +488,7 @@ if($id == 'turiueur2'){
 	
 			$row = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM daily WHERE nick='$nick'"));
 	
-	if($apie[sms_litai] < 49){
+	if($apie['sms_litai'] < 49){
 				echo"<div class='meniuc'>Nepakanka '.$eurui.' !</div>";
 			
 }			

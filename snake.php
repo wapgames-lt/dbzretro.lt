@@ -34,7 +34,7 @@ echo '<div class="meniuc"><img src=img/img/gyvate.png border="1" width="180" hei
 	if($id == "uzbegimas"){
     online('Gyvatės kelias');
   top('Gyvatės kelias');
-if($apie[sms_litai] < 99){
+if($apie['sms_litai'] < 99){
 echo '<div class="meniuc"><img src="img/img/gyvate.png" border="1"></div>';
 echo '<div class="meniuc">Neturite pakankamai '.$eurui.' '; $g_n[] = array("pagrindinis.php?id=","Pagrindinis","snake.php?id=","Atgal","Gyvatės kelias");
 echo'</div>';

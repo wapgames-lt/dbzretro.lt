@@ -1836,7 +1836,7 @@ $pris = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM online WHERE nick='
 if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM arena WHERE nick='$nick'")) && $pris['vieta'] != 'Arenoje')
 {
 	//mysqli_query($conn,"UPDATE zaidejai SET litai='0' WHERE nick='$nick'");
-//	mysqli_query($conn,"UPDATE zaidejai SET litai=litai+'$apie[litai]' WHERE nick ='$kkk[vs]'");
+//	mysqli_query($conn,"UPDATE zaidejai SET litai=litai+'$apie['litai']' WHERE nick ='$kkk[vs]'");
 $zin = '<b>'.$nick.'</b> Pabėgo iš arenos';
 		 mysqli_query($conn,"INSERT INTO arenos_log SET msg='$zin'");
 mysqli_query($conn,"TRUNCATE arena");

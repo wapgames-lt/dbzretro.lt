@@ -82,7 +82,7 @@ if(isset($_POST['submit'])){
 		
 		if(empty($kiek)){
             echo '<div class="meniuc">Sėkmingai padėjai visus pinigus į banką!</div>';
-			mysqli_query($conn,"UPDATE zaidejai SET b_zenu=b_zenu+'$apie[litai]', litai='0' WHERE nick='$nick' ");
+			mysqli_query($conn,"UPDATE zaidejai SET b_zenu=b_zenu+'$apie['litai']', litai='0' WHERE nick='$nick' ");
         }
         elseif ($klaida != ""){
             echo '<div class="meniuc">'.$klaida.'</div>';

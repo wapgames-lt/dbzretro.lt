@@ -3851,7 +3851,7 @@ if($id == 'rinkkkktis'){
     if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM veikejai WHERE name='$ka'")) == 0){
   
         echo '<div class="meniuc">Tokio veikėjo nėra!</div>';}
-	elseif($apie[sms_litai] < 100){
+	elseif($apie['sms_litai'] < 100){
 		  echo '<div class="meniuc">Nepakanka litų</div>';}
 	
 	elseif($apie[keite_veikejai] > 2){
@@ -3885,7 +3885,7 @@ if($id =='secret'){
 }
 if($id =='secret2'){
 			top('Informacijos užslaptinimas');
-	if($apie[sms_litai] < 1000){
+	if($apie['sms_litai'] < 1000){
 		echo'<div class="meniuc">Nepakanka  <img src="img/bicons/euro.png" />!</div>';
 	}
 	elseif($user[secret]-time() > 0){
@@ -3927,7 +3927,7 @@ if($id =='team2'){
 		
 		echo'<div class="meniuc">Tokios komandos nėra</div>';
 	}
-	elseif($apie[sms_litai] < 5){
+	elseif($apie['sms_litai'] < 5){
 		echo'<div class="meniuc">Nepakanka  <img src="img/bicons/euro.png" />!</div>';
 	}
 	
@@ -4033,7 +4033,7 @@ function resolveVipPriceInEuro(){
 if($id =='vip_privilegija1'){
 	top('VIP Privilegijos pirkimas');
 	$price = resolveVipPriceInEuro();
-if($apie[sms_litai] < $price){
+if($apie['sms_litai'] < $price){
 	echo '<div class="meniuc">Nepakanka  <img src="img/bicons/euro.png" />!</div>';
 }
 elseif((int)$apie['vip']-time() > 0){

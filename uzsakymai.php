@@ -124,7 +124,7 @@ if($id == 'uzsakymas2'){
 		
 	}
 	
-	elseif($apie[litai] < $atlygis){
+	elseif($apie['litai'] < $atlygis){
 		$error = 'Nepakanka pinigų';
 		
 	}

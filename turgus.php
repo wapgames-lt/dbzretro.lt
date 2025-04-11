@@ -72,7 +72,7 @@ if($id == 'ideti2'){
 	top('Prekės idėjimas');
 	$kiek = isset($_POST['kiek']) ? preg_replace("/[^0-9]/","",$_POST['kiek'])  : null;
 	$kaina = isset($_POST['kaina']) ? preg_replace("/[^0-9]/","",$_POST['kaina'])  : null;
-	if($kiek > $apie[sms_litai]){
+	if($kiek > $apie['sms_litai']){
 	$klaida = 'Nepakanka turimų eurų!';	
 		
 	}
@@ -107,7 +107,7 @@ $apie_pr = mysqli_fetch_array(mysqli_query($conn,"SELECT * FROM turgus WHERE id=
 	elseif($apie_pr['nick'] == $nick){
 		$klaida = 'Savo prekės pirkti negalima';
 	}
-	elseif($apie_pr[kiekis] > $apie[litai]){
+	elseif($apie_pr['kiekis'] > $apie['litai']){
 		$klaida = 'Tau nepakanka pinigų';
 	}else{
 		$zinute = "Tavo preke turgelije nupirko $nick";

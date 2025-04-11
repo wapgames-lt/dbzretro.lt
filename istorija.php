@@ -211,7 +211,7 @@ echo'<div class="meniuc">
 }
 }	
 if($apie[istorija] == 4){
-if($apie[sms_litai] < 99 ){
+if($apie['sms_litai'] < 99 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -357,7 +357,7 @@ echo'<div class="meniuc">
 }
 }	
 if($apie[istorija] == 14){
-if($apie[sms_litai] < 199 ){
+if($apie['sms_litai'] < 199 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -920,7 +920,7 @@ echo'<div class="meniuc">
 }
 }	
 if($apie[istorija] == 54){
-if($apie[sms_litai] < 9999 ){
+if($apie['sms_litai'] < 9999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -1066,7 +1066,7 @@ echo'<div class="meniuc">
 }
 }	
 if($apie[istorija] == 64){
-if($apie[sms_litai] < 19999 ){
+if($apie['sms_litai'] < 19999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">

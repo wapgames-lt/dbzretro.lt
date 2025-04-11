@@ -123,7 +123,7 @@ if($id == ""){
  	echo' <div class="meniuc"><img src=img/imgg/valiutos.png border="1" width="180" height="90"><alt="**"></div>';
  echo '
  <div class="meniuc">
-<a href="eurai.php?id=">'.skaicius($apie[sms_litai],2).'<img src="img/bicons/euro.png" /> | </a><a href="kreditai.php?"> 
+<a href="eurai.php?id=">'.skaicius($apie['sms_litai'],2).'<img src="img/bicons/euro.png" /> | </a><a href="kreditai.php?"> 
 '.skaicius($kreditai).' <img src="img/bicons/credit.png" /></a>  |
  <a href="auksiniai.php?id="> '.skaicius($apie['auksiniai']).' <img src="img/bicons/auxo.png" /> </a>  | <a href="ptshop.php?id=">'.skaicius($inv['unikalus']).'  <img src="img/bicons/pt.png" /> </a><br></div>
 

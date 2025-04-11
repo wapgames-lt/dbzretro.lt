@@ -83,7 +83,7 @@ if($id == 'vip1a'){
 	
 	
 
-	if($apie[sms_litai] < 19){
+	if($apie['sms_litai'] < 19){
 echo'<div class="meniuc"><img src="img/imgg/vip.png" /></div>';
 				echo"<div class='meniuc'>Nepakanka $eurui !</div>";
 			
@@ -150,7 +150,7 @@ if($id == 'vip3a'){
 	
 	
 
-	if($apie[sms_litai] < 39){
+	if($apie['sms_litai'] < 39){
 echo'<div class="meniuc"><img src="img/imgg/vip.png" /></div>';
 				echo"<div class='meniuc'>Nepakanka $eurui !</div>";
 			
@@ -218,7 +218,7 @@ if($id == 'vip5a'){
 	
 	
 
-	if($apie[sms_litai] < 69 || $apie['lygis'] < 49 ||$apie['veiksmai'] < 99999){
+	if($apie['sms_litai'] < 69 || $apie['lygis'] < 49 ||$apie['veiksmai'] < 99999){
 echo'<div class="meniuc"><img src="img/imgg/vip.png" /></div>';
 				echo"<div class='meniuc'>Nepakanka $eurui, $lvli arba $attack2!</div>";
 			
@@ -278,7 +278,7 @@ if($id == 'vip7a'){
 	
 	
 
-	if($apie[sms_litai] < 119){
+	if($apie['sms_litai'] < 119){
 echo'<div class="meniuc"><img src="img/imgg/vip.png" /></div>';
 				echo"<div class='meniuc'>Nepakanka $eurui !</div>";
 			
@@ -346,7 +346,7 @@ if($id == 'vip10a'){
 	
 	
 
-	if($apie[sms_litai] < 199){
+	if($apie['sms_litai'] < 199){
 echo'<div class="meniuc"><img src="img/imgg/vip.png" /></div>';
 				echo"<div class='meniuc'>Nepakanka $eurui !</div>";
 			
@@ -414,7 +414,7 @@ if($id == 'vip12a'){
 	
 	
 
-	if($apie[sms_litai] < 399){
+	if($apie['sms_litai'] < 399){
 echo'<div class="meniuc"><img src="img/imgg/vip.png" /></div>';
 				echo"<div class='meniuc'>Nepakanka $eurui !</div>";
 			
@@ -482,7 +482,7 @@ if($id == 'vip15a'){
 	
 	
 
-	if($apie[sms_litai] < 699){
+	if($apie['sms_litai'] < 699){
 echo'<div class="meniuc"><img src="img/imgg/vip.png" /></div>';
 				echo"<div class='meniuc'>Nepakanka $eurui !</div>";
 			

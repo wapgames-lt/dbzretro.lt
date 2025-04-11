@@ -708,7 +708,7 @@ if($id == "pirkti"){
 	$nr = (int)abs($_GET['nr']);
 	$apie_pr = mysqli_fetch_array(mysqli_query($conn,"SELECT * FROM aukcijonas WHERE id='$nr'"))or die(mysqli_error());
 	if($apie_pr['valiuta'] == 1){$kiek_kaina = $litai;}
-	if($apie_pr['valiuta'] == 2){$kiek_kaina = $apie[sms_litai];}
+	if($apie_pr['valiuta'] == 2){$kiek_kaina = $apie['sms_litai'];}
 	if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM aukcijonas WHERE id='$nr'")) == false){
 		echo'<div class="meniuc">
 		<b>Klaida!</b><br>

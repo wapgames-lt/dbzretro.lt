@@ -3477,10 +3477,10 @@ if($id == 'pervedu_pinigus'){
 if($user['team'] !== $ka){echo"<div class='meniuc'>Tu nesi šitoje komandoje</div>";}
 	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
 	elseif(empty($kiek)){echo"<div class='meniuc'>Neįrašei kiek pervesi</div>";}
-	elseif($apie[litai] < $kiek){echo"<div class='meniuc'>Neturi tiek pinigų</div>";}
+	elseif($apie['litai'] < $kiek){echo"<div class='meniuc'>Neturi tiek pinigų</div>";}
 	else{
 		echo"<div class='meniuc'><b>Atlikta</b></div>";
-		$kiek2= $apie[litai] - $kiek;
+		$kiek2= $apie['litai'] - $kiek;
 		$kiek3 = $info[pinigai] + $kiek;
 		mysqli_query($conn,"UPDATE zaidejai SET litai='$kiek2' WHERE nick='$nick'");
 		mysqli_query($conn,"UPDATE team SET pinigai='$kiek3' WHERE pavadinimas='$ka'");
@@ -3514,10 +3514,10 @@ if($id == 'pervedu_eurus'){
 if($user['team'] !== $ka){echo"<div class='meniuc'>Tu nesi šitoje komandoje</div>";}
 	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"<div class='meniuc'>Tokios komandos nėra</div>";}
 	elseif(empty($kiek)){echo"<div class='meniuc'>Neįrašei kiek pervesi</div>";}
-	elseif($apie[sms_litai] < $kiek){echo"<div class='meniuc'>Neturi tiek eurų</div>";}
+	elseif($apie['sms_litai'] < $kiek){echo"<div class='meniuc'>Neturi tiek eurų</div>";}
 	else{
 		echo"<div class='meniuc'><b>Atlikta</b></div>";
-		$kiek2= $apie[sms_litai] - $kiek;
+		$kiek2= $apie['sms_litai'] - $kiek;
 		$kiek3 = $info[eurai] + $kiek;
 		mysqli_query($conn,"UPDATE zaidejai SET sms_litai='$kiek2' WHERE nick='$nick'");
 		mysqli_query($conn,"UPDATE team SET eurai='$kiek3' WHERE pavadinimas='$ka'");
@@ -3637,7 +3637,7 @@ if($info['vadas'] !== $nick){echo"Tu nesi šios komandos vadas";}
 	elseif($info[pinigai] < $kiek){echo"<div class='meniuc'>Nėra tiek pinigų!</div>";}
 	else{
 		echo"<div class='meniuc'><b>Atlikta! Persivedei <b>".$kiek2." </b> ".$pinigaii." !</b></div>";
-		$kiek2= $apie[litai] + $kiek;
+		$kiek2= $apie['litai'] + $kiek;
 		$kiek3 = $info[pinigai] - $kiek;
 		mysqli_query($conn,"UPDATE zaidejai SET litai='$kiek2' WHERE nick='$nick'");
 		mysqli_query($conn,"UPDATE team SET pinigai='$kiek3' WHERE pavadinimas='$ka'");
@@ -3676,7 +3676,7 @@ if($info['vadas'] !== $nick){echo"Tu nesi šios komandos vadas";}
 	elseif($info[eurai] < $kiek){echo"<div class='meniuc'>Nėra tiek eurų!</div>";}
 	else{
 		echo"<div class='meniuc'><b>Atlikta! Persivedei <b> ".$kiek2."</b> ".$eurui." !</b></div>";
-		$kiek2= $apie[sms_litai] + $kiek;
+		$kiek2= $apie['sms_litai'] + $kiek;
 		$kiek3 = $info[eurai] - $kiek;
 		mysqli_query($conn,"UPDATE zaidejai SET sms_litai='$kiek2' WHERE nick='$nick'");
 		mysqli_query($conn,"UPDATE team SET eurai='$kiek3' WHERE pavadinimas='$ka'");

@@ -708,7 +708,7 @@ $kiekcrit=rand(10,20);
 			online('Geria dieviškajį vandenį');
 		
 
-			if($apie[sms_litai] < 9){
+			if($apie['sms_litai'] < 9){
 				
 		echo'<div class="meniuc">Nepakanka '.$eurui.' !</div>';
 			}

@@ -504,7 +504,7 @@ $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unik
 echo'</div>';
 	navigacija($g_n);
 }
-if($apie[sms_litai] < 1999){
+if($apie['sms_litai'] < 1999){
 echo '<div class="meniuc"><img src=img/unisavybes/kamehameha.jpg border="1" width="180" height="90"></div>';
 echo '<div class="meniuc">Neturite pakankamai '.$eurui.' '; $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unikali savybe");
 echo'</div>';
@@ -541,7 +541,7 @@ $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unik
 echo'</div>';
 	navigacija($g_n);
 }
-elseif($apie[sms_litai] < 2){
+elseif($apie['sms_litai'] < 2){
 echo '<div class="meniuc"><img src=img/unisavybes/kamehameha.jpg border="1" width="180" height="90"></div>';
 echo '<div class="meniuc">Neturite pakankamai '.$eurui.' '; $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unikali savybe");
 echo'</div>';
@@ -618,7 +618,7 @@ $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unik
 echo'</div>';
 	navigacija($g_n);
 }
-if($apie[sms_litai] < 999){
+if($apie['sms_litai'] < 999){
 echo '<div class="meniuc"><img src=img/unisavybes/finalflash.jpg border="1" width="180" height="90"></div>';
 echo '<div class="meniuc">Neturite pakankamai '.$eurui.' '; $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unikali savybe");
 echo'</div>';
@@ -655,7 +655,7 @@ $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unik
 echo'</div>';
 	navigacija($g_n);
 }
-elseif($apie[sms_litai] < 2){
+elseif($apie['sms_litai'] < 2){
 echo '<div class="meniuc"><img src=img/unisavybes/finalflash.jpg border="1" width="180" height="90"></div>';
 echo '<div class="meniuc">Neturite pakankamai '.$eurui.' '; $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unikali savybe");
 echo'</div>';
@@ -734,7 +734,7 @@ $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unik
 echo'</div>';
 	navigacija($g_n);
 }
-if($apie[sms_litai] < 999){
+if($apie['sms_litai'] < 999){
 echo '<div class="meniuc"><img src=img/unisavybes/masenko.jpeg border="1" width="180" height="90"></div>';
 echo '<div class="meniuc">Neturite pakankamai '.$eurui.' '; $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unikali savybe");
 echo'</div>';
@@ -771,7 +771,7 @@ $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unik
 echo'</div>';
 	navigacija($g_n);
 }
-elseif($apie[sms_litai] < 1){
+elseif($apie['sms_litai'] < 1){
 echo '<div class="meniuc"><img src=img/unisavybes/masenko.jpeg border="1" width="180" height="90"></div>';
 echo '<div class="meniuc">Neturite pakankamai '.$eurui.' '; $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unikali savybe");
 echo'</div>';
@@ -849,7 +849,7 @@ $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unik
 echo'</div>';
 	navigacija($g_n);
 }
-if($apie[sms_litai] < 2999){
+if($apie['sms_litai'] < 2999){
 echo '<div class="meniuc"><img src=img/unisavybes/galickgun.jpg border="1" width="180" height="90"></div>';
 echo '<div class="meniuc">Neturite pakankamai '.$eurui.' '; $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unikali savybe");
 echo'</div>';
@@ -886,7 +886,7 @@ $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unik
 echo'</div>';
 	navigacija($g_n);
 }
-elseif($apie[sms_litai] < 3){
+elseif($apie['sms_litai'] < 3){
 echo '<div class="meniuc"><img src=img/unisavybes/galickgun.jpg border="1" width="180" height="90"></div>';
 echo '<div class="meniuc">Neturite pakankamai '.$eurui.' '; $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unikali savybe");
 echo'</div>';
@@ -964,7 +964,7 @@ $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unik
 echo'</div>';
 	navigacija($g_n);
 }
-if($apie[sms_litai] < 1999){
+if($apie['sms_litai'] < 1999){
 echo '<div class="meniuc"><img src=img/unisavybes/deathlaser.jpg border="1" width="180" height="90"></div>';
 echo '<div class="meniuc">Neturite pakankamai '.$eurui.' '; $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unikali savybe");
 echo'</div>';
@@ -1001,7 +1001,7 @@ $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unik
 echo'</div>';
 	navigacija($g_n);
 }
-elseif($apie[sms_litai] < 2){
+elseif($apie['sms_litai'] < 2){
 echo '<div class="meniuc"><img src=img/unisavybes/deathlaser.jpg border="1" width="180" height="90"></div>';
 echo '<div class="meniuc">Neturite pakankamai '.$eurui.' '; $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unikali savybe");
 echo'</div>';
@@ -1084,7 +1084,7 @@ $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unik
 echo'</div>';
 	navigacija($g_n);
 }
-if($apie[sms_litai] < 999){
+if($apie['sms_litai'] < 999){
 echo '<div class="meniuc"><img src=img/unisavybes/'.$tech.'.jpg border="1" width="180" height="90"></div>';
 echo '<div class="meniuc">Neturite pakankamai '.$eurui.' '; $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unikali savybe");
 echo'</div>';
@@ -1125,7 +1125,7 @@ $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unik
 echo'</div>';
 	navigacija($g_n);
 }
-elseif($apie[sms_litai] < 1){
+elseif($apie['sms_litai'] < 1){
 echo '<div class="meniuc"><img src=img/unisavybes/'.$tech.'.jpg border="1" width="180" height="90"></div>';
 echo '<div class="meniuc">Neturite pakankamai '.$eurui.' '; $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unikali savybe");
 echo'</div>';
@@ -1208,7 +1208,7 @@ $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unik
 echo'</div>';
 	navigacija($g_n);
 }
-if($apie[sms_litai] < 3999){
+if($apie['sms_litai'] < 3999){
 echo '<div class="meniuc"><img src=img/unisavybes/'.$tech.'.jpg border="1" width="180" height="90"></div>';
 echo '<div class="meniuc">Neturite pakankamai '.$eurui.' '; $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unikali savybe");
 echo'</div>';
@@ -1249,7 +1249,7 @@ $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unik
 echo'</div>';
 	navigacija($g_n);
 }
-elseif($apie[sms_litai] < 4){
+elseif($apie['sms_litai'] < 4){
 echo '<div class="meniuc"><img src=img/unisavybes/'.$tech.'.jpg border="1" width="180" height="90"></div>';
 echo '<div class="meniuc">Neturite pakankamai '.$eurui.' '; $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unikali savybe");
 echo'</div>';
@@ -1332,7 +1332,7 @@ $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unik
 echo'</div>';
 	navigacija($g_n);
 }
-if($apie[sms_litai] < 4999){
+if($apie['sms_litai'] < 4999){
 echo '<div class="meniuc"><img src=img/unisavybes/'.$tech.'.jpg border="1" width="180" height="90"></div>';
 echo '<div class="meniuc">Neturite pakankamai '.$eurui.' '; $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unikali savybe");
 echo'</div>';
@@ -1373,7 +1373,7 @@ $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unik
 echo'</div>';
 	navigacija($g_n);
 }
-elseif($apie[sms_litai] < 5){
+elseif($apie['sms_litai'] < 5){
 echo '<div class="meniuc"><img src=img/unisavybes/'.$tech.'.jpg border="1" width="180" height="90"></div>';
 echo '<div class="meniuc">Neturite pakankamai '.$eurui.' '; $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unikali savybe");
 echo'</div>';
@@ -1457,7 +1457,7 @@ $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unik
 echo'</div>';
 	navigacija($g_n);
 }
-if($apie[sms_litai] < 1999){
+if($apie['sms_litai'] < 1999){
 echo '<div class="meniuc"><img src=img/unisavybes/'.$tech.'.jpg border="1" width="180" height="90"></div>';
 echo '<div class="meniuc">Neturite pakankamai '.$eurui.' '; $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unikali savybe");
 echo'</div>';
@@ -1498,7 +1498,7 @@ $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unik
 echo'</div>';
 	navigacija($g_n);
 }
-elseif($apie[sms_litai] < 2){
+elseif($apie['sms_litai'] < 2){
 echo '<div class="meniuc"><img src=img/unisavybes/'.$tech.'.jpg border="1" width="180" height="90"></div>';
 echo '<div class="meniuc">Neturite pakankamai '.$eurui.' '; $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unikali savybe");
 echo'</div>';
@@ -1582,7 +1582,7 @@ $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unik
 echo'</div>';
 	navigacija($g_n);
 }
-if($apie[sms_litai] < 2999){
+if($apie['sms_litai'] < 2999){
 echo '<div class="meniuc"><img src=img/unisavybes/'.$tech.'.jpg border="1" width="180" height="90"></div>';
 echo '<div class="meniuc">Neturite pakankamai '.$eurui.' '; $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unikali savybe");
 echo'</div>';
@@ -1623,7 +1623,7 @@ $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unik
 echo'</div>';
 	navigacija($g_n);
 }
-elseif($apie[sms_litai] < 3){
+elseif($apie['sms_litai'] < 3){
 echo '<div class="meniuc"><img src=img/unisavybes/'.$tech.'.jpg border="1" width="180" height="90"></div>';
 echo '<div class="meniuc">Neturite pakankamai '.$eurui.' '; $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unikali savybe");
 echo'</div>';
@@ -1708,7 +1708,7 @@ $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unik
 echo'</div>';
 	navigacija($g_n);
 }
-if($apie[sms_litai] < 2999){
+if($apie['sms_litai'] < 2999){
 echo '<div class="meniuc"><img src=img/unisavybes/'.$tech.'.jpg border="1" width="180" height="90"></div>';
 echo '<div class="meniuc">Neturite pakankamai '.$eurui.' '; $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unikali savybe");
 echo'</div>';
@@ -1749,7 +1749,7 @@ $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unik
 echo'</div>';
 	navigacija($g_n);
 }
-elseif($apie[sms_litai] < 3){
+elseif($apie['sms_litai'] < 3){
 echo '<div class="meniuc"><img src=img/unisavybes/'.$tech.'.jpg border="1" width="180" height="90"></div>';
 echo '<div class="meniuc">Neturite pakankamai '.$eurui.' '; $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unikali savybe");
 echo'</div>';
@@ -1834,7 +1834,7 @@ $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unik
 echo'</div>';
 	navigacija($g_n);
 }
-if($apie[sms_litai] < 5999){
+if($apie['sms_litai'] < 5999){
 echo '<div class="meniuc"><img src=img/unisavybes/'.$tech.'.jpg border="1" width="180" height="90"></div>';
 echo '<div class="meniuc">Neturite pakankamai '.$eurui.' '; $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unikali savybe");
 echo'</div>';
@@ -1875,7 +1875,7 @@ $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unik
 echo'</div>';
 	navigacija($g_n);
 }
-elseif($apie[sms_litai] < 6){
+elseif($apie['sms_litai'] < 6){
 echo '<div class="meniuc"><img src=img/unisavybes/'.$tech.'.jpg border="1" width="180" height="90"></div>';
 echo '<div class="meniuc">Neturite pakankamai '.$eurui.' '; $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unikali savybe");
 echo'</div>';
@@ -1960,7 +1960,7 @@ $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unik
 echo'</div>';
 	navigacija($g_n);
 }
-if($apie[sms_litai] < 4999){
+if($apie['sms_litai'] < 4999){
 echo '<div class="meniuc"><img src=img/unisavybes/'.$tech.'.jpg border="1" width="180" height="90"></div>';
 echo '<div class="meniuc">Neturite pakankamai '.$eurui.' '; $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unikali savybe");
 echo'</div>';
@@ -2001,7 +2001,7 @@ $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unik
 echo'</div>';
 	navigacija($g_n);
 }
-elseif($apie[sms_litai] < 5){
+elseif($apie['sms_litai'] < 5){
 echo '<div class="meniuc"><img src=img/unisavybes/'.$tech.'.jpg border="1" width="180" height="90"></div>';
 echo '<div class="meniuc">Neturite pakankamai '.$eurui.' '; $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unikali savybe");
 echo'</div>';
@@ -2086,7 +2086,7 @@ $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unik
 echo'</div>';
 	navigacija($g_n);
 }
-if($apie[sms_litai] < 6999){
+if($apie['sms_litai'] < 6999){
 echo '<div class="meniuc"><img src=img/unisavybes/'.$tech.'.jpg border="1" width="180" height="90"></div>';
 echo '<div class="meniuc">Neturite pakankamai '.$eurui.' '; $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unikali savybe");
 echo'</div>';
@@ -2127,7 +2127,7 @@ $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unik
 echo'</div>';
 	navigacija($g_n);
 }
-elseif($apie[sms_litai] < 7){
+elseif($apie['sms_litai'] < 7){
 echo '<div class="meniuc"><img src=img/unisavybes/'.$tech.'.jpg border="1" width="180" height="90"></div>';
 echo '<div class="meniuc">Neturite pakankamai '.$eurui.' '; $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unikali savybe");
 echo'</div>';
@@ -2211,7 +2211,7 @@ $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unik
 echo'</div>';
 	navigacija($g_n);
 }
-if($apie[sms_litai] < 5999){
+if($apie['sms_litai'] < 5999){
 echo '<div class="meniuc"><img src=img/unisavybes/'.$tech.'.jpg border="1" width="180" height="90"></div>';
 echo '<div class="meniuc">Neturite pakankamai '.$eurui.' '; $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unikali savybe");
 echo'</div>';
@@ -2252,7 +2252,7 @@ $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unik
 echo'</div>';
 	navigacija($g_n);
 }
-elseif($apie[sms_litai] < 6){
+elseif($apie['sms_litai'] < 6){
 echo '<div class="meniuc"><img src=img/unisavybes/'.$tech.'.jpg border="1" width="180" height="90"></div>';
 echo '<div class="meniuc">Neturite pakankamai '.$eurui.' '; $g_n[] = array("pagrindinis.php?id=","Pagrindinis","skill.php?id=","Atgal","Unikali savybe");
 echo'</div>';
