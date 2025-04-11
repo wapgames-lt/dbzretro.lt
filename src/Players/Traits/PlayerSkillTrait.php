@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace LegacyDbz\Players\Traits;
 
 use LegacyDbz\Core\Collection;
@@ -44,23 +46,12 @@ trait PlayerSkillTrait
         return $this->getActiveBuffsByList(Skill::JUNGLE_KING_BOSSES_BUFFS);
     }
 
-    /**
-     * @param string $name
-     * @param array $allowedBuffs
-     *
-     * @return PlayerSkill|null
-     */
-    public function getFirstActiveBuffByNameAndList($name, array $allowedBuffs)
+    public function getFirstActiveBuffByNameAndList(string $name, array $allowedBuffs): ?PlayerSkill
     {
-        return $this->getActiveBuffsByList($allowedBuffs)->first(fn(PlayerSkill $playerSkill) => $playerSkill->skill()->name() === $name);
+        return $this->getActiveBuffsByList($allowedBuffs)->first(fn (PlayerSkill $playerSkill) => $playerSkill->skill()->name() === $name);
     }
 
-    /**
-     * @param array $allowedBuffs
-     *
-     * @return Collection
-     */
-    public function getActiveBuffsByList(array $allowedBuffs)
+    public function getActiveBuffsByList(array $allowedBuffs): Collection
     {
         return $this->activeSkills()->filter(function (PlayerSkill $playerSkill) use ($allowedBuffs) {
             $skill = $playerSkill->skill();

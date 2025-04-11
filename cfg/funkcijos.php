@@ -594,7 +594,7 @@ if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM online WHERE nick='$nick'")
 mysqli_query($conn,"INSERT INTO online SET nick='$nick', vieta='$vt', nrs='$nars', ip='$ip', time='$timx', time_on='".time()."', gausite='$tm'")or die(mysqli_error());
 
 }else{
-    mysqli_query($conn, "UPDATE online SET vieta='" . mysqli_real_escape_string($conn, $vt) . "', `time`='" . mysqli_real_escape_string($conn, $timx) . "' WHERE nick='" . mysqli_real_escape_string($conn, $nick) . "'") or die(mysqli_error($conn));
+    mysqli_query($conn, "UPDATE online SET vieta='" . mysqli_real_escape_string($conn, (string) $vt) . "', `time`='" . mysqli_real_escape_string($conn, (string) $timx) . "' WHERE nick='" . mysqli_real_escape_string($conn, (string) $nick) . "'") or die(mysqli_error($conn));
 }
 }
 mysqli_query($conn,"DELETE FROM online WHERE time < '".time()."'");
