@@ -2415,7 +2415,7 @@ if($id == "trans"){
    top('Trasnsformacijos');
    $rrr =	mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM veikejai WHERE name = '$apie[veikejas]'"));
     if($ka == "OK"){
-        if($apie['trans'] >= $rrr[trans]){
+        if($apie['trans'] >= $rrr['trans']){
             echo '<div class="meniuc">Jūs daugiau nebegalitę transformuotis!</div>';
         }
         elseif($jega < $trans_jegos){
@@ -2436,14 +2436,14 @@ if($id == "trans"){
         }
     } else {
     	
-    echo '<div class="meniuc"><img src="img/veikejai/'.$apie['veikejas'].'-'.$apie[trans].'.png" alt="*"></div>';
+    echo '<div class="meniuc"><img src="img/veikejai/'.$apie['veikejas'].'-'.$apie['trans'].'.png" alt="*"></div>';
     echo '<div class="meniuc">Transformuoti gali visi veikėjai, kiek trasformacijų turėsite priklauso nuo jūsų pasirinkto veikėjo. Trasformuotis galima tik tada kai pasieksit tam tikra kieki jėgos ir gynybos.</div>';
     echo '<div class="meniu">
-     Jūs galite transformuotis: <b>'.$rrr[trans].'</b> kartus.<br/>
+     Jūs galite transformuotis: <b>'.$rrr['trans'].'</b> kartus.<br/>
      Jūsų transformacijos lygis: <b>'.$apie['trans'].'</b>.
     </div>';
 
-    if($apie['trans'] >= $rrr[trans]){
+    if($apie['trans'] >= $rrr['trans']){
         echo '<div class="meniuc">Jūsų veikėjas daugiau nebegali transformuotis !!!</div>';
     } else {
         echo '<div class="meniu"> <b>Transformacijai reikia</b>:</div>

@@ -1,7 +1,5 @@
 <?php
 ob_start();
-echo "<!DOCTYPE html PUBLIC '-//WAPFORUM//DTD XHTML Mobile 1.0//EN' 'http://www.wapforum.org/DTD/xhtml-mobile10.dtd'>
-<html xmlns='http://www.w3.org/1999/xhtml' xml:lang='lt'>";
 
 include_once 'cfg/sql.php';
 include_once 'cfg/funkcijos.php';
@@ -41,7 +39,7 @@ if($id == ""){
 	navigacija($g_n);
 }
 elseif($id == "top"){
-    $ID =isset( $_GET['ID']) ? $_GET[ID] : null;
+    $ID =isset( $_GET['ID']) ? $_GET['ID'] : null;
     
     if($ID == 1) { $pg = 'lygis'; $tp = 'Lygio'; }
     if($ID == 2) { $pg = 'kred'; $tp = 'Kreditų'; }

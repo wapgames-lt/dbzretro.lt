@@ -8,7 +8,7 @@ head2();
 baneris();
 topbar();
 
-		if($apie[lygis] < 39){
+		if($apie['lygis'] < 39){
 			top('Kovų mašina');
 echo'
 <div class="meniuc">

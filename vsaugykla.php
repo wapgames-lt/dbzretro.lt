@@ -15,7 +15,7 @@ if($id == ""){
 	 online('Žiūri savo veikėjus');
    top('Veikėjų saugykla');
     
-   echo '<div class="meniuc"><img src="img/veikejai/'.$apie['veikejas'].'-'.$apie[trans].'.png" alt="*"></div>'; 
+   echo '<div class="meniuc"><img src="img/veikejai/'.$apie['veikejas'].'-'.$apie['trans'].'.png" alt="*"></div>'; 
 echo '<div class="meniuc">
    Čia yra tavo visi  turimi unikalūs veikėjai<br></div>';
     
@@ -43,7 +43,7 @@ echo'
 if($id == "aukskredai"){
 	 online('Žiūri savo veikėjus');
    top('Už auksinius/kreditus');
-echo '<div class="meniuc"><img src="img/veikejai/'.$apie['veikejas'].'-'.$apie[trans].'.png" alt="*"height="140" width="140"/>></div>';
+echo '<div class="meniuc"><img src="img/veikejai/'.$apie['veikejas'].'-'.$apie['trans'].'.png" alt="*"height="140" width="140"/>></div>';
     echo '<div class="meniu">
     
    Čia yra tavo visi  turimi už auksnius/kreditus pirkti veikėjai<br></div>';
@@ -94,7 +94,7 @@ echo ' <div class="meniuc"><b><font color="red">Neturi daugiau jokiųveikėjų!<
 if($id == "angelai"){
 	 online('Žiūri savo veikėjus');
    top('Angelų saugykla');
-echo '<div class="meniuc"><img src="img/veikejai/'.$apie['veikejas'].'-'.$apie[trans].'.png" alt="*"height="140" width="140"/>></div>';
+echo '<div class="meniuc"><img src="img/veikejai/'.$apie['veikejas'].'-'.$apie['trans'].'.png" alt="*"height="140" width="140"/>></div>';
     echo '<div class="meniu">
     
    Čia yra tavo visi  turimi angelų veikėjai<br></div>';
@@ -153,7 +153,7 @@ echo ' <div class="meniuc"><b><font color="red">Neturi daugiau jokių veikėjų!
 if($id == "naikintojai"){
 	 online('Žiūri savo veikėjus');
    top('Naikintojų saugykla');
-echo '<div class="meniuc"><img src="img/veikejai/'.$apie['veikejas'].'-'.$apie[trans].'.png" alt="*"height="140" width="140"/>></div>';
+echo '<div class="meniuc"><img src="img/veikejai/'.$apie['veikejas'].'-'.$apie['trans'].'.png" alt="*"height="140" width="140"/>></div>';
     echo '<div class="meniuc">
     
    Čia yra tavo visi  turimi naikintojų veikėjai<br></div>';
@@ -227,7 +227,7 @@ echo ' <div class="meniuc"><b><font color="red">Neturi daugiau jokių veikėjų!
 if($id == "sajanai"){
 	 online('Žiūri savo veikėjus');
    top('Sajanų saugykla');
-echo '<div class="meniuc"><img src="img/veikejai/'.$apie['veikejas'].'-'.$apie[trans].'.png" alt="*"height="140" width="140"/>></div>';
+echo '<div class="meniuc"><img src="img/veikejai/'.$apie['veikejas'].'-'.$apie['trans'].'.png" alt="*"height="140" width="140"/>></div>';
     echo '<div class="meniuc">
     
    Čia yra tavo visi  turimi sajanų veikėjai<br></div>';
@@ -302,7 +302,7 @@ echo ' <div class="meniuc"><b><font color="red">Neturi daugiau jokių veikėjų!
 if($id == "kiti"){
 	 online('Žiūri savo veikėjus');
    top('Veikėjų saugykla');
-echo '<div class="meniuc"><img src="img/veikejai/'.$apie['veikejas'].'-'.$apie[trans].'.png" alt="*"height="140" width="140"/>></div>';
+echo '<div class="meniuc"><img src="img/veikejai/'.$apie['veikejas'].'-'.$apie['trans'].'.png" alt="*"height="140" width="140"/>></div>';
     echo '<div class="meniuc">
     
    Čia yra tavo visi  turimi kiti unikalūs veikėjai<br></div>';
@@ -2828,7 +2828,7 @@ if($apie['fryzasb']-time() > 0){
 if($id == "dievai"){
 	 online('Žiūri savo veikėjus');
    top('DIEVAI');
-echo '<div class="meniuc"><img src="img/veikejai/'.$apie['veikejas'].'-'.$apie[trans].'.png" alt="*"></div>';
+echo '<div class="meniuc"><img src="img/veikejai/'.$apie['veikejas'].'-'.$apie['trans'].'.png" alt="*"></div>';
     echo '<div class="meniu">
     
    Čia yra tavo visi  turimi SUPER DIEVAI veikėjai<br></div>';

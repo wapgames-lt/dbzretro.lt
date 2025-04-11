@@ -22,11 +22,11 @@ if($id == ""){
     
  
     <div class="meniu">';
-	if ($apie[vip]-time() < 0) {
+	if ((int)$apie['vip']-time() < 0) {
 		echo'
 		'.$ico.' <a href="eurai.php?id=vip_privilegija">VIP privilegija</a></br>';
 	} else {
-		$timestamp = $apie[vip];
+		$timestamp = $apie['vip'];
 		$dt = new DateTime("@$timestamp");
 		$timezone = new DateTimeZone('Europe/Vilnius');
 		$dt->setTimezone($timezone);
@@ -159,50 +159,50 @@ echo'
 '.$ico.' <a href="eurai.php?id=dglg">Daugiau lygio taškų </a>(<font color="red"><b>Neužsakyta</b></font>)<br>';
 
 }
-if($apie['kasimas2x']-time() > 0){
+if((int)$apie['kasimas2x']-time() > 0){
 echo'
 '.$ico.' <a href="eurai.php?id=rudos">Daugiau iškasamų rūdų </a>';
-    if($apie['kasimas2x']-time() > 0){
+    if((int)$apie['kasimas2x']-time() > 0){
 echo'
 (<font color="green"><b>'.laikas($apie["kasimas2x"]-time(), 1).'</b></font>)<br>';
 }
 }
-if($apie['kasimas2x']-time() < 0){
+if((int)$apie['kasimas2x']-time() < 0){
 echo'
 '.$ico.' <a href="eurai.php?id=rudos">Daugiau iškasamų rūdų </a>(<font color="red"><b>Neužsakyta</b></font>)<br>';
 
 }
-if($apie['kasimolvl2x']-time() > 0){
+if((int)$apie['kasimolvl2x']-time() > 0){
 echo'
 '.$ico.' <a href="eurai.php?id=kasimo">Daugiau kasimo LVL</a>';
-    if($apie['kasimolvl2x']-time() > 0){
+    if((int)$apie['kasimolvl2x']-time() > 0){
 echo'
 (<font color="green"><b>'.laikas($apie["kasimolvl2x"]-time(), 1).'</b></font>)<br>';
 }
 }
-if($apie['kasimolvl2x']-time() < 0){
+if((int)$apie['kasimolvl2x']-time() < 0){
 echo'
 '.$ico.' <a href="eurai.php?id=kasimo">Daugiau kasimo LVL</a>(<font color="red"><b>Neužsakyta</b></font>)<br>';
 
 }
 
-if($apie['bts']-time() > 0){
+if((int)$apie['bts']-time() > 0){
 echo'
 '.$ico.' <a href="eurai.php?id=bt"><b>BitCoin Licenzija</b> </a>(<font color="green"><b>Nupirkta</b></font>)<br>';
 
 }
-if($apie['bts']-time() < 0){
+if((int)$apie['bts']-time() < 0){
 echo'
 '.$ico.' <a href="eurai.php?id=bt"><b>BitCoin Licenzija</b> </a>(<font color="red"><b>Nenupirkta</b></font>)<br>';
 
 }
 	
-if($apie['pliusaib']-time() > 0){
+if((int)$apie['pliusaib']-time() > 0){
 echo'
 '.$ico.' <a href="eurai.php?id=pliusai"><b>Pliusų Licenzija</b> </a>(<font color="green"><b>Nupirkta</b></font>)<br>';
 
 }
-if($apie['pliusaib']-time() < 0){
+if((int)$apie['pliusaib']-time() < 0){
 echo'
 '.$ico.' <a href="eurai.php?id=pliusai"><b>Pliusų Licenzija</b> </a>(<font color="red"><b>Nenupirkta</b></font>)<br>';
 
@@ -4036,7 +4036,7 @@ if($id =='vip_privilegija1'){
 if($apie[sms_litai] < $price){
 	echo '<div class="meniuc">Nepakanka  <img src="img/bicons/euro.png" />!</div>';
 }
-elseif($apie[vip]-time() > 0){
+elseif((int)$apie['vip']-time() > 0){
 
 	echo '<div class="meniuc">Tu jau turi VIP Privilegiją!</div>';
 

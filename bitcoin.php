@@ -10,9 +10,9 @@ baneris();
 topbar();
 if($id == ""){
 	 online('Suka varkes..');
-   top(BitCoin);
+   top('BitCoin');
 
-	if($apie['bts']-time() < 0){
+	if((int)$apie['bts']-time() < 0){
 echo' <div class="meniuc">
 Neturi licenzijos!</div>';
 }

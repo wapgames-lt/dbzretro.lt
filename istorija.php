@@ -168,7 +168,7 @@ top('Žaidimo Istorija');
 	online('Žaidimo istorija');
 ////// istorija
 if($apie[istorija] == 1){
-if($apie[lygis] < 19 ){
+if($apie['lygis'] < 19 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -314,7 +314,7 @@ echo'<div class="meniuc">
 }
 }	
 if($apie[istorija] == 11){
-if($apie[lygis] < 29 ){
+if($apie['lygis'] < 29 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -877,7 +877,7 @@ echo'<div class="meniuc">
 }
 }	
 if($apie[istorija] == 51){
-if($apie[lygis] < 99 ){
+if($apie['lygis'] < 99 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -1023,7 +1023,7 @@ echo'<div class="meniuc">
 }
 }	
 if($apie[istorija] == 61){
-if($apie[lygis] < 119 ){
+if($apie['lygis'] < 119 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">

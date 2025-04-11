@@ -11,7 +11,7 @@ echo'
 <img src="img/baneriai/botasm.png" /></div>';
 
 topbar();
-if($apie[vip]-time > 0){
+if($apie['vip']-time > 0){
 $kovojimas = 0;
 	$padusimas = 0;	
 	
@@ -22,7 +22,7 @@ else{
 	$kovojimas = 5;
 	$padusimas = 4;	
 }
-if($apie[lygis] < 10){
+if($apie['lygis'] < 10){
 		top('Samungo planeta');
 echo '<div class="meniuc"><img src=img/shenron2.png><alt="**"></br></br>Į Samungo planeta galima tik nuo 200 lygio !</div>
 
@@ -273,7 +273,7 @@ if($apie['kate'] == '+'){
         $xp = $xp*1.5;
         $xxs = "+";
     }
-	if($apie['vip']-time() > 0){
+	if((int)$apie['vip']-time() > 0){
         $kr= $kr*5;
         $xp = $xp*5;
         $xxs = "+";

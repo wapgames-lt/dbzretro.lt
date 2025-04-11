@@ -11,7 +11,7 @@ echo'
 <img src="img/baneriai/botasm.png" /></div>';
 
 topbar();
-if($apie[lygis] < 49){
+if($apie['lygis'] < 49){
 		top('Namek planeta');
 echo '<div class="meniuc"><img src=img/namek.png border="1" width="180" height="90"><alt="**"></br></br>Į namek planeta galima tik nuo 50 <img src="img/bicons/lvl.gif" /> !</div>
 

@@ -11,7 +11,7 @@ baneris();
 topbar();
 $misija = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM misijos WHERE nick='$nick'"));
 $inv = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM inv WHERE nick='$nick'"));
-if($apie[lygis] < 70){
+if($apie['lygis'] < 70){
 		top('Kaju planeta');
 echo'<div class="meniuc"><img src="img/kaioshin.png"></br>Į kajų planeta galima tik nuo 70 lygio !</div>
 
@@ -369,7 +369,7 @@ Su Z kardu gausi <b>3 kartus daugiau</b> '.$pinigaii.' , Z kardą galima ištrau
 	navigacija($g_n);
 }
 if($id == 'traukti'){
-if($apie[lygis] < 119){
+if($apie['lygis'] < 119){
 	top(Klaida);
 echo'<div class="meniuc"><img src="img/z-sword.jpg" width="150" height="100" border="1"></div>';
 

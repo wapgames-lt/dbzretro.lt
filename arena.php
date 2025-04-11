@@ -204,7 +204,7 @@ else{
 			
 			echo'
 			
-			<div class="meniuc"><img src="img/veikejai/'.$arennn[veikejas].'-'.$arennn[trans].'.png"></br> Trenkdamas nuėmiai '.$kirtimas.' gyvybių, priešui liko <b>'.($arennn['gyvybes']-$kirtimas).'</b> gyvybių.</div>
+			<div class="meniuc"><img src="img/veikejai/'.$arennn[veikejas].'-'.$arennn['trans'].'.png"></br> Trenkdamas nuėmiai '.$kirtimas.' gyvybių, priešui liko <b>'.($arennn['gyvybes']-$kirtimas).'</b> gyvybių.</div>
 				  ';
 			if($arennn['gyvybes'] - $kirtimas < 1)
 			{

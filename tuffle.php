@@ -34,7 +34,7 @@ if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM unikalai WHERE unikalas='$a
     }
 
 
-if($apie[lygis] < 100){
+if($apie['lygis'] < 100){
 top('Tuffle planeta');
 echo '<div class="meniuc"><img src=img/tuffle.png border="1" width="180" height="90"><alt="**"></br></br>Į Tuffle planeta galima tik nuo 100 <img src="img/bicons/lvl.gif" /> !</div>';
 

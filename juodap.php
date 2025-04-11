@@ -11,7 +11,7 @@ echo'
 <img src="img/baneriai/botasm.png" /></div>';
 
 topbar();
-if($apie[lygis] < 99){
+if($apie['lygis'] < 99){
 		top('Juodoji planeta');
 echo '<div class="meniuc"><img src=img/juodoji.jpg border="1" width="180" height="90"><alt="**"></br></br>Į Juodają planeta galima tik nuo 100 <img src="img/bicons/lvl.gif" /> !</div>
 
@@ -40,7 +40,7 @@ else{
 if($id == ""){
 	 online('Juodojoje planetoje');
    top('Juodoji planeta');
-if($apie[lygis] < 99){
+if($apie['lygis'] < 99){
 		top('Juodoji planeta');
 echo '<div class="meniuc"><img src=img/juodoji.jpg border="1" width="180" height="90"><alt="**"></br></br>Į Juodają planeta galima tik nuo 100 <img src="img/bicons/lvl.gif" /> !</div>
 

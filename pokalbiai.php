@@ -21,7 +21,7 @@ echo'
             echo '<div class="error">Jūsų lygis per žemas! Reikia 35 lygio.</div>';
         }
 		
-		elseif($apie[veiksmai] < 5000){
+		elseif($apie['veiksmai'] < 5000){
                echo '<font color="red">Rašyti galima nuo 5000 laimėtų kovų</font><br/>';
             }
 			

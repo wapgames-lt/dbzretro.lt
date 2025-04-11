@@ -62,7 +62,7 @@ if($id == ""){
         $puslapiu=ceil($viso/$rezultatu_rodymas);
         while($row = mysqli_fetch_assoc($query)){
             echo '<div class="meniu"> <b>'.statusas($row['nick']).'</b>: '.smile($row['sms']).'<br /><small>&raquo; '.laikas($row['time']).' </small>';
-			if($apie['statusas'] == 'vmod' or $apie[statusas]=='Admin'){echo'<a href="?id=delete&co='.$row['id'].'">[X]</a>';}
+			if($apie['statusas'] == 'vmod' or $apie['statusas']=='Admin'){echo'<a href="?id=delete&co='.$row['id'].'">[X]</a>';}
 echo"</div>";
             }
             echo '<div class="meniuc">'.puslapiavimas($puslapiu,$psl,'?id=').'</div>';
@@ -73,7 +73,7 @@ echo"</div>";
 navigacija($g_n);
 }
 if($id == "delete"){
-  if($apie['statusas'] != 'vmod' && $apie[statusas]!='Admin'){ echo '<div class="meniuc">Tau čia negalima!</div>';}
+  if($apie['statusas'] != 'vmod' && $apie['statusas']!='Admin'){ echo '<div class="meniuc">Tau čia negalima!</div>';}
   
    
   elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM vikte_chat WHERE id='$co'")) == false){

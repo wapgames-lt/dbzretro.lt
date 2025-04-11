@@ -100,7 +100,7 @@ if($id =='vip_privilegija1'){
 	if($apie[vipticket] < $price){
 		echo '<div class="meniuc">Nepakanka  <img src="img/bicons/vip.png"> !</div>';
 	}
-	elseif($apie[vip]-time() > 0){
+	elseif((int)$apie['vip']-time() > 0){
 
 		echo '<div class="meniuc">Tu jau turi VIP Privilegiją!</div>';
 
@@ -710,7 +710,7 @@ echo'<div class="up">'.$ico.' 1 Lygio VIP Pirkimas</div>
 
 
      if(laikass($apie['vip'])-time()> 0){
-     echo "<div class='meniuc'> ".$ico."  Tavo <b>VIP</b> dar galios ".(laikass($apie['vip']-time(),1)).". </div>";
+     echo "<div class='meniuc'> ".$ico."  Tavo <b>VIP</b> dar galios ".(laikass((int)$apie['vip']-time(),1)).". </div>";
      }
      else{
 	 echo '<div class="meniuc"> '.$ico.' <a href="?id=vip1">Pirkti 1 lygio VIP</a></div>';
@@ -739,7 +739,7 @@ if($id == 'vip1'){
 	elseif($apie[sms_litai] < 1000){
 		echo '<div class="meniuc">Nepakanka  <img src="img/bicons/euro.png" />!</div>';
 	}
-elseif($apie[vip]-time() > 0){
+elseif((int)$apie['vip']-time() > 0){
 	
 	echo '<div class="meniuc">Tu jau esi <b>1 Lygio VIP </b>!</div>';
 	

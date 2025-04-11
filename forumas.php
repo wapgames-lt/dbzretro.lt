@@ -61,7 +61,7 @@ elseif($gaves == "+"){
  echo '<div class="meniuc"><b>Klaida!</b> Tu esi užtildytas!</div>';
 
 }
-			  elseif($apie[veiksmai] < 2000){
+			  elseif($apie['veiksmai'] < 2000){
                 $klaida = 'Rašyti galima laimėjus 2000 kovų';
             }
 			
@@ -154,7 +154,7 @@ elseif($id == "ziureti"){
         elseif($lygis < 100 && $apie['statusas'] === 'Žaidėjas'){
             echo '<script>document.location="?id=ziureti&ID='.$ID.'&T='.$T.'"</script>';
         }
-          elseif($apie[veiksmai] < 200 && $apie['statusas'] === 'Žaidėjas'){
+          elseif($apie['veiksmai'] < 200 && $apie['statusas'] === 'Žaidėjas'){
               echo '<script>document.location="?id=ziureti&ID='.$ID.'&T='.$T.'"</script>';
             }
         elseif($_SESSION['time'] > time()){

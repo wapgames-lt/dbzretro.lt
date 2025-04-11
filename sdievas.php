@@ -99,7 +99,7 @@ if ($id == "sdball") {
                 mysqli_query($conn,"UPDATE zaidejai SET gokasultrab='$timxx' WHERE nick='$nick' ");
                 mysqli_query($conn,"UPDATE inv SET sdball=sdball-'7' WHERE nick='$nick'") or die(mysqli_error());
             }
-            if ($co == 6 && $apie[vip] - time() < 0) {
+            if ($co == 6 && $apie['vip'] - time() < 0) {
                 echo 'Jūsų noras išpildytas! Gavai <b>VIP privilegiją 14 dienų</b></div>';
                 $vip_time = time() + 3600 * 24 * 14;
 

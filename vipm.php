@@ -88,12 +88,12 @@ echo'<div class="meniuc"><img src="img/imgg/vip.png" /></div>';
 				echo"<div class='meniuc'>Nepakanka $eurui !</div>";
 			
 }			
-elseif($apie[lygis] < 29){
+elseif($apie['lygis'] < 29){
 echo'<div class="meniuc"><img src="img/imgg/vip.png" /></div>';
 				echo"<div class='meniuc'>Neturi tokio $lvli !</div>";
 			
 }			
-elseif($apie[veiksmai] < 29999){
+elseif($apie['veiksmai'] < 29999){
 echo'<div class="meniuc"><img src="img/imgg/vip.png" /></div>';
 				echo"<div class='meniuc'>Neturi tiek $attack2 !</div>";
 			
@@ -155,12 +155,12 @@ echo'<div class="meniuc"><img src="img/imgg/vip.png" /></div>';
 				echo"<div class='meniuc'>Nepakanka $eurui !</div>";
 			
 }			
-elseif($apie[lygis] < 39){
+elseif($apie['lygis'] < 39){
 echo'<div class="meniuc"><img src="img/imgg/vip.png" /></div>';
 				echo"<div class='meniuc'>Neturi tokio $lvli !</div>";
 			
 }			
-elseif($apie[veiksmai] < 59999){
+elseif($apie['veiksmai'] < 59999){
 echo'<div class="meniuc"><img src="img/imgg/vip.png" /></div>';
 				echo"<div class='meniuc'>Neturi tiek $attack2 !</div>";
 			
@@ -218,7 +218,7 @@ if($id == 'vip5a'){
 	
 	
 
-	if($apie[sms_litai] < 69 || $apie[lygis] < 49 ||$apie[veiksmai] < 99999){
+	if($apie[sms_litai] < 69 || $apie['lygis'] < 49 ||$apie['veiksmai'] < 99999){
 echo'<div class="meniuc"><img src="img/imgg/vip.png" /></div>';
 				echo"<div class='meniuc'>Nepakanka $eurui, $lvli arba $attack2!</div>";
 			
@@ -283,12 +283,12 @@ echo'<div class="meniuc"><img src="img/imgg/vip.png" /></div>';
 				echo"<div class='meniuc'>Nepakanka $eurui !</div>";
 			
 }			
-elseif($apie[lygis] < 54){
+elseif($apie['lygis'] < 54){
 echo'<div class="meniuc"><img src="img/imgg/vip.png" /></div>';
 				echo"<div class='meniuc'>Neturi tokio $lvli !</div>";
 			
 }			
-elseif($apie[veiksmai] < 199999){
+elseif($apie['veiksmai'] < 199999){
 echo'<div class="meniuc"><img src="img/imgg/vip.png" /></div>';
 				echo"<div class='meniuc'>Neturi tiek $attack2 !</div>";
 			
@@ -351,12 +351,12 @@ echo'<div class="meniuc"><img src="img/imgg/vip.png" /></div>';
 				echo"<div class='meniuc'>Nepakanka $eurui !</div>";
 			
 }			
-elseif($apie[lygis] < 59){
+elseif($apie['lygis'] < 59){
 echo'<div class="meniuc"><img src="img/imgg/vip.png" /></div>';
 				echo"<div class='meniuc'>Neturi tokio $lvli !</div>";
 			
 }			
-elseif($apie[veiksmai] < 349999){
+elseif($apie['veiksmai'] < 349999){
 echo'<div class="meniuc"><img src="img/imgg/vip.png" /></div>';
 				echo"<div class='meniuc'>Neturi tiek $attack2 !</div>";
 			
@@ -419,12 +419,12 @@ echo'<div class="meniuc"><img src="img/imgg/vip.png" /></div>';
 				echo"<div class='meniuc'>Nepakanka $eurui !</div>";
 			
 }			
-elseif($apie[lygis] < 69){
+elseif($apie['lygis'] < 69){
 echo'<div class="meniuc"><img src="img/imgg/vip.png" /></div>';
 				echo"<div class='meniuc'>Neturi tokio $lvli !</div>";
 			
 }			
-elseif($apie[veiksmai] < 499999){
+elseif($apie['veiksmai'] < 499999){
 echo'<div class="meniuc"><img src="img/imgg/vip.png" /></div>';
 				echo"<div class='meniuc'>Neturi tiek $attack2 !</div>";
 			
@@ -487,12 +487,12 @@ echo'<div class="meniuc"><img src="img/imgg/vip.png" /></div>';
 				echo"<div class='meniuc'>Nepakanka $eurui !</div>";
 			
 }			
-elseif($apie[lygis] < 84){
+elseif($apie['lygis'] < 84){
 echo'<div class="meniuc"><img src="img/imgg/vip.png" /></div>';
 				echo"<div class='meniuc'>Neturi tokio $lvli !</div>";
 			
 }			
-elseif($apie[veiksmai] < 999999){
+elseif($apie['veiksmai'] < 999999){
 echo'<div class="meniuc"><img src="img/imgg/vip.png" /></div>';
 				echo"<div class='meniuc'>Neturi tiek $attack2 !</div>";
 			

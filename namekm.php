@@ -64,7 +64,7 @@ if($apie[namekm] == '50'){$img ='nmisijos2'; $vieta = 'inv'; $reikia =' Bitacoin
 if($id == ''){
 top('Namek misijos');
 
-if($apie[lygis] < 59){
+if($apie['lygis'] < 59){
 		
 echo '<div class="meniuc"><img src=img/namek.png border="1" width="180" height="90"><alt="**"></br></br>Į namek planeta galima tik nuo 60 <img src="img/bicons/lvl.gif" /> !</div>
 
@@ -132,7 +132,7 @@ top('Namek misijos');
 	online('Namek misijos');
 ////// misijos
 if($apie[namekm] == 1){
-if($apie[lygis] < 39 ){
+if($apie['lygis'] < 39 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos2.png"></div>';
 		echo'<div class="meniuc">
@@ -281,7 +281,7 @@ mysqli_query($conn,"INSERT INTO pokalbiai SET nick='SISTEMA', sms='Žaidėjas <b
 }
 }	
 if($apie[namekm] == 11){
-if($apie[lygis] < 79 ){
+if($apie['lygis'] < 79 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos2.png"></div>';
 		echo'<div class="meniuc">

@@ -101,7 +101,7 @@ if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM statusai WHERE kam='$nick'"
 }
 
    $stt = array("Admin","Mod4","Mod3","Mod2","Mod");
-if(in_array($apie[statusas], $stt) && mysqli_num_rows(mysqli_query($conn,"SELECT * FROM foto WHERE ar_patvirtinta='ne'")) >0){
+if(in_array($apie['statusas'], $stt) && mysqli_num_rows(mysqli_query($conn,"SELECT * FROM foto WHERE ar_patvirtinta='ne'")) >0){
 	
  echo'<div class="meniuc"> <a href="meniu.php?id=mod&ka=ft_tikrinimas">Nauja nepatvirtinta nuotrauka</a></div>';
 	

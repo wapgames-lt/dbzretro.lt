@@ -103,7 +103,7 @@ if($id == ""){
     online('Transformacijos');
    top('Trasnsformacijos');
   
-    echo '<div class="meniuc"><img src="img/veikejai/'.$apie['veikejas'].'-'.$apie[trans].'.png" alt="*"></div>';
+    echo '<div class="meniuc"><img src="img/veikejai/'.$apie['veikejas'].'-'.$apie['trans'].'.png" alt="*"></div>';
     echo '<div class="meniuc">Transformuoti gali visi veikėjai, kiek trasformacijų turėsite priklauso nuo jūsų pasirinkto veikėjo. Trasformuotis galima tik tada kai pasieksit tam tikra  <img src="img/bicons/lvl.gif"> ir tam tikrą kiekį <img src="img/bicons/attack.png"> , <img src="img/bicons/shield.png">.</div>';
     echo '<div class="meniuc"><a href="?id=transreikalavimai"><font color="red"><small>Transformacijų reikalavimai</font></a></small></div>
 <div class="meniu">
@@ -112,7 +112,7 @@ if($id == ""){
     </div>';
 	  echo '<div class="meniu">';
 	
-  for($t = 0; $t <= $rrr[trans]; $t++){
+  for($t = 0; $t <= $rrr['trans']; $t++){
   		
   	echo'<a href="?id=OK&ka='.$t.'">'.$t.' transformacija </a></br>';
   	
@@ -130,7 +130,7 @@ if($id == "transreikalavimai"){
     online('Transformacijos');
    top('Trasnsformacijos');
   
-    echo '<div class="meniuc"><img src="img/veikejai/'.$apie['veikejas'].'-'.$apie[trans].'.png" alt="*"></div>';
+    echo '<div class="meniuc"><img src="img/veikejai/'.$apie['veikejas'].'-'.$apie['trans'].'.png" alt="*"></div>';
     echo '<div class="meniuc">Transformuoti gali visi veikėjai, kiek trasformacijų turėsite priklauso nuo jūsų pasirinkto veikėjo. Trasformuotis galima tik tada kai pasieksit tam tikra  <img src="img/bicons/lvl.gif"> ir tam tikrą kiekį <img src="img/bicons/attack.png"> , <img src="img/bicons/shield.png">.</div>';
     echo '<div class="meniu">
 <b>0 transformacija</b> - 10 <img src="img/bicons/lvl.png">,  10,000 <img src="img/bicons/attack.png">, 30,000 <img src="img/bicons/shield.png"><br>

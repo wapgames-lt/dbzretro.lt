@@ -589,7 +589,7 @@ if($apie[kenergija15] > 49999){
 
 echo'<div class="meniuc"><b>AngryBulma technika</b> Padidina jūsų kirtį <b>4x</b> !</div>';}
 echo '<div class="meniuc">';
-        echo' <img src="img/veikejai/'.$apie['veikejas'].'-'.$apie[trans].'.png" alt="IMG" height="16" width="16"> <b> '.$nick.'  </b> nuėmei 
+        echo' <img src="img/veikejai/'.$apie['veikejas'].'-'.$apie['trans'].'.png" alt="IMG" height="16" width="16"> <b> '.$nick.'  </b> nuėmei 
 <font color="green"><b>'.skaicius($smugiss).'</b>';
 	if($apie[critical] !='0'){
         $dmg = $smugis;
@@ -602,7 +602,7 @@ echo '<div class="meniuc">';
 			 
 			 
 echo'<div class="meniuc">
- <img src="img/veikejai/'.$apie['veikejas'].'-'.$apie[trans].'.png" alt="IMG" height="16" width="16"><b>'.$nick.'</b> liko '.$lygu.'<font color="green"><b>'.sk($gyvybes).'</b></font>'.$hp.'<br/>
+ <img src="img/veikejai/'.$apie['veikejas'].'-'.$apie['trans'].'.png" alt="IMG" height="16" width="16"><b>'.$nick.'</b> liko '.$lygu.'<font color="green"><b>'.sk($gyvybes).'</b></font>'.$hp.'<br/>
 <img src="img/veikejaic/'.$boss['img'].'.png" alt="IMG" height="16" width="16">  <b>'.$boss['name'].'</b> liko '.$lygu.'<font color="green"> <b>'.sk($bosui_liko).'</b></font>'.$hp.'<br>
 Padarei <img src="img/veikejaic/'.$boss['img'].'.png" alt="IMG" height="16" width="16"> <b> '.$boss['name'].'</b> žalos: <b>'.$dmg.'</b><br>';
    if($autob = '+' AND $boss2[auto] == 'paprastas'){

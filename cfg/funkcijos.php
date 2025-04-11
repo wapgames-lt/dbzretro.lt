@@ -594,7 +594,7 @@ if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM online WHERE nick='$nick'")
 mysqli_query($conn,"INSERT INTO online SET nick='$nick', vieta='$vt', nrs='$nars', ip='$ip', time='$timx', time_on='".time()."', gausite='$tm'")or die(mysqli_error());
 
 }else{
-    mysqli_query($conn,"UPDATE online SET vieta='$vt', time='$timx' WHERE nick='$nick'");
+    mysqli_query($conn, "UPDATE online SET vieta='" . mysqli_real_escape_string($conn, $vt) . "', `time`='" . mysqli_real_escape_string($conn, $timx) . "' WHERE nick='" . mysqli_real_escape_string($conn, $nick) . "'") or die(mysqli_error($conn));
 }
 }
 mysqli_query($conn,"DELETE FROM online WHERE time < '".time()."'");
@@ -2651,7 +2651,7 @@ while($row = mysqli_fetch_assoc($query)){
        mysqli_query($conn,"UPDATE team SET pinigai=pinigai+'10000000000', eurai=eurai+'500' WHERE pavadinimas='$row[team]'")or die(mysqli_error());
           $timxx = time()+60*60*24*7;  
 mysqli_query($conn,"UPDATE team SET savmedaltime='$timxx', savmedal=savmedal+'1' WHERE pavadinimas='$row[team]' ");
-mysqli_query($conn,"UPDATE nustatymai SET laimejo_kovu2='$row[laimejo_kovu]' WHERE pavadinimas='$row[team]' ");
+mysqli_query($conn,"UPDATE nustatymai SET laimejo_kovu2='$row[laimejo_kovu]' ");
   mysqli_query($conn,"UPDATE nustatymai SET last3='$row[team]'");
     }
    

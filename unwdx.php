@@ -12,6 +12,6 @@ include_once 'cfg/funkcijos.php';
 
 
 
-if(laikas($apie['vip']-time(),1) > 1){
-    echo laikass($apie['vip']-time(),1);
+if(laikas((int)$apie['vip']-time(),1) > 1){
+    echo laikass((int)$apie['vip']-time(),1);
 }

@@ -300,7 +300,7 @@ elseif($id == "atv"){
          
        <td class="cont3" align="left"><input type="text" class="ninp" value="http://vegeta.us.lt?ID='.$nick.'" size="30" onclick="select(this);"/></td><br/>
         </div>
-        <div class="meniu"> Jau atvėdete : '.$apie[atvede].' </div>        ';
+        <div class="meniu"> Jau atvėdete : '.$apie['atvede'].' </div>        ';
      $g_n[] = array("pagrindinis.php?id=","Pagrindinis","meniu.php","Mano menių","Lankytojų atvedimas");
 	navigacija($g_n);
     }
@@ -1134,7 +1134,7 @@ elseif($ka == "pm_logas"){
 		
 		header("location:pagrindinis.php");
 	}
-	elseif($r[statusas] == 'Admin' or $r[statusas] == 'Mod4'or $r[statusas] == 'Kurejas'){
+	elseif($r['statusas'] == 'Admin' or $r['statusas'] == 'Mod4'or $r['statusas'] == 'Kurejas'){
 				
 			 echo '<div class="meniuc">Administratorių pm skaityti negalima!</div>';	
 		
@@ -2018,7 +2018,7 @@ echo"<div class='meniuc'>$kl</div>";
 $st = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM zaidejai WHERE nick='$nick'"));
 
 echo " <div class='meniuc'>";
-if($st[nuotaika] != ''){ echo"
+if($st['nuotaika'] != ''){ echo"
 Tavo nuotaika:<b>$st[nuotaika]</b><br/><img src=\"img/nuotaikos/$st[nuotaika].gif\"/><br/>";}
 else{ echo"Be nuotaikos<br/>";} echo"
 </div><div class='meniu'>
@@ -2053,7 +2053,7 @@ if($id=='search'){
 if($id == 'search2'){
 	top('Paieška');
 	echo"<div class='meniu'>";
-$nickas = post($_POST[nickas]);
+$nickas = post($_POST['nickas']);
 	 $viso = mysqli_num_rows(mysqli_query($conn,"SELECT * FROM zaidejai WHERE nick LIKE '%".$nickas."%'")) or die(mysqli_error());
    if($vičso > 0){
     $rezultatu_rodymas=10;
@@ -2273,8 +2273,8 @@ $q = mysqli_query($conn,"SELECT * FROM rep WHERE kam='$nick' ORDER BY id DESC LI
    $puslapiu=ceil($viso/$rezultatu_rodymas);
 	while($row = mysqli_fetch_assoc($q)){
 		$pl++;
-$fj = $row[ka] == 1 ? "Teigiamą" : "Neigiamą";
-	echo'<b>'.$pl.'.</b> '.statusas($row[kas]).' uždėjo '.(($row[ka] == 1) ? "<b>Teigiamą</b>" : "<b>Neigiamą</b>").'  reptutaciją '.laikas($row['time']).'</br>';	
+$fj = $row['ka'] == 1 ? "Teigiamą" : "Neigiamą";
+	echo'<b>'.$pl.'.</b> '.statusas($row['kas']).' uždėjo '.(($row['ka'] == 1) ? "<b>Teigiamą</b>" : "<b>Neigiamą</b>").'  reptutaciją '.laikas($row['time']).'</br>';
 		
 
 	}

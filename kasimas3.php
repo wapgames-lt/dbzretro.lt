@@ -42,7 +42,7 @@ elseif($id == "pap"){
    
 	
 }	          
-if($apie[vip]-time() > 0){
+if((int)$apie['vip']-time() > 0){
 $kasimasa = 3;
  $padusimas = 3;
  

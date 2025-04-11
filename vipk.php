@@ -18,7 +18,7 @@ if(empty($apie[kovos])){
 }
 
 
-if($apie[vip]-time > 0){
+if($apie['vip']-time > 0){
 $kovojimas = 0;
  $padusimas = 0;
  
@@ -117,7 +117,7 @@ echo'
 
 
 ';
-if($apie[vip]-time() > 0){
+if((int)$apie['vip']-time() > 0){
 	
 echo'	<div class="meniuc">Vip turėsite <font color="red">VISAM LAIKUI</font></div>';
 }
@@ -931,7 +931,7 @@ if($apie['giras'] == '+'){
         $xxs = "+";
     }
 
-	if($apie['vip']-time() > 0){
+	if((int)$apie['vip']-time() > 0){
             $mob['pin']= $mob['pin']*1.2;
 $mob['exp']= $mob['exp']*1.2;
        
@@ -2066,7 +2066,7 @@ if($kg < 100000){
 		
 	}
    	else{
-		if($apie[lygis] > 250){
+		if($apie['lygis'] > 250){
 			
 			
 			 echo '<div class="meniuc">Tau čia negalima, tik iki '.sk(250).' lygio!</div>';

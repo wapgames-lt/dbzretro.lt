@@ -8,14 +8,14 @@ head2();
 
 baneris();
 topbar();
-$kodas = isset($_GET[kodas]) ? $_GET[kodas] : null;
+$kodas = isset($_GET['kodas']) ? $_GET['kodas'] : null;
 
-//$kodas .= $_SESSION[kd];
+//$kodas .= $_SESSION['kd'] ;
 if($id == ''){
 	top('Miškas');
 	$kodas = rand(1111,9999);
 	
-	$_SESSION[kd] = $kodas;
+	$_SESSION['kd'] = $kodas;
 	
 	
 
@@ -34,7 +34,7 @@ if($id == 'malkur'){
 	top('Miškas');
 	$kodas = rand(1111,9999);
 	
-	$_SESSION[kd] = $kodas;
+	$_SESSION['kd'] = $kodas;
 	
 	echo'<div class="meniuc"><img src="img/miskas.png" border="1"></div>
 <div class="meniuc"><b>Malkų rinkimas</b> - čia galite kelti malkų rinkimo lygį, kuo jis aukštesnis tuo daugiau malkų gausite už veiksmą!</div>
@@ -58,7 +58,7 @@ if($id == 'zvejybosr'){
 	top('Žuvų gaudymas');
 	$kodas = rand(1111,9999);
 	
-	$_SESSION[kd] = $kodas;
+	$_SESSION['kd'] = $kodas;
 	
 	echo'<div class="meniuc"><img src="img/zvejyba.png" border="1"></div>
 <div class="meniuc"><b>Žuvų gaudymas</b> - čia galite kelti Žuvų gaudymo lygį, kuo jis aukštesnis tuo daugiau žuvų gausite už veiksmą!</div>
@@ -82,7 +82,7 @@ if($id == 'zvejybosr'){
 // žuvų 
 if($id == 'zvej1'){
 top('Žuvų gaudymas');
-	if($kodas != $_SESSION[kd]){
+	if($kodas != $_SESSION['kd'] ){
 echo'<div class="meniuc"><img src="img/zvejyba.png" border="1"></div>';
 		echo'<div class="meniuc">Perkrauti puslapio negalima, eik per nauja</div>';
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","miskas.php", "Miskas", "Klaida");
@@ -95,9 +95,9 @@ echo'<div class="meniuc"><img src="img/zvejyba.png" border="1"></div>';
 	navigacija($g_n);
 
 }
-	elseif($_SESSION[zuvis] > time()){
+	elseif($_SESSION['zuvis']  > time()){
 echo'<div class="meniuc"><img src="img/zvejyba.png" border="1"></div>';
-		echo'<div class="meniuc">Per greit gaudai galėsi po '.laikas($_SESSION[zuvis]-time(), 1).'</div>';
+		echo'<div class="meniuc">Per greit gaudai galėsi po '.laikas($_SESSION['zuvis'] -time(), 1).'</div>';
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","miskas.php", "Miskas", "Klaida");
 	navigacija($g_n);
 	}
@@ -105,8 +105,8 @@ echo'<div class="meniuc"><img src="img/zvejyba.png" border="1"></div>';
 	else{
 		$kodas = rand(1111,9999);
 		
-		$_SESSION[kd] = $kodas;
-		$_SESSION[zuvis] = time()+3;
+		$_SESSION['kd'] = $kodas;
+		$_SESSION['zuvis']  = time()+3;
 		$randas = rand(1,1);
 		$randas2 =rand(1,3);
 		$randas3 =rand(1,2);
@@ -131,7 +131,7 @@ mysqli_query($conn,"UPDATE zaidejai SET zvejybosr=zvejybosr+'$randas3' WHERE nic
 }
 if($id == 'zvej2'){
 top('Žuvų gaudymas');
-	if($kodas != $_SESSION[kd]){
+	if($kodas != $_SESSION['kd'] ){
 echo'<div class="meniuc"><img src="img/zvejyba.png" border="1"></div>';
 		echo'<div class="meniuc">Perkrauti puslapio negalima, eik per nauja</div>';
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","miskas.php", "Miskas", "Klaida");
@@ -144,9 +144,9 @@ echo'<div class="meniuc"><img src="img/zvejyba.png" border="1"></div>';
 	navigacija($g_n);
 
 }
-	elseif($_SESSION[zuvis] > time()){
+	elseif($_SESSION['zuvis']  > time()){
 echo'<div class="meniuc"><img src="img/zvejyba.png" border="1"></div>';
-		echo'<div class="meniuc">Per greit gaudai galėsi po '.laikas($_SESSION[zuvis]-time(), 1).'</div>';
+		echo'<div class="meniuc">Per greit gaudai galėsi po '.laikas($_SESSION['zuvis'] -time(), 1).'</div>';
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","miskas.php", "Miskas", "Klaida");
 	navigacija($g_n);
 	}
@@ -154,8 +154,8 @@ echo'<div class="meniuc"><img src="img/zvejyba.png" border="1"></div>';
 	else{
 		$kodas = rand(1111,9999);
 		
-		$_SESSION[kd] = $kodas;
-		$_SESSION[zuvis] = time()+3;
+		$_SESSION['kd'] = $kodas;
+		$_SESSION['zuvis']  = time()+3;
 		$randas = rand(1,1);
 		$randas2 =rand(2,4);
 		$randas3 =rand(2,3);
@@ -180,7 +180,7 @@ mysqli_query($conn,"UPDATE zaidejai SET zvejybosr=zvejybosr+'$randas3' WHERE nic
 }
 if($id == 'zvej3'){
 top('Žuvų gaudymas');
-	if($kodas != $_SESSION[kd]){
+	if($kodas != $_SESSION['kd'] ){
 echo'<div class="meniuc"><img src="img/zvejyba.png" border="1"></div>';
 		echo'<div class="meniuc">Perkrauti puslapio negalima, eik per nauja</div>';
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","miskas.php", "Miskas", "Klaida");
@@ -193,9 +193,9 @@ echo'<div class="meniuc"><img src="img/zvejyba.png" border="1"></div>';
 	navigacija($g_n);
 
 }
-	elseif($_SESSION[zuvis] > time()){
+	elseif($_SESSION['zuvis']  > time()){
 echo'<div class="meniuc"><img src="img/zvejyba.png" border="1"></div>';
-		echo'<div class="meniuc">Per greit gaudai galėsi po '.laikas($_SESSION[zuvis]-time(), 1).'</div>';
+		echo'<div class="meniuc">Per greit gaudai galėsi po '.laikas($_SESSION['zuvis'] -time(), 1).'</div>';
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","miskas.php", "Miskas", "Klaida");
 	navigacija($g_n);
 	}
@@ -203,8 +203,8 @@ echo'<div class="meniuc"><img src="img/zvejyba.png" border="1"></div>';
 	else{
 		$kodas = rand(1111,9999);
 		
-		$_SESSION[kd] = $kodas;
-		$_SESSION[zuvis] = time()+3;
+		$_SESSION['kd'] = $kodas;
+		$_SESSION['zuvis']  = time()+3;
 		$randas = rand(1,1);
 		$randas2 =rand(3,6);
 		$randas3 =rand(3,5);
@@ -230,7 +230,7 @@ mysqli_query($conn,"UPDATE zaidejai SET zvejybosr=zvejybosr+'$randas3' WHERE nic
 
 if($id == 'zvej4'){
 top('Žuvų gaudymas');
-	if($kodas != $_SESSION[kd]){
+	if($kodas != $_SESSION['kd'] ){
 echo'<div class="meniuc"><img src="img/zvejyba.png" border="1"></div>';
 		echo'<div class="meniuc">Perkrauti puslapio negalima, eik per nauja</div>';
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","miskas.php", "Miskas", "Klaida");
@@ -243,9 +243,9 @@ echo'<div class="meniuc"><img src="img/zvejyba.png" border="1"></div>';
 	navigacija($g_n);
 
 }
-	elseif($_SESSION[zuvis] > time()){
+	elseif($_SESSION['zuvis']  > time()){
 echo'<div class="meniuc"><img src="img/zvejyba.png" border="1"></div>';
-		echo'<div class="meniuc">Per greit gaudai galėsi po '.laikas($_SESSION[zuvis]-time(), 1).'</div>';
+		echo'<div class="meniuc">Per greit gaudai galėsi po '.laikas($_SESSION['zuvis'] -time(), 1).'</div>';
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","miskas.php", "Miskas", "Klaida");
 	navigacija($g_n);
 	}
@@ -253,8 +253,8 @@ echo'<div class="meniuc"><img src="img/zvejyba.png" border="1"></div>';
 	else{
 		$kodas = rand(1111,9999);
 		
-		$_SESSION[kd] = $kodas;
-		$_SESSION[zuvis] = time()+3;
+		$_SESSION['kd'] = $kodas;
+		$_SESSION['zuvis']  = time()+3;
 		$randas = rand(1,1);
 		$randas2 =rand(5,10);
 		$randas3 =rand(4,8);
@@ -280,7 +280,7 @@ mysqli_query($conn,"UPDATE zaidejai SET zvejybosr=zvejybosr+'$randas3' WHERE nic
 
 if($id == 'zvej5'){
 top('Žuvų gaudymas');
-	if($kodas != $_SESSION[kd]){
+	if($kodas != $_SESSION['kd'] ){
 echo'<div class="meniuc"><img src="img/zvejyba.png" border="1"></div>';
 		echo'<div class="meniuc">Perkrauti puslapio negalima, eik per nauja</div>';
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","miskas.php", "Miskas", "Klaida");
@@ -293,9 +293,9 @@ echo'<div class="meniuc"><img src="img/zvejyba.png" border="1"></div>';
 	navigacija($g_n);
 
 }
-	elseif($_SESSION[zuvis] > time()){
+	elseif($_SESSION['zuvis']  > time()){
 echo'<div class="meniuc"><img src="img/zvejyba.png" border="1"></div>';
-		echo'<div class="meniuc">Per greit gaudai galėsi po '.laikas($_SESSION[zuvis]-time(), 1).'</div>';
+		echo'<div class="meniuc">Per greit gaudai galėsi po '.laikas($_SESSION['zuvis'] -time(), 1).'</div>';
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","miskas.php", "Miskas", "Klaida");
 	navigacija($g_n);
 	}
@@ -303,8 +303,8 @@ echo'<div class="meniuc"><img src="img/zvejyba.png" border="1"></div>';
 	else{
 		$kodas = rand(1111,9999);
 		
-		$_SESSION[kd] = $kodas;
-		$_SESSION[zuvis] = time()+3;
+		$_SESSION['kd'] = $kodas;
+		$_SESSION['zuvis'] = time()+3;
 		$randas = rand(1,1);
 		$randas2 =rand(6,13);
 		$randas3 =rand(5,11);
@@ -330,7 +330,7 @@ mysqli_query($conn,"UPDATE zaidejai SET zvejybosr=zvejybosr+'$randas3' WHERE nic
 
 if($id == 'zvej6'){
 top('Žuvų gaudymas');
-	if($kodas != $_SESSION[kd]){
+	if($kodas != $_SESSION['kd'] ){
 echo'<div class="meniuc"><img src="img/zvejyba.png" border="1"></div>';
 		echo'<div class="meniuc">Perkrauti puslapio negalima, eik per nauja</div>';
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","miskas.php", "Miskas", "Klaida");
@@ -343,9 +343,9 @@ echo'<div class="meniuc"><img src="img/zvejyba.png" border="1"></div>';
 	navigacija($g_n);
 
 }
-	elseif($_SESSION[zuvis] > time()){
+	elseif($_SESSION['zuvis']  > time()){
 echo'<div class="meniuc"><img src="img/zvejyba.png" border="1"></div>';
-		echo'<div class="meniuc">Per greit gaudai galėsi po '.laikas($_SESSION[zuvis]-time(), 1).'</div>';
+		echo'<div class="meniuc">Per greit gaudai galėsi po '.laikas($_SESSION['zuvis'] -time(), 1).'</div>';
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","miskas.php", "Miskas", "Klaida");
 	navigacija($g_n);
 	}
@@ -353,8 +353,8 @@ echo'<div class="meniuc"><img src="img/zvejyba.png" border="1"></div>';
 	else{
 		$kodas = rand(1111,9999);
 		
-		$_SESSION[kd] = $kodas;
-		$_SESSION[zuvis] = time()+3;
+		$_SESSION['kd'] = $kodas;
+		$_SESSION['zuvis']  = time()+3;
 		$randas = rand(1,1);
 		$randas2 =rand(8,16);
 		$randas3 =rand(7,13);
@@ -383,7 +383,7 @@ mysqli_query($conn,"UPDATE zaidejai SET zvejybosr=zvejybosr+'$randas3' WHERE nic
 // malkųų 
 if($id == 'mal1'){
 top('Malku rinkimas');
-	if($kodas != $_SESSION[kd]){
+	if($kodas != $_SESSION['kd']){
 		echo'<div class="meniuc">Perkrauti puslapio negalima, eik per nauja</div>';
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","miskas.php", "Miskas", "Klaida");
 	navigacija($g_n);
@@ -395,9 +395,9 @@ top('Malku rinkimas');
 	navigacija($g_n);
 
 }
-	elseif($_SESSION[malkos] > time()){
+	elseif($_SESSION['malkos'] > time()){
 echo'<div class="meniuc"><img src="img/miskas.png" border="1"></div>';
-		echo'<div class="meniuc">Per greit renki galėsi po '.laikas($_SESSION[malkos]-time(), 1).'</div>';
+		echo'<div class="meniuc">Per greit renki galėsi po '.laikas($_SESSION['malkos']-time(), 1).'</div>';
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","miskas.php", "Miskas", "Klaida");
 	navigacija($g_n);
 	}
@@ -405,8 +405,8 @@ echo'<div class="meniuc"><img src="img/miskas.png" border="1"></div>';
 	else{
 		$kodas = rand(1111,9999);
 		
-		$_SESSION[kd] = $kodas;
-		$_SESSION[malkos] = time()+3;
+		$_SESSION['kd'] = $kodas;
+		$_SESSION['malkos'] = time()+3;
 		$randas = rand(1,1);
 		$randas2 =rand(1,5);
 		$randas3 =rand(1,3);
@@ -431,7 +431,7 @@ mysqli_query($conn,"UPDATE zaidejai SET malkur=malkur+'$randas3' WHERE nick='$ni
 }
 if($id == 'mal2'){
 top('Malku rinkimas');
-	if($kodas != $_SESSION[kd]){
+	if($kodas != $_SESSION['kd']){
 		echo'<div class="meniuc">Perkrauti puslapio negalima, eik per nauja</div>';
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","miskas.php", "Miskas", "Klaida");
 	navigacija($g_n);
@@ -443,9 +443,9 @@ top('Malku rinkimas');
 	navigacija($g_n);
 
 }
-	elseif($_SESSION[malkos] > time()){
+	elseif($_SESSION['malkos'] > time()){
 echo'<div class="meniuc"><img src="img/miskas.png" border="1"></div>';
-		echo'<div class="meniuc">Per greit renki galėsi po '.laikas($_SESSION[malkos]-time(), 1).'</div>';
+		echo'<div class="meniuc">Per greit renki galėsi po '.laikas($_SESSION['malkos']-time(), 1).'</div>';
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","miskas.php", "Miskas", "Klaida");
 	navigacija($g_n);
 	}
@@ -453,8 +453,8 @@ echo'<div class="meniuc"><img src="img/miskas.png" border="1"></div>';
 	else{
 		$kodas = rand(1111,9999);
 		
-		$_SESSION[kd] = $kodas;
-		$_SESSION[malkos] = time()+3;
+		$_SESSION['kd'] = $kodas;
+		$_SESSION['malkos']  = time()+3;
 		$randas = rand(1,1);
 		$randas2 =rand(2,9);
 		$randas3 =rand(2,4);
@@ -479,7 +479,7 @@ mysqli_query($conn,"UPDATE zaidejai SET malkur=malkur+'$randas3' WHERE nick='$ni
 }
 if($id == 'mal3'){
 top('Malku rinkimas');
-	if($kodas != $_SESSION[kd]){
+	if($kodas != $_SESSION['kd'] ){
 		echo'<div class="meniuc">Perkrauti puslapio negalima, eik per nauja</div>';
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","miskas.php", "Miskas", "Klaida");
 	navigacija($g_n);
@@ -491,9 +491,9 @@ top('Malku rinkimas');
 	navigacija($g_n);
 
 }
-	elseif($_SESSION[malkos] > time()){
+	elseif($_SESSION['malkos']  > time()){
 echo'<div class="meniuc"><img src="img/miskas.png" border="1"></div>';
-		echo'<div class="meniuc">Per greit renki galėsi po '.laikas($_SESSION[malkos]-time(), 1).'</div>';
+		echo'<div class="meniuc">Per greit renki galėsi po '.laikas($_SESSION['malkos'] -time(), 1).'</div>';
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","miskas.php", "Miskas", "Klaida");
 	navigacija($g_n);
 	}
@@ -501,8 +501,8 @@ echo'<div class="meniuc"><img src="img/miskas.png" border="1"></div>';
 	else{
 		$kodas = rand(1111,9999);
 		
-		$_SESSION[kd] = $kodas;
-		$_SESSION[malkos] = time()+3;
+		$_SESSION['kd'] = $kodas;
+		$_SESSION['malkos']  = time()+3;
 		$randas = rand(1,1);
 		$randas2 =rand(3,13);
 		$randas3 =rand(3,6);
@@ -527,7 +527,7 @@ mysqli_query($conn,"UPDATE zaidejai SET malkur=malkur+'$randas3' WHERE nick='$ni
 }
 if($id == 'mal4'){
 top('Malku rinkimas');
-	if($kodas != $_SESSION[kd]){
+	if($kodas != $_SESSION['kd'] ){
 		echo'<div class="meniuc">Perkrauti puslapio negalima, eik per nauja</div>';
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","miskas.php", "Miskas", "Klaida");
 	navigacija($g_n);
@@ -539,9 +539,9 @@ top('Malku rinkimas');
 	navigacija($g_n);
 
 }
-	elseif($_SESSION[malkos] > time()){
+	elseif($_SESSION['malkos']  > time()){
 echo'<div class="meniuc"><img src="img/miskas.png" border="1"></div>';
-		echo'<div class="meniuc">Per greit renki galėsi po '.laikas($_SESSION[malkos]-time(), 1).'</div>';
+		echo'<div class="meniuc">Per greit renki galėsi po '.laikas($_SESSION['malkos'] -time(), 1).'</div>';
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","miskas.php", "Miskas", "Klaida");
 	navigacija($g_n);
 	}
@@ -549,8 +549,8 @@ echo'<div class="meniuc"><img src="img/miskas.png" border="1"></div>';
 	else{
 		$kodas = rand(1111,9999);
 		
-		$_SESSION[kd] = $kodas;
-		$_SESSION[malkos] = time()+3;
+		$_SESSION['kd'] = $kodas;
+		$_SESSION['malkos']  = time()+3;
 		$randas = rand(1,1);
 		$randas2 =rand(4,16);
 		$randas3 =rand(4,8);
@@ -575,7 +575,7 @@ mysqli_query($conn,"UPDATE zaidejai SET malkur=malkur+'$randas3' WHERE nick='$ni
 }
 if($id == 'mal5'){
 top('Malku rinkimas');
-	if($kodas != $_SESSION[kd]){
+	if($kodas != $_SESSION['kd'] ){
 		echo'<div class="meniuc">Perkrauti puslapio negalima, eik per nauja</div>';
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","miskas.php", "Miskas", "Klaida");
 	navigacija($g_n);
@@ -587,9 +587,9 @@ top('Malku rinkimas');
 	navigacija($g_n);
 
 }
-	elseif($_SESSION[malkos] > time()){
+	elseif($_SESSION['malkos']  > time()){
 echo'<div class="meniuc"><img src="img/miskas.png" border="1"></div>';
-		echo'<div class="meniuc">Per greit renki galėsi po '.laikas($_SESSION[malkos]-time(), 1).'</div>';
+		echo'<div class="meniuc">Per greit renki galėsi po '.laikas($_SESSION['malkos'] -time(), 1).'</div>';
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","miskas.php", "Miskas", "Klaida");
 	navigacija($g_n);
 	}
@@ -597,8 +597,8 @@ echo'<div class="meniuc"><img src="img/miskas.png" border="1"></div>';
 	else{
 		$kodas = rand(1111,9999);
 		
-		$_SESSION[kd] = $kodas;
-		$_SESSION[malkos] = time()+3;
+		$_SESSION['kd'] = $kodas;
+		$_SESSION['malkos']  = time()+3;
 		$randas = rand(1,1);
 		$randas2 =rand(5,20);
 		$randas3 =rand(5,10);
@@ -623,7 +623,7 @@ mysqli_query($conn,"UPDATE zaidejai SET malkur=malkur+'$randas3' WHERE nick='$ni
 }
 if($id == 'mal6'){
 top('Malku rinkimas');
-	if($kodas != $_SESSION[kd]){
+	if($kodas != $_SESSION['kd'] ){
 		echo'<div class="meniuc">Perkrauti puslapio negalima, eik per nauja</div>';
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","miskas.php", "Miskas", "Klaida");
 	navigacija($g_n);
@@ -635,9 +635,9 @@ top('Malku rinkimas');
 	navigacija($g_n);
 
 }
-	elseif($_SESSION[malkos] > time()){
+	elseif($_SESSION['malkos']  > time()){
 echo'<div class="meniuc"><img src="img/miskas.png" border="1"></div>';
-		echo'<div class="meniuc">Per greit renki galėsi po '.laikas($_SESSION[malkos]-time(), 1).'</div>';
+		echo'<div class="meniuc">Per greit renki galėsi po '.laikas($_SESSION['malkos'] -time(), 1).'</div>';
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","miskas.php", "Miskas", "Klaida");
 	navigacija($g_n);
 	}
@@ -645,8 +645,8 @@ echo'<div class="meniuc"><img src="img/miskas.png" border="1"></div>';
 	else{
 		$kodas = rand(1111,9999);
 		
-		$_SESSION[kd] = $kodas;
-		$_SESSION[malkos] = time()+3;
+		$_SESSION['kd'] = $kodas;
+		$_SESSION['malkos']  = time()+3;
 		$randas = rand(1,1);
 		$randas2 =rand(6,22);
 		$randas3 =rand(6,14);
@@ -673,13 +673,13 @@ mysqli_query($conn,"UPDATE zaidejai SET malkur=malkur+'$randas3' WHERE nick='$ni
 
 if($id == 'zvej'){
 top('Žvejojimas');
-	if($kodas != $_SESSION[kd]){
+	if($kodas != $_SESSION['kd'] ){
 		echo'<div class="meniuc">Perkrauti puslapio negalima, eik per nauja</div>';
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","miskas.php", "Miskas", "Klaida");
 	navigacija($g_n);
 	}
-	elseif($_SESSION[malkos] > time()){
-		echo'<div class="meniuc">Per greit žvejoji galėsi po '.laikas($_SESSION[malkos]-time(), 1).'</div>';
+	elseif($_SESSION['malkos']  > time()){
+		echo'<div class="meniuc">Per greit žvejoji galėsi po '.laikas($_SESSION['malkos'] -time(), 1).'</div>';
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","miskas.php", "Miskas", "Klaida");
 	navigacija($g_n);
 	}
@@ -687,8 +687,8 @@ top('Žvejojimas');
 	else{
 		$kodas = rand(1111,9999);
 		
-		$_SESSION[kd] = $kodas;
-		$_SESSION[malkos] = time()+3;
+		$_SESSION['kd'] = $kodas;
+		$_SESSION['malkos']  = time()+3;
 		$randas = rand(1,3);
 		$randas2 =rand(1,3);
 		if($randas == 1){echo'<div class="meniuc">Deja nepagavai žuvies</div>';

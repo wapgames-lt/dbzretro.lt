@@ -1803,7 +1803,7 @@ if ($id == 'kovu_masina') {
 
 
                     } else {
-                        if ($apie[lygis] > 250) {
+                        if ($apie['lygis'] > 250) {
 
 
                             echo '<div class="meniuc">Tau čia negalima, tik iki ' . sk(250) . ' lygio!</div>';
