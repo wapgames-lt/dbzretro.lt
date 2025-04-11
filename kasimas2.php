@@ -9,7 +9,7 @@ head2();
 baneris();
 topbar();
 $kasimas = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM kasyklav2 WHERE id='$VS' "));
-   if(empty($apie[kasimasa])){
+   if(empty($apie['kasimasa'])){
 	
 	mysqli_query($conn,"UPDATE zaidejai SET kasimasa='paprastas' WHERE nick='$nick'");
 }
@@ -324,10 +324,10 @@ echo'<div class="meniuc"><img src="img/kasimas/kasykla.png" border="1"></div>
 
   <div class="titlec">Dabar padusimai kas <b><font color="green">'.$padusimas.'</font></b> sec , auto kasimas kas <b><font color="green">'.$kasimasa.'</font></b> sec<br/></div>
 ';
-if($apie['kasimas2x']-time() > 0){
+if((int)$apie['kasimas2x']-time() > 0){
   echo '<div class="meniuc">Daugiau iškasamų rūdų tau galios: <b>'.laikas($apie['kasimas2x']-time(), 1).'</b></div>';
 }
-if($apie['kasimolvl2x']-time() > 0){
+if((int)$apie['kasimolvl2x']-time() > 0){
   echo '<div class="meniuc">Daugiau kasimi LVL tau galios: <b>'.laikas($apie['kasimolvl2x']-time(), 1).'</b></div>';
 }
 echo'<div class="meniuc"><a href="?id=rudos"><font color="red"><b>Iškasti ištekliai</b></font></a></div>';
@@ -392,14 +392,14 @@ $VS = post($_GET['VS']);
 $KD = post($_GET['KD']);
    online('Kasykloje');
 //// 2x kasimo lvl
-  if($apie['kasimolvl2x']-time() > 0){
+  if((int)$apie['kasimolvl2x']-time() > 0){
 $kasimas2x=2;}
-  if($apie['kasimolvl2x']-time() < 0){
+  if((int)$apie['kasimolvl2x']-time() < 0){
 $kasimas2x=1;}
 /// 2x rudu
-   if($apie['kasimas2x']-time() > 0){
+   if((int)$apie['kasimas2x']-time() > 0){
 $kasimasx=1;}
-if($apie['kasimas2x']-time() < 0){
+if((int)$apie['kasimas2x']-time() < 0){
 $kasimasx=0;}
 /// reward
 if($apie['kasimoreward'] == '+'){
@@ -487,7 +487,7 @@ mysqli_query($conn,"UPDATE kasimotop SET surinkta=surinkta+'$randas3' WHERE nick
                  if (mysqli_num_rows(mysqli_query($conn,"SELECT * FROM s_top WHERE nick='$nick'")) > 0) mysqli_query($conn,"UPDATE s_top SET vksm=vksm+1 WHERE nick='$nick'"); else mysqli_query($conn,"INSERT INTO s_top SET vksm='1', nick='$nick'");
 	}
 	    
-if($autok = '+' AND $apie[kasimasa] == 'paprastas'){
+if($autok = '+' AND $apie['kasimasa'] == 'paprastas'){
     echo '<meta http-equiv="refresh" content="'.$kasimasa.'; url=kasimas2.php?id=kasu&ID='.$ID.'&VS='.$VS.'&KD='.$KDS.'">';}	     
 
 

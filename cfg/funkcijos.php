@@ -2611,7 +2611,7 @@ while($row = mysqli_fetch_assoc($query)){
 	    mysqli_query($conn,"UPDATE team SET pinigai=pinigai+'1000000000', eurai=eurai+'50', laimetu_dtop=laimetu_dtop+'1' WHERE pavadinimas='$row[team]'")or die(mysqli_error());
         $timxx = time()+60*60*24*1;  
 mysqli_query($conn,"UPDATE team SET dienosmedaltime='$timxx', dienosmedal=dienosmedal+'1' WHERE pavadinimas='$row[team]' ");
-mysqli_query($conn,"UPDATE nustatymai SET laimejo_kovu='$row[laimejo_kovu]' WHERE pavadinimas='$row[team]' ");
+mysqli_query($conn,"UPDATE nustatymai SET laimejo_kovu='$row[laimejo_kovu]' ");
   mysqli_query($conn,"UPDATE nustatymai SET last2='$row[team]'");
     }
   if($vtas == 2){
