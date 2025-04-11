@@ -3836,7 +3836,7 @@ if($id == 'veikejaejeji'){
                '.$ico2.' Gynyba: '.$veik['gynyba'].'<br/>
                 '.$ico2.' Gyvybes: '.$veik['gyvybes'].'<br/>
                  '.$ico2.' Rasė: '.$veik['rase'].'<br/>';
-       if(!empty($veik[sugebejimas])){     echo'      '.$ico2.' Sugebėjimas: '.$veik['sugebejimas'].'<br/>';}
+       if(!empty($veik['sugebejimas'])){     echo'      '.$ico2.' Sugebėjimas: '.$veik['sugebejimas'].'<br/>';}
      echo'   '.$ico2.' Veikėją pasirinko: '.mysqli_num_rows(mysqli_query($conn,"SELECT * FROM zaidejai WHERE veikejas='$veik[name]' ")).' žaidėjų<br/>
         </div>';
         echo '<div class="meniuc"><a href="?id=rinktis&ka='.$veik['name'].'">Pasirinkti šį veikėją</a></div>';
@@ -3854,7 +3854,7 @@ if($id == 'rinkkkktis'){
 	elseif($apie['sms_litai'] < 100){
 		  echo '<div class="meniuc">Nepakanka litų</div>';}
 	
-	elseif($apie[keite_veikejai] > 2){
+	elseif($apie['keite_veikejai'] > 2){
 		
 		  echo '<div class="meniuc">Jus jau keitėte veikėją du kartus</div>';
 	}
@@ -3873,8 +3873,8 @@ if($id =='secret'){
 			top('Informacijos užslaptinimas');
 	echo'<div class="meniuc">Už <b>1000</b> <img src="img/bicons/euro.png" /> jūs galėsite užsislaptinti savo infomaciją, kiti žaidėjai nematys jokių jūsų, statusų, užslaptinimas galioja <b>3</b> dienas		</div>
 		';
-		if($user[secret]-time() > 0){
-				echo'	<div class="meniu">Užslaptinta informacija dar bus <b>'.laikas($user[secret]-time(),1).'</b></div>	';
+		if($user['secret']-time() > 0){
+				echo'	<div class="meniu">Užslaptinta informacija dar bus <b>'.laikas($user['secret']-time(),1).'</b></div>	';
 			
 		}	else{		
 		echo'	<div class="meniu"> '.$ico.'<a href="?id=secret2">Pirkti užslaptinimą</a></div>	
@@ -3888,7 +3888,7 @@ if($id =='secret2'){
 	if($apie['sms_litai'] < 1000){
 		echo'<div class="meniuc">Nepakanka  <img src="img/bicons/euro.png" />!</div>';
 	}
-	elseif($user[secret]-time() > 0){
+	elseif($user['secret']-time() > 0){
 		echo'<div class="meniuc">Tu jau esi užsislaptinęs informaciją</div>';
 	}
 	else{
@@ -3908,7 +3908,7 @@ if($id == 'team')
 	  echo '<div class="meniuc">Iveskite komandos pavadinimą, kuriai norite nupirkti +1 vietą komandoje<br>1 vieta - 5  <img src="img/bicons/euro.png" />  </div><div class="meniuc">
   <form action="?id=team2" method="post"/>
    Komandos pavadinimas:<br />
-  <input type="text" name="team" value="'.$user[team].'""><br/>
+  <input type="text" name="team" value="'.$user['team'].'""><br/>
    <input type="submit" value="Pirkti"/>
    </div>';
 			
@@ -3921,7 +3921,7 @@ if($id == 'team')
 }
 if($id =='team2'){
 	top('Komandos narių didinimas');
-	$team = post($_POST[team]);
+	$team = post($_POST['team']);
 	$tm = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$team'"));
 	if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$team'")) == false){
 		

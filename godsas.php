@@ -201,13 +201,13 @@ if($id == "dragons"){
       }
       elseif($co == 3){
          echo '<div class="meniuc">Jūsų noras išpildytas! Gavai 100% savo Jėgos.</div>';
-         $jeggoo = $apie[jega] *2;
+         $jeggoo = $apie['jega'] *2;
          mysqli_query($conn,"UPDATE zaidejai SET jega='$jeggoo' WHERE nick='$nick' ");
        mysqli_query($conn,"UPDATE inv SET Nball=Nball-'7', Jball=Jball-'7', Dball=Dball-'7' WHERE nick='$nick'")or die(mysqli_error());
       }
       elseif($co == 4){
          echo '<div class="meniuc">Jūsų noras išpildytas! Gavai 100% savo Gynybos.</div>';
-         $gynnoo = $apie[gynyba] *2;
+         $gynnoo = $apie['gynyba'] *2;
          mysqli_query($conn,"UPDATE zaidejai SET gynyba='$gynnoo' WHERE nick='$nick' ");
         mysqli_query($conn,"UPDATE inv SET Nball=Nball-'7', Jball=Jball-'7', Dball=Dball-'7' WHERE nick='$nick'")or die(mysqli_error());
       } else {

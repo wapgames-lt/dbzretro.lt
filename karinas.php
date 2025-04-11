@@ -10,12 +10,12 @@ baneris();
 
 		 topbar();
 if($id == ""){
-if($apie[karinokm] < 4999){
+if($apie['karinokm'] < 4999){
 
-$kodas = isset($_GET[kodas]) ? $_GET[kodas] : null;
+$kodas = isset($_GET['kodas']) ? $_GET['kodas'] : null;
 $kodas = rand(1111,9999);
 	
-	$_SESSION[kd] = $kodas;
+	$_SESSION['kd'] = $kodas;
 
 		top('Karino boksto lipime');
 echo '<div class="meniuc"><img src="img/imgg/bokstas.png" border="1"></div><div class="meniuc"></br></br>Norint patekti į <b>Karino Bokštą</b> pirma turite į jį užlipti <b></b> !</div>
@@ -34,7 +34,7 @@ echo '<div class="meniuc"><img src="img/imgg/bokstas.png" border="1"></div><div 
 	if($id == "uzlipimas"){
     online('Karino bokstas');
   top('Karino bokstas');
-if($apie[botas] < 5){
+if($apie['botas'] < 5){
 echo '<div class="meniuc"><img src="img/imgg/bokstas.png" border="1"></div>';
 echo '<div class="meniuc">Neturite pakankamai '.$eurui.' '; $g_n[] = array("pagrindinis.php?id=","Pagrindinis","karinas.php?id=","Atgal","Karino Bokstas");
 echo'</div>';
@@ -54,17 +54,17 @@ $g_n[] = array("pagrindinis.php?id=","Pagrindinis","karinas.php?id=","Atgal","Ka
 if($id == "lipukm"){
     online('Karino bokstas');
   top('Karino bokstas');
-$kodas = isset($_GET[kodas]) ? $_GET[kodas] : null;
-      	if($kodas != $_SESSION[kd]){
+$kodas = isset($_GET['kodas']) ? $_GET['kodas'] : null;
+      	if($kodas != $_SESSION['kd']){
 	echo '<div class="meniuc"><img src="img/imgg/bokstas.png" border="1"></div>';
 	echo'<div class="meniuc">Perkrauti puslapio negalima, eik per nauja</div>';
 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","karinas.php?id=","Atgal","Karino Bokstas");
 
 	navigacija($g_n);
 	}
-	elseif($_SESSION[karino] > time()){
+	elseif($_SESSION['karino'] > time()){
 	echo '<div class="meniuc"><img src="img/imgg/bokstas.png" border="1"></div>';
-	echo'<div class="meniuc">Per greit lipi! Lipti galėsi po '.laikas($_SESSION[karino]-time(), 1).'
+	echo'<div class="meniuc">Per greit lipi! Lipti galėsi po '.laikas($_SESSION['karino']-time(), 1).'
 </div>';
  echo'<div class="meniuc"><a href="?id=lipukm&kodas='.$kodas.'">Lipti toliau</a></div>';
 	$g_n[] = array("pagrindinis.php?id=","Pagrindinis","karinas.php?id=","Atgal","Karino Bokstas");
@@ -75,8 +75,8 @@ $g_n[] = array("pagrindinis.php?id=","Pagrindinis","karinas.php?id=","Atgal","Ka
 	else{
 		$kodas = rand(1111,9999);
 		
-		$_SESSION[kd] = $kodas;
-		$_SESSION[karino] = time()+1;
+		$_SESSION['kd'] = $kodas;
+		$_SESSION['karino'] = time()+1;
 
 
        echo '<div class="meniuc"><img src="img/imgg/bokstas.png" border="1"></div>';
@@ -95,7 +95,7 @@ echo'<div class="meniuc"><a href="?id=lipukm&kodas='.$kodas.'">Lipti toliau</a><
 
 
 if($id == ""){
-  if($apie[karinokm] > 4999){
+  if($apie['karinokm'] > 4999){
   online('Karino bokštas');
   top('Karino bokštas');
     
@@ -720,8 +720,8 @@ elseif($apie['vandensh']-time() > 0){
 
 
 else{
-				$h = $apie[jega] * 1.00;
-				$k = $apie[gynyba] * 1.00;
+				$h = $apie['jega'] * 1.00;
+				$k = $apie['gynyba'] * 1.00;
 					echo'<div class="meniuc">Išgėriai dieviškojo vandens!<br>Ir už tai gauni <b>'.$kiekcrit.'</b> Critical Stone!</div>';
 		$laikas = time() + 60 * 60 * 3;
 mysqli_query($conn,"UPDATE zaidejai SET vandensh= '$laikas' WHERE nick = '$nick' ")or die(mysqli_error());		

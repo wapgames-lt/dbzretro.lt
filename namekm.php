@@ -161,7 +161,7 @@ echo'<div class="meniuc">
 }
 }	
 if($apie[namekm] == 3){
-if($apie[auksiniai] < 19999 ){
+if($apie['auksiniai'] < 19999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos2.png"></div>';
 		echo'<div class="meniuc">
@@ -310,7 +310,7 @@ echo'<div class="meniuc">
 }
 }	
 if($apie[namekm] == 13){
-if($apie[auksiniai] < 199999 ){
+if($apie['auksiniai'] < 199999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos2.png"></div>';
 		echo'<div class="meniuc">

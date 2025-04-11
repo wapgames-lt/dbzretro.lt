@@ -1,20 +1,26 @@
 <?php
 
-ini_set('display_errors', '1');
-ini_set('display_startup_errors', '1');
-error_reporting(E_ERROR);
-
-use LegacyDbz\Core\Db;
-
 require_once __DIR__ . '/../vendor/autoload.php';
 include_once 'config.php';
 
+use Dotenv\Dotenv;
+use LegacyDbz\Core\Db;
+
+$dotenv = Dotenv::createUnsafeImmutable(dirname(__DIR__));
+$dotenv->load();
+
+if (filter_var(getenv('APP_DEBUG'), FILTER_VALIDATE_BOOLEAN)) {
+    ini_set('display_errors', '1');
+    ini_set('display_startup_errors', '1');
+    error_reporting(E_ERROR);
+}
+
 date_default_timezone_set("Europe/Vilnius");
 
-$hostname = "mysql";
-$username = "kindred";
-$password = "kindred";
-$database = "kindred";
+$hostname = getenv('DB_HOST');
+$username = getenv('DB_USERNAME');
+$password = getenv('DB_PASSWORD');
+$database = getenv('DB_DATABASE');
 
 Db::connect($hostname, $database, $username, $password);
 

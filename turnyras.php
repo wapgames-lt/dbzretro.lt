@@ -105,7 +105,7 @@ if($id == 'reg'){
 	{
 		echo'Turnyras jau prasidėjo.';
 	}
-	elseif($apie[auksiniai] < 100)
+	elseif($apie['auksiniai'] < 100)
 	{
 		echo' Nepakanka auksinių';
 	}

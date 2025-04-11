@@ -44,7 +44,7 @@ if($id == ""){
 
 	if($id == 'kgggg'){
 		top('Auksinių keitimas');
-		if($apie[auksiniai] < 10000){
+		if($apie['auksiniai'] < 10000){
 			
 			echo "<div class='meniuc'>Neturi 10000 <img src='img/coin.png'></div>";
 			 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","auksiniai.php", "Auksiniai", "Klaida");
@@ -52,8 +52,8 @@ if($id == ""){
 		}else{
 			
 			
-			$je = $apie[jega] * 1.02;
-			$gy = $apie[gynyba] * 1.06;
+			$je = $apie['jega'] * 1.02;
+			$gy = $apie['gynyba'] * 1.06;
 			mysqli_query($conn,"UPDATE zaidejai SET jega='$je', gynyba ='$gy', auksiniai =auksiniai-'10000' WHERE nick='$nick'");
 			echo'<div class="meniuc">Įgavai 2% kovinės galios!     </div>';
 			 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","auksiniai.php", "Auksiniai", "Auksinių keitimas");
@@ -64,7 +64,7 @@ if($id == ""){
 
 	if($id == 'ball2'){
 		top('Auksinių keitimas');
-		if($apie[auksiniai] < 1000){
+		if($apie['auksiniai'] < 1000){
 			
 			echo "<div class='meniuc'>Neturi 1000 auksinių</div>";
 			 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","auksiniai.php", "Auksiniai", "Klaida");
@@ -87,7 +87,7 @@ if($id == ""){
 	}
 if($id == 'jbaljjl'){
 		top('Auksinių keitimas');
-		if($apie[auksiniai] < 2000){
+		if($apie['auksiniai'] < 2000){
 			
 			echo "<div class='meniuc'>Neturi 2000 auksinių</div>";
 			 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","auksiniai.php", "Auksiniai", "Klaida");
@@ -106,7 +106,7 @@ if($id == 'jbaljjl'){
 
 if($id == 'nballkk'){
 		top('Auksinių keitimas');
-		if($apie[auksiniai] < 3000){
+		if($apie['auksiniai'] < 3000){
 			
 			echo "<div class='meniuc'>Neturi 3000 auksinių</div>";
 			 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","auksiniai.php", "Auksiniai", "Klaida");

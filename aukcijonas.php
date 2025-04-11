@@ -224,7 +224,7 @@ if($row['preke'] == 25){$pre = 'Drakono rutulių';}
 		   if($row['preke'] == 29){$pre = 'Kvarco rūda';}
 		   if($row['preke'] == 30){$pre = 'Titano rūda';}
 		   if($row['preke'] == 31){$pre = 'Žuvis';}
-		   $kk = $row[kaina]/$row[kiek];
+		   $kk = $row['kaina']/$row['kiek'];
 									
 	
 			echo'<div class="meniu">
@@ -540,7 +540,7 @@ if($preke == 27){
 		mysqli_query($conn,"INSERT INTO aukcijonas SET kas='$nick',zaidejui='$kam_tokiam', preke='$preke', kiek='$kieks', kaina='$kains', valiuta='$valut', laikas='$liko_laiko'");
 		if($kam_tokiam != ''){
 			$txt = 'Jūsų vardu i aukcijona idėta prekė idėjo '.$nick.'';
-			mysqli_query($conn,"INSERT INTO pm SET what = 'SISTEMA', txt='$txt', gavejas='$kam_tokiam', nauj='NEW', time='".time."'");
+			mysqli_query($conn,"INSERT INTO pm SET what = 'SISTEMA', txt='$txt', gavejas='$kam_tokiam', nauj='NEW', `time`='".time."'");
 		}
 		echo'<div class="meniuc">
 		<b>Atlikta!</b><br>

@@ -201,8 +201,8 @@ if($id == 'nera'){
 top(''.$name.'');	
 	online('Sagos');
 		if($apie[sagos] == 5){
-		$j = $apie[jega] +160;
-			$gy = $apie[gynyba] +500;
+		$j = $apie['jega'] +160;
+			$gy = $apie['gynyba'] +500;
 		mysqli_query($conn,"UPDATE zaidejai SET jega='$j', gynyba='$gy', kred=kred+'5' WHERE nick = '$nick'");
 	}
 
@@ -224,83 +224,83 @@ top(''.$name.'');
 	online('Sagos');
 ////// kiek duoda uz sagas
 if($apie[sagos] == 5){
-		$j = $apie[jega]+300;
-			$gy = $apie[gynyba]+900;
+		$j = $apie['jega']+300;
+			$gy = $apie['gynyba']+900;
 		mysqli_query($conn,"UPDATE zaidejai SET jega='$j', gynyba='$gy', kred=kred+'5' WHERE nick = '$nick'");
 mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 	} 
 
 if($apie[sagos] == 10){
-		$j = $apie[jega]+600;
-			$gy = $apie[gynyba]+1800;
+		$j = $apie['jega']+600;
+			$gy = $apie['gynyba']+1800;
 		mysqli_query($conn,"UPDATE zaidejai SET jega='$j', gynyba='$gy', kred=kred+'10', sms_litai=sms_litai+'1' WHERE nick = '$nick'");
 mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 	} 
 
 if($apie[sagos] == 14){
-		$j = $apie[jega]+1200;
-			$gy = $apie[gynyba]+3600;
+		$j = $apie['jega']+1200;
+			$gy = $apie['gynyba']+3600;
 		mysqli_query($conn,"UPDATE zaidejai SET jega='$j', gynyba='$gy', kred=kred+'15', sms_litai=sms_litai+'2' WHERE nick = '$nick'");
 mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 	} 
 
 if($apie[sagos] == 19){
-		$j = $apie[jega]+2400;
-			$gy = $apie[gynyba]+7200;
+		$j = $apie['jega']+2400;
+			$gy = $apie['gynyba']+7200;
 		mysqli_query($conn,"UPDATE zaidejai SET jega='$j', gynyba='$gy', kred=kred+'20', sms_litai=sms_litai+'4' WHERE nick = '$nick'");
 mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 	} 
 
 if($apie[sagos] == 30){
-		$j = $apie[jega]+4800;
-			$gy = $apie[gynyba]+14400;
+		$j = $apie['jega']+4800;
+			$gy = $apie['gynyba']+14400;
 		mysqli_query($conn,"UPDATE zaidejai SET jega='$j', gynyba='$gy', kred=kred+'30', sms_litai=sms_litai+'7' WHERE nick = '$nick'");
 mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 	} 
 
 if($apie[sagos] == 34){
-		$j = $apie[jega]+9600;
-			$gy = $apie[gynyba]+28800;
+		$j = $apie['jega']+9600;
+			$gy = $apie['gynyba']+28800;
 		mysqli_query($conn,"UPDATE zaidejai SET jega='$j', gynyba='$gy', kred=kred+'35', sms_litai=sms_litai+'10'  WHERE nick = '$nick'");
 mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 	} 
 
 if($apie[sagos] == 38){
-		$j = $apie[jega]+12000;
-			$gy = $apie[gynyba]+36000;
+		$j = $apie['jega']+12000;
+			$gy = $apie['gynyba']+36000;
 		mysqli_query($conn,"UPDATE zaidejai SET jega='$j', gynyba='$gy', kred=kred+'40', sms_litai=sms_litai+'12' WHERE nick = '$nick'");
 mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 	} 
 if($apie[sagos] == 40){
-		$j = $apie[jega]+15000;
-			$gy = $apie[gynyba]+45000;
+		$j = $apie['jega']+15000;
+			$gy = $apie['gynyba']+45000;
 		mysqli_query($conn,"UPDATE zaidejai SET jega='$j', gynyba='$gy', kred=kred+'45', sms_litai=sms_litai+'15' WHERE nick = '$nick'");
 mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 	} 
 if($apie[sagos] == 46){
-		$j = $apie[jega]+20000;
-			$gy = $apie[gynyba]+60000;
+		$j = $apie['jega']+20000;
+			$gy = $apie['gynyba']+60000;
 		mysqli_query($conn,"UPDATE zaidejai SET jega='$j', gynyba='$gy', kred=kred+'50', sms_litai=sms_litai+'20' WHERE nick = '$nick'");
 mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 	} 
 
 if($apie[sagos] == 49){
-		$j = $apie[jega]+30000;
-			$gy = $apie[gynyba]+90000;
+		$j = $apie['jega']+30000;
+			$gy = $apie['gynyba']+90000;
 		mysqli_query($conn,"UPDATE zaidejai SET jega='$j', gynyba='$gy', kred=kred+'55', sms_litai=sms_litai+'22' WHERE nick = '$nick'");
 mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 	} 
 
 if($apie[sagos] == 54){
-		$j = $apie[jega]+35000;
-			$gy = $apie[gynyba]+105000;
+		$j = $apie['jega']+35000;
+			$gy = $apie['gynyba']+105000;
 		mysqli_query($conn,"UPDATE zaidejai SET jega='$j', gynyba='$gy', kred=kred+'60', sms_litai=sms_litai+'25' WHERE nick = '$nick'");
 mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 
 	} 
 if($apie[sagos] == 57){
-		$j = $apie[jega]+40000;
-			$gy = $apie[gynyba]+120000;
+		$j = $apie['jega']+40000;
+			$gy = $apie['gynyba']+120000;
 		mysqli_query($conn,"UPDATE zaidejai SET jega='$j', gynyba='$gy', kred=kred+'70' WHERE nick = '$nick'");
 mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 ///duoda 
@@ -312,41 +312,41 @@ mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 	} 
 
 if($apie[sagos] == 66){
-		$j = $apie[jega]+80000;
-			$gy = $apie[gynyba]+240000;
+		$j = $apie['jega']+80000;
+			$gy = $apie['gynyba']+240000;
 		mysqli_query($conn,"UPDATE zaidejai SET jega='$j', gynyba='$gy', kred=kred+'80', sms_litai=sms_litai+'30' WHERE nick = '$nick'");
 mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 	} 
 
 if($apie[sagos] == 78){
-		$j = $apie[jega]+150000;
-			$gy = $apie[gynyba]+450000;
+		$j = $apie['jega']+150000;
+			$gy = $apie['gynyba']+450000;
 		mysqli_query($conn,"UPDATE zaidejai SET jega='$j', gynyba='$gy', kred=kred+'110' sms_litai=sms_litai+'35' WHERE nick = '$nick'");
 mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 	} 
 
 	if($apie[sagos] == 68){
-		$j = $apie[jega]+100000;
-			$gy = $apie[gynyba]+300000;
+		$j = $apie['jega']+100000;
+			$gy = $apie['gynyba']+300000;
 		mysqli_query($conn,"UPDATE zaidejai SET jega='$j', gynyba='$gy', kred=kred+'100' WHERE nick = '$nick'");
 	} 
 	
 if($apie[sagos] == 86){
-		$j = $apie[jega]+250000;
-			$gy = $apie[gynyba]+750000;
+		$j = $apie['jega']+250000;
+			$gy = $apie['gynyba']+750000;
 		mysqli_query($conn,"UPDATE zaidejai SET jega='$j', gynyba='$gy', kred=kred+'150', sms_litai=sms_litai+'50' WHERE nick = '$nick'");
 mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 	} 
 if($apie[sagos] == 102){
-		$j = $apie[jega]+1000000;
-			$gy = $apie[gynyba]+3000000;
+		$j = $apie['jega']+1000000;
+			$gy = $apie['gynyba']+3000000;
 		mysqli_query($conn,"UPDATE zaidejai SET jega='$j', gynyba='$gy', kred=kred+'175', sms_litai=sms_litai+'75' WHERE nick = '$nick'");
 mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 	} 
  
 		if($apie[sagos] == 109){
-		$j = $apie[jega] *1.1;
-			$gy = $apie[gynyba] *1.3;
+		$j = $apie['jega'] *1.1;
+			$gy = $apie['gynyba'] *1.3;
 		mysqli_query($conn,"UPDATE zaidejai SET jega='$j', gynyba='$gy', kred=kred+'300', sms_litai=sms_litai+'100' WHERE nick = '$nick'");
 		/// gold fryza uz sagas
 	mysqli_query($conn,"UPDATE zaidejai SET veikejas='Gold Fryzas', trans='0', sms_litai=sms_litai-'0' WHERE nick='$nick'");

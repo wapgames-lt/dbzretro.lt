@@ -197,7 +197,7 @@ echo'<div class="meniuc">
 }
 }	
 if($apie[istorija] == 3){
-if($apie[auksiniai] < 9999 ){
+if($apie['auksiniai'] < 9999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -343,7 +343,7 @@ echo'<div class="meniuc">
 }
 }	
 if($apie[istorija] == 13){
-if($apie[auksiniai] < 49999 ){
+if($apie['auksiniai'] < 49999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -460,7 +460,7 @@ echo'<div class="meniuc">
 }
 }	
 if($apie[istorija] == 21){
-if($apie[auksiniai] < 9999 ){
+if($apie['auksiniai'] < 9999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -474,7 +474,7 @@ echo'<div class="meniuc">
 }
 }	
 if($apie[istorija] == 22){
-if($apie[auksiniai] < 19999 ){
+if($apie['auksiniai'] < 19999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -488,7 +488,7 @@ echo'<div class="meniuc">
 }
 }	
 if($apie[istorija] == 23){
-if($apie[auksiniai] < 49999 ){
+if($apie['auksiniai'] < 49999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -502,7 +502,7 @@ echo'<div class="meniuc">
 }
 }	
 if($apie[istorija] == 24){
-if($apie[auksiniai] < 99999 ){
+if($apie['auksiniai'] < 99999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -516,7 +516,7 @@ echo'<div class="meniuc">
 }
 }	
 if($apie[istorija] == 25){
-if($apie[auksiniai] < 199999 ){
+if($apie['auksiniai'] < 199999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -530,7 +530,7 @@ echo'<div class="meniuc">
 }
 }	
 if($apie[istorija] == 26){
-if($apie[auksiniai] < 299999 ){
+if($apie['auksiniai'] < 299999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -544,7 +544,7 @@ echo'<div class="meniuc">
 }
 }	
 if($apie[istorija] == 27){
-if($apie[auksiniai] < 399999 ){
+if($apie['auksiniai'] < 399999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -558,7 +558,7 @@ echo'<div class="meniuc">
 }
 }	
 if($apie[istorija] == 28){
-if($apie[auksiniai] < 499999 ){
+if($apie['auksiniai'] < 499999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -572,7 +572,7 @@ echo'<div class="meniuc">
 }
 }	
 if($apie[istorija] == 29){
-if($apie[auksiniai] < 699999 ){
+if($apie['auksiniai'] < 699999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -586,7 +586,7 @@ echo'<div class="meniuc">
 }
 }	
 if($apie[istorija] == 30){
-if($apie[auksiniai] < 999999 ){
+if($apie['auksiniai'] < 999999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -906,7 +906,7 @@ echo'<div class="meniuc">
 }
 }	
 if($apie[istorija] == 53){
-if($apie[auksiniai] < 999999 ){
+if($apie['auksiniai'] < 999999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -1052,7 +1052,7 @@ echo'<div class="meniuc">
 }
 }	
 if($apie[istorija] == 63){
-if($apie[auksiniai] < 1999999 ){
+if($apie['auksiniai'] < 1999999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -1169,7 +1169,7 @@ echo'<div class="meniuc">
 }
 }	
 if($apie[istorija] == 71){
-if($apie[auksiniai] < 499999 ){
+if($apie['auksiniai'] < 499999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -1183,7 +1183,7 @@ echo'<div class="meniuc">
 }
 }	
 if($apie[istorija] == 72){
-if($apie[auksiniai] < 999999 ){
+if($apie['auksiniai'] < 999999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -1197,7 +1197,7 @@ echo'<div class="meniuc">
 }
 }	
 if($apie[istorija] == 73){
-if($apie[auksiniai] < 1999999 ){
+if($apie['auksiniai'] < 1999999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -1211,7 +1211,7 @@ echo'<div class="meniuc">
 }
 }	
 if($apie[istorija] == 74){
-if($apie[auksiniai] < 2999999 ){
+if($apie['auksiniai'] < 2999999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -1225,7 +1225,7 @@ echo'<div class="meniuc">
 }
 }	
 if($apie[istorija] == 75){
-if($apie[auksiniai] < 3999999 ){
+if($apie['auksiniai'] < 3999999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -1239,7 +1239,7 @@ echo'<div class="meniuc">
 }
 }	
 if($apie[istorija] == 76){
-if($apie[auksiniai] < 4999999 ){
+if($apie['auksiniai'] < 4999999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -1253,7 +1253,7 @@ echo'<div class="meniuc">
 }
 }	
 if($apie[istorija] == 77){
-if($apie[auksiniai] < 6999999 ){
+if($apie['auksiniai'] < 6999999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -1267,7 +1267,7 @@ echo'<div class="meniuc">
 }
 }	
 if($apie[istorija] == 78){
-if($apie[auksiniai] < 9999999 ){
+if($apie['auksiniai'] < 9999999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -1281,7 +1281,7 @@ echo'<div class="meniuc">
 }
 }	
 if($apie[istorija] == 79){
-if($apie[auksiniai] < 11999999 ){
+if($apie['auksiniai'] < 11999999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -1295,7 +1295,7 @@ echo'<div class="meniuc">
 }
 }	
 if($apie[istorija] == 80){
-if($apie[auksiniai] < 14999999 ){
+if($apie['auksiniai'] < 14999999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">

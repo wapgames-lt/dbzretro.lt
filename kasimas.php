@@ -550,7 +550,7 @@ if($id == 'kasu'){
         error_log($message);
         $b_laikas2 = time()+60;
         $kasBan = 'testas1';
-        mysqli_query($conn,"INSERT INTO ban_logai SET nick='$nick', uz='$message', time='$b_laikas2', kas_ban='$kasBan'")or die(\MYSQLI_ERROR);
+        mysqli_query($conn,"INSERT INTO ban_logai SET nick='$nick', uz='$message', time='$b_laikas2', kas_ban='$kasBan'")or die(mysqli_error($conn));
         mysqli_query($conn,"INSERT INTO block SET nick='$nick', uz='$message', time='$b_laikas2', kas_ban='$kasBan'");
         header('Refresh: 1; url=pagrindinis.php');
     }
