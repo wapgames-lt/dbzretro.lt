@@ -253,7 +253,7 @@ elseif($id == "email2"){
 
 if($id == "topic"){
 	top('Asmeninis topikas');
-	 echo '<div class="meniu"> <b>Dabartinis topikas</b>: '.smile($apie[topic]).'</div>
+	 echo '<div class="meniu"> <b>Dabartinis topikas</b>: '.smile($apie['topic']).'</div>
         <div class="meniu">
         <form action="?id=topic2" method="post"/>
          Naujas topikas:<br /><textarea name="tp" rows="3"></textarea><br />
@@ -517,7 +517,7 @@ elseif($id == "mod"){
         }
 if($ka == 'searchip3'){
 	top('Paieška pagal ip');
-$ip = post($_GET[ip]);
+$ip = post($_GET['ip']);
 	echo"<div class='meniu'>";
 	 $viso = mysqli_num_rows(mysqli_query($conn,"SELECT * FROM zaidejai WHERE ip LIKE '%".$ip."%'")) or die(mysqli_error());
    if($viso > 0){
@@ -536,7 +536,7 @@ $ip = post($_GET[ip]);
                 $i++;
                 $xa = $i + $skaiciuojama;
 				$use=$row["nick"];
-				$usex = $row[ip];
+				$usex = $row['ip'];
 				$usex = str_replace("$ip", "<font color = 'red'>$ip</font>", $usex);
 				if($ar_ban == 1){
 				echo "$xa.<a href=\"pagrindinis.php?id=apie&ka=".$row["nick"]."\">$use -> ".$usex."</a> [<font color='green'>Nick Užbanintas!</font>]<br/>";
@@ -652,8 +652,8 @@ $g_n[] = array("pagrindinis.php?id=","Pagrindinis","meniu.php","Mano menių","At
                 }
             }}
 if($co == 'block'){
-	$uz = isset($_GET[uz]) ?  post($_GET[uz]) : null;
-		$ti = isset($_GET[ti]) ?  post($_GET[ti]) : null;
+	$uz = isset($_GET['uz']) ?  post($_GET['uz']) : null;
+		$ti = isset($_GET['ti']) ?  post($_GET['ti']) : null;
 	top('Žaidėjo baninimas');
          echo ' <div class="meniu""><a href="?id=mod&co=block&uz=Už reklamą, nuorodas&ti=99999">Už reklamą, nuorodas - 99999 minučių.</a></div>
 
@@ -755,7 +755,7 @@ elseif($ka == "mod_topic"){
 				  echo'<div class="meniu">';
 		while($row = mysqli_fetch_assoc($query)){
 			$aa++;
-			echo' '.$aa.' <a href="?id=mod&ka=ft_tikrinimas2&ft_id='.$row[id].'">Nauja '.$row[nick].' nuotrauka</a><br />';
+			echo' '.$aa.' <a href="?id=mod&ka=ft_tikrinimas2&ft_id='.$row['id'].'">Nauja '.$row['nick'].' nuotrauka</a><br />';
 			
 			
 			
@@ -803,8 +803,8 @@ elseif($ka == "mod_topic"){
 	navigacija($g_n);
         }    
      elseif($ka == "ft_tikrinimas3"){
-     	$leid = post($_POST[kaa]);
-		$kom=  post($_POST[kom]);
+     	$leid = post($_POST['kaa']);
+		$kom=  post($_POST['kom']);
      	$foto_inf = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM foto WHERE id='$ft_id'"));
           top('Nuotraukos patvirtinimas');
 			  if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM foto WHERE ar_patvirtinta='ne' AND id='$ft_id'")) == true){
@@ -1024,7 +1024,7 @@ if($ka=='searchip'){
 }
 elseif($ka == 'searchip2'){
 	top('Paieška pagal ip');
-$ip = post($_POST[ip]);
+$ip = post($_POST['ip']);
 	echo"<div class='meniu'>";
 	 $viso = mysqli_num_rows(mysqli_query($conn,"SELECT * FROM zaidejai WHERE ip LIKE '%".$ip."%'")) or die(mysqli_error());
    if($viso > 0){
@@ -1041,7 +1041,7 @@ $ip = post($_POST[ip]);
                 $i++;
                 $xa = $i + $skaiciuojama;
 				$use=$row["nick"];
-				$usex = $row[ip];
+				$usex = $row['ip'];
 				$usex = str_replace("$ip", "<font color = 'red'>$ip</font>", $usex);
                 echo "$xa.<a href=\"pagrindinis.php?id=apie&ka=".$row["nick"]."\">$use -> ".$usex."</a><br/>";
             }
@@ -1092,7 +1092,7 @@ elseif($ka == 'tpc'){
                  $puslapiu = ceil($viso/$rezultatu_rodymas);
                  while($row = mysqli_fetch_assoc($q)){
                     $ia++;
-                     echo '<b>'.$ia.'.</b> '.statusas($row[nick]).' ištrynė žinute  ('.smile($row['msg']).')<br/>';
+                     echo '<b>'.$ia.'.</b> '.statusas($row['nick']).' ištrynė žinute  ('.smile($row['msg']).')<br/>';
                 }
                      
                      unset($row);
@@ -1990,7 +1990,7 @@ echo'
 if($id == "nuotaika2"){
 top('Nuotaika');
 $k=$_GET['k'];
-$nuot= post($_POST[nuot]);
+$nuot= post($_POST['nuot']);
  if($nuot){
  $a = file("txt/nuotaikos.txt");
         for ($i = 0; $i < count($a); $i++)
@@ -2082,7 +2082,7 @@ if($id == 'nustatymai'){
 	echo' <div class="meniu">
         <form action="?id=nst" method="post"/>
          Kiek žinučių rodyti minichate (5-20) :
-         <input type="number" name="rod" value="'.$apie[rodymas].'"/><br />
+         <input type="number" name="rod" value="'.$apie['rodymas'].'"/><br />
       
       
         <form action="?id=turnonminichat" method="post"/>
@@ -2110,16 +2110,16 @@ if($id == 'nustatymai'){
      
         Pranešti apie turnyro pradžia?:<select name="trn">
            ';
-          if($user[rodyti_turnyra] == 0){echo'<option value="0" selected="selected">Išjungtas</option>';}
+          if($user['rodyti_turnyra'] == 0){echo'<option value="0" selected="selected">Išjungtas</option>';}
 				else{echo'<option value="0">Išjuntas</option>';}
-				if($user[rodyti_turnyra] == '1'){echo'<option value="1" selected="selected">Ijungtas</option>';}
+				if($user['rodyti_turnyra'] == '1'){echo'<option value="1" selected="selected">Ijungtas</option>';}
 				else{echo'<option value="1">Ijungtas</option>';}
 				echo'
         </select><br/>Chatas kovose<select name="kov">';
         
            if($user[chat] == 0){echo'<option value="0" selected="selected">Išjungtas</option>';}
 				else{echo'<option value="0">Išjuntas</option>';}
-				if($user[chat] == 1){echo'<option value="1" selected="selected">Ijungtas</option>';}
+				if($user['chat'] == 1){echo'<option value="1" selected="selected">Ijungtas</option>';}
 				else{echo'<option value="1">Ijungtas</option>';}
 				echo'
         </select><br/>
@@ -2139,39 +2139,39 @@ if($id == 'greitasiskeitimas'){
 				echo'   <form action="?id=greitasis2" method="post"/>
         1 meniu<select name="meniu1">';
         
-           if($user[greitas] == 'Pradžia'){echo'<option text="Pradžia" selected="selected">Pradžia</option>';}
+           if($user['greitas'] == 'Pradžia'){echo'<option text="Pradžia" selected="selected">Pradžia</option>';}
 				else{echo'<option text="Pradžia">Pradžia</option>';}
-				if($user[greitas] == 'Kovu zona'){echo'<option text="Kovu zona" selected="selected">Kovu zona</option>';}
+				if($user['greitas'] == 'Kovu zona'){echo'<option text="Kovu zona" selected="selected">Kovu zona</option>';}
 				else{echo'<option text="Kovu zona">Kovu zona</option>';}
 
 				echo'
         </select><br/>';
 echo' 2 meniu<select name="meniu2">';
         
-           if($user[greitas] == 'Miestas'){echo'<option text="Miestas" selected="selected">Miestas</option>';}
+           if($user['greitas'] == 'Miestas'){echo'<option text="Miestas" selected="selected">Miestas</option>';}
 			else{echo'<option text="Miestas">Miestas</option>';}	
-				  if($user[greitas] == 'Bosai'){echo'<option text="Bosai" selected="selected">Bosai</option>';}
+				  if($user['greitas'] == 'Bosai'){echo'<option text="Bosai" selected="selected">Bosai</option>';}
 			else{echo'<option text="Bosai">Bosai</option>';}	
-				if($user[greitas] == 'Inventorius'){echo'<option text="Inventorius" selected="selected">Inventorius</option>';}
+				if($user['greitas'] == 'Inventorius'){echo'<option text="Inventorius" selected="selected">Inventorius</option>';}
 			else{echo'<option text="Inventorius">Inventorius</option>';}	
-				if($user[greitas] == 'Apie mane'){echo'<option text="Apie mane" selected="selected">Apie mane</option>';}
+				if($user['greitas'] == 'Apie mane'){echo'<option text="Apie mane" selected="selected">Apie mane</option>';}
 			else{echo'<option text="Apie mane">Apie mane</option>';}	
-				if($user[greitas] == 'Misijos'){echo'<option text="Misijos" selected="selected">Misijos</option>';}
+				if($user['greitas'] == 'Misijos'){echo'<option text="Misijos" selected="selected">Misijos</option>';}
 			else{echo'<option text="Misijos">Misijos</option>';}	
 				
 				echo'
         </select><br/>';
 echo' 3 meniu<select name="meniu3">';
         
-           if($user[greitas] == 'Pasiekimai'){echo'<option text="Pasiekimai" selected="selected">Pasiekimai</option>';}
+           if($user['greitas'] == 'Pasiekimai'){echo'<option text="Pasiekimai" selected="selected">Pasiekimai</option>';}
 			else{echo'<option text="Pasiekimai">Pasiekimai</option>';}	
-				  if($user[greitas] == 'Meniu'){echo'<option text="Meniu" selected="selected">Meniu</option>';}
+				  if($user['greitas'] == 'Meniu'){echo'<option text="Meniu" selected="selected">Meniu</option>';}
 			else{echo'<option text="Meniu">Meniu</option>';}	
-				if($user[greitas] == 'Mano skill'){echo'<option text="Mano skill" selected="selected">Mano skill</option>';}
+				if($user['greitas'] == 'Mano skill'){echo'<option text="Mano skill" selected="selected">Mano skill</option>';}
 			else{echo'<option text="Mano skill">Mano skill</option>';}	
-				if($user[greitas] == 'PM dezute'){echo'<option text="PM dezute" selected="selected">PM dezute</option>';}
+				if($user['greitas'] == 'PM dezute'){echo'<option text="PM dezute" selected="selected">PM dezute</option>';}
 			else{echo'<option text="PM dezute">PM dezute</option>';}	
-				if($user[greitas] == 'Eurai'){echo'<option text="Eurai" selected="selected">Eurai</option>';}
+				if($user['greitas'] == 'Eurai'){echo'<option text="Eurai" selected="selected">Eurai</option>';}
 			else{echo'<option text="Eurai">Eurai</option>';}	
 				
 				echo'
@@ -2459,7 +2459,7 @@ elseif( $ka == "duoduh" )
 top('Veikejo davimas');
 
 
-$veikejas = Hitas;
+$veikejas = 'Hitas';
 $veikejas1 = abs(intval($_POST['koks_hitas']));
 $on=mysqli_query($conn,"SELECT * FROM online ORDER BY id");
 while ($onn = mysqli_fetch_row($on))
@@ -2494,7 +2494,7 @@ elseif( $ka == "duoducus" )
 top('Veikejo davimas');
 
 
-$veikejas = Cus;
+$veikejas = 'Cus';
 $veikejas1 = abs(intval($_POST['koks_cus']));
 $on=mysqli_query($conn,"SELECT * FROM online ORDER BY id");
 while ($onn = mysqli_fetch_row($on))

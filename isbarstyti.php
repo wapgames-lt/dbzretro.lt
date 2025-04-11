@@ -14,7 +14,7 @@ if($id == ""){
 	top("Išbarstyti rutuliai");
     echo '<div class="meniuc"><img src="img/imgg/rutuliai.png" border="0" alt="*"></div>';
 	echo'<div class="meniuc"><small>dievas drakonas, visai to nenorėdamas, išbarstė po visą visatą<b>  <img src="img/bicons/ball.gif" /> niekas nežino kur jie randasi todėl jis Jūsų prašo, kad padėtumete jam juos surinkti.</small></div>';
-	echo'<div class="titlec"><small>Kiekvieną diena daugiausia rutulių surinkes žaidėjas gauna <b>200</b>'.$eurui.'</br>Surinkta<b> '.$nust[balls].'</b><img src="img/bicons/ball.gif" /></small></div>';
+	echo'<div class="titlec"><small>Kiekvieną diena daugiausia rutulių surinkes žaidėjas gauna <b>200</b>'.$eurui.'</br>Surinkta<b> '.$nust['balls'].'</b><img src="img/bicons/ball.gif" /></small></div>';
 	
 	
 

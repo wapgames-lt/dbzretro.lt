@@ -14,7 +14,7 @@ include_once 'cfg/funkcijos.php';
  $statusai = array("Mod","Mod2","Mod3","Mod4","Admin");
 $nst = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM turnyras"));
 $new = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM news ORDER BY id DESC LIMIT 1"));
-$xd = mysqli_query($conn,"SELECT * FROM zaidejai WHERE nick= $nick");
+$xd = mysqli_query($conn,"SELECT * FROM zaidejai WHERE nick= '$nick'");
 $inv = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM inv WHERE nick='$nick'"));
 head2();
 if($nust['new_time']-time() > 0){
@@ -97,7 +97,7 @@ function resolveVipPriceInVipTickets() {
 if($id =='vip_privilegija1'){
 	top('VIP Privilegijos pirkimas');
 	$price = resolveVipPriceInVipTickets();
-	if($apie[vipticket] < $price){
+	if($apie['vipticket'] < $price){
 		echo '<div class="meniuc">Nepakanka  <img src="img/bicons/vip.png"> !</div>';
 	}
 	elseif((int)$apie['vip']-time() > 0){
@@ -730,7 +730,7 @@ echo'<div class="up">'.$ico.' 1 Lygio VIP Pirkimas</div>
 if($id == 'vip1'){
 	top('VIP Pirkimas');
 	online('VIP Pirkime');
-	if($apie[vipticket] < 1999){
+	if($apie['vipticket'] < 1999){
 		 echo '<div class="meniuc">Nepakanka  <img src="img/bicons/vipt.png" />!</div>';
 	}
 		elseif($apie[cash] < 0){
@@ -763,7 +763,7 @@ if($id == 'vip2'){
 
 if($apie['vipas1']< '+'){
      echo "<div class='meniuc'>Tu neturi <b>1 Lygio VIP</b>!</div>";}
-elseif($apie[vipas1]== '-'){
+elseif($apie['vipas1']== '-'){
 	
 	echo '<div class="meniuc">Tu jau pirkai <b>2 Lygio VIP </b>!</div>';
 	
@@ -771,15 +771,15 @@ elseif($apie[vipas1]== '-'){
 
 else{
 
-	if($apie[vipticket] < 3999){
+	if($apie['vipticket'] < 3999){
 		 echo '<div class="meniuc">Nepakanka  <img src="img/bicons/vipt.png" />!</div>';
 	}
-elseif($apie[vipas2]== '+'){
+elseif($apie['vipas2']== '+'){
 	
 	echo '<div class="meniuc">Tu jau esi <b>2 Lygio VIP </b>!</div>';
 	
 }
-	elseif($apie[vipas2]== '-'){
+	elseif($apie['vipas2']== '-'){
 	
 	echo '<div class="meniuc">Tu jau esi <b>2 Lygio VIP </b>!</div>';
 	
@@ -804,7 +804,7 @@ if($id == 'vip3'){
 
 if($apie['vipas2']< '+'){
      echo "<div class='meniuc'>Tu neturi <b>2 Lygio VIP</b>!</div>";}
-elseif($apie[vipas2]== '-'){
+elseif($apie['vipas2']== '-'){
 	
 	echo '<div class="meniuc">Tu jau pirkai <b>3 Lygio VIP </b>!</div>';
 	
@@ -813,10 +813,10 @@ else{
 
 
 
-	if($apie[vipticket] < 6999){
+	if($apie['vipticket'] < 6999){
 		 echo '<div class="meniuc">Nepakanka  <img src="img/bicons/vipt.png" />!</div>';
 	}
-elseif($apie[vipas3]=='+'){
+elseif($apie['vipas3']=='+'){
 	
 	echo '<div class="meniuc">Tu jau esi <b>3 Lygio  VIP </b>!</div>';
 	
@@ -841,7 +841,7 @@ if($id == 'vip4'){
 
 if($apie['vipas3']< '+'){
      echo "<div class='meniuc'>Tu neturi <b>3 Lygio VIP</b>!</div>";}
-elseif($apie[vipas3]== '-'){
+elseif($apie['vipas3']== '-'){
 	
 	echo '<div class="meniuc">Tu jau pirkai <b>4 Lygio VIP </b>!</div>';
 	
@@ -850,10 +850,10 @@ else{
 
 
 
-	if($apie[vipticket] < 9999){
+	if($apie['vipticket'] < 9999){
 		 echo '<div class="meniuc">Nepakanka  <img src="img/bicons/vipt.png" />!</div>';
 	}
-elseif($apie[vipas4]=='+'){
+elseif($apie['vipas4']=='+'){
 	
 	echo '<div class="meniuc">Tu jau esi <b>4 Lygio  VIP </b>!</div>';
 	
@@ -880,7 +880,7 @@ if($id == 'vip5'){
 
 if($apie['vipas4']< '+'){
      echo "<div class='meniuc'>Tu neturi <b>4 Lygio VIP</b>!</div>";}
-elseif($apie[vipas4]== '-'){
+elseif($apie['vipas4']== '-'){
 	
 	echo '<div class="meniuc">Tu jau pirkai <b>5 Lygio VIP </b>!</div>';
 	
@@ -890,10 +890,10 @@ else{
 
 
 
-	if($apie[vipticket] < 14999){
+	if($apie['vipticket'] < 14999){
 		 echo '<div class="meniuc">Nepakanka  <img src="img/bicons/vipt.png" />!</div>';
 	}
-elseif($apie[vipas5]=='+'){
+elseif($apie['vipas5']=='+'){
 	
 	echo '<div class="meniuc">Tu jau esi <b>5 Lygio  VIP </b>!</div>';
 	
@@ -920,7 +920,7 @@ if($id == 'vip6'){
 
 if($apie['vipas5']< '+'){
      echo "<div class='meniuc'>Tu neturi <b>5 Lygio VIP</b>!</div>";}
-elseif($apie[vipas5]== '-'){
+elseif($apie['vipas5']== '-'){
 	
 	echo '<div class="meniuc">Tu jau pirkai <b>6 Lygio VIP </b>!</div>';
 	
@@ -929,10 +929,10 @@ else{
 
 
 
-	if($apie[vipticket] < 19999){
+	if($apie['vipticket'] < 19999){
 		 echo '<div class="meniuc">Nepakanka  <img src="img/bicons/vipt.png" />!</div>';
 	}
-elseif($apie[vipas6]=='+'){
+elseif($apie['vipas6']=='+'){
 	
 	echo '<div class="meniuc">Tu jau esi <b>6 Lygio  VIP </b>!</div>';
 	
@@ -960,7 +960,7 @@ if($id == 'vip7'){
 
 if($apie['vipas6']< '+'){
      echo "<div class='meniuc'>Tu neturi <b>6 Lygio VIP</b>!</div>";}
-elseif($apie[vipas6]== '-'){
+elseif($apie['vipas6']== '-'){
 	
 	echo '<div class="meniuc">Tu jau pirkai <b>7 Lygio VIP </b>!</div>';
 	
@@ -969,10 +969,10 @@ else{
 
 
 
-	if($apie[vipticket] < 29999){
+	if($apie['vipticket'] < 29999){
 		 echo '<div class="meniuc">Nepakanka  <img src="img/bicons/vipt.png" />!</div>';
 	}
-elseif($apie[vipas7]=='+'){
+elseif($apie['vipas7']=='+'){
 	
 	echo '<div class="meniuc">Tu jau esi <b>7 Lygio  VIP </b>!</div>';
 	
@@ -1000,7 +1000,7 @@ if($id == 'vip8'){
 
 if($apie['vipas7']< '+'){
      echo "<div class='meniuc'>Tu neturi <b>7 Lygio VIP</b>!</div>";}
-elseif($apie[vipas7]== '-'){
+elseif($apie['vipas7']== '-'){
 	
 	echo '<div class="meniuc">Tu jau pirkai <b>8 Lygio VIP </b>!</div>';
 	
@@ -1009,10 +1009,10 @@ else{
 
 
 
-	if($apie[vipticket] < 44999){
+	if($apie['vipticket'] < 44999){
 		 echo '<div class="meniuc">Nepakanka  <img src="img/bicons/vipt.png" />!</div>';
 	}
-elseif($apie[vipas8]=='+'){
+elseif($apie['vipas8']=='+'){
 	
 	echo '<div class="meniuc">Tu jau esi <b>8 Lygio  VIP </b>!</div>';
 	
@@ -1039,7 +1039,7 @@ if($id == 'vip9'){
 
 if($apie['vipas8']< '+'){
      echo "<div class='meniuc'>Tu neturi <b>8 Lygio VIP</b>!</div>";}
-elseif($apie[vipas8]== '-'){
+elseif($apie['vipas8']== '-'){
 	
 	echo '<div class="meniuc">Tu jau pirkai <b>9 Lygio VIP </b>!</div>';
 	
@@ -1048,10 +1048,10 @@ else{
 
 
 
-	if($apie[vipticket] <69999){
+	if($apie['vipticket'] <69999){
 		 echo '<div class="meniuc">Nepakanka  <img src="img/bicons/vipt.png" />!</div>';
 	}
-elseif($apie[vipas9]=='+'){
+elseif($apie['vipas9']=='+'){
 	
 	echo '<div class="meniuc">Tu jau esi <b>9 Lygio  VIP </b>!</div>';
 	
@@ -1078,7 +1078,7 @@ if($id == 'vip10'){
 
 if($apie['vipas9']< '+'){
      echo "<div class='meniuc'>Tu neturi <b>9 Lygio VIP</b>!</div>";}
-elseif($apie[vipas9]== '-'){
+elseif($apie['vipas9']== '-'){
 	
 	echo '<div class="meniuc">Tu jau pirkai <b>10 Lygio VIP </b>!</div>';
 	
@@ -1087,10 +1087,10 @@ else{
 
 
 
-	if($apie[vipticket] < 99999){
+	if($apie['vipticket'] < 99999){
 		 echo '<div class="meniuc">Nepakanka  <img src="img/bicons/vipt.png" />!</div>';
 	}
-elseif($apie[vipas10]=='+'){
+elseif($apie['vipas10']=='+'){
 	
 	echo '<div class="meniuc">Tu jau esi <b>10 Lygio  VIP </b>!</div>';
 } elseif ($inv['Soul'] < 2000) {
@@ -1121,7 +1121,7 @@ if($id == 'vip11'){
 
 if($apie['vipas10']< '+'){
      echo "<div class='meniuc'>Tu neturi <b>10 Lygio VIP</b>!</div>";}
-elseif($apie[vipas10]== '-'){
+elseif($apie['vipas10']== '-'){
 	
 	echo '<div class="meniuc">Tu jau pirkai <b>11 Lygio VIP </b>!</div>';
 	
@@ -1130,10 +1130,10 @@ else{
 
 
 
-	if($apie[vipticket] < 179999){
+	if($apie['vipticket'] < 179999){
 		 echo '<div class="meniuc">Nepakanka  <img src="img/bicons/vipt.png" />!</div>';
 	}
-elseif($apie[vipas11]=='+'){
+elseif($apie['vipas11']=='+'){
 	
 	echo '<div class="meniuc">Tu jau esi <b>11 Lygio  VIP </b>!</div>';
 	
@@ -1161,7 +1161,7 @@ if($id == 'vip12'){
 
 if($apie['vipas11']< '+'){
      echo "<div class='meniuc'>Tu neturi <b>11 Lygio VIP</b>!</div>";}
-elseif($apie[vipas11]== '-'){
+elseif($apie['vipas11']== '-'){
 	
 	echo '<div class="meniuc">Tu jau pirkai <b>11 Lygio VIP </b>!</div>';
 	
@@ -1170,10 +1170,10 @@ else{
 
 
 
-	if($apie[vipticket] < 199999){
+	if($apie['vipticket'] < 199999){
 		 echo '<div class="meniuc">Nepakanka  <img src="img/bicons/vipt.png" />!</div>';
 	}
-elseif($apie[vipas12]=='+'){
+elseif($apie['vipas12']=='+'){
 	
 	echo '<div class="meniuc">Tu jau esi <b>12 Lygio  VIP </b>!</div>';
 	
@@ -1201,7 +1201,7 @@ if($id == 'vip13'){
 
 if($apie['vipas12']< '+'){
      echo "<div class='meniuc'>Tu neturi <b>12 Lygio VIP</b>!</div>";}
-elseif($apie[vipas12]== '-'){
+elseif($apie['vipas12']== '-'){
 	
 	echo '<div class="meniuc">Tu jau pirkai <b>12 Lygio VIP </b>!</div>';
 	
@@ -1210,10 +1210,10 @@ else{
 
 
 
-	if($apie[vipticket] < 299999){
+	if($apie['vipticket'] < 299999){
 		 echo '<div class="meniuc">Nepakanka  <img src="img/bicons/vipt.png" />!</div>';
 	}
-elseif($apie[vipas13]=='+'){
+elseif($apie['vipas13']=='+'){
 	
 	echo '<div class="meniuc">Tu jau esi <b>13 Lygio  VIP </b>!</div>';
 	
@@ -1241,7 +1241,7 @@ if($id == 'vip14'){
 
 if($apie['vipas13']< '+'){
      echo "<div class='meniuc'>Tu neturi <b>13 Lygio VIP</b>!</div>";}
-elseif($apie[vipas13]== '-'){
+elseif($apie['vipas13']== '-'){
 	
 	echo '<div class="meniuc">Tu jau pirkai <b>13 Lygio VIP </b>!</div>';
 	
@@ -1250,10 +1250,10 @@ else{
 
 
 
-	if($apie[vipticket] < 499999){
+	if($apie['vipticket'] < 499999){
 		 echo '<div class="meniuc">Nepakanka  <img src="img/bicons/vipt.png" />!</div>';
 	}
-elseif($apie[vipas14]=='+'){
+elseif($apie['vipas14']=='+'){
 	
 	echo '<div class="meniuc">Tu jau esi <b>14 Lygio  VIP </b>!</div>';
 	
@@ -1281,7 +1281,7 @@ if($id == 'vip15'){
 
 if($apie['vipas14']< '+'){
      echo "<div class='meniuc'>Tu neturi <b>14 Lygio VIP</b>!</div>";}
-elseif($apie[vipas14]== '-'){
+elseif($apie['vipas14']== '-'){
 	
 	echo '<div class="meniuc">Tu jau pirkai <b>14 Lygio VIP </b>!</div>';
 
@@ -1292,10 +1292,10 @@ else{
 
 
 
-	if($apie[vipticket] < 799999){
+	if($apie['vipticket'] < 799999){
 		 echo '<div class="meniuc">Nepakanka  <img src="img/bicons/vipt.png" />!</div>';
 	}
-elseif($apie[vipas15]=='+'){
+elseif($apie['vipas15']=='+'){
 	
 	echo '<div class="meniuc">Tu jau esi <b>15 Lygio  VIP </b>!</div>';
 	
@@ -1325,7 +1325,7 @@ if($id == 'vip16'){
 
 if($apie['vipas15']< '+'){
      echo "<div class='meniuc'>Tu neturi <b>15 Lygio VIP</b>!</div>";}
-elseif($apie[vipas16]== '-'){
+elseif($apie['vipas16']== '-'){
 	
 	echo '<div class="meniuc">Tu jau pirkai <b>16 Lygio VIP </b>!</div>';
 	
@@ -1334,10 +1334,10 @@ else{
 
 
 
-	if($apie[vipticket] < 1999999){
+	if($apie['vipticket'] < 1999999){
 		 echo '<div class="meniuc">Nepakanka  <img src="img/bicons/vipt.png" />!</div>';
 	}
-elseif($apie[vipas16]=='+'){
+elseif($apie['vipas16']=='+'){
 	
 	echo '<div class="meniuc">Tu jau esi <b>16 Lygio  VIP </b>!</div>';
 	
@@ -1365,7 +1365,7 @@ if($id == 'vip17'){
 
 if($apie['vipas16']< '+'){
      echo "<div class='meniuc'>Tu neturi <b>16 Lygio VIP</b>!</div>";}
-elseif($apie[vipas16]== '-'){
+elseif($apie['vipas16']== '-'){
 	
 	echo '<div class="meniuc">Tu jau pirkai <b>16 Lygio VIP </b>!</div>';
 	
@@ -1374,10 +1374,10 @@ else{
 
 
 
-	if($apie[vipticket] < 4999999){
+	if($apie['vipticket'] < 4999999){
 		 echo '<div class="meniuc">Nepakanka  <img src="img/bicons/vipt.png" />!</div>';
 	}
-elseif($apie[vipas17]=='+'){
+elseif($apie['vipas17']=='+'){
 	
 	echo '<div class="meniuc">Tu jau esi <b>17 Lygio  VIP </b>!</div>';
 	
@@ -1405,7 +1405,7 @@ if($id == 'vip18'){
 
 if($apie['vipas17']< '+'){
      echo "<div class='meniuc'>Tu neturi <b>17 Lygio VIP</b>!</div>";}
-elseif($apie[vipas17]== '-'){
+elseif($apie['vipas17']== '-'){
 	
 	echo '<div class="meniuc">Tu jau pirkai <b>17 Lygio VIP </b>!</div>';
 	
@@ -1414,10 +1414,10 @@ else{
 
 
 
-	if($apie[vipticket] < 9999999){
+	if($apie['vipticket'] < 9999999){
 		 echo '<div class="meniuc">Nepakanka  <img src="img/bicons/vipt.png" />!</div>';
 	}
-elseif($apie[vipas18]=='+'){
+elseif($apie['vipas18']=='+'){
 	
 	echo '<div class="meniuc">Tu jau esi <b>18 Lygio  VIP </b>!</div>';
 	
@@ -1445,7 +1445,7 @@ if($id == 'vip19'){
 
 if($apie['vipas18']< '+'){
      echo "<div class='meniuc'>Tu neturi <b>18 Lygio VIP</b>!</div>";}
-elseif($apie[vipas18]== '-'){
+elseif($apie['vipas18']== '-'){
 	
 	echo '<div class="meniuc">Tu jau pirkai <b>18 Lygio VIP </b>!</div>';
 	
@@ -1454,10 +1454,10 @@ else{
 
 
 
-	if($apie[vipticket] < 14999999){
+	if($apie['vipticket'] < 14999999){
 		 echo '<div class="meniuc">Nepakanka  <img src="img/bicons/vipt.png" />!</div>';
 	}
-elseif($apie[vipas19]=='+'){
+elseif($apie['vipas19']=='+'){
 	
 	echo '<div class="meniuc">Tu jau esi <b>19 Lygio  VIP </b>!</div>';
 	
@@ -1486,7 +1486,7 @@ if($id == 'vip20'){
 
 if($apie['vipas19']< '+'){
      echo "<div class='meniuc'>Tu neturi <b>19 Lygio VIP</b>!</div>";}
-elseif($apie[vipas19]== '-'){
+elseif($apie['vipas19']== '-'){
 	
 	echo '<div class="meniuc">Tu jau pirkai <b>19 Lygio VIP </b>!</div>';
 	
@@ -1495,10 +1495,10 @@ else{
 
 
 
-	if($apie[vipticket] < 24999999){
+	if($apie['vipticket'] < 24999999){
 		 echo '<div class="meniuc">Nepakanka  <img src="img/bicons/vipt.png" />!</div>';
 	}
-elseif($apie[vipas20]=='+'){
+elseif($apie['vipas20']=='+'){
 	
 	echo '<div class="meniuc">Tu jau esi <b>20 Lygio  VIP </b>!</div>';
 
@@ -1529,7 +1529,7 @@ if($id == 'vip21'){
 
 if($apie['vipas20']< '+'){
      echo "<div class='meniuc'>Tu neturi <b>20 Lygio VIP</b>!</div>";}
-elseif($apie[vipas20]== '-'){
+elseif($apie['vipas20']== '-'){
 	
 	echo '<div class="meniuc">Tu jau pirkai <b>20 Lygio VIP </b>!</div>';
 	
@@ -1538,10 +1538,10 @@ else{
 
 
 
-	if($apie[vipticket] < 49999999){
+	if($apie['vipticket'] < 49999999){
 		 echo '<div class="meniuc">Nepakanka  <img src="img/bicons/vipt.png" />!</div>';
 	}
-elseif($apie[vipas21]=='+'){
+elseif($apie['vipas21']=='+'){
 	
 	echo '<div class="meniuc">Tu jau esi <b>21 Lygio  VIP </b>!</div>';
 	
@@ -1570,7 +1570,7 @@ if($id == 'vip22'){
 
 if($apie['vipas21']< '+'){
      echo "<div class='meniuc'>Tu neturi <b>21 Lygio VIP</b>!</div>";}
-elseif($apie[vipas21]== '-'){
+elseif($apie['vipas21']== '-'){
 	
 	echo '<div class="meniuc">Tu jau pirkai <b>21 Lygio VIP </b>!</div>';
 	
@@ -1579,10 +1579,10 @@ else{
 
 
 
-	if($apie[vipticket] < 99999999){
+	if($apie['vipticket'] < 99999999){
 		 echo '<div class="meniuc">Nepakanka  <img src="img/bicons/vipt.png" />!</div>';
 	}
-elseif($apie[vipas22]=='+'){
+elseif($apie['vipas22']=='+'){
 	
 	echo '<div class="meniuc">Tu jau esi <b>22 Lygio  VIP </b>!</div>';
 	
@@ -1611,7 +1611,7 @@ if($id == 'vip23'){
 
 if($apie['vipas22']< '+'){
      echo "<div class='meniuc'>Tu neturi <b>22 Lygio VIP</b>!</div>";}
-elseif($apie[vipas22]== '-'){
+elseif($apie['vipas22']== '-'){
 	
 	echo '<div class="meniuc">Tu jau pirkai <b>22 Lygio VIP </b>!</div>';
 	
@@ -1620,10 +1620,10 @@ else{
 
 
 
-	if($apie[vipticket] < 149999999){
+	if($apie['vipticket'] < 149999999){
 		 echo '<div class="meniuc">Nepakanka  <img src="img/bicons/vipt.png" />!</div>';
 	}
-elseif($apie[vipas23]=='+'){
+elseif($apie['vipas23']=='+'){
 	
 	echo '<div class="meniuc">Tu jau esi <b>23 Lygio  VIP </b>!</div>';
 
@@ -1654,7 +1654,7 @@ if($id == 'vip24'){
 
 if($apie['vipas23']< '+'){
      echo "<div class='meniuc'>Tu neturi <b>23 Lygio VIP</b>!</div>";}
-elseif($apie[vipas23]== '-'){
+elseif($apie['vipas23']== '-'){
 	
 	echo '<div class="meniuc">Tu jau pirkai <b>23 Lygio VIP </b>!</div>';
 	
@@ -1663,10 +1663,10 @@ else{
 
 
 
-	if($apie[vipticket] < 249999999){
+	if($apie['vipticket'] < 249999999){
 		 echo '<div class="meniuc">Nepakanka  <img src="img/bicons/vipt.png" />!</div>';
 	}
-elseif($apie[vipas24]=='+'){
+elseif($apie['vipas24']=='+'){
 	
 	echo '<div class="meniuc">Tu jau esi <b>24 Lygio  VIP </b>!</div>';
 	
@@ -1695,7 +1695,7 @@ if($id == 'vip25'){
 
 if($apie['vipas24']< '+'){
      echo "<div class='meniuc'>Tu neturi <b>24 Lygio VIP</b>!</div>";}
-elseif($apie[vipas24]== '-'){
+elseif($apie['vipas24']== '-'){
 	
 	echo '<div class="meniuc">Tu jau pirkai <b>24 Lygio VIP </b>!</div>';
 	
@@ -1704,10 +1704,10 @@ else{
 
 
 
-	if($apie[vipticket] < 499999999){
+	if($apie['vipticket'] < 499999999){
 		 echo '<div class="meniuc">Nepakanka  <img src="img/bicons/vipt.png" />!</div>';
 	}
-elseif($apie[vipas25]=='+'){
+elseif($apie['vipas25']=='+'){
 	
 	echo '<div class="meniuc">Tu jau esi <b>25 Lygio  VIP </b>!</div>';
 	
@@ -1749,7 +1749,7 @@ if($id == 'vip26'){
 
 
 
-		if($apie[vipticket] < 799999999){
+		if($apie['vipticket'] < 799999999){
 			echo '<div class="meniuc">Nepakanka  <img src="img/bicons/vipt.png" />!</div>';
 		}
 		elseif($apie[vipas26]=='+'){

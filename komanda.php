@@ -398,7 +398,7 @@ echo" ".$ico." Komandos gynyba:<b> ".skaicius($info['gynyba'])."</b> <a href='ko
 echo' '.(empty($user['team']) ? "<a href='?id=prasytis&ka=".$ka."'>$ico Prašytis i komanda</a><br />" : NULL).'
 	
 	';
-if(apsas($user['team']) == apsas($ka) AND apsas($komanda[nick]) != apsas($nick)){
+if(apsas($user['team']) == apsas($ka) AND apsas($komanda['nick']) != apsas($nick)){
 echo"".$ico."Iki algos liko: <b>".$user['iki_algos']." kovų</b><br>";}
 echo"".$ico."Komanda laimėjus: <b>".$info['win']." kartų</b><br>";
 echo"".$ico."Komanda pralaimėjus: <b>".$info['lose']." kartų</b><br>";
@@ -545,7 +545,7 @@ echo"".$ico."Komanda pralaimėjus: <b>".$in['lose']." kartų</b><br>";
 
 
 
-if(apsas($user['team']) == apsas($co) AND apsas($komanda[nick]) != apsas($nick)){
+if(apsas($user['team']) == apsas($co) AND apsas($komanda['nick']) != apsas($nick)){
 echo"".$ico."Iki algos liko: <b>".$user['iki_algos']." kovų</b><br>";}
 echo'
 
@@ -612,7 +612,7 @@ echo'<div class="up">Prizo Informacija</div>';
 echo'	<div class="meniuc"><b><small>Prizas už</small></b>: <font color="red"><small> '.$med_inf['uz'].'</small></font><br/>
 
 	
-<b><small>Kada</small></b>: <small>'.laikas($med_inf[laikas]).'</small><br>
+<b><small>Kada</small></b>: <small>'.laikas($med_inf['laikas']).'</small><br>
 	<b><small>Laimėtas kartų</small></b>: <small><font color="red">'.$row['dienosmedal'].'</small></font>
 	
 	</div>';
@@ -646,7 +646,7 @@ echo'<div class="up">Prizo Informacija</div>';
 echo'	<div class="meniuc"><b><small>Prizas už</small></b>: <font color="red"><small> '.$med_inf['uz'].'</small></font><br/>
 
 	
-<b><small>Kada</small></b>: <small>'.laikas($med_inf[laikas]).'</small><br>
+<b><small>Kada</small></b>: <small>'.laikas($med_inf['laikas']).'</small><br>
 	<b><small>Laimėtas kartų</small></b>: <small><font color="red">'.$row['dienosmedal'].'</small></font>
 	
 	</div>';
@@ -681,7 +681,7 @@ echo'<div class="up">Prizo Informacija</div>';
 echo'	<div class="meniuc"><b><small>Prizas už</small></b>: <font color="red"><small> '.$med_inf['uz'].'</small></font><br/>
 
 	
-<b><small>Kada</small></b>: <small>'.laikas($med_inf[laikas]).'</small><br>
+<b><small>Kada</small></b>: <small>'.laikas($med_inf['laikas']).'</small><br>
 	<b><small>Laimėtas kartų</small></b>: <small><font color="red">'.$row['dienosmedal'].'</small></font>
 	
 	</div>';
@@ -714,8 +714,8 @@ if($row['savmedaltime']-time() > 0){
 echo'<div class="up">Taurės Informacija</div>';
 echo'	<div class="meniuc"><b><small>Taurė už</small></b>: <font color="red"><small> '.$med_inf['uz'].'</small></font><br/>
 
-	<b><small>Bonusas</small></b>: <small><font color="red">'.$med_inf[bonusas].'</small></font><br>
-<b><small>Kada</small></b>: <small>'.laikas($med_inf[laikas]).'</small><br>
+	<b><small>Bonusas</small></b>: <small><font color="red">'.$med_inf['bonusas'].'</small></font><br>
+<b><small>Kada</small></b>: <small>'.laikas($med_inf['laikas']).'</small><br>
 	<b><small>Laimėtas kartų</small></b>: <small><font color="red">'.$row['savmedal'].'</small></font>
 	
 	</div>';
@@ -1093,7 +1093,7 @@ if($apie['sword'] == 'AD20 Kardas'  and $apie['armor'] == 'AD20 Sarvai' and $api
          }
 else{$tech=1;}
 // Buu tech
-    if($apie[kenergija6] > 49999){
+    if($apie['kenergija6'] > 49999){
      $tech=2;
 
     }
@@ -1183,10 +1183,10 @@ if($apie['sword'] == 'Infinity sword'){
          }
 $query = mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$ka'");
     while($row = mysqli_fetch_assoc($query)){
-$teamcrit=rand(0,$row[kritinislvl]*1);
+$teamcrit=rand(0,$row['kritinislvl']*1);
 }
          if($kg > '58'){
-         			$crit =rand(0,$apie[critical]*5);
+         			$crit =rand(0,$apie['critical']*5);
          	$smugis = rand(100,200)+$smugis2*$kyborg*$tech+$smugis3*$kyborg*$tech+$set1*$kyborg*$tech+$crit+$teamcrit*$kyborg*$tech;
          }
 
@@ -1220,43 +1220,43 @@ mysqli_query($conn,"UPDATE team_boss SET  kiekzalos=kiekzalos+'$smugis' WHERE id
             mysqli_query($conn,"UPDATE team_boss SET hp='$bosui_liko' WHERE id='$go' ");
 
 
-			if($apie[kyborgas] !=''){
+			if($apie['kyborgas'] !=''){
 echo '<div class="meniuc">';
-			echo' <b> '.$apie[kyborgas].' </b> padidina jūsų kirtį  <b>'.$kyborg.'</b>  kartus! </div>  ';	}
-			if($apie[kenergija6] > 49999){
+			echo' <b> '.$apie['kyborgas'].' </b> padidina jūsų kirtį  <b>'.$kyborg.'</b>  kartus! </div>  ';	}
+			if($apie['kenergija6'] > 49999){
 
 echo'<div class="meniuc"><b>Gack technika</b> Padidina jūsų kirt! <b>2x</b> !</div>';}
-			if($apie[kenergija7] > 49999){
+			if($apie['kenergija7'] > 49999){
 
 echo'<div class="meniuc"><b>Sayan Power technika</b> Padidina jūsų kirtį <b>3.5x</b> !</div>';}
-if($apie[kenergija8] > 49999){
+if($apie['kenergija8'] > 49999){
 
 echo'<div class="meniuc"><b>Makosen technika</b> Padidina jūsų kirtį <b>4x</b> !</div>';}
-if($apie[kenergija9] > 49999){
+if($apie['kenergija9'] > 49999){
 
 echo'<div class="meniuc"><b>Kamehameha technika</b> Padidina jūsų kirtį <b>3x</b> !</div>';}
-if($apie[kenergija11] > 49999){
+if($apie['kenergija11'] > 49999){
 
 echo'<div class="meniuc"><b>Begone technika</b> Padidina jūsų kirtį <b>3x</b> !</div>';}
-if($apie[kenergija12] > 49999){
+if($apie['kenergija12'] > 49999){
 
 echo'<div class="meniuc"><b>Regeneration technika</b> Padidina jūsų kirtį <b>2x</b> !</div>';}
-if($apie[kenergija13] > 49999){
+if($apie['kenergija13'] > 49999){
 
 echo'<div class="meniuc"><b>Regeneration technika</b> Padidina jūsų kirtį <b>3x</b> !</div>';}
-if($apie[kenergija14] > 49999){
+if($apie['kenergija14'] > 49999){
 
 echo'<div class="meniuc"><b>Healing technika</b> Padidina jūsų kirtį <b>5x</b> !</div>';}
-if($apie[kenergija15] > 49999){
+if($apie['kenergija15'] > 49999){
 
 echo'<div class="meniuc"><b>AngryBulma technika</b> Padidina jūsų kirtį <b>4x</b> !</div>';}
 echo '<div class="meniuc">';
         echo' <img src="img/veikejai/'.$apie['veikejas'].'-'.$apie['trans'].'.png" alt="IMG" height="16" width="16"> <b> '.$nick.'  </b> nuėmei 
 <font color="green"><b>'.skaicius($smugiss).'</b>';
-	if($apie[critical] !='0'){
+	if($apie['critical'] !='0'){
 		$bosui_liko = $boss['hp'] - $smugis;
 		echo'
-</font>'.$att1.' + <font color="red"><b>'.skaicius($crit).'</b></font> '.$att2.'';}   if($apie[kyborgas] !=''){echo' <font color="green">*'.$kyborg.'</font> ';  echo''.$lygu.' <font color="blue">  <b>'.skaicius($smugis).'</font> '.$att1.'</b>';}echo'  <br/>
+</font>'.$att1.' + <font color="red"><b>'.skaicius($crit).'</b></font> '.$att2.'';}   if($apie['kyborgas'] !=''){echo' <font color="green">*'.$kyborg.'</font> ';  echo''.$lygu.' <font color="blue">  <b>'.skaicius($smugis).'</font> '.$att1.'</b>';}echo'  <br/>
      <img src="img/veikejaic/'.$boss['img'].'.png" alt="IMG" height="16" width="16"> <b>'.$boss['name'].'</b>  nuėmė     <b> '.$apie['nick'].'</b> - '.sk($hit).' '.$att1.'</b> <br></div>
 
  ';
@@ -3481,7 +3481,7 @@ if($user['team'] !== $ka){echo"<div class='meniuc'>Tu nesi šitoje komandoje</di
 	else{
 		echo"<div class='meniuc'><b>Atlikta</b></div>";
 		$kiek2= $apie['litai'] - $kiek;
-		$kiek3 = $info[pinigai] + $kiek;
+		$kiek3 = $info['pinigai'] + $kiek;
 		mysqli_query($conn,"UPDATE zaidejai SET litai='$kiek2' WHERE nick='$nick'");
 		mysqli_query($conn,"UPDATE team SET pinigai='$kiek3' WHERE pavadinimas='$ka'");
 		mysqli_query($conn,"UPDATE user SET kiek_paaukojo_i_team='$kiek3' WHERE nick ='$nick'");
@@ -3518,7 +3518,7 @@ if($user['team'] !== $ka){echo"<div class='meniuc'>Tu nesi šitoje komandoje</di
 	else{
 		echo"<div class='meniuc'><b>Atlikta</b></div>";
 		$kiek2= $apie['sms_litai'] - $kiek;
-		$kiek3 = $info[eurai] + $kiek;
+		$kiek3 = $info['eurai'] + $kiek;
 		mysqli_query($conn,"UPDATE zaidejai SET sms_litai='$kiek2' WHERE nick='$nick'");
 		mysqli_query($conn,"UPDATE team SET eurai='$kiek3' WHERE pavadinimas='$ka'");
 		mysqli_query($conn,"UPDATE user SET kiek_paaukojo_i_team2='$kiek3' WHERE nick ='$nick'");
@@ -3634,11 +3634,11 @@ if($id == 'persivedu_pinigus'){
 if($info['vadas'] !== $nick){echo"Tu nesi šios komandos vadas";}
 	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"Tokios komandos nėra";}
 	elseif(empty($kiek)){echo"<div class='meniuc'>Neįrašei kiek pervesi!</div>";}
-	elseif($info[pinigai] < $kiek){echo"<div class='meniuc'>Nėra tiek pinigų!</div>";}
+	elseif($info['pinigai'] < $kiek){echo"<div class='meniuc'>Nėra tiek pinigų!</div>";}
 	else{
 		echo"<div class='meniuc'><b>Atlikta! Persivedei <b>".$kiek2." </b> ".$pinigaii." !</b></div>";
 		$kiek2= $apie['litai'] + $kiek;
-		$kiek3 = $info[pinigai] - $kiek;
+		$kiek3 = $info['pinigai'] - $kiek;
 		mysqli_query($conn,"UPDATE zaidejai SET litai='$kiek2' WHERE nick='$nick'");
 		mysqli_query($conn,"UPDATE team SET pinigai='$kiek3' WHERE pavadinimas='$ka'");
 		
@@ -3673,11 +3673,11 @@ if($id == 'persivedu_eurus'){
 if($info['vadas'] !== $nick){echo"Tu nesi šios komandos vadas";}
 	elseif(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='".$info['pavadinimas']."'")) == false){echo"Tokios komandos nėra";}
 	elseif(empty($kiek)){echo"<div class='meniuc'>Neįrašei kiek pervesi!</div>";}
-	elseif($info[eurai] < $kiek){echo"<div class='meniuc'>Nėra tiek eurų!</div>";}
+	elseif($info['eurai'] < $kiek){echo"<div class='meniuc'>Nėra tiek eurų!</div>";}
 	else{
 		echo"<div class='meniuc'><b>Atlikta! Persivedei <b> ".$kiek2."</b> ".$eurui." !</b></div>";
 		$kiek2= $apie['sms_litai'] + $kiek;
-		$kiek3 = $info[eurai] - $kiek;
+		$kiek3 = $info['eurai'] - $kiek;
 		mysqli_query($conn,"UPDATE zaidejai SET sms_litai='$kiek2' WHERE nick='$nick'");
 		mysqli_query($conn,"UPDATE team SET eurai='$kiek3' WHERE pavadinimas='$ka'");
 		
@@ -3878,7 +3878,7 @@ if($info['vadas'] != $nick && $info['pavadotuojas'] != $nick)echo"<div class='me
     while($nt = mysqli_fetch_assoc($nst)){
 	$nr++;
 	
-	echo"<b>".$nr.".</b> ".$nt[msg]."<br>";
+	echo"<b>".$nr.".</b> ".$nt['msg']."<br>";
 	
 	unset($nt);
 }
@@ -4003,7 +4003,7 @@ $kvietimas_i_komanda = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM pras
 	}
 else{
 		echo"<div class='meniuc'>Priiemei sėkmingai</div>";
-		mysqli_query($conn,"UPDATE user SET team='".$kvietimas_i_komanda[komanda]."',iki_algos='2000' WHERE nick='$kvietimas_i_komanda[nick]'");
+		mysqli_query($conn,"UPDATE user SET team='".$kvietimas_i_komanda['komanda']."',iki_algos='2000' WHERE nick='$kvietimas_i_komanda[nick]'");
 		mysqli_query($conn,"DELETE FROM prasosi_i_komanda WHERE nick='$kvietimas_i_komanda[nick]'") or die(mysqli_error());
 		 mysqli_query($conn,"INSERT INTO pm SET what='SUPPORT', txt='Jus priimtas į $kvietimas_i_komanda[komanda] komandą', gavejas='$kvietimas_i_komanda[nick]', time='".time()."', nauj='NEW' ") or die(mysqli_error());
 		}
@@ -4021,7 +4021,7 @@ $kvietimas_i_komanda = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM pras
 	
 else{
 		echo"<div class='meniuc'>Atmesta sėkmingai</div>";
-	 mysqli_query($conn,"INSERT INTO pm SET what='SUPPORT', txt='Jus prašimasis į $kvietimas_i_komanda[komanda] komandą, atmestas', gavejas='$kvietimas_i_komanda[nick]', time='".time()."', nauj='NEW' ") or die(mysqli_error());
+	 mysqli_query($conn,"INSERT INTO pm SET what='SUPPORT', txt='Jus prašimasis į $kvietimas_i_komanda['komanda'] komandą, atmestas', gavejas='$kvietimas_i_komanda[nick]', time='".time()."', nauj='NEW' ") or die(mysqli_error());
 		mysqli_query($conn,"DELETE FROM prasosi_i_komanda WHERE nick='$kvietimas_i_komanda[nick]'") or die(mysqli_error());
 		}
 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","komanda.php","Komandos","komanda.php?id=info&ka=$ka"," $ka komanda", "Narių priėmimas");

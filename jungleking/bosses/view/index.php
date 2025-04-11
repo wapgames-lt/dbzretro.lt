@@ -778,7 +778,7 @@ if ($id === 'changeToSayiantail') {
 
 function renderRequirements(array $requirements): void
 {
-    global $nick, $inv, $arrow, $checked;
+    global $nick, $inv, $arrow, $checked, $conn;
 
     echo 'Kad susikautumėte su bosu Jums reikia atlikti šiuos veiksmus: <br><br>';
     if ($requirements['winFights']) {
@@ -898,7 +898,7 @@ function renderRequirements(array $requirements): void
 
 function handleRewards(array $rewards, $boosConfig): void
 {
-    global $apie;
+    global $apie, $conn;
 
     echo 'Kokius prizus gausi nukovęs bosą:<br><br>';
 
@@ -959,7 +959,7 @@ function handleRewards(array $rewards, $boosConfig): void
 
 function renderTopBossKillers(): void
 {
-    global $trophy;
+    global $trophy, $conn;
 
     $allCompletedMissionsCount = mysqli_num_rows(mysqli_query($conn,"SELECT * FROM jungle_king_bosses WHERE status='dead'"));
     if ($allCompletedMissionsCount) {
@@ -980,7 +980,7 @@ function renderTopBossKillers(): void
 
 function renderTopPlayersByTokens(): void
 {
-    global $tokens;
+    global $tokens, $conn;
 
     $userCount = mysqli_num_rows(mysqli_query($conn,"SELECT nick, jungle_king_token FROM `zaidejai` WHERE jungle_king_token > 0"));
 

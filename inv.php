@@ -34,7 +34,7 @@ echo'<div class="meniuc">Išviso daiktų: <b>'.$suma.'</b></div>
 	 $g_n[] = array("pagrindinis.php?id=","Pagrindinis","Inventorius");
 	navigacija($g_n);
 }
-		if($id == keyx2s){
+		if($id == 'keyx2s'){
 	top('Inventorius');
 echo'	<div class="meniu">';		
 //mysqli_query($conn,"UPDATE inv SET red_key='0', blue_key='0', black_key='0', green_key='0', yellow_key='0'");
@@ -858,9 +858,9 @@ top('Klaida');
 if($id == "ginkluote"){
 top('Daigtai ant kūno');
 echo'	<div class="meniu">
-'.$ico2.' Kardas:  <b>'.$apie[sword].' </b>  <a href="?id=nuimus">[<b>X</b>]</a></br>
-'.$ico2.' Šarvai:  <b>'.$apie[armor].' </b> <a href="?id=nuimua">[<b>X</b>]</a><br>
-'.$ico2.' Amuletas:  <b>'.$apie[amuletas].' </b> <a href="?id=nuimuam">[<b>X</b>]</a>
+'.$ico2.' Kardas:  <b>'.$apie['sword'].' </b>  <a href="?id=nuimus">[<b>X</b>]</a></br>
+'.$ico2.' Šarvai:  <b>'.$apie['armor'].' </b> <a href="?id=nuimua">[<b>X</b>]</a><br>
+'.$ico2.' Amuletas:  <b>'.$apie['amuletas'].' </b> <a href="?id=nuimuam">[<b>X</b>]</a>
 ';
   
   
@@ -967,7 +967,7 @@ echo'<div class="up">Išviso daiktų:</div>';
 
 elseif($id == "eat"){
    top('Pupu valgymas');
-   if(($invis[Pupos]) < 1){
+   if(($invis['Pupos']) < 1){
     		
 			echo '<div class="meniuc">Neturi pupu!</div>';
     	
@@ -984,7 +984,7 @@ elseif($id == "eat"){
 elseif($id == "nuimus"){
    top('Ginklo nuėmimas');
    
-if($apie[sword] == ""){
+if($apie['sword'] == ""){
     		
 			echo '<div class="meniuc">Neuždėtas</div>';
     	
@@ -1001,7 +1001,7 @@ else{
 elseif($id == "nuimua"){
    top('Šarvų nuėmimas');
    
-if($apie[armor] == ""){
+if($apie['armor'] == ""){
     		
 			echo '<div class="meniuc">Neuždėtas</div>';
     	
@@ -1018,7 +1018,7 @@ else{
 elseif($id == "nuimuam"){
    top('Amuleto nuėmimas');
    
-if($apie[amuletas] == ""){
+if($apie['amuletas'] == ""){
     		
 			echo '<div class="meniuc">Neuždėtas</div>';
     	

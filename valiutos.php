@@ -8,7 +8,7 @@ include_once 'cfg/funkcijos.php';
 
 	  
 
-   $prizas = $nust['sms_priz'];  ddd;
+   $prizas = $nust['sms_priz'];
 	$prizas2 = round($nust['sms_priz']) / 2;
 	$prizas3 = round($nust['sms_priz']) / 3;
  $statusai = array("Mod","Mod2","Mod3","Mod4","Admin");
@@ -20,7 +20,7 @@ if($nust['new_time']-time() > 0){
     $q = mysqli_query($conn,"SELECT * FROM news ORDER BY id DESC LIMIT 1");
    
     while($row = mysqli_fetch_assoc($q)){
-        echo '<div class="meniuc">Padarytas atnaujinimas: '.$row[name].'</div>';
+        echo '<div class="meniuc">Padarytas atnaujinimas: '.$row['name'].'</div>';
       
         unset($row);
     }
@@ -56,7 +56,7 @@ if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM kvietimai_i_komanda WHERE n
 			if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM b_rez WHERE nick ='$nick' && bals_id ='1'")) == false){
  $error='<a href="balsavimai.php">Naujas balsavimas kuriame nebalsavai !</a>';
 }	
-			if($apie[daily] != '+'){
+			if($apie['daily'] != '+'){
 				$error='<a href="?id=daily">Pasiimk dienos prizą</a>';
 				
 			}
@@ -68,7 +68,7 @@ if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM kvietimai_i_komanda WHERE n
 		
 $pakvietimai = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM pakvietimai WHERE nick='$nick'"));
 if($pakvietimai > 0 ? $pakvietimai : 0){
-  echo '<div class="meniuc">'.statusas($pakvietimai[kviecia]).' Kviečia i draugus !<br/>
+  echo '<div class="meniuc">'.statusas($pakvietimai['kviecia']).' Kviečia i draugus !<br/>
     <a href="pagrindinis.php?id=priimti&ID='.$pakvietimai['kviecia'].'">Priimti</a> | <a href="pagrindinis.php?id=atmesti&ID='.$pakvietimai['kviecia'].'">Atmesti</a> 
   
   
@@ -80,9 +80,9 @@ if($pakvietimai > 0 ? $pakvietimai : 0){
 $mano_team = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM team WHERE vadas='$nick'"));
 $kvietimas_i_komanda = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM prasosi_i_komanda WHERE komanda='$mano_team[pavadinimas]'"));
 if($kvietimas_i_komanda  > 0){
-  echo '<div class="meniuc">'.statusas($kvietimas_i_komanda[nick]).' Nori i jūsų komanda<br/>
+  echo '<div class="meniuc">'.statusas($kvietimas_i_komanda['nick']).' Nori i jūsų komanda<br/>
    
-  	<a href="komanda.php?id=atmesti_kv&ka='.$kvietimas_i_komanda['nick'].'"><font color="red">Atmesti</font></a> <a href="komanda.php?id=priimti_kv&ka='.$kvietimas_i_komanda[nick].'"><font color="blue">Priimti</font></a>
+  	<a href="komanda.php?id=atmesti_kv&ka='.$kvietimas_i_komanda['nick'].'"><font color="red">Atmesti</font></a> <a href="komanda.php?id=priimti_kv&ka='.$kvietimas_i_komanda['nick'].'"><font color="blue">Priimti</font></a>
   
   
   </div>';
@@ -91,9 +91,9 @@ if($kvietimas_i_komanda  > 0){
 if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM statusai WHERE kam='$nick'")) == true){
 	$st = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM statusai WHERE kam='$nick'"));
 	
-	  echo '<div class="meniuc">'.statusas($st[nick]).' Nori pakeisti draugystės statusas į '.$st['stats'].'<br/>
+	  echo '<div class="meniuc">'.statusas($st['nick']).' Nori pakeisti draugystės statusas į '.$st['stats'].'<br/>
 	  
-	  <a href="?id=stt_n&ka='.$st[nick].'&ID='.$st[id].'"><font color="red">Nesutinku</font></a> <a href="?id=stt_p&ka='.$st[nick].'&ID='.$st[id].'"><font color="blue">Sutinku</font></a>
+	  <a href="?id=stt_n&ka='.$st['nick'].'&ID='.$st['id'].'"><font color="red">Nesutinku</font></a> <a href="?id=stt_p&ka='.$st['nick'].'&ID='.$st['id'].'"><font color="blue">Sutinku</font></a>
 	  <br/>
 	
 </div>	';
@@ -107,12 +107,12 @@ if(in_array($apie['statusas'], $stt) && mysqli_num_rows(mysqli_query($conn,"SELE
 	
 }
 
-if($user[kovu_trn] !='+' && $nst[trn_busena] == 0 && $user[rodyti_turnyra] == 1){
+if($user['kovu_trn'] !='+' && $nst['trn_busena'] == 0 && $user['rodyti_turnyra']] == 1){
 		
 	echo '<div class="meniuc"><b><font color="red">!!!</font> Registracija į turnyrą prasidėjo <font color="red">!!!</font><br/> >>> <a href="trn.php?id=reg">Registruotis</a> <<< </b></div>';
 }
 $sajanas =mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM legendinis_sajanas"));
-if($sajanas[prisikels]-time < 0){
+if($sajanas['prisikels']-time() < 0){
 	echo '<div class="meniuc"><b><a href="legendinis_sajanas.php"><font color="red">Legendinis sajanas prisikėlė</font></a></div>';
 }	
 		

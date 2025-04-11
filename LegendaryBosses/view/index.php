@@ -951,7 +951,7 @@ if ($id === 'attack') {
             echo '<font color="#6495ed"><b>Boso smūgį sumažino Atgimimo Armour!</b></font><br>';
         }
         $isPlayerBlockedAttack = false;
-        if (mt_rand(1, 100) <= $playerBlockRatePercentage) {
+        if (random_int(1, 100) <= $playerBlockRatePercentage) {
             $isPlayerBlockedAttack = true;
             $bossDamage = 0;
             echo $warningIcon;
@@ -963,7 +963,7 @@ if ($id === 'attack') {
         $bossCriticalChancePercent = $bossCriticalChancePercentages[$randomKey];
 
         $isBossCriticalDamage = false;
-        if (!$isPlayerBlockedAttack && mt_rand(1, 100) <= $bossCriticalChancePercent) {
+        if (!$isPlayerBlockedAttack && random_int(1, 100) <= $bossCriticalChancePercent) {
             $isBossCriticalDamage = true;
             $bossDamage *= 2;
             $bossDamage = round($bossDamage);
@@ -983,18 +983,18 @@ if ($id === 'attack') {
         $playerDamage = 0;
 
         $isBossBlockedAttack = false;
-        if (mt_rand(1, 100) <= $bossBlockRatePercent) {
+        if (random_int(1, 100) <= $bossBlockRatePercent) {
             $isBossBlockedAttack = true;
             echo $warningIcon;
             echo '<font color="#808080"><b>Jūsų smūgis buvo blokuotas!</b></font><br>';
         }
 
         if (!$isBossBlockedAttack) {
-            $playerDamage = mt_rand(1000, 2000);
+            $playerDamage = random_int(1000, 2000);
             $bossDefencePercentages = $bossConfig['defencePercentage'];
             $randomKey = array_rand($bossDefencePercentages);
             $bossDefencePercent = $bossDefencePercentages[$randomKey];
-            if (mt_rand(1, 100) <= $bossDefencePercent) {
+            if (random_int(1, 100) <= $bossDefencePercent) {
                 $playerDamage = round((1 - ($bossDefencePercent / 100)) * $playerDamage);
             }
         }
@@ -1025,23 +1025,23 @@ if ($id === 'attack') {
 
         $hasPlayerFullDeathSet = hasPlayerFullDeathSet();
         if (!$hasPlayerFullDeathSet && !$isBossBlockedAttack && $apie['sword'] === 'Mirties sword' && $boss->getDamageType() === LegendaryBoss::DAMAGE_TYPE_REVIVAL) {
-            $playerDamage *= mt_rand(3, 7);
+            $playerDamage *= random_int(3, 7);
             echo $warningIcon;
             echo '<font color="#9370db"><b>Jūsų smūgį padidino Mirties Sword!</b></font><br>';
         }
         if (!$isBossBlockedAttack && $hasPlayerFullDeathSet && $boss->getDamageType() === LegendaryBoss::DAMAGE_TYPE_REVIVAL) {
-            $playerDamage *= mt_rand(5, 8);
+            $playerDamage *= random_int(5, 8);
             echo $warningIcon;
             echo '<font color="#9370db"><b>Užsidėjus visą mirties setą bosui darote daugiau damage!</b></font><br>';
         }
         $hasPlayerFullRevivalSet = hasPlayerFullRevivalSet();
         if (!$hasPlayerFullRevivalSet && !$isBossBlockedAttack && $apie['sword'] === 'Atgimimo sword' && $boss->getDamageType() === LegendaryBoss::DAMAGE_TYPE_DEATH) {
-            $playerDamage *= mt_rand(3, 7);
+            $playerDamage *= random_int(3, 7);
             echo $warningIcon;
             echo '<font color="#9370db"><b>Jūsų smūgį padidino Atgimimo Sword!</b></font><br>';
         }
         if (!$isBossBlockedAttack && $hasPlayerFullRevivalSet && $boss->getDamageType() === LegendaryBoss::DAMAGE_TYPE_DEATH) {
-            $playerDamage *= mt_rand(5, 8);
+            $playerDamage *= random_int(5, 8);
             echo $warningIcon;
             echo '<font color="#9370db"><b>Užsidėjus visą atgimimo setą bosui darote daugiau damage!</b></font><br>';
         }
@@ -1108,9 +1108,9 @@ if ($id === 'attack') {
                 $date = date('Y-m-d H:i:s');
                 $expiresAt = date('Y-m-d H:i:s', strtotime($date . ' +1 hours'));
                 mysqli_query($conn,"INSERT INTO `player_chest_drops` SET player_id = '$playerByMostHits[player_id]', type = '$chest[type]', expires_at = '$expiresAt' ");
-                $insertedId = mysqli_insert_id();
+                $insertedId = mysqli_insert_id($conn);
                 foreach ($chest['config']['contents'] as $name => $chestContent) {
-                    $amount = mt_rand($chestContent[0], $chestContent[1]);
+                    $amount = random_int($chestContent[0], $chestContent[1]);
                     mysqli_query($conn,"INSERT INTO `player_chest_drop_contents` SET chest_drop_id = '$insertedId', name = '$name', amount = '$amount' ") or die(mysqli_error());
                 }
             }
@@ -1209,7 +1209,7 @@ if ($id === 'attack') {
         echo '<br>';
         $_SESSION['pad-legendary-bosses'] = time() + 1;
     }
-    $KD = mt_rand(9999, 99999);
+    $KD = random_int(9999, 99999);
     $_SESSION['refresh-legendary-bosses'] = $KD;
     echo '<div class="meniuc">';
     $linkText = 'Trenkti <b>' . $bossConfig['name'] . '</b>';

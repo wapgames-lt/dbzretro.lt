@@ -72,19 +72,19 @@ $kirtimas = 0;
 $kirtimas = 0;
  $padusimas = 0;
 
- if($inv[viplvl]  == 6 ){
+ if($inv['viplvl']  == 6 ){
 $kirtimas = 0;
  $padusimas = 0;
 
- if($inv[viplvl]  == 5 ){
+ if($inv['viplvl']  == 5 ){
 $kirtimas = 0;
  $padusimas = 0;
 
- if($inv[viplvl]  == 4 ){
+ if($inv['viplvl']  == 4 ){
 $kirtimas = 0;
  $padusimas = 0;
 
- if($inv[viplvl]  == 3 ){
+ if($inv['viplvl']  == 3 ){
 $kirtimas = 0;
  $padusimas = 0;
 }}}}}}}}}}}}}
@@ -376,7 +376,7 @@ if($apie['sword'] == 'AD20 Kardas'  and $apie['armor'] == 'AD20 Sarvai' and $api
          } 
 else{$tech=1;}
 // Buu tech
-    if($apie[kenergija6] > 49999){
+    if($apie['kenergija6'] > 49999){
      $tech=2; 
         
     }
@@ -465,7 +465,7 @@ if($apie['sword'] == 'Infinity sword'){
          	$smugis2 = 10000;
          }    
          if($kg >= '58'){
-         			$crit =rand(0,$apie[critical]*5);
+         			$crit =rand(0,$apie['critical']*5);
          	$smugis = rand(100,200)+$smugis2*$kyborg*$tech+$smugis3*$kyborg*$tech+$set1*$kyborg*$tech+$crit*$kyborg*$tech;
          }
     
@@ -558,43 +558,43 @@ mysqli_query($conn,"UPDATE boss SET  kiekzalos=kiekzalos+'$smugelis' WHERE id='$
             mysqli_query($conn,"UPDATE boss SET hp='$bosui_liko' WHERE id='$go' ");
 
             
-			if($apie[kyborgas] !=''){
+			if($apie['kyborgas'] !=''){
 echo '<div class="meniuc">';
-			echo' <b> '.$apie[kyborgas].' </b> padidina jūsų kirtį  <b>'.$kyborg.'</b>  kartus! </div>  ';	}
-			if($apie[kenergija6] > 49999){
+			echo' <b> '.$apie['kyborgas'].' </b> padidina jūsų kirtį  <b>'.$kyborg.'</b>  kartus! </div>  ';	}
+			if($apie['kenergija6'] > 49999){
 
 echo'<div class="meniuc"><b>Gack technika</b> Padidina jūsų kirt! <b>2x</b> !</div>';}	
-			if($apie[kenergija7] > 49999){
+			if($apie['kenergija7'] > 49999){
 
 echo'<div class="meniuc"><b>Sayan Power technika</b> Padidina jūsų kirtį <b>3.5x</b> !</div>';}	
-if($apie[kenergija8] > 49999){
+if($apie['kenergija8'] > 49999){
 
 echo'<div class="meniuc"><b>Makosen technika</b> Padidina jūsų kirtį <b>4x</b> !</div>';}	
-if($apie[kenergija9] > 49999){
+if($apie['kenergija9'] > 49999){
 
 echo'<div class="meniuc"><b>Kamehameha technika</b> Padidina jūsų kirtį <b>3x</b> !</div>';}	
-if($apie[kenergija11] > 49999){
+if($apie['kenergija11'] > 49999){
 
 echo'<div class="meniuc"><b>Begone technika</b> Padidina jūsų kirtį <b>3x</b> !</div>';}	
-if($apie[kenergija12] > 49999){
+if($apie['kenergija12'] > 49999){
 
 echo'<div class="meniuc"><b>Regeneration technika</b> Padidina jūsų kirtį <b>2x</b> !</div>';}	
-if($apie[kenergija13] > 49999){
+if($apie['kenergija13'] > 49999){
 
 echo'<div class="meniuc"><b>Regeneration technika</b> Padidina jūsų kirtį <b>3x</b> !</div>';}	
-if($apie[kenergija14] > 49999){
+if($apie['kenergija14'] > 49999){
 
 echo'<div class="meniuc"><b>Healing technika</b> Padidina jūsų kirtį <b>5x</b> !</div>';}
-if($apie[kenergija15] > 49999){
+if($apie['kenergija15'] > 49999){
 
 echo'<div class="meniuc"><b>AngryBulma technika</b> Padidina jūsų kirtį <b>4x</b> !</div>';}
 echo '<div class="meniuc">';
         echo' <img src="img/veikejai/'.$apie['veikejas'].'-'.$apie['trans'].'.png" alt="IMG" height="16" width="16"> <b> '.$nick.'  </b> nuėmei 
 <font color="green"><b>'.skaicius($smugiss).'</b>';
-	if($apie[critical] !='0'){
+	if($apie['critical'] !='0'){
         $dmg = $smugis;
         echo'
-</font>'.$att1.' + <font color="red"><b>'.skaicius($crit).'</b></font> '.$att2.'';}   if($apie[kyborgas] !=''){echo' <font color="green">*'.$kyborg.'</font> ';  echo''.$lygu.' <font color="blue">  <b>'.skaicius($smugis).'</font> '.$att1.'</b>';}echo'  <br/>
+</font>'.$att1.' + <font color="red"><b>'.skaicius($crit).'</b></font> '.$att2.'';}   if($apie['kyborgas'] !=''){echo' <font color="green">*'.$kyborg.'</font> ';  echo''.$lygu.' <font color="blue">  <b>'.skaicius($smugis).'</font> '.$att1.'</b>';}echo'  <br/>
      <img src="img/veikejaic/'.$boss['img'].'.png" alt="IMG" height="16" width="16"> <b>'.$boss['name'].'</b>  nuėmė     <b> '.$apie['nick'].'</b> - '.sk($hit).' '.$att1.'</b> <br></div>
 
  ';
@@ -605,7 +605,7 @@ echo'<div class="meniuc">
  <img src="img/veikejai/'.$apie['veikejas'].'-'.$apie['trans'].'.png" alt="IMG" height="16" width="16"><b>'.$nick.'</b> liko '.$lygu.'<font color="green"><b>'.sk($gyvybes).'</b></font>'.$hp.'<br/>
 <img src="img/veikejaic/'.$boss['img'].'.png" alt="IMG" height="16" width="16">  <b>'.$boss['name'].'</b> liko '.$lygu.'<font color="green"> <b>'.sk($bosui_liko).'</b></font>'.$hp.'<br>
 Padarei <img src="img/veikejaic/'.$boss['img'].'.png" alt="IMG" height="16" width="16"> <b> '.$boss['name'].'</b> žalos: <b>'.$dmg.'</b><br>';
-   if($autob = '+' AND $boss2[auto] == 'paprastas'){
+   if($autob = '+' AND $boss2['auto'] == 'paprastas'){
     echo '<meta http-equiv="refresh" content="'.$kirtimas.'; url=bosai.php?id=attack&KD='.$KD.'&go='.$go.'">';}	               
         
        echo'     </div><div class="line"></div><div class="meniuc">

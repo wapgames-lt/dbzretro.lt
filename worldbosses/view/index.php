@@ -428,7 +428,7 @@ if ($id === 'attack') {
         $bossCriticalChancePercent = $bossCriticalChancePercentages[$randomKey];
 
         $isBossCriticalDamage = false;
-        if (mt_rand(1, 100) <= $bossCriticalChancePercent) {
+        if (random_int(1, 100) <= $bossCriticalChancePercent) {
             $isBossCriticalDamage = true;
             $bossDamage *= 2;
             $bossDamage = round($bossDamage);
@@ -448,18 +448,18 @@ if ($id === 'attack') {
         $playerDamage = 0;
 
         $isBossBlockedAttack = false;
-        if (mt_rand(1, 100) <= $bossBlockRatePercent) {
+        if (random_int(1, 100) <= $bossBlockRatePercent) {
             $isBossBlockedAttack = true;
             echo $warningIcon;
             echo '<font color="#808080"><b>Jūsų smūgis buvo blokuotas!</b></font><br>';
         }
 
         if (!$isBossBlockedAttack) {
-            $playerDamage = mt_rand(1000, 2000);
+            $playerDamage = random_int(1000, 2000);
             $bossDefencePercentages = $bossConfig['defencePercentage'];
             $randomKey = array_rand($bossDefencePercentages);
             $bossDefencePercent = $bossDefencePercentages[$randomKey];
-            if (mt_rand(1, 100) <= $bossDefencePercent) {
+            if (random_int(1, 100) <= $bossDefencePercent) {
                 $playerDamage = round((1 - ($bossDefencePercent / 100)) * $playerDamage);
             }
         }
@@ -490,7 +490,7 @@ if ($id === 'attack') {
 
         $hasPlayerFullDeathSet = hasPlayerFullDeathSet();
         if (!$hasPlayerFullDeathSet && !$isBossBlockedAttack && $apie['sword'] === 'Mirties sword' && $boss->getDamageType() === \LegacyDbz\WorldBosses\DTO\WorldBoss::DAMAGE_TYPE_REVIVAL) {
-            $playerDamage *= mt_rand(3, 7);
+            $playerDamage *= random_int(3, 7);
             echo $warningIcon;
             echo '<font color="#9370db"><b>Jūsų smūgį padidino Mirties Sword!</b></font><br>';
         }
@@ -584,7 +584,7 @@ if ($id === 'attack') {
                 $date = date('Y-m-d H:i:s');
                 $expiresAt = date('Y-m-d H:i:s', strtotime($date . ' +1 hours'));
                 mysqli_query($conn,"INSERT INTO `player_chest_drops` SET player_id = '$playerByMostHits[player_id]', type = '$chest[type]', expires_at = '$expiresAt' ");
-                $insertedId = mysqli_insert_id();
+                $insertedId = mysqli_insert_id($conn);
                 foreach ($chest['config']['contents'] as $name => $chestContent) {
                     $amount = mt_rand($chestContent[0], $chestContent[1]);
                     mysqli_query($conn,"INSERT INTO `player_chest_drop_contents` SET chest_drop_id = '$insertedId', name = '$name', amount = '$amount' ") or die(mysqli_error());
