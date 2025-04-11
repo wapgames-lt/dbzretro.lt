@@ -6,30 +6,22 @@ use DateTime;
 
 class WorldBoss
 {
-    const DAMAGE_TYPE_DEATH = 'death';
-    const DAMAGE_TYPE_REVIVAL = 'revival';
-
-    /**
-     * @param $id
-     * @param $bossId
-     * @param $firstHitPlayerId
-     * @param $lastHitPlayerId
-     * @param $health
-     * @param $damageType
-     * @param $switchDamageAt
-     * @param $freezeEndsAt
-     * @param $startsAt
-     * @param $endsAt
-     */
-    public function __construct(private readonly int $id, private $bossId, private $firstHitPlayerId, private $lastHitPlayerId, private $health, private $damageType, private $switchDamageAt, private $freezeEndsAt, private $startsAt, private $endsAt)
-    {
-    }
+    const string DAMAGE_TYPE_DEATH = 'death';
+    const string DAMAGE_TYPE_REVIVAL = 'revival';
+    public function __construct(
+        private readonly ?int $id,
+        private $bossId,
+        private $firstHitPlayerId,
+        private $lastHitPlayerId,
+        private $health,
+        private $damageType,
+        private $switchDamageAt,
+        private $freezeEndsAt,
+        private $startsAt,
+        private $endsAt){}
 
 
-    /**
-     * @return int
-     */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }

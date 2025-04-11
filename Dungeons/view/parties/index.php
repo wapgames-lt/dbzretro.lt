@@ -45,7 +45,7 @@ if (!isset($id)) {
         echo '</div>';
     }
 
-    $g_n[] = ["/index.php", "Dungeons", "Party Valdymas"];
+    $g_n[] = ["/Dungeons/view/index.php", "Dungeons", "Party Valdymas"];
     navigacija($g_n);
 
 }

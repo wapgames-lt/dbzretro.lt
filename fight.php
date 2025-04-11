@@ -112,6 +112,7 @@ $kg = ($kg/100) * 15000;
 [»] <a href="bosai.php?id="><font color="white"><b>Bosai</b></font></a><br>
 [»] <a href="jungleking/bosses/view/index.php"><font color="#9acd32"><b>Jungle King bosai</b></font></a><br>
 [»] <a href="LegendaryBosses/view/index.php"><font color="#ff7f50"><b>Legendary bosai</b></font></a><br>
+[»] <a href="Dungeons/view/index.php"><font color="#fff"><b>Dungeons</b></font></a><br>
 [»] <a href="trn.php?id="><font color="snow"><b>Kovų Turnyras</b></font></a><br>
 [»] <a href="fight.php?id=bonusai"><font color="snow"><b>Bonusai</b></font></a><br>
 </div>
@@ -1689,7 +1690,7 @@ Padaręs išviso  <img src="img/bicons/attack1.png" /> <b> ' . sk($apie['veiksma
                             mysqli_query($conn,"UPDATE zaidejai SET kovu_tm='$tt' WHERE nick='$nick'");
                             $fusn = mysqli_fetch_array(mysqli_query($conn,"SELECT * FROM susijungimas WHERE nick='$nick'"));
                             $fusn_k2 = mysqli_fetch_array(mysqli_query($conn,"SELECT * FROM susijungimas WHERE nick='$fusn[kitas_zaidejas]'"));
-                            if (!empty($fusn['kitas_zaidejas']) and $fusn[double_fussion_dance] == '+') {
+                            if (!empty($fusn['kitas_zaidejas']) and $fusn['double_fussion_dance'] == '+') {
                                 $mob['exp'] = $mob['exp'] / 10;
                                 mysqli_query($conn,"UPDATE zaidejai SET exp=exp+'$mob[exp]' WHERE nick='$fusn[kitas_zaidejas]'") or die(mysqli_error());
                                 mysqli_query($conn,"UPDATE susijungimas SET uzdirbo_exp=uzdirbo_exp+'$mob[exp]' WHERE nick='$nick'") or die(mysqli_error());
@@ -1700,7 +1701,7 @@ Padaręs išviso  <img src="img/bicons/attack1.png" /> <b> ' . sk($apie['veiksma
                                 $komanda = mysqli_fetch_array(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='" . $user['team'] . "'"));
                                 $plius = $user['win_in_team'] + 1;
                                 $pius = $komanda['viso_laimejo_kovu'] + 1;
-                                $pius2 = $komanda['pinigai'] + $mob[pin] / 50;
+                                $pius2 = $komanda['pinigai'] + $mob['pin'] / 50;
                                 $pius3 = $komanda['eurai'] + 0.01;
 
                                 mysqli_query($conn,"UPDATE team SET viso_laimejo_kovu='$pius', pinigai='$pius2', eurai='$pius3' WHERE pavadinimas = '" . $user['team'] . "'") or die(mysqli_error());
