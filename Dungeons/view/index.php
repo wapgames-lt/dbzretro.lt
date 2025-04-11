@@ -45,6 +45,7 @@ function renderDungeons(): void
         echo "Pavadinimas: {$dungeon->name} <br>";
         echo "Aprašymas: {$dungeon->description} <br>";
         echo "Image url: {$dungeon->img_url} <br>";
+        echo "Lygis: {$dungeon->entry_level_min} - {$dungeon->entry_level_max} ";
 
         echo '</div>';
     }

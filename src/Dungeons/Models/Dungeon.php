@@ -11,6 +11,8 @@ use LegacyDbz\Core\Model;
  * @property string $name
  * @property string $description
  * @property string $img_url
+ * @property int $entry_level_min
+ * @property int $entry_level_max
  */
 class Dungeon extends Model
 {
