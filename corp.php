@@ -1390,7 +1390,7 @@ top('Radaro gaminimas');
    echo '<div class="meniuc"><img src="img/radar.png"></div>';
 
 
-   if($inv[Microshem] < 999 || $apie['litai'] < 99999999 ||  $apie['sms_litai'] < 9 ){
+   if($inv['Microshem'] < 999 || $apie['litai'] < 99999999 ||  $apie['sms_litai'] < 9 ){
    echo '<div class="meniuc">Neturi pakankamai <b>Microschemų</b> , <img src="img/bicons/pinigai.png"><b> arba <img src="img/bicons/euro.png">  !</b> </div>'; 	
    }
 elseif($inv['radaras'] > 0){

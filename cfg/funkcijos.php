@@ -2977,6 +2977,13 @@ if (!function_exists('currentPlayer')) {
     }
 }
 
+if (!function_exists('logError')) {
+    function logError(string $message, array $context = []): void
+    {
+       \LegacyDbz\Core\Logger::logError($message, $context);
+    }
+}
+
 function setCurrentPlayer($nick): void
 {
     $playersRepository = new \LegacyDbz\Players\Repositories\PlayersRepository();

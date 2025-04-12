@@ -1,6 +1,7 @@
 <?php
 
 use LegacyDbz\Dungeons\Models\Dungeon;
+use LegacyDbz\Dungeons\Models\DungeonSection;
 
 include_once 'head.php';
 
@@ -37,17 +38,26 @@ function renderDungeons(): void
         return;
     }
 
-    $dungeons->each(fn (Dungeon $dungeon) => print <<<HTML
+    $dungeons->each(fn (Dungeon $dungeon) => renderDungeon($dungeon));
+}
+
+function renderDungeon(Dungeon $dungeon): void
+{
+    $dungeonSectionsCount = DungeonSection::query()
+        ->where('dungeon_id', '=', $dungeon->id)
+        ->count();
+
+    print <<<HTML
         <div class="meniuc">
             <p><strong>Pavadinimas:</strong> {$dungeon->name}</p>
             <p><strong>Aprašymas:</strong> {$dungeon->description}</p>
             <p><strong>Image:</strong> <img src="{$dungeon->img_url}" alt="dungeon logo" width="50" height="50"></p>
             <p><strong>Lygis:</strong> {$dungeon->entry_level_min} - {$dungeon->entry_level_max}</p>
+            <p><strong>Etapų:</strong> {$dungeonSectionsCount}</p>
             <p><strong>Sukurta:</strong> {$dungeon->created_at->toFormattedDateString()}</p>
             <p><strong>Atnaujinta:</strong> {$dungeon->updated_at->diffForHumans()}</p>
         </div>
-HTML
-    );
+HTML;
 }
 
 

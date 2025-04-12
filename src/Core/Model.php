@@ -138,6 +138,31 @@ class Model
         return new Collection($models);
     }
 
+    public function count(): int
+    {
+        $sql = "SELECT COUNT(*) FROM {$this->table}";
+
+        if ($this->queryConditions) {
+            $whereClauses = [];
+            foreach ($this->queryConditions as $condition) {
+                $whereClauses[] = "{$condition['column']} {$condition['operator']} :{$condition['column']}";
+            }
+            $sql .= " WHERE " . implode(" AND ", $whereClauses);
+        }
+
+        $stmt = Db::prepare($sql);
+
+        foreach ($this->queryConditions as $condition) {
+            $stmt->bindValue(":{$condition['column']}", $condition['value']);
+        }
+
+        $stmt->execute();
+
+        $result = $stmt->fetchColumn();
+
+        return (int) $result;
+    }
+
     public function limit(int $limit): self
     {
         $this->limit = $limit;
