@@ -9,7 +9,7 @@ head2();
 baneris();
 
 topbar();
-if(empty($apie[lab])){
+if(empty($apie['lab'])){
 	if($id == ''){
 		online('Daktaro Gero labaratorija');
 		top('Daktaro Gero labaratorija');
@@ -22,8 +22,8 @@ if(empty($apie[lab])){
 		online('Daktaro Gero labaratorija');
 		top('Daktaro Gero labaratorija');
 
-		if($apie[lab_time] > time()){
-			echo'	<div class="meniuc"><img src=img/imgg/labaratorija.png border="1" width="150" height="75"></br>Ieškoti galėsi '.laikas($apie[lab_time]-time(),1).'</div>';
+		if($apie['lab_time'] > time()){
+			echo'	<div class="meniuc"><img src=img/imgg/labaratorija.png border="1" width="150" height="75"></br>Ieškoti galėsi '.laikas($apie['lab_time']-time(),1).'</div>';
 
 
 		}else{

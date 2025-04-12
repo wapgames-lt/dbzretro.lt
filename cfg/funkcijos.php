@@ -1,9 +1,9 @@
 <?php
 
+use Carbon\CarbonImmutable;
 use LegacyDbz\Players\Services\CurrentPlayer;
 
 include_once 'sql.php';
-require_once __DIR__ . '/../vendor/autoload.php';
 
 
 // AUTO RESET
@@ -2960,6 +2960,13 @@ function sendDiscordMessage($message)
 
     fclose($fp);
     return true;
+}
+
+if (!function_exists('now')) {
+    function now(): CarbonImmutable
+    {
+        return CarbonImmutable::now();
+    }
 }
 
 function setCurrentPlayer($nick): void

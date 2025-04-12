@@ -257,37 +257,37 @@ if($apie['gokas20xb']-time() > 0){
 <a href="?id=gokas2"><h3>Gokas SSJGB Kaioken 20x</h3></a><br></div>
 ';
 }
-if($apie['gokasultrab']-time() > 0){
+if((int)$apie['gokasultrab']-time() > 0){
   echo '
 <div class="titlec">
 <a href="?id=gokasultra"><h3>Gokas Ultra Instinct</h3></a><br></div>
 ';
 }
-if($apie['gokasultramb']-time() > 0){
+if((int)$apie['gokasultramb']-time() > 0){
   echo '
 <div class="titlec">
 <a href="?id=gokasultram"><h3>Gokas Mastered Ultra Instinct</h3></a><br></div>
 ';
 }
-if($apie['ozarum']-time() > 0){
+if((int)$apie['ozarum']-time() > 0){
   echo '
 <div class="titlec">
 <a href="?id=ozaru"><h3>Vegeta Ozaru</h3></a><br></div>
 ';
 }
-if($apie['gohanultrab']-time() > 0){
+if((int)$apie['gohanultrab']-time() > 0){
   echo '
 <div class="titlec">
 <a href="?id=gohanultra"><h3>Gohanas Ultra Instinct</h3></a><br></div>
 ';
 }
-if($apie['vegetaultrab']-time() > 0){
+if((int)$apie['vegetaultrab']-time() > 0){
   echo '
 <div class="titlec">
 <a href="?id=vegetaultra"><h3>Vegeta Ultra Instinct</h3></a><br></div>
 ';
 }
-if($apie['vegitoultrab']-time() > 0){
+if((int)$apie['vegitoultrab']-time() > 0){
   echo '
 <div class="titlec">
 <a href="?id=vegitoultra"><h3>Vegito Ultra Instinct</h3></a><br></div>
