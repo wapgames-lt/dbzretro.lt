@@ -95,9 +95,9 @@ class Model
         return false;
     }
 
-    public function where(string $column, mixed $value): self
+    public function where(string $column, string $operator, mixed $value): self
     {
-        $this->queryConditions[] = [$column, $value];
+        $this->queryConditions[] = ['column' => $column, 'operator' => $operator, 'value' => $value];
 
         return $this;
     }
@@ -109,7 +109,7 @@ class Model
         if ($this->queryConditions) {
             $whereClauses = [];
             foreach ($this->queryConditions as $condition) {
-                $whereClauses[] = "{$condition['column']} = :{$condition['column']}";
+                $whereClauses[] = "{$condition['column']} {$condition['operator']} :{$condition['column']}";
             }
             $sql .= " WHERE " . implode(" AND ", $whereClauses);
         }
