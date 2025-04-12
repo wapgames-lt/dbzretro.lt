@@ -812,8 +812,7 @@ echo '
 
 
 function minus($t){
-  $t = str_replace('-','', $t);    
-  return $t;
+  return str_replace('-','', $t);
 }
 
 if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM online WHERE nick='$nick'")) == 1){
@@ -1654,10 +1653,8 @@ function salys($ip) {
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
     curl_setopt($ch, CURLOPT_REFERER, 'http://db-ip.com/'.$ip.''); 
     $result = curl_exec($ch); 
-    preg_match('#<tr><th>Country</th><td>(.*?)</td>#',$result,$matches2);
-    $salys =    $matches2[1];       
-$salys = str_replace('/img/flags/','http://db-ip.com/img/flags/',$matches2[1]);           
-     return $salys;
+    preg_match('#<tr><th>Country</th><td>(.*?)</td>#',$result,$matches2);           
+     return str_replace('/img/flags/','http://db-ip.com/img/flags/',$matches2[1]);
 } 
 
 if($apie['sms_litai'] >= 10000){mysqli_query($conn,"UPDATE tikslas SET tikslas1='+' WHERE nick='$nick'");}
@@ -2510,7 +2507,7 @@ mysqli_query($conn,"UPDATE zaidejai SET atved='' WHERE nick='$nick'")or die(mysq
 }
 
 function change($kas){
-$kas = match ($kas) {
+return match ($kas) {
     'Sayiantail' => 'Sayian tail',
     'Fusionfail' => 'Fusion fail',
     'Energystone' => 'Energystone',
@@ -2525,25 +2522,21 @@ $kas = match ($kas) {
     'Sball' => 'Samungo drakono rutulys',
     default => $kas,
 };
-
-return $kas;
 }
  function ch($ID)
  
 {
-$ID = match ($ID) {
-    'litai' => 'litai',
-    'sms_litai' => 'eurai',
-    'kred' => 'kreditai',
-    default => $ID,
-};	
-	return $ID;
+return match ($ID) {
+        'litai' => 'litai',
+        'sms_litai' => 'eurai',
+        'kred' => 'kreditai',
+        default => $ID,
+    };
 	
 }
 
 function apsas($select){
-$back = strtolower((string) $select);
-return $back;	
+return strtolower((string) $select);	
 	}
 ////////// komandu dienos topas////
 $k_l = date("Y-m-d");
@@ -2557,7 +2550,7 @@ while($row = mysqli_fetch_assoc($query)){
 	mysqli_query($conn,"INSERT INTO teammedal SET pavadinimas='$row[team]', medalis='1', uz='Pirma vieta komandos dienos kovų tope!',bonusas='2x pinigu kovu zonoi visai komandai dienai!', laikas='".time()."' ")or die(mysqli_error());
         mysqli_query($conn,"INSERT INTO komandos_dtop_log SET pavadinimas='$row[team]', laimejo='$row[laimejo_kovu]', laikas='".time()."' ")or die(mysqli_error());
 	    mysqli_query($conn,"UPDATE team SET pinigai=pinigai+'1000000000', eurai=eurai+'50', laimetu_dtop=laimetu_dtop+'1' WHERE pavadinimas='$row[team]'")or die(mysqli_error());
-        $timxx = time()+60*60*24*1;  
+        $timxx = time()+60*60*24;  
 mysqli_query($conn,"UPDATE team SET dienosmedaltime='$timxx', dienosmedal=dienosmedal+'1' WHERE pavadinimas='$row[team]' ");
 mysqli_query($conn,"UPDATE nustatymai SET laimejo_kovu='$row[laimejo_kovu]' ");
   mysqli_query($conn,"UPDATE nustatymai SET last2='$row[team]'");
@@ -2567,7 +2560,7 @@ mysqli_query($conn,"UPDATE nustatymai SET laimejo_kovu='$row[laimejo_kovu]' ");
 	mysqli_query($conn,"INSERT INTO teammedal2 SET pavadinimas='$row[team]', medalis='3', uz='Antra vieta komandos dienos kovų tope!',bonusas='1.5x pinigu kovu zonoi visai komandai dienai!', laikas='".time()."' ")or die(mysqli_error());
      
 	    mysqli_query($conn,"UPDATE team SET pinigai=pinigai+'500000000', eurai=eurai+'30' WHERE pavadinimas='$row[team]'")or die(mysqli_error());
-        $timxx = time()+60*60*24*1;  
+        $timxx = time()+60*60*24;  
 mysqli_query($conn,"UPDATE team SET dienosmedaltime2='$timxx', dienosmedal2=dienosmedal2+'1' WHERE pavadinimas='$row[team]' ");
 
   
@@ -2577,7 +2570,7 @@ mysqli_query($conn,"UPDATE team SET dienosmedaltime2='$timxx', dienosmedal2=dien
 	mysqli_query($conn,"INSERT INTO teammedal3 SET pavadinimas='$row[team]', medalis='4', uz='Trečia vieta komandos dienos kovų tope!',bonusas='1.2x pinigu kovu zonoi visai komandai dienai!', laikas='".time()."' ")or die(mysqli_error());
      
 	    mysqli_query($conn,"UPDATE team SET pinigai=pinigai+'300000000', eurai=eurai+'15' WHERE pavadinimas='$row[team]'")or die(mysqli_error());
-        $timxx = time()+60*60*24*1;  
+        $timxx = time()+60*60*24;  
 mysqli_query($conn,"UPDATE team SET dienosmedaltime3='$timxx', dienosmedal3=dienosmedal3+'1' WHERE pavadinimas='$row[team]' ");
 
   

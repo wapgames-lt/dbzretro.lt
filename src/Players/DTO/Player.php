@@ -64,7 +64,6 @@ final class Player
         $inventoryRepository = new InventoryRepository();
         $inventory = $inventoryRepository->findByNick($data['nick']);
         $playerSkillsRepository = new PlayerSkillsRepository();
-        /** @var PlayerSkill[]|Collection $skills */
         $activeSkills = $playerSkillsRepository->getActive($data['id']);
 
         return new self(

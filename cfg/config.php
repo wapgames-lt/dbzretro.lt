@@ -31,11 +31,6 @@ $versija = ($n/100)*10;
 $start = microtime(true);
 $nust = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM nustatymai"));
 $ip = $_SERVER['REMOTE_ADDR'];
-function GenTime(){
-    global $start;
-    $rez = round(microtime(true) - $start, 4);
-    return $rez;
-}
 
 
 function head(): void{
@@ -85,9 +80,8 @@ function post($input){
     global $conn;
 
     $input = trim((string) $input);
-    $input = mysqli_real_escape_string($conn, $input);
 
-    return $input;
+    return mysqli_real_escape_string($conn, $input);
 }
 
 
@@ -152,8 +146,7 @@ function kiek($tab){
     global $conn;
     $result = mysqli_query($conn,"SELECT COUNT(*) FROM $tab");
     $row = mysqli_fetch_row($result);
-    $rez = $row[0];
-    return $rez;
+    return $row[0];
 }
 function laikas($time, $id = 0){
 $nuo = time() - $time;
@@ -546,9 +539,8 @@ return number_format($n);
 }
 function e($L){
 $b = substr((string) $L,0, 1)	;
-$dd = strlen($L-1);
-$f = "$b.e+$dd";	
-return ($f);
+$dd = strlen($L-1);	
+return ("$b.e+$dd");
 	}
 
 if(kiek('online') > $nust['max_on']){
@@ -593,13 +585,12 @@ function top($tekstas): void{
 function skaitl(){
     global $apie;
     $link = 'https://wapgames.lt?ref=f18bf83a-ef32-434b-8125-58ad8ad9a041&code='. $apie['id'];
-    $x = '
+    return '
 <a href="https://topwap.lt/wap-zaidimai/dbz-retro/16496/">
 <img src="https://topwap.lt/p.php?n=dbzretro" alt="TOPWAP.LT"/></a>
    <a href="https://wtop.lt/stats/36"><img src="https://wtop.lt/image/36" alt="WTOP.lt - Lankomumo statistika" /></a>
    <br><br><a href="'. $link . '">Wap zaidimu katalogas</a></b></font></b><br>
   ';
-    return $x;
 }
  
 function dydziai($kint) 

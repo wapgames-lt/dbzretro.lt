@@ -74,7 +74,6 @@ class PartyInvite
     }
 
     /**
-     * @param array $data
      * @return self
      */
     public static function fromArray(array $data)

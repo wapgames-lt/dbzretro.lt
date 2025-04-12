@@ -10,7 +10,6 @@ class LegendaryBoss
     const string DAMAGE_TYPE_REVIVAL = 'revival';
 
     /**
-     * @param int|null $id
      * @param $bossId
      * @param $firstHitPlayerId
      * @param $lastHitPlayerId

@@ -10,7 +10,6 @@ class PlayerSkill
     /**
      * @param $endsAt
      * @param $playerId
-     * @param Skill $skill
      */
     public function __construct(private $endsAt, private $playerId, private readonly Skill $skill)
     {
