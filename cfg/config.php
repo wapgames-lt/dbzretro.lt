@@ -20,9 +20,6 @@ if (filter_var(getenv('APP_DEBUG'), FILTER_VALIDATE_BOOLEAN)) {
 session_start();
 
 require 'sql.php';
-if(empty($_SESSION['css'])){
-	$_SESSION['css'] == 1;
-}
 $n = mysqli_num_rows(mysqli_query($conn,"SELECT * FROM news"));
 $versija = ($n/100)*10;
 
@@ -149,7 +146,7 @@ function kiek($tab){
     return $row[0];
 }
 function laikas($time, $id = 0){
-$nuo = time() - $time;
+time();
 if($id){
     if($time < 60){
         $xx = $time.' sek.';
@@ -487,7 +484,7 @@ $domain ='com';
 }
 
 function lai($time, $id = 0){
-$nuo = time() - $time;
+time();
 if($id){
     if($time < 60){
         $xx = $time.' sek.';
@@ -631,7 +628,6 @@ function nr($xe){
 */
 function in_baneris(): void{
  $arr = ['botasm','botasm2'];
- $rand = array_rand($arr);
 
  echo'<div class="in">
 <div class="logo">

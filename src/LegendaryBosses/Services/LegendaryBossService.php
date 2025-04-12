@@ -140,19 +140,6 @@ class LegendaryBossService
         return $lastDeadBoss ? $lastDeadBoss->getEndsAt() : null;
     }
 
-    private function getRandomBossByConfig($id)
-    {
-        $filteredBossList = array_filter($this->bossList, static fn($boss) => $boss['id'] !== $id);
-
-        if (empty($filteredBossList)) {
-            return null;
-        }
-
-        $randomKey = array_rand($filteredBossList);
-
-        return $filteredBossList[$randomKey];
-    }
-
     private function getBossConfigById(int $bossId)
     {
         foreach ($this->bossList as $boss) {

@@ -33,8 +33,6 @@ function limit_requests($nr=10,$t=1): void {
         die('<h1>Error 500</h1>');
 //        die('<h1>Too many requests!</h1> You will be able to make a new request in <b style="color:red">'.($t-$since_interval_start).'</b> seconds.');
     }
-
-    $remaining_hits = $nr - $_SESSION['hits'];
     $remaining_time = $t - $since_interval_start;
     if ( $remaining_time < 0 ) $remaining_time = $t;
 }

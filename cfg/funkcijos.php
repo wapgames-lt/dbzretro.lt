@@ -383,13 +383,6 @@ echo'<?xml version="1.0" encoding="UTF-8"?>
 </head>
 
 ';
-
-
-
-
-if(empty($user['sno'])){
-
-}
 }
 
 
@@ -1463,11 +1456,8 @@ if($apie['trans'] == 7){
  function topbar(): void{
  global $user, $apie, $date, $conn;
 
-if($user['greitas4'] == '-'){ 
-
-}
-    else {
-        echo '
+if ($user['greitas4'] != '-') {
+    echo '
     <style>
     .menu-bar {
         display: flex;
@@ -1508,7 +1498,6 @@ if($user['greitas4'] == '-'){
     <div class="meniuc">
     <div class="menu-bar">
     ';
-    
     if ($user['greitas'] == 'Pradžia') {
         echo '<a href="/pagrindinis.php?id=">
                 <div class="icon"><i class="fa-duotone fa-house"></i></div>Pradžia
@@ -1569,17 +1558,16 @@ if($user['greitas4'] == '-'){
                 <div class="icon"><i class="fa-duotone fa-coins"></i></div>Eurai
               </a>';
     }
-        $newMissions = mysqli_num_rows(
-            mysqli_query($conn,
-                "SELECT * FROM user_daily_mission WHERE user_id = $apie[id] AND status='new' AND DATE(created_at) = '$date'"
-            )
-        );
-        if ($newMissions) {
-            echo '<a href="/mission/daily/view/index.php"><div class="icon"><i class="fa-duotone fa-scroll-old icon-mission"></i></div>Misija</a>';
-        }
-    
-        echo '</div></div>';
+    $newMissions = mysqli_num_rows(
+        mysqli_query($conn,
+            "SELECT * FROM user_daily_mission WHERE user_id = $apie[id] AND status='new' AND DATE(created_at) = '$date'"
+        )
+    );
+    if ($newMissions) {
+        echo '<a href="/mission/daily/view/index.php"><div class="icon"><i class="fa-duotone fa-scroll-old icon-mission"></i></div>Misija</a>';
     }
+    echo '</div></div>';
+}
 
 	echo' '.pm().'';
 }
@@ -1612,7 +1600,6 @@ elseif($nick === 'frankunderwood' or $nick === 'testas1'){
 elseif($nick === 'frankunderwood' or $nick === 'testas1'){
 	mysqli_query($conn,"UPDATE zaidejai SET ip='Paslaptis' WHERE nick='$nick'");
 	}else{
-if($apie['ip'] != $_SERVER['REMOTE_ADDR']);
 mysqli_query($conn,"UPDATE zaidejai SET ip='$ipx' WHERE nick='$nick'");
 }
 
