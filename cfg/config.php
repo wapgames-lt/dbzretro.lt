@@ -180,13 +180,13 @@ if($id){
     $d = date('d')-1;
     $dd = date('d')-2;
 
-    if(date('Y-m-d') == date('Y-m-d', $time)){
+    if(date('Y-m-d') === date('Y-m-d', $time)){
         $xx = '<font color="red">Šiandien</font> - '.date('H:i:s', $time).'';
     }
-    elseif(date('Y-m-'.$d) == date('Y-m-d', $time)){
+    elseif(date('Y-m-'.$d) === date('Y-m-d', $time)){
         $xx = '<font color="blue">Vakar</font> - '.date('H:i:s', $time).'';
     }
-    elseif(date('Y-m-'.$dd) == date('Y-m-d', $time)){
+    elseif(date('Y-m-'.$dd) === date('Y-m-d', $time)){
         $xx = '<font color="green">Užvakar</font> - '.date('H:i:s', $time).'';
     } else {
         $xx = ''.date('Y-m-d - H:i:s', $time).'';
@@ -205,15 +205,15 @@ function formatDateTimeString($dateTimeString)
     $tomorrowDate = new DateTime('tomorrow');
     $dayAfterTomorrowDate = new DateTime('tomorrow')->add(new DateInterval('P1D')); // Add 1 day
 
-    if ($currentDate->format('Y-m-d') == date('Y-m-d', $time)) {
+    if ($currentDate->format('Y-m-d') === date('Y-m-d', $time)) {
         $xx = '<small><font color="red">Šiandien</font> - ' . date('H:i', $time) . '</small>';
-    } elseif ($yesterdayDate->format('Y-m-d') == date('Y-m-d', $time)) {
+    } elseif ($yesterdayDate->format('Y-m-d') === date('Y-m-d', $time)) {
         $xx = '<small><font color="blue">Vakar</font> - ' . date('H:i', $time) . '</small>';
-    } elseif ($dayBeforeYesterdayDate->format('Y-m-d') == date('Y-m-d', $time)) {
+    } elseif ($dayBeforeYesterdayDate->format('Y-m-d') === date('Y-m-d', $time)) {
         $xx = '<small><font color="green">Užvakar</font> - ' . date('H:i', $time) . '</small>';
-    } elseif ($tomorrowDate->format('Y-m-d') == date('Y-m-d', $time)) {
+    } elseif ($tomorrowDate->format('Y-m-d') === date('Y-m-d', $time)) {
         $xx = '<small><font color="orange">Rytoj</font> - ' . date('H:i', $time) . '</small>';
-    } elseif ($dayAfterTomorrowDate->format('Y-m-d') == date('Y-m-d', $time)) {
+    } elseif ($dayAfterTomorrowDate->format('Y-m-d') === date('Y-m-d', $time)) {
         $xx = '<small><font color="purple">Poryt</font> - ' . date('H:i', $time) . '</small>';
     } else {
         $xx = date('Y-m-d - H:i', $time);

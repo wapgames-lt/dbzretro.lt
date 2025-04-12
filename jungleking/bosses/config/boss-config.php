@@ -517,7 +517,7 @@ function getRandomBoss(array $user)
         }
     }
 
-    if ($bossIds) {
+    if ($bossIds !== []) {
         $randomKey = array_rand($bossIds);
         $randomBossId = $bossIds[$randomKey];
 
@@ -592,12 +592,7 @@ function isChristmas()
         '25',
         '26',
     ];
-
-    if (!in_array($day, $christmasDays, true)) {
-        return false;
-    }
-
-    return true;
+    return in_array($day, $christmasDays, true);
 }
 
 function isNewYear()
@@ -608,12 +603,7 @@ function isNewYear()
     if ($month !== '1') {
         return false;
     }
-
-    if ($day !== '1') {
-        return false;
-    }
-
-    return true;
+    return $day === '1';
 }
 
 function getRandomBossByConfig(array $config)

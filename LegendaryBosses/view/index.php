@@ -846,7 +846,7 @@ if ($id === 'attack') {
         return;
     }
 
-    if (!$playerHealth) {
+    if ($playerHealth === 0.0) {
         echo $warningIcon;
         echo 'Neturite gyvybių.<br>';
         if ($inv['Pupos'] > 0) {
@@ -1293,11 +1293,7 @@ function hasPlayerFullDeathSet()
     if ($armour !== 'Mirties armor') {
         return false;
     }
-    if ($sword !== 'Mirties sword') {
-        return false;
-    }
-
-    return true;
+    return $sword === 'Mirties sword';
 }
 
 function hasPlayerFullRevivalSet()
@@ -1313,11 +1309,7 @@ function hasPlayerFullRevivalSet()
     if ($armour !== 'Atgimimo armor') {
         return false;
     }
-    if ($sword !== 'Atgimimo sword') {
-        return false;
-    }
-
-    return true;
+    return $sword === 'Atgimimo sword';
 }
 
 /**

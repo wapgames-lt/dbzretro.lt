@@ -160,7 +160,7 @@ if ($id === 'attack') {
     } elseif (!$boss) {
         echo 'Šis bosas mirė.';
         return;
-    } elseif (!$playerHealth) {
+    } elseif ($playerHealth === 0.0) {
         echo 'Neturite gyvybių.';
         return;
     } elseif ($_SESSION['pad-jungle-king'] - time() > 0) {
