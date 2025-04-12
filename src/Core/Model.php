@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace LegacyDbz\Core;
 
+use Carbon\Carbon;
 use PDO;
 
 class Model
@@ -11,8 +12,38 @@ class Model
     protected string $table;
     protected string $primaryKey = 'id';
 
+    protected array $queryConditions = [];
+
+    protected int $limit = 10;
+    protected int $offset = 0;
+
     public function __construct(protected array $attributes = [])
     {
+        if (isset($this->attributes['created_at'])) {
+            $this->attributes['created_at'] = Carbon::parse($this->attributes['created_at']);
+        }
+
+        if (isset($this->attributes['updated_at'])) {
+            $this->attributes['updated_at'] = Carbon::parse($this->attributes['updated_at']);
+        }
+    }
+
+    public function __get(string $name): mixed
+    {
+        if ($name === 'created_at' || $name === 'updated_at') {
+            return $this->attributes[$name] ?? null;
+        }
+
+        return $this->attributes[$name] ?? null;
+    }
+    public function __set(string $name, mixed $value): void
+    {
+        $this->attributes[$name] = $value;
+    }
+
+    public static function query(): self
+    {
+        return new static();
     }
 
     public function save(): bool
@@ -67,72 +98,66 @@ class Model
         return false;
     }
 
-    public static function find(int $id): ?self
+    public function where(string $column, mixed $value): self
     {
-        $class = static::class;
-        $model = new $class();
-        $sql = "SELECT * FROM {$model->table} WHERE {$model->primaryKey} = :id LIMIT 1";
-        $stmt = Db::prepare($sql);
-        $stmt->bindValue(":id", $id);
-        $stmt->execute();
+        $this->queryConditions[] = [$column, $value];
 
-        $result = Db::fetch($stmt);
-        if ($result) {
-            $model->attributes = $result;
-            return $model;
+        return $this;
+    }
+
+    public function get(): Collection
+    {
+        $sql = "SELECT * FROM {$this->table}";
+
+        if ($this->queryConditions) {
+            $whereClauses = [];
+            foreach ($this->queryConditions as $condition) {
+                $whereClauses[] = "{$condition['column']} = :{$condition['column']}";
+            }
+            $sql .= " WHERE " . implode(" AND ", $whereClauses);
         }
-        return null;
-    }
 
-    public function __get(string $name): mixed
-    {
-        return $this->attributes[$name] ?? null;
-    }
-    public function __set(string $name, mixed $value): void
-    {
-        $this->attributes[$name] = $value;
-    }
-
-    public static function get(int $limit = 10, int $offset = 0): Collection
-    {
-        $class = static::class;
-        $model = new $class();
-        $sql = "SELECT * FROM {$model->table} LIMIT :limit OFFSET :offset";
+        $sql .= " LIMIT :limit OFFSET :offset";
 
         $stmt = Db::prepare($sql);
-        $stmt->bindValue(":limit", $limit, PDO::PARAM_INT);
-        $stmt->bindValue(":offset", $offset, PDO::PARAM_INT);
+
+        foreach ($this->queryConditions as $condition) {
+            $stmt->bindValue(":{$condition['column']}", $condition['value']);
+        }
+
+        $stmt->bindValue(":limit", $this->limit, PDO::PARAM_INT);
+        $stmt->bindValue(":offset", $this->offset, PDO::PARAM_INT);
+
         $stmt->execute();
 
         $results = Db::fetchAll($stmt);
-
         $models = [];
+
         foreach ($results as $result) {
-            $instance = new $class();
-            $instance->attributes = $result;
+            $instance = new static(attributes: $result);
             $models[] = $instance;
         }
 
         return new Collection($models);
     }
 
-    public function setAttribute(string $key, mixed $value): void
+    public function limit(int $limit): self
     {
-        $this->attributes[$key] = $value;
+        $this->limit = $limit;
+        return $this;
     }
 
-    public function getAttribute(string $key): mixed
+    public function offset(int $offset): self
     {
-        return $this->attributes[$key] ?? null;
+        $this->offset = $offset;
+        return $this;
     }
 
-    public function getAttributes(): array
+    public function resetQuery(): self
     {
-        return $this->attributes;
-    }
-
-    public function setAttributes(array $attributes): void
-    {
-        $this->attributes = $attributes;
+        $this->queryConditions = [];
+        $this->limit = 10;
+        $this->offset = 0;
+        return $this;
     }
 }

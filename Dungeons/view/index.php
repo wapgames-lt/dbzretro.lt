@@ -28,27 +28,26 @@ function renderIndex(): void
 
 function renderDungeons(): void
 {
-    echo '<div class="meniuc">';
-    echo 'Dugeonų sąrašas:';
-    echo '</div>';
+    echo '<div class="meniuc">Dungeonu sąrašas:</div>';
 
-    /** @var Dungeon[] $dungeons */
-    $dungeons = Dungeon::get()->all();
-    if (!$dungeons) {
-        echo '<div class="meniuc">';
-        echo 'Dungeonu nėra :(';
-        echo '</div>';
+    $dungeons = Dungeon::query()->get();
+
+    if ($dungeons->isEmpty()) {
+        echo '<div class="meniuc">Dungeonu nėra :(</div>';
+        return;
     }
 
-    foreach ($dungeons as $dungeon) {
-        echo '<div class="meniuc">';
-        echo "Pavadinimas: {$dungeon->name} <br>";
-        echo "Aprašymas: {$dungeon->description} <br>";
-        echo "Image url: {$dungeon->img_url} <br>";
-        echo "Lygis: {$dungeon->entry_level_min} - {$dungeon->entry_level_max} ";
-
-        echo '</div>';
-    }
+    $dungeons->each(fn (Dungeon $dungeon) => print <<<HTML
+    <div class="meniuc">
+        <p><strong>Pavadinimas:</strong> {$dungeon->name}</p>
+        <p><strong>Aprašymas:</strong> {$dungeon->description}</p>
+        <p><strong>Image:</strong> <img src="{$dungeon->img_url}" alt="dungeon logo" width="50" height="50"></p>
+        <p><strong>Lygis:</strong> {$dungeon->entry_level_min} - {$dungeon->entry_level_max}</p>
+        <p><strong>Sukurta:</strong> {$dungeon->created_at->toFormattedDateString()}</p>
+        <p><strong>Atnaujinta:</strong> {$dungeon->updated_at->diffForHumans()}</p>
+    </div>
+HTML
+    );
 }
 
 

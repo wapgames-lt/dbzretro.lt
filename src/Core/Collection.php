@@ -2,39 +2,27 @@
 
 namespace LegacyDbz\Core;
 
-class Collection
+use Countable;
+use IteratorAggregate;
+use Traversable;
+use ArrayIterator;
+
+class Collection implements Countable, IteratorAggregate
 {
     public function __construct(private array $items = [])
     {
     }
 
-    /**
-     * Filters the collection using a callback function.
-     *
-     * @param callable $callback
-     * @return Collection
-     */
     public function filter(callable $callback)
     {
         return new static(array_filter($this->items, $callback));
     }
 
-    /**
-     * Maps the collection to a new array using a callback.
-     *
-     * @param callable $callback
-     * @return Collection
-     */
     public function map(callable $callback)
     {
         return new static(array_map($callback, $this->items));
     }
 
-    /**
-     * Returns all items in the collection.
-     *
-     * @return array
-     */
     public function all()
     {
         return $this->items;
@@ -52,23 +40,11 @@ class Collection
         return $this;
     }
 
-    /**
-     * Removes an item from the collection by its value.
-     *
-     * @param mixed $value
-     * @return Collection
-     */
     public function remove($value)
     {
         return new static(array_values(array_diff($this->items, [$value])));
     }
 
-    /**
-     * Finds the first item that satisfies a condition.
-     *
-     * @param callable $callback
-     * @return mixed|null
-     */
     public function first(?callable $callback = null)
     {
         if ($callback === null) {
@@ -83,13 +59,29 @@ class Collection
         return null;
     }
 
-    /**
-     * Checks if the collection is empty.
-     *
-     * @return bool
-     */
     public function isEmpty()
     {
         return empty($this->items);
+    }
+
+    public function count(): int
+    {
+        return count($this->items);
+    }
+
+    public function getIterator(): Traversable
+    {
+        return new ArrayIterator($this->items);
+    }
+
+    public function each(callable $callback)
+    {
+        foreach ($this as $key => $item) {
+            if ($callback($item, $key) === false) {
+                break;
+            }
+        }
+
+        return $this;
     }
 }
