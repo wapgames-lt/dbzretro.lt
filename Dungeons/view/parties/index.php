@@ -8,7 +8,7 @@ use LegacyDbz\Players\Repositories\InventoryRepository;
 use LegacyDbz\Players\Repositories\PlayersRepository;
 use LegacyDbz\Players\Services\CurrentPlayer;
 
-include_once '../head.php';
+include_once __DIR__ . '/../head.php';
 
 $partiesRepository = new PartiesRepository();
 $playersRepository = new PlayersRepository();
@@ -226,4 +226,4 @@ if ($id === 'createParty') {
     navigacija($g_n);
 }
 
-include_once '../footer.php';
+include_once __DIR__ . '/../footer.php';

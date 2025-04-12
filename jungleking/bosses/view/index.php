@@ -10,7 +10,7 @@ use LegacyDbz\Players\Repositories\PlayerSkillsRepository;
 use LegacyDbz\Players\Services\CurrentPlayer;
 use LegacyDbz\Skills\DTO\Skill;
 
-include_once 'parts/head.php';
+include_once __DIR__ . '/parts/head.php';
 include_once '../config/boss-config.php';
 include_once '../config/settings.php';
 
@@ -204,9 +204,9 @@ if ($id === 'attack') {
             error_log($message);
             $b_laikas2 = time()+60;
             $kasBan = 'testas1';
-            mysqli_query($conn,"INSERT INTO pm SET gavejas='testas1', what='SISTEMA', txt='$message', time='" . time() . "', nauj='NEW'")or die(mysqli_error());
-            mysqli_query($conn,"INSERT INTO ban_logai SET nick='$nick', uz='$message', time='$b_laikas2', kas_ban='$kasBan'")or die(mysqli_error());
-            mysqli_query($conn,"INSERT INTO block SET nick='$nick', uz='$message', time='$b_laikas2', kas_ban='$kasBan'")or die(mysqli_error());
+            mysqli_query($conn,"INSERT INTO pm SET gavejas='testas1', what='SISTEMA', txt='$message', time='" . time() . "', nauj='NEW'") || die(mysqli_error());
+            mysqli_query($conn,"INSERT INTO ban_logai SET nick='$nick', uz='$message', time='$b_laikas2', kas_ban='$kasBan'") || die(mysqli_error());
+            mysqli_query($conn,"INSERT INTO block SET nick='$nick', uz='$message', time='$b_laikas2', kas_ban='$kasBan'") || die(mysqli_error());
             header('Refresh: 1; url=pagrindinis.php');
         }
 
@@ -948,10 +948,10 @@ function handleRewards(array $rewards, $boosConfig): void
     }
     // Insert reward to database
     $date = date('Y-m-d H:i:s');
-    mysqli_query($conn,"DELETE FROM `jungle_king_bosses` WHERE user_id='$apie[id]' AND (status = 'alive' OR status = 'prepared') AND DATE(created_at) <> '$date'")or die(mysqli_error());
+    mysqli_query($conn,"DELETE FROM `jungle_king_bosses` WHERE user_id='$apie[id]' AND (status = 'alive' OR status = 'prepared') AND DATE(created_at) <> '$date'") || die(mysqli_error());
     mysqli_query($conn,"INSERT INTO `jungle_king_bosses` (`user_id`, `boss_id`, `health`, `token`, `euro`, `exp`, `vipticket`, `defence`, `power`, `created_at`)
     VALUES ('".$apie['id']."', '$boosConfig[id]', '$boosConfig[health]', '$token', '$euro', $exp, '$vipTicket', '$defence', '$power', '$date')
-    ") or die(mysqli_error());
+    ") || die(mysqli_error());
 
     echo '</div>';
 }
@@ -1003,4 +1003,4 @@ function renderTopPlayersByTokens(): void
 /**
  * FOOTER
  */
-include_once 'parts/footer.php';
+include_once __DIR__ . '/parts/footer.php';

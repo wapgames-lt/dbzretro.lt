@@ -6,7 +6,7 @@
 
 use LegacyDbz\Skills\DTO\Skill;
 
-include_once 'parts/head.php';
+include_once __DIR__ . '/parts/head.php';
 
 $date = date('Y-m-d H:i:s');
 
@@ -587,7 +587,7 @@ if ($id === 'attack') {
                 $insertedId = mysqli_insert_id($conn);
                 foreach ($chest['config']['contents'] as $name => $chestContent) {
                     $amount = mt_rand($chestContent[0], $chestContent[1]);
-                    mysqli_query($conn,"INSERT INTO `player_chest_drop_contents` SET chest_drop_id = '$insertedId', name = '$name', amount = '$amount' ") or die(mysqli_error());
+                    mysqli_query($conn,"INSERT INTO `player_chest_drop_contents` SET chest_drop_id = '$insertedId', name = '$name', amount = '$amount' ") || die(mysqli_error());
                 }
             }
 
@@ -619,7 +619,7 @@ if ($id === 'attack') {
                 // add buffs;
                 if ($moneyBuff) {
                     $moneyBuffEndsAt = date('Y-m-d H:i:s', strtotime("now + $moneyBuff[cooldown] seconds"));
-                    mysqli_query($conn,"INSERT INTO `player_skills` SET skill_id = '$moneyBuff[id]', player_id = '$playerByTotalDamage[player_id]', ends_at = '$moneyBuffEndsAt' ") or die(mysqli_error());
+                    mysqli_query($conn,"INSERT INTO `player_skills` SET skill_id = '$moneyBuff[id]', player_id = '$playerByTotalDamage[player_id]', ends_at = '$moneyBuffEndsAt' ") || die(mysqli_error());
                     $message = $playerByTotalDamage['nick'] . ' padarė damage World bosui (' . $bossConfig['name'] . ') todėl gavo ' . $moneyBuff['name'] . ' bufą.';
                     $expiresAt = date('Y-m-d H:i:s', strtotime(' + 10 minutes'));
                     mysqli_query($conn,"INSERT INTO pokalbiai SET nick='SISTEMA', sms='$message', data='" . time() . "', expired_at='$expiresAt'");
@@ -627,7 +627,7 @@ if ($id === 'attack') {
 
                 if ($divineProsperityBuff) {
                     $divineProsperityBuffEndsAt = date('Y-m-d H:i:s', strtotime("now + $divineProsperityBuff[cooldown] seconds"));
-                    mysqli_query($conn,"INSERT INTO `player_skills` SET skill_id = '$divineProsperityBuff[id]', player_id = '$playerByTotalDamage[player_id]', ends_at = '$divineProsperityBuffEndsAt' ") or die(mysqli_error());
+                    mysqli_query($conn,"INSERT INTO `player_skills` SET skill_id = '$divineProsperityBuff[id]', player_id = '$playerByTotalDamage[player_id]', ends_at = '$divineProsperityBuffEndsAt' ") || die(mysqli_error());
                     $message = $playerByTotalDamage['nick'] . ' padarė damage World bosui (' . $bossConfig['name'] . ') todėl gavo ' . $divineProsperityBuff['name'] . ' bufą.';
                     $expiresAt = date('Y-m-d H:i:s', strtotime(' + 10 minutes'));
                     mysqli_query($conn,"INSERT INTO pokalbiai SET nick='SISTEMA', sms='$message', data='" . time() . "', expired_at='$expiresAt'");
@@ -635,7 +635,7 @@ if ($id === 'attack') {
 
                 if ($luckyDropBuff) {
                     $luckyDropBuffEndsAt = date('Y-m-d H:i:s', strtotime("now + $luckyDropBuff[cooldown] seconds"));
-                    mysqli_query($conn,"INSERT INTO `player_skills` SET skill_id = '$luckyDropBuff[id]', player_id = '$playerByTotalDamage[player_id]', ends_at = '$luckyDropBuffEndsAt' ") or die(mysqli_error());
+                    mysqli_query($conn,"INSERT INTO `player_skills` SET skill_id = '$luckyDropBuff[id]', player_id = '$playerByTotalDamage[player_id]', ends_at = '$luckyDropBuffEndsAt' ") || die(mysqli_error());
                     $message = $playerByTotalDamage['nick'] . ' padarė damage World bosui (' . $bossConfig['name'] . ') todėl gavo ' . $luckyDropBuff['name'] . ' bufą.';
                     $expiresAt = date('Y-m-d H:i:s', strtotime(' + 10 minutes'));
                     mysqli_query($conn,"INSERT INTO pokalbiai SET nick='SISTEMA', sms='$message', data='" . time() . "', expired_at='$expiresAt'");
@@ -643,7 +643,7 @@ if ($id === 'attack') {
 
                 if ($crossOfBloodBuff) {
                     $crossOfBloodBuffEndsAt = date('Y-m-d H:i:s', strtotime("now + $crossOfBloodBuff[cooldown] seconds"));
-                    mysqli_query($conn,"INSERT INTO `player_skills` SET skill_id = '$crossOfBloodBuff[id]', player_id = '$playerByTotalDamage[player_id]', ends_at = '$crossOfBloodBuffEndsAt' ") or die(mysqli_error());
+                    mysqli_query($conn,"INSERT INTO `player_skills` SET skill_id = '$crossOfBloodBuff[id]', player_id = '$playerByTotalDamage[player_id]', ends_at = '$crossOfBloodBuffEndsAt' ") || die(mysqli_error());
                     $message = $playerByTotalDamage['nick'] . ' padarė damage World bosui (' . $bossConfig['name'] . ') todėl gavo ' . $crossOfBloodBuff['name'] . ' bufą.';
                     $expiresAt = date('Y-m-d H:i:s', strtotime(' + 10 minutes'));
                     mysqli_query($conn,"INSERT INTO pokalbiai SET nick='SISTEMA', sms='$message', data='" . time() . "', expired_at='$expiresAt'");
@@ -819,4 +819,4 @@ function hasPlayerFullRevivalSet()
 /**
  * FOOTER
  */
-include_once 'parts/footer.php';
+include_once __DIR__ . '/parts/footer.php';

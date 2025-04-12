@@ -3,7 +3,7 @@
 /**
  * HEADER
  */
-include_once 'parts/head.php';
+include_once __DIR__ . '/parts/head.php';
 include_once '../config/mission-config.php';
 include_once '../config/settings.php';
 
@@ -800,10 +800,10 @@ function handleRewards(array $rewards, $mission): void
     }
     // Insert reward to database
     $date = date('Y-m-d H:i:s');
-    mysqli_query($conn,"DELETE FROM `user_daily_mission` WHERE user_id='$apie[id]' AND status='new' AND DATE(created_at) <> '$date'")or die(mysqli_error());
+    mysqli_query($conn,"DELETE FROM `user_daily_mission` WHERE user_id='$apie[id]' AND status='new' AND DATE(created_at) <> '$date'") || die(mysqli_error());
     mysqli_query($conn,"INSERT INTO `user_daily_mission` (`user_id`, `mission_id`, `token`, `euro`, `exp`, `vipticket`, `defence`, `power`, `created_at`)
     VALUES ('".$apie['id']."', '$mission[id]', '$token', '$euro', $exp, '$vipTicket', '$defence', '$power', '$date')
-    ") or die(mysqli_error());
+    ") || die(mysqli_error());
 
     echo '</div>';
 }
@@ -855,4 +855,4 @@ function renderTopPlayersByTokens(): void
 /**
  * FOOTER
  */
-include_once 'parts/footer.php';
+include_once __DIR__ . '/parts/footer.php';

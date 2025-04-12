@@ -23,7 +23,7 @@ function limit_requests($nr=10,$t=1): void {
         $message = '[Security-Alert][' . date('Y-m-d H:i') . ']: Galima DDOS ataka. Fiksuojama labai daug užklausų iš IP: ' . $_SERVER['REMOTE_ADDR'];
         error_log($message);
 
-        mysqli_query($conn,"INSERT INTO logs (`message`) VALUES ('$message')") or die(mysqli_error());
+        mysqli_query($conn,"INSERT INTO logs (`message`) VALUES ('$message')") || die(mysqli_error());
 
         $random = mt_rand(1, 5);
         if ($random === 1) {
@@ -34,7 +34,9 @@ function limit_requests($nr=10,$t=1): void {
 //        die('<h1>Too many requests!</h1> You will be able to make a new request in <b style="color:red">'.($t-$since_interval_start).'</b> seconds.');
     }
     $remaining_time = $t - $since_interval_start;
-    if ( $remaining_time < 0 ) $remaining_time = $t;
+    if ($remaining_time < 0) {
+        $remaining_time = $t;
+    }
 }
 
 function start_session_based_on_ip(): void {

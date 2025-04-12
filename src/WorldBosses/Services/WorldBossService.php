@@ -577,7 +577,7 @@ class WorldBossService
     {
         $filteredBossList = array_filter($this->bossList, static fn($boss) => $boss['id'] !== $id);
 
-        if (empty($filteredBossList)) {
+        if ($filteredBossList === []) {
             return null;
         }
 

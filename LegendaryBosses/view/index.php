@@ -7,7 +7,7 @@
 use LegacyDbz\LegendaryBosses\DTO\LegendaryBoss;
 use LegacyDbz\Players\Services\CurrentPlayer;
 
-include_once 'parts/head.php';
+include_once __DIR__ . '/parts/head.php';
 
 $date = date('Y-m-d H:i:s');
 
@@ -1111,7 +1111,7 @@ if ($id === 'attack') {
                 $insertedId = mysqli_insert_id($conn);
                 foreach ($chest['config']['contents'] as $name => $chestContent) {
                     $amount = random_int($chestContent[0], $chestContent[1]);
-                    mysqli_query($conn,"INSERT INTO `player_chest_drop_contents` SET chest_drop_id = '$insertedId', name = '$name', amount = '$amount' ") or die(mysqli_error());
+                    mysqli_query($conn,"INSERT INTO `player_chest_drop_contents` SET chest_drop_id = '$insertedId', name = '$name', amount = '$amount' ") || die(mysqli_error());
                 }
             }
 
@@ -1139,7 +1139,7 @@ if ($id === 'attack') {
 
                 // add buffs
                 $blessingOfWarBuffEndsAt = date('Y-m-d H:i:s', strtotime("now + $blessingOfWarBuff[cooldown] seconds"));
-                mysqli_query($conn,"INSERT INTO `player_skills` SET skill_id = '$blessingOfWarBuff[id]', player_id = '$playerByTotalDamage[player_id]', ends_at = '$blessingOfWarBuffEndsAt' ") or die(mysqli_error());
+                mysqli_query($conn,"INSERT INTO `player_skills` SET skill_id = '$blessingOfWarBuff[id]', player_id = '$playerByTotalDamage[player_id]', ends_at = '$blessingOfWarBuffEndsAt' ") || die(mysqli_error());
                 $message = $playerByTotalDamage['nick'] . ' padarė damage Legendary bosui (' . $bossConfig['name'] . ') todėl gavo ' . $blessingOfWarBuff['name'] . ' bufą.';
                 $expiresAt = date('Y-m-d H:i:s', strtotime(' + 10 minutes'));
                 mysqli_query($conn,"INSERT INTO pokalbiai SET nick='SISTEMA', sms='$message', data='" . time() . "', expired_at='$expiresAt'");
@@ -1315,4 +1315,4 @@ function hasPlayerFullRevivalSet()
 /**
  * FOOTER
  */
-include_once 'parts/footer.php';
+include_once __DIR__ . '/parts/footer.php';

@@ -15,7 +15,7 @@ class Logger
 
     public static function getLogger(): MonologLogger
     {
-        if (self::$logger === null) {
+        if (!self::$logger instanceof MonologLogger) {
             self::$logger = new MonologLogger(getenv('APP_NAME'));
 
             $dateFormat = 'Y-m-d H:i:s.v';

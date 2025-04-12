@@ -3,7 +3,7 @@
 use LegacyDbz\Dungeons\Models\Dungeon;
 use LegacyDbz\Dungeons\Models\DungeonSection;
 
-include_once 'head.php';
+include_once __DIR__ . '/head.php';
 
 render($id);
 
@@ -61,4 +61,4 @@ HTML;
 }
 
 
-include_once 'footer.php';
+include_once __DIR__ . '/footer.php';

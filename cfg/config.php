@@ -19,7 +19,7 @@ if (filter_var(getenv('APP_DEBUG'), FILTER_VALIDATE_BOOLEAN)) {
 
 session_start();
 
-require 'sql.php';
+require __DIR__ . '/sql.php';
 $n = mysqli_num_rows(mysqli_query($conn,"SELECT * FROM news"));
 $versija = ($n/100)*10;
 
@@ -220,8 +220,9 @@ function random_coloras($tekstas){
 
 function spal($zodis){ 
     $array = str_split((string) $zodis);
-    $eilute = ''; 
-    for($i=0; $i<count($array); $i++){ 
+    $eilute = '';
+    $counter = count($array); 
+    for($i=0; $i<$counter; $i++){ 
         $eilute .= random_coloras($array[$i]); 
         } 
     return $eilute; 
@@ -518,20 +519,34 @@ function skaicius($n) {
         $n = round($n, 2);
     }
 $n = (0+str_replace(",","",$n));
-if(!is_numeric($n)) return false;
-if($n>=1000000000000000000000000000000000000) return '<font color="red">'.round(($n/1000000000000000000000000000000000000),1).' kon.</font>';
-else
-if($n>=1000000000000000000000000000000000) return '<font color="red">'.round(($n/1000000000000000000000000000000000),1).' non.</font>';
-else if($n>=1000000000000000000000000000000) return '<font color="red">'.round(($n/1000000000000000000000000000000),1).' nain</font>';
-else if($n>=100000000000000000000000000) return '<font color="red">'.round(($n/1000000000000000000000000000),1).' okst.</font>';
-else if($n>=100000000000000000000000) return '<font color="red">'.round(($n/1000000000000000000000000),1).' sept.</font>';
-else if($n>=1000000000000000000000) return '<font color="red">'.round(($n/1000000000000000000000),1).' sikst</font>';
-else if($n>=1000000000000000000) return '<font color="red">'.round(($n/1000000000000000000),1).' kvint.</font>';
-else if($n>=1000000000000000) return '<font color="red">'.round(($n/1000000000000000),1).' kvadr.</font>';
-else if($n>=1000000000000) return ''.round(($n/1000000000000),1).' <font color="green">trln.</font>';
-else if($n>=1000000000) return ''.round(($n/1000000000),1).' <font color="red">mlrd.</font>';
-else if($n>=1000000) return ''.round(($n/1000000),1).' <font color="red">mln.</font>';
-else if($n>=1000) return ''.round(($n/1000),1).' <font color="red">tūkst.</font>';
+if (!is_numeric($n)) {
+    return false;
+}
+if ($n>=1000000000000000000000000000000000000) {
+    return '<font color="red">'.round(($n/1000000000000000000000000000000000000),1).' kon.</font>';
+} elseif ($n>=1000000000000000000000000000000000) {
+    return '<font color="red">'.round(($n/1000000000000000000000000000000000),1).' non.</font>';
+} elseif ($n>=1000000000000000000000000000000) {
+    return '<font color="red">'.round(($n/1000000000000000000000000000000),1).' nain</font>';
+} elseif ($n>=100000000000000000000000000) {
+    return '<font color="red">'.round(($n/1000000000000000000000000000),1).' okst.</font>';
+} elseif ($n>=100000000000000000000000) {
+    return '<font color="red">'.round(($n/1000000000000000000000000),1).' sept.</font>';
+} elseif ($n>=1000000000000000000000) {
+    return '<font color="red">'.round(($n/1000000000000000000000),1).' sikst</font>';
+} elseif ($n>=1000000000000000000) {
+    return '<font color="red">'.round(($n/1000000000000000000),1).' kvint.</font>';
+} elseif ($n>=1000000000000000) {
+    return '<font color="red">'.round(($n/1000000000000000),1).' kvadr.</font>';
+} elseif ($n>=1000000000000) {
+    return ''.round(($n/1000000000000),1).' <font color="green">trln.</font>';
+} elseif ($n>=1000000000) {
+    return ''.round(($n/1000000000),1).' <font color="red">mlrd.</font>';
+} elseif ($n>=1000000) {
+    return ''.round(($n/1000000),1).' <font color="red">mln.</font>';
+} elseif ($n>=1000) {
+    return ''.round(($n/1000),1).' <font color="red">tūkst.</font>';
+}
 return number_format($n);
 }
 function e($L){
@@ -627,8 +642,6 @@ function nr($xe){
 	    </div><div class="line"></div>';}
 */
 function in_baneris(): void{
- $arr = ['botasm','botasm2'];
-
  echo'<div class="in">
 <div class="logo">
 <img src="img/baneriai/botasm.png">
@@ -693,7 +706,7 @@ $gryzta
 ";
 }
 
-if($penktoji AND !$penktoji_pav){
+if($penktoji && !$penktoji_pav){
 echo"
 <a href='$pirmoji'>$pirmoji_pav</a>
 &#187;
@@ -707,7 +720,7 @@ $gryzta
 ";
 }
 
-if($ketvirtoji AND !$ketvirtoji_pav){
+if($ketvirtoji && !$ketvirtoji_pav){
 echo"
 <a href='$pirmoji'>$pirmoji_pav</a>
 &#187;
@@ -719,7 +732,7 @@ $ketvirtoji
 ";
 }
 
-if($trecioji AND !$trecioji_pav){
+if($trecioji && !$trecioji_pav){
 echo"
 <a href='$pirmoji'>$pirmoji_pav</a>
 &#187;
@@ -729,7 +742,7 @@ $trecioji
 ";
 }
 
-if($antroji AND !$antroji_pav){
+if($antroji && !$antroji_pav){
 echo"
 <a href='$pirmoji'>$pirmoji_pav</a>
 &#187;

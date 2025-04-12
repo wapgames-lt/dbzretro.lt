@@ -13,7 +13,7 @@ class Collection implements Countable, IteratorAggregate
     {
     }
 
-    public function filter(callable $callback)
+    public function filter(callable $callback): self
     {
         return new static(array_filter($this->items, $callback));
     }
@@ -23,24 +23,18 @@ class Collection implements Countable, IteratorAggregate
         return new static(array_map($callback, $this->items));
     }
 
-    public function all()
+    public function all(): array
     {
         return $this->items;
     }
 
-    /**
-     * Adds an item to the collection.
-     *
-     * @param mixed $item
-     * @return $this
-     */
-    public function add($item)
+    public function add(mixed $item): self
     {
         $this->items[] = $item;
         return $this;
     }
 
-    public function remove($value)
+    public function remove($value): self
     {
         return new static(array_values(array_diff($this->items, [$value])));
     }
@@ -51,17 +45,12 @@ class Collection implements Countable, IteratorAggregate
             return reset($this->items) ?: null;
         }
 
-        foreach ($this->items as $item) {
-            if ($callback($item)) {
-                return $item;
-            }
-        }
-        return null;
+        return array_find($this->items, static fn ($item) => $callback($item));
     }
 
-    public function isEmpty()
+    public function isEmpty(): bool
     {
-        return empty($this->items);
+        return $this->items === [];
     }
 
     public function count(): int
@@ -74,7 +63,7 @@ class Collection implements Countable, IteratorAggregate
         return new ArrayIterator($this->items);
     }
 
-    public function each(callable $callback)
+    public function each(callable $callback): self
     {
         foreach ($this as $key => $item) {
             if ($callback($item, $key) === false) {
