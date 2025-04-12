@@ -40,7 +40,8 @@ get current player(logged user)
 ```php
 use LegacyDbz\Players\Services\CurrentPlayer;
 
-CurrentPlayer::get()
+$player = CurrentPlayer::get();
+$player = currentPlayer();
 ```
 
 simple active record solution:
@@ -51,4 +52,15 @@ class Dungeon extends Model
 {
     protected string $table = 'dungeons';
 }
+```
+
+instead of var_dump and die use:
+```php
+dd();
+```
+
+instead of new DateTime() use:
+
+```php
+$currentDateTime = now();
 ```

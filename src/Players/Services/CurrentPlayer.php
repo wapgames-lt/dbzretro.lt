@@ -6,17 +6,14 @@ use LegacyDbz\Players\DTO\Player;
 
 class CurrentPlayer
 {
-    private static $player;
+    private static Player $player;
 
-    public static function set($player)
+    public static function set(Player $player): void
     {
         self::$player = $player;
     }
 
-    /**
-     * @return Player
-     */
-    public static function get()
+    public static function get(): Player
     {
         return self::$player;
     }

@@ -1,6 +1,7 @@
 <?php
 
 use Carbon\CarbonImmutable;
+use LegacyDbz\Players\DTO\Player;
 use LegacyDbz\Players\Services\CurrentPlayer;
 
 include_once 'sql.php';
@@ -2966,6 +2967,13 @@ if (!function_exists('now')) {
     function now(): CarbonImmutable
     {
         return CarbonImmutable::now();
+    }
+}
+
+if (!function_exists('currentPlayer')) {
+    function currentPlayer(): Player
+    {
+        return CurrentPlayer::get();
     }
 }
 
