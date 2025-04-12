@@ -29,6 +29,8 @@ for database queries use: `\LegacyDbz\Core\Db`
 for logging: 
 ```php
 \LegacyDbz\Core\Logger::logError('test', ['test' => 'test']);
+
+logError('test', ['test' => 'test']);
 ```
 
 collections:
