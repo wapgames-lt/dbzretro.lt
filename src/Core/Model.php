@@ -30,11 +30,8 @@ class Model
 
     public function __get(string $name): mixed
     {
-        if ($name === 'created_at' || $name === 'updated_at') {
-            return $this->attributes[$name] ?? null;
-        }
-
         return $this->attributes[$name] ?? null;
+
     }
     public function __set(string $name, mixed $value): void
     {
