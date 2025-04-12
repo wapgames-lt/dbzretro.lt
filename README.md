@@ -36,6 +36,13 @@ collections:
 use LegacyDbz\Core\Collection
 ```
 
+get current player(logged user)
+```php
+use LegacyDbz\Players\Services\CurrentPlayer;
+
+CurrentPlayer::get()
+```
+
 simple active record solution:
 ```php
 use LegacyDbz\Core\Model
