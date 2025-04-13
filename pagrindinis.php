@@ -7,16 +7,16 @@ use LegacyDbz\Players\Repositories\PlayersRepository;
 
 ob_start();
 
-include_once 'cfg/sql.php';
-include_once 'cfg/funkcijos.php';
+include_once __DIR__ . '/cfg/sql.php';
+include_once __DIR__ . '/cfg/funkcijos.php';
 // wap gay protection
-include_once('cfg/limit.php');
+include_once(__DIR__ . '/cfg/limit.php');
 
 
 $prizas = $nust['sms_priz'];
 $prizas2 = round($nust['sms_priz']) / 2;
 $prizas3 = round($nust['sms_priz']) / 3;
-$statusai = array("Mod", "Mod2", "Mod3", "Mod4", "Admin");
+$statusai = ["Mod", "Mod2", "Mod3", "Mod4", "Admin"];
 $nst = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM turnyras"));
 $new = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM news ORDER BY id DESC LIMIT 1"));
 mysqli_query($conn, "DELETE FROM `pm` WHERE `time` <= UNIX_TIMESTAMP(DATE_SUB(NOW(), INTERVAL 7 DAY))");
@@ -340,7 +340,7 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM statusai WHERE kam='$nick
 }
 
 // Moderator notifications
-$stt = array("Admin", "Mod4", "Mod3", "Mod2", "Mod");
+$stt = ["Admin", "Mod4", "Mod3", "Mod2", "Mod"];
 if (in_array($apie['statusas'], $stt) && mysqli_num_rows(mysqli_query($conn, "SELECT * FROM foto WHERE ar_patvirtinta='ne'")) > 0) {
     echo '<div class="notification-card">
         <div class="notification-header">
@@ -386,7 +386,7 @@ if ($id == "") {
     online('Pagrindiniame puslapyje');
 
     // Tournament section with better design
-    if ($nst['trn_busena'] == 0 and mysqli_num_rows(mysqli_query($conn, "SELECT * FROM user WHERE kovu_trn='+'")) < 8) {
+    if ($nst['trn_busena'] == 0 && mysqli_num_rows(mysqli_query($conn, "SELECT * FROM user WHERE kovu_trn='+'")) < 8) {
         echo '<div class="tournament-card">
             <div class="tournament-header">
                 <i class="fa-duotone fa-trophy-star"></i>
@@ -563,7 +563,7 @@ if ($id == "") {
         while ($rr = mysqli_fetch_assoc($q)) {
             $nr++;
             $goott = '';
-            if ($apie['statusas'] == 'Admin' or $apie['statusas'] == 'Mod' or $apie['statusas'] == 'Mod2' or $apie['statusas'] == 'Mod3' or $apie['statusas'] == 'Mod4') {
+            if ($apie['statusas'] == 'Admin' || $apie['statusas'] == 'Mod' || $apie['statusas'] == 'Mod2' || $apie['statusas'] == 'Mod3' || $apie['statusas'] == 'Mod4') {
                 $goott = '<a href="?id=exit&ka=' . $rr['id'] . '" class="delete-topic"><i class="fa-duotone fa-trash-can"></i></a>';
             }
             $topicDate = date('m-d H:i', $rr['time']);
@@ -688,7 +688,7 @@ if ($id == "") {
             <div class="competition-icon"><i class="fa-duotone ' . $item[1] . '"></i></div>
             <div class="competition-content">
                 <div class="competition-title">' . $item[2] . '</div>';
-        if ($item[3]) {
+        if ($item[3] !== '' && $item[3] !== '0') {
             echo '<div class="competition-prize">' . $item[3] . '</div>';
         }
         echo '</div></a>';
@@ -1162,7 +1162,6 @@ if ($id == "") {
                 $ti = time() + 60;
                 mysqli_query($conn, "INSERT INTO block SET nick='$nick', uz='keiksmazodziai', kas_ban='SISTEMA', time='$ti'");
                 mysqli_query($conn, "INSERT INTO pokalbiai SET nick='$nick', sms='$zin', data='" . time() . "'");
-                include 'snekute.php';
             }
             if ((int)$apie['pliusaib'] - time() < 0) {
                 mysqli_query($conn, "UPDATE zaidejai SET chate=chate+1, pliusai=pliusai+5 WHERE nick='$nick'");
@@ -1170,7 +1169,7 @@ if ($id == "") {
             }
         }
 
-        $ats = !empty($ka) ? $ka . ' -> ' : '';
+        $ats = empty($ka) ? '' : $ka . ' -> ';
 
         echo '<div class="meniuc" id="error"></div>';
 
@@ -1207,7 +1206,7 @@ if ($id == "") {
 
         if ($visi > 0) {
             if ($apie['minichatas'] == 1) {
-                require 'mini.php';
+                require __DIR__ . '/mini.php';
                 ?>
                 <script>
                     var nick = "<?php echo $nick; ?>";
@@ -1215,7 +1214,7 @@ if ($id == "") {
                         loadChat(nick);
                     }, 1000);
                 </script>
-                <div id="myDiv2"><?php include("minichat2.php"); ?></div></div>
+                <div id="myDiv2"><?php include(__DIR__ . "/minichat2.php"); ?></div></div>
                 <?php
             } else {
                 $xaz = $apie['rodymas'];
@@ -1256,7 +1255,7 @@ if ($id == "") {
     echo '<div class="meniuc">' . skaitl() . '</div>';
 
 } elseif ($id == "turnonminichat") {
-    mysqli_query($conn, "UPDATE zaidejai SET minichatas=1 WHERE nick='$nick' ") or die(mysqli_error());
+    mysqli_query($conn, "UPDATE zaidejai SET minichatas=1 WHERE nick='$nick' ") || die(mysqli_error());
     ?>
     <script>
         window.location = "pagrindinis.php";
@@ -1304,7 +1303,7 @@ if ($id == "keistiinf") {
         <input type="submit" name="submit" value="Nustatyti"/></form>
         </div>';
 
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "Informacijos keitimas");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "Informacijos keitimas"];
     navigacija($g_n);
 
 
@@ -1319,11 +1318,11 @@ if ($id == "keistiinf") {
 
 
     }
-    mysqli_query($conn, "UPDATE zaidejai SET vardas='$varda', amzius='$amzius', miestas='$miesta' , aprasymas='$apr' WHERE nick='$nick'") or die(mysqli_error());
+    mysqli_query($conn, "UPDATE zaidejai SET vardas='$varda', amzius='$amzius', miestas='$miesta' , aprasymas='$apr' WHERE nick='$nick'") || die(mysqli_error());
 
     echo "<div class='meniuc'>Nustatyta.<br></div>";
 
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "Informacijos keitimas");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "Informacijos keitimas"];
     navigacija($g_n);
 
 
@@ -1347,7 +1346,7 @@ if ($id == "funkcijosm") {
 
 
 ";
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "Mano Galimybės");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "Mano Galimybės"];
     navigacija($g_n);
 
 
@@ -1378,7 +1377,7 @@ if ($id == "funkcijosm") {
     if (apsas($ka) == apsas('SISTEMA')) {
         top('Žaidimo sistema');
         echo '<div class="meniuc">EIK PAS testas1</div>';
-        $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "Žaidimo kūrėjas");
+        $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "Žaidimo kūrėjas"];
         navigacija($g_n);
     } elseif (apsas($ka) == apsas('testas1')) {
         top('Administracijos topikas');
@@ -1400,14 +1399,16 @@ if ($id == "funkcijosm") {
         echo '<div class="wow">Informacija</div>
         <div class="meniuc">' . $ico2 . '<b> Paskutinis veiksmas: </b>' . laikas($inf['last']) . '<br /></div>';
         echo '<div class="wow">Žinutė Administracijai</div>';
-        if (!empty($ka)) $ats = $ka;
+        if (!empty($ka)) {
+            $ats = $ka;
+        }
         echo '<div class="titlec">
 <form action="pm.php?id=write&kam=' . $ka . '" method="post"/>
 <textarea name="txt" type="text" maxlength="300" title="žinutė" placeholder="Jūsų žinutė" style="width: 80%;" rows="5" /></textarea><br/>
 <input type="submit" value="Siųsti"/>
 </div>';
 
-        $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "Žaidimo kūrėjas");
+        $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "Žaidimo kūrėjas"];
         navigacija($g_n);
     } elseif (apsas($ka) == apsas('wandamaximoff')) {
         top('');
@@ -1426,32 +1427,26 @@ if ($id == "funkcijosm") {
         echo '<div class="wow">Informacija</div>
         <div class="meniuc">' . $ico2 . '<b> Paskutinis veiksmas: </b>' . laikas($inf['last']) . '<br /></div>';
         echo '<div class="wow">Žinutė Žaidimo Grafikos Kūrėjui</div>';
-        if (!empty($ka)) $ats = $ka;
+        if (!empty($ka)) {
+            $ats = $ka;
+        }
         echo '<div class="titlec">
 <form action="pm.php?id=write&kam=' . $ka . '" method="post"/>
 <textarea name="txt" type="text" maxlength="300" title="žinutė" placeholder="Jūsų žinutė" style="width: 80%;" rows="5" /></textarea><br/>
 <input type="submit" value="Siųsti"/>
 </div>';
 
-        $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "Žaidimo kūrėjas");
+        $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "Žaidimo kūrėjas"];
         navigacija($g_n);
-    } else {
-        if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM zaidejai WHERE nick='$ka' AND `delete`='+'"))) {
-
-            top('' . $ka . ' informacija ');
-            echo '<div class="meniuc">Žaidėjas yra ištrintas</div>';
-            $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "$ka informacija");
-            navigacija($g_n);
-
-        } else {
-
-            if (apsas($ka) == apsas($nick)) {
-                online('Žiūri savo INFO');
-
-
-                echo '<div class="up" > <b>' . statusas($ka) . '</b> Informacija</div> <div class="meniuc">';
-
-                echo '
+    } elseif (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM zaidejai WHERE nick='$ka' AND `delete`='+'"))) {
+        top('' . $ka . ' informacija ');
+        echo '<div class="meniuc">Žaidėjas yra ištrintas</div>';
+        $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "$ka informacija"];
+        navigacija($g_n);
+    } elseif (apsas($ka) == apsas($nick)) {
+        online('Žiūri savo INFO');
+        echo '<div class="up" > <b>' . statusas($ka) . '</b> Informacija</div> <div class="meniuc">';
+        echo '
 <div class="thumbsup thumbs_up_down center">
 <strong class="result1 error " title="Man patiko!">' . $inf["rep_teig"] . '</strong>
 <a href="pagrindinis.php?id=rep&co=1&ka=' . $ka . '"> <img src="img/bicons/like.png" /> </a>
@@ -1459,73 +1454,32 @@ if ($id == "funkcijosm") {
 <strong class="result2 error " title="Man nepatiko!">' . $inf["rep_neig"] . '</strong>
 
 </div></a></div><div class="line"></div>';
-
-
-                echo '<div class="meniuc">
+        echo '<div class="meniuc">
 <center>';
-                if (($inv['radaras']) >= '1') {
-                    $radar = '<img class="item"src="img/radar.png"/>';
-                } else {
-                    $radar = '<img class="item"src="img/empty.png"/>';
-                }
-
-                if (($inv['ki']) >= '+') {
-                    $ki = '<img class="item"src="img/kg.png"/>';
-                } else {
-                    $ki = '<img class="item"src="img/empty.png"/>';
-                }
-                if (($apie['kasimoreward']) == '+') {
-                    $pickaxe = '<img class="item"src="img/kasimoreward.png"/>';
-                } else {
-                    $pickaxe = '<img class="item"src="img/empty.png"/>';
-                }
-                if (($apie['kovureward']) == '+') {
-                    $kovu = '<img class="item"src="img/kovureward.png"/>';
-                } else {
-                    $kovu = '<img class="item"src="img/empty.png"/>';
-                }
-                if (($apie['kazkas3']) == '+') {
-                    $kazkas3 = '<img class="item"src="img/giras.png"/>';
-                } else {
-                    $kazkas3 = '<img class="item"src="img/empty.png"/>';
-                }
-                if (($apie['kazkas4']) == '+') {
-                    $kazkas4 = '<img class="item"src="img/giras.png"/>';
-                } else {
-                    $kazkas4 = '<img class="item"src="img/empty.png"/>';
-                }
-                if (($apie['kazkas5']) == '+') {
-                    $kazkas5 = '<img class="item"src="img/giras.png"/>';
-                } else {
-                    $kazkas5 = '<img class="item"src="img/empty.png"/>';
-                }
-
-                if (($apie['giras']) == '+') {
-                    $giras = '<img class="item"src="img/giras.png"/>';
-                } else {
-                    $giras = '<img class="item"src="img/empty.png"/>';
-                }
-
-                if (($apie['kate']) == '+') {
-                    $kate = '<img class="item"src="img/kate.png"/>';
-                } else {
-                    $kate = '<img class="item"src="img/empty.png"/>';
-                }
-
-                if (($apie['lazdele']) == '+') {
-                    $lazdele = '<img class="item"src="img/lazdele.png"/>';
-                } else {
-                    $lazdele = '<img class="item"src="img/empty.png"/>';
-                }
-
-                if (($apie['potara']) == '+') {
-                    $potara = '<img class="item"src="img/potara.png"/>';
-                } else {
-                    $potara = '<img class="item"src="img/empty.png"/>';
-                }
-
-
-                echo '
+        $radar = $inv['radaras'] >= '1' ? '<img class="item"src="img/radar.png"/>' : '<img class="item"src="img/empty.png"/>';
+        $ki = $inv['ki'] >= '+' ? '<img class="item"src="img/kg.png"/>' : '<img class="item"src="img/empty.png"/>';
+        if (($apie['kasimoreward']) == '+') {
+            $pickaxe = '<img class="item"src="img/kasimoreward.png"/>';
+        } else {
+            $pickaxe = '<img class="item"src="img/empty.png"/>';
+        }
+        if (($apie['kovureward']) == '+') {
+            $kovu = '<img class="item"src="img/kovureward.png"/>';
+        } else {
+            $kovu = '<img class="item"src="img/empty.png"/>';
+        }
+        $kazkas3 = $apie['kazkas3'] == '+' ? '<img class="item"src="img/giras.png"/>' : '<img class="item"src="img/empty.png"/>';
+        $kazkas4 = $apie['kazkas4'] == '+' ? '<img class="item"src="img/giras.png"/>' : '<img class="item"src="img/empty.png"/>';
+        $kazkas5 = $apie['kazkas5'] == '+' ? '<img class="item"src="img/giras.png"/>' : '<img class="item"src="img/empty.png"/>';
+        $giras = $apie['giras'] == '+' ? '<img class="item"src="img/giras.png"/>' : '<img class="item"src="img/empty.png"/>';
+        $kate = $apie['kate'] == '+' ? '<img class="item"src="img/kate.png"/>' : '<img class="item"src="img/empty.png"/>';
+        if (($apie['lazdele']) == '+') {
+            $lazdele = '<img class="item"src="img/lazdele.png"/>';
+        } else {
+            $lazdele = '<img class="item"src="img/empty.png"/>';
+        }
+        $potara = $apie['potara'] == '+' ? '<img class="item"src="img/potara.png"/>' : '<img class="item"src="img/empty.png"/>';
+        echo '
             <table class="box"><tr><td>' . $radar . '</a></td><td rowspan="3" colspan="2"><img src="img/veikejai/' . $inf['veikejas'] . '-' . $inf['trans'] . '.png" alt="' . $inf['veikejas'] . ' "/></a></td>	</td>
                     <td>' . $ki . '</a>					</td>
                 </tr>
@@ -1550,39 +1504,31 @@ if ($id == "funkcijosm") {
         </center>
 
 </div>';
-
-
-                $userSword = '<div class="slot"><img src="img/equipment/empty_slot_sword.png" alt="Sword"></div>';
-                if ($apie['sword'] === 'Atgimimo sword') {
-                    $userSword = '<div class="slot"><img src="img/equipment/revival_sword.png" alt="Atgimimo Sword">
+        $userSword = '<div class="slot"><img src="img/equipment/empty_slot_sword.png" alt="Sword"></div>';
+        if ($apie['sword'] === 'Atgimimo sword') {
+            $userSword = '<div class="slot"><img src="img/equipment/revival_sword.png" alt="Atgimimo Sword">
 <div class="tooltip">Atgimimo sword</div></div>';
-                }
-
-                $userAmulet = '<div class="slot"><img src="img/equipment/empty_amulet_slot.png" alt="Amulet"></div>';
-                if ($apie['amuletas'] === 'Atgimimo amulet') {
-                    $userAmulet = '<div class="slot"><img src="img/equipment/revival_amulet.png" alt="Atgimimo Amulet">
+        }
+        $userAmulet = '<div class="slot"><img src="img/equipment/empty_amulet_slot.png" alt="Amulet"></div>';
+        if ($apie['amuletas'] === 'Atgimimo amulet') {
+            $userAmulet = '<div class="slot"><img src="img/equipment/revival_amulet.png" alt="Atgimimo Amulet">
         <div class="tooltip">Atgimimo amulet</div></div>';
-                }
-
-                $userArmour = '<div class="slot"><img src="img/equipment/empty_armour_slot.png" alt="Armour"></div>';
-                if ($apie['armor'] === 'Atgimimo armor') {
-                    $userArmour = '<div class="slot"><img src="img/equipment/revival_armour.png" alt="Atgimimo Armour">
+        }
+        $userArmour = '<div class="slot"><img src="img/equipment/empty_armour_slot.png" alt="Armour"></div>';
+        if ($apie['armor'] === 'Atgimimo armor') {
+            $userArmour = '<div class="slot"><img src="img/equipment/revival_armour.png" alt="Atgimimo Armour">
         <div class="tooltip">Atgimimo armour</div></div>';
-                }
-
-
-                // equipment
-                echo '<div class="up" > <b>Užsidėti daiktai:</b></div>';
-                echo '<div class="meniuc">
+        }
+        // equipment
+        echo '<div class="up" > <b>Užsidėti daiktai:</b></div>';
+        echo '<div class="meniuc">
     <div class="equipment-container center-items">
         ' . $userAmulet . $userSword . $userArmour . '
     </div>';
-
-                if ($inf['nuotaika'] != '') {
-                    $nuotaika = '' . $ico2 . '  Nuotaika : <img src="img/nuotaikos/' . $inf['nuotaika'] . '.gif">' . $inf['nuotaika'] . '<br/>';
-                }
-
-                echo '<div class="line"></div><div class="up" > <b>Jūsų informacija:</b></div> <div class="line"></div> 
+        if ($inf['nuotaika'] != '') {
+            $nuotaika = '' . $ico2 . '  Nuotaika : <img src="img/nuotaikos/' . $inf['nuotaika'] . '.gif">' . $inf['nuotaika'] . '<br/>';
+        }
+        echo '<div class="line"></div><div class="up" > <b>Jūsų informacija:</b></div> <div class="line"></div> 
         <div class="meniu">
         ' . $ico2 . '   <b> Busena: </b>' . ar_on($inf['nick']) . '<br />
         ' . $ico2 . '  <b> Nick: </b>' . statusas($inf['nick']) . '(' . $sst . ')<br />
@@ -1591,33 +1537,29 @@ if ($id == "funkcijosm") {
     ' . $nuotaika . '
     ' . $ico2 . '   <b> Lygis: </b>' . $inf['lygis'] . '<img src="img/bicons/lvl.png"/></b><br />
 ';
-
-                if (!empty($user['team'])) {
-                    echo '    ' . $ico2 . ' <b>Priklauso komandai :</b> <a href="komanda.php?id=info&ka=' . $useris['team'] . '">' . $useris['team'] . '</a><br>';
-                }
-                echo '        ' . $ico2 . '<b> Susijunges: </b> ' . $su_kuo . '</div>';
-                echo '  <div class="meniuc">Surinkai išviso pinigų: <b>' . skaicius($apie['surinktapin']) . '<img src="img/bicons/pinigai.png"/></b><br>
+        if (!empty($user['team'])) {
+            echo '    ' . $ico2 . ' <b>Priklauso komandai :</b> <a href="komanda.php?id=info&ka=' . $useris['team'] . '">' . $useris['team'] . '</a><br>';
+        }
+        echo '        ' . $ico2 . '<b> Susijunges: </b> ' . $su_kuo . '</div>';
+        echo '  <div class="meniuc">Surinkai išviso pinigų: <b>' . skaicius($apie['surinktapin']) . '<img src="img/bicons/pinigai.png"/></b><br>
 Turi <b>LVL</b> kasimo: <b>' . skaicius($apie['kasimolvl']) . '</b>
 
 
 </div>';
-
-
-                echo '  <div class="meniuc">Turi unikalių veikėjų: [<font color="red"><small>' . sk($apie['kiek_unikaliu']) . '</small></font>/<small><b>41</b></small>]</div>';
-                if ($inv['viplvl'] > 0) {
-                    echo ' <div class="meniuc">  Turimas: <font color="red"><b>' . $inv['viplvl'] . ' </b></font><font color="blue"><b> VIP Lygis</b></font></div>';
-                }
-                if ($inv['viplvl'] == 0) {
-                    echo '<div class="meniuc">  Turimas: <font color="red"><b>0 </b></font><font color="blue"><b> VIP Lygis</b></font></div>';
-                }
-
-                if ($apie['antipl'] - time() > 0) {
-                    echo '<div class="meniuc">Apsauga nuo puolimų turėsi: <b>' . laikas($apie['antipl'] - time(), 1) . '</b></div>';
-                }
-                if ($apie['antipl'] - time() < 0) {
-                    echo '<div class="meniuc"><b>Apsaugos nuo puolimų neturi!</b></div>';
-                }
-                echo '<div class="wow">Eurai/kreditai/auksiniai/pinigai/exp</div>
+        echo '  <div class="meniuc">Turi unikalių veikėjų: [<font color="red"><small>' . sk($apie['kiek_unikaliu']) . '</small></font>/<small><b>41</b></small>]</div>';
+        if ($inv['viplvl'] > 0) {
+            echo ' <div class="meniuc">  Turimas: <font color="red"><b>' . $inv['viplvl'] . ' </b></font><font color="blue"><b> VIP Lygis</b></font></div>';
+        }
+        if ($inv['viplvl'] == 0) {
+            echo '<div class="meniuc">  Turimas: <font color="red"><b>0 </b></font><font color="blue"><b> VIP Lygis</b></font></div>';
+        }
+        if ($apie['antipl'] - time() > 0) {
+            echo '<div class="meniuc">Apsauga nuo puolimų turėsi: <b>' . laikas($apie['antipl'] - time(), 1) . '</b></div>';
+        }
+        if ($apie['antipl'] - time() < 0) {
+            echo '<div class="meniuc"><b>Apsaugos nuo puolimų neturi!</b></div>';
+        }
+        echo '<div class="wow">Eurai/kreditai/auksiniai/pinigai/exp</div>
         <div class="meniuc">
 <b>  <a href="eurai.php?id=">   ' . skaicius($inf['sms_litai'], 2) . ' </b><img src="img/bicons/euro.png"/> </a> |
 <b> <a href="pagrindinis.php?id=kredai">    ' . skaicius($inf['kred']) . ' </b><img src="img/bicons/credit.png"/> </a> |
@@ -1625,23 +1567,18 @@ Turi <b>LVL</b> kasimo: <b>' . skaicius($apie['kasimolvl']) . '</b>
 <b>   ' . skaicius($inf['litai']) . ' </b><img src="img/bicons/pinigai.png" /> |
     <b> ' . skaicius($inf['exp']) . ' </b><img src="img/bicons/exp.png"/> <br />
         </div>';
-
-                echo '<div class="line"></div><div class="up"> <b>Kiek turite+Bonusai+Itemai=Bendrai</b>:</div>
+        echo '<div class="line"></div><div class="up"> <b>Kiek turite+Bonusai+Itemai=Bendrai</b>:</div>
         <div class="meniuc">
     <b>' . sk($inf['jega'] + $inf['swordp']) . '   <img src="img/bicons/attack.png"/>    ' . $procentas1 . '% <img src="img/bicons/kovines.png"/> +' . skaicius($swordas) . '  <img src="img/bicons/lyg.png"/>   ' . skaicius($jegax) . '  <img src="img/bicons/attack.png"/>   </b>';
-
-                echo '<br/>';
-                echo '<b> ' . sk($inf['gynyba'] + $inf['armorp']) . ' <img src="img/bicons/shield.png"/>  ' . $procentas2 . '% <img src="img/bicons/kovines.png"/> +' . skaicius($armoras) . ' 
+        echo '<br/>';
+        echo '<b> ' . sk($inf['gynyba'] + $inf['armorp']) . ' <img src="img/bicons/shield.png"/>  ' . $procentas2 . '% <img src="img/bicons/kovines.png"/> +' . skaicius($armoras) . ' 
 <img src="img/bicons/lyg.png"/> ' . skaicius($gynybax) . ' <img src="img/bicons/shield.png"/> </b>';
-
-                echo '<br/>';
-                echo ' <b>' . sk($inf['gyvybes']) . ' <img src="img/bicons/hp.png"/><br />
+        echo '<br/>';
+        echo ' <b>' . sk($inf['gyvybes']) . ' <img src="img/bicons/hp.png"/><br />
     
     
             </div>';
-
-
-                echo '<div class="up" ><b>Veiksmai:</b>:</div> <div class="line"></div> 
+        echo '<div class="up" ><b>Veiksmai:</b>:</div> <div class="line"></div> 
             <div class="meniuc">
 <b> Šiandien  <img src="img/bicons/attack1.png"/> ' . skaicius($inff['vksm']) . '</b><img src="img/bicons/lyg.png"/>
         <b> Išviso  ' . skaicius($inf['veiksmai']) . ' <img src="img/bicons/attack1.png"/></b>
@@ -1656,8 +1593,8 @@ Turi <b>LVL</b> kasimo: <b>' . skaicius($apie['kasimolvl']) . '</b>
 
         <b> Pralaimėta prieš žaidėjus: </b>' . $inf['pralaimetapl'] . '<br />
 </div>';
-                echo '<div class="wow">Pasiekimai</div>';
-                echo '<div class="meniu">
+        echo '<div class="wow">Pasiekimai</div>';
+        echo '<div class="meniu">
 ' . $ico2 . '  Vygdai:<b> ' . $apie['sagos'] . ' iš 110 sagų</b><br>
 ' . $ico2 . '  Vygdai:<b> ' . $apie['kovu_misijos'] . ' iš 151 kovų misijų</b><br>
 ' . $ico2 . '  Vygdai:<b> ' . $apie['namekm'] . ' iš 51 namek misijų</b><br>
@@ -1666,8 +1603,7 @@ Turi <b>LVL</b> kasimo: <b>' . skaicius($apie['kasimolvl']) . '</b>
 ' . $ico2 . '  Nugalėti bosai:<b> ' . $apie['nukirtobosu'] . '</b>   <br>
 ' . $ico2 . '  Kritinio lygio:<b> ' . $apie['critical'] . '</b>   
 </div>';
-
-                echo '
+        echo '
 
         <div class="up">Kita</div>
 <div class="meniu">
@@ -1675,11 +1611,9 @@ Turi <b>LVL</b> kasimo: <b>' . skaicius($apie['kasimolvl']) . '</b>
     
 
     ' . $ico2 . '                   <b> Paskutinis veiksmas: </b>' . laikas($inf['last']) . '<br />';
-                echo '' . $ico2 . '       <b> IP: </b>' . $inf['ip'] . ' | ' . salys($inf['ip']) . '<br />';
-
-
-                echo '         </div>';
-                echo "
+        echo '' . $ico2 . '       <b> IP: </b>' . $inf['ip'] . ' | ' . salys($inf['ip']) . '<br />';
+        echo '         </div>';
+        echo "
             <div class='up'>Galimybės:</div><div class='meniu'>
                 
             
@@ -1693,31 +1627,28 @@ $ico<a href='?id=komentarai&ka=" . $inf['nick'] . "'>Jūsų komentarai</a><br/>
 </div>
 
         ";
+        $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "Apie $nick"];
+        navigacija($g_n);
+    } elseif ($ka != $nick) {
 
-                $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "Apie $nick");
-                navigacija($g_n);
+        online('Žiūri <font color="white"><b>' . $inf['nick'] . '</b></font> informacija');
 
-
-            } elseif ($ka != $nick) {
-
-                online('Žiūri <font color="white"><b>' . $inf['nick'] . '</b></font> informacija');
-
-                if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM zaidejai WHERE nick='$ka'")) == 0) {
-                    top('Klaida!');
-                    echo '<div class="meniuc">Tokio žaidėjo nėra!</div>';
-                    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "Klaida");
-                    navigacija($g_n);
-                } else {
+        if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM zaidejai WHERE nick='$ka'")) == 0) {
+            top('Klaida!');
+            echo '<div class="meniuc">Tokio žaidėjo nėra!</div>';
+            $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "Klaida"];
+            navigacija($g_n);
+        } else {
 
 
-                    echo '<div class="wow">' . statusas($ka) . ' Informacija</div><div class="meniuc">';
-                    if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM block WHERE nick='$ka'")) == TRUE) {
-                        $b_in = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM block WHERE nick='$ka'"));
-                        echo ' <div class="meniuc">
+            echo '<div class="wow">' . statusas($ka) . ' Informacija</div><div class="meniuc">';
+            if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM block WHERE nick='$ka'")) == TRUE) {
+                $b_in = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM block WHERE nick='$ka'"));
+                echo ' <div class="meniuc">
     <img src="img/bicons/ban.png" /></div>';
-                        echo '<div class="meniuc"><b>' . $inf['nick'] . '</b> žaidėjas yra <font color="red"><b>užbanintas</b></font> už <font color="red">' . $b_in['uz'] . '</font></div>';
-                    } else {
-                        echo '
+                echo '<div class="meniuc"><b>' . $inf['nick'] . '</b> žaidėjas yra <font color="red"><b>užbanintas</b></font> už <font color="red">' . $b_in['uz'] . '</font></div>';
+            } else {
+                echo '
 <div class="thumbsup thumbs_up_down center">
 <strong class="result1 error " title="Man patiko!">' . $inf["rep_teig"] . '</strong>
 <a href="pagrindinis.php?id=rep&co=1&ka=' . $ka . '"> <img src="img/bicons/like.png" /> </a>
@@ -1727,53 +1658,33 @@ $ico<a href='?id=komentarai&ka=" . $inf['nick'] . "'>Jūsų komentarai</a><br/>
 </div></a></div><div class="line"></div>';
 
 
-                        echo '<div class="meniuc">
+                echo '<div class="meniuc">
 <center>';
-                        $inv2 = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM inv WHERE nick='$ka'"));
-                        if (($inv2['radaras']) >= 1) {
-                            $radar = '<img class="item"src="img/radar.png"/>';
-                        } else {
-                            $radar = '<img class="item"src="img/empty.png"/>';
-                        }
-                        if (($inv2['ki']) >= 1) {
-                            $ki = '<img class="item"src="img/kg.png"/>';
-                        } else {
-                            $ki = '<img class="item"src="img/empty.png"/>';
-                        }
-                        if (($inf['kasimoreward']) == '+') {
-                            $pickaxe = '<img class="item"src="img/kasimoreward.png"/>';
-                        } else {
-                            $pickaxe = '<img class="item"src="img/empty.png"/>';
-                        }
-                        if (($inf['kovureward']) == '+') {
-                            $kovu = '<img class="item"src="img/kovureward.png"/>';
-                        } else {
-                            $kovu = '<img class="item"src="img/empty.png"/>';
-                        }
+                $inv2 = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM inv WHERE nick='$ka'"));
+                $radar = $inv2['radaras'] >= 1 ? '<img class="item"src="img/radar.png"/>' : '<img class="item"src="img/empty.png"/>';
+                $ki = $inv2['ki'] >= 1 ? '<img class="item"src="img/kg.png"/>' : '<img class="item"src="img/empty.png"/>';
+                if (($inf['kasimoreward']) == '+') {
+                    $pickaxe = '<img class="item"src="img/kasimoreward.png"/>';
+                } else {
+                    $pickaxe = '<img class="item"src="img/empty.png"/>';
+                }
+                if (($inf['kovureward']) == '+') {
+                    $kovu = '<img class="item"src="img/kovureward.png"/>';
+                } else {
+                    $kovu = '<img class="item"src="img/empty.png"/>';
+                }
 
-                        if (($inf['giras']) == '+') {
-                            $giras = '<img class="item"src="img/giras.png"/>';
-                        } else {
-                            $giras = '<img class="item"src="img/empty.png"/>';
-                        }
-                        if (($inf['kate']) == '+') {
-                            $kate = '<img class="item"src="img/kate.png"/>';
-                        } else {
-                            $kate = '<img class="item"src="img/empty.png"/>';
-                        }
-                        if (($inf['lazdele']) == '+') {
-                            $lazdele = '<img class="item"src="img/lazdele.png"/>';
-                        } else {
-                            $lazdele = '<img class="item"src="img/empty.png"/>';
-                        }
-                        if (($inf['potara']) == '+') {
-                            $potara = '<img class="item"src="img/potara.png"/>';
-                        } else {
-                            $potara = '<img class="item"src="img/empty.png"/>';
-                        }
+                $giras = $inf['giras'] == '+' ? '<img class="item"src="img/giras.png"/>' : '<img class="item"src="img/empty.png"/>';
+                $kate = $inf['kate'] == '+' ? '<img class="item"src="img/kate.png"/>' : '<img class="item"src="img/empty.png"/>';
+                if (($inf['lazdele']) == '+') {
+                    $lazdele = '<img class="item"src="img/lazdele.png"/>';
+                } else {
+                    $lazdele = '<img class="item"src="img/empty.png"/>';
+                }
+                $potara = $inf['potara'] == '+' ? '<img class="item"src="img/potara.png"/>' : '<img class="item"src="img/empty.png"/>';
 
 
-                        echo '
+                echo '
             <table class="box"><tr><td>' . $radar . '</a></td><td rowspan="3" colspan="2"><img src="img/veikejai/' . $inf['veikejas'] . '-' . $inf['trans'] . '.png" alt="' . $inf['veikejas'] . ' "/> </a></td>	</td>
                                         <td>' . $ki . '</a>					</td>
                 </tr>
@@ -1799,126 +1710,121 @@ $ico<a href='?id=komentarai&ka=" . $inf['nick'] . "'>Jūsų komentarai</a><br/>
 
 </div>';
 
-                        // SWORDS
-                        $userSword = '<div class="slot"><img src="img/equipment/empty_slot_sword.png" alt="Sword">
+                // SWORDS
+                $userSword = '<div class="slot"><img src="img/equipment/empty_slot_sword.png" alt="Sword">
 <div class="tooltip">Nėra</div></div>';
-                        if ($inf['sword'] === 'Super money sword') {
-                            $userSword =
-                                ' <div class="slot">
+                if ($inf['sword'] === 'Super money sword') {
+                    $userSword =
+                        ' <div class="slot">
     <img src="img/equipment/super_money_sword.png" alt="Super Money Sword">
     <div class="tooltip">Super money sword</div>
     </div>';
-                        }
-                        if ($inf['sword'] === 'Infinity sword') {
-                            $userSword =
-                                ' <div class="slot">
+                }
+                if ($inf['sword'] === 'Infinity sword') {
+                    $userSword =
+                        ' <div class="slot">
     <img src="img/equipment/infinity_sword.png" alt="Infinity Sword">
     <div class="tooltip">Infinity sword</div>
     </div>';
-                        }
-                        if ($inf['sword'] === 'Atgimimo sword') {
-                            $userSword =
-                                ' <div class="slot">
+                }
+                if ($inf['sword'] === 'Atgimimo sword') {
+                    $userSword =
+                        ' <div class="slot">
     <img src="img/equipment/revival_sword.png" alt="Atgimimo Sword">
     <div class="tooltip">Atgimimo sword</div>
     </div>';
-                        }
-                        if ($inf['sword'] === 'Mirties sword') {
-                            $userSword =
-                                ' <div class="slot">
+                }
+                if ($inf['sword'] === 'Mirties sword') {
+                    $userSword =
+                        ' <div class="slot">
     <img src="img/equipment/death_sword.png" alt="Mirties Sword">
     <div class="tooltip">Mirties sword</div>
     </div>';
-                        }
+                }
 
-                        // AMULETS/NECKLACES
-                        $userAmulet = '<div class="slot"><img src="img/equipment/empty_amulet_slot.png" alt="Amulet">
+                // AMULETS/NECKLACES
+                $userAmulet = '<div class="slot"><img src="img/equipment/empty_amulet_slot.png" alt="Amulet">
 <div class="tooltip">Nėra</div></div>';
-                        if ($inf['amuletas'] === 'Super amulet') {
-                            $userAmulet = '<div class="slot"><img src="img/equipment/super_amulet.webp" alt="Super Amulet">
+                if ($inf['amuletas'] === 'Super amulet') {
+                    $userAmulet = '<div class="slot"><img src="img/equipment/super_amulet.webp" alt="Super Amulet">
         <div class="tooltip">Super amulet</div></div>';
-                        }
-                        if ($inf['amuletas'] === 'Naikinimo amulet') {
-                            $userAmulet = '<div class="slot"><img src="img/equipment/destruction_amulet.webp" alt="Naikinimo Amulet">
+                }
+                if ($inf['amuletas'] === 'Naikinimo amulet') {
+                    $userAmulet = '<div class="slot"><img src="img/equipment/destruction_amulet.webp" alt="Naikinimo Amulet">
         <div class="tooltip">Naikinimo amulet</div></div>';
-                        }
-                        if ($inf['amuletas'] === 'Atgimimo amulet') {
-                            $userAmulet = '<div class="slot"><img src="img/equipment/revival_amulet.png" alt="Atgimimo Amulet">
+                }
+                if ($inf['amuletas'] === 'Atgimimo amulet') {
+                    $userAmulet = '<div class="slot"><img src="img/equipment/revival_amulet.png" alt="Atgimimo Amulet">
         <div class="tooltip">Atgimimo amulet</div></div>';
-                        }
-                        if ($inf['amuletas'] === 'Mirties amulet') {
-                            $userAmulet = '<div class="slot"><img src="img/equipment/death_amulet.png" alt="Mirties Amulet">
+                }
+                if ($inf['amuletas'] === 'Mirties amulet') {
+                    $userAmulet = '<div class="slot"><img src="img/equipment/death_amulet.png" alt="Mirties Amulet">
         <div class="tooltip">Mirties amulet</div></div>';
-                        }
+                }
 
-                        // ARMOUR
-                        $userArmour = '<div class="slot"><img src="img/equipment/empty_armour_slot.png" alt="Armour">
+                // ARMOUR
+                $userArmour = '<div class="slot"><img src="img/equipment/empty_armour_slot.png" alt="Armour">
 <div class="tooltip">Nėra</div></div>';
-                        if ($inf['armor'] === 'Super money armor') {
-                            $userArmour = '<div class="slot"><img src="img/equipment/super_money_armour.webp" alt="Super Money Armour">
+                if ($inf['armor'] === 'Super money armor') {
+                    $userArmour = '<div class="slot"><img src="img/equipment/super_money_armour.webp" alt="Super Money Armour">
         <div class="tooltip">Super money armour</div></div>';
-                        }
-                        if ($inf['armor'] === 'Atgimimo armor') {
-                            $userArmour = '<div class="slot"><img src="img/equipment/revival_armour.png" alt="Atgimimo Armour">
+                }
+                if ($inf['armor'] === 'Atgimimo armor') {
+                    $userArmour = '<div class="slot"><img src="img/equipment/revival_armour.png" alt="Atgimimo Armour">
         <div class="tooltip">Atgimimo armour</div></div>';
-                        }
-                        if ($inf['armor'] === 'Mirties armor') {
-                            $userArmour = '<div class="slot"><img src="img/equipment/death_armour.png" alt="Mirties Armour">
+                }
+                if ($inf['armor'] === 'Mirties armor') {
+                    $userArmour = '<div class="slot"><img src="img/equipment/death_armour.png" alt="Mirties Armour">
         <div class="tooltip">Mirties armour</div></div>';
-                        }
+                }
 
 
-                        // equipment
-                        echo '<div class="up" > <b>Užsidėti daiktai:</b></div>';
-                        echo '<div class="meniuc">
+                // equipment
+                echo '<div class="up" > <b>Užsidėti daiktai:</b></div>';
+                echo '<div class="meniuc">
     <div class="equipment-container center-items">
         ' . $userAmulet . $userSword . $userArmour . '
     </div>
 </div>';
 
-                        $banCount = mysqli_fetch_row(mysqli_query($conn, "SELECT COUNT(*) FROM ban_logai WHERE nick='$ka'"))[0];
+                $banCount = mysqli_fetch_row(mysqli_query($conn, "SELECT COUNT(*) FROM ban_logai WHERE nick='$ka'"))[0];
 
-                        if ($banCount == 0) {
-                            $banstatus = "&#352;iuo &#382;mogumi turbut galite pasitik&#279;ti.";
-                        }
-                        if ($banCount == 1) {
-                            $banstatus = "&#352;iuo &#382;mogumi turbut dar galite pasitik&#279;ti.";
-                        }
-                        if ($banCount == 2) {
-                            $banstatus = "&#352;is &#382;mogus nepatikimas! Venkite sandori&#371; su juo.";
-                        }
-                        if ($banCount >= 5) {
-                            $banstatus = "Venkite bendravimo ar kit&#371; ry&#353;iu su &#353;iuo &#382;mogumi! Geriausia j&#303; i&#353; viso ignoruoti.";
-                        }
-                        echo '<div class="meniu">Gavo banų: <b>' . sk($banCount) . '</b><br/>
+                if ($banCount == 0) {
+                    $banstatus = "&#352;iuo &#382;mogumi turbut galite pasitik&#279;ti.";
+                }
+                if ($banCount == 1) {
+                    $banstatus = "&#352;iuo &#382;mogumi turbut dar galite pasitik&#279;ti.";
+                }
+                if ($banCount == 2) {
+                    $banstatus = "&#352;is &#382;mogus nepatikimas! Venkite sandori&#371; su juo.";
+                }
+                if ($banCount >= 5) {
+                    $banstatus = "Venkite bendravimo ar kit&#371; ry&#353;iu su &#353;iuo &#382;mogumi! Geriausia j&#303; i&#353; viso ignoruoti.";
+                }
+                echo '<div class="meniu">Gavo banų: <b>' . sk($banCount) . '</b><br/>
 ' . $banstatus . '<br/></div>';
 
-                        if (empty($useris['gavomute'])) {
-
-                            $useris['gavomute'] = 0;
-                        } else {
-                            $useris['gavomute'] = $useris['gavomute'];
-                        }
-                        echo '<div class="meniu">Gavo mute:<b> ' . sk($useris['gavomute']) . '</b><br/>
+                $useris['gavomute'] = empty($useris['gavomute']) ? 0 : $useris['gavomute'];
+                echo '<div class="meniu">Gavo mute:<b> ' . sk($useris['gavomute']) . '</b><br/>
 ' . $mutestatus . '<br/></div>';
-                        if ($inf['nuotaika'] != '') {
-                            $nuotaika = '' . $ico2 . '  Nuotaika : <img src="img/nuotaikos/' . $inf['nuotaika'] . '.gif">' . $inf['nuotaika'] . '<br/>';
-                        }
-                        if ((int)$useris['secret'] - time() > 0 and $apie['statusas'] != 'Kurejas') {
-                            echo '<div class="up" > <b>Pagrindinė informacija:</b></div> <div class="line"></div> 
+                if ($inf['nuotaika'] != '') {
+                    $nuotaika = '' . $ico2 . '  Nuotaika : <img src="img/nuotaikos/' . $inf['nuotaika'] . '.gif">' . $inf['nuotaika'] . '<br/>';
+                }
+                if ((int)$useris['secret'] - time() > 0 && $apie['statusas'] != 'Kurejas') {
+                    echo '<div class="up" > <b>Pagrindinė informacija:</b></div> <div class="line"></div> 
         <div class="meniu">
         ' . $ico2 . '   <b> Busena: </b>' . ar_on($inf['nick']) . ' <br/>
         ';
-                            if (in_array($apie['statusas'], $statusai)) {
-                                echo '' . $ico2 . '       <b> IP: </b>' . $inf['ip'] . ' | ' . salys($inf['ip']) . ' <a href="meniu.php?id=mod&ka=searchip3&ip=' . $inf['ip'] . '">[šį IP]</a><br/>';
-                            } else {
-                                echo '' . $ico2 . '       <b> IP: </b>' . $inf['ip'] . ' | ' . salys($inf['ip']) . '<br />';
-                            }
-                            echo '    </div>';
-                            echo '    	<div class="meniuc"><b>Šis žaidėjas yra užsislaptinęs savo informaciją</b></div>
+                    if (in_array($apie['statusas'], $statusai)) {
+                        echo '' . $ico2 . '       <b> IP: </b>' . $inf['ip'] . ' | ' . salys($inf['ip']) . ' <a href="meniu.php?id=mod&ka=searchip3&ip=' . $inf['ip'] . '">[šį IP]</a><br/>';
+                    } else {
+                        echo '' . $ico2 . '       <b> IP: </b>' . $inf['ip'] . ' | ' . salys($inf['ip']) . '<br />';
+                    }
+                    echo '    </div>';
+                    echo '    	<div class="meniuc"><b>Šis žaidėjas yra užsislaptinęs savo informaciją</b></div>
         ';
-                        } else {
-                            echo '<div class="up" > <b>Pagrindinė informacija:</b></div> 
+                } else {
+                    echo '<div class="up" > <b>Pagrindinė informacija:</b></div> 
         <div class="meniu">
         ' . $ico2 . '   <b> Busena: </b>' . ar_on($inf['nick']) . ' <br />
     ' . $ico2 . '    <b> Nick: </b>' . statusas($inf['nick']) . ' (' . $sst . ')<br />
@@ -1931,27 +1837,27 @@ $ico<a href='?id=komentarai&ka=" . $inf['nick'] . "'>Jūsų komentarai</a><br/>
 
     ' . $ico . ' <b>Priklauso komandai :</b> <a href="komanda.php?id=info&ka=' . $useris['team'] . '">' . $useris['team'] . '</a><br/>
 ' . $ico2 . '       <b> Susijunges: </b> ' . $su_kuo . '<br /></div>';
-                            echo '  <div class="meniuc">Surinko išviso pinigų: <b>' . skaicius($inf['surinktapin']) . '<img src="img/bicons/pinigai.png"/></b>
+                    echo '  <div class="meniuc">Surinko išviso pinigų: <b>' . skaicius($inf['surinktapin']) . '<img src="img/bicons/pinigai.png"/></b>
 <br>
 Turi <b>LVL</b> kasimo: <b>' . skaicius($inf['kasimolvl']) . '</b>
 </div>';
 
 
-                            echo '  <div class="meniuc"> Turi unikalių veikėjų: [<font color="red"><small>' . sk($inf['kiek_unikaliu']) . '</small></font>/<small><b>41</b></small>]</div>';
-                            if ($inv2['viplvl'] > 0) {
-                                echo ' <div class="meniuc"> Turimas: <font color="red"><b>' . $inv2['viplvl'] . ' </b></font><font color="blue"><b> VIP Lygis</b></font></div>';
-                            }
-                            if ($inv2['viplvl'] == 0) {
-                                echo ' <div class="meniuc">  Turimas: <font color="red"><b>0 </b></font><font color="blue"><b> VIP Lygis</b></font></div>';
-                            }
-                            if ($inf['antipl'] - time() > 0) {
-                                echo '<div class="meniuc">Apsauga nuo puolimų galioja: <b>' . laikas($inf['antipl'] - time(), 1) . '</b></div>';
-                            }
-                            if ($inf['antipl'] - time() < 0) {
-                                echo '<div class="meniuc"><b>Apsaugos nuo puolimų žaidėjas neturi!</b>';
-                            }
-                            echo '</div>';
-                            echo '   <div class="up">  Eurai/kreditai/auksiniai/pinigai/exp</div>
+                    echo '  <div class="meniuc"> Turi unikalių veikėjų: [<font color="red"><small>' . sk($inf['kiek_unikaliu']) . '</small></font>/<small><b>41</b></small>]</div>';
+                    if ($inv2['viplvl'] > 0) {
+                        echo ' <div class="meniuc"> Turimas: <font color="red"><b>' . $inv2['viplvl'] . ' </b></font><font color="blue"><b> VIP Lygis</b></font></div>';
+                    }
+                    if ($inv2['viplvl'] == 0) {
+                        echo ' <div class="meniuc">  Turimas: <font color="red"><b>0 </b></font><font color="blue"><b> VIP Lygis</b></font></div>';
+                    }
+                    if ($inf['antipl'] - time() > 0) {
+                        echo '<div class="meniuc">Apsauga nuo puolimų galioja: <b>' . laikas($inf['antipl'] - time(), 1) . '</b></div>';
+                    }
+                    if ($inf['antipl'] - time() < 0) {
+                        echo '<div class="meniuc"><b>Apsaugos nuo puolimų žaidėjas neturi!</b>';
+                    }
+                    echo '</div>';
+                    echo '   <div class="up">  Eurai/kreditai/auksiniai/pinigai/exp</div>
 <div class="meniuc">
         <b>' . skaicius($inf['sms_litai'], 2) . ' </b><img src="img/bicons/euro.png"/> |
         <b> ' . skaicius($inf['kred']) . ' </b><img src="img/bicons/credit.png"/> |
@@ -1961,24 +1867,24 @@ Turi <b>LVL</b> kasimo: <b>' . skaicius($inf['kasimolvl']) . '</b>
             <b> ' . skaicius($inf['exp']) . ' </b><img src="img/bicons/exp.png"/>   <br />   
         </div>';
 
-                            if ($inv['ki'] >= '1' && apsas($ka) != apsas('sajanas')) {
-                                echo '<div class="wow"> <b> Kovos skillai</b>:</div> <div class="line"></div> 
+                    if ($inv['ki'] >= '1' && apsas($ka) != apsas('sajanas')) {
+                        echo '<div class="wow"> <b> Kovos skillai</b>:</div> <div class="line"></div> 
             <div class="meniu">
     ' . $ico2 . '    <b> Jėga:</b> ' . skaicius($inf['jega']) . '</b><br/>';
-                                $gy = round(($inf['gynyba'] / 3));
-                                $jo_kg = ($inf['jega'] >= $gy) ? $gy : $inf['jega'];
+                        $gy = round(($inf['gynyba'] / 3));
+                        $jo_kg = ($inf['jega'] >= $gy) ? $gy : $inf['jega'];
 
 
-                                echo '' . $ico2 . '<b> Gynyba:</b> ' . skaicius($inf['gynyba']) . '</b><br/>
+                        echo '' . $ico2 . '<b> Gynyba:</b> ' . skaicius($inf['gynyba']) . '</b><br/>
 ' . $ico2 . '<b> Gyvybes:</b> ' . sk($inf['gyvybes']) . '</b><br/>
             ' . $ico2 . '    <b> Kovinė galia:</b> ' . skaicius($jo_kg) . ' </b></div>';
 
 
-                            }
+                    }
 
 
-                            $completedMissions = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM user_daily_mission WHERE user_id = $inf[id] AND status = 'done'"));
-                            echo '<div class="up" > <b>Veiksmai:</b>:</div> 
+                    $completedMissions = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM user_daily_mission WHERE user_id = $inf[id] AND status = 'done'"));
+                    echo '<div class="up" > <b>Veiksmai:</b>:</div> 
             <div class="meniuc">
 
 <b> Šiandien <img src="img/bicons/attack1.png"/> </b>' . sk($inff['vksm']) . ' <img src="img/bicons/lyg.png"/>
@@ -2005,91 +1911,87 @@ Turi <b>LVL</b> kasimo: <b>' . skaicius($inf['kasimolvl']) . '</b>
 </div>';
 
 
-                            $playerBuffsQuery = mysqli_query($conn, "SELECT player_id, skills.icon as icon, skills.description as description, ends_at FROM player_skills JOIN skills ON player_skills.skill_id = skills.id WHERE player_id = '$inf[id]' AND ends_at > NOW() AND skills.category = 'buff' ORDER BY ends_at LIMIT 10");
-                            if (mysqli_num_rows($playerBuffsQuery)) {
+                    $playerBuffsQuery = mysqli_query($conn, "SELECT player_id, skills.icon as icon, skills.description as description, ends_at FROM player_skills JOIN skills ON player_skills.skill_id = skills.id WHERE player_id = '$inf[id]' AND ends_at > NOW() AND skills.category = 'buff' ORDER BY ends_at LIMIT 10");
+                    if (mysqli_num_rows($playerBuffsQuery)) {
 
-                                echo '<div class="wow">Buffai:</div>
+                        echo '<div class="wow">Buffai:</div>
 <div class="meniu">';
-                                while ($playerBuff = mysqli_fetch_assoc($playerBuffsQuery)) {
-                                    echo '<div style="display: flex; align-items: center;">';
-                                    echo '<img width="30" height="30" src="/img/skills/' . $playerBuff['icon'] . '" style="margin-right: 5px;">';
-                                    $currentDate = new DateTime();
-                                    $endDateObject = new DateTime($playerBuff['ends_at']);
-                                    $timeDifference = $currentDate->diff($endDateObject);
-                                    if ($timeDifference->i > 0) {
-                                        $remainingTime = $timeDifference->format('%i min %s sec');
-                                    } else {
-                                        $remainingTime = $timeDifference->format('%s sec');
-                                    }
-                                    echo '<span>- ' . $playerBuff['description'] . '(' . $remainingTime . ')</span>';
-                                    echo '</div>';
-                                }
-                                echo '</div>';
-                            }
-                            $infInv = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM inv WHERE nick='$inf[nick]'"));
-                            if ($infInv['alavas'] || $infInv['titanas'] || $infInv['kvarcas']) {
-                                echo '<div class="wow">Turimos rūdos</div>';
-                                echo '<div class="meniu">';
+                        while ($playerBuff = mysqli_fetch_assoc($playerBuffsQuery)) {
+                            echo '<div style="display: flex; align-items: center;">';
+                            echo '<img width="30" height="30" src="/img/skills/' . $playerBuff['icon'] . '" style="margin-right: 5px;">';
+                            $currentDate = new DateTime();
+                            $endDateObject = new DateTime($playerBuff['ends_at']);
+                            $timeDifference = $currentDate->diff($endDateObject);
+                            $remainingTime = $timeDifference->i > 0 ? $timeDifference->format('%i min %s sec') : $timeDifference->format('%s sec');
+                            echo '<span>- ' . $playerBuff['description'] . '(' . $remainingTime . ')</span>';
+                            echo '</div>';
+                        }
+                        echo '</div>';
+                    }
+                    $infInv = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM inv WHERE nick='$inf[nick]'"));
+                    if ($infInv['alavas'] || $infInv['titanas'] || $infInv['kvarcas']) {
+                        echo '<div class="wow">Turimos rūdos</div>';
+                        echo '<div class="meniu">';
 
-                                if ($infInv['alavas'] > 0) {
-                                    echo $ico2 . '  Alavas:<b> ' . $infInv['alavas'] . '</b><br>';
-                                }
-                                if ($infInv['titanas'] > 0) {
-                                    echo $ico2 . '  Titano:<b> ' . $infInv['titanas'] . '</b><br>';
-                                }
+                        if ($infInv['alavas'] > 0) {
+                            echo $ico2 . '  Alavas:<b> ' . $infInv['alavas'] . '</b><br>';
+                        }
+                        if ($infInv['titanas'] > 0) {
+                            echo $ico2 . '  Titano:<b> ' . $infInv['titanas'] . '</b><br>';
+                        }
 
-                                if ($infInv['kvarcas'] > 0) {
-                                    echo $ico2 . '  Kvarcas:<b> ' . $infInv['kvarcas'] . '</b><br>';
-                                }
-                                echo '</div>';
-                            }
+                        if ($infInv['kvarcas'] > 0) {
+                            echo $ico2 . '  Kvarcas:<b> ' . $infInv['kvarcas'] . '</b><br>';
+                        }
+                        echo '</div>';
+                    }
 
-                            echo '
+                    echo '
 <div class="up">Kita:</div>
 <div class="meniu">
     
     ' . $ico2 . '      <b> Užsiregistravo: </b>' . laikas($inf['uzsiregistravo']) . '<br />
 ';
 
-                            echo '
+                    echo '
         ' . $ico2 . '          <b> Paskutinis veiksmas: </b>' . laikas($inf['last']) . '<br />
     ';
-                            $statusai = array("Mod", "Mod2", "Mod3", "Mod4", "Admin", "Kurejas");
-                            if (in_array($apie['statusas'], $statusai)) {
-                                echo '' . $ico2 . '       <b> IP: </b>' . $inf['ip'] . ' | ' . salys($inf['ip']) . ' <a href="meniu.php?id=mod&ka=searchip3&ip=' . $inf['ip'] . '">[Patikrinti šį IP]</a><br/>';
-                            }
+                    $statusai = ["Mod", "Mod2", "Mod3", "Mod4", "Admin", "Kurejas"];
+                    if (in_array($apie['statusas'], $statusai)) {
+                        echo '' . $ico2 . '       <b> IP: </b>' . $inf['ip'] . ' | ' . salys($inf['ip']) . ' <a href="meniu.php?id=mod&ka=searchip3&ip=' . $inf['ip'] . '">[Patikrinti šį IP]</a><br/>';
+                    }
 
-                            $statusai = array("Mod", "Mod2", "Mod3", "Mod4", "Admin", "Kurejas");
-                            if (in_array($apie['statusas'], $statusai)) {
-                                echo '' . $ico2 . '       <b> IP: </b>' . $inf['ip'] . ' | ' . salys($inf['ip']) . '<br />';
-                            }
-
-
-                            if (laikass($inf['vip'] - time(), 1) > 1) {
-                                echo "" . $ico . "  Šis žaidėjas turi <b>VIP Privilegija</b>";
-                            }
+                    $statusai = ["Mod", "Mod2", "Mod3", "Mod4", "Admin", "Kurejas"];
+                    if (in_array($apie['statusas'], $statusai)) {
+                        echo '' . $ico2 . '       <b> IP: </b>' . $inf['ip'] . ' | ' . salys($inf['ip']) . '<br />';
+                    }
 
 
-                        }
-                        echo '    </div>';
-                        echo '<div class="wow"><b>Funkcijos</b>:</div> <div class="meniu"> ';
-                        echo '   ' . $ico . '  <a href="?id=pulti&ka=' . $inf['nick'] . '">Pulti žaidėją</a><br />';
+                    if (laikass($inf['vip'] - time(), 1) > 1) {
+                        echo "" . $ico . "  Šis žaidėjas turi <b>VIP Privilegija</b>";
+                    }
 
 
-                        if ($statusas == "Admin" or $statusas == "Kurejas") {
-                            echo '' . $ico . ' <a href="meniu.php?id=mod4&co=addban&wh=' . $inf['nick'] . '">Užblokuoti</a><br />';
-                        }
-                        if ($statusas == "Mod" or $statusas == 'Mod2' or $statusas == 'Mod3' or $statusas == 'vmod' or $statusas == 'Mod4') {
-                            echo '' . $ico . ' <a href="meniu.php?id=mod&co=block&wh=' . $inf['nick'] . '">Užblokuoti</a><br />';
-                        }
-                        if ($statusas == "Mod3" or $statusas == 'Mod4' or $statusas == 'Admin' or $statusas == 'Kurejas') {
-
-                            echo '   ' . $ico . ' <a href="meniu.php?id=mod3&ka=pm_logas&ID=' . $ka . '">Skaityti PM</a><br />';
+                }
+                echo '    </div>';
+                echo '<div class="wow"><b>Funkcijos</b>:</div> <div class="meniu"> ';
+                echo '   ' . $ico . '  <a href="?id=pulti&ka=' . $inf['nick'] . '">Pulti žaidėją</a><br />';
 
 
-                        }
+                if ($statusas == "Admin" || $statusas == "Kurejas") {
+                    echo '' . $ico . ' <a href="meniu.php?id=mod4&co=addban&wh=' . $inf['nick'] . '">Užblokuoti</a><br />';
+                }
+                if ($statusas == "Mod" || $statusas == 'Mod2' || $statusas == 'Mod3' || $statusas == 'vmod' || $statusas == 'Mod4') {
+                    echo '' . $ico . ' <a href="meniu.php?id=mod&co=block&wh=' . $inf['nick'] . '">Užblokuoti</a><br />';
+                }
+                if ($statusas == "Mod3" || $statusas == 'Mod4' || $statusas == 'Admin' || $statusas == 'Kurejas') {
 
-                        echo '
+                    echo '   ' . $ico . ' <a href="meniu.php?id=mod3&ka=pm_logas&ID=' . $ka . '">Skaityti PM</a><br />';
+
+
+                }
+
+                echo '
                 ' . $ico . ' <a href="pagrindinis.php?id=usedaiktai&ka=' . $ka . '">Uždėti daiktai</a><br /> 
         
             ' . $ico . ' <a href="pagrindinis.php?id=pervedimai&ka=' . $ka . '">Pervedimai</a><br />
@@ -2108,45 +2010,44 @@ Turi <b>LVL</b> kasimo: <b>' . skaicius($inf['kasimolvl']) . '</b>
 </div>
         
         ';
-                        if ($statusas == "Kurejas") {
-                            echo ' <div class="up">Kūrėjo Meniu</div>';
-                        }
+                if ($statusas == "Kurejas") {
+                    echo ' <div class="up">Kūrėjo Meniu</div>';
+                }
 
-                        if ($statusas == "Kurejas") {
-                            if (!empty($wh)) $ats = $wh;
-                            echo ' <div class="meniu">' . $ico . '<a href="meniu.php?id=kurejas&ka=duotiv&wh=' . $inf['nick'] . '">Duoti resursų</a></div>';
-                        }
-                        if ($statusas == "Kurejas") {
-                            echo '<div class="meniu">' . $ico . ' <a href="meniu.php?id=kurejas&ka=atimtiv&wh=' . $inf['nick'] . '">Atimti resursų</a></div>';
-                        }
-                        if ($statusas == "Kurejas") {
-                            echo ' <div class="meniu">' . $ico . '<a href="meniu.php?id=kurejas&ka=veikeja&wh=' . $inf['nick'] . '">Duoti  veikėją</a></div>';
-                        }
-                        if ($statusas == "Kurejas") {
-                            echo ' <div class="meniu">' . $ico . '<a href="meniu.php?id=kurejas&ka=duotidg&wh=' . $inf['nick'] . '">Duoti daigtų/item</a></div>';
-                        }
+                if ($statusas == "Kurejas") {
+                    if (!empty($wh)) {
+                        $ats = $wh;
+                    }
+                    echo ' <div class="meniu">' . $ico . '<a href="meniu.php?id=kurejas&ka=duotiv&wh=' . $inf['nick'] . '">Duoti resursų</a></div>';
+                }
+                if ($statusas == "Kurejas") {
+                    echo '<div class="meniu">' . $ico . ' <a href="meniu.php?id=kurejas&ka=atimtiv&wh=' . $inf['nick'] . '">Atimti resursų</a></div>';
+                }
+                if ($statusas == "Kurejas") {
+                    echo ' <div class="meniu">' . $ico . '<a href="meniu.php?id=kurejas&ka=veikeja&wh=' . $inf['nick'] . '">Duoti  veikėją</a></div>';
+                }
+                if ($statusas == "Kurejas") {
+                    echo ' <div class="meniu">' . $ico . '<a href="meniu.php?id=kurejas&ka=duotidg&wh=' . $inf['nick'] . '">Duoti daigtų/item</a></div>';
+                }
 
-                        if (!empty($ka)) $ats = $ka;
-                        echo '<div class="wow">PM Siuntimas</div>';
-                        echo '<div class="titlec">
+                if (!empty($ka)) {
+                    $ats = $ka;
+                }
+                echo '<div class="wow">PM Siuntimas</div>';
+                echo '<div class="titlec">
 <form action="pm.php?id=write&kam=' . $ka . '" method="post"/>
 Žinutė:<br />
 <textarea name="txt" rows="3"></textarea><br />
 <input type="submit" value="Siųsti"/>
 </div>';
-                    }
-                    echo '</div>';
-
-                    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "Apie $inf[nick]");
-                    navigacija($g_n);
-
-
-                }
             }
+            echo '</div>';
+
+            $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "Apie $inf[nick]"];
+            navigacija($g_n);
 
 
         }
-
     }
 }
 if ($id == 'medaliai') {
@@ -2163,7 +2064,7 @@ if ($id == 'medaliai') {
         }
     }
     echo '</div>';
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "pagrindinis.php?id=apie&ka=$ka", "Apie $ka", "Medaliai");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "pagrindinis.php?id=apie&ka=$ka", "Apie $ka", "Medaliai"];
     navigacija($g_n);
 }
 if ($id == 'usedaiktai') {
@@ -2173,7 +2074,7 @@ if ($id == 'usedaiktai') {
 ' . $ico2 . ' Šarvai:  <b>' . $inf['armor'] . ' </b> <br>
 ' . $ico2 . ' Amuletas:  <b>' . $inf['amuletas'] . ' </b></div>
 ';
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "pagrindinis.php?id=apie&ka=$ka", "Apie $ka", "Uždėti daiktai");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "pagrindinis.php?id=apie&ka=$ka", "Apie $ka", "Uždėti daiktai"];
     navigacija($g_n);
 }
 
@@ -2188,7 +2089,7 @@ if ($id == 'pulti') {
 
 
     echo '</div>';
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "pagrindinis.php?id=apie&ka='.$ka.'", "Apie $ka", "Žaidėjo užpuolimas");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "pagrindinis.php?id=apie&ka='.$ka.'", "Apie $ka", "Žaidėjo užpuolimas"];
     navigacija($g_n);
 }
 
@@ -2202,7 +2103,7 @@ if ($id == 'pulti2') {
         echo '<div class="meniuc">Pulti galima tik nuo 30<b> lygio</b>!</div>';
     } elseif ($inf['lygis'] < 30) {
         echo '<div class="meniuc">Norint užpulti priešo lygis turi siekti bent<b> 30</b>!</div>';
-    } elseif ($lygis < 10 and $inf['lygis'] > 20) {
+    } elseif ($lygis < 10 && $inf['lygis'] > 20) {
         echo '<div class="meniuc">Lygio skirtumas per didelis</b>!</div>';
     } elseif ($apie['pllaikas'] - time() > 0) {
         echo '<div class="meniuc">Galėsi pulti už <font color="red"><b>' . laikas($apie['pllaikas'] - time(), 1) . '</b></font></div>';
@@ -2249,7 +2150,7 @@ if ($id == 'pulti2') {
 //// test
 
 ///
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "pagrindinis.php?id=apie&ka='.$ka.'", "Apie $ka", "Žaidėjo užpuolimas");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "pagrindinis.php?id=apie&ka='.$ka.'", "Apie $ka", "Žaidėjo užpuolimas"];
     navigacija($g_n);
 } elseif ($id == "inf") {
     if (apsas($ka) == apsas($nick)) {
@@ -2264,7 +2165,7 @@ if ($id == 'pulti2') {
                 ' . $ico2 . '<b> Aprašymas: </b>' . $apie['aprasymas'] . ' <br />
                 ' . $ico2 . '<b> Lytis: </b>' . $apie['litis'] . ' <br />
         ' . $ico . ' <a href="?id=keistiinf&ka=' . $nick . '">Keisti</a></div>';
-        $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "pagrindinis.php?id=apie&ka=$nick", "Apie $nick", "Informacijos keitimas");
+        $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "pagrindinis.php?id=apie&ka=$nick", "Apie $nick", "Informacijos keitimas"];
         navigacija($g_n);
 
     }
@@ -2274,7 +2175,7 @@ if ($id == 'pulti2') {
         if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM zaidejai WHERE nick='$ka'")) == 0) {
             top('Klaida!');
             echo '<div class="meniuc">Tokio žaidėjo nėra!</div>';
-            $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "Klaida");
+            $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "Klaida"];
             navigacija($g_n);
         } else {
             online('zaidejo informacijoj');
@@ -2294,7 +2195,7 @@ if ($id == 'pulti2') {
         ';
 
 
-            $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "pagrindinis.php?id=apie&ka=$inf[nick]", "Apie $inf[nick]", "$ka informacija");
+            $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "pagrindinis.php?id=apie&ka=$inf[nick]", "Apie $inf[nick]", "$ka informacija"];
             navigacija($g_n);
 
         }
@@ -2311,7 +2212,7 @@ if ($id == 'pulti2') {
             
         </div>';
 
-        $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "pagrindinis.php?id=apie&ka=$inf[nick]", "Apie $inf[nick]", "$ka statistika");
+        $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "pagrindinis.php?id=apie&ka=$inf[nick]", "Apie $inf[nick]", "$ka statistika"];
         navigacija($g_n);
     }
     if ($ka != $nick) {
@@ -2321,7 +2222,7 @@ if ($id == 'pulti2') {
         if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM zaidejai WHERE nick='$ka'")) == 0) {
 
             echo '<div class="meniuc">Tokio žaidėjo nėra!</div>';
-            $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "Klaida");
+            $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "Klaida"];
             navigacija($g_n);
         } else {
             online('zaidejo informacijoj');
@@ -2338,7 +2239,7 @@ if ($id == 'pulti2') {
         ';
 
 
-            $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "pagrindinis.php?id=apie&ka=$inf[nick]", "Apie $inf[nick]", "$ka statistika");
+            $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "pagrindinis.php?id=apie&ka=$inf[nick]", "Apie $inf[nick]", "$ka statistika"];
             navigacija($g_n);
 
         }
@@ -2350,7 +2251,7 @@ if ($id == 'inventorius') {
 
         echo '<div class="meniuc">Tokio žaidėjo nėra </div>';
 
-    } elseif (empty($inf['inv_rodymas']) or $inf['inv_rodymas'] == 0) {
+    } elseif (empty($inf['inv_rodymas']) || $inf['inv_rodymas'] == 0) {
 
         echo '<div class="meniuc"> ' . statusas($ka) . ' užsislaptines inventoriaus rodymą</div>';
 
@@ -2426,7 +2327,7 @@ if ($id == 'inventorius') {
 
         echo '</div>';
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "pagrindinis.php?id=apie&ka=$ka", "Apie $ka", "$ka inventorius");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "pagrindinis.php?id=apie&ka=$ka", "Apie $ka", "$ka inventorius"];
     navigacija($g_n);
 } elseif ($id == "komentarai") {
     if (apsas($ka) == apsas($nick)) {
@@ -2436,8 +2337,12 @@ if ($id == 'inventorius') {
 
         $rezultatu_rodymas = 10;
         $total = @intval(($viso - 1) / $rezultatu_rodymas) + 1;
-        if (empty($psl) or $psl < 0) $psl = 1;
-        if ($psl > $total) $psl = $total;
+        if (empty($psl) || $psl < 0) {
+            $psl = 1;
+        }
+        if ($psl > $total) {
+            $psl = $total;
+        }
         $nuo_kiek = $psl * $rezultatu_rodymas - $rezultatu_rodymas;
         $query = "SELECT * FROM komentarai WHERE `kas` = '$nick' ORDER BY id DESC LIMIT $nuo_kiek,$rezultatu_rodymas";
 
@@ -2461,14 +2366,14 @@ if ($id == 'inventorius') {
             echo " Tuščia<br/>";
         } else {
             while ($komentarai = mysqli_fetch_assoc($mquery)) {
-                echo ' <a href="?id=apie&ka=' . $komentarai['kas2'] . '">' . statusas($komentarai['kas2']) . '</a>: ' . smile($komentarai['komentaras']) . ' <small>[' . $komentarai['laikas'] . ']</small><a href="?id=kom_del&ka=' . $nick . '&ID=' . $komentarai[id] . '">[x]</a><br/>';
+                echo ' <a href="?id=apie&ka=' . $komentarai['kas2'] . '">' . statusas($komentarai['kas2']) . '</a>: ' . smile($komentarai['komentaras']) . ' <small>[' . $komentarai['laikas'] . ']</small><a href="?id=kom_del&ka=' . $nick . '&ID=' . $komentarai[\ID] . '">[x]</a><br/>';
             }
         }
         echo '
             </div>
         ';
         echo '<div class="meniuc">' . puslapiavimas($puslapiu, $psl, '?id=komentarai&ka=' . $ka . '') . '</div>';
-        $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "pagrindinis.php?id=apie&ka=$nick", "Apie $nick", "$ka komentarai");
+        $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "pagrindinis.php?id=apie&ka=$nick", "Apie $nick", "$ka komentarai"];
         navigacija($g_n);
 
     } else {
@@ -2478,8 +2383,12 @@ if ($id == 'inventorius') {
 
         $rezultatu_rodymas = 10;
         $total = @intval(($viso - 1) / $rezultatu_rodymas) + 1;
-        if (empty($psl) or $psl < 0) $psl = 1;
-        if ($psl > $total) $psl = $total;
+        if (empty($psl) || $psl < 0) {
+            $psl = 1;
+        }
+        if ($psl > $total) {
+            $psl = $total;
+        }
         $nuo_kiek = $psl * $rezultatu_rodymas - $rezultatu_rodymas;
         $query = "SELECT * FROM komentarai WHERE `kas` = '$ka' ORDER BY id DESC LIMIT $nuo_kiek,$rezultatu_rodymas";
 
@@ -2511,7 +2420,7 @@ if ($id == 'inventorius') {
             </div>
         ';
         echo '<div class="meniuc">' . puslapiavimas($puslapiu, $psl, '?id=komentarai&ka=' . $ka . '') . '</div>';
-        $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "pagrindinis.php?id=apie&ka=$inf[nick]", "Apie $inf[nick]", "$ka komentarai");
+        $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "pagrindinis.php?id=apie&ka=$inf[nick]", "Apie $inf[nick]", "$ka komentarai"];
         navigacija($g_n);
     }
 
@@ -2549,11 +2458,11 @@ if ($id == 'kom_del') {
         } else {
             echo '<div class="meniuc">';
             echo "Parašyta!<br/></div>";
-            mysqli_query($conn, "INSERT INTO `komentarai` (`kas`, `kas2`, `komentaras`, `laikas`, `time`) VALUES ('$ka', '$nick', '$kom', '" . date("Y-m-d H:i:s") . "', '" . time() . "')") or die(mysqli_error());
+            mysqli_query($conn, "INSERT INTO `komentarai` (`kas`, `kas2`, `komentaras`, `laikas`, `time`) VALUES ('$ka', '$nick', '$kom', '" . date("Y-m-d H:i:s") . "', '" . time() . "')") || die(mysqli_error());
             $txt = "" . $nick . " Parašė jums komentarą!";
             mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', gavejas='$ka', nauj='NEW'");
         }
-        $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "pagrindinis.php?id=apie&ka=$inf[nick]", "Apie $inf[nick]", "$ka kometarai");
+        $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "pagrindinis.php?id=apie&ka=$inf[nick]", "Apie $inf[nick]", "$ka kometarai"];
         navigacija($g_n);
     }
 } elseif ($id == "dtop") {
@@ -2585,11 +2494,7 @@ if ($id == 'kom_del') {
     echo '<div class="meniu">';
     while ($row = mysqli_fetch_assoc($query)) {
         $vt++;
-        if ($row['nick'] == $nust['last']) {
-            $last_nick = '<s>' . $row['nick'] . '</s>';
-        } else {
-            $last_nick = '' . $row['nick'] . '';
-        }
+        $last_nick = $row['nick'] == $nust['last'] ? '<s>' . $row['nick'] . '</s>' : '' . $row['nick'] . '';
         echo ' <b>' . $vt . '</b>. <a href="?id=apie&ka=' . $row['nick'] . '">' . statusas($last_nick) . '</a>  --    <b>' . sk($row['vksm']) . '</b>
 <img src="img/bicons/attack1.png">
 </font></b><br>';
@@ -2613,7 +2518,7 @@ if ($id == 'kom_del') {
     }
     echo '</div>';
 
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "Kovų dienos topas");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "Kovų dienos topas"];
     navigacija($g_n);
 
 } elseif ($id == "didinti_priza2") {
@@ -2641,7 +2546,7 @@ if ($id == 'kom_del') {
             echo '<div class="meniuc">D.TOP prizą padidinai <b>' . sk($kieks) . '</b> Vip Ticket.</div>';
         }
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "pagrindinis.php?id=dtop", "Dienos topas", "Dienos topo prizo didinimas");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "pagrindinis.php?id=dtop", "Dienos topas", "Dienos topo prizo didinimas"];
     navigacija($g_n);
 } elseif ($id == "didinti_priza") {
     online('Didina D.TOP prizą');
@@ -2654,7 +2559,7 @@ if ($id == 'kom_del') {
     Kiek didinsi prizą:<br/><input type="text" name="kieks"><br/>
     <input type="submit" name="submit" value="Didinti">
     </form></div>';
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "pagrindinis.php?id=dtop", "Dienos topas", "Dienos topo prizo didinimas");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "pagrindinis.php?id=dtop", "Dienos topas", "Dienos topo prizo didinimas"];
     navigacija($g_n);
 
 } elseif ($id == "keisti") {
@@ -2667,7 +2572,7 @@ if ($id == 'kom_del') {
     Topic\'as:<br /><textarea name="zinute" rows="3"></textarea><br />
     <input type="submit" name="submit" value="Keisti"/></form>
     </div>';
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "Topic keitimas");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "Topic keitimas"];
     navigacija($g_n);
 } elseif ($id == "keisti2") {
     online('Keicia topic');
@@ -2695,7 +2600,7 @@ if ($id == 'kom_del') {
         }
     }
 
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "Topic keitimas");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "Topic keitimas"];
     navigacija($g_n);
 } elseif ($id == "history") {
     top("Topic istorija");
@@ -2704,8 +2609,12 @@ if ($id == 'kom_del') {
     if ($viso > 0) {
         $rezultatu_rodymas = 10;
         $total = @intval(($viso - 1) / $rezultatu_rodymas) + 1;
-        if (empty($psl) or $psl < 0) $psl = 1;
-        if ($psl > $total) $psl = $total;
+        if (empty($psl) || $psl < 0) {
+            $psl = 1;
+        }
+        if ($psl > $total) {
+            $psl = $total;
+        }
         $nuo_kiek = $psl * $rezultatu_rodymas - $rezultatu_rodymas;
         $q = mysqli_query($conn, "SELECT * FROM topic ORDER BY id DESC LIMIT 10");
         $puslapiu = ceil($viso / $rezultatu_rodymas);
@@ -2719,7 +2628,7 @@ if ($id == 'kom_del') {
 
         }
         echo '</div>';
-        $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "Topic istorija");
+        $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "Topic istorija"];
         navigacija($g_n);
 
     }
@@ -2734,8 +2643,12 @@ if ($id == 'kom_del') {
     if ($viso > 0) {
         $rezultatu_rodymas = 7;
         $total = @intval(($viso - 1) / $rezultatu_rodymas) + 1;
-        if (empty($psl) or $psl < 0) $psl = 1;
-        if ($psl > $total) $psl = $total;
+        if (empty($psl) || $psl < 0) {
+            $psl = 1;
+        }
+        if ($psl > $total) {
+            $psl = $total;
+        }
         $nuo_kiek = $psl * $rezultatu_rodymas - $rezultatu_rodymas;
         $q = mysqli_query($conn, "SELECT * FROM news ORDER BY id DESC LIMIT $nuo_kiek, $rezultatu_rodymas");
         $puslapiu = ceil($viso / $rezultatu_rodymas);
@@ -2765,7 +2678,7 @@ if ($id == 'kom_del') {
     } else {
         echo '<div class="meniuc"><font color="red">Atnaujinimų nėra!</font></div>';
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "Naujienos");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "Naujienos"];
     navigacija($g_n);
 
 } elseif ($id == "nrep") {
@@ -2775,7 +2688,7 @@ if ($id == 'kom_del') {
     if ($lygis < 30) {
 
         echo '<div class="meniuc">Reputacija galim duoti nuo 30 lygio!</div>';
-    } elseif ($co > 2 or $co < 1) {
+    } elseif ($co > 2 || $co < 1) {
 
         echo '<div class="meniuc">ERROR!</div>';
     } elseif (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM news_rep WHERE kas='$nick' && kam='$ka'"))) {
@@ -2796,9 +2709,9 @@ if ($id == 'kom_del') {
         }
         echo '<div class="meniuc">Atlikta</div>';
 
-        mysqli_query($conn, "INSERT INTO news_rep SET kas='$nick', kam='$ka'") or die(mysqli_error());
+        mysqli_query($conn, "INSERT INTO news_rep SET kas='$nick', kam='$ka'") || die(mysqli_error());
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "Naujienos vertinimas");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "Naujienos vertinimas"];
     navigacija($g_n);
 
 
@@ -2817,7 +2730,7 @@ if ($id == 'kom_del') {
     } else {
         echo '<div class="meniuc">Neturi lygio taškų!</div>';
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "Lygio taškai");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "Lygio taškai"];
     navigacija($g_n);
 
 
@@ -2841,7 +2754,7 @@ if ($id == 'kom_del') {
         echo '</div>';
     }
 
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "Skrynios");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "Skrynios"];
     navigacija($g_n);
 
 } elseif ($id === "chests2") {
@@ -2850,7 +2763,7 @@ if ($id == 'kom_del') {
 
     if (!$ka) {
         echo '<div class="meniuc">Skrynia nerasta</div>';
-        $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "Skrynios");
+        $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "Skrynios"];
         navigacija($g_n);
         return;
     }
@@ -2858,7 +2771,7 @@ if ($id == 'kom_del') {
     $chest = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM player_chest_drops WHERE id = '$ka' AND player_id = '$apie[id]' AND opened_at IS NULL AND expires_at > NOW()"));
     if (!$chest) {
         echo '<div class="meniuc">Skrynia nerasta</div>';
-        $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "Skrynios");
+        $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "Skrynios"];
         navigacija($g_n);
         return;
     }
@@ -2927,7 +2840,7 @@ if ($id == 'kom_del') {
 
     mysqli_query($conn, "UPDATE player_chest_drops SET opened_at=NOW() WHERE id='$ka' ");
 
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "Skrynios");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "Skrynios"];
     navigacija($g_n);
 
 } elseif ($id == "rep") {
@@ -2935,7 +2848,7 @@ if ($id == 'kom_del') {
     if ($lygis < 30) {
         echo '<div class="wow">REP DAVIMAS</div>';
         echo '<div class="meniuc">Reputacija galim duoti nuo 30 lygio!</div>';
-    } elseif ($co > 2 or $co < 1) {
+    } elseif ($co > 2 || $co < 1) {
         echo '<div class="wow">REP DAVIMAS</div>';
         echo '<div class="meniuc">Tokios reputacijos nėra!</div>';
     } elseif (!mysqli_num_rows(mysqli_query($conn, "SELECT * FROM zaidejai WHERE nick='$ka'"))) {
@@ -2962,7 +2875,7 @@ if ($id == 'kom_del') {
         mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', gavejas='$ka', nauj='NEW'");
         mysqli_query($conn, "INSERT INTO rep SET kas='$nick', kam='$ka', time='" . time() . "', ka='$co'");
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "pagrindinis.php?id=apie&ka=$ka", "Apie $ka", "Reputacijos davimas");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "pagrindinis.php?id=apie&ka=$ka", "Apie $ka", "Reputacijos davimas"];
     navigacija($g_n);
 
 } elseif ($id == 'bbc') {
@@ -2984,19 +2897,21 @@ if ($id == 'kom_del') {
     
     
     ';
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "BBCode");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "BBCode"];
     navigacija($g_n);
 
 } elseif ($id == "great") {
     top('Gret ape');
-    if (date('H') == 23 or date('H') == 24) $kas = 'Jus esate Great ape formoje!';
+    if (date('H') == 23 || date('H') == 24) {
+        $kas = 'Jus esate Great ape formoje!';
+    }
     echo '<div class="meniuc"><img src="img/imgg/ape.png" border="0" alt="*"></div>';
     echo ' <div class="meniu">
 <b>' . $kas . '</b><br />
 Mėnulio pilnatis buna nuo 23.00 val. iki 24.00 val.<br />
     Per mėnulio pilnatį visi žaidėjai kovose gauna 10% daugiau  <img src="img/bicons/pinigai.png" />     ir   <img src="img/bicons/exp.png" />.<br />
     </div>';
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "Great ape");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "Great ape"];
     navigacija($g_n);
 } elseif ($id == "pinigus2") {
     top('Eurų pervedimas');
@@ -3023,11 +2938,11 @@ Mėnulio pilnatis buna nuo 23.00 val. iki 24.00 val.<br />
             mysqli_query($conn, "UPDATE zaidejai SET litai=litai+'$kieks' WHERE nick='$ka' ");
             mysqli_query($conn, "UPDATE zaidejai SET litai=litai-'$kieks' WHERE nick='$nick' ");
             mysqli_query($conn, "INSERT INTO perved_log SET txt='$nick pervedė $ka <b>" . sk($kieks) . "</b> $pinigaii!', time='" . time() . "'");
-            mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$nick jums pervedė <b>" . sk($kieks) . "</b> $pinigaii ', time='" . time() . "', gavejas='$ka', nauj='NEW'") or die(mysqli_error());
+            mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$nick jums pervedė <b>" . sk($kieks) . "</b> $pinigaii ', time='" . time() . "', gavejas='$ka', nauj='NEW'") || die(mysqli_error());
         }
 
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "pagrindinis.php?id=apie&ka=$ka", "Apie $ka", "Pinigu pervedimai");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "pagrindinis.php?id=apie&ka=$ka", "Apie $ka", "Pinigu pervedimai"];
     navigacija($g_n);
 } elseif ($id == "litus2") {
     top('Eurų pervedimas');
@@ -3057,7 +2972,7 @@ Mėnulio pilnatis buna nuo 23.00 val. iki 24.00 val.<br />
             mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$nick jums pervedė <b>" . sk($kieks) . "</b> $eurui ', time='" . time() . "', gavejas='$ka', nauj='NEW'");
         }
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "pagrindinis.php?id=apie&ka=$ka", "Apie $ka", "Eurų pervedimai");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "pagrindinis.php?id=apie&ka=$ka", "Apie $ka", "Eurų pervedimai"];
     navigacija($g_n);
 
 } elseif ($id == "vipt") {
@@ -3088,7 +3003,7 @@ Mėnulio pilnatis buna nuo 23.00 val. iki 24.00 val.<br />
             mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$nick jums pervedė <b>" . sk($kieks) . "</b> $eurui ', time='" . time() . "', gavejas='$ka', nauj='NEW'");
         }
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "pagrindinis.php?id=apie&ka=$ka", "Apie $ka", "Eurų pervedimai");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "pagrindinis.php?id=apie&ka=$ka", "Apie $ka", "Eurų pervedimai"];
     navigacija($g_n);
 }
 if ($id == 'pakvietimai') {
@@ -3110,7 +3025,7 @@ if ($id == 'pakvietimai') {
         ';
     echo '</div>';
 
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "pagrindinis.php?id=apie&ka=$ka", "Apie $ka", "Pakvietimai");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "pagrindinis.php?id=apie&ka=$ka", "Apie $ka", "Pakvietimai"];
     navigacija($g_n);
 }
 if ($id == 'pervedimai') {
@@ -3157,7 +3072,7 @@ if ($id == 'pervedimai') {
         <input type="submit" name="submit" value="Pervesti">
         </form></div>';
 
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "pagrindinis.php?id=apie&ka=$ka", "Apie $ka", "Pervedimai");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "pagrindinis.php?id=apie&ka=$ka", "Apie $ka", "Pervedimai"];
     navigacija($g_n);
 } elseif ($id == "kred2") {
     online('Perveda kreditus');
@@ -3187,7 +3102,7 @@ if ($id == 'pervedimai') {
         }
 
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "pagrindinis.php?id=apie&ka=$ka", "Apie $ka", "Kreditu pervedimai");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "pagrindinis.php?id=apie&ka=$ka", "Apie $ka", "Kreditu pervedimai"];
     navigacija($g_n);
 } elseif ($id == "aux2") {
     online('Perveda auksinius');
@@ -3217,17 +3132,17 @@ if ($id == 'pervedimai') {
         }
 
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "pagrindinis.php?id=apie&ka=$ka", "Apie $ka", "Auksinių pervedimai");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "pagrindinis.php?id=apie&ka=$ka", "Apie $ka", "Auksinių pervedimai"];
     navigacija($g_n);
 } elseif ($id == "off") {
     top('Atsijungimas');
     header('Location:index.php');
     echo '<div class="meniuc">Sėkmingai atsijungėte!</div>';
     mysqli_query($conn, "DELETE FROM online WHERE nick='$nick' ");
-    setcookie('vardas', null, time() - 3600 * 12 * 365);
-    setcookie('pass', null, time() - 3600 * 12 * 365);
+    setcookie('vardas', '', ['expires' => time() - 3600 * 12 * 365]);
+    setcookie('pass', '', ['expires' => time() - 3600 * 12 * 365]);
 
-    $g_n[] = array("index.php?id=", "Pagrindinis", "Atsijungimas");
+    $g_n[] = ["index.php?id=", "Pagrindinis", "Atsijungimas"];
     navigacija($g_n);
 } elseif ($id == "dovana") {
 
@@ -3238,10 +3153,10 @@ if ($id == 'pervedimai') {
         top('Naujoko dovana');
         if (empty($apie['k_dovana'])) {
 
-            $d_krd = rand(25, 125);
+            $d_krd = random_int(25, 125);
 
-            $d_png = rand(5000000, 2500000);
-            $d_eur = rand(25, 75);
+            $d_png = random_int(2500000, 5000000);
+            $d_eur = random_int(25, 75);
             mysqli_query($conn, "UPDATE zaidejai SET kred=kred+'$d_krd', litai=litai+'$d_png', sms_litai=sms_litai+'$d_eur', k_dovana='+' WHERE nick='$nick' ");
 
 
@@ -3267,7 +3182,7 @@ if ($id == 'pervedimai') {
 
     }
 
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "Naujoko dovana");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "Naujoko dovana"];
     navigacija($g_n);
 
 } elseif ($id == "litis2") {
@@ -3275,24 +3190,21 @@ if ($id == 'pervedimai') {
     if ($apie['litis'] != '') {
         echo '<div class="meniuc">Jau nusistatei</div>';
         atgal('Į Pradžią-index.php?id=');
-    } else {
-
-        if (isset($_POST['submit'])) {
-            $kam = post($_POST['kam']);
-            $kaa = post($_POST['kaa']);
-            if (empty($kaa)) {
-                echo '<div class="meniuc">Palikai tuščią laukelį.</div>';
-            } else {
-                if ($kaa == 1) {
-                    mysqli_query($conn, "UPDATE zaidejai SET litis='Vyras' WHERE nick='$nick' ");
-                    echo '<div class="meniuc">Atlikta!</div>';
-                } elseif ($kaa == 2) {
-                    mysqli_query($conn, "UPDATE zaidejai SET litis ='Moteris' WHERE nick='$nick' ");
-                    echo '<div class="meniuc">Atlikta!</div>';
-                }
-                $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "Lities pasirinkimas");
-                navigacija($g_n);
+    } elseif (isset($_POST['submit'])) {
+        $kam = post($_POST['kam']);
+        $kaa = post($_POST['kaa']);
+        if (empty($kaa)) {
+            echo '<div class="meniuc">Palikai tuščią laukelį.</div>';
+        } else {
+            if ($kaa == 1) {
+                mysqli_query($conn, "UPDATE zaidejai SET litis='Vyras' WHERE nick='$nick' ");
+                echo '<div class="meniuc">Atlikta!</div>';
+            } elseif ($kaa == 2) {
+                mysqli_query($conn, "UPDATE zaidejai SET litis ='Moteris' WHERE nick='$nick' ");
+                echo '<div class="meniuc">Atlikta!</div>';
             }
+            $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "Lities pasirinkimas"];
+            navigacija($g_n);
         }
     }
 }
@@ -3307,7 +3219,7 @@ if ($id == 'litis') {
         </select><br/>
         <input type="submit" name="submit" value="Nustatyti"/></form>
         </div>';
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "Lities pasirinkimas");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "Lities pasirinkimas"];
     navigacija($g_n);
 }
 
@@ -3352,7 +3264,7 @@ if ($id == 'medal') {
     
     </div>';
 
-        $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "pagrindinis.php?id=apie&ka=$ka", "Apie $ka", "$ka medaliai");
+        $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "pagrindinis.php?id=apie&ka=$ka", "Apie $ka", "$ka medaliai"];
         navigacija($g_n);
     }
 }
@@ -3362,11 +3274,11 @@ if ($id == 'daily') {
     if ($apie['daily'] == '+') {
         echo '<div class="meniuc">Šiandien jau pasiemei <b>prizą</b>!</div>';
     } else {
-        $rand[0] = rand(1, 5);
-        $rand[1] = rand(1, 5);
-        $rand[2] = rand(1, 5);
-        $rand[3] = rand(1, 5);
-        $rand[4] = rand(1, 5);
+        $rand[0] = random_int(1, 5);
+        $rand[1] = random_int(1, 5);
+        $rand[2] = random_int(1, 5);
+        $rand[3] = random_int(1, 5);
+        $rand[4] = random_int(1, 5);
         echo '<div class="meniuc">Pasirink prizą!</div>
         <div class="meniuc">
         <a href="?id=daily2&ID=' . $rand[0] . '"><img src="img/boxes/deze.png"></a>
@@ -3382,7 +3294,7 @@ if ($id == 'daily') {
         
         ';
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "Dienos prizas");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "Dienos prizas"];
     navigacija($g_n);
 }
 if ($id == "killself") {
@@ -3392,7 +3304,7 @@ if ($id == "killself") {
     echo '<div class="meniuc"><img src=img/imgg/pomirtinis.png><alt="**"></div>
 <div class="meniuc">Sėkmingai sumažinai savo gyvybes iki <b>0</b>!</div>';
     mysqli_query($conn, "UPDATE zaidejai SET gyvybes='0' WHERE nick='$nick'");
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "Pomirtinis pasaulis");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "Pomirtinis pasaulis"];
     navigacija($g_n);
 }
 
@@ -3403,10 +3315,10 @@ if ($id == 'daily2') {
     if ($apie['daily'] == '+') {
         echo '<div class="meniuc">Šiandien jau pasiemei prizą!</div>';
     } else {
-        $randas = rand(50, 200);
-        $randas1 = rand(20, 100);
-        $randas2 = rand(50, 250);
-        $randas3 = rand(100, 500);
+        $randas = random_int(50, 200);
+        $randas1 = random_int(20, 100);
+        $randas2 = random_int(50, 250);
+        $randas3 = random_int(100, 500);
         if ($ID == 1) {
             mysqli_query($conn, "UPDATE inv SET Microshem=Microshem+'$randas' WHERE nick='$nick'");
             $err = ' ' . $randas . ' <b>Mikroskemų</b>!';
@@ -3435,7 +3347,7 @@ if ($id == 'daily2') {
     }
     mysqli_query($conn, "UPDATE zaidejai SET daily = '+' WHERE nick='$nick'");
 
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "Dienos prizas");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "Dienos prizas"];
     navigacija($g_n);
 
 }
@@ -3450,62 +3362,67 @@ if ($id == 'draugai') {
 
         echo '<div class="meniuc">Neįvestas nick!</div>';
 
-    } else {
-        if (apsas($ka) == apsas($nick)) {
-            $viso = mysqli_fetch_row(mysqli_query($conn, "SELECT COUNT(*) FROM draugai WHERE nick='$ka'"))[0];
-
-            if ($viso > 0) {
-                $rezultatu_rodymas = 15;
-                $total = @intval(($viso - 1) / $rezultatu_rodymas) + 1;
-                if (empty($psl) or $psl < 0) $psl = 1;
-                if ($psl > $total) $psl = $total;
-                $nuo_kiek = $psl * $rezultatu_rodymas - $rezultatu_rodymas;
-
-                $puslapiu = ceil($viso / $rezultatu_rodymas);
+    } elseif (apsas($ka) == apsas($nick)) {
+        $viso = mysqli_fetch_row(mysqli_query($conn, "SELECT COUNT(*) FROM draugai WHERE nick='$ka'"))[0];
+        if ($viso > 0) {
+            $rezultatu_rodymas = 15;
+            $total = @intval(($viso - 1) / $rezultatu_rodymas) + 1;
+            if (empty($psl) || $psl < 0) {
+                $psl = 1;
             }
-            if ($viso == 0) {
-
-                echo '<div class="meniuc">Draugų neturi:(</div>';
-            } else {
-                echo '<div class="meniu">';
-                $query = mysqli_query($conn, "SELECT * FROM draugai WHERE nick='$ka' ORDER BY id DESC LIMIT $nuo_kiek,$rezultatu_rodymas");
-                while ($row = mysqli_fetch_assoc($query)) {
-                    $a++;
-                    echo '' . $a . ' <a href="?id=apie&ka=' . $row['draugas'] . '">' . statusas($row['draugas']) . '</a> (' . $row['statusas'] . ')<a href="?id=dlt&ID=' . $row['draugas'] . '">[x]</a><a href="?id=stat&ka=' . $row['draugas'] . '">[K]</a><br/>';
-                }
-                echo '</div>';
+            if ($psl > $total) {
+                $psl = $total;
             }
-            echo '<div class="meniuc">' . puslapiavimas($puslapiu, $psl, '?id=draugai&ka=' . $ka . '') . '</div>';
-        } else {
+            $nuo_kiek = $psl * $rezultatu_rodymas - $rezultatu_rodymas;
 
-            $viso = mysqli_fetch_row(mysqli_query($conn, "SELECT COUNT(*) FROM draugai WHERE nick='$ka'"))[0];
-
-            if ($viso > 0) {
-                $rezultatu_rodymas = 15;
-                $total = @intval(($viso - 1) / $rezultatu_rodymas) + 1;
-                if (empty($psl) or $psl < 0) $psl = 1;
-                if ($psl > $total) $psl = $total;
-                $nuo_kiek = $psl * $rezultatu_rodymas - $rezultatu_rodymas;
-
-                $puslapiu = ceil($viso / $rezultatu_rodymas);
-            }
-            if ($viso == 0) {
-
-                echo '<div class="meniuc">Draugų neturi</div>';
-            } else {
-                echo '<div class="meniu">';
-                $query = mysqli_query($conn, "SELECT * FROM draugai WHERE nick='$ka' ORDER BY id DESC LIMIT $nuo_kiek,$rezultatu_rodymas");
-                while ($row = mysqli_fetch_assoc($query)) {
-                    $a++;
-                    echo '' . $a . ' <a href="?id=apie&ka=' . $row['draugas'] . '">' . statusas($row['draugas']) . ' (' . $row['statusas'] . '</a>)<br/>';
-                }
-                echo '</div>';
-            }
-            echo '<div class="meniuc">' . puslapiavimas($puslapiu, $psl, '?id=draugai&ka=' . $ka . '') . '</div>';
+            $puslapiu = ceil($viso / $rezultatu_rodymas);
         }
+        if ($viso == 0) {
+
+            echo '<div class="meniuc">Draugų neturi:(</div>';
+        } else {
+            echo '<div class="meniu">';
+            $query = mysqli_query($conn, "SELECT * FROM draugai WHERE nick='$ka' ORDER BY id DESC LIMIT $nuo_kiek,$rezultatu_rodymas");
+            while ($row = mysqli_fetch_assoc($query)) {
+                $a++;
+                echo '' . $a . ' <a href="?id=apie&ka=' . $row['draugas'] . '">' . statusas($row['draugas']) . '</a> (' . $row['statusas'] . ')<a href="?id=dlt&ID=' . $row['draugas'] . '">[x]</a><a href="?id=stat&ka=' . $row['draugas'] . '">[K]</a><br/>';
+            }
+            echo '</div>';
+        }
+        echo '<div class="meniuc">' . puslapiavimas($puslapiu, $psl, '?id=draugai&ka=' . $ka . '') . '</div>';
+    } else {
+
+        $viso = mysqli_fetch_row(mysqli_query($conn, "SELECT COUNT(*) FROM draugai WHERE nick='$ka'"))[0];
+
+        if ($viso > 0) {
+            $rezultatu_rodymas = 15;
+            $total = @intval(($viso - 1) / $rezultatu_rodymas) + 1;
+            if (empty($psl) || $psl < 0) {
+                $psl = 1;
+            }
+            if ($psl > $total) {
+                $psl = $total;
+            }
+            $nuo_kiek = $psl * $rezultatu_rodymas - $rezultatu_rodymas;
+
+            $puslapiu = ceil($viso / $rezultatu_rodymas);
+        }
+        if ($viso == 0) {
+
+            echo '<div class="meniuc">Draugų neturi</div>';
+        } else {
+            echo '<div class="meniu">';
+            $query = mysqli_query($conn, "SELECT * FROM draugai WHERE nick='$ka' ORDER BY id DESC LIMIT $nuo_kiek,$rezultatu_rodymas");
+            while ($row = mysqli_fetch_assoc($query)) {
+                $a++;
+                echo '' . $a . ' <a href="?id=apie&ka=' . $row['draugas'] . '">' . statusas($row['draugas']) . ' (' . $row['statusas'] . '</a>)<br/>';
+            }
+            echo '</div>';
+        }
+        echo '<div class="meniuc">' . puslapiavimas($puslapiu, $psl, '?id=draugai&ka=' . $ka . '') . '</div>';
     }
 
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "?id=apie&ka='$ka'", "$ka informacija", "$ka draugai");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "?id=apie&ka='$ka'", "$ka informacija", "$ka draugai"];
     navigacija($g_n);
 }
 
@@ -3522,7 +3439,7 @@ if ($id == 'atmesti') {
 
         echo '<div class="meniuc">Sėkmingai atšaukei!</div>';
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "Draugai");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "Draugai"];
     navigacija($g_n);
 
 }
@@ -3537,7 +3454,7 @@ if ($id == 'dlt') {
         mysqli_query($conn, "DELETE FROM draugai WHERE nick='$ID' AND draugas='$nick'");
         mysqli_query($conn, "INSERT into pm SET gavejas='$ID',what='SISTEMA',nauj='NEW',time='" . time() . "',txt='$nick pašalino tave iš draugų!'");
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "?id=apie&ka='$ka'", "$ka informacija", "$ka draugai");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "?id=apie&ka='$ka'", "$ka informacija", "$ka draugai"];
     navigacija($g_n);
 
 
@@ -3557,7 +3474,7 @@ if ($id == 'priimti') {
         mysqli_query($conn, "INSERT into pm SET gavejas='$ID',what='SISTEMA',nauj='NEW',time='" . time() . "',txt='$nick priimė tavo kvietimą draugauti!'");
         echo '<div class="meniuc">Sėkmingai priėmiai!</div>';
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "Draugai");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "Draugai"];
     navigacija($g_n);
 }
 if ($id == 'kviesti') {
@@ -3575,7 +3492,7 @@ if ($id == 'kviesti') {
         echo '<div class="meniuc">Sėkmingai pakvietei žaidėją!</div>';
     }
 
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "Draugai");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "Draugai"];
     navigacija($g_n);
 
 }
@@ -3612,14 +3529,14 @@ if ($id == 'stat') {
 </div>
     ';
 
-        $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "?id=apie&ka='$ka'", "$ka informacija", "pagrindinis.php?id=draugai&ka=$ka", "$ka draugai", "Statuso keitimas");
+        $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "?id=apie&ka='$ka'", "$ka informacija", "pagrindinis.php?id=draugai&ka=$ka", "$ka draugai", "Statuso keitimas"];
         navigacija($g_n);
 
     }
 }
 if ($id == 'stat2') {
     $st = post($_POST['statusas']);
-    $tinka = array("Draugas", "Mes susipyke", "Bendraklasis", "Bendradarbis", "Tikras draugas", "Geriausias draugas", "Geri pasnekovai", "Giminaitis", "Mano meilė");
+    $tinka = ["Draugas", "Mes susipyke", "Bendraklasis", "Bendradarbis", "Tikras draugas", "Geriausias draugas", "Geri pasnekovai", "Giminaitis", "Mano meilė"];
     top('Draugų statusai');
     if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM zaidejai WHERE nick='$ka'")) == 0) {
 
@@ -3640,7 +3557,7 @@ if ($id == 'stat2') {
         echo '<div class="meniuc">Statuso keitimo prašymas išsųstas!</div>';
         mysqli_query($conn, "INSERT INTO statusai SET nick='$nick', kam='$ka',stats='$st'");
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "?id=apie&ka='$ka'", "$ka informacija", "pagrindinis.php?id=draugai&ka=$ka", "$ka draugai", "Statuso keitimas");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "?id=apie&ka='$ka'", "$ka informacija", "pagrindinis.php?id=draugai&ka=$ka", "$ka draugai", "Statuso keitimas"];
     navigacija($g_n);
 }
 if ($id == 'stt_p') {
@@ -3651,15 +3568,15 @@ if ($id == 'stt_p') {
 
     } else {
         $stt = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM statusai WHERE kam='$nick' AND id='$ID'"));
-        mysqli_query($conn, "UPDATE draugai SET statusas='$stt[stats]' WHERE nick='$nick' AND draugas='$stt[nick]'") or die(mysqli_error());
-        mysqli_query($conn, "UPDATE draugai SET statusas='$stt[stats]' WHERE nick='$stt[nick]' AND draugas='$nick'") or die(mysqli_error());
+        mysqli_query($conn, "UPDATE draugai SET statusas='$stt[stats]' WHERE nick='$nick' AND draugas='$stt[nick]'") || die(mysqli_error());
+        mysqli_query($conn, "UPDATE draugai SET statusas='$stt[stats]' WHERE nick='$stt[nick]' AND draugas='$nick'") || die(mysqli_error());
         echo '<div class="meniuc">Statusas pakeistas</div>';
         mysqli_query($conn, "DELETE FROM statusai WHERE kam='$nick'");
 
     }
 
 
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "Statuso keitimas");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "Statuso keitimas"];
     navigacija($g_n);
 }
 if ($id == 'stt_n') {
@@ -3677,7 +3594,7 @@ if ($id == 'stt_n') {
     }
 
 
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "Statuso keitimas");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "Statuso keitimas"];
     navigacija($g_n);
 
 

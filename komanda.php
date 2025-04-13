@@ -3,8 +3,8 @@ ob_start();
 echo "<!DOCTYPE html PUBLIC '-//WAPFORUM//DTD XHTML Mobile 1.0//EN' 'http://www.wapforum.org/DTD/xhtml-mobile10.dtd'>
 <html xmlns='http://www.w3.org/1999/xhtml' xml:lang='lt'>";
 
-include_once 'cfg/sql.php';
-include_once 'cfg/funkcijos.php';
+include_once __DIR__ . '/cfg/sql.php';
+include_once __DIR__ . '/cfg/funkcijos.php';
 head2();
 baneris();
 
@@ -44,7 +44,7 @@ if (empty($id)) {
 <img src=img/imgg/komandos.png border="1" width="16" height="16"> <a href="komanda.php?id=sdtop">Savaitės kovų TOP</a></div>';
     /*echo'<div class="up">Uždarbiai:</div><div class="meniu">'.$ico2.' Kreditai team nariams bus išmokėti po '.laikas($nust[team_ismokejimas]-time(),1).'</br>
 	'.$ico2.'	Bus išmokėta iš žaidimo iždo '.$ismok*5 .' kreditų</div>';*/
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "Komandos");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "Komandos"];
     navigacija($g_n);
 }
 if ($id == 'teamtop') {
@@ -61,7 +61,7 @@ if ($id == 'teamtop') {
 <a href="?id=toppinigu"><b>4.</b>Ižde Pinigų TOP</a><br>
 <a href="?id=topeuru"><b>5.</b>Ižde Eurų TOP</a>
 </div>';
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "Komandų topai");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "Komandų topai"];
     navigacija($g_n);
 }
 if ($id == 'topkovu') {
@@ -92,7 +92,7 @@ if ($id == 'topkovu') {
     echo '</div>';
 
 
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "Komandų kovų topas");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "Komandų kovų topas"];
     navigacija($g_n);
 }
 if ($id == 'toppinigu') {
@@ -123,7 +123,7 @@ if ($id == 'toppinigu') {
     echo '</div>';
 
 
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "Komandų ižde pinigų topas");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "Komandų ižde pinigų topas"];
     navigacija($g_n);
 }
 if ($id == 'topeuru') {
@@ -154,7 +154,7 @@ if ($id == 'topeuru') {
     echo '</div>';
 
 
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "Komandų ižde eurų topas");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "Komandų ižde eurų topas"];
     navigacija($g_n);
 }
 if ($id == 'topalgos') {
@@ -185,7 +185,7 @@ if ($id == 'topalgos') {
     echo '</div>';
 
 
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "Komandų didžiausios algos topas");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "Komandų didžiausios algos topas"];
     navigacija($g_n);
 }
 
@@ -217,7 +217,7 @@ if ($id == 'topdtop') {
     echo '</div>';
 
 
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "Komandų dienos kovų top win");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "Komandų dienos kovų top win"];
     navigacija($g_n);
 }
 if ($id == 'all') {
@@ -231,8 +231,12 @@ if ($id == 'all') {
     if ($viso > 0) {
         $rezultatu_rodymas = 20;
         $total = @intval(($viso - 1) / $rezultatu_rodymas) + 1;
-        if (empty($psl) or $psl < 0) $psl = 1;
-        if ($psl > $total) $psl = $total;
+        if (empty($psl) || $psl < 0) {
+            $psl = 1;
+        }
+        if ($psl > $total) {
+            $psl = $total;
+        }
         $nuo_kiek = $psl * $rezultatu_rodymas - $rezultatu_rodymas;
 
         $puslapiu = ceil($viso / $rezultatu_rodymas);
@@ -247,7 +251,7 @@ if ($id == 'all') {
     }
     echo '</div>';
     echo '<div class="meniuc">' . puslapiavimas($puslapiu, $psl, '?id=all') . '</div>';
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "Visos komandos");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "Visos komandos"];
     navigacija($g_n);
 
 }
@@ -266,7 +270,7 @@ if ($id == "ikurti") {
       
          <input type="submit" name="submit" value="Ikurti"/></form>
         </div>';
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "Komandos ikurimas");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "Komandos ikurimas"];
     navigacija($g_n);
 
 
@@ -305,7 +309,7 @@ if ($id == "ikurti2") {
         if (isset($klaida)) {
             echo '<div class="meniuc">' . $klaida . '</div>';
         }
-        $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "Komandos ikurimas");
+        $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "Komandos ikurimas"];
         navigacija($g_n);
     }
 }
@@ -396,7 +400,7 @@ Topic: <b>' . $info['topic'] . '</b></div>';
             echo ' ' . (empty($user['team']) ? "<a href='?id=prasytis&ka=" . $ka . "'>$ico Prašytis i komanda</a><br />" : NULL) . '
 	
 	';
-            if (apsas($user['team']) == apsas($ka) and apsas($komanda['nick']) != apsas($nick)) {
+            if (apsas($user['team']) == apsas($ka) && apsas($komanda['nick']) != apsas($nick)) {
                 echo "" . $ico . "Iki algos liko: <b>" . $user['iki_algos'] . " kovų</b><br>";
             }
             echo "" . $ico . "Komanda laimėjus: <b>" . $info['win'] . " kartų</b><br>";
@@ -445,8 +449,12 @@ Topic: <b>' . $info['topic'] . '</b></div>';
             if ($viso > 0) {
 				$rezultatu_rodymas = 10;
 				$total = @intval(($viso - 1) / $rezultatu_rodymas) + 1;
-				if (empty($psl) or $psl < 0) $psl = 1;
-				if ($psl > $total) $psl = $total;
+				if (empty($psl) || $psl < 0) {
+                    $psl = 1;
+                }
+				if ($psl > $total) {
+                    $psl = $total;
+                }
 				$nuo_kiek = $psl * $rezultatu_rodymas - $rezultatu_rodymas;
 				$query = mysqli_query($conn, "SELECT * FROM user WHERE team='$ka' ORDER BY win_in_team DESC LIMIT $nuo_kiek,$rezultatu_rodymas");
 				$puslapiu = ceil($viso / $rezultatu_rodymas);
@@ -463,7 +471,7 @@ Topic: <b>' . $info['topic'] . '</b></div>';
 			}
 
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", " $ka komanda");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", " $ka komanda"];
     navigacija($g_n);
 }
 
@@ -478,11 +486,7 @@ if ($id == 'info2') {
 
         echo "
 <div class='meniuc'>";
-        if ($in['foto'] == '') {
-            $ft_ko = "<img src='img/imgg/komandos.png'> ";
-        } else {
-            $ft_ko = "<img src='$in[foto]'height='180' width='240'>";
-        }
+        $ft_ko = $in['foto'] == '' ? "<img src='img/imgg/komandos.png'> " : "<img src='$in[foto]'height='180' width='240'>";
         echo '
 
 ' . $ft_ko . '</div>
@@ -545,7 +549,7 @@ Topic: <b>' . $in['topic'] . '</b></div>';
         echo "" . $ico . "Komanda pralaimėjus: <b>" . $in['lose'] . " kartų</b><br>";
 
 
-        if (apsas($user['team']) == apsas($co) and apsas($komanda['nick']) != apsas($nick)) {
+        if (apsas($user['team']) == apsas($co) && apsas($komanda['nick']) != apsas($nick)) {
             echo "" . $ico . "Iki algos liko: <b>" . $user['iki_algos'] . " kovų</b><br>";
         }
         echo '
@@ -563,8 +567,12 @@ Topic: <b>' . $in['topic'] . '</b></div>';
         if ($viso > 0) {
             $rezultatu_rodymas = 10;
             $total = @intval(($viso - 1) / $rezultatu_rodymas) + 1;
-            if (empty($psl) or $psl < 0) $psl = 1;
-            if ($psl > $total) $psl = $total;
+            if (empty($psl) || $psl < 0) {
+                $psl = 1;
+            }
+            if ($psl > $total) {
+                $psl = $total;
+            }
             $nuo_kiek = $psl * $rezultatu_rodymas - $rezultatu_rodymas;
             $query = mysqli_query($conn, "SELECT * FROM user WHERE team='$co' ORDER BY win_in_team DESC LIMIT $nuo_kiek,$rezultatu_rodymas");
             $puslapiu = ceil($viso / $rezultatu_rodymas);
@@ -582,7 +590,7 @@ Topic: <b>' . $in['topic'] . '</b></div>';
 
         }
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", " $co komanda");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", " $co komanda"];
     navigacija($g_n);
 }
 /// dienos medal info 1vt
@@ -619,7 +627,7 @@ if ($id == 'medal') {
 	
 	</div>';
         }
-        $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "pagrindinis.php?id=", "Apie $ka", "Prizai");
+        $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "pagrindinis.php?id=", "Apie $ka", "Prizai"];
         navigacija($g_n);
     }
 }
@@ -657,7 +665,7 @@ if ($id == 'medal2') {
 	
 	</div>';
         }
-        $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "pagrindinis.php?id=", "Apie $ka", "Prizai");
+        $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "pagrindinis.php?id=", "Apie $ka", "Prizai"];
         navigacija($g_n);
     }
 }
@@ -696,7 +704,7 @@ if ($id == 'medal3') {
 	
 	</div>';
         }
-        $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "pagrindinis.php?id=", "Apie $ka", "Prizai");
+        $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "pagrindinis.php?id=", "Apie $ka", "Prizai"];
         navigacija($g_n);
     }
 }
@@ -729,7 +737,7 @@ if ($id == 'medals') {
 	
 	</div>';
         }
-        $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "pagrindinis.php?id=", "Apie $ka", "$ka medaliai");
+        $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "pagrindinis.php?id=", "Apie $ka", "$ka medaliai"];
         navigacija($g_n);
     }
 }
@@ -755,7 +763,7 @@ if ($id == 'pultiteam') {
 
         echo '</div>';
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php?id=info&ka='.$ka.'", "Apie $ka", "Komandos užpuolimas");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php?id=info&ka='.$ka.'", "Apie $ka", "Komandos užpuolimas"];
     navigacija($g_n);
 }
 
@@ -818,7 +826,7 @@ Pulti kita komanda galėsi už <b>3</b> valandų!<br>
             }
         }
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php?id=info&ka='.$ka.'", "Apie $ka", "Komandos užpuolimas");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php?id=info&ka='.$ka.'", "Apie $ka", "Komandos užpuolimas"];
     navigacija($g_n);
 }
 
@@ -848,16 +856,14 @@ if ($id == "team_boss") {
 
         if ($row['prisikels'] - time() > 0) {
             echo ' <img src="img/veikejaic/' . $row['img'] . '.png" alt="IMG" height="42" width="42"><b> ' . $row['name'] . ' </b>užmuštas, galėsite mušti už <b>' . laikas($row['prisikels'] - time(), 1) . '</b><br/>';
-        } else {
-            if (apsas($user['team']) == apsas($ka)) {
-                echo '   <img src="img/veikejaic/' . $row['img'] . '.png" alt="IMG" height="42" width="42"> <b>' . $row['name'] . ' </b> [<a href="?id=inf&go=' . $row['id'] . '&ka=' . $ka . '">Detaliau</a>]   <br/>';
-            }
+        } elseif (apsas($user['team']) == apsas($ka)) {
+            echo '   <img src="img/veikejaic/' . $row['img'] . '.png" alt="IMG" height="42" width="42"> <b>' . $row['name'] . ' </b> [<a href="?id=inf&go=' . $row['id'] . '&ka=' . $ka . '">Detaliau</a>]   <br/>';
         }
         unset($row);
     }
 
     echo '</div>';
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "Bosai");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "Bosai"];
     navigacija($g_n);
 } elseif ($id == "inf") {
     online('Boss Village');
@@ -878,7 +884,7 @@ if ($id == "team_boss") {
 
         echo '<div class="meniuc">Toks bosas neegzistuoja!</div>';
     } else {
-        $KD = rand(9999, 99999);
+        $KD = random_int(9999, 99999);
         $_SESSION['refresh'] = $KD;
 
         echo '<div class="meniuc"> <img src="img/veikejaic/' . $boss['img'] . '.png" /></div>
@@ -904,7 +910,7 @@ if ($id == "team_boss") {
 
 
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "Boso daužymas");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "Boso daužymas"];
     navigacija($g_n);
 } elseif ($id == "attack") {
     online('Boss Village');
@@ -1034,7 +1040,7 @@ if ($id == "team_boss") {
 
             $smugis3 = 30000;
         }
-        if ($apie['sword'] == 'AD16 Kardas' and $apie['armor'] == 'AD16 Sarvai' and $apie['amuletas'] == 'AD16 Amulet') {
+        if ($apie['sword'] == 'AD16 Kardas' && $apie['armor'] == 'AD16 Sarvai' && $apie['amuletas'] == 'AD16 Amulet') {
 
             $set1 = 50000;
         }
@@ -1051,7 +1057,7 @@ if ($id == "team_boss") {
 
             $smugis3 = 90000;
         }
-        if ($apie['sword'] == 'AD17 Kardas' and $apie['armor'] == 'AD17 Sarvai' and $apie['amuletas'] == 'AD17 Amulet') {
+        if ($apie['sword'] == 'AD17 Kardas' && $apie['armor'] == 'AD17 Sarvai' && $apie['amuletas'] == 'AD17 Amulet') {
 
             $set2 = 15000;
         }
@@ -1068,7 +1074,7 @@ if ($id == "team_boss") {
 
             $smugis3 = 150000;
         }
-        if ($apie['sword'] == 'AD18 Kardas' and $apie['armor'] == 'AD18 Sarvai' and $apie['amuletas'] == 'AD18 Amulet') {
+        if ($apie['sword'] == 'AD18 Kardas' && $apie['armor'] == 'AD18 Sarvai' && $apie['amuletas'] == 'AD18 Amulet') {
 
             $set1 = 200000;
         }
@@ -1085,7 +1091,7 @@ if ($id == "team_boss") {
 
             $smugis3 = 300000;
         }
-        if ($apie['sword'] == 'AD19 Kardas' and $apie['armor'] == 'AD19 Sarvai' and $apie['amuletas'] == 'AD19 Amulet') {
+        if ($apie['sword'] == 'AD19 Kardas' && $apie['armor'] == 'AD19 Sarvai' && $apie['amuletas'] == 'AD19 Amulet') {
 
             $set2 = 50000;
         }
@@ -1102,7 +1108,7 @@ if ($id == "team_boss") {
 
             $smugis3 = 800000;
         }
-        if ($apie['sword'] == 'AD20 Kardas' and $apie['armor'] == 'AD20 Sarvai' and $apie['amuletas'] == 'AD20 Amulet') {
+        if ($apie['sword'] == 'AD20 Kardas' && $apie['armor'] == 'AD20 Sarvai' && $apie['amuletas'] == 'AD20 Amulet') {
 
             $set1 = 500000;
         } else {
@@ -1198,31 +1204,31 @@ if ($id == "team_boss") {
         }
         $query = mysqli_query($conn, "SELECT * FROM team WHERE pavadinimas='$ka'");
         while ($row = mysqli_fetch_assoc($query)) {
-            $teamcrit = rand(0, $row['kritinislvl'] * 1);
+            $teamcrit = random_int(0, $row['kritinislvl'] * 1);
         }
         if ($kg > '58') {
-            $crit = rand(0, $apie['critical'] * 5);
-            $smugis = rand(100, 200) + $smugis2 * $kyborg * $tech + $smugis3 * $kyborg * $tech + $set1 * $kyborg * $tech + $crit + $teamcrit * $kyborg * $tech;
+            $crit = random_int(0, $apie['critical'] * 5);
+            $smugis = random_int(100, 200) + $smugis2 * $kyborg * $tech + $smugis3 * $kyborg * $tech + $set1 * $kyborg * $tech + $crit + $teamcrit * $kyborg * $tech;
         }
 
 
         if ($kg > '59') {
 
 
-            $smugiss = rand(100, 200) + $smugis2 * $kyborg * $tech + $smugis3 * $kyborg * $tech + $set1 * $kyborg * $tech + $teamcrit;
+            $smugiss = random_int(100, 200) + $smugis2 * $kyborg * $tech + $smugis3 * $kyborg * $tech + $set1 * $kyborg * $tech + $teamcrit;
         }
 
         if ($kg < '50') {
 
-            $k_smugis = rand(100, 300);
+            $k_smugis = random_int(100, 300);
         }
-        $hit = rand($boss['min_hit'], $boss['max_hit'] - $mazina - $set2);
+        $hit = random_int($boss['min_hit'], $boss['max_hit'] - $mazina - $set2);
         $dmg = $smugis + $k_smugis;
         $bosui_liko = $boss['hp'] - $dmg;
 
         if ($bosui_liko > 0) {
-            $critk = rand(0, $crit);
-            $KD = rand(9999, 99999);
+            $critk = random_int(0, $crit);
+            $KD = random_int(9999, 99999);
             $_SESSION['refresh'] = $KD;
             $_SESSION['pad'] = time() + 1;
             mysqli_query($conn, "UPDATE zaidejai SET vveiksmai=vveiksmai+'1', gyvybes=gyvybes-'$hit' WHERE nick='$nick' ");
@@ -1314,7 +1320,7 @@ if ($id == "team_boss") {
             }
         }
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "Boso daužymas");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "Boso daužymas"];
     navigacija($g_n);
 } ///// komandos gynybos kelimas
 elseif ($id == "keltigynyba") {
@@ -1334,7 +1340,7 @@ elseif ($id == "keltigynyba") {
         <input type="submit" name="submit" value="Pirkti"/></form>
         </div>';
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "Gynybos pirkimas");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "Gynybos pirkimas"];
     navigacija($g_n);
 
 }
@@ -1361,7 +1367,7 @@ if ($id == 'keltigynyba2') {
             }
 
         }
-        $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "Gynyba pirkimas");
+        $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "Gynyba pirkimas"];
         navigacija($g_n);
     }
 } ///// komandos atakos kelimas
@@ -1382,7 +1388,7 @@ elseif ($id == "keltiataka") {
         <input type="submit" name="submit" value="Pirkti"/></form>
         </div>';
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "Atakos pirkimas");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "Atakos pirkimas"];
     navigacija($g_n);
 
 }
@@ -1410,7 +1416,7 @@ if ($id == 'keltiataka2') {
             }
 
         }
-        $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "Ataka pirkimas");
+        $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "Ataka pirkimas"];
         navigacija($g_n);
     }
 } //// parduotves shop
@@ -1431,7 +1437,7 @@ elseif ($id == "shopeuru") {
         <input type="submit" name="submit" value="Pirkti"/></form>
         </div>';
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "Eurų pirkimas");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "Eurų pirkimas"];
     navigacija($g_n);
 
 }
@@ -1458,7 +1464,7 @@ if ($id == 'shopeuru2') {
             }
 
         }
-        $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "Eurų pirkimas");
+        $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "Eurų pirkimas"];
         navigacija($g_n);
     }
 }
@@ -1496,7 +1502,7 @@ if ($id == 'shopbosstoppo') {
 
         }
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Boso Pirkime");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Boso Pirkime"];
     navigacija($g_n);
 
 }
@@ -1534,7 +1540,7 @@ if ($id == 'shopbossdyspo') {
         }
 
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Boso Pirkime");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Boso Pirkime"];
     navigacija($g_n);
 
 }
@@ -1562,7 +1568,7 @@ if ($id == 'shopboss') {
         echo "		<div class='meniuc'> <a href='komanda.php?id=shopbosstoppo&ka=$ka'><input type='submit' Value='Pirkti'/></a></div>";
 
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Bosų Parduotuvė");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Bosų Parduotuvė"];
     navigacija($g_n);
 }
 
@@ -1585,7 +1591,7 @@ if ($id == 'shop') {
         echo "		" . $ico . " <a href='komanda.php?id=shopeuru&ka=$ka'>Eurų Pirkimas</a><br>";
         echo "		</div>";
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Parduotuvė");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Parduotuvė"];
     navigacija($g_n);
 }
 
@@ -1609,7 +1615,7 @@ if ($id == 'visiems') {
 
 
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Žinutės siuntimas komandos nariams");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Žinutės siuntimas komandos nariams"];
     navigacija($g_n);
 }
 
@@ -1627,27 +1633,28 @@ if ($id == 'visiems2') {
 
         $on = mysqli_query($conn, "SELECT * FROM user WHERE team='$ka' ORDER BY id");
         while ($onn = mysqli_fetch_row($on)) {
-            mysqli_query($conn, "INSERT INTO pms SET what='$nick', txt='$pm', gavejas='$onn[1]', time='" . time() . "', nauj='NEW' ") or die(mysqli_error());
+            mysqli_query($conn, "INSERT INTO pms SET what='$nick', txt='$pm', gavejas='$onn[1]', time='" . time() . "', nauj='NEW' ") || die(mysqli_error());
 
 
         }
         echo "<div class='meniuc'>Atlikta, pm išsiųstos.<br></div>";
 
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Žinutės siuntimas komandos nariams");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Žinutės siuntimas komandos nariams"];
     navigacija($g_n);
 }
 
 
 if ($id == "isimtift") {
     top('Foto išėmimas');
-    if ($info['vadas'] != $nick && $info['pavadotuojas'] != $nick) echo "<div class='meniuc>Tu nesi šios komandos vadas</div>";
-    elseif (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM team WHERE pavadinimas='" . $info['pavadinimas'] . "'")) == false) {
+    if ($info['vadas'] != $nick && $info['pavadotuojas'] != $nick) {
+        echo "<div class='meniuc>Tu nesi šios komandos vadas</div>";
+    } elseif (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM team WHERE pavadinimas='" . $info['pavadinimas'] . "'")) == false) {
         echo "<div class='meniuc'>Tokios komandos nėra</div>";
     }
     mysqli_query($conn, "UPDATE user SET foto='' WHERE team= $ka");
     echo "<div class='meniuc'>Ištrinta </div>";
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Foto trinimas");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Foto trinimas"];
     navigacija($g_n);
 
 }
@@ -1655,8 +1662,9 @@ if ($id == "ft") {
     top('Foto idėjimas');
 
 
-    if ($info['vadas'] != $nick && $info['pavadotuojas'] != $nick) echo "<div class='meniuc>Tu nesi šios komandos vadas</div>";
-    elseif (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM team WHERE pavadinimas='" . $info['pavadinimas'] . "'")) == false) {
+    if ($info['vadas'] != $nick && $info['pavadotuojas'] != $nick) {
+        echo "<div class='meniuc>Tu nesi šios komandos vadas</div>";
+    } elseif (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM team WHERE pavadinimas='" . $info['pavadinimas'] . "'")) == false) {
         echo "<div class='meniuc'>Tokios komandos nėra</div>";
     } else {
         echo '<div class="meniuc">
@@ -1666,7 +1674,7 @@ if ($id == "ft") {
    <input type="submit" name="submit" value="Nustatyti"/>
    </div>';
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Foto ikėlimas");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Foto ikėlimas"];
     navigacija($g_n);
 
 }
@@ -1676,14 +1684,14 @@ if ($id == "foto2") {
     $foto = post($_POST['foto']);
     $info = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM team WHERE pavadinimas='$ka'"));
 
-    if ($info['vadas'] != $nick && $info['pavadotuojas'] != $nick) echo "<div class='meniuc'>Tu nesi šios komandos vadas</div>";
-
-    elseif (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM team WHERE pavadinimas='" . $info['pavadinimas'] . "'")) == false) {
+    if ($info['vadas'] != $nick && $info['pavadotuojas'] != $nick) {
+        echo "<div class='meniuc'>Tu nesi šios komandos vadas</div>";
+    } elseif (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM team WHERE pavadinimas='" . $info['pavadinimas'] . "'")) == false) {
         echo "<div class='meniuc'>Tokios komandos nėra</div>";
     }
     echo '<div class="meniuc">Nuotrauka pakeista</div>';
-    mysqli_query($conn, "UPDATE team SET foto='$foto' WHERE pavadinimas ='$ka'") or die(mysqli_error());
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Foto ikėlimas");
+    mysqli_query($conn, "UPDATE team SET foto='$foto' WHERE pavadinimas ='$ka'") || die(mysqli_error());
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Foto ikėlimas"];
     navigacija($g_n);
 
 }
@@ -1725,7 +1733,7 @@ Jūsų komanda sėkmingai įvygdė šią misiją</b>! <br>Į iždą gavote <b>15
             echo '<div class="meniuc">Jūsų komanda jau įvygdžius šią misiją!</div>';
         }
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos"];
     navigacija($g_n);
 
 }
@@ -1769,7 +1777,7 @@ Jūsų komanda sėkmingai įvygdė šią misiją</b>! <br>Į iždą gavote <b>12
             echo '<div class="meniuc">Jūsų komanda jau įvygdžius šią misiją!</div>';
         }
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos"];
     navigacija($g_n);
 
 }
@@ -1812,7 +1820,7 @@ Jūsų komanda sėkmingai įvygdė šią misiją</b>! <br>Į iždą gavote <b>10
             echo '<div class="meniuc">Jūsų komanda jau įvygdžius šią misiją!</div>';
         }
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos"];
     navigacija($g_n);
 
 }
@@ -1856,7 +1864,7 @@ Jūsų komanda sėkmingai įvygdė šią misiją</b>! <br>Į iždą gavote <b>8,
             echo '<div class="meniuc">Jūsų komanda jau įvygdžius šią misiją!</div>';
         }
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos"];
     navigacija($g_n);
 
 }
@@ -1900,7 +1908,7 @@ Jūsų komanda sėkmingai įvygdė šią misiją</b>! <br>Į iždą gavote <b>6,
             echo '<div class="meniuc">Jūsų komanda jau įvygdžius šią misiją!</div>';
         }
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos"];
     navigacija($g_n);
 
 }
@@ -1944,7 +1952,7 @@ Jūsų komanda sėkmingai įvygdė šią misiją</b>! <br>Į iždą gavote <b>4,
             echo '<div class="meniuc">Jūsų komanda jau įvygdžius šią misiją!</div>';
         }
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos"];
     navigacija($g_n);
 
 }
@@ -1987,7 +1995,7 @@ Jūsų komanda sėkmingai įvygdė šią misiją</b>! <br>Į iždą gavote <b>2,
             echo '<div class="meniuc">Jūsų komanda jau įvygdžius šią misiją!</div>';
         }
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos"];
     navigacija($g_n);
 
 }
@@ -2029,7 +2037,7 @@ Jūsų komanda sėkmingai įvygdė šią misiją</b>! <br>Į iždą gavote <b>1,
             echo '<div class="meniuc">Jūsų komanda jau įvygdžius šią misiją!</div>';
         }
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos"];
     navigacija($g_n);
 
 }
@@ -2071,7 +2079,7 @@ Jūsų komanda sėkmingai įvygdė šią misiją</b>! <br>Į iždą gavote <b>50
             echo '<div class="meniuc">Jūsų komanda jau įvygdžius šią misiją!</div>';
         }
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos"];
     navigacija($g_n);
 
 }
@@ -2115,7 +2123,7 @@ Jūsų komanda sėkmingai įvygdė šią misiją</b>! <br>Į iždą gavote <b>20
             echo '<div class="meniuc">Jūsų komanda jau įvygdžius šią misiją!</div>';
         }
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos"];
     navigacija($g_n);
 
 }
@@ -2159,7 +2167,7 @@ Jūsų komanda sėkmingai įvygdė šią misiją</b>! <br>Į iždą gavote <b>30
             echo '<div class="meniuc">Jūsų komanda jau įvygdžius šią misiją!</div>';
         }
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos"];
     navigacija($g_n);
 
 }
@@ -2201,7 +2209,7 @@ Jūsų komanda sėkmingai įvygdė šią misiją</b>! <br>Į iždą gavote <b>25
             echo '<div class="meniuc">Jūsų komanda jau įvygdžius šią misiją!</div>';
         }
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos"];
     navigacija($g_n);
 
 }
@@ -2245,7 +2253,7 @@ Jūsų komanda sėkmingai įvygdė šią misiją</b>! <br>Į iždą gavote <b>20
             echo '<div class="meniuc">Jūsų komanda jau įvygdžius šią misiją!</div>';
         }
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos"];
     navigacija($g_n);
 
 }
@@ -2289,7 +2297,7 @@ Jūsų komanda sėkmingai įvygdė šią misiją</b>! <br>Į iždą gavote <b>16
             echo '<div class="meniuc">Jūsų komanda jau įvygdžius šią misiją!</div>';
         }
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos"];
     navigacija($g_n);
 
 }
@@ -2331,7 +2339,7 @@ Jūsų komanda sėkmingai įvygdė šią misiją</b>! <br>Į iždą gavote <b>12
             echo '<div class="meniuc">Jūsų komanda jau įvygdžius šią misiją!</div>';
         }
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos"];
     navigacija($g_n);
 
 }
@@ -2375,7 +2383,7 @@ Jūsų komanda sėkmingai įvygdė šią misiją</b>! <br>Į iždą gavote <b>8,
             echo '<div class="meniuc">Jūsų komanda jau įvygdžius šią misiją!</div>';
         }
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos"];
     navigacija($g_n);
 
 }
@@ -2418,7 +2426,7 @@ Jūsų komanda sėkmingai įvygdė šią misiją</b>! <br>Į iždą gavote <b>4,
             echo '<div class="meniuc">Jūsų komanda jau įvygdžius šią misiją!</div>';
         }
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos"];
     navigacija($g_n);
 
 }
@@ -2459,7 +2467,7 @@ Jūsų komanda sėkmingai įvygdė šią misiją</b>! <br>Į iždą gavote <b>2,
             echo '<div class="meniuc">Jūsų komanda jau įvygdžius šią misiją!</div>';
         }
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos"];
     navigacija($g_n);
 
 }
@@ -2501,7 +2509,7 @@ Jūsų komanda sėkmingai įvygdė šią misiją</b>! <br>Į iždą gavote <b>1,
             echo '<div class="meniuc">Jūsų komanda jau įvygdžius šią misiją!</div>';
         }
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos"];
     navigacija($g_n);
 
 }
@@ -2543,7 +2551,7 @@ Jūsų komanda sėkmingai įvygdė šią misiją</b>! <br>Į iždą gavote <b>50
             echo '<div class="meniuc">Jūsų komanda jau įvygdžius šią misiją!</div>';
         }
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos"];
     navigacija($g_n);
 
 }
@@ -2584,7 +2592,7 @@ Jūsų komanda sėkmingai įvygdė šią misiją</b>! <br>Į iždą buvo pridėt
             echo '<div class="meniuc">Jūsų komanda jau įvygdžius šią misiją!</div>';
         }
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos"];
     navigacija($g_n);
 
 }
@@ -2627,7 +2635,7 @@ Jūsų komanda sėkmingai įvygdė šią misiją</b>! <br>Į iždą buvo pridėt
             echo '<div class="meniuc">Jūsų komanda jau įvygdžius šią misiją!</div>';
         }
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos"];
     navigacija($g_n);
 
 }
@@ -2670,7 +2678,7 @@ Jūsų komanda sėkmingai įvygdė šią misiją</b>! <br>Į iždą buvo pridėt
             echo '<div class="meniuc">Jūsų komanda jau įvygdžius šią misiją!</div>';
         }
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos"];
     navigacija($g_n);
 
 }
@@ -2713,7 +2721,7 @@ Jūsų komanda sėkmingai įvygdė šią misiją</b>! <br>Į iždą buvo pridėt
             echo '<div class="meniuc">Jūsų komanda jau įvygdžius šią misiją!</div>';
         }
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos"];
     navigacija($g_n);
 
 }
@@ -2756,7 +2764,7 @@ Jūsų komanda sėkmingai įvygdė šią misiją</b>! <br>Į iždą buvo pridėt
             echo '<div class="meniuc">Jūsų komanda jau įvygdžius šią misiją!</div>';
         }
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos"];
     navigacija($g_n);
 
 }
@@ -2797,7 +2805,7 @@ Jūsų komanda sėkmingai įvygdė šią misiją</b>! <br>Į iždą buvo pridėt
             echo '<div class="meniuc">Jūsų komanda jau įvygdžius šią misiją!</div>';
         }
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos"];
     navigacija($g_n);
 
 }
@@ -2840,7 +2848,7 @@ Jūsų komanda sėkmingai įvygdė šią misiją</b>! <br>Į iždą buvo pridėt
             echo '<div class="meniuc">Jūsų komanda jau įvygdžius šią misiją!</div>';
         }
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos"];
     navigacija($g_n);
 
 }
@@ -2883,7 +2891,7 @@ Jūsų komanda sėkmingai įvygdė šią misiją</b>! <br>Į iždą buvo pridėt
             echo '<div class="meniuc">Jūsų komanda jau įvygdžius šią misiją!</div>';
         }
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos"];
     navigacija($g_n);
 
 }
@@ -2924,7 +2932,7 @@ Jūsų komanda sėkmingai įvygdė šią misiją</b>! <br>Į iždą buvo pridėt
             echo '<div class="meniuc">Jūsų komanda jau įvygdžius šią misiją!</div>';
         }
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos"];
     navigacija($g_n);
 
 }
@@ -2967,7 +2975,7 @@ Jūsų komanda sėkmingai įvygdė šią misiją</b>! <br>Į iždą buvo pridėt
             echo '<div class="meniuc">Jūsų komanda jau įvygdžius šią misiją!</div>';
         }
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos"];
     navigacija($g_n);
 
 }
@@ -3005,7 +3013,7 @@ if ($id == 'misijoskovu10') {
             echo '<div class="meniuc">Jūsų komanda jau įvygdžius šią misiją!</div>';
         }
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos"];
     navigacija($g_n);
 
 }
@@ -3042,7 +3050,7 @@ if ($id == 'misijoskovu9') {
             echo '<div class="meniuc">Jūsų komanda jau įvygdžius šią misiją!</div>';
         }
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos"];
     navigacija($g_n);
 
 }
@@ -3079,7 +3087,7 @@ if ($id == 'misijoskovu8') {
             echo '<div class="meniuc">Jūsų komanda jau įvygdžius šią misiją!</div>';
         }
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos"];
     navigacija($g_n);
 
 }
@@ -3115,7 +3123,7 @@ if ($id == 'misijoskovu7') {
             echo '<div class="meniuc">Jūsų komanda jau įvygdžius šią misiją!</div>';
         }
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos"];
     navigacija($g_n);
 
 }
@@ -3151,7 +3159,7 @@ if ($id == 'misijoskovu6') {
             echo '<div class="meniuc">Jūsų komanda jau įvygdžius šią misiją!</div>';
         }
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos"];
     navigacija($g_n);
 
 }
@@ -3187,7 +3195,7 @@ if ($id == 'misijoskovu5') {
             echo '<div class="meniuc">Jūsų komanda jau įvygdžius šią misiją!</div>';
         }
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos"];
     navigacija($g_n);
 
 }
@@ -3225,7 +3233,7 @@ if ($id == 'misijoskovu4') {
             echo '<div class="meniuc">Jūsų komanda jau įvygdžius šią misiją!</div>';
         }
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos"];
     navigacija($g_n);
 
 }
@@ -3261,7 +3269,7 @@ if ($id == 'misijoskovu3') {
             echo '<div class="meniuc">Jūsų komanda jau įvygdžius šią misiją!</div>';
         }
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos"];
     navigacija($g_n);
 
 }
@@ -3299,7 +3307,7 @@ if ($id == 'misijoskovu2') {
             echo '<div class="meniuc">Jūsų komanda jau įvygdžius šią misiją!</div>';
         }
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos"];
     navigacija($g_n);
 
 }
@@ -3337,7 +3345,7 @@ Jūsų komanda sėkmingai įvygdė šią misiją</b>! <br>Atrakinote <b>Pirmajį
             echo '<div class="meniuc">Jūsų komanda jau įvygdžius šią misiją!</div>';
         }
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos"];
     navigacija($g_n);
 
 }
@@ -3426,7 +3434,7 @@ if ($id == 'misijoskrit') {
         echo "	</div>";
     }
 
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos"];
     navigacija($g_n);
 }
 ///euru misijos
@@ -3514,7 +3522,7 @@ if ($id == 'misijoseuru') {
         echo "	</div>";
     }
 
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos"];
     navigacija($g_n);
 }
 
@@ -3603,7 +3611,7 @@ if ($id == 'misijospinigu') {
         echo "	</div>";
     }
 
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos"];
     navigacija($g_n);
 }
 
@@ -3693,7 +3701,7 @@ if ($id == 'misijoskovu') {
         echo "	</div>";
     }
 
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos"];
     navigacija($g_n);
 }
 if ($id == 'kmisijos') {
@@ -3716,7 +3724,7 @@ if ($id == 'kmisijos') {
         echo "		" . $ico . " <a href='komanda.php?id=misijoskrit&ka=$ka'>Kritinio lygio Misijos</a><br>";
         echo "		</div>";
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Misijos"];
     navigacija($g_n);
 }
 
@@ -3737,7 +3745,7 @@ if ($id == 'nario_cp') {
 		" . $ico . " <a href='komanda.php?id=leave&ka=$ka'>Išeiti iš komandos</a><br>
 		</div>";
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Nario cp");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Nario cp"];
     navigacija($g_n);
 }
 if ($id == 'leave') {
@@ -3750,7 +3758,7 @@ if ($id == 'leave') {
         echo "<div class='meniuc'>Atlikta</div>";
         mysqli_query($conn, "UPDATE user SET team='',win_in_team='0',kiek_paaukojo_i_team='0' WHERE nick='$nick'");
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Išėjimas iš komandos");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Išėjimas iš komandos"];
     navigacija($g_n);
 }
 
@@ -3769,12 +3777,12 @@ if ($id == 'pinigai') {
 		<input type='submit' value='Pervesti'><br>
 		</form></div>";
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Pinigų pervedimas");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Pinigų pervedimas"];
     navigacija($g_n);
 }
 if ($id == 'pervedu_pinigus') {
     top('Pinigų pervedimas');
-    $kiek = preg_replace("/[^0-9]/", "", $_POST['kiek']);
+    $kiek = preg_replace("/[^0-9]/", "", (string) $_POST['kiek']);
 
 
     if ($user['team'] !== $ka) {
@@ -3794,7 +3802,7 @@ if ($id == 'pervedu_pinigus') {
         mysqli_query($conn, "UPDATE user SET kiek_paaukojo_i_team='$kiek3' WHERE nick ='$nick'");
 
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Pinigų pervedimas");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Pinigų pervedimas"];
     navigacija($g_n);
 }
 
@@ -3812,12 +3820,12 @@ if ($id == 'eurai') {
 		<input type='submit' value='Pervesti'><br>
 		</form></div>";
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Eurų pervedimas");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Eurų pervedimas"];
     navigacija($g_n);
 }
 if ($id == 'pervedu_eurus') {
     top('Eurų pervedimas');
-    $kiek = preg_replace("/[^0-9]/", "", $_POST['kiek']);
+    $kiek = preg_replace("/[^0-9]/", "", (string) $_POST['kiek']);
 
 
     if ($user['team'] !== $ka) {
@@ -3837,7 +3845,7 @@ if ($id == 'pervedu_eurus') {
         mysqli_query($conn, "UPDATE user SET kiek_paaukojo_i_team2='$kiek3' WHERE nick ='$nick'");
 
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Eurų pervedimas");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Eurų pervedimas"];
     navigacija($g_n);
 }
 
@@ -3855,7 +3863,7 @@ if ($id == 'topic') {
 		<input type='submit' value='Keisti'><br>
 		</form></div>";
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Topikas");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Topikas"];
     navigacija($g_n);
 }
 if ($id == 'keiciu_topic') {
@@ -3872,7 +3880,7 @@ if ($id == 'keiciu_topic') {
         echo "<div class='meniuc'><b>Atlikta</b></div>";
         mysqli_query($conn, "UPDATE team SET topic='$topic' WHERE pavadinimas='$ka'");
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Keisti topika");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Keisti topika"];
     navigacija($g_n);
 }
 if ($id == 'pv_cp') {
@@ -3899,7 +3907,7 @@ if ($id == 'pv_cp') {
 		" . $ico . " <a href='komanda.php?id=ft&ka=$ka'>Keisti komandos foto</a>[<a href=\"komanda.php?id=isimtift&ka=$ka\">x</a>]<br>
 		</div>";
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Pavaduotojo cp");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Pavaduotojo cp"];
     navigacija($g_n);
 }
 if ($id == 'admin_cp') {
@@ -3931,7 +3939,7 @@ if ($id == 'admin_cp') {
 		" . $ico . " <a href='komanda.php?id=ft&ka=$ka'>Keisti komandos foto</a>[<a href=\"komanda.php?id=isimtift&ka=$ka\">x</a>]<br>
 		</div>";
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Vado cp");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Vado cp"];
     navigacija($g_n);
 }
 /// pinigu pervedimas sau
@@ -3949,12 +3957,12 @@ if ($id == 'veduospin') {
 		<input type='submit' value='Pervesti'><br>
 		</form></div>";
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Pinigų pervedimas");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Pinigų pervedimas"];
     navigacija($g_n);
 }
 if ($id == 'persivedu_pinigus') {
     top('Pinigų pervedimas');
-    $kiek = preg_replace("/[^0-9]/", "", $_POST['kiek']);
+    $kiek = preg_replace("/[^0-9]/", "", (string) $_POST['kiek']);
 
 
     if ($info['vadas'] !== $nick) {
@@ -3974,7 +3982,7 @@ if ($id == 'persivedu_pinigus') {
 
 
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Pinigų pervedimas");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Pinigų pervedimas"];
     navigacija($g_n);
 }
 
@@ -3994,12 +4002,12 @@ if ($id == 'veduoseur') {
 		<input type='submit' value='Pervesti'><br>
 		</form></div>";
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Eurų pervedimas");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Eurų pervedimas"];
     navigacija($g_n);
 }
 if ($id == 'persivedu_eurus') {
     top('Eurų pervedimas');
-    $kiek = preg_replace("/[^0-9]/", "", $_POST['kiek']);
+    $kiek = preg_replace("/[^0-9]/", "", (string) $_POST['kiek']);
 
 
     if ($info['vadas'] !== $nick) {
@@ -4019,15 +4027,16 @@ if ($id == 'persivedu_eurus') {
 
 
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Eurų pervedimas");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Eurų pervedimas"];
     navigacija($g_n);
 }
 
 //algos kiekis
 if ($id == 'keist_kiek') {
     top('Algos nustatymas kas kiek kovų');
-    if ($info['vadas'] != $nick && $info['pavadotuojas'] != $nick) echo "<div class='meniuc>Tu nesi šios komandos vadas </div>";
-    elseif (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM team WHERE pavadinimas='" . $info['pavadinimas'] . "'")) == false) {
+    if ($info['vadas'] != $nick && $info['pavadotuojas'] != $nick) {
+        echo "<div class='meniuc>Tu nesi šios komandos vadas </div>";
+    } elseif (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM team WHERE pavadinimas='" . $info['pavadinimas'] . "'")) == false) {
         echo "<div class='meniuc'>Tokios komandos nėra</div>";
     } else {
         echo "<div class='meniuc'>
@@ -4038,15 +4047,16 @@ if ($id == 'keist_kiek') {
 		</form>
 		</div>";
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Algos nustatymas ");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Algos nustatymas "];
     navigacija($g_n);
 }
 if ($id == 'keist_kiek2') {
     top('Algos nustatymas kas kiek kovų');
-    $alga = preg_replace("/[^0-9]/", "", $_POST['alga']);
+    $alga = preg_replace("/[^0-9]/", "", (string) $_POST['alga']);
 
-    if ($info['vadas'] != $nick && $info['pavadotuojas'] != $nick) echo "<div class='meniuc'>Tu nesi šios komandos vadas</div>";
-    elseif (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM team WHERE pavadinimas='" . $info['pavadinimas'] . "'")) == false) {
+    if ($info['vadas'] != $nick && $info['pavadotuojas'] != $nick) {
+        echo "<div class='meniuc'>Tu nesi šios komandos vadas</div>";
+    } elseif (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM team WHERE pavadinimas='" . $info['pavadinimas'] . "'")) == false) {
         echo "<div class='meniuc>Tokios komandos nėra</div>";
     } elseif (empty($alga)) {
         echo "<div class='meniuc'>Neįrašei kiekio !</div>";
@@ -4057,13 +4067,14 @@ if ($id == 'keist_kiek2') {
         mysqli_query($conn, "UPDATE team SET iki_algos='$alga' WHERE pavadinimas='$ka'");
         mysqli_query($conn, "UPDATE team SET iki_algos2='$alga' WHERE pavadinimas='$ka'");
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Algos nustatymas");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Algos nustatymas"];
     navigacija($g_n);
 }
 if ($id == 'statyt_alga') {
     top('Algos nustatymas pinigais');
-    if ($info['vadas'] != $nick && $info['pavadotuojas'] != $nick) echo "<div class='meniuc>Tu nesi šios komandos vadas </div>";
-    elseif (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM team WHERE pavadinimas='" . $info['pavadinimas'] . "'")) == false) {
+    if ($info['vadas'] != $nick && $info['pavadotuojas'] != $nick) {
+        echo "<div class='meniuc>Tu nesi šios komandos vadas </div>";
+    } elseif (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM team WHERE pavadinimas='" . $info['pavadinimas'] . "'")) == false) {
         echo "<div class='meniuc'>Tokios komandos nėra</div>";
     } else {
         echo "<div class='meniuc'>
@@ -4074,15 +4085,16 @@ if ($id == 'statyt_alga') {
 		</form>
 		</div>";
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Algos nustatymas ");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Algos nustatymas "];
     navigacija($g_n);
 }
 if ($id == 'keiciu_alga') {
     top('Algos nustatymas pinigais');
-    $alga = preg_replace("/[^0-9]/", "", $_POST['alga']);
+    $alga = preg_replace("/[^0-9]/", "", (string) $_POST['alga']);
 
-    if ($info['vadas'] != $nick && $info['pavadotuojas'] != $nick) echo "<div class='meniuc'>Tu nesi šios komandos vadas</div>";
-    elseif (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM team WHERE pavadinimas='" . $info['pavadinimas'] . "'")) == false) {
+    if ($info['vadas'] != $nick && $info['pavadotuojas'] != $nick) {
+        echo "<div class='meniuc'>Tu nesi šios komandos vadas</div>";
+    } elseif (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM team WHERE pavadinimas='" . $info['pavadinimas'] . "'")) == false) {
         echo "<div class='meniuc>Tokios komandos nėra</div>";
     } elseif ($info['pinigai'] < 0) {
         echo "<div class='meniuc'>Komandoje tiek $pinigaii nėra!</div>";
@@ -4092,13 +4104,14 @@ if ($id == 'keiciu_alga') {
         echo "<div class='meniuc'><b>Atlikta, alga pakeista!</b></div>";
         mysqli_query($conn, "UPDATE team SET uz_500_kovu='$alga' WHERE pavadinimas='$ka'");
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Algos nustatymas");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Algos nustatymas"];
     navigacija($g_n);
 }
 if ($id == 'statyt_alga2') {
     top('Algos nustatymas eurais');
-    if ($info['vadas'] != $nick && $info['pavadotuojas'] != $nick) echo "<div class='meniuc>Tu nesi šios komandos vadas </div>";
-    elseif (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM team WHERE pavadinimas='" . $info['pavadinimas'] . "'")) == false) {
+    if ($info['vadas'] != $nick && $info['pavadotuojas'] != $nick) {
+        echo "<div class='meniuc>Tu nesi šios komandos vadas </div>";
+    } elseif (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM team WHERE pavadinimas='" . $info['pavadinimas'] . "'")) == false) {
         echo "<div class='meniuc'>Tokios komandos nėra</div>";
     } else {
         echo "<div class='meniuc'>
@@ -4109,15 +4122,16 @@ if ($id == 'statyt_alga2') {
 		</form>
 		</div>";
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Algos nustatymas ");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Algos nustatymas "];
     navigacija($g_n);
 }
 if ($id == 'keiciu_alga2') {
     top('Algos nustatymas eurais');
-    $alga = preg_replace("/[^0-9]/", "", $_POST['alga']);
+    $alga = preg_replace("/[^0-9]/", "", (string) $_POST['alga']);
 
-    if ($info['vadas'] != $nick && $info['pavadotuojas'] != $nick) echo "<div class='meniuc'>Tu nesi šios komandos vadas</div>";
-    elseif (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM team WHERE pavadinimas='" . $info['pavadinimas'] . "'")) == false) {
+    if ($info['vadas'] != $nick && $info['pavadotuojas'] != $nick) {
+        echo "<div class='meniuc'>Tu nesi šios komandos vadas</div>";
+    } elseif (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM team WHERE pavadinimas='" . $info['pavadinimas'] . "'")) == false) {
         echo "<div class='meniuc>Tokios komandos nėra</div>";
     } elseif ($info['eurai'] < 1) {
         echo "<div class='meniuc'>Komandoje tiek $eurui nėra!</div>";
@@ -4127,7 +4141,7 @@ if ($id == 'keiciu_alga2') {
         echo "<div class='meniuc'><b>Atlikta, alga pakeista!</b></div>";
         mysqli_query($conn, "UPDATE team SET uz_500_kovu2='$alga' WHERE pavadinimas='$ka'");
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Algos nustatymas");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Algos nustatymas"];
     navigacija($g_n);
 }
 
@@ -4138,15 +4152,16 @@ if ($id == 'delete') {
 				 Ar tikrai trinsite komanda ?</br>
 				 <a href="?id=delete_team&ka=' . $ka . '"><font color="blue">Taip</font></a>  <a href="?"><font color="red">Ne</font></a>
 	</div>		';
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Komandos ištrinimas");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Komandos ištrinimas"];
     navigacija($g_n);
 }
 
 if ($id == 'delete_team') {
 
     top('Komandos ištrinimas');
-    if ($info['vadas'] != $nick) echo "<div class='meniuc'>Tu nesi šios komandos vadas</div>";
-    elseif (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM team WHERE pavadinimas='" . $info['pavadinimas'] . "'")) == false) {
+    if ($info['vadas'] != $nick) {
+        echo "<div class='meniuc'>Tu nesi šios komandos vadas</div>";
+    } elseif (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM team WHERE pavadinimas='" . $info['pavadinimas'] . "'")) == false) {
         echo "<div class='meniuc>Tokios komandos nėra</div>";
     } else {
         echo "<div class='meniuc'>Komanda ištrinta</div>";
@@ -4159,13 +4174,14 @@ if ($id == 'delete_team') {
             unset($info);
         }
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Komandos ištrinimas");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Komandos ištrinimas"];
     navigacija($g_n);
 }
 if ($id == 'aukos2') {
     top('Komandos eurų aukojimo statistika');
-    if ($info['vadas'] != $nick && $info['pavadotuojas'] != $nick) echo "<div class='meniuc'>Tu nesi šios komandos vadas</div>";
-    elseif (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM team WHERE pavadinimas='" . $info['pavadinimas'] . "'")) == false) {
+    if ($info['vadas'] != $nick && $info['pavadotuojas'] != $nick) {
+        echo "<div class='meniuc'>Tu nesi šios komandos vadas</div>";
+    } elseif (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM team WHERE pavadinimas='" . $info['pavadinimas'] . "'")) == false) {
         echo "<div class='meniuc>Tokios komandos nėra</div>";
     } else {
         echo "<div class='meniuc'><b>Pagal " . $eurui . "</b> aukojimą: </div>";
@@ -4182,14 +4198,15 @@ if ($id == 'aukos2') {
         }
         echo "</div>";
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Logas");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Logas"];
     navigacija($g_n);
 }
 
 if ($id == 'aukos') {
     top('Komandos pinigų aukojimo statistika');
-    if ($info['vadas'] != $nick && $info['pavadotuojas'] != $nick) echo "<div class='meniuc'>Tu nesi šios komandos vadas</div>";
-    elseif (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM team WHERE pavadinimas='" . $info['pavadinimas'] . "'")) == false) {
+    if ($info['vadas'] != $nick && $info['pavadotuojas'] != $nick) {
+        echo "<div class='meniuc'>Tu nesi šios komandos vadas</div>";
+    } elseif (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM team WHERE pavadinimas='" . $info['pavadinimas'] . "'")) == false) {
         echo "<div class='meniuc>Tokios komandos nėra</div>";
     } else {
 
@@ -4207,13 +4224,14 @@ if ($id == 'aukos') {
         }
         echo "</div>";
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Logas");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Logas"];
     navigacija($g_n);
 }
 if ($id == 'log') {
     top('Kovų logas');
-    if ($info['vadas'] != $nick && $info['pavadotuojas'] != $nick) echo "<div class='meniuc'>Tu nesi šios komandos vadas</div>";
-    elseif (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM team WHERE pavadinimas='" . $info['pavadinimas'] . "'")) == false) {
+    if ($info['vadas'] != $nick && $info['pavadotuojas'] != $nick) {
+        echo "<div class='meniuc'>Tu nesi šios komandos vadas</div>";
+    } elseif (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM team WHERE pavadinimas='" . $info['pavadinimas'] . "'")) == false) {
         echo "<div class='meniuc>Tokios komandos nėra</div>";
     } else {
         echo "<div class='meniu'>
@@ -4230,7 +4248,7 @@ if ($id == 'log') {
         }
         echo "</div>";
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Kovų logas");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Kovų logas"];
     navigacija($g_n);
 }
 
@@ -4239,8 +4257,9 @@ if ($id == 'delete_player_from_team') {
     top('Narių šalinimas');
 
 
-    if ($info['vadas'] != $nick && $info['pavadotuojas'] != $nick) echo "<div class='meniuc'>Tu nesi šios komandos vadas</div>";
-    elseif (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM team WHERE pavadinimas='" . $info['pavadinimas'] . "'")) == false) {
+    if ($info['vadas'] != $nick && $info['pavadotuojas'] != $nick) {
+        echo "<div class='meniuc'>Tu nesi šios komandos vadas</div>";
+    } elseif (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM team WHERE pavadinimas='" . $info['pavadinimas'] . "'")) == false) {
         echo "<div class='meniuc>Tokios komandos nėra</div>";
     } else {
         echo "<div class='meniuc'>
@@ -4250,7 +4269,7 @@ if ($id == 'delete_player_from_team') {
 		<input type='submit' value='Išmesti'>
 		</form></div>";
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Narių šalinimas");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Narių šalinimas"];
     navigacija($g_n);
 }
 if ($id == 'metu') {
@@ -4258,8 +4277,9 @@ if ($id == 'metu') {
     $kas = post($_POST['kas']);
 
     $info2 = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM user WHERE nick='" . $kas . "'"));
-    if ($info['vadas'] != $nick && $info['pavadotuojas'] != $nick) echo "<div class='meniuc'>Tu nesi šios komandos vadas</div>";
-    elseif (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM team WHERE pavadinimas='" . $info['pavadinimas'] . "'")) == false) {
+    if ($info['vadas'] != $nick && $info['pavadotuojas'] != $nick) {
+        echo "<div class='meniuc'>Tu nesi šios komandos vadas</div>";
+    } elseif (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM team WHERE pavadinimas='" . $info['pavadinimas'] . "'")) == false) {
         echo "<div class='meniuc>Tokios komandos nėra</div>";
     } elseif (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM zaidejai WHERE nick='" . $kas . "'")) == false) {
         echo "<div class='meniuc>Tokio vartotojo nėra</div>";
@@ -4271,14 +4291,15 @@ if ($id == 'metu') {
         echo "<div class='meniuc'>Atlikta, <b>$kas</b> išmestas iš tavo komandos</div>";
         mysqli_query($conn, "UPDATE user SET team='',win_in_team='0',kiek_paaukojo_i_team='0' WHERE nick='$kas'");
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Narių šalinimas");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Narių šalinimas"];
     navigacija($g_n);
 }
 if ($id == 'kviesti') {
     top('Žaidėju pakvietimas');
     $info2 = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM user WHERE nick='" . $kas . "'"));
-    if ($info['vadas'] != $nick && $info['pavadotuojas'] != $nick) echo "<div class='meniuc'>Tu nesi šios komandos vadas</div>";
-    elseif (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM team WHERE pavadinimas='" . $info['pavadinimas'] . "'")) == false) {
+    if ($info['vadas'] != $nick && $info['pavadotuojas'] != $nick) {
+        echo "<div class='meniuc'>Tu nesi šios komandos vadas</div>";
+    } elseif (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM team WHERE pavadinimas='" . $info['pavadinimas'] . "'")) == false) {
         echo "<div class='meniuc>Tokios komandos nėra</div>";
     } else {
         echo "<div class='meniuc'>Ką kviesi į komandą:<br>
@@ -4287,7 +4308,7 @@ if ($id == 'kviesti') {
 		<input type='submit' value='Kviesti'>
 		</form></div>";
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Žaidėjų pakvietimas");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Žaidėjų pakvietimas"];
     navigacija($g_n);
 }
 if ($id == 'kvieciu') {
@@ -4296,8 +4317,9 @@ if ($id == 'kvieciu') {
 
 
     $info2 = mysqli_fetch_array(mysqli_query($conn, "SELECT * FROM user WHERE nick='" . $kas . "'"));
-    if ($info['vadas'] != $nick && $info['pavadotuojas'] != $nick) echo "<div class='meniuc'>Tu nesi šios komandos vadas</div>";
-    elseif (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM team WHERE pavadinimas='" . $info['pavadinimas'] . "'")) == false) {
+    if ($info['vadas'] != $nick && $info['pavadotuojas'] != $nick) {
+        echo "<div class='meniuc'>Tu nesi šios komandos vadas</div>";
+    } elseif (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM team WHERE pavadinimas='" . $info['pavadinimas'] . "'")) == false) {
         echo "<div class='meniuc>Tokios komandos nėra</div>";
     } elseif (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM zaidejai WHERE nick='" . $kas . "'")) == false) {
         echo "<div class='meniuc'>Tokio vartotojo nėra</div>";
@@ -4315,7 +4337,7 @@ if ($id == 'kvieciu') {
         echo "<div class='meniuc'><b>$kas</b> išsiųstas pakvietimas įstoti į <b>$ka</b> komandą. Laukite atsakymo</div>";
         mysqli_query($conn, "INSERT INTO kvietimai_i_komanda SET kas='$nick', nick2='$kas',team='$ka'");
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Žaidėjų pakvietimas");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Žaidėjų pakvietimas"];
     navigacija($g_n);
 }
 if ($id == 'priimti') {
@@ -4333,9 +4355,9 @@ if ($id == 'priimti') {
     } else {
         echo "<div class='meniuc'>Atlikta,įstojai į " . $infa['team'] . " komandą</div>";
         mysqli_query($conn, "UPDATE user SET team='" . $infa['team'] . "',iki_algos='2000' WHERE nick='$nick'");
-        mysqli_query($conn, "DELETE FROM kvietimai_i_komanda WHERE nick2='$nick'") or die(mysqli_error());
+        mysqli_query($conn, "DELETE FROM kvietimai_i_komanda WHERE nick2='$nick'") || die(mysqli_error());
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Narių priėmimas");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Narių priėmimas"];
     navigacija($g_n);
 }
 if ($id == 'atmesti') {
@@ -4349,9 +4371,9 @@ if ($id == 'atmesti') {
         echo "<div class='meniuc'>Tu jau esi komandoje</div>";
     } else {
         echo "<div class='meniuc'><b>Atmetei</b></div>";
-        mysqli_query($conn, "DELETE FROM kvietimai_i_komanda WHERE nick2='$nick'") or die(mysqli_error());
+        mysqli_query($conn, "DELETE FROM kvietimai_i_komanda WHERE nick2='$nick'") || die(mysqli_error());
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Narių kvietimų atšaukimas");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Narių kvietimų atšaukimas"];
     navigacija($g_n);
 }
 
@@ -4367,10 +4389,10 @@ if ($id == 'priimti_kv') {
     } else {
         echo "<div class='meniuc'>Priiemei sėkmingai</div>";
         mysqli_query($conn, "UPDATE user SET team='" . $kvietimas_i_komanda['komanda'] . "',iki_algos='2000' WHERE nick='$kvietimas_i_komanda[nick]'");
-        mysqli_query($conn, "DELETE FROM prasosi_i_komanda WHERE nick='$kvietimas_i_komanda[nick]'") or die(mysqli_error());
-        mysqli_query($conn, "INSERT INTO pm SET what='SUPPORT', txt='Jus priimtas į $kvietimas_i_komanda[komanda] komandą', gavejas='$kvietimas_i_komanda[nick]', time='" . time() . "', nauj='NEW' ") or die(mysqli_error());
+        mysqli_query($conn, "DELETE FROM prasosi_i_komanda WHERE nick='$kvietimas_i_komanda[nick]'") || die(mysqli_error());
+        mysqli_query($conn, "INSERT INTO pm SET what='SUPPORT', txt='Jus priimtas į $kvietimas_i_komanda[komanda] komandą', gavejas='$kvietimas_i_komanda[nick]', time='" . time() . "', nauj='NEW' ") || die(mysqli_error());
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Narių priėmimas");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Narių priėmimas"];
     navigacija($g_n);
 }
 
@@ -4383,10 +4405,10 @@ if ($id == 'atmesti_kv') {
         echo "<div class='meniuc'>Šis žaidėjas nesiprašo į jūsų komanda</div>";
     } else {
         echo "<div class='meniuc'>Atmesta sėkmingai</div>";
-        mysqli_query($conn, "INSERT INTO pm SET what='SUPPORT', txt='Jus prašimasis į $kvietimas_i_komanda[komanda] komandą, atmestas', gavejas='$kvietimas_i_komanda[nick]', time='" . time() . "', nauj='NEW' ") or die(mysqli_error());
-        mysqli_query($conn, "DELETE FROM prasosi_i_komanda WHERE nick='$kvietimas_i_komanda[nick]'") or die(mysqli_error());
+        mysqli_query($conn, "INSERT INTO pm SET what='SUPPORT', txt='Jus prašimasis į $kvietimas_i_komanda[komanda] komandą, atmestas', gavejas='$kvietimas_i_komanda[nick]', time='" . time() . "', nauj='NEW' ") || die(mysqli_error());
+        mysqli_query($conn, "DELETE FROM prasosi_i_komanda WHERE nick='$kvietimas_i_komanda[nick]'") || die(mysqli_error());
     }
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Narių priėmimas");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Narių priėmimas"];
     navigacija($g_n);
 }
 
@@ -4412,11 +4434,7 @@ if ($id == 'dtop') {
         echo '<div class="meniu">';
         while ($row = mysqli_fetch_assoc($query)) {
             $vt++;
-            if ($row['team'] == $nust['last2']) {
-                $last2_team = '<s>' . $row['team'] . '</s>';
-            } else {
-                $last2_team = '' . $row['team'] . '';
-            }
+            $last2_team = $row['team'] == $nust['last2'] ? '<s>' . $row['team'] . '</s>' : '' . $row['team'] . '';
             echo ' <b>' . $vt . '</b>.<a href="?id=info&ka=' . $row['team'] . '"><b>' . $last2_team . '</b></a>  --    <b>' . sk($row['laimejo_kovu']) . ' Laimėjo kovų</b><br>';
 
         }
@@ -4435,7 +4453,7 @@ if ($id == 'dtop') {
 
     }
     echo '</div>';
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Komandų dienos topas");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Komandų dienos topas"];
     navigacija($g_n);
 }
 if ($id == 'sdtop') {
@@ -4460,11 +4478,7 @@ if ($id == 'sdtop') {
         echo '<div class="meniu">';
         while ($row = mysqli_fetch_assoc($query)) {
             $vt++;
-            if ($row['team'] == $nust['last3']) {
-                $last3_team = '<s>' . $row['team'] . '</s>';
-            } else {
-                $last3_team = '' . $row['team'] . '';
-            }
+            $last3_team = $row['team'] == $nust['last3'] ? '<s>' . $row['team'] . '</s>' : '' . $row['team'] . '';
             echo ' <b>' . $vt . '</b>.<a href="?id=info&ka=' . $row['team'] . '"><b>' . $last3_team . '</b></a>  --    <b>' . sk($row['laimejo_kovu']) . ' Laimėjo kovų</b><br>';
 
         }
@@ -4483,7 +4497,7 @@ if ($id == 'sdtop') {
 
     }
     echo '</div>';
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Komandų Savaitės Topas");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Komandų Savaitės Topas"];
     navigacija($g_n);
 }
 
@@ -4504,7 +4518,7 @@ if ($id == 'prasytis') {
     }
 
 
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Prašymasis i komanda");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "komanda.php", "Komandos", "komanda.php?id=info&ka=$ka", " $ka komanda", "Prašymasis i komanda"];
     navigacija($g_n);
 }
 
@@ -4517,7 +4531,7 @@ if ($id == "pavsut") {
     if (isset($_POST['submit'])) {
         $kam = post($_POST['kam']);
         $kaa = post($_POST['kaa']);
-        if (empty($kam) or empty($kaa)) {
+        if (empty($kam) || empty($kaa)) {
             echo '<div class="meniuc">Palikai tuščią laukelį.</div>';
         }
         if ($kam == $nick) {
@@ -4526,20 +4540,16 @@ if ($id == "pavsut") {
             echo '<div class="meniuc">Toks žaidėjas neegzistuoja!</div>';
         } elseif (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM user WHERE team='" . $kam . "'")) == false) {
             echo "<div class='meniuc'>Šis žaidejas nėra komandos narys</div>";
-        } else {
-            if ($kaa == 1) {
-                mysqli_query($conn, "UPDATE team SET pavadotuojas='$kam' WHERE pavadinimas='$ka' ");
-                $txt = "$nick Suteike komados pavaduotojo statusą.";
-                mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
-                echo '<div class="meniuc">Atlikta! Suteikiai ' . $kam . ' komandos pavaduotojo statusą.</div>';
-
-            } elseif ($kaa == 2) {
-                mysqli_query($conn, "UPDATE team SET pavadotuojas='' WHERE pavadinimas='$ka' ");
-                $txt = "$nick Nuėme tavo komandos pavaduotojo statusą.";
-                mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
-                echo '<div class="meniuc">Atlikta! Nuėmei ' . $kam . ' komandos pavaduotojo statusą.</div>';
-            }
-
+        } elseif ($kaa == 1) {
+            mysqli_query($conn, "UPDATE team SET pavadotuojas='$kam' WHERE pavadinimas='$ka' ");
+            $txt = "$nick Suteike komados pavaduotojo statusą.";
+            mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
+            echo '<div class="meniuc">Atlikta! Suteikiai ' . $kam . ' komandos pavaduotojo statusą.</div>';
+        } elseif ($kaa == 2) {
+            mysqli_query($conn, "UPDATE team SET pavadotuojas='' WHERE pavadinimas='$ka' ");
+            $txt = "$nick Nuėme tavo komandos pavaduotojo statusą.";
+            mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
+            echo '<div class="meniuc">Atlikta! Nuėmei ' . $kam . ' komandos pavaduotojo statusą.</div>';
         }
     }
     echo '<div class="meniu">
@@ -4552,7 +4562,7 @@ if ($id == "pavsut") {
         <input type="submit" name="submit" value="Atlikti"/></form>
         </div>';
 
-    $g_n[] = array("pagrindinis.php?id=", "Pagrindinis", "meniu.php", "Mano menių", "Mod davimas");
+    $g_n[] = ["pagrindinis.php?id=", "Pagrindinis", "meniu.php", "Mano menių", "Mod davimas"];
     navigacija($g_n);
 }
 

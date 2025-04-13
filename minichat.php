@@ -44,7 +44,6 @@ echo 'Antiflood!! rašyti galesi už <b>'.laikas($_SESSION['chet']-time(), 1).' 
             else{
             	
             mysqli_query($conn,"INSERT INTO pokalbiai SET nick='".$nick."', sms='$zin', data='".time()."'");
-			include'snekute.php';
 			  $_SESSION['chet'] = time()+5;
             
             mysqli_query($conn,"UPDATE zaidejai SET chate=chate+1, pliusai=pliusai+'5' WHERE nick='$nick'");
