@@ -104,10 +104,10 @@ elseif($id == "gautos_all"){
 
 elseif($id == "read"){
 	
-$ID = isset($_GET[ID]) ? $_GET[ID] : null;
+$ID = isset($_GET['ID']) ? $_GET['ID'] : null;
 	 $pmr = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM pm WHERE id='$ID' "));
    online('Skaito Gautą žinutę');
-top('Žinutė nuo '.statusas($pmr[what]).'');
+top('Žinutė nuo '.statusas($pmr['what']).'');
   
   
       mysqli_query($conn,"UPDATE pm SET nauj='OLD' WHERE id='$ID' ");

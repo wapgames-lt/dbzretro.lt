@@ -149,12 +149,12 @@ elseif($id == "read"){
     $pmr = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM pms WHERE id='$ID' "));
     online('Skaito Gautą žinutę');
 
-    if(apsas($pmr[gavejas]) != apsas($nick)){
+    if(apsas($pmr['gavejas']) != apsas($nick)){
 
         echo '<div class="meniu">Irech >:D</div>';
 
     }else{
-        top('Žinutė nuo '.statusas($pmr[what]).'');
+        top('Žinutė nuo '.statusas($pmr['what']).'');
 
 
         mysqli_query($conn,"UPDATE pms SET nauj='OLD' WHERE id='$ID' ");
@@ -205,15 +205,15 @@ elseif($id == "write"){
         if(apsas($kam) == apsas($nick)){
             echo '<div class="meniuc">Sau siųsti žinutės negalimą!</div>';
         } else {
-            if(!$isReceiverAdmin && $apie['lygis'] < 25 && apsas($kam) != apsas(sajanas) && !in_array($apie['statusas'], ['Kurejas', 'Admin'])){
+            if(!$isReceiverAdmin && $apie['lygis'] < 25 && apsas($kam) != apsas('sajanas') && !in_array($apie['statusas'], ['Kurejas', 'Admin'])){
                 echo '<div class="meniuc">Tavo lygis per žemas! Reikia 25 lygio.</div>';
             }
-            elseif($gaves == "+"&& apsas($kam) != apsas(erika)){
+            elseif($gaves == "+"&& apsas($kam) != apsas('erika')){
                 echo '<div class="meniuc"><b>Klaida!</b> Tu esi užtildytas!</div>';
 
             }
             else {
-                if($apie['veiksmai'] < 0 && apsas($kam) != apsas(erika)){
+                if($apie['veiksmai'] < 0 && apsas($kam) != apsas('erika')){
                     echo '<div class="meniuc">Rašyti galima atlikus bent 0 veiksmų</div>';
                 } else {
                     if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM zaidejai WHERE nick='$kam'")) == 0){
