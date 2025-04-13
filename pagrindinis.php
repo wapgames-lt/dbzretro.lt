@@ -1212,7 +1212,7 @@ if ($id == "") {
                     var nick = "<?php echo $nick; ?>";
                     setInterval(function () {
                         loadChat(nick);
-                    }, 1000);
+                    }, 10000);
                 </script>
                 <div id="myDiv2"><?php include(__DIR__ . "/minichat2.php"); ?></div></div>
                 <?php

@@ -37,7 +37,7 @@ echo'<div class="meniuc">';
 $gamer = mysqli_fetch_row(mysqli_query($conn,"SELECT lygis FROM zaidejai WHERE nick='$row[nick]'"));
 		
 			$idd++;
-			if(apsas($row[nick]) == apsas($nick)){
+			if(apsas($row['nick']) == apsas($nick)){
 			echo''.$idd.' '.statusas($nick).' ('.$gamer[0].')</br>';
 				
 			}else{
@@ -193,18 +193,18 @@ $jo_gynyba = round(($arennn['gynyba']/3));
 $jo_kg = ($arennn['jega']  >= $jo_gynyba ) ? $jo_gynyba  : $arennn['jega'] ;
 			
 if($jo_kg > $kg){
-$kirtimas = rand($arennn[gyvybes]/rand(5,8),$arennn[gybybes]/rand(7,10));
+$kirtimas = rand($arennn['gyvybes']/rand(5,8),$arennn['gybybes']/rand(7,10));
 }	
 else{
 	
-	$kirtimas = rand($arennn[gyvybes]/rand(3,5),$arennn[gybybes]/rand(3,7));
+	$kirtimas = rand($arennn['gyvybes']/rand(3,5),$arennn['gybybes']/rand(3,7));
 	
 	
 }		
 			
 			echo'
 			
-			<div class="meniuc"><img src="img/veikejai/'.$arennn[veikejas].'-'.$arennn['trans'].'.png"></br> Trenkdamas nuėmiai '.$kirtimas.' gyvybių, priešui liko <b>'.($arennn['gyvybes']-$kirtimas).'</b> gyvybių.</div>
+			<div class="meniuc"><img src="img/veikejai/'.$arennn['veikejas'].'-'.$arennn['trans'].'.png"></br> Trenkdamas nuėmiai '.$kirtimas.' gyvybių, priešui liko <b>'.($arennn['gyvybes']-$kirtimas).'</b> gyvybių.</div>
 				  ';
 			if($arennn['gyvybes'] - $kirtimas < 1)
 			{
@@ -213,7 +213,7 @@ else{
 				echo'<div class="meniuc"> <b>Tu laimėjai kovą arenoje, gavai '.$piniu.' pinigų.</b></div>';
 				//$mysqli->query("UPDATE user SET pinigai=pinigai+$piniu WHERE id='$nick_id'");
 				//$mysqli->query("UPDATE user SET pinigai=pinigai-$piniu WHERE nick='$x[vs]'");
-$zin = '<b>'.$nick.'</b> nukovė<b>'.$arenn[vs].'</b> gavo pusė jo pinigų!</b>';		
+$zin = '<b>'.$nick.'</b> nukovė<b>'.$arenn['vs'].'</b> gavo pusė jo pinigų!</b>';
     mysqli_query($conn,"INSERT INTO arenos_log SET msg='$zin'");
 				mysqli_query($conn,"DELETE FROM arena WHERE idd='$arenn[idd]'");
 			
@@ -224,7 +224,7 @@ $zin = '<b>'.$nick.'</b> nukovė<b>'.$arenn[vs].'</b> gavo pusė jo pinigų!</b>
 		else{
 		
 	mysqli_query($conn,"UPDATE zaidejai SET gyvybes=gyvybes - $kirtimas WHERE nick='".$arenn['vs']."'");
-	$zin = '<b>'.$nick.'</b> trenkė <b>'.$arenn[vs].'</b> nuimė <b>'.$kirtimas.'</b> gyvybių, dabar <b>'.$arenn[vs].' ėjimas</b>';		
+	$zin = '<b>'.$nick.'</b> trenkė <b>'.$arenn['vs'].'</b> nuimė <b>'.$kirtimas.'</b> gyvybių, dabar <b>'.$arenn['vs'].' ėjimas</b>';
     mysqli_query($conn,"INSERT INTO arenos_log SET msg='$zin'");
 	mysqli_query($conn,"UPDATE arena SET ejimas='$arenn[vs]' ,laikas='".(time()+30)."' WHERE nick='$nick'");
 	mysqli_query($conn,"UPDATE arena SET ejimas='$arenn[vs]' ,laikas='".(time()+30)."' WHERE nick='$arenn[vs]'");
