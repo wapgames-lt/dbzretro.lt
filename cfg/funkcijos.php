@@ -15,19 +15,15 @@ $_COOKIE['vardas'] = htmlentities((string) $_COOKIE['vardas'], ENT_QUOTES);
 $_COOKIE['pass'] = htmlentities((string) $_COOKIE['pass'], ENT_QUOTES);
 $cookis = $_COOKIE['vardas'] ?? null;
 $nick = $cookis;
-
 $cookis2 = $_COOKIE['pass'] ?? null;
-$pass = $cookis2;  
+$pass = $cookis2;
+if (!$nick) {
+    echo '<meta http-equiv="refresh" content="2;url=/prisijungti.php?id=log">';
+    echo '<p>Prašome prisijungti iš naujo...</p>';
+    exit();
+}
+
 $nust = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM nustatymai"));
-$nxkurva= mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$ka' "));
-$in = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$co'"));
-$nxkurva2= mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$co' "));
-$userip= mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM team"));
-$suma = mysqli_query($conn,"SELECT * FROM zaidejai WHERE nick='$nick'");
-$team = mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$ka'");
-$onn = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM  online WHERE nick='$nick'"));
-$onas = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM  online"));
-$topic = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM topic ORDER BY id DESC LIMIT 3"));
 $team_pakv = mysqli_fetch_array(mysqli_query($conn,"SELECT * FROM kvietimai_i_komanda WHERE nick2='$nick'"));
 $fsn = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM susijungimas WHERE nick='$nick' "));
 $fsn2 = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM susijungimas WHERE nick='$fsn[kitas_zaidejas]' "));
@@ -38,7 +34,6 @@ $su_kuo = $fsnas['ar_susijungias'] == "" ? 'Niekuo' : $fsnas['kitas_zaidejas'];
 $inf = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM zaidejai WHERE nick='$ka'"));
 $inff = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM dtop WHERE nick='$ka'"));
 $inf2 = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM team WHERE pavadinimas='$kaa'"));
-$topic = empty($inf['topic']) ? 'Sveikas <b>'.$nick.'</b> sėkmės žaidime :) !' : $inf['topic'];
 $are = mysqli_num_rows(mysqli_query($conn,"SELECT * FROM arena"));
 $i =mysqli_num_rows(mysqli_query($conn,"SELECT * FROM pasiulymai WHERE busena !='Atmesta'"));
 $ii = mysqli_num_rows(mysqli_query($conn,"SELECT * FROM pasiulymai WHERE busena ='Neperžiūrėtas'"));
@@ -223,7 +218,6 @@ $autos = $apie['auto2'];
 $medkirtyste = $apie['medkirtyste'];
 $giras = $apie['giras'];
 $pasiek = $apie['pvisi'];
-$team0= $nxkurva['pavadinimas'];
 $asd = $apie['jega'];
 $asd2 = $apie['gynyba'];
 $eurui = '<img src="img/bicons/euro.png" />';

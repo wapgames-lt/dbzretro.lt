@@ -29,6 +29,7 @@
     ]
   },
   "require-dev": {
+    "roave/security-advisories": "dev-latest",
     "rector/rector": "^2.0",
     "symfony/var-dumper": "^7.2"
   }
