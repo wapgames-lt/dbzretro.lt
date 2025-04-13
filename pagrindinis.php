@@ -3139,8 +3139,8 @@ if ($id == 'pervedimai') {
     header('Location:index.php');
     echo '<div class="meniuc">Sėkmingai atsijungėte!</div>';
     mysqli_query($conn, "DELETE FROM online WHERE nick='$nick' ");
-    setcookie('vardas', '', ['expires' => time() - 3600 * 12 * 365]);
-    setcookie('pass', '', ['expires' => time() - 3600 * 12 * 365]);
+    setcookie('vardas', '');
+    setcookie('pass', '');
 
     $g_n[] = ["index.php?id=", "Pagrindinis", "Atsijungimas"];
     navigacija($g_n);

@@ -10,12 +10,12 @@ baneris();
 
 		 topbar();
 if($id == ""){
-if($apie[gyvateskm] < 10000){
+if($apie['gyvateskm'] < 10000){
 
-$kodas = isset($_GET[kodas]) ? $_GET[kodas] : null;
+$kodas = isset($_GET['kodas']) ? $_GET['kodas'] : null;
 $kodas = rand(1111,9999);
 	
-	$_SESSION[kd] = $kodas;
+	$_SESSION['kd'] = $kodas;
 
 		top('Gyvatės kelio bėgimę');
 echo '<div class="meniuc"><img src=img/img/gyvate.png border="1" width="180" height="90"><alt="**"></br></br>Norint patekti pas <b>Šiaurės Kajų</b> pirma turite užbėgti <b>Gyvatės keliu</b> !</div>
@@ -56,15 +56,15 @@ if($id == "begukm"){
   
   online('Gyvates kelias');
   top('Gyvatės kelias');
-$kodas = isset($_GET[kodas]) ? $_GET[kodas] : null;
-      	if($kodas != $_SESSION[kd]){
+$kodas = isset($_GET['kodas']) ? $_GET['kodas'] : null;
+      	if($kodas != $_SESSION['kd']){
 echo '<div class="meniuc"><img src=img/img/gyvate.png border="1" width="180" height="90"><alt="**"></div>';
 		echo'<div class="meniuc">Perkrauti puslapio negalima, eik per nauja</div>';
 
 	}
-	elseif($_SESSION[gyvates] > time()){
+	elseif($_SESSION['gyvates'] > time()){
 echo '<div class="meniuc"><img src=img/img/gyvate.png border="1" width="180" height="90"><alt="**"></div>';
-		echo'<div class="meniuc">Per greit bėgi! Bėgti galėsi po '.laikas($_SESSION[gyvates]-time(), 1).'</div>';
+		echo'<div class="meniuc">Per greit bėgi! Bėgti galėsi po '.laikas($_SESSION['gyvates']-time(), 1).'</div>';
  echo'<div class="meniuc"><a href="?id=begukm&kodas='.$kodas.'">Bėgti toliau</a></div>';
 	navigacija($g_n);
 	}
@@ -72,8 +72,8 @@ echo '<div class="meniuc"><img src=img/img/gyvate.png border="1" width="180" hei
 	else{
 		$kodas = rand(1111,9999);
 		
-		$_SESSION[kd] = $kodas;
-		$_SESSION[gyvates] = time()+1;
+		$_SESSION['kd'] = $kodas;
+		$_SESSION['gyvates'] = time()+1;
 
 
        echo '<div class="meniuc"><img src=img/img/gyvate.png border="1" width="180" height="90"><alt="**"></div>';
@@ -86,7 +86,7 @@ echo'<div class="meniuc"><a href="?id=begukm&kodas='.$kodas.'">Bėgti toliau</a>
 }
 
 if($id == ""){
-   if($apie[gyvateskm] > 9999){
+   if($apie['gyvateskm'] > 9999){
  online('Gyvates kelias');
   top('Gyvatės kelias');
        mysqli_query($conn,"UPDATE zaidejai SET kai='+' WHERE nick='$nick' ");
@@ -103,7 +103,7 @@ if($id == ""){
 
 
 if($id == "snake"){
-     if($apie[gyvateskm] > 10000){
+     if($apie['gyvateskm'] > 10000){
 
   online('Gyvatės kelias');
    top('Gyvatės kelias');

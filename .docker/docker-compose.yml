@@ -8,6 +8,7 @@ services:
       dockerfile: Dockerfile
     container_name: apache
     restart: always
+    user: ${CURRENT_USER}
     ports:
       - "80:80"
     volumes:
