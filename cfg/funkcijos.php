@@ -6,6 +6,7 @@ use LegacyDbz\Players\Services\CurrentPlayer;
 
 include_once __DIR__ . '/sql.php';
 
+$startTime = microtime(true);
 
 // AUTO RESET
 autoReset(190);
@@ -1662,16 +1663,16 @@ $komandoj = mysqli_fetch_array(mysqli_query($conn,"SELECT * FROM team WHERE pava
 if($user['team'] != '' && $user['iki_algos'] < 1 && $komandoj['pinigai'] >= $komandoj['uz_500_kovu'] && $komandoj['eurai'] >= $komandoj['uz_500_kovu2']){
 
 	if($komandoj['vadas'] != $nick){
-	$gausiu_pinigu = $apie['litai']+$komandoj['uz_500_kovu'];
-	$gausiu_euru = $apie['sms_litai']+$komandoj['uz_500_kovu2'];
+        $gausiu_pinigu = (float) $apie['litai'] + (float) $komandoj['uz_500_kovu'];
+        $gausiu_euru = (float) $apie['sms_litai'] + (float) $komandoj['uz_500_kovu2'];
 	mysqli_query($conn,"UPDATE zaidejai SET litai='$gausiu_pinigu', sms_litai='$gausiu_euru' WHERE nick='".$nick."'") || die(mysqli_error());
 
 	mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai+'0.1' WHERE nick='$komandoj[vadas]'");
 	$zinute1 = ''.$nick.' atliko 500 kovų, vadas gauna 0.1 euro į saskaitą';
 	mysqli_query($conn,"INSERT INTO team_logas SET team='$user[team]', msg='$zinute1'") || die(mysqli_error());
 	$zinute = "Gavote ".skaicius($komandoj['uz_500_kovu'])."  $pinigaii , ".skaicius($komandoj['uz_500_kovu2'])." $eurui iš komandos iždo, nes laimėjote <b>".$komandoj['iki_algos']."</b> kovų!";
-    $pinigu_is_team = $komandoj['pinigai']-$komandoj['uz_500_kovu'];
- $euru_is_team = $komandoj['eurai']-$komandoj['uz_500_kovu2'];
+    $pinigu_is_team = (float)$komandoj['pinigai']-(float)$komandoj['uz_500_kovu'];
+ $euru_is_team = (float)$komandoj['eurai']-(float)$komandoj['uz_500_kovu2'];
 	mysqli_query($conn,"UPDATE team SET pinigai='$pinigu_is_team', eurai='$euru_is_team' WHERE pavadinimas='".$user['team']."'");
 
 	mysqli_query($conn,"INSERT INTO pm SET gavejas='$nick', what='SISTEMA', txt='$zinute', time='".time()."' ,nauj='NEW'") || die(mysqli_error());
@@ -2962,5 +2963,10 @@ function setCurrentPlayer($nick): void
 
     CurrentPlayer::set($currentPlayer);
 }
+
+$endTime = microtime(true);
+$elapsedTime = round(($endTime - $startTime) * 1000, 2);
+
+//die("funkcijos.php took $elapsedTime milliseconds to read.\n");
 
 ?>

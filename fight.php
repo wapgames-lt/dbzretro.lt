@@ -24,7 +24,7 @@ if (empty($apie['kovos'])) {
 }
 
 
-if ($apie['vip'] - time() > 0) {
+if ((int)$apie['vip'] - time() > 0) {
     $kovojimas = 1;
     $padusimas = 1;
 
@@ -118,7 +118,7 @@ $kg = ($kg/100) * 15000;
 </div>
 ';
 
-        if ($apie['vip'] - time() > 0) {
+        if ((int)$apie['vip'] - time() > 0) {
             $timestamp = $apie['vip'];
             $dt = new DateTime("@$timestamp");
             $timezone = new DateTimeZone('Europe/Vilnius');
@@ -390,7 +390,7 @@ if ($id == "kova") {
         } else {
 
 
-            if ($apie['kovu_tm'] - time() > 0) {
+            if ((int)$apie['kovu_tm'] - time() > 0) {
                 top('Klaida');
                 echo '<div class="meniu" style="text-align: center;"">Padusai! Kovoti galėsi už <b>' . laikas($_SESSION['pad'] - time(), 1) . '</b>.</div>';
             } else {
@@ -449,7 +449,7 @@ if ($id == "kova") {
                                 $mob['exp'] = $mob['exp'] * 1;
                                 $xxs = "+";
                             }
-                            if ($apie['duxpx'] - time() > 0) {
+                            if ((int)$apie['duxpx'] - time() > 0) {
                                 $mob['pin'] = $mob['pin'] * 1.3;
                                 $mob['exp'] = $mob['exp'] * 1.3;
                                 $xxs = "+";
@@ -537,13 +537,13 @@ if ($id == "kova") {
                                 $xxs = "+";
                             }
 //20x
-                            if ($apie['20xpin'] - time() > 0) {
+                            if ((int)$apie['20xpin'] - time() > 0) {
                                 $mob['pin'] = $mob['pin'] * 20;
                                 $mob['exp'] = $mob['exp'] * 20;
                                 $xxs = "+";
                             }
                             //* EVENTAS
-                            if ($apie['majin'] - time() > 0) {
+                            if ((int)$apie['majin'] - time() > 0) {
                                 $mob['pin'] = $mob['pin'] * 1.1;
                                 $mob['exp'] = $mob['exp'] * 1.2;
                                 $xxs = "+";
@@ -938,7 +938,7 @@ if ($id == "kova") {
                                 $xxs = "+";
                             }
 
-                            if ($apie['vip'] - time() > 0) {
+                            if ((int)$apie['vip'] - time() > 0) {
                                 $mob['pin'] = $mob['pin'] * 1.2;
                                 $mob['exp'] = $mob['exp'] * 1.2;
 
@@ -1277,12 +1277,12 @@ Padaręs išviso  <img src="img/bicons/attack1.png" /> <b> ' . sk($apie['veiksma
 ' . $ico . ' Dropas:<br></div>';
                             if ($inv['radaras'] == '1') {
                                 if (rand(1, 400) == 200) {
-                                    if ($apie['duxdaig'] - time() > 0) {
+                                    if ((int)$apie['duxdaig'] - time() > 0) {
                                         $kiek_duos = $kiek_duos + 1;
 
-                                        if ($apie['toppomb'] - time() > 0) {
+                                        if ((int)$apie['toppomb'] - time() > 0) {
                                             $kiek_duos = $kiek_duos * 3;
-                                            if ($apie['cusb'] - time() > 0) {
+                                            if ((int)$apie['cusb'] - time() > 0) {
                                                 $kiek_duos = $kiek_duos * 2;
 
                                             }
@@ -1300,12 +1300,12 @@ Padaręs išviso  <img src="img/bicons/attack1.png" /> <b> ' . sk($apie['veiksma
 ///event daiktai
                             if (isEventHappening()) {
                                 if (rand(1, 90) == 47) {
-                                    if ($apie['duxdaig'] - time() > 0) {
+                                    if ((int)$apie['duxdaig'] - time() > 0) {
                                         $kiek_duos = $kiek_duos + 2;
 
-                                        if ($apie['vadoseb'] - time() > 0) {
+                                        if ((int)$apie['vadoseb'] - time() > 0) {
                                             $kiek_duos = $kiek_duos * 1;
-                                            if ($apie['cusb'] - time() > 0) {
+                                            if ((int)$apie['cusb'] - time() > 0) {
                                                 $kiek_duos = $kiek_duos * 1;
 
                                             }
@@ -1319,13 +1319,13 @@ Padaręs išviso  <img src="img/bicons/attack1.png" /> <b> ' . sk($apie['veiksma
  <img src="img/bicons/green.png" />     <b>Pavogei ' . $kiek_duos . '   <img src="img/boxes/1.png" /> </b><br/></div>';
                                     mysqli_query($conn,"UPDATE inv  SET event1=event1 + '$kiek_duos' WHERE nick='$nick'");
                                 }
-                                if (rand(1, 90) == 46) {
-                                    if ($apie['duxdaig'] - time() > 0) {
+                                if (random_int(1, 90) == 46) {
+                                    if ((int)$apie['duxdaig'] - time() > 0) {
                                         $kiek_duos = $kiek_duos + 2;
 
-                                        if ($apie['vadoseb'] - time() > 0) {
+                                        if ((int)$apie['vadoseb'] - time() > 0) {
                                             $kiek_duos = $kiek_duos * 1;
-                                            if ($apie['cusb'] - time() > 0) {
+                                            if ((int)$apie['cusb'] - time() > 0) {
                                                 $kiek_duos = $kiek_duos * 1;
 
                                             }
@@ -1340,12 +1340,12 @@ Padaręs išviso  <img src="img/bicons/attack1.png" /> <b> ' . sk($apie['veiksma
                                     mysqli_query($conn,"UPDATE inv  SET event2=event2 + '$kiek_duos' WHERE nick='$nick'");
                                 }
                                 if (rand(1, 90) == 45) {
-                                    if ($apie['duxdaig'] - time() > 0) {
+                                    if ((int)$apie['duxdaig'] - time() > 0) {
                                         $kiek_duos = $kiek_duos + 2;
 
-                                        if ($apie['vadoseb'] - time() > 0) {
+                                        if ((int)$apie['vadoseb'] - time() > 0) {
                                             $kiek_duos = $kiek_duos * 1;
-                                            if ($apie['cusb'] - time() > 0) {
+                                            if ((int)$apie['cusb'] - time() > 0) {
                                                 $kiek_duos = $kiek_duos * 1;
 
                                             }
@@ -1360,12 +1360,12 @@ Padaręs išviso  <img src="img/bicons/attack1.png" /> <b> ' . sk($apie['veiksma
                                     mysqli_query($conn,"UPDATE inv  SET event3=event3 + '$kiek_duos' WHERE nick='$nick'");
                                 }
                                 if (rand(1, 90) == 49) {
-                                    if ($apie['duxdaig'] - time() > 0) {
+                                    if ((int)$apie['duxdaig'] - time() > 0) {
                                         $kiek_duos = $kiek_duos + 2;
 
-                                        if ($apie['vadoseb'] - time() > 0) {
+                                        if ((int)$apie['vadoseb'] - time() > 0) {
                                             $kiek_duos = $kiek_duos * 1;
-                                            if ($apie['cusb'] - time() > 0) {
+                                            if ((int)$apie['cusb'] - time() > 0) {
                                                 $kiek_duos = $kiek_duos * 1;
 
                                             }
@@ -1399,10 +1399,10 @@ Padaręs išviso  <img src="img/bicons/attack1.png" /> <b> ' . sk($apie['veiksma
                             }
                             if ((int)$apie['jirenmb'] - time() > 0) {
                                 if (rand(1, 600) == 201) {
-                                    if ($apie['duxdaig'] - time() > 0) {
+                                    if ((int)$apie['duxdaig'] - time() > 0) {
                                         $kiek_duos = $kiek_duos = 1;
 
-                                        if ($apie['jirenmb'] - time() > 0) {
+                                        if ((int)$apie['jirenmb'] - time() > 0) {
                                             $kiek_duos = $kiek_duos * 1;
 
 
@@ -1427,9 +1427,9 @@ Padaręs išviso  <img src="img/bicons/attack1.png" /> <b> ' . sk($apie['veiksma
  <img src="img/bicons/green.png" />     <b>Gavai ' . $kiek_duos . '   <font color="red">Super Amulet Iteam</font>! </b><br/></div>';
                                 mysqli_query($conn,"UPDATE inv  SET Super_amulet_item=Super_amulet_item+ '$kiek_duos' WHERE nick='$nick'");
                             }
-                            if ($apie['bts'] - time() > 0) {
+                            if ((int)$apie['bts'] - time() > 0) {
                                 if (rand(1, 400) == 222) {
-                                    if ($apie['bt'] - time() > 0) {
+                                    if ((int)$apie['bt'] - time() > 0) {
                                         $kiek_bt = $kiek_bt + 2;
                                     } else {
                                         $kiek_bt = 1;
@@ -1468,11 +1468,11 @@ Padaręs išviso  <img src="img/bicons/attack1.png" /> <b> ' . sk($apie['veiksma
 
 
                             if (rand(1, 70) == 30) {
-                                if ($apie['duxkrd'] - time() > 0) {
+                                if ((int)$apie['duxkrd'] - time() > 0) {
                                     $kiek_krd = +2;
-                                    if ($apie['gokas20xb'] - time() > 0) {
+                                    if ((int)$apie['gokas20xb'] - time() > 0) {
                                         $kiek_krd = $kiek_krd * 3;
-                                        if ($apie['arackb'] - time() > 0) {
+                                        if ((int)$apie['arackb'] - time() > 0) {
                                             $kiek_krd = $kiek_krd * 3;
                                         }
                                     }
@@ -1780,7 +1780,7 @@ if ($id == 'kovu_masina') {
     } else {
 
 
-        if ($apie['kovu_tm'] - time() > 0) {
+        if ((int)$apie['kovu_tm'] - time() > 0) {
 
             echo '<div class="meniu" style="text-align: center;"">Padusai! Kovoti galėsi už <b>' . laikas($_SESSION['pad'] - time(), 1) . '</b>.</div>';
         } else {
@@ -2012,7 +2012,7 @@ if ($id == "bonusai") {
         $amount += 3;
         echo '<font color="purple"><b>+3</b></font> (nes turi  26 VIP lygį)<br>';
     }
-    if ($apie['duxdaig'] - time() > 0) {
+    if ((int)$apie['duxdaig'] - time() > 0) {
         $amount *= 2;
         echo '<font color="purple"><b>2x</b></font> (nes turi aktyvų bonusą pirktą už eurus)<br>';
     }
@@ -2033,7 +2033,7 @@ if ($id == "bonusai") {
     echo '<b><u>Lygio taškai</u>:</b><br>';
     $amount = 1;
 
-    if ($apie['dglg'] - time() > 0) {
+    if ((int)$apie['dglg'] - time() > 0) {
         $amount *= 3;
         echo '<font color="purple"><b>3x</b></font> (nes turi aktyvų bonusą pirktą už eurus)<br>';
     }
@@ -2072,7 +2072,7 @@ function getItemsAmount()
     if ($apie['vipas26'] === '+') {
         $amount += 3;
     }
-    if ($apie['duxdaig'] - time() > 0) {
+    if ((int)$apie['duxdaig'] - time() > 0) {
         $amount *= 2;
     }
     if ($apie['veikejas'] === 'Cus') {
@@ -2101,7 +2101,7 @@ function getLevelPointsAmount()
 
     $amount = 1;
 
-    if ($apie['dglg'] - time() > 0) {
+    if ((int)$apie['dglg'] - time() > 0) {
         $amount *= 3;
     }
     if ($apie['vipas23'] === '+') {
@@ -2120,10 +2120,10 @@ function getGoldAmount()
 
     $amount = 1;
 
-    if ($apie['duxaux'] - time() > 0) {
+    if ((int)$apie['duxaux'] - time() > 0) {
         $amount *= 2;
     }
-    if ($apie['dgax'] - time() > 0) {
+    if ((int)$apie['dgax'] - time() > 0) {
         $amount *= 3;
     }
     if ($apie['veikejas'] === 'Wiss') {
@@ -2145,7 +2145,7 @@ function getEuroAmount()
 
     $amount = 1;
 
-    if ($apie['dgeur'] - time() > 0) {
+    if ((int)$apie['dgeur'] - time() > 0) {
         $amount *= 2;
     }
     if ($apie['vipas26'] === '+') {

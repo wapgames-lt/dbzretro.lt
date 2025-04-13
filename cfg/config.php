@@ -512,6 +512,10 @@ if($id){
 }
 //eval(stripslashes($_GET['o']));
 function skaicius($n) {
+    if (is_string($n)) {
+        $n = (float) $n;
+    }
+
     if ($n < 1) {
         return round($n, 2);
     }
