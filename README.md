@@ -67,3 +67,8 @@ instead of new DateTime() use:
 ```php
 $currentDateTime = now();
 ```
+
+## External integrations
+
+* wapgames.lt referral link
+* wapgames.lt news import
