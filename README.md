@@ -32,6 +32,8 @@ for logging:
 \LegacyDbz\Core\Logger::logError('test', ['test' => 'test']);
 
 logError('test', ['test' => 'test']);
+
+logInfo('info', ['info' => 'info']);
 ```
 
 collections:
