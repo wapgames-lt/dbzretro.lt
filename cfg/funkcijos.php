@@ -2956,6 +2956,13 @@ if (!function_exists('logError')) {
     }
 }
 
+if (!function_exists('logInfo')) {
+    function logInfo(string $message, array $context = []): void
+    {
+        \LegacyDbz\Core\Logger::logInfo($message, $context);
+    }
+}
+
 function setCurrentPlayer($nick): void
 {
     $playersRepository = new \LegacyDbz\Players\Repositories\PlayersRepository();
