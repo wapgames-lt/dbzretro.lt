@@ -48,7 +48,10 @@ final readonly class WapGamesHttpClient
                 'headers' => $headers,
             ]);
 
-            return json_decode($response->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR);
+            $result = json_decode($response->getBody()->getContents(), true, 512, JSON_THROW_ON_ERROR);
+            logInfo('New import response.', $result);
+
+            return $result;
         } catch (GuzzleException $e) {
             logError('WAP games request failed: ' . $e->getMessage());
 
