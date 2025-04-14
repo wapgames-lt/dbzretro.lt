@@ -1386,7 +1386,7 @@ elseif($id == "admin"){
                     mysqli_query($conn,"INSERT INTO news SET name='$pav', new='$new', kas='$nick', data='".time()."'");
                     mysqli_query($conn,"UPDATE nustatymai SET new_time='$tmxs' ");
 mysqli_query($conn,"UPDATE nustatymai SET sndnew=sndnew+'1' ");
-$title = currentPlayer()->nick() . ' pridėjo naujieną';
+$title = now()->format('YmdHi') . ' ' . currentPlayer()->nick() . ' pridėjo naujieną';
 $wapGamesClient = new \LegacyDbz\Core\Http\WapGamesHttpClient();
 $wapGamesClient->postNew($title, $pav);
                     echo '<div class="meniuc">Naujiena pridėta!</div>';
