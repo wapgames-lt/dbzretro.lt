@@ -1,6 +1,6 @@
 # LegacyDbz
 
-10-15 metų(~2014m) WAP DBZ skriptas pradėtas kurti kūrėjo **Jomajo**, vėliau buvo pasklidęs WAP'e ir daugiau žinomas kaip vegita.us.lt sc.
+10-15 metų(~2014m) WAP DBZ skriptas pradėtas kurti kūrėjo **Jomajo**(discord: jomajo0601), vėliau buvo pasklidęs WAP'e ir daugiau žinomas kaip vegita.us.lt sc.
 Pirmą kartą šį skriptą pamačiau 2020m.
 Kol skriptas atkeliavo iki manęs perėjo per daug WAP programuotojų rankų, kiekvienas jų keitė jį kaip sugalvodavo.
 2025 pradėjau daryti technologinį upgrade šiam skriptui.
