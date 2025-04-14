@@ -13,6 +13,7 @@ Ką pavyko atnaujinti:
 * **.env** file support
 * logging(**monolog**)
 * Carbon support
+* Guzzle HTTP client support
 
 ## Installation
 
