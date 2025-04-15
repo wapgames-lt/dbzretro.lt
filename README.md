@@ -72,5 +72,9 @@ $currentDateTime = now();
 
 ## External integrations
 
-* wapgames.lt referral link
-* wapgames.lt news import
+- **wapgames.lt**(set your WAP_GAMES_API_KEY and WAP_GAMES_SITE_UUID variables in .env)
+    - referral link
+    - news import
+
+- **discord** webhook support (set your DISCORD_WEBHOOK_URL and DISCORD_USERNAME variables in .env)
+    - send discord message to channel

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace LegacyDbz\Core\Http;
 
+use Exception;
 use GuzzleHttp\Client;
-use GuzzleHttp\Exception\GuzzleException;
 
 final readonly class WapGamesHttpClient
 {
@@ -52,7 +52,7 @@ final readonly class WapGamesHttpClient
             logInfo('New import response.', $result);
 
             return $result;
-        } catch (GuzzleException $e) {
+        } catch (Exception $e) {
             logError('WAP games request failed: ' . $e->getMessage());
 
             return [];

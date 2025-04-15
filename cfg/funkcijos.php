@@ -2902,37 +2902,9 @@ function getInt($value)
     return number_format($value, 0, '', '');
 }
 
-function sendDiscordMessage($message)
+function sendDiscordMessage(string $message): void
 {
-    $url = 'https://discord.com/api/webhooks/1348916287354699776/Tf5OYFPUZMKp8dvdIpkCUGz3Xf6Au45NdrhzESJvIuvVnJC2xRCkNJyP6tXZCo1Wob2F';
-    $parts = parse_url($url);
-    $host = $parts['host'];
-    $port = $parts['port'] ?? 443;
-    $path = $parts['path'];
-
-    $data = json_encode(["content" => $message]);
-
-    $headers = "POST $path HTTP/1.1\r\n";
-    $headers .= "Host: $host\r\n";
-    $headers .= "Content-Type: application/json\r\n";
-    $headers .= "Content-Length: " . strlen($data) . "\r\n";
-    $headers .= "Connection: Close\r\n\r\n";
-    $headers .= $data;
-
-    $fp = stream_socket_client("ssl://$host:$port", $errno, $errstr, 30);
-
-    if (!$fp) {
-        error_log("Error: $errstr ($errno)\n");
-        return false;
-    }
-
-    fwrite($fp, $headers);
-
-    stream_set_blocking($fp, false);
-    usleep(100000);
-
-    fclose($fp);
-    return true;
+    new \LegacyDbz\Core\Http\DiscordHttpClient()->sendMessage($message);
 }
 
 if (!function_exists('now')) {

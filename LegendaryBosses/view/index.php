@@ -604,7 +604,7 @@ if ($id === 'summon_boss') {
         $expiresAt = date('Y-m-d H:i:s', strtotime(' + 10 minutes'));
         mysqli_query($conn,"INSERT INTO pokalbiai SET nick='SISTEMA', sms='$message', data='" . time() . "', expired_at='$expiresAt'");
         echo $bossConfig['name'] . ' sėkmingai iškviestas';
-        $isMessageSent = sendDiscordMessage($message);
+        sendDiscordMessage($message);
 
     }
 
