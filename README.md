@@ -77,4 +77,6 @@ $currentDateTime = now();
     - news import
 
 - **discord** webhook support (set your DISCORD_WEBHOOK_URL and DISCORD_USERNAME variables in .env)
-    - send discord message to channel
+    - send discord message to channel use function:
+     ` sendDiscordMessage($message);`
+  
