@@ -61,7 +61,7 @@ class Dungeon extends Model
 
 instead of var_dump and die use:
 ```php
-dd();
+dd($data);
 ```
 
 instead of new DateTime() use:
