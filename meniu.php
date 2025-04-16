@@ -4102,8 +4102,9 @@ mysqli_query($conn,"UPDATE zaidejai SET botas=botas+'$kiekis' WHERE nick='$kam' 
 
                     
                     $txt = "$nick Davė tau '.skaicius($kiekis).' Botas Cash! ";
-                    mysqli_query($conn,"INSERT INTO pm SET what='SISTEMA', txt='$txt', time='".time()."', nauj='NEW', gavejas='$kam' ");
-                    echo '<div class="meniuc">Atlikta! Davei '.$kam.'  '.skaicius($kiekis).' Botas Cash!</div>';
+    mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='".mysqli_real_escape_string($conn, $txt)."', `time`='".time()."', nauj='NEW', gavejas='".mysqli_real_escape_string($conn, $kam)."'");
+
+    echo '<div class="meniuc">Atlikta! Davei '.$kam.'  '.skaicius($kiekis).' Botas Cash!</div>';
                 }
 
 
