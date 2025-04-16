@@ -91,7 +91,7 @@ if ($inv['radaras'] < 1){
 
 elseif ($apie['nbal'] > time()){
 	echo'
-	<div class="meniuc">Ieskoti galima kas 6 valandas !!!</br> Ieškoti galėsi po '.laikas($apie[nbal]-time(),1).'</div>
+	<div class="meniuc">Ieskoti galima kas 6 valandas !!!</br> Ieškoti galėsi po '.laikas($apie['nbal']-time(),1).'</div>
 '; }
 else{
 	if ($inv['radaras'] > 0){
