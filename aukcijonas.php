@@ -740,7 +740,10 @@ if ($apie['lygis'] < 20) {
                 $txt = 'Jūsų vardu i aukcijona idėta prekė idėjo ' . $nick . '';
                 mysqli_query($conn, "INSERT INTO pm SET what = 'SISTEMA', txt='$txt', gavejas='$kam_tokiam', nauj='NEW', `time`='" . time() . "'");
             }
-            logInfo($message);
+            logInfo($message, [
+                'product_id' => $preke,
+                'nick' => $nick,
+            ]);
             echo '<div class="meniuc">
 		<b>Atlikta!</b><br>
 		Tavo prek&#279; &#303;d&#279;ta s&#279;kmingai! Jei niekas prek&#279;s nenupirks per <b>5</b> valandas ji gry&#353; atgal pas tave.
