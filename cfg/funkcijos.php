@@ -1111,27 +1111,7 @@ $laix2 = date("Y-m-d");
 mysqli_query($conn,"UPDATE nustatymai SET pin_time='$laix2' ") || die(mysqli_error());
 mysqli_query($conn,"TRUNCATE TABLE pinigai");
 }}
-$taimasx = date("Y-m-d");
-if($taimasx != $nust['atvedimu_time']){
 
-
-
-
-$query = mysqli_query($conn,"SELECT * FROM atvedimas ORDER BY snd DESC LIMIT 1");
-while($row = mysqli_fetch_assoc($query)){
-    $xm++;
-    if($xm == 1){
-       mysqli_query($conn,"INSERT INTO pm SET what='SISTEMA', txt='Sveikinu, atvedei daugiausiai lankytoju gauni 5 eurus', time='".time()."', gavejas='$row[nick]', nauj='NEW'") || die(mysqli_error());
-
-	   mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai+'5' WHERE nick='$row[nick]'") || die(mysqli_error());
-    }
-
-
-
-$laixas = date("Y-m-d");
-mysqli_query($conn,"UPDATE nustatymai SET atvedimu_time='$laixas' ") || die(mysqli_error());
-mysqli_query($conn,"TRUNCATE TABLE atvedimas");
-}}
 
 // Savaitės kovų TOP'as
 

@@ -41,85 +41,85 @@ if($id == "tikslas"){
 	top("Žaidimo tikslas");
    online('Žaidimo tikslas');
 	
-	if(empty($ii[tikslas1])){
+	if(empty($ii['tikslas1'])){
 $a = "<img src='img/no.png'>";		
 }else{
 $a = "<img src='img/ok.png'>";		
 }
-		if(empty($ii[tikslas2])){
+		if(empty($ii['tikslas2'])){
 $b = "<img src='img/no.png'>";		
 }else{
 $b = "<img src='img/ok.png'>";		
 }
 
-		if(empty($ii[tikslas3])){
+		if(empty($ii['tikslas3'])){
 $c = "<img src='img/no.png'>";		
 }else{
 $c = "<img src='img/ok.png'>";		
 }
 
-		if(empty($ii[tikslas4])){
+		if(empty($ii['tikslas4'])){
 $d = "<img src='img/no.png'>";		
 }else{
 $d = "<img src='img/ok.png'>";		
 }
-		if(empty($ii[tikslas5])){
+		if(empty($ii['tikslas5'])){
 $e = "<img src='img/no.png'>";		
 }else{
 $e = "<img src='img/ok.png'>";		
 }
-		if(empty($ii[tikslas6])){
+		if(empty($ii['tikslas6'])){
 $f = "<img src='img/no.png'>";		
 }else{
 $f = "<img src='img/ok.png'>";		
 }
-		if(empty($ii[tikslas7])){
+		if(empty($ii['tikslas7'])){
 $g = "<img src='img/no.png'>";		
 }else{
 $g = "<img src='img/ok.png'>";		
 }
-		if(empty($ii[tikslas8])){
+		if(empty($ii['tikslas8'])){
 $h = "<img src='img/no.png'>";		
 }else{
 $h = "<img src='img/ok.png'>";		
 }
 
-		if(empty($ii[tikslas9])){
+		if(empty($ii['tikslas9'])){
 $i = "<img src='img/no.png'>";		
 }else{
 $i = "<img src='img/ok.png'>";		
 }
-		if(empty($ii[tikslas10])){
+		if(empty($ii['tikslas10'])){
 $k = "<img src='img/no.png'>";		
 }else{
 $k = "<img src='img/ok.png'>";		
 }
-	if(empty($ii[tikslas11])){
+	if(empty($ii['tikslas11'])){
 $j = "<img src='img/no.png'>";		
 }else{
 $j = "<img src='img/ok.png'>";		
 }
-	if(empty($ii[tikslas12])){
+	if(empty($ii['tikslas12'])){
 $l = "<img src='img/no.png'>";		
 }else{
 $l = "<img src='img/ok.png'>";		
 }
-if(empty($ii[tikslas13])){
+if(empty($ii['tikslas13'])){
 $z = "<img src='img/no.png'>";		
 }else{
 $z = "<img src='img/ok.png'>";		
 }
-if(empty($ii[tikslas14])){
+if(empty($ii['tikslas14'])){
 $m = "<img src='img/no.png'>";		
 }else{
 $m = "<img src='img/ok.png'>";		
 }
-if(empty($ii[tikslas15])){
+if(empty($ii['tikslas15'])){
 $n = "<img src='img/no.png'>";		
 }else{
 $n = "<img src='img/ok.png'>";		
 }
-if(empty($ii[tikslas16])){
+if(empty($ii['tikslas16'])){
 $p = "<img src='img/no.png'>";		
 }else{
 $p = "<img src='img/ok.png'>";		
@@ -155,7 +155,7 @@ if($id == 'rinkimasas'){
 	top('Rinkimo misijos');
 	online('Rinkimo misijos');
 	$rinkimas= mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM rinkimas WHERE id ='$apie[rinkimas]'"));
-	echo'<div class="meniu">Vygdote '.$apie[rinkimas].'/600 užduočių</div><div class="meniuc">Reike : '.$rinkimas[reike1].' '.change($rinkimas[daigto1]).'  ir '.$rinkimas[reike2].' '.change($rinkimas[daigto2]).' Už tai gausite '.$rinkimas[atlygis_kiek].' '.ch($rinkimas[atlygis]).'</div>
+	echo'<div class="meniu">Vygdote '.$apie['rinkimas'].'/600 užduočių</div><div class="meniuc">Reike : '.$rinkimas['reike1'].' '.change($rinkimas['daigto1']).'  ir '.$rinkimas['reike2'].' '.change($rinkimas['daigto2']).' Už tai gausite '.$rinkimas['atlygis_kiek'].' '.ch($rinkimas['atlygis']).'</div>
 	<div class="meniu">'.$ico.' <a href="?id=rinkimas2">Turiu viską ko reike</a>
 	</div>';
 	
@@ -166,13 +166,13 @@ if($id == 'rinkimas2as'){
 	top('Rinkimo misijos');
 	online('Rinkimo misijos');
 	$rinkimas= mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM rinkimas WHERE id ='$apie[rinkimas]'"));
-	if($inv[$rinkimas[daigto1]] < $rinkimas[reike1] or $inv[$rinkimas[daigto2]] < $rinkimas[reike2]){
+	if($inv[$rinkimas['daigto1']] < $rinkimas['reike1'] or $inv[$rinkimas['daigto2']] < $rinkimas['reike2']){
 		
 		echo'<div class="meniuc">Nepakanka daigtų</div>';
 	}
 	else{
 		
-		echo'<div class="meniuc"> Gavai :'.$rinkimas[atlygis_kiek].' '.ch($rinkimas[atlygis]).'</div>';
+		echo'<div class="meniuc"> Gavai :'.$rinkimas['atlygis_kiek'].' '.ch($rinkimas['atlygis']).'</div>';
 		mysqli_query($conn,"UPDATE zaidejai SET $rinkimas[atlygis]=$rinkimas[atlygis]+'$rinkimas[atlygis_kiek]', rinkimas=rinkimas+'1' WHERE nick='$nick'");
 		mysqli_query($conn,"UPDATE inv SET $rinkimas[daigto1]=$rinkimas[daigto1]-'$rinkimas[reike1]',$rinkimas[daigto2]=$rinkimas[daigto2]-'$rinkimas[reike2]'  WHERE nick='$nick'");
 		

@@ -70,7 +70,7 @@ if($row['snd5'] == '-'){
 		[<font color="red"><b>Neįvygdyta</b></font>]	<br> <a href="?id=atnesumikro"><b>Vygdyti</b></a></div>
 			
 			';	}		
-	elseif($apie[dailyp] > 999){
+	elseif($apie['dailyp'] > 999){
 echo'<div class="up">2 lygio Dienos Misijos</div>';
 	if($row['2snd'] == '+'){
 		echo'<div class="meniuc">Atnešti '.skaicius(50).' '.$eurui.'
@@ -156,7 +156,7 @@ if($id == 'dailym1'){
 	
 	
 	$row = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM daily WHERE nick='$nick'"));
-	if($apie[dailyp] < 999){
+	if($apie['dailyp'] < 999){
 				echo"<div class='meniuc'>Nepakanka $dailyp !</div>";
 			
 }			
@@ -187,7 +187,7 @@ if($id == 'dailym2'){
 	
 	
 	$row = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM daily WHERE nick='$nick'"));
-	if($apie[dailyp] < 1999){
+	if($apie['dailyp'] < 1999){
 				echo"<div class='meniuc'>Nepakanka $dailyp !</div>";
 			
 }			
@@ -218,7 +218,7 @@ if($id == 'dailym3'){
 	
 	
 	$row = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM daily WHERE nick='$nick'"));
-	if($apie[dailyp] < 3999){
+	if($apie['dailyp'] < 3999){
 				echo"<div class='meniuc'>Nepakanka $dailyp !</div>";
 			
 }			
@@ -249,7 +249,7 @@ if($id == 'dailym4'){
 	
 	
 	$row = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM daily WHERE nick='$nick'"));
-	if($apie[dailyp] < 6999){
+	if($apie['dailyp'] < 6999){
 				echo"<div class='meniuc'>Nepakanka $dailyp !</div>";
 			
 }			
@@ -280,7 +280,7 @@ if($id == 'dailym5'){
 	
 	
 	$row = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM daily WHERE nick='$nick'"));
-	if($apie[dailyp] < 11999){
+	if($apie['dailyp'] < 11999){
 				echo"<div class='meniuc'>Nepakanka $dailyp !</div>";
 			
 }			
@@ -348,7 +348,7 @@ if($id == 'turiueur'){
 				echo"<div class='meniuc'>Nepakanka '.$eurui.' !</div>";
 			
 }			
-elseif($row[snd] == '+'){
+elseif($row['snd'] == '+'){
 		
 			echo'<div class="meniuc">Šiandien jau paaukojai '.$eurui.'!</div>';
 		
@@ -372,11 +372,11 @@ if($id == 'atnesuscroll'){
 	
 	
 	
-	if($inv[Majinsroll] < 499){
+	if($inv['Majinsroll'] < 499){
 				echo"<div class='meniuc'>Neturi pakankamai <b>Majin Scroll</b>  !</div>";
 			
 }			
-elseif($row[snd3] == '+'){
+elseif($row['snd3'] == '+'){
 		
 			echo'<div class="meniuc">Šiandien jau atnešei <b>Majin Scroll</b> !</div>';
 		
@@ -399,11 +399,11 @@ if($id == 'atnesumikro'){
 	
 	
 	
-	if($inv[Microshem] < 499){
+	if($inv['Microshem'] < 499){
 				echo"<div class='meniuc'>Neturi pakankamai mikroskemų !</div>";
 			
 }			
-elseif($row[snd5] == '+'){
+elseif($row['snd5'] == '+'){
 		
 			echo'<div class="meniuc">Šiandien jau atnešei mikroskemas!</div>';
 		
@@ -426,11 +426,11 @@ if($id == 'padariauvk'){
 	
 	
 	
-	if($dtop2[vksm] < 9999){
+	if($dtop2['vksm'] < 9999){
 				echo"<div class='meniuc'>Neesi šiandien padaręs tiek veiksmų!</div>";
 			
 }			
-elseif($row[snd2] == '+'){
+elseif($row['snd2'] == '+'){
 		
 			echo'<div class="meniuc">Šiandien jau padarei tiek veiksmų!</div>';
 		
@@ -458,7 +458,7 @@ if($id == 'aukojupin2'){
 				echo"<div class='meniuc'>Nepakanka '.$pinigaii.' !</div>";
 			
 }			
-	elseif($apie[dailyp] < 999){
+	elseif($apie['dailyp'] < 999){
 echo'<div class="meniuc">Norint vygdyti turite turėti bent <b>1000</b>'.$dailyp.'</div>';
 		
 	}
@@ -492,7 +492,7 @@ if($id == 'turiueur2'){
 				echo"<div class='meniuc'>Nepakanka '.$eurui.' !</div>";
 			
 }			
-	elseif($apie[dailyp] < 999){
+	elseif($apie['dailyp'] < 999){
 echo'<div class="meniuc">Norint vygdyti turite turėti bent <b>1000</b>'.$dailyp.'</div>';
 		
 	}
@@ -520,11 +520,11 @@ if($id == 'atnesuscroll2'){
 	
 	
 	
-	if($inv[Majinsroll] < 999){
+	if($inv['Majinsroll'] < 999){
 				echo"<div class='meniuc'>Neturi pakankamai <b>Majin Scroll</b>  !</div>";
 			
 }			
-	elseif($apie[dailyp] < 999){
+	elseif($apie['dailyp'] < 999){
 echo'<div class="meniuc">Norint vygdyti turite turėti bent <b>1000</b>'.$dailyp.'</div>';
 		
 	}
@@ -551,11 +551,11 @@ if($id == 'atnesumikro2'){
 	
 	
 	
-	if($inv[Microshem] < 999){
+	if($inv['Microshem'] < 999){
 				echo"<div class='meniuc'>Neturi pakankamai mikroskemų !</div>";
 			
 }			
-	elseif($apie[dailyp] < 999){
+	elseif($apie['dailyp'] < 999){
 echo'<div class="meniuc">Norint vygdyti turite turėti bent <b>1000</b>'.$dailyp.'</div>';
 		
 	}
@@ -582,11 +582,11 @@ if($id == 'padariauvk2'){
 	
 	
 	
-	if($dtop2[vksm] < 19999){
+	if($dtop2['vksm'] < 19999){
 				echo"<div class='meniuc'>Neesi šiandien padaręs tiek veiksmų!</div>";
 			
 }			
-	elseif($apie[dailyp] < 999){
+	elseif($apie['dailyp'] < 999){
 echo'<div class="meniuc">Norint vygdyti turite turėti bent <b>1000</b>'.$dailyp.'</div>';
 		
 	}

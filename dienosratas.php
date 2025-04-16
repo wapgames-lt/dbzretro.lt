@@ -22,8 +22,8 @@ $g_n[] = array("pagrindinis.php?id=","Pagrindinis","Dienos ratas");
 	online('Dienos Rate');
    top('Dienos ratas');
    
-   if($apie[rato_time] > time()){
-   	echo'	<div class="meniuc"><img src=img/imgg/ratas.png border="1" width="150" height="100"></br>Sukti galėsi po <b> '.laikas($apie[rato_time]-time(),1).'</b></div>';
+   if((int)$apie['rato_time'] > time()){
+   	echo'	<div class="meniuc"><img src=img/imgg/ratas.png border="1" width="150" height="100"></br>Sukti galėsi po <b> '.laikas($apie['rato_time']-time(),1).'</b></div>';
 	
 	
    }else{

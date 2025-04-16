@@ -83,10 +83,10 @@ echo '<div class="up">'.$ico.'<b>Reikalavimai: </b></div>';
                    echo '<div class="meniuc"><b></b> 
 <a href="pasiekimai.php?id=siekiu&ID='.$row['kas'].'&VS='.$row['id'].'&KA='.$row['ka'].'&KD='.$KD.'"><b>'.$row['name'].' </b></a> <b>'.skaicius($row['kiek']).'</b>
   <img src="img/bicons/'.$row['img'].'.png" height="16" width="16"/>'.$row['ko'].'';
-if($pasiekimai[$row['ka']]-time() > 0){
+if((int)$pasiekimai[$row['ka']]-time() > 0){
 echo'[<font color="green"><b>Įvygdyta</b></font><b>]';
 }
-if($pasiekimai[$row['ka']]-time() < 0){
+if((int)$pasiekimai[$row['ka']]-time() < 0){
 echo'[<font color="red"><b>Neįvygdyta</b></font><b>]';
 
 }
@@ -136,7 +136,7 @@ if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM pasiek WHERE id='$ID' ")) =
           echo '<div class="meniuc"><div class="error">Tokio pasiekimo nėra!</div></div>';
     } }
 
-if($pasiekimai[$siek['ka']]-time() < 0){
+if((int)$pasiekimai[$siek['ka']]-time() < 0){
 	       $timxx = time()+60*60*24*100; 
 
 if($apie[$siek['ko2']] < $siek['kiek']){
@@ -154,7 +154,7 @@ mysqli_query($conn,"UPDATE zaidejai SET pvisi=pvisi+'1', sms_litai=sms_litai+'$s
 mysqli_query($conn,"UPDATE pasiekimai SET $siek[ka]='$timxx' WHERE nick='$nick' ");
 }
 		}
-elseif($pasiekimai[$siek['ka']]-time() > 0){
+elseif((int)$pasiekimai[$siek['ka']]-time() > 0){
 echo '<div class="meniuc"><img src="img/imgg/pasiekimai.png"></br></div>';
                 echo '<div class="meniuc">Tu jau įvygdei ši pasiekimą!</div>';
             }
