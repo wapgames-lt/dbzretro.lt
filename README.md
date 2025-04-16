@@ -27,7 +27,7 @@ create .env file from .env.example
 
 for database queries use: `\LegacyDbz\Core\Db`
 
-for logging: 
+### for logging: 
 ```php
 \LegacyDbz\Core\Logger::logError('test', ['test' => 'test']);
 
@@ -37,12 +37,12 @@ logInfo('info', ['info' => 'info']);
 ```
 logs directory: **storage/logs/***
 
-collections:
+### collections:
 ```php
 use LegacyDbz\Core\Collection
 ```
 
-get current player(logged user)
+### get current player(logged user)
 ```php
 use LegacyDbz\Players\Services\CurrentPlayer;
 
@@ -55,7 +55,7 @@ get player by nick
 $player = getPlayerByNick($nick);
 ```
 
-simple active record solution:
+### simple active record solution:
 ```php
 use LegacyDbz\Core\Model
 
