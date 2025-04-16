@@ -10,7 +10,7 @@ baneris();
 
 		 topbar();
 
-if($apie[gyvybes] > 0){
+if($apie['gyvybes'] > 0){
 		top('Pomirtinis Pasaulis');
 echo '<div class="meniuc"><img src=img/imgg/pomirtinis.png border="1" width="180" height="90"><alt="**"></div><div class="meniuc"> Į Pomirtinį pasaulį galima patekti tik <b>MIRUS </b>!</div>
 <div class="meniuc">Nori patekti?  <a href="pagrindinis.php?id=killself">Noriu sumažint savo <b>gyvybes</b> iki <b>0</b>!</a></div>
