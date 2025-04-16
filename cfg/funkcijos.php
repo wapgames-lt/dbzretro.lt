@@ -2914,33 +2914,40 @@ if (!function_exists('now')) {
     }
 }
 
-if (!function_exists('currentPlayer')) {
     function currentPlayer(): Player
     {
         return CurrentPlayer::get();
     }
-}
 
-if (!function_exists('logError')) {
-    function logError(string $message, array $context = []): void
-    {
-       \LegacyDbz\Core\Logger::logError($message, $context);
-    }
-}
-
-if (!function_exists('logInfo')) {
-    function logInfo(string $message, array $context = []): void
-    {
-        \LegacyDbz\Core\Logger::logInfo($message, $context);
-    }
-}
-
-function setCurrentPlayer($nick): void
+function getPlayerByNick(string $nick): Player
 {
-    $playersRepository = new \LegacyDbz\Players\Repositories\PlayersRepository();
-    $currentPlayer = $playersRepository->findByNick($nick);
+    $playerRepository = new \LegacyDbz\Players\Repositories\PlayersRepository();
+    $player = $playerRepository->findByNick($nick);
+    if (!$player) {
+        throw new \RuntimeException("Player not found by nick {$nick}");
+    }
 
-    CurrentPlayer::set($currentPlayer);
+    return $player;
+}
+
+function logError(string $message, array $context = []): void
+{
+   \LegacyDbz\Core\Logger::logError($message, $context);
+}
+
+function logInfo(string $message, array $context = []): void
+{
+    \LegacyDbz\Core\Logger::logInfo($message, $context);
+}
+
+function logWarning(string $message, array $context = []): void
+{
+    \LegacyDbz\Core\Logger::logWarning($message, $context);
+}
+
+function setCurrentPlayer(string $nick): void
+{
+    CurrentPlayer::set(getPlayerByNick($nick));
 }
 
 $endTime = microtime(true);
@@ -2948,4 +2955,4 @@ $elapsedTime = round(($endTime - $startTime) * 1000, 2);
 
 //die("funkcijos.php took $elapsedTime milliseconds to read.\n");
 
-?>
+

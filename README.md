@@ -49,6 +49,11 @@ $player = CurrentPlayer::get();
 $player = currentPlayer();
 ```
 
+get player by nick
+```php
+$player = getPlayerByNick($nick);
+```
+
 simple active record solution:
 ```php
 use LegacyDbz\Core\Model

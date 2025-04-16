@@ -2952,6 +2952,8 @@ Mėnulio pilnatis buna nuo 23.00 val. iki 24.00 val.<br />
     if (isset($_POST['submit'])) {
         $kieks = isset($_POST['kieks']) ? preg_replace("/[^0-9]/", "", $_POST['kieks']) : null;
         $paskirtis = isset($_POST['paskirtis']) ? preg_replace("/[^A-Za-z0-9_]/", "", $_POST['paskirtis']) : null;
+        $receiver = getPlayerByNick($ka);
+
         if (empty($kieks)) {
             echo '<div class="meniuc">Palikai tuščią laukelį!</div>';
         } elseif ($apie['sms_litai'] < $kieks) {
@@ -2960,9 +2962,18 @@ Mėnulio pilnatis buna nuo 23.00 val. iki 24.00 val.<br />
             echo '<div class="meniuc">Tavo lygis per žemas! Reikia 40 lygio!</div>';
         } elseif (apsas($ka) == apsas($nick)) {
             echo '<div class="meniuc">Sau negalima</div>';
-        } elseif (mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM zaidejai WHERE nick ='$ka' AND lygis < '20' "))) {
+        } elseif ($receiver->level() < 40) {
             echo '<div class="meniuc">' . $ka . ' Neturi 40 lygio!</div>';
-        } elseif ($kieks < 1) {
+        } elseif ($receiver->ip() === currentPlayer()->ip()) {
+            logWarning('Player transfering to player with same IP!', [
+                'receiver_ip' => $receiver->ip(),
+                'current_player_ip' => currentPlayer()->ip(),
+                'current_player_nick' => currentPlayer()->nick(),
+                'receiver_nick' => $receiver->nick(),
+            ]);
+            echo '<div class="meniuc">Įvyko klaida!</div>';
+        }
+        elseif ($kieks < 1) {
             echo '<div class="meniuc">Mažiausiai galima pervesti ' . sk(1) . ' eurą!</div>';
         } else {
             echo '<div class="meniuc">Žaidėjui ' . statusas($ka) . ' pervedei ' . sk($kieks) . ' ' . $eurui . '!</div>';
