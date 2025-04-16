@@ -35,6 +35,7 @@ logError('test', ['test' => 'test']);
 
 logInfo('info', ['info' => 'info']);
 ```
+logs directory: **storage/logs/***
 
 collections:
 ```php
