@@ -9,110 +9,110 @@ head2();
 baneris();
 
 topbar();
-if($apie[istorija] == '0'){$img =' img'; $vieta = 'inv'; $reikia = 'Majin scroll'; $kiek ='10' ;}
-if($apie[istorija] == '1'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Lygio'; $kiek ='20' ;}
-if($apie[istorija] == '2'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Majin scroll'; $kiek ='250' ;}
-if($apie[istorija] == '3'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Auksinių'; $kiek ='10000' ;}
-if($apie[istorija] == '4'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Eurų'; $kiek ='100' ;}
-if($apie[istorija] == '5'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Power Stone'; $kiek ='400' ;}
-if($apie[istorija] == '6'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Μikroskemų'; $kiek ='600' ;}
-if($apie[istorija] == '7'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Drakono rutulių'; $kiek ='30' ;}
-if($apie[istorija] == '8'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Angelo sparnų'; $kiek ='800' ;}
-if($apie[istorija] == '9'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Fusion Fail'; $kiek ='1000' ;}
-if($apie[istorija] == '10'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Naikinimo galios'; $kiek ='1100' ;}
-if($apie[istorija] == '11'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Lygio'; $kiek ='30' ;}
-if($apie[istorija] == '12'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Majin scroll'; $kiek ='500' ;}
-if($apie[istorija] == '13'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Auksinių'; $kiek ='50000' ;}
-if($apie[istorija] == '14'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Eurų'; $kiek ='200' ;}
-if($apie[istorija] == '15'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Power Stone'; $kiek ='600' ;}
-if($apie[istorija] == '16'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Μikroskemų'; $kiek ='800' ;}
-if($apie[istorija] == '17'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Drakono rutulių'; $kiek ='50' ;}
-if($apie[istorija] == '18'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Angelo sparnų'; $kiek ='1000' ;}
-if($apie[istorija] == '19'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Fusion Fail'; $kiek ='1300' ;}
-if($apie[istorija] == '20'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Naikinimo galios'; $kiek ='1400' ;}
-if($apie[istorija] == '21'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Auksinių'; $kiek ='10000' ;}
-if($apie[istorija] == '22'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Auksinių'; $kiek ='20000' ;}
-if($apie[istorija] == '23'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Auksinių'; $kiek ='50000' ;}
-if($apie[istorija] == '24'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Auksinių'; $kiek ='100000' ;}
-if($apie[istorija] == '25'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Auksinių'; $kiek ='200000' ;}
-if($apie[istorija] == '26'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Auksinių'; $kiek ='300000' ;}
-if($apie[istorija] == '27'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Auksinių'; $kiek ='400000' ;}
-if($apie[istorija] == '28'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Auksinių'; $kiek ='500000' ;}
-if($apie[istorija] == '29'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Auksinių'; $kiek ='700000' ;}
-if($apie[istorija] == '30'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Auksinių'; $kiek ='1000000' ;}
-if($apie[istorija] == '31'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Kreditų'; $kiek ='1000' ;}
-if($apie[istorija] == '32'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Kreditų'; $kiek ='2000' ;}
-if($apie[istorija] == '33'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Kreditų'; $kiek ='3000' ;}
-if($apie[istorija] == '34'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Kreditų'; $kiek ='5000' ;}
-if($apie[istorija] == '35'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Kreditų'; $kiek ='7000' ;}
-if($apie[istorija] == '36'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Kreditų'; $kiek ='10000' ;}
-if($apie[istorija] == '37'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Kreditų'; $kiek ='15000' ;}
-if($apie[istorija] == '38'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Kreditų'; $kiek ='20000' ;}
-if($apie[istorija] == '39'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Kreditų'; $kiek ='25000' ;}
-if($apie[istorija] == '40'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Kreditų'; $kiek ='30000' ;}
-if($apie[istorija] == '41'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'KG'; $kiek ='10000000' ;}
-if($apie[istorija] == '42'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'KG'; $kiek ='20000000' ;}
-if($apie[istorija] == '43'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'KG'; $kiek ='50000000' ;}
-if($apie[istorija] == '44'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'KG'; $kiek ='100000000' ;}
-if($apie[istorija] == '45'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'KG'; $kiek ='200000000' ;}
-if($apie[istorija] == '46'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'KG'; $kiek ='300000000' ;}
-if($apie[istorija] == '47'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'KG'; $kiek ='500000000' ;}
-if($apie[istorija] == '48'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'KG'; $kiek ='1000000000' ;}
-if($apie[istorija] == '49'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'KG'; $kiek ='2000000000' ;}
-if($apie[istorija] == '50'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'KG'; $kiek ='5000000000' ;}
-if($apie[istorija] == '51'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Lygio'; $kiek ='100' ;}
-if($apie[istorija] == '52'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Majin scroll'; $kiek ='10000' ;}
-if($apie[istorija] == '53'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Auksinių'; $kiek ='1000000' ;}
-if($apie[istorija] == '54'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Eurų'; $kiek ='10000' ;}
-if($apie[istorija] == '55'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Power Stone'; $kiek ='15000' ;}
-if($apie[istorija] == '56'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Μikroskemų'; $kiek ='16000' ;}
-if($apie[istorija] == '57'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Drakono rutulių'; $kiek ='500' ;}
-if($apie[istorija] == '58'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Angelo sparnų'; $kiek ='10000' ;}
-if($apie[istorija] == '59'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Fusion Fail'; $kiek ='20000' ;}
-if($apie[istorija] == '60'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Naikinimo galios'; $kiek ='15000' ;}
-if($apie[istorija] == '61'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Lygio'; $kiek ='120' ;}
-if($apie[istorija] == '62'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Majin scroll'; $kiek ='15000' ;}
-if($apie[istorija] == '63'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Auksinių'; $kiek ='2000000' ;}
-if($apie[istorija] == '64'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Eurų'; $kiek ='20000' ;}
-if($apie[istorija] == '65'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Power Stone'; $kiek ='20000' ;}
-if($apie[istorija] == '66'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Μikroskemų'; $kiek ='25000' ;}
-if($apie[istorija] == '67'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Drakono rutulių'; $kiek ='1000' ;}
-if($apie[istorija] == '68'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Angelo sparnų'; $kiek ='15000' ;}
-if($apie[istorija] == '69'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Fusion Fail'; $kiek ='30000' ;}
-if($apie[istorija] == '70'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Naikinimo galios'; $kiek ='20000' ;}
-if($apie[istorija] == '71'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Auksinių'; $kiek ='500000' ;}
-if($apie[istorija] == '72'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Auksinių'; $kiek ='1000000' ;}
-if($apie[istorija] == '73'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Auksinių'; $kiek ='2000000' ;}
-if($apie[istorija] == '74'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Auksinių'; $kiek ='3000000' ;}
-if($apie[istorija] == '75'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Auksinių'; $kiek ='4000000' ;}
-if($apie[istorija] == '76'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Auksinių'; $kiek ='5000000' ;}
-if($apie[istorija] == '77'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Auksinių'; $kiek ='7000000' ;}
-if($apie[istorija] == '78'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Auksinių'; $kiek ='10000000' ;}
-if($apie[istorija] == '79'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Auksinių'; $kiek ='12000000' ;}
-if($apie[istorija] == '80'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Auksinių'; $kiek ='15000000' ;}
-if($apie[istorija] == '81'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Kreditų'; $kiek ='50000' ;}
-if($apie[istorija] == '82'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Kreditų'; $kiek ='100000' ;}
-if($apie[istorija] == '83'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Kreditų'; $kiek ='200000' ;}
-if($apie[istorija] == '84'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Kreditų'; $kiek ='350000' ;}
-if($apie[istorija] == '85'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Kreditų'; $kiek ='500000' ;}
-if($apie[istorija] == '86'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Kreditų'; $kiek ='1000000' ;}
-if($apie[istorija] == '87'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Kreditų'; $kiek ='1500000' ;}
-if($apie[istorija] == '88'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Kreditų'; $kiek ='2000000' ;}
-if($apie[istorija] == '89'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Kreditų'; $kiek ='3000000' ;}
-if($apie[istorija] == '90'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Kreditų'; $kiek ='5000000' ;}
-if($apie[istorija] == '91'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'KG'; $kiek ='100000000000000000000' ;}
-if($apie[istorija] == '92'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'KG'; $kiek ='200000000000000000000' ;}
-if($apie[istorija] == '93'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'KG'; $kiek ='300000000000000000000' ;}
-if($apie[istorija] == '94'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'KG'; $kiek ='400000000000000000000' ;}
-if($apie[istorija] == '95'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'KG'; $kiek ='500000000000000000000' ;}
-if($apie[istorija] == '96'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'KG'; $kiek ='1000000000000000000000' ;}
-if($apie[istorija] == '97'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'KG'; $kiek ='2000000000000000000000' ;}
-if($apie[istorija] == '98'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'KG'; $kiek ='3000000000000000000000' ;}
-if($apie[istorija] == '99'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'KG'; $kiek ='5000000000000000000000' ;}
-if($apie[istorija] == '100'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'KG'; $kiek ='10000000000000000000000' ;}
+if($apie['istorija'] == '0'){$img =' img'; $vieta = 'inv'; $reikia = 'Majin scroll'; $kiek ='10' ;}
+if($apie['istorija'] == '1'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Lygio'; $kiek ='20' ;}
+if($apie['istorija'] == '2'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Majin scroll'; $kiek ='250' ;}
+if($apie['istorija'] == '3'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Auksinių'; $kiek ='10000' ;}
+if($apie['istorija'] == '4'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Eurų'; $kiek ='100' ;}
+if($apie['istorija'] == '5'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Power Stone'; $kiek ='400' ;}
+if($apie['istorija'] == '6'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Μikroskemų'; $kiek ='600' ;}
+if($apie['istorija'] == '7'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Drakono rutulių'; $kiek ='30' ;}
+if($apie['istorija'] == '8'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Angelo sparnų'; $kiek ='800' ;}
+if($apie['istorija'] == '9'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Fusion Fail'; $kiek ='1000' ;}
+if($apie['istorija'] == '10'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Naikinimo galios'; $kiek ='1100' ;}
+if($apie['istorija'] == '11'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Lygio'; $kiek ='30' ;}
+if($apie['istorija'] == '12'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Majin scroll'; $kiek ='500' ;}
+if($apie['istorija'] == '13'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Auksinių'; $kiek ='50000' ;}
+if($apie['istorija'] == '14'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Eurų'; $kiek ='200' ;}
+if($apie['istorija'] == '15'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Power Stone'; $kiek ='600' ;}
+if($apie['istorija'] == '16'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Μikroskemų'; $kiek ='800' ;}
+if($apie['istorija'] == '17'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Drakono rutulių'; $kiek ='50' ;}
+if($apie['istorija'] == '18'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Angelo sparnų'; $kiek ='1000' ;}
+if($apie['istorija'] == '19'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Fusion Fail'; $kiek ='1300' ;}
+if($apie['istorija'] == '20'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Naikinimo galios'; $kiek ='1400' ;}
+if($apie['istorija'] == '21'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Auksinių'; $kiek ='10000' ;}
+if($apie['istorija'] == '22'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Auksinių'; $kiek ='20000' ;}
+if($apie['istorija'] == '23'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Auksinių'; $kiek ='50000' ;}
+if($apie['istorija'] == '24'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Auksinių'; $kiek ='100000' ;}
+if($apie['istorija'] == '25'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Auksinių'; $kiek ='200000' ;}
+if($apie['istorija'] == '26'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Auksinių'; $kiek ='300000' ;}
+if($apie['istorija'] == '27'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Auksinių'; $kiek ='400000' ;}
+if($apie['istorija'] == '28'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Auksinių'; $kiek ='500000' ;}
+if($apie['istorija'] == '29'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Auksinių'; $kiek ='700000' ;}
+if($apie['istorija'] == '30'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Auksinių'; $kiek ='1000000' ;}
+if($apie['istorija'] == '31'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Kreditų'; $kiek ='1000' ;}
+if($apie['istorija'] == '32'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Kreditų'; $kiek ='2000' ;}
+if($apie['istorija'] == '33'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Kreditų'; $kiek ='3000' ;}
+if($apie['istorija'] == '34'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Kreditų'; $kiek ='5000' ;}
+if($apie['istorija'] == '35'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Kreditų'; $kiek ='7000' ;}
+if($apie['istorija'] == '36'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Kreditų'; $kiek ='10000' ;}
+if($apie['istorija'] == '37'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Kreditų'; $kiek ='15000' ;}
+if($apie['istorija'] == '38'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Kreditų'; $kiek ='20000' ;}
+if($apie['istorija'] == '39'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Kreditų'; $kiek ='25000' ;}
+if($apie['istorija'] == '40'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Kreditų'; $kiek ='30000' ;}
+if($apie['istorija'] == '41'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'KG'; $kiek ='10000000' ;}
+if($apie['istorija'] == '42'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'KG'; $kiek ='20000000' ;}
+if($apie['istorija'] == '43'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'KG'; $kiek ='50000000' ;}
+if($apie['istorija'] == '44'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'KG'; $kiek ='100000000' ;}
+if($apie['istorija'] == '45'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'KG'; $kiek ='200000000' ;}
+if($apie['istorija'] == '46'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'KG'; $kiek ='300000000' ;}
+if($apie['istorija'] == '47'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'KG'; $kiek ='500000000' ;}
+if($apie['istorija'] == '48'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'KG'; $kiek ='1000000000' ;}
+if($apie['istorija'] == '49'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'KG'; $kiek ='2000000000' ;}
+if($apie['istorija'] == '50'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'KG'; $kiek ='5000000000' ;}
+if($apie['istorija'] == '51'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Lygio'; $kiek ='100' ;}
+if($apie['istorija'] == '52'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Majin scroll'; $kiek ='10000' ;}
+if($apie['istorija'] == '53'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Auksinių'; $kiek ='1000000' ;}
+if($apie['istorija'] == '54'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Eurų'; $kiek ='10000' ;}
+if($apie['istorija'] == '55'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Power Stone'; $kiek ='15000' ;}
+if($apie['istorija'] == '56'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Μikroskemų'; $kiek ='16000' ;}
+if($apie['istorija'] == '57'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Drakono rutulių'; $kiek ='500' ;}
+if($apie['istorija'] == '58'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Angelo sparnų'; $kiek ='10000' ;}
+if($apie['istorija'] == '59'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Fusion Fail'; $kiek ='20000' ;}
+if($apie['istorija'] == '60'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Naikinimo galios'; $kiek ='15000' ;}
+if($apie['istorija'] == '61'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Lygio'; $kiek ='120' ;}
+if($apie['istorija'] == '62'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Majin scroll'; $kiek ='15000' ;}
+if($apie['istorija'] == '63'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Auksinių'; $kiek ='2000000' ;}
+if($apie['istorija'] == '64'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Eurų'; $kiek ='20000' ;}
+if($apie['istorija'] == '65'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Power Stone'; $kiek ='20000' ;}
+if($apie['istorija'] == '66'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Μikroskemų'; $kiek ='25000' ;}
+if($apie['istorija'] == '67'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Drakono rutulių'; $kiek ='1000' ;}
+if($apie['istorija'] == '68'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Angelo sparnų'; $kiek ='15000' ;}
+if($apie['istorija'] == '69'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Fusion Fail'; $kiek ='30000' ;}
+if($apie['istorija'] == '70'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Naikinimo galios'; $kiek ='20000' ;}
+if($apie['istorija'] == '71'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Auksinių'; $kiek ='500000' ;}
+if($apie['istorija'] == '72'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Auksinių'; $kiek ='1000000' ;}
+if($apie['istorija'] == '73'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Auksinių'; $kiek ='2000000' ;}
+if($apie['istorija'] == '74'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Auksinių'; $kiek ='3000000' ;}
+if($apie['istorija'] == '75'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Auksinių'; $kiek ='4000000' ;}
+if($apie['istorija'] == '76'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Auksinių'; $kiek ='5000000' ;}
+if($apie['istorija'] == '77'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Auksinių'; $kiek ='7000000' ;}
+if($apie['istorija'] == '78'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Auksinių'; $kiek ='10000000' ;}
+if($apie['istorija'] == '79'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Auksinių'; $kiek ='12000000' ;}
+if($apie['istorija'] == '80'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Auksinių'; $kiek ='15000000' ;}
+if($apie['istorija'] == '81'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Kreditų'; $kiek ='50000' ;}
+if($apie['istorija'] == '82'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Kreditų'; $kiek ='100000' ;}
+if($apie['istorija'] == '83'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Kreditų'; $kiek ='200000' ;}
+if($apie['istorija'] == '84'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Kreditų'; $kiek ='350000' ;}
+if($apie['istorija'] == '85'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Kreditų'; $kiek ='500000' ;}
+if($apie['istorija'] == '86'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Kreditų'; $kiek ='1000000' ;}
+if($apie['istorija'] == '87'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Kreditų'; $kiek ='1500000' ;}
+if($apie['istorija'] == '88'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Kreditų'; $kiek ='2000000' ;}
+if($apie['istorija'] == '89'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Kreditų'; $kiek ='3000000' ;}
+if($apie['istorija'] == '90'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'Kreditų'; $kiek ='5000000' ;}
+if($apie['istorija'] == '91'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'KG'; $kiek ='100000000000000000000' ;}
+if($apie['istorija'] == '92'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'KG'; $kiek ='200000000000000000000' ;}
+if($apie['istorija'] == '93'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'KG'; $kiek ='300000000000000000000' ;}
+if($apie['istorija'] == '94'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'KG'; $kiek ='400000000000000000000' ;}
+if($apie['istorija'] == '95'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'KG'; $kiek ='500000000000000000000' ;}
+if($apie['istorija'] == '96'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'KG'; $kiek ='1000000000000000000000' ;}
+if($apie['istorija'] == '97'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'KG'; $kiek ='2000000000000000000000' ;}
+if($apie['istorija'] == '98'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'KG'; $kiek ='3000000000000000000000' ;}
+if($apie['istorija'] == '99'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'KG'; $kiek ='5000000000000000000000' ;}
+if($apie['istorija'] == '100'){$img ='nmisijos'; $vieta = 'inv'; $reikia = 'KG'; $kiek ='10000000000000000000000' ;}
 if($id == ''){
 top('Žaidimo Istorija');
-	if($user[istorijos_time]-time()> 0){
+	if((int)$user['istorijos_time']-time()> 0){
 			top('ŽAIDIMO ISTORIJA');
 			echo'<div class="meniuc">
 <img src="img/bicons/like.png" />
@@ -122,7 +122,7 @@ Tu esi perėjas visas sagas!
 		
 	
 	}
-	elseif($apie[istorija] != '101'){ 
+	elseif($apie['istorija'] != '101'){ 
 
 
 echo '<div class="meniuc">
@@ -139,13 +139,13 @@ Reikia <b><font color="red">'.skaicius($kiek).' </font>'.$reikia.'</b>
 
 <br>
 </div>
-<div class="meniuc"> Dabar vygdai  '.$apie[istorija].' iš 100</div>
+<div class="meniuc"> Dabar vygdai  '.$apie['istorija'].' iš 100</div>
 ';
 
 
 
 $ID = rand(100000,999999);
-$_SESSION[no_refresh] = $ID;
+$_SESSION['no_refresh'] = $ID;
 echo'<div class="meniuc">  <a href="?id=istorija&ID='.$ID.'"><small><input type="submit" Value="Vygdyti istorijos misiją"/> </small></a>
 </div>';}
 
@@ -167,7 +167,7 @@ elseif($id == 'istorija'){
 top('Žaidimo Istorija');	
 	online('Žaidimo istorija');
 ////// istorija
-if($apie[istorija] == 1){
+if($apie['istorija'] == 1){
 if($apie['lygis'] < 19 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
@@ -181,8 +181,8 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 2){
-if($inv[Majinsroll] < 249 ){
+if($apie['istorija'] == 2){
+if($inv['Majinsroll'] < 249 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -196,7 +196,7 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 3){
+if($apie['istorija'] == 3){
 if($apie['auksiniai'] < 9999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
@@ -210,7 +210,7 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 4){
+if($apie['istorija'] == 4){
 if($apie['sms_litai'] < 99 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
@@ -224,8 +224,8 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 5){
-if($inv[Powerstone] < 399 ){
+if($apie['istorija'] == 5){
+if($inv['Powerstone'] < 399 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -239,8 +239,8 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 6){
-if($inv[Microshem] < 599 ){
+if($apie['istorija'] == 6){
+if($inv['Microshem'] < 599 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -254,8 +254,8 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 7){
-if($inv[dball] < 29 ){
+if($apie['istorija'] == 7){
+if($inv['dball'] < 29 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -269,8 +269,8 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 8){
-if($inv[angelwing] < 799 ){
+if($apie['istorija'] == 8){
+if($inv['angelwing'] < 799 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -284,8 +284,8 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 9){
-if($inv[Fusionfail] < 999 ){
+if($apie['istorija'] == 9){
+if($inv['Fusionfail'] < 999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -299,8 +299,8 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 10){
-if($inv[naikinti] < 1099 ){
+if($apie['istorija'] == 10){
+if($inv['naikinti'] < 1099 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -313,7 +313,7 @@ echo'<div class="meniuc">
 	mysqli_query($conn,"UPDATE inv SET  naikinti=naikinti-'1000' WHERE nick = '$nick'");
 }
 }	
-if($apie[istorija] == 11){
+if($apie['istorija'] == 11){
 if($apie['lygis'] < 29 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
@@ -327,8 +327,8 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 12){
-if($inv[Majinsroll] < 499 ){
+if($apie['istorija'] == 12){
+if($inv['Majinsroll'] < 499 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -342,7 +342,7 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 13){
+if($apie['istorija'] == 13){
 if($apie['auksiniai'] < 49999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
@@ -356,7 +356,7 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 14){
+if($apie['istorija'] == 14){
 if($apie['sms_litai'] < 199 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
@@ -370,8 +370,8 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 15){
-if($inv[Powerstone] < 599 ){
+if($apie['istorija'] == 15){
+if($inv['Powerstone'] < 599 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -385,8 +385,8 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 16){
-if($inv[Microshem] < 799 ){
+if($apie['istorija'] == 16){
+if($inv['Microshem'] < 799 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -400,8 +400,8 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 17){
-if($inv[dball] < 49 ){
+if($apie['istorija'] == 17){
+if($inv['dball'] < 49 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -415,8 +415,8 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 18){
-if($inv[angelwing] < 999 ){
+if($apie['istorija'] == 18){
+if($inv['angelwing'] < 999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -430,8 +430,8 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 19){
-if($inv[Fusionfail] < 1299 ){
+if($apie['istorija'] == 19){
+if($inv['Fusionfail'] < 1299 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -445,8 +445,8 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 20){
-if($inv[naikinti] < 1399 ){
+if($apie['istorija'] == 20){
+if($inv['naikinti'] < 1399 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -459,7 +459,7 @@ echo'<div class="meniuc">
 	mysqli_query($conn,"UPDATE inv SET  naikinti=naikinti-'1400' WHERE nick = '$nick'");
 }
 }	
-if($apie[istorija] == 21){
+if($apie['istorija'] == 21){
 if($apie['auksiniai'] < 9999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
@@ -473,7 +473,7 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 22){
+if($apie['istorija'] == 22){
 if($apie['auksiniai'] < 19999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
@@ -487,7 +487,7 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 23){
+if($apie['istorija'] == 23){
 if($apie['auksiniai'] < 49999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
@@ -501,7 +501,7 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 24){
+if($apie['istorija'] == 24){
 if($apie['auksiniai'] < 99999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
@@ -515,7 +515,7 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 25){
+if($apie['istorija'] == 25){
 if($apie['auksiniai'] < 199999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
@@ -529,7 +529,7 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 26){
+if($apie['istorija'] == 26){
 if($apie['auksiniai'] < 299999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
@@ -543,7 +543,7 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 27){
+if($apie['istorija'] == 27){
 if($apie['auksiniai'] < 399999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
@@ -557,7 +557,7 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 28){
+if($apie['istorija'] == 28){
 if($apie['auksiniai'] < 499999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
@@ -571,7 +571,7 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 29){
+if($apie['istorija'] == 29){
 if($apie['auksiniai'] < 699999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
@@ -585,7 +585,7 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 30){
+if($apie['istorija'] == 30){
 if($apie['auksiniai'] < 999999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
@@ -598,8 +598,8 @@ echo'<div class="meniuc">
 	mysqli_query($conn,"UPDATE zaidejai SET  istorija =istorija+'1', auksiniai=auksiniai-'1000000', vipticket=vipticket+'100000' WHERE nick = '$nick'");
 }
 }	
-if($apie[istorija] == 31){
-if($apie[kred] < 999 ){
+if($apie['istorija'] == 31){
+if($apie['kred'] < 999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -612,8 +612,8 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 32){
-if($apie[kred] < 1999 ){
+if($apie['istorija'] == 32){
+if($apie['kred'] < 1999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -626,8 +626,8 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 33){
-if($apie[kred] < 2999 ){
+if($apie['istorija'] == 33){
+if($apie['kred'] < 2999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -640,8 +640,8 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 34){
-if($apie[kred] < 4999 ){
+if($apie['istorija'] == 34){
+if($apie['kred'] < 4999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -654,8 +654,8 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 35){
-if($apie[kred] < 6999 ){
+if($apie['istorija'] == 35){
+if($apie['kred'] < 6999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -668,8 +668,8 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 36){
-if($apie[kred] < 9999 ){
+if($apie['istorija'] == 36){
+if($apie['kred'] < 9999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -682,8 +682,8 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 37){
-if($apie[kred] < 14999 ){
+if($apie['istorija'] == 37){
+if($apie['kred'] < 14999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -696,8 +696,8 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 38){
-if($apie[kred] < 19999 ){
+if($apie['istorija'] == 38){
+if($apie['kred'] < 19999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -710,8 +710,8 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 39){
-if($apie[kred] < 24999 ){
+if($apie['istorija'] == 39){
+if($apie['kred'] < 24999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -724,8 +724,8 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 40){
-if($apie[kred] < 29999 ){
+if($apie['istorija'] == 40){
+if($apie['kred'] < 29999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -737,7 +737,7 @@ echo'<div class="meniuc">
 	mysqli_query($conn,"UPDATE zaidejai SET  istorija =istorija+'1', kred=kred-'30000', vipticket=vipticket+'200000' WHERE nick = '$nick'");
 }
 }	
-if($apie[istorija] == 41){
+if($apie['istorija'] == 41){
 if($kg < 9999999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
@@ -751,7 +751,7 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 42){
+if($apie['istorija'] == 42){
 if($kg < 19999999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
@@ -765,7 +765,7 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 43){
+if($apie['istorija'] == 43){
 if($kg < 49999999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
@@ -779,7 +779,7 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 44){
+if($apie['istorija'] == 44){
 if($kg < 99999999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
@@ -793,7 +793,7 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 45){
+if($apie['istorija'] == 45){
 if($kg < 199999999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
@@ -807,7 +807,7 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 46){
+if($apie['istorija'] == 46){
 if($kg < 299999999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
@@ -821,7 +821,7 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 47){
+if($apie['istorija'] == 47){
 if($kg < 499999999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
@@ -835,7 +835,7 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 48){
+if($apie['istorija'] == 48){
 if($kg < 999999999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
@@ -849,7 +849,7 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 49){
+if($apie['istorija'] == 49){
 if($kg < 1999999999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
@@ -863,7 +863,7 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 50){
+if($apie['istorija'] == 50){
 if($kg < 4999999999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
@@ -876,7 +876,7 @@ echo'<div class="meniuc">
 	mysqli_query($conn,"UPDATE zaidejai SET  istorija =istorija+'1', jega=jega+'500000000', gynyba=gynyba+'1500000000' WHERE nick = '$nick'");
 }
 }	
-if($apie[istorija] == 51){
+if($apie['istorija'] == 51){
 if($apie['lygis'] < 99 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
@@ -890,8 +890,8 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 52){
-if($inv[Majinsroll] < 9999 ){
+if($apie['istorija'] == 52){
+if($inv['Majinsroll'] < 9999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -905,7 +905,7 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 53){
+if($apie['istorija'] == 53){
 if($apie['auksiniai'] < 999999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
@@ -919,7 +919,7 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 54){
+if($apie['istorija'] == 54){
 if($apie['sms_litai'] < 9999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
@@ -933,8 +933,8 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 55){
-if($inv[Powerstone] < 11999 ){
+if($apie['istorija'] == 55){
+if($inv['Powerstone'] < 11999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -948,8 +948,8 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 56){
-if($inv[Microshem] < 9999 ){
+if($apie['istorija'] == 56){
+if($inv['Microshem'] < 9999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -963,8 +963,8 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 57){
-if($inv[dball] < 499 ){
+if($apie['istorija'] == 57){
+if($inv['dball'] < 499 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -978,8 +978,8 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 58){
-if($inv[angelwing] < 9999 ){
+if($apie['istorija'] == 58){
+if($inv['angelwing'] < 9999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -993,8 +993,8 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 59){
-if($inv[Fusionfail] < 19999 ){
+if($apie['istorija'] == 59){
+if($inv['Fusionfail'] < 19999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -1008,8 +1008,8 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 60){
-if($inv[naikinti] < 14999 ){
+if($apie['istorija'] == 60){
+if($inv['naikinti'] < 14999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -1022,7 +1022,7 @@ echo'<div class="meniuc">
 	mysqli_query($conn,"UPDATE inv SET  naikinti=naikinti-'15000' WHERE nick = '$nick'");
 }
 }	
-if($apie[istorija] == 61){
+if($apie['istorija'] == 61){
 if($apie['lygis'] < 119 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
@@ -1036,8 +1036,8 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 62){
-if($inv[Majinsroll] < 14999 ){
+if($apie['istorija'] == 62){
+if($inv['Majinsroll'] < 14999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -1051,7 +1051,7 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 63){
+if($apie['istorija'] == 63){
 if($apie['auksiniai'] < 1999999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
@@ -1065,7 +1065,7 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 64){
+if($apie['istorija'] == 64){
 if($apie['sms_litai'] < 19999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
@@ -1079,8 +1079,8 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 65){
-if($inv[Powerstone] < 19999 ){
+if($apie['istorija'] == 65){
+if($inv['Powerstone'] < 19999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -1094,8 +1094,8 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 66){
-if($inv[Microshem] < 24999 ){
+if($apie['istorija'] == 66){
+if($inv['Microshem'] < 24999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -1109,8 +1109,8 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 67){
-if($inv[dball] < 999 ){
+if($apie['istorija'] == 67){
+if($inv['dball'] < 999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -1124,8 +1124,8 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 68){
-if($inv[angelwing] < 14999 ){
+if($apie['istorija'] == 68){
+if($inv['angelwing'] < 14999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -1139,8 +1139,8 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 69){
-if($inv[Fusionfail] < 29999 ){
+if($apie['istorija'] == 69){
+if($inv['Fusionfail'] < 29999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -1154,8 +1154,8 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 70){
-if($inv[naikinti] < 19999 ){
+if($apie['istorija'] == 70){
+if($inv['naikinti'] < 19999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -1168,7 +1168,7 @@ echo'<div class="meniuc">
 	mysqli_query($conn,"UPDATE inv SET  naikinti=naikinti-'20000' WHERE nick = '$nick'");
 }
 }	
-if($apie[istorija] == 71){
+if($apie['istorija'] == 71){
 if($apie['auksiniai'] < 499999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
@@ -1182,7 +1182,7 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 72){
+if($apie['istorija'] == 72){
 if($apie['auksiniai'] < 999999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
@@ -1196,7 +1196,7 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 73){
+if($apie['istorija'] == 73){
 if($apie['auksiniai'] < 1999999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
@@ -1210,7 +1210,7 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 74){
+if($apie['istorija'] == 74){
 if($apie['auksiniai'] < 2999999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
@@ -1224,7 +1224,7 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 75){
+if($apie['istorija'] == 75){
 if($apie['auksiniai'] < 3999999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
@@ -1238,7 +1238,7 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 76){
+if($apie['istorija'] == 76){
 if($apie['auksiniai'] < 4999999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
@@ -1252,7 +1252,7 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 77){
+if($apie['istorija'] == 77){
 if($apie['auksiniai'] < 6999999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
@@ -1266,7 +1266,7 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 78){
+if($apie['istorija'] == 78){
 if($apie['auksiniai'] < 9999999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
@@ -1280,7 +1280,7 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 79){
+if($apie['istorija'] == 79){
 if($apie['auksiniai'] < 11999999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
@@ -1294,7 +1294,7 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 80){
+if($apie['istorija'] == 80){
 if($apie['auksiniai'] < 14999999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
@@ -1307,8 +1307,8 @@ echo'<div class="meniuc">
 	mysqli_query($conn,"UPDATE zaidejai SET  istorija =istorija+'1', auksiniai=auksiniai-'15000000', botas=botas+'200' WHERE nick = '$nick'");
 }
 }	
-if($apie[istorija] == 81){
-if($apie[kred] < 49999 ){
+if($apie['istorija'] == 81){
+if($apie['kred'] < 49999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -1321,8 +1321,8 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 82){
-if($apie[kred] < 99999 ){
+if($apie['istorija'] == 82){
+if($apie['kred'] < 99999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -1335,8 +1335,8 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 83){
-if($apie[kred] < 199999 ){
+if($apie['istorija'] == 83){
+if($apie['kred'] < 199999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -1349,8 +1349,8 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 84){
-if($apie[kred] < 349999 ){
+if($apie['istorija'] == 84){
+if($apie['kred'] < 349999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -1363,8 +1363,8 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 85){
-if($apie[kred] < 499999 ){
+if($apie['istorija'] == 85){
+if($apie['kred'] < 499999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -1377,8 +1377,8 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 86){
-if($apie[kred] < 999999 ){
+if($apie['istorija'] == 86){
+if($apie['kred'] < 999999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -1391,8 +1391,8 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 87){
-if($apie[kred] < 1499999 ){
+if($apie['istorija'] == 87){
+if($apie['kred'] < 1499999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -1405,8 +1405,8 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 88){
-if($apie[kred] < 1999999 ){
+if($apie['istorija'] == 88){
+if($apie['kred'] < 1999999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -1419,8 +1419,8 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 89){
-if($apie[kred] < 2999999 ){
+if($apie['istorija'] == 89){
+if($apie['kred'] < 2999999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -1433,8 +1433,8 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 90){
-if($apie[kred] < 4999999 ){
+if($apie['istorija'] == 90){
+if($apie['kred'] < 4999999 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
 		echo'<div class="meniuc">
@@ -1446,7 +1446,7 @@ echo'<div class="meniuc">
 	mysqli_query($conn,"UPDATE zaidejai SET  istorija =istorija+'1', kred=kred-'5000000', vipticket=vipticket+'50000000', botas=botas+'400' WHERE nick = '$nick'");
 }
 }	
-if($apie[istorija] == 91){
+if($apie['istorija'] == 91){
 if($kg < 100000000000000000000 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
@@ -1460,7 +1460,7 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 92){
+if($apie['istorija'] == 92){
 if($kg < 200000000000000000000 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
@@ -1474,7 +1474,7 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 93){
+if($apie['istorija'] == 93){
 if($kg < 300000000000000000000 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
@@ -1488,7 +1488,7 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 94){
+if($apie['istorija'] == 94){
 if($kg < 400000000000000000000 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
@@ -1502,7 +1502,7 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 95){
+if($apie['istorija'] == 95){
 if($kg < 500000000000000000000 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
@@ -1516,7 +1516,7 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 96){
+if($apie['istorija'] == 96){
 if($kg < 1000000000000000000000 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
@@ -1530,7 +1530,7 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 97){
+if($apie['istorija'] == 97){
 if($kg < 2000000000000000000000 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
@@ -1544,7 +1544,7 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 98){
+if($apie['istorija'] == 98){
 if($kg < 3000000000000000000000 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
@@ -1558,7 +1558,7 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 99){
+if($apie['istorija'] == 99){
 if($kg < 5000000000000000000000 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
@@ -1572,7 +1572,7 @@ echo'<div class="meniuc">
 
 }
 }	
-if($apie[istorija] == 100){
+if($apie['istorija'] == 100){
 if($kg < 10000000000000000000000 ){
 echo'<div class="meniuc">
 <img src="img/imgg/nmisijos.png"></div>';
