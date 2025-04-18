@@ -6,31 +6,9 @@ echo "<!DOCTYPE html PUBLIC '-//WAPFORUM//DTD XHTML Mobile 1.0//EN' 'http://www.
 include_once 'cfg/sql.php';
 include_once 'cfg/funkcijos.php';
 
-	  
-
-   $prizas = $nust['sms_priz'];
-	$prizas2 = round($nust['sms_priz']) / 2;
-	$prizas3 = round($nust['sms_priz']) / 3;
- $statusai = array("Mod","Mod2","Mod3","Mod4","Admin");
-$nst = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM turnyras"));
-$new = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM news ORDER BY id DESC LIMIT 1"));
-$xd = mysqli_query($conn,"SELECT * FROM zaidejai WHERE nick= '$nick'");
-$inv = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM inv WHERE nick='$nick'"));
 head2();
-if($nust['new_time']-time() > 0){
-    $q = mysqli_query($conn,"SELECT * FROM news ORDER BY id DESC LIMIT 1");
-   
-    while($row = mysqli_fetch_assoc($q)){
-        echo '<div class="meniuc">Padarytas atnaujinimas: '.$row[name].'</div>';
-      
-        unset($row);
-    }
-}
-	   
-
-
 baneris();
-		topbar();
+topbar();
 
 	
 		
@@ -733,7 +711,7 @@ if($id == 'vip1'){
 	if($apie['vipticket'] < 1999){
 		 echo '<div class="meniuc">Nepakanka  <img src="img/bicons/vipt.png" />!</div>';
 	}
-		elseif($apie[cash] < 0){
+		elseif($apie['cash'] < 0){
 		 echo '<div class="meniuc">Nepakanka  <img src="img/bicons/cash.png" />!</div>';
 	}
 	elseif($apie['sms_litai'] < 1000){
@@ -1740,7 +1718,7 @@ if($id == 'vip26'){
 
 	if($apie['vipas25']< '+'){
 		echo "<div class='meniuc'>Tu neturi <b>25 Lygio VIP</b>!</div>";}
-	elseif($apie[vipas26]== '-'){
+	elseif($apie['vipas26']== '-'){
 
 		echo '<div class="meniuc">Tu jau pirkai <b>26 Lygio VIP </b>!</div>';
 
@@ -1752,7 +1730,7 @@ if($id == 'vip26'){
 		if($apie['vipticket'] < 799999999){
 			echo '<div class="meniuc">Nepakanka  <img src="img/bicons/vipt.png" />!</div>';
 		}
-		elseif($apie[vipas26]=='+'){
+		elseif($apie['vipas26']=='+'){
 
 			echo '<div class="meniuc">Tu jau esi <b>26 Lygio  VIP </b>!</div>';
 
@@ -1817,7 +1795,7 @@ if($id == 'uvip2'){
 	if($apie['sms_litai'] < 399){
 		 echo '<div class="meniuc">Nepakanka  <img src="img/bicons/euro.png" />!</div>';
 	}
-elseif($apie[uvip]-time() > 0){
+elseif((int)$apie['uvip']-time() > 0){
 	
 	echo '<div class="meniuc">Tu jau esi <b>Ultimate VIP </b>!</div>';
 	

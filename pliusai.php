@@ -10,7 +10,7 @@ baneris();
 topbar();
 if($id == ""){
 	 online('Suka varkes..');
-   top(Pliusai);
+   top('Pliusai');
 
 	if($apie['pliusaib']-time() < 0){
 echo' <div class="meniuc">
