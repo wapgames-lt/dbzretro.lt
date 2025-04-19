@@ -189,7 +189,7 @@ function laikas($time, $id = 0)
             $xx = '0 sek.';
         }
     } else {
-            $xx = createFromTimestamp($time)->diffForHumans();
+            $xx = Carbon::createFromTimestamp($time)->diffForHumans();
     }
     return $xx;
 }
