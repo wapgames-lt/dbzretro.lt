@@ -321,8 +321,8 @@ mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 if($apie['sagos'] == 78){
 		$j = $apie['jega']+150000;
 			$gy = $apie['gynyba']+450000;
-		mysqli_query($conn,"UPDATE zaidejai SET jega='$j', gynyba='$gy', kred=kred+'110' sms_litai=sms_litai+'35' WHERE nick = '$nick'");
-mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
+	mysqli_query($conn, "UPDATE zaidejai SET jega='$j', gynyba='$gy', kred=kred+'110', sms_litai=sms_litai+'35' WHERE nick = '$nick'");
+	mysqli_query($conn,"UPDATE zaidejai SET sagos =sagos+'1' WHERE nick = '$nick'");
 	} 
 
 	if($apie['sagos'] == 68){
