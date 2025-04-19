@@ -290,7 +290,7 @@ if ($id == 'reg_yes') {
 			
 			  <div class="meniuc">
 			  ';
-    if (mysqli_num_rows(mysqli_query($conn, "SEELCT * FROM user WHERE kovu_trn='+'")) == 8) {
+    if(mysqli_num_rows(mysqli_query($conn,"SELECT * FROM user WHERE kovu_trn='+'")) == 8) {
         echo '
 			
 				  ' . $ic . ' Registracija į turnyrą dabar yra uždarytą.
