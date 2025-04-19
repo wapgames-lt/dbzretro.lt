@@ -550,19 +550,7 @@ function skaicius($n)
     return number_format($n);
 }
 
-function e($L)
-{
-    $b = substr((string)$L, 0, 1);
-    $dd = strlen($L - 1);
-    return ("$b.e+$dd");
-}
 
-if (kiek('online') > $nust['max_on']) {
-    mysqli_query($conn, "UPDATE nustatymai SET max_on='" . kiek('online') . "',max_online_date='" . time() . "'");
-}
-if (kiek('online') > $nust['snd_max']) {
-    mysqli_query($conn, "UPDATE nustatymai SET snd_max='" . kiek('online') . "'");
-}
 
 function foot(): void
 {
@@ -611,40 +599,11 @@ function skaitl()
   ';
 }
 
-function dydziai($kint)
-{
-    $dydis = [' B', ' KB', ' MB', ' GB'];
-    return $kint ? round($kint / 1024 ** $x = floor(log($kint, 1024)), 1) . $dydis[$x] : '0 B';
-}
 
 
 //** APSAUGA
-function aps($xe)
-{
-    return trim(mysqli_real_escape_string($conn, stripslashes(htmlspecialchars((string)$xe, ENT_QUOTES, 'utf-8'))));
-}
-
-function nr($xe)
-{
-    return trim(mysqli_real_escape_string($conn, htmlspecialchars(abs($xe))));
-}
 
 
-/* function baneris(){
-$arr = array('botasm','botasm2');
-$rand = array_rand($arr);
-
- echo'
-<div class="in"><div class="logo">
-<img src="img/baneriai/'.$arr[$rand].'.png">
-
-
-
-
-</div><div class="ab">
-       Žaidėjau - '.$nick.'  sekmės žaidime!
-       </div><div class="line"></div>';}
-*/
 function in_baneris(): void
 {
     echo '<div class="in">
