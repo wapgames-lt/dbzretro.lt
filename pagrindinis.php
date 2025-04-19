@@ -2799,24 +2799,32 @@ if ($id == 'kom_del') {
             echo 'Mirties armour: ' . $chestContent['amount'];
             mysqli_query($conn, "UPDATE inv SET mirties_armor=mirties_armor+'$amount' WHERE nick='$nick'");
             $message .= ' Gavo: ' . $amount . ' mirties armour.';
+            $discordMessage = 'Žaidėjui ' . $nick . 'iš dėžės iškrito mirties armour!';
+            sendDiscordMessage($discordMessage);
         }
         if ($chestContent['name'] === 'infinitySword') {
             $amount = $chestContent['amount'];
             echo 'Infinity sword: ' . $chestContent['amount'];
             mysqli_query($conn, "UPDATE inv SET infinity_sword=infinity_sword+'$amount' WHERE nick='$nick'");
             $message .= ' Gavo: ' . $amount . ' infinity sword.';
+            $discordMessage = 'Žaidėjui ' . $nick . 'iš dėžės iškrito infinity sword!';
+            sendDiscordMessage($discordMessage);
         }
         if ($chestContent['name'] === 'deathSword') {
             $amount = $chestContent['amount'];
             echo 'Mirties sword: ' . $chestContent['amount'];
             mysqli_query($conn, "UPDATE inv SET mirties_sword=mirties_sword+'$amount' WHERE nick='$nick'");
             $message .= ' Gavo: ' . $amount . ' mirties sword.';
+            $discordMessage = 'Žaidėjui ' . $nick . 'iš dėžės iškrito mirties sword!';
+            sendDiscordMessage($discordMessage);
         }
         if ($chestContent['name'] === 'deathAmulet') {
             $amount = $chestContent['amount'];
             echo 'Mirties amulet: ' . $chestContent['amount'];
             mysqli_query($conn, "UPDATE inv SET mirties_amulet=mirties_amulet+'$amount' WHERE nick='$nick'");
             $message .= ' Gavo: ' . $amount . ' mirties amulet.';
+            $discordMessage = 'Žaidėjui ' . $nick . 'iš dėžės iškrito mirties amulet!';
+            sendDiscordMessage($discordMessage);
         }
         if ($chestContent['name'] === 'revivalAmulet') {
             $amount = $chestContent['amount'];
@@ -2972,8 +2980,7 @@ Mėnulio pilnatis buna nuo 23.00 val. iki 24.00 val.<br />
                 'receiver_nick' => $receiver->nick(),
             ]);
             echo '<div class="meniuc">Įvyko klaida!</div>';
-        }
-        elseif ($kieks < 1) {
+        } elseif ($kieks < 1) {
             echo '<div class="meniuc">Mažiausiai galima pervesti ' . sk(1) . ' eurą!</div>';
         } else {
             echo '<div class="meniuc">Žaidėjui ' . statusas($ka) . ' pervedei ' . sk($kieks) . ' ' . $eurui . '!</div>';
