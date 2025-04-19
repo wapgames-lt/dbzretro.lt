@@ -1,6 +1,8 @@
 <?php
 
+use Carbon\Carbon;
 use Carbon\CarbonImmutable;
+use Carbon\CarbonInterface;
 use LegacyDbz\Players\DTO\Player;
 use LegacyDbz\Players\Services\CurrentPlayer;
 
@@ -2948,6 +2950,11 @@ function logWarning(string $message, array $context = []): void
 function setCurrentPlayer(string $nick): void
 {
     CurrentPlayer::set(getPlayerByNick($nick));
+}
+
+function createFromTimestamp(string $timestamp): CarbonInterface
+{
+    return Carbon::createFromTimestamp($timestamp);
 }
 
 $endTime = microtime(true);

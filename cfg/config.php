@@ -212,23 +212,6 @@ function formatDateTimeString($dateTimeString)
     return $xx;
 }
 
-function random_coloras($tekstas){ 
-    $string = '1234567890ABCDEF'; #
-    return '<font color="'.substr(str_shuffle($string),1,6).'">'.$tekstas.'</font>'; 
-    } 
-
-
-function spal($zodis){ 
-    $array = str_split((string) $zodis);
-    $eilute = '';
-    $counter = count($array); 
-    for($i=0; $i<$counter; $i++){ 
-        $eilute .= random_coloras($array[$i]); 
-        } 
-    return $eilute; 
-    }
-
-
 function isYouTubeLink($url) {
     $pattern = '/^(https?:\/\/)?(www\.)?(youtube\.com\/(watch\?v=|embed\/|v\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/';
 

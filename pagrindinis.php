@@ -566,7 +566,7 @@ if ($id == "") {
             if ($apie['statusas'] == 'Admin' || $apie['statusas'] == 'Mod' || $apie['statusas'] == 'Mod2' || $apie['statusas'] == 'Mod3' || $apie['statusas'] == 'Mod4') {
                 $goott = '<a href="?id=exit&ka=' . $rr['id'] . '" class="delete-topic"><i class="fa-duotone fa-trash-can"></i></a>';
             }
-            $topicDate = date('m-d H:i', $rr['time']);
+            $topicDate = createFromTimestamp($rr['time'])->diffForHumans();
             echo '<div class="topic-item" style="text-align:center;">
                 <div class="topic-content">' . smile($rr['message']) . '</div>
                 <div class="topic-meta" style="justify-content:center;">
