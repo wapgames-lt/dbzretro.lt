@@ -85,9 +85,6 @@ if ($id === 'view') {
             echo '<a class="button" href="party_invites.php">Pakvietimų valdymas</a><br>';
             echo '</div>';
             echo '<div class="meniu">';
-            echo '<a class="button" href="party_invites.php">Pakvietimų valdymas</a><br>';
-            echo '</div>';
-            echo '<div class="meniu">';
             echo '<a class="button" href="index.php?id=delete">Ištrinti</a><br>';
             echo '</div>';
         }
