@@ -48,37 +48,37 @@ echo '<div class="meniuc"><img src="img/veikejai/'.$apie['veikejas'].'-'.$apie['
     
    Čia yra tavo visi  turimi už auksnius/kreditus pirkti veikėjai<br></div>';
 echo '';
-if($apie['omegab']-time() > 0){
+if((int)$apie['omegab']-time() > 0){
   echo' <div class="meniuc">
 <a href="?id=omega"><h3>Omega fusion cooler</h3></div>
  </a>
 ';
 }
-if($apie['finalgokub']-time() > 0){
+if((int)$apie['finalgokub']-time() > 0){
   echo' <div class="meniuc">
 <a href="?id=fgokas"><h3>Final goku gods</h3></div>
  </a>
 ';
 }
-if($apie['sidrab']-time() > 0){
+if((int)$apie['sidrab']-time() > 0){
   echo' <div class="meniuc">
 <a href="?id=sidra"><h3>Sidra</h3></div>
  </a>
 ';
 }
-if($apie['blackb']-time() > 0){
+if((int)$apie['blackb']-time() > 0){
   echo' <div class="meniuc">
 <a href="?id=bgokas"><h3>Black Goku Rose</h3></div>
  </a>
 ';
 }
-if($apie['kaleb']-time() > 0){
+if((int)$apie['kaleb']-time() > 0){
   echo' <div class="meniuc">
 <a href="?id=kale"><h3>Kale</h3></div>
  </a>
 ';
 }
-if($apie['hoppb']-time() > 0){
+if((int)$apie['hoppb']-time() > 0){
   echo' <div class="meniuc">
 <a href="?id=hopp"><h3>Hopp</h3></div>
  </a>
@@ -113,25 +113,25 @@ if($apie['visasb']-time() > 0){
  </a>
 ';
 }
-if($apie['cusb']-time() > 0){
+if((int)$apie['cusb']-time() > 0){
   echo' <div class="meniuc">
 <a href="?id=cus"><h3>Cus</h3></div>
  </a>
 ';
 }
-if($apie['mojitob']-time() > 0){
+if((int)$apie['mojitob']-time() > 0){
   echo' <div class="meniuc">
 <a href="?id=mojito"><h3>Mojito</h3></div>
  </a>
 ';
 }
-if($apie['cognacb']-time() > 0){
+if((int)$apie['cognacb']-time() > 0){
   echo' <div class="meniuc">
 <a href="?id=cognac"><h3>Cognac</h3></div>
  </a>
 ';
 }
-if($apie['cukatailb']-time() > 0){
+if((int)$apie['cukatailb']-time() > 0){
   echo' <div class="meniuc">
 <a href="?id=cukatail"><h3>Cukatail</h3></div>
  </a>
@@ -159,13 +159,13 @@ echo '<div class="meniuc"><img src="img/veikejai/'.$apie['veikejas'].'-'.$apie['
    Čia yra tavo visi  turimi naikintojų veikėjai<br></div>';
 echo '';
 
-if($apie['billsb']-time() > 0){
+if((int)$apie['billsb']-time() > 0){
   echo '
 <div class="titlec">
 <a href="?id=bills"><h3>Lord bills</h3></a><br></div>
 ';
 }
-if($apie['champab']-time() > 0){
+if((int)$apie['champab']-time() > 0){
   echo '
 <div class="meniuc">
 <a href="?id=champa"><h3>Champa</h3></div>
@@ -173,42 +173,42 @@ if($apie['champab']-time() > 0){
 ';
 }
 
-if($apie['quitelab']-time() > 0){
+if((int)$apie['quitelab']-time() > 0){
   echo '
 <div class="meniuc">
 <a href="?id=quitela"><h3>Quitela</h3>
  </a><br></div>
 ';
 }
-if($apie['moscob']-time() > 0){
+if((int)$apie['moscob']-time() > 0){
   echo '
 <div class="meniuc">
 <a href="?id=mosco"><h3>Mosco</h3>
 </a><br></div>
 ';
 }
-if($apie['arackb']-time() > 0){
+if((int)$apie['arackb']-time() > 0){
   echo '
 <div class="meniuc">
 <a href="?id=arack"><h3>Arack</h3>
 </a><br></div>
 ';
 }
-if($apie['iwanb']-time() > 0){
+if((int)$apie['iwanb']-time() > 0){
   echo '
 <div class="meniuc">
 <a href="?id=iwan"><h3>Iwan</h3>
 </a><br></div>
 ';
 }
-if($apie['geeneb']-time() > 0){
+if((int)$apie['geeneb']-time() > 0){
   echo '
 <div class="meniuc">
 <a href="?id=geene"><h3>Geene</h3>
 </a><br></div>
 ';
 }
-if($apie['toppomb']-time() > 0){
+if((int)$apie['toppomb']-time() > 0){
   echo '
 <div class="meniuc">
 <a href="?id=toppo"><h3>Toppo</h3>
@@ -232,26 +232,26 @@ echo '<div class="meniuc"><img src="img/veikejai/'.$apie['veikejas'].'-'.$apie['
     
    Čia yra tavo visi  turimi sajanų veikėjai<br></div>';
 
-if($apie['kabab']-time() > 0){
+if((int)$apie['kabab']-time() > 0){
   echo '
 <div class="titlec">
 <a href="?id=kaba"><h3>Kaba</h3></a><br></div>
 ';
 }
-if($apie['vegetab']-time() > 0){
+if((int)$apie['vegetab']-time() > 0){
   echo '
 <div class="titlec">
 <a href="?id=vegeta"><h3>Vegeta gods</h3></a><br></div>
 ';
 }
-if($apie['gokasb']-time() > 0){
+if((int)$apie['gokasb']-time() > 0){
   echo '
 <div class="titlec">
 <a href="?id=gokas"><h3>Gokas gods</h3></a><br></div>
 ';
 }
 
-if($apie['gokas20xb']-time() > 0){
+if((int)$apie['gokas20xb']-time() > 0){
   echo '
 <div class="titlec">
 <a href="?id=gokas2"><h3>Gokas SSJGB Kaioken 20x</h3></a><br></div>
@@ -307,67 +307,67 @@ echo '<div class="meniuc"><img src="img/veikejai/'.$apie['veikejas'].'-'.$apie['
     
    Čia yra tavo visi  turimi kiti unikalūs veikėjai<br></div>';
 
-if($apie['magetab']-time() > 0){
+if((int)$apie['magetab']-time() > 0){
   echo '
 <div class="titlec">
 <a href="?id=botamo"><h3>Botamo</h3></a><br></div>
 ';
 }
-if($apie['buub']-time() > 0){
+if((int)$apie['buub']-time() > 0){
   echo '
 <div class="titlec">
 <a href="?id=buu"><h3>Majin Buu</h3></a><br></div>
 ';
 }
-if($apie['babyb']-time() > 0){
+if((int)$apie['babyb']-time() > 0){
   echo '
 <div class="titlec">
 <a href="?id=baby"><h3>Baby Vegeta</h3></a><br></div>
 ';
 }
-if($apie['s17b']-time() > 0){
+if((int)$apie['s17b']-time() > 0){
   echo '
 <div class="titlec">
 <a href="?id=s17"><h3>Super Android 17</h3></a><br></div>
 ';
 }
-if($apie['goldozarub']-time() > 0){
+if((int)$apie['goldozarub']-time() > 0){
   echo '
 <div class="titlec">
 <a href="?id=gbaby"><h3>Gold Ozaru Baby</h3></a><br></div>
 ';
 }
-if($apie['fryzasb']-time() > 0){
+if((int)$apie['fryzasb']-time() > 0){
   echo '
 <div class="titlec">
 <a href="?id=fryzas"><h3>Gold Fryzas</h3></a><br></div>
 ';
 }
-if($apie['hitasb']-time() > 0){
+if((int)$apie['hitasb']-time() > 0){
   echo '
 <div class="titlec">
 <a href="?id=hitas"><h3>Hitas</h3>  </a><br></div>
 ';
 }
-if($apie['maxfryzasb']-time() > 0){
+if((int)$apie['maxfryzasb']-time() > 0){
 echo '
 <div class="titlec">
 <a href="?id=fryzas2"><h3>MAX Power Gold Fryzas</h3></a><br></div>
 ';
 }
-if($apie['jirenb']-time() > 0){
+if((int)$apie['jirenb']-time() > 0){
   echo '
 <div class="titlec">
 <a href="?id=jiren"><h3>Jiren</h3></a><br></div>
 ';
 }
-if($apie['jirenmb']-time() > 0){
+if((int)$apie['jirenmb']-time() > 0){
   echo '
 <div class="titlec">
 <a href="?id=jirenm"><h3>Max Form Jiren</h3></a><br></div>
 ';
 }
-if($apie['keflab']-time() > 0){
+if((int)$apie['keflab']-time() > 0){
 	echo '
 <div class="titlec">
 <a href="?id=kefla"><h3>Kefla</h3></a><br></div>
@@ -400,7 +400,7 @@ elseif($id == "cognac"){
 		</table> </div>	
 
 	';
-if($apie['cognacb']-time() > 0){
+if((int)$apie['cognacb']-time() > 0){
   echo '
 		<div class="meniu" style="text-align: left;">	'.$ico.' <b><a href="vsaugykla.php?id=uzsidedu_cognac">Užsidėti šį veikėją</a></b><br/></div>
 		
@@ -423,7 +423,7 @@ Neturi šio veikėjo!</div>';
 		if(($apie['sms_litai']) < '0'){
 			
 		echo'	<div class="meniuc">Klaida!</div> ';}
-		if($apie['hoppb']-time() > 0){
+		if((int)$apie['hoppb']-time() > 0){
 				
 	echo'	<div class="meniuc"><br><img src="img/veikejai/Cognac-0.png" alt="IMG" height="140" width="140"><br>
 <font color="red">Užsidėjai sėkmingai</div> </font>';		
@@ -455,7 +455,7 @@ elseif($id == "hopp"){
 		</table> </div>	
 
 	';
-if($apie['hoppb']-time() > 0){
+if((int)$apie['hoppb']-time() > 0){
   echo '
 		<div class="meniu" style="text-align: left;">	'.$ico.' <b><a href="vsaugykla.php?id=uzsidedu_hopp">Užsidėti šį veikėją</a></b><br/></div>
 		
@@ -478,7 +478,7 @@ Neturi šio veikėjo!</div>';
 		if(($apie['sms_litai']) < '0'){
 			
 		echo'	<div class="meniuc">Klaida!</div> ';}
-		if($apie['hoppb']-time() > 0){
+		if((int)$apie['hoppb']-time() > 0){
 				
 	echo'	<div class="meniuc"><br><img src="img/veikejai/Hopp-0.png" alt="IMG" height="140" width="140"><br>
 <font color="red">Užsidėjai sėkmingai</div> </font>';		
@@ -510,7 +510,7 @@ elseif($id == "bills"){
 		</table> </div>	
 
 	';
-if($apie['billsb']-time() > 0){
+if((int)$apie['billsb']-time() > 0){
   echo '
 		<div class="meniu" style="text-align: left;">	'.$ico.' <b><a href="vsaugykla.php?id=uzsidedu_bills">Užsidėti šį veikėją</a></b><br/></div>
 		
@@ -562,14 +562,14 @@ elseif($id == "kefla"){
 elseif($id == "uzsidedu_kefla"){
 	online('Užsideda turimą veikėją');
 	top('Kefla');
-	if($apie['keflab']-time() < 0){
+	if((int)$apie['keflab']-time() < 0){
 		echo' <div class="meniuc">
 Neturi šio veikėjo!</div>';
 	}
 	if(($apie['sms_litai']) < '0'){
 
 		echo'	<div class="meniuc">Klaida!</div> ';}
-	if($apie['keflab']-time() > 0){
+	if((int)$apie['keflab']-time() > 0){
 
 		echo'	<div class="meniuc"><br><img src="img/veikejai/Kefla-0.png"><br>
 <font color="red">Užsidėjai sėkmingai</div> </font>';
@@ -586,14 +586,14 @@ Neturi šio veikėjo!</div>';
 elseif($id == "uzsidedu_bills"){
 	 online('Užsideda turimą veikėją');
 	 top('Lord Bills');
-		if($apie['billsb']-time() < 0){
+		if((int)$apie['billsb']-time() < 0){
 echo' <div class="meniuc">
 Neturi šio veikėjo!</div>';
 }
 		if(($apie['sms_litai']) < '0'){
 			
 		echo'	<div class="meniuc">Klaida!</div> ';}
-		if($apie['billsb']-time() > 0){
+		if((int)$apie['billsb']-time() > 0){
 				
 	echo'	<div class="meniuc"><br><img src="img/veikejai/Lord bills-0.png"><br>
 <font color="red">Užsidėjai sėkmingai</div> </font>';		
@@ -621,14 +621,14 @@ echo'</div>';
 elseif($id == "parduoti_bills"){
 	 online('Parduoda turimą veikėją');
 	 top('Lord Bills');
-		if($apie['billsb']-time() < 0){
+		if((int)$apie['billsb']-time() < 0){
 echo' <div class="meniuc">
 Neturi šio veikėjo!</div>';
 }
 		if(($apie['sms_litai']) < '0'){
 			
 		echo'	<div class="meniuc">Klaida!</div> ';}
-		if($apie['billsb']-time() > 0){
+		if((int)$apie['billsb']-time() > 0){
 				
 	echo'	<div class="meniuc"><br><img src="img/veikejai/Lord bills-0.png"></div>
 <font color="red"><div class="meniuc">Pardavei veikėją, gavai <b>300</b>'.$eurui.'</div> </font>';		
@@ -663,12 +663,12 @@ elseif($id == "champa"){
 		</tr>
 		</table> </div>
 	';
-if($apie['champab']-time() > 0){
+if((int)$apie['champab']-time() > 0){
   echo '
 		<div class="meniu" style="text-align: left;">	'.$ico.' <b><a href="vsaugykla.php?id=uzsidedu_champa">Užsidėti šį veikėją</a></b><br/></div>
 		';
 }
-				if($apie['champab']-time() > 0){
+				if((int)$apie['champab']-time() > 0){
   echo '
 		<div class="meniu" style="text-align: left;">	'.$ico.' <b><a href="vsaugykla.php?id=apsauga_champa">Parduoti šį veikėją</a></b><br/></div>
 		
@@ -683,7 +683,7 @@ if($apie['champab']-time() > 0){
 elseif($id == "uzsidedu_champa"){
 	 online('Užsideda turimą veikėją');
 	 top('Champa');
-		if($apie['champab']-time() < 0){
+		if((int)$apie['champab']-time() < 0){
 echo' <div class="meniuc">
 Neturi šio veikėjo!</div>';
 }
@@ -696,7 +696,7 @@ echo' <div class="meniuc">	EROR</div>';
 
 }
 
-		if($apie['champab']-time() > 0){
+		if((int)$apie['champab']-time() > 0){
 				
 	echo'	<div class="meniuc"><br><img src="img/veikejai/Champa-0.png"><br>
 <font color="red">Užsidėjai sėkmingai</div> </font>';		
@@ -745,7 +745,7 @@ elseif($id == "cukatail"){
 		</table> </div>	
 
 	';
-if($apie['cukatailb']-time() > 0){
+if((int)$apie['cukatailb']-time() > 0){
   echo '
 		<div class="meniu" style="text-align: left;">	'.$ico.' <b><a href="vsaugykla.php?id=uzsidedu_cukatail">Užsidėti šį veikėją</a></b><br/></div>
 		
@@ -761,7 +761,7 @@ if($apie['cukatailb']-time() > 0){
 elseif($id == "uzsidedu_cukatail"){
 	 online('Užsideda turimą veikėją');
 	 top('Cukatail');
-		if($apie['cukatailb']-time() < 0){
+		if((int)$apie['cukatailb']-time() < 0){
 echo' <div class="meniuc">
 Neturi šio veikėjo!</div>';
 }
@@ -799,7 +799,7 @@ elseif($id == "zamasu"){
 		</table> </div>	
 
 	';
-if($apie['zamasub']-time() > 0){
+if((int)$apie['zamasub']-time() > 0){
   echo '
 		<div class="meniu" style="text-align: left;">	'.$ico.' <b><a href="vsaugykla.php?id=uzsidedu_zamasu">Užsidėti šį veikėją</a></b><br/></div>
 		
@@ -822,7 +822,7 @@ Neturi šio veikėjo!</div>';
 		if(($apie['sms_litai']) < '0'){
 			
 		echo'	<div class="meniuc">Klaida!</div> ';}
-		if($apie['zamasub']-time() > 0){
+		if((int)$apie['zamasub']-time() > 0){
 				
 	echo'	<div class="meniuc"><br><img src="img/veikejai/Zamasu-0.png"><br>
 <font color="red">Užsidėjai sėkmingai</div> </font>';		
@@ -840,14 +840,14 @@ Neturi šio veikėjo!</div>';
 elseif($id == "parduoti_champa"){
 	 online('Parduoda turimą veikėją');
 	 top('Champa');
-		if($apie['champab']-time() < 0){
+		if((int)$apie['champab']-time() < 0){
 echo' <div class="meniuc">
 Neturi šio veikėjo!</div>';
 }
 		if(($apie['sms_litai']) < '0'){
 			
 		echo'	<div class="meniuc">Klaida!</div> ';}
-		if($apie['champab']-time() > 0){
+		if((int)$apie['champab']-time() > 0){
 				
 	echo'	<div class="meniuc"><br><img src="img/veikejai/Champa-0.png"></div>
 <font color="red"><div class="meniuc">Pardavei veikėją, gavai <b>500</b>'.$eurui.'</div> </font>';		
@@ -879,14 +879,14 @@ elseif($id == "quitela"){
 		</table> </div>	
 
 	';
-if($apie['quitelab']-time() > 0){
+if((int)$apie['quitelab']-time() > 0){
   echo '
 		<div class="meniu" style="text-align: left;">	'.$ico.' <b><a href="vsaugykla.php?id=uzsidedu_quitela">Užsidėti šį veikėją</a></b><br/></div>
 		
 		
 		';
 		}
-		if($apie['quitelab']-time() > 0){
+		if((int)$apie['quitelab']-time() > 0){
   echo '
 		<div class="meniu" style="text-align: left;">	'.$ico.' <b><a href="vsaugykla.php?id=apsauga_quitela">Parduoti šį veikėją</a></b><br/></div>
 		
@@ -905,11 +905,11 @@ elseif($id == "uzsidedu_quitela"){
 echo' <div class="meniuc">
 Neturi šio veikėjo!</div>';
 }
-	if($apie['veikejas'] >> 'Quitela'){
+	if((int)$apie['veikejas'] >> 'Quitela'){
 echo' <div class="meniuc">Šį veikėją jau esate užsidėjęs!</div>';
 
 }
-	if($apie['quitelab']-time() > 0){
+	if((int)$apie['quitelab']-time() > 0){
 		if(($apie['sms_litai']) < '0'){
 			
 		echo'	<div class="meniuc">Klaida!</div> ';}
@@ -948,14 +948,14 @@ echo'</div>';
 elseif($id == "parduoti_quitela"){
 	 online('Parduoda turimą veikėją');
 	 top('Quitela');
-		if($apie['quitelab']-time() < 0){
+		if((int)$apie['quitelab']-time() < 0){
 echo' <div class="meniuc">
 Neturi šio veikėjo!</div>';
 }
 		if(($apie['sms_litai']) < '0'){
 			
 		echo'	<div class="meniuc">Klaida!</div> ';}
-		if($apie['quitelab']-time() > 0){
+		if((int)$apie['quitelab']-time() > 0){
 				
 	echo'	<div class="meniuc"><br><img src="img/veikejai/Quitela-0.png"></div>
 <font color="red"><div class="meniuc">Pardavei veikėją, gavai <b>1666</b>'.$eurui.'</div> </font>';		

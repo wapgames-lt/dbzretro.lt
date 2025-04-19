@@ -12,7 +12,6 @@ baneris();
 if($id == ""){
 if($apie['karinokm'] < 4999){
 
-$kodas = isset($_GET['kodas']) ? $_GET['kodas'] : null;
 $kodas = rand(1111,9999);
 	
 	$_SESSION['kd'] = $kodas;
