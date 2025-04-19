@@ -189,18 +189,7 @@ function laikas($time, $id = 0)
             $xx = '0 sek.';
         }
     } else {
-        $d = date('d') - 1;
-        $dd = date('d') - 2;
-
-        if (date('Y-m-d') === date('Y-m-d', $time)) {
-            $xx = '<font color="red">Šiandien</font> - ' . date('H:i:s', $time) . '';
-        } elseif (date('Y-m-' . $d) === date('Y-m-d', $time)) {
-            $xx = '<font color="blue">Vakar</font> - ' . date('H:i:s', $time) . '';
-        } elseif (date('Y-m-' . $dd) === date('Y-m-d', $time)) {
-            $xx = '<font color="green">Užvakar</font> - ' . date('H:i:s', $time) . '';
-        } else {
-            $xx = '' . date('Y-m-d - H:i:s', $time) . '';
-        }
+            $xx = createFromTimestamp($time)->diffForHumans();
     }
     return $xx;
 }
