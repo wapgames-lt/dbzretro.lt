@@ -90,9 +90,9 @@ final readonly class Player
             (int) $data['lygis'],
             $data['ip'],
             $data['veikejas'],
-            (float)$data['sms_litai'],
-            (float)$data['botas'],
-            (int)$data['vipticket'],
+            (float) $data['sms_litai'],
+            (float) $data['botas'],
+            (int) $data['vipticket'],
             $inventory,
             $activeSkills
         );
