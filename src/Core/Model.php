@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace LegacyDbz\Core;
 
 use Carbon\Carbon;
+use LegacyDbz\Core\Exceptions\ModelNotFoundException;
 use PDO;
 
 class Model
@@ -126,6 +127,40 @@ class Model
         $this->queryConditions[] = ['column' => $column, 'operator' => $operator, 'value' => $value];
 
         return $this;
+    }
+
+    public function find(mixed $id): self|null
+    {
+        return self::query()->where($this->primaryKey, '=', $id)->get()->first();
+    }
+
+    public function first(): ?self
+    {
+        $sql = "SELECT * FROM {$this->table}";
+
+        if ($this->queryConditions) {
+            $whereClauses = [];
+            foreach ($this->queryConditions as $condition) {
+                $whereClauses[] = "{$condition['column']} {$condition['operator']} :{$condition['column']}";
+            }
+            $sql .= " WHERE " . implode(" AND ", $whereClauses);
+        }
+
+        $sql .= " LIMIT 1";
+        $stmt = Db::prepare($sql);
+
+        foreach ($this->queryConditions as $condition) {
+            $stmt->bindValue(":{$condition['column']}", $condition['value']);
+        }
+
+        $stmt->execute();
+        $result = Db::fetch($stmt);
+
+        if ($result) {
+            return new static(attributes: $result);
+        }
+
+        return null;
     }
 
     public function get(): Collection

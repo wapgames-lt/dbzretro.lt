@@ -1,16 +1,14 @@
 <?php
 
-use LegacyDbz\Parties\DTO\Party;
 use LegacyDbz\Parties\DTO\PartyInvite;
+use LegacyDbz\Parties\Models\Party;
 use LegacyDbz\Parties\Repositories\PartyInvitesRepository;
 use LegacyDbz\Parties\Repositories\PartyMembersRepository;
-use LegacyDbz\Parties\Repositories\PartiesRepository;
 use LegacyDbz\Players\Repositories\PlayersRepository;
 use LegacyDbz\Players\Services\CurrentPlayer;
 
 include_once __DIR__ . '/../head.php';
 
-$partiesRepository = new PartiesRepository();
 $playersRepository = new PlayersRepository();
 $partyMembersRepository = new PartyMembersRepository();
 $partyInvitesRepository = new PartyInvitesRepository();
@@ -66,7 +64,7 @@ function renderIndex(): void
 
 function inviteeInvites(): void
 {
-    global $partiesRepository, $partyInvitesRepository, $currentPlayer, $arrow;
+    global $partyInvitesRepository, $currentPlayer, $arrow;
     online('Party Management > Party Invites');
     top('Party Invites');
 
@@ -75,11 +73,12 @@ function inviteeInvites(): void
     foreach ($partyInvites as $partyInvite) {
         echo '<div class="meniu">';
         echo $arrow;
-        $party = $partiesRepository->findById($partyInvite->partyId());
+        /** @var Party|null $party */
+        $party = Party::query()->find($partyInvite->partyId());
         if (!$party) {
             die('Įvyko klaida kreipkitės į administraciją');
         }
-        echo $party->name();
+        echo $party->name;
         echo '<br>';
         echo 'Statusas: ';
         echo getStatusBadge($partyInvite->status());
@@ -197,7 +196,7 @@ function createPartyInvite(): void
 
 function validateAndSavePartyInvite(): void
 {
-    global $playersRepository, $partyInvitesRepository, $partiesRepository, $partyMembersRepository, $currentPlayer, $inv;
+    global $playersRepository, $partyInvitesRepository, $partyMembersRepository, $currentPlayer, $inv;
     online('Party Management -> Create Party Invite');
     top('Kviesti į Party');
     $nick = null;
@@ -221,7 +220,8 @@ function validateAndSavePartyInvite(): void
         echo '</div>';
         return;
     }
-    $party = $partiesRepository->findByLeaderId($currentPlayer->id());
+    /** @var Party|null $party */
+    $party = Party::query()->where('leader_id', '=', currentPlayer()->id())->first();
     if (!$party) {
         echo ' <div class="meniu">';
         echo 'Neturite Party';
@@ -248,7 +248,7 @@ function validateAndSavePartyInvite(): void
         echo '</div>';
         $error = true;
     }
-    $partyMembersCount = $partyMembersRepository->countByPartyId($party->id());
+    $partyMembersCount = $partyMembersRepository->countByPartyId($party->id);
     if ($partyMembersCount === Party::ALLOWED_MEMBERS_AMOUNT) {
         echo ' <div class="meniu">';
         echo 'Daugiau narių pakviesti į Party negalima';
@@ -264,7 +264,7 @@ function validateAndSavePartyInvite(): void
     }
 
     if (!$error) {
-        $partyInvite = new PartyInvite(null, $party->id(), $currentPlayer->id(), $player->id());
+        $partyInvite = new PartyInvite(null, $party->id, $currentPlayer->id(), $player->id());
         $partyInvitesRepository->save($partyInvite);
         $currentPlayerInventory = $currentPlayer->inventory();
         $currentPlayerInventory->removeCadmiumOre($cadmiumAmount);

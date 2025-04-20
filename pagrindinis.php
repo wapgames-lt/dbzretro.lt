@@ -1,8 +1,8 @@
 ﻿<?php
 
 use LegacyDbz\Parties\DTO\PartyInvite;
+use LegacyDbz\Parties\Models\Party;
 use LegacyDbz\Parties\Repositories\PartyInvitesRepository;
-use LegacyDbz\Parties\Repositories\PartiesRepository;
 use LegacyDbz\Players\Repositories\PlayersRepository;
 
 ob_start();
@@ -51,10 +51,9 @@ $partyInvitesRepository = new PartyInvitesRepository();
 /** @var PartyInvite|null $firstPendingInvite */
 $firstPendingInvite = $partyInvitesRepository->findByIniteeIdAndStatus($apie['id'], PartyInvite::STATUS_PENDING)->first();
 if ($firstPendingInvite) {
-    $partyRepository = new PartiesRepository();
-    $party = $partyRepository->findById($firstPendingInvite->partyId());
+    $party = Party::query()->find($firstPendingInvite->partyId());
     $playerRepository = new PlayersRepository();
-    $partyLeader = $playerRepository->findById($party->leaderId());
+    $partyLeader = $playerRepository->findById($party->leader_id);
 
     echo '<div class="notification-card">
         <div class="notification-header">

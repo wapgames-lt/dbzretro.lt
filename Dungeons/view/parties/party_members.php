@@ -1,14 +1,13 @@
 <?php
 
 use LegacyDbz\Parties\DTO\PartyMember;
+use LegacyDbz\Parties\Models\Party;
 use LegacyDbz\Parties\Repositories\PartyMembersRepository;
-use LegacyDbz\Parties\Repositories\PartiesRepository;
 use LegacyDbz\Players\Repositories\PlayersRepository;
 use LegacyDbz\Players\Services\CurrentPlayer;
 
 include_once __DIR__ . '/../head.php';
 
-$partiesRepository = new PartiesRepository();
 $playersRepository = new PlayersRepository();
 $partyMembersRepository = new PartyMembersRepository();
 
@@ -48,7 +47,7 @@ function renderIndex(): void
 }
 
 function removeFromParty(): void {
-    global $partiesRepository, $partyMembersRepository;
+    global $partyMembersRepository;
     online('Party Management -> Remove Player From Party');
     top('Išeiti iš Party');
 
@@ -60,14 +59,15 @@ function removeFromParty(): void {
         echo '</div>';
         $error = true;
     }
-    $party = $partiesRepository->findByLeaderId(CurrentPlayer::get()->id());
+    /** @var Party|null $party */
+    $party = Party::query()->where('leader_id', '=', currentPlayer()->id())->first();
     if (!$party) {
         echo '<div class="meniu">';
         echo 'Party nerasta';
         echo '</div>';
         $error = true;
     }
-    if (!$partyMembersRepository->isPlayerInParty($party->id(), $playerId)) {
+    if (!$partyMembersRepository->isPlayerInParty($party->id, $playerId)) {
         echo '<div class="meniu">';
         echo 'Tokio žaidėjo Party nėra';
         echo '</div>';

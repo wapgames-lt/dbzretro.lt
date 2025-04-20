@@ -1,15 +1,13 @@
 <?php
 
-use LegacyDbz\Parties\DTO\Party;
+use LegacyDbz\Parties\Models\Party;
 use LegacyDbz\Parties\PartyService;
 use LegacyDbz\Parties\Repositories\PartyMembersRepository;
-use LegacyDbz\Parties\Repositories\PartiesRepository;
 use LegacyDbz\Players\Repositories\PlayersRepository;
 use LegacyDbz\Players\Services\CurrentPlayer;
 
 include_once __DIR__ . '/../head.php';
 
-$partiesRepository = new PartiesRepository();
 $playersRepository = new PlayersRepository();
 $partyMembersRepository = new PartyMembersRepository();
 
@@ -21,22 +19,22 @@ if (!isset($id)) {
     echo '</div>';
 
     /** @var Party[] $parties */
-    $parties = $partiesRepository->findAllOrderedByPlayersCount()->all();
+    $parties = Party::findOrderedByPlayersCount();
     foreach ($parties as $party) {
         echo '<div class="meniu">';
         echo $arrow;
-        echo $party->name();
+        echo $party->name;
         echo '<br>';
         echo '<small>';
-        $partyLeader = $playersRepository->findById($party->leaderId());
+        $partyLeader = $playersRepository->findById($party->leader_id);
         echo 'Leader: ';
         echo '<a href="/pagrindinis.php?id=apie&ka=' . $partyLeader->nick() . '"><b>' . $partyLeader->nick() . '</b> </a>';
         echo '<br>';
-        $partyMembersCount = $partyMembersRepository->countByPartyId($party->id());
+        $partyMembersCount = $partyMembersRepository->countByPartyId($party->id);
         echo 'Narių: ' . $partyMembersCount . '/' . Party::ALLOWED_MEMBERS_AMOUNT . '<br>';
-        echo formatDateTimeString($party->createdAt());
+        echo formatDateTimeString($party->created_at);
         echo '</small>';
-        if ($partyMembersRepository->isPlayerInParty($party->id(), CurrentPlayer::get()->id())) {
+        if ($partyMembersRepository->isPlayerInParty($party->id, CurrentPlayer::get()->id())) {
             echo '<div class="meniu">';
             echo '<a class="button" href="index.php?id=view">Peržiūrėti</a>';
             echo '</div>';
@@ -53,9 +51,9 @@ if ($id === 'view') {
     online('Parties -> My Party');
     top('My Party');
 
-    $party = $partiesRepository->findByPlayerId(CurrentPlayer::get()->id());
+    $party = Party::findByPlayerId(currentPlayer()->id());
     $error = false;
-    if (!$party) {
+    if (!$party instanceof \LegacyDbz\Parties\Models\Party) {
         echo ' <div class="meniu">';
         echo 'Party nėra';
         echo '</div>';
@@ -65,16 +63,16 @@ if ($id === 'view') {
     if (!$error) {
         echo '<div class="meniu">';
         echo $arrow;
-        echo $party->name();
+        echo $party->name;
         echo '<br>';
         echo '<small>';
-        $partyLeader = $playersRepository->findById($party->leaderId());
+        $partyLeader = $playersRepository->findById($party->leader_id);
         echo 'Leader: ';
         echo '<a href="/pagrindinis.php?id=apie&ka=' . $partyLeader->nick() . '"><b>' . $partyLeader->nick() . '</b> </a>';
         echo '<br>';
-        $partyMembersCount = $partyMembersRepository->countByPartyId($party->id());
+        $partyMembersCount = $partyMembersRepository->countByPartyId($party->id);
         echo 'Narių: ' . $partyMembersCount . '/' . Party::ALLOWED_MEMBERS_AMOUNT . '<br>';
-        echo formatDateTimeString($party->createdAt());
+        echo formatDateTimeString($party->created_at);
         echo '</small>';
         if (CurrentPlayer::get()->id() === $partyLeader->id()) {
             echo '<div class="meniu">';
@@ -87,7 +85,7 @@ if ($id === 'view') {
             echo '<a class="button" href="index.php?id=delete">Ištrinti</a><br>';
             echo '</div>';
         }
-        if (CurrentPlayer::get()->id() !== $partyLeader->id() && $partyMembersRepository->isPlayerInParty($party->id(), CurrentPlayer::get()->id())) {
+        if (CurrentPlayer::get()->id() !== $partyLeader->id() && $partyMembersRepository->isPlayerInParty($party->id, CurrentPlayer::get()->id())) {
             echo '<div class="meniu">';
             echo '<a class="button" href="index.php?id=leaveParty">Išeiti iš Party</a>';
             echo '</div>';
@@ -119,8 +117,8 @@ if ($id === 'delete') {
     online('Party Management -> Delete Party');
     top('Party Trinimas');
     $error = false;
-    $party = $partiesRepository->findByLeaderId(CurrentPlayer::get()->id());
-    if (!$party) {
+    $party = Party::query()->where('leader_id', '=', currentPlayer()->id())->first();
+    if (!$party instanceof \LegacyDbz\Core\Model) {
         echo ' <div class="meniu">';
         echo 'Įvyko klaida';
         echo '</div>';
@@ -128,7 +126,7 @@ if ($id === 'delete') {
     }
 
     if (! $error) {
-        $partiesRepository->delete($party->id());
+        Party::query()->delete();
         echo ' <div class="meniu">';
         echo 'Party ištrinta sėkmingai';
         echo '</div>';
@@ -178,7 +176,7 @@ if ($id === 'createParty') {
         echo '</div>';
         $error = true;
     }
-    $partyByName = $partiesRepository->findByName($name);
+    $partyByName = Party::query()->where('name', '=', $name)->get()->first();
     if ($partyByName) {
         echo ' <div class="meniu">';
         echo 'Party su tokiu pavadinimu jau egzistuoja';
@@ -201,7 +199,7 @@ if ($id === 'createParty') {
     }
 
     if (! $error) {
-        $partyService = new PartyService($partiesRepository);
+        $partyService = new PartyService;
 
         try {
             $partyService->create($name, $cadmiumAmount, CurrentPlayer::get());
