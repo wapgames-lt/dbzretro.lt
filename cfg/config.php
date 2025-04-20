@@ -590,7 +590,8 @@ function skaitl()
 <a href="https://topwap.lt/wap-zaidimai/dbz-retro/16496/">
 <img src="https://topwap.lt/p.php?n=dbzretro" alt="TOPWAP.LT"/></a>
    <a href="https://wtop.lt/stats/36"><img src="https://wtop.lt/image/36" alt="WTOP.lt - Lankomumo statistika" /></a>
-   <br><br><a href="' . $link . '">Wap zaidimu katalogas</a></b></font></b><br>
+   <br><br><a href="' . $link . '">Wap zaidimu katalogas</a></b></font></b><br><br>
+   <a href="https://discord.gg/QyRdrszqtZ">Žaidimo DISCORD kanalas!</a><br>
   ';
 }
 
