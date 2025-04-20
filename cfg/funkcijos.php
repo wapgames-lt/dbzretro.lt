@@ -2377,6 +2377,8 @@ if ($inv['radaras'] > 2) {
     mysqli_query($conn, "UPDATE inv SET radaras='2' WHERE nick='$nick'");
 }
 
+include_once 'functions.php';
+
 setCurrentPlayer($nick);
 
 function calculatePowerIncreaseByPercentage($percentage)
@@ -2430,58 +2432,6 @@ function getInt($value)
     return number_format($value, 0, '', '');
 }
 
-function sendDiscordMessage(string $message): void
-{
-    new \LegacyDbz\Core\Http\DiscordHttpClient()->sendMessage($message);
-}
-
-if (!function_exists('now')) {
-    function now(): CarbonImmutable
-    {
-        return CarbonImmutable::now();
-    }
-}
-
-function currentPlayer(): Player
-{
-    return CurrentPlayer::get();
-}
-
-function getPlayerByNick(string $nick): Player
-{
-    $playerRepository = new \LegacyDbz\Players\Repositories\PlayersRepository();
-    $player = $playerRepository->findByNick($nick);
-    if (!$player) {
-        throw new \RuntimeException("Player not found by nick {$nick}");
-    }
-
-    return $player;
-}
-
-function logError(string $message, array $context = []): void
-{
-    \LegacyDbz\Core\Logger::logError($message, $context);
-}
-
-function logInfo(string $message, array $context = []): void
-{
-    \LegacyDbz\Core\Logger::logInfo($message, $context);
-}
-
-function logWarning(string $message, array $context = []): void
-{
-    \LegacyDbz\Core\Logger::logWarning($message, $context);
-}
-
-function setCurrentPlayer(string $nick): void
-{
-    CurrentPlayer::set(getPlayerByNick($nick));
-}
-
-function createFromTimestamp(string $timestamp): CarbonInterface
-{
-    return Carbon::createFromTimestamp($timestamp);
-}
 
 $endTime = microtime(true);
 $elapsedTime = round(($endTime - $startTime) * 1000, 2);
