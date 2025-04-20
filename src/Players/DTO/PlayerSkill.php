@@ -5,7 +5,7 @@ namespace LegacyDbz\Players\DTO;
 use DateTime;
 use LegacyDbz\Skills\DTO\Skill;
 
-class PlayerSkill
+final class PlayerSkill
 {
     /**
      * @param $endsAt
@@ -42,10 +42,8 @@ class PlayerSkill
         return $this->playerId;
     }
 
-    /**
-     * @return Skill
-     */
-    public function skill()
+
+    public function skill(): Skill
     {
         return $this->skill;
     }
@@ -53,6 +51,7 @@ class PlayerSkill
     public static function fromArray(array $data)
     {
         $skill = Skill::fromArray($data);
+
         return new self(
             $data['ends_at'],
             $data['player_id'],

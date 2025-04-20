@@ -4,7 +4,7 @@ namespace LegacyDbz\Players\DTO;
 
 use LegacyDbz\Players\Traits\InventoryTrait;
 
-class Inventory
+final class Inventory
 {
     use InventoryTrait;
 

@@ -10,7 +10,7 @@ use LegacyDbz\Players\Repositories\PlayerSkillsRepository;
 use LegacyDbz\Players\Traits\CharacterTrait;
 use LegacyDbz\Players\Traits\PlayerSkillTrait;
 
-final class Player
+final readonly class Player
 {
     use CharacterTrait, PlayerSkillTrait;
 
@@ -20,6 +20,9 @@ final class Player
         private int $level,
         private string $ip,
         private string $character,
+        private float $euro,
+        private float $vegitaCash,
+        private int $vipTickets,
         private Inventory $inventory,
         private Collection $activeSkills,
     ){}
@@ -42,6 +45,21 @@ final class Player
     public function character(): string
     {
         return $this->character;
+    }
+
+    public function euro(): float
+    {
+        return $this->euro;
+    }
+
+    public function vegitaCash(): float
+    {
+        return $this->vegitaCash;
+    }
+
+    public function vipTickets(): int
+    {
+        return $this->vipTickets;
     }
 
     public function ip(): string
@@ -72,6 +90,9 @@ final class Player
             (int) $data['lygis'],
             $data['ip'],
             $data['veikejas'],
+            (float)$data['sms_litai'],
+            (float)$data['botas'],
+            (int)$data['vipticket'],
             $inventory,
             $activeSkills
         );
