@@ -53,7 +53,10 @@ final readonly class WapGamesHttpClient
 
             return $result;
         } catch (Exception $e) {
-            logError('WAP games request failed: ' . $e->getMessage());
+            logError('WAP games request failed: ' . $e->getMessage(), [
+                'data' => $data,
+                'headers' => $headers,
+            ]);
 
             return [];
         }
