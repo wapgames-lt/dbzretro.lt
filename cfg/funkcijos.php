@@ -2377,7 +2377,7 @@ if ($inv['radaras'] > 2) {
     mysqli_query($conn, "UPDATE inv SET radaras='2' WHERE nick='$nick'");
 }
 
-include_once 'functions.php';
+include_once __DIR__ . '/functions.php';
 
 setCurrentPlayer($nick);
 

@@ -4,7 +4,6 @@ use LegacyDbz\Parties\DTO\Party;
 use LegacyDbz\Parties\PartyService;
 use LegacyDbz\Parties\Repositories\PartyMembersRepository;
 use LegacyDbz\Parties\Repositories\PartiesRepository;
-use LegacyDbz\Players\Repositories\InventoryRepository;
 use LegacyDbz\Players\Repositories\PlayersRepository;
 use LegacyDbz\Players\Services\CurrentPlayer;
 

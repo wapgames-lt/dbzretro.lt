@@ -72,28 +72,6 @@ class PartiesRepository
         return $result ? Party::fromArray($result) : null;
     }
 
-    public function save(Party $party)
-    {
-        try {
-            $stmt = Db::prepare("INSERT INTO parties (leader_id, name) VALUES (:leader_id, :name)");
-            $stmt->execute([
-                'leader_id' => $party->leaderId(),
-                'name' => $party->name(),
-            ]);
-
-            $partyId = Db::lastInsertId();
-
-            $stmt = Db::prepare("INSERT INTO party_members (party_id, player_id) VALUES (:party_id, :player_id)");
-            $stmt->execute([
-                'party_id' => $partyId,
-                'player_id' => $party->leaderId(),
-            ]);
-
-        } catch (\Exception $e) {
-            throw new \RuntimeException("Failed to save party: " . $e->getMessage(), 0, $e);
-        }
-    }
-
     public function delete($id)
     {
         $stmt = Db::prepare("DELETE FROM parties WHERE id = :id");

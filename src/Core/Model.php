@@ -61,7 +61,13 @@ class Model
         }
 
         $stmt->execute();
-        return (bool) Db::lastInsertId();
+
+        $insertedId = (int) Db::lastInsertId();
+        if ($insertedId !== 0) {
+            $this->attributes[$this->primaryKey] = $insertedId;
+        }
+
+        return (bool) $insertedId;
     }
 
     protected function update(): bool
