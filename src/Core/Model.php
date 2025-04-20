@@ -90,6 +90,26 @@ class Model
         return $stmt->execute();
     }
 
+    public static function rawQuery(string $sql, array $parameters = []): Collection
+    {
+        $stmt = Db::prepare($sql);
+
+        foreach ($parameters as $key => $value) {
+            $stmt->bindValue(":$key", $value);
+        }
+
+        $stmt->execute();
+        $results = Db::fetchAll($stmt);
+
+        $models = [];
+        foreach ($results as $result) {
+            $instance = new static(attributes: $result);
+            $models[] = $instance;
+        }
+
+        return new Collection($models);
+    }
+
     public function delete(): bool
     {
         if (isset($this->attributes[$this->primaryKey])) {
