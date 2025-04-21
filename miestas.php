@@ -111,7 +111,7 @@ if($id == 'lenta'){
 		
 		while($row = mysqli_fetch_assoc($query)){
 		$nr ++;
-echo'<b>'.$nr.'.</b><a href="pagrindinis.php?id=apie&ka='.$row[nick].'">'.statusas($row['nick']).'</a> <b> '.$row['rep_teig'].'</b> </br>';	
+echo'<b>'.$nr.'.</b><a href="pagrindinis.php?id=apie&ka='.$row['nick'].'">'.statusas($row['nick']).'</a> <b> '.$row['rep_teig'].'</b> </br>';
 			
 			
 		}
