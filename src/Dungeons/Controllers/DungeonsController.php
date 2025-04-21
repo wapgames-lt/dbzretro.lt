@@ -19,7 +19,7 @@ final class DungeonsController
         };
     }
 
-    public function index(): void
+    private function index(): void
     {
         online(self::PAGE_TITLE);
 
