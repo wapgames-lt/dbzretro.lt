@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace LegacyDbz\Dungeons\Controllers;
 
 use LegacyDbz\Core\Collection;
