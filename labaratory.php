@@ -664,7 +664,7 @@ Reikia: 4 <b>AD19</b></div>
 
 	if($id == 'ad16kard2'){
 		top('AD16 Kardo Gaminimas')	;
-		if($inv[ad16] < 1500 ){
+		if($inv['ad16'] < 1500 ){
 			echo'<div class="meniuc"><img src="img/veikejai/Android 16-0.png"><br>Tau nepakanka  <b> AD16 item</b>!</div>';
 
 		}
@@ -699,7 +699,7 @@ Reikia: 4 <b>AD19</b></div>
 
 	if($id == 'ad16sarv2'){
 		top('AD16 Šarvų Gaminimas')	;
-		if($inv[ad16] < 2000 ){
+		if($inv['ad16'] < 2000 ){
 			echo'<div class="meniuc"><img src="img/veikejai/Android 16-0.png"><br>Tau nepakanka  <b> AD16 item</b>!</div>';
 
 		}
@@ -734,7 +734,7 @@ Reikia: 4 <b>AD19</b></div>
 
 	if($id == 'ad16amulet2'){
 		top('AD16 Amulet Gaminimas')	;
-		if($inv[ad16] < 2500 ){
+		if($inv['ad16'] < 2500 ){
 			echo'<div class="meniuc"><img src="img/veikejai/Android 16-0.png"><br>Tau nepakanka  <b> AD16 item</b>!</div>';
 
 		}
@@ -769,7 +769,7 @@ Reikia: 4 <b>AD19</b></div>
 
 	if($id == 'ad17kard2'){
 		top('AD17 Kardo Gaminimas')	;
-		if($inv[ad17] < 1500 and $inv[ad16kard] < 1){
+		if($inv['ad17'] < 1500 and $inv['ad16kard'] < 1){
 			echo'<div class="meniuc"><img src="img/veikejai/Android 17-0.png"><br>Tau nepakanka  <b> AD17 item</b> arba neturi <b>AD16 kardo</b>!!</div>';
 
 		}
@@ -807,7 +807,7 @@ Reikia: 4 <b>AD19</b></div>
 
 	if($id == 'ad17sarv2'){
 		top('AD17 Šarvų Gaminimas')	;
-		if($inv[ad17] < 2000 and $inv[ad16sarv] < 1){
+		if($inv['ad17'] < 2000 and $inv['ad16sarv'] < 1){
 			echo'<div class="meniuc"><img src="img/veikejai/Android 17-0.png"><br>Tau nepakanka  <b> AD17 item</b> arba neturi <b>AD16 sarvu</b>!!</div>';
 
 		}
@@ -846,7 +846,7 @@ Reikia: 4 <b>AD19</b></div>
 
 	if($id == 'ad17amulet2'){
 		top('AD17 Amulet Gaminimas')	;
-		if($inv[ad17] < 2500 and $inv[ad16amulet] < 1){
+		if($inv['ad17'] < 2500 and $inv['ad16amulet'] < 1){
 			echo'<div class="meniuc"><img src="img/veikejai/Android 17-0.png"><br>Tau nepakanka  <b> AD17 item</b> arba neturi <b>AD16 amulet</b>!!</div>';
 
 		}
@@ -886,7 +886,7 @@ Reikia: 4 <b>AD19</b></div>
 
 	if($id == 'ad19kard2'){
 		top('AD19 Kardo Gaminimas')	;
-		if($inv[ad19] < 1500 and $inv[ad18kard] < 1){
+		if($inv['ad19'] < 1500 and $inv['ad18kard'] < 1){
 			echo'<div class="meniuc"><img src="img/veikejai/Android 19-0.png"><br>Tau nepakanka  <b> AD19 item</b> arba neturi <b>AD18 kardo</b>!!</div>';
 
 		}
@@ -922,7 +922,7 @@ Reikia: 4 <b>AD19</b></div>
 
 	if($id == 'ad19sarv2'){
 		top('AD19 Šarvų Gaminimas')	;
-		if($inv[ad19] < 2000 and $inv[ad18sarv] < 1){
+		if($inv['ad19'] < 2000 and $inv['ad18sarv'] < 1){
 			echo'<div class="meniuc"><img src="img/veikejai/Android 19-0.png"><br>Tau nepakanka  <b> AD19 item</b> arba neturi <b>AD18 sarvu</b>!!</div>';
 
 		}
@@ -959,7 +959,7 @@ Reikia: 4 <b>AD19</b></div>
 
 	if($id == 'ad19amulet2'){
 		top('AD19 Amulet Gaminimas')	;
-		if($inv[ad19] < 2500 and $inv[ad18amulet] < 1){
+		if($inv['ad19'] < 2500 and $inv['ad18amulet'] < 1){
 			echo'<div class="meniuc"><img src="img/veikejai/Android 19-0.png"><br>Tau nepakanka  <b> AD19 item</b> arba neturi <b>AD18 amuleto</b>!!</div>';
 
 		}
@@ -996,7 +996,7 @@ Reikia: 4 <b>AD19</b></div>
 
 	if($id == 'ad18kard2'){
 		top('AD18 Kardo Gaminimas')	;
-		if($inv[ad18] < 1500 and $inv[ad17kard] < 1){
+		if($inv['ad18'] < 1500 and $inv['ad17kard'] < 1){
 			echo'<div class="meniuc"><img src="img/veikejai/Android 18-0.png"><br>Tau nepakanka  <b> AD18 item</b> arba neturi <b>AD17 kardo</b>!!</div>';
 
 		}
@@ -1032,7 +1032,7 @@ Reikia: 4 <b>AD19</b></div>
 
 	if($id == 'ad18sarv2'){
 		top('AD18 Šarvų Gaminimas')	;
-		if($inv[ad18] < 2000 and $inv[ad17sarv] < 1){
+		if($inv['ad18'] < 2000 and $inv['ad17sarv'] < 1){
 			echo'<div class="meniuc"><img src="img/veikejai/Android 18-0.png"><br>Tau nepakanka  <b> AD18 item</b> arba neturi <b>AD17 sarvu</b>!!</div>';
 
 		}
@@ -1069,7 +1069,7 @@ Reikia: 4 <b>AD19</b></div>
 
 	if($id == 'ad18amulet2'){
 		top('AD18 Amulet Gaminimas')	;
-		if($inv[ad18] < 2500 and $inv[ad17amulet] < 1){
+		if($inv['ad18'] < 2500 and $inv['ad17amulet'] < 1){
 			echo'<div class="meniuc"><img src="img/veikejai/Android 18-0.png"><br>Tau nepakanka  <b> AD18 item</b> arba neturi <b>AD17 kardo</b>!!</div>';
 
 		}
@@ -1111,7 +1111,7 @@ Reikia: 4 <b>AD19</b></div>
 
 	if($id == 'ad20kard2'){
 		top('AD20 Kardo Gaminimas')	;
-		if($inv[ad20] < 1500 and $inv[ad19kard] < 1){
+		if($inv['ad20'] < 1500 and $inv['ad19kard'] < 1){
 			echo'<div class="meniuc"><img src="img/veikejai/Android 20-0.png"><br>Tau nepakanka  <b> AD20 item</b> arba neturi <b>AD19 kardo</b>!!</div>';
 
 		}
@@ -1149,7 +1149,7 @@ Reikia: 4 <b>AD19</b></div>
 
 	if($id == 'ad20sarv2'){
 		top('AD20 Šarvų Gaminimas')	;
-		if($inv[ad20] < 2000 and $inv[ad19sarv] < 1){
+		if($inv['ad20'] < 2000 and $inv['ad19sarv'] < 1){
 			echo'<div class="meniuc"><img src="img/veikejai/Android 20-0.png"><br>Tau nepakanka  <b> AD20 item</b> arba neturi <b>AD19 šarvų</b>!!</div>';
 
 		}
@@ -1186,7 +1186,7 @@ Reikia: 4 <b>AD19</b></div>
 
 	if($id == 'ad20amulet2'){
 		top('AD20 Amulet Gaminimas')	;
-		if($inv[ad20] < 2000 and $inv[ad19amulet] < 1){
+		if($inv['ad20'] < 2000 and $inv['ad19amulet'] < 1){
 			echo'<div class="meniuc"><img src="img/veikejai/Android 20-0.png"><br>Tau nepakanka  <b> AD20 item</b> arba neturi <b>AD19 amuleto</b>!!</div>';
 
 		}
@@ -1224,7 +1224,7 @@ Reikia: 4 <b>AD19</b></div>
 
 	if($id == '20_2'){
 		top('20 kyborgas')	;
-		if($inv[Microshem] < 25000 || $inv[ad20] < 2000){
+		if($inv['Microshem'] < 25000 || $inv['ad20'] < 2000){
 			echo'<div class="meniuc"><img src="img/veikejai/Android 20-0.png"><br>Tau nepakanka <b>mikroschemų</b> arba <b> AD20 item</b>!</div>';
 
 		}
@@ -1258,7 +1258,7 @@ Reikia: 4 <b>AD19</b></div>
 
 	if($id == '19_2'){
 		top('19 kyborgas')	;
-		if($inv[Microshem] < 15000 || $inv[ad19] < 1000){
+		if($inv['Microshem'] < 15000 || $inv['ad19'] < 1000){
 			echo'<div class="meniuc"><img src="img/veikejai/Android 19-0.png"><br>Tau nepakanka <b>mikroschemų</b> arba <b> AD19 item</b>!</div>';
 
 		}
@@ -1293,7 +1293,7 @@ Reikia: 4 <b>AD19</b></div>
 
 	if($id == '18_2'){
 		top('18 kyborgė')	;
-		if($inv[Microshem] < 10000 || $inv[ad18] < 700){
+		if($inv['Microshem'] < 10000 || $inv['ad18'] < 700){
 			echo'<div class="meniuc"><img src="img/veikejai/Android 18-0.png"><br>Tau nepakanka <b>mikroschemų</b> arba <b> AD18 item</b>!</div>';
 
 		}
@@ -1329,7 +1329,7 @@ Reikia: 4 <b>AD19</b></div>
 	if($id == '17_2'){
 		top('17 kyborgas')	;
 
-		if($inv[Microshem] < 5000 || $inv[ad17] < 400){
+		if($inv['Microshem'] < 5000 || $inv['ad17'] < 400){
 			echo'<div class="meniuc"><img src="img/veikejai/Android 17-0.png"><br>Tau nepakanka <b>mikroschemų</b>arba <b> AD17 item</b>!</div>';
 
 		}
@@ -1364,7 +1364,7 @@ Reikia: 4 <b>AD19</b></div>
 
 	if($id == '16_2'){
 		top('16 kyborgas')	;
-		if($inv[Microshem] < 3000|| $inv[ad16] < 200){
+		if($inv['Microshem'] < 3000|| $inv['ad16'] < 200){
 			echo'<div class="meniuc"><img src="img/veikejai/Android 16-0.png"><br>Tau nepakanka <b>mikroschemų</b> arba <b>AD16 item</b>!</div>';}
 		elseif($apie['ad16'] == '+'){
 			echo '<div class="meniuc"><img src="img/veikejai/Android 16-0.png"><br>Tu jau buvai gavęs<b> Android 16</b> !</div>';
