@@ -49,10 +49,7 @@ if (empty($apie['email'])) {
 if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM b_rez WHERE nick ='$nick' && bals_id ='1'")) == false) {
     $error = '<a href="balsavimai.php">Naujas balsavimas kuriame nebalsavai !</a>';
 }
-if ($apie['daily'] != '+') {
-    $error = '<a href="?id=daily">Pasiimk dienos prizą</a>';
 
-}
 
 if (isset($error)) {
 
@@ -104,11 +101,6 @@ if ($user['kovu_trn'] != '+' && $nst['trn_busena'] == 0 && $user['rodyti_turnyra
 
     echo '<div class="meniuc"><b><font color="red">!!!</font> Registracija į turnyrą prasidėjo <font color="red">!!!</font><br/> >>> <a href="trn.php?id=reg">Registruotis</a> <<< </b></div>';
 }
-$sajanas = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM legendinis_sajanas"));
-if ($sajanas['prisikels'] - time() < 0) {
-    echo '<div class="meniuc"><b><a href="legendinis_sajanas.php"><font color="red">Legendinis sajanas prisikėlė</font></a></div>';
-}
-
 
 if ($id == "") {
     online('Suka varkes');
