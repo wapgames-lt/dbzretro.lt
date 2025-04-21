@@ -27,7 +27,20 @@ final readonly class PartyController
         $this->partyService = new PartyService();
     }
 
-    public function index(): void
+    public function render(?string $id = null): void
+    {
+        match ($id ?? null) {
+            null => $this->index(),
+            'view' => $this->view(),
+            'create' => $this->create(),
+            'createParty' => $this->store(),
+            'delete' => $this->delete(),
+            'leaveParty' => $this->leaveParty(),
+            default => null,
+        };
+    }
+
+    private function index(): void
     {
         online('Parties');
         top('Parties');
@@ -39,7 +52,7 @@ final readonly class PartyController
         navigacija($navigation);
     }
 
-    public function view(): void
+    private function view(): void
     {
         online('Parties -> My Party');
         top('My Party');
@@ -58,7 +71,7 @@ final readonly class PartyController
         navigacija($navigation);
     }
 
-    public function create(): void
+    private function create(): void
     {
         online('Party Management -> Create Party');
         top('Party Kūrimas');
@@ -69,7 +82,7 @@ final readonly class PartyController
         navigacija($navigation);
     }
 
-    public function store(): void
+    private function store(): void
     {
         online('Party Management -> Create Party');
         top('Party Kūrimas');
@@ -174,7 +187,7 @@ final readonly class PartyController
         navigacija($navigation);
     }
 
-    public function leaveParty(): void
+    private function leaveParty(): void
     {
         online('Party Management -> Leave Party');
         top('Išeiti iš Party');
