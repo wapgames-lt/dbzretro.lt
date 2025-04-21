@@ -16,6 +16,7 @@ if (random_int(1, 3) === 3) {
     }
 
     sendDiscordMessage($message);
+    sleep(5);
 }
 
 
