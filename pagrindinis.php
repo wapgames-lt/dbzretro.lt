@@ -2792,6 +2792,8 @@ if ($id == 'kom_del') {
             echo 'Kvarco rūdos: ' . $chestContent['amount'];
             mysqli_query($conn, "UPDATE inv SET kvarcas=kvarcas+'$chestContent[amount]' WHERE nick='$nick' ");
             $message .= ' Gavo: ' . $chestContent['amount'] . ' kvarco rūdos.';
+            $discordMessage = 'Žaidėjui ' . $nick . 'iš dėžės iškrito ' . $chestContent['amount'] . ' kvarco rūdos!';
+            sendDiscordMessage($discordMessage);
         }
         if ($chestContent['name'] === 'deathArmour') {
             $amount = $chestContent['amount'];
@@ -2830,12 +2832,16 @@ if ($id == 'kom_del') {
             echo 'Atgimimo amulet: ' . $chestContent['amount'];
             mysqli_query($conn, "UPDATE inv SET atgimimo_amulet=atgimimo_amulet+'$amount' WHERE nick='$nick'");
             $message .= ' Gavo: ' . $amount . ' atgimimo amulet.';
+            $discordMessage = 'Žaidėjui ' . $nick . 'iš dėžės iškrito atgimimo amulet!';
+            sendDiscordMessage($discordMessage);
         }
         if ($chestContent['name'] === 'destructionAmulet') {
             $amount = $chestContent['amount'];
             echo 'Naikinimo amulet: ' . $chestContent['amount'];
             mysqli_query($conn, "UPDATE inv SET naikinimo_amulet=naikinimo_amulet+'$amount' WHERE nick='$nick'");
             $message .= ' Gavo: ' . $amount . ' naikinimo amulet.';
+            $discordMessage = 'Žaidėjui ' . $nick . 'iš dėžės iškrito naikinimo amulet!';
+            sendDiscordMessage($discordMessage);
         }
         echo '</div>';
     }
