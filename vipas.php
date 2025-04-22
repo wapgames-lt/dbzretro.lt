@@ -687,8 +687,8 @@ echo'<div class="up">'.$ico.' 1 Lygio VIP Pirkimas</div>
 	 </div><div class="meniuc"> VIP funkcijos bus pildomos ateityje.<b><br>1 Lygio VIP kaina - <b>2000</b> <img src="img/bicons/vipt.png" /> <b>1000</b> <img src="img/bicons/euro.png" /> ir 0 <img src="img/bicons/cash.png" /></b></div>';
 
 
-     if(laikass((int)$apie['vip'])-time()> 0){
-     echo "<div class='meniuc'> ".$ico."  Tavo <b>VIP</b> dar galios ".(laikass((int)$apie['vip']-time(),1)).". </div>";
+     if(laikass($apie['vip'])-time()> 0){
+     echo "<div class='meniuc'> ".$ico."  Tavo <b>VIP</b> dar galios ".(laikass($apie['vip']-time(),1)).". </div>";
      }
      else{
 	 echo '<div class="meniuc"> '.$ico.' <a href="?id=vip1">Pirkti 1 lygio VIP</a></div>';

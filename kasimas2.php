@@ -450,9 +450,9 @@ echo'<div class="meniuc"><img src="img/kasimas/kasykla.png" border="1"></div>';
 	navigacija($g_n);
 }
 
-	elseif($_SESSION[kasu] > time()){
+	elseif($_SESSION['kasu'] > time()){
 echo'<div class="meniuc"><img src="img/kasimas/kasykla.png" border="1"></div>';
-		echo'<div class="meniuc">Per greit kasi galėsi po '.laikas($_SESSION[kasu]-time(), 1).'</div>';
+		echo'<div class="meniuc">Per greit kasi galėsi po '.laikas($_SESSION['kasu']-time(), 1).'</div>';
  $g_n[] = array("pagrindinis.php?id=","Pagrindinis","kasimas.php", "Rūdos kasimas", "Klaida");
 	navigacija($g_n);
 	
@@ -465,7 +465,7 @@ echo'<div class="meniuc"><img src="img/kasimas/kasykla.png" border="1"></div>';
 
              $query = mysqli_query($conn,"SELECT * FROM kasyklav2 WHERE lokacija='$ID' ORDER BY id='$VS' DESC LIMIT 1");
              while($row = mysqli_fetch_assoc($query)){
-		$_SESSION[kasu] = time()+$padusimas;
+		$_SESSION['kasu'] = time()+$padusimas;
 		$randas = rand(1,6);
 		$randas2 =rand(1,10)*rand($kasimasx+$kasimoreward,1+$kasimasx+$kasimoreward);
 		$randas3 =rand($row['minlvl']*$kasimas2x,$row['maxlvl']*$kasimas2x);
