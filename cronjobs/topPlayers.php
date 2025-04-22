@@ -21,12 +21,15 @@ if (random_int(1, 3) === 3) {
 
 
 $topPlayersByActions = mysqli_query($conn, "SELECT * FROM dtop WHERE nick != '" . mysqli_real_escape_string($conn, $nust['last']) . "' ORDER BY vksm DESC LIMIT 5");
-$message = '**Top Players By Actions Today**:' . "\n";
-$nr = 1;
-while ($row = mysqli_fetch_assoc($topPlayersByActions)) {
-    $message .= $nr++ . '. **' . $row['nick'] . '** (' . sk($row['vksm']) . ')' . "\n";
-}
+if (mysqli_num_rows($topPlayersByActions) > 0) {
 
-sendDiscordMessage($message);
+    $message = '**Top Players By Actions Today**:' . "\n";
+    $nr = 1;
+    while ($row = mysqli_fetch_assoc($topPlayersByActions)) {
+        $message .= $nr++ . '. **' . $row['nick'] . '** (' . sk($row['vksm']) . ')' . "\n";
+    }
+
+    sendDiscordMessage($message);
+}
 
 logInfo('Cron job ended in file: ' . basename(__FILE__));
