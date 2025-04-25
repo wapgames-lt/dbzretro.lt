@@ -228,8 +228,9 @@ if ($id == 'all') {
     echo '<div class="meniu">';
 
     $viso = mysqli_fetch_row(mysqli_query($conn, "SELECT COUNT(*) FROM team"))[0];
+    $rezultatu_rodymas = 20;
+    $nuo_kiek = 1;
     if ($viso > 0) {
-        $rezultatu_rodymas = 20;
         $total = @intval(($viso - 1) / $rezultatu_rodymas) + 1;
         if (empty($psl) || $psl < 0) {
             $psl = 1;
@@ -241,7 +242,7 @@ if ($id == 'all') {
 
         $puslapiu = ceil($viso / $rezultatu_rodymas);
     }
-    $nst = mysqli_query($conn, "SELECT * FROM team ORDER BY id LIMIT $nuo_kiek,$rezultatu_rodymas");
+    $nst = mysqli_query($conn, "SELECT * FROM team ORDER BY id LIMIT " . mysqli_real_escape_string($conn, $nuo_kiek) . "," . mysqli_real_escape_string($conn, $rezultatu_rodymas));
     while ($nt = mysqli_fetch_assoc($nst)) {
 
         $nr++;
