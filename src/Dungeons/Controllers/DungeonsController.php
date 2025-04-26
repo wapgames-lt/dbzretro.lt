@@ -27,6 +27,7 @@ final class DungeonsController
 
         $this->renderHeader();
 
+
         $dungeons = $this->getDungeons();
         if ($dungeons->isEmpty()) {
             $this->renderEmptyState();
