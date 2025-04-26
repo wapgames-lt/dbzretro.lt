@@ -24,6 +24,7 @@ final class DungeonsController
     private function index(): void
     {
         online(self::PAGE_TITLE);
+
         $this->renderHeader();
 
         $dungeons = $this->getDungeons();
