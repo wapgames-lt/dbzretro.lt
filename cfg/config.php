@@ -189,7 +189,7 @@ function laikas($time, $id = 0)
             $xx = '0 sek.';
         }
     } else {
-            $xx = Carbon::createFromTimestamp($time)->diffForHumans();
+        $xx = Carbon::createFromTimestamp($time)->diffForHumans();
     }
     return $xx;
 }
@@ -539,11 +539,11 @@ function skaicius($n)
     return number_format($n);
 }
 
-if(kiek('online') > $nust['max_on']){
-    mysqli_query($conn,"UPDATE nustatymai SET max_on='".kiek('online')."',max_online_date='".time()."'");
+if (kiek('online') > $nust['max_on']) {
+    mysqli_query($conn, "UPDATE nustatymai SET max_on='" . kiek('online') . "',max_online_date='" . time() . "'");
 }
-if(kiek('online') > $nust['snd_max']){
-    mysqli_query($conn,"UPDATE nustatymai SET snd_max='".kiek('online')."'");
+if (kiek('online') > $nust['snd_max']) {
+    mysqli_query($conn, "UPDATE nustatymai SET snd_max='" . kiek('online') . "'");
 }
 
 
@@ -594,7 +594,6 @@ function skaitl()
    <a href="https://discord.gg/QyRdrszqtZ">Žaidimo DISCORD kanalas!</a><br>
   ';
 }
-
 
 
 //** APSAUGA
