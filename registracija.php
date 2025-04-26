@@ -3,7 +3,7 @@ ob_start();
 session_start();
 $ipas = $_SERVER['REMOTE_ADDR'];
 include_once 'cfg/sql.php';
-include_once 'config.php';
+include_once 'cfg/config.php';
 
 
 head();
@@ -238,7 +238,10 @@ else{
         } else {
             $imgssxx = $veik['name'];
         }
-
+    $siteKey = getenv('GOOGLE_CAPTCHA_SITE_KEY');
+    if (!$siteKey) {
+        die('Error: Google reCAPTCHA site key not set in .env file.');
+    }
         echo '<div class="meniuc"><img src="img/veikejaic/'.$imgssxx.'.png"></div>';
 
     echo'    <form method="post" action="?id=reg3&ka='.$ka.'&ID='.$ID.'"></font>
@@ -268,9 +271,9 @@ placeholder="Pakartokite  savo slaptažodį"
 /> <span id="PassDiv"></span><br /></font>
          
       <font color="white"><br /><b>Apsauga</b><br /><br />
-      <script src="https://www.google.com/recaptcha/api.js" async defer></script>
- <div class="g-recaptcha" data-theme="dark" data-sitekey="6LcHaHAqAAAAAIu9C-KyOCToR-_tR1rxEbtZI708"></div>
- <br /></font></font
+      <script src="https://www.google.com/recaptcha/api.js" async defer></script>';
+    echo '<div class="g-recaptcha" data-theme="dark" data-sitekey="' . htmlspecialchars($siteKey) . '"></div>';
+ echo '<br /></font></font
           
          <div class="line"></div>
    <div class="meniuc">      <input type="submit" name="submit" value="Registruotis"/></form></div>
@@ -285,8 +288,13 @@ navigacija($g_n);
 
 function isValidCaptcha($captcha)
 {
-    $response = json_decode(file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=6LcHaHAqAAAAAK3poX6NW3rgf2NndmRkpd4roEz0&response=".$captcha."&remoteip=".$_SERVER['REMOTE_ADDR']),
-        true);
+    $secretKey = getenv('GOOGLE_CAPTCHA_SECRET');
+
+    if ($secretKey === false) {
+        die('Error: Google reCAPTCHA secret key not set in .env file.');
+    }
+
+    $response = json_decode(file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret={$secretKey}&response={$captcha}&remoteip={$_SERVER['REMOTE_ADDR']}"));
 
     return $response['success'] === true;
 }

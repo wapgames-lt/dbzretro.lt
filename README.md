@@ -85,4 +85,5 @@ $currentDateTime = now();
 - **discord** webhook support (set your DISCORD_WEBHOOK_URL and DISCORD_USERNAME variables in .env)
     - send a Discord message to the channel using the function:
      ` sendDiscordMessage($message);`
+- GOOGLE CAPTCHA (set GOOGLE_CAPTCHA and GOOGLE_CAPTCHA_SITE_KEY in .env)
   
