@@ -290,7 +290,7 @@ function isValidCaptcha($captcha)
 {
     $secretKey = getenv('GOOGLE_CAPTCHA_SECRET');
 
-    if ($secretKey === false) {
+    if (!$secretKey) {
         die('Error: Google reCAPTCHA secret key not set in .env file.');
     }
 
