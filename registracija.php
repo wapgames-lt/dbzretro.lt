@@ -294,7 +294,7 @@ function isValidCaptcha($captcha)
         die('Error: Google reCAPTCHA secret key not set in .env file.');
     }
 
-    $response = json_decode(file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret={$secretKey}&response={$captcha}&remoteip={$_SERVER['REMOTE_ADDR']}"));
+    $response = json_decode(file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret={$secretKey}&response={$captcha}&remoteip={$_SERVER['REMOTE_ADDR']}"), true);
 
     return $response['success'] === true;
 }
