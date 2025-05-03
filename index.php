@@ -7,7 +7,63 @@ include_once 'cfg/limit.php';
 
 
 $id = isset($_GET['id']) ? preg_replace('/[^A-Za-z0-9_ ]/', '', $_GET['id']) : null;
-if (!$id) {
+if ($id === 'referral') {
+    $siteApiKey = getenv('WAP_GAMES_API_KEY');
+
+    $apiKey = isset($_GET['api_key']) ? preg_replace("/[^A-Za-z0-9- ]/", '', $_GET['api_key']) : null;
+    if (!$apiKey) {
+        header("Content-Type: application/json");
+        http_response_code(422);
+        echo json_encode(['Message' => 'Missing api_key.']);
+        return;
+    }
+
+    if ($apiKey !== $siteApiKey) {
+        header("Content-Type: application/json");
+        http_response_code(422);
+        echo json_encode(['Message' => 'Incorrect api_key.', 'api_key' => $apiKey]);
+        return;
+    }
+
+    $ip = isset($_GET['ip']) ? preg_replace("/[^A-Za-z0-9. ]/", '', $_GET['ip']) : null;
+    if (!$ip) {
+        header("Content-Type: application/json");
+        http_response_code(422);
+        echo json_encode(['Message' => 'Missing IP parameter.']);
+        return;
+    }
+
+    $player = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM zaidejai WHERE ip='$ip' LIMIT 1"));
+    if (!$player) {
+        header('Content-Type: application/json');
+        $data = [
+            'data' => ['Message' => 'Player by IP not found.', 'IP' => $ip],
+        ];
+
+        echo json_encode($data, true);
+        exit();
+    }
+
+    $euro = 3000;
+    mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai+$euro WHERE nick='$player[nick]'");
+    $playerMessage = 'Tu paspaudei referral nuorodą už tai gauni: '. $euro.' euriukų, atmink nuorodą galima spausti kasdien po vieną karta. Nemokami euriukai? Gero žaidimo!';
+    mysqli_query($conn,"INSERT INTO pm SET gavejas='$player[nick]', what='SISTEMA', txt='$playerMessage', time='" . time() . "', nauj='NEW'")or die(mysqli_error());
+
+    $adminMessage = 'Žaidėjas: '. $player['nick'] . ' gavo '. $euro.', eur nes paspaudė atvedimo nuorodą iš IP: '. $ip;
+    mysqli_query($conn,"INSERT INTO pm SET gavejas='testas1', what='SISTEMA', txt='$adminMessage', time='" . time() . "', nauj='NEW'")or die(mysqli_error());
+
+    header("Content-Type: application/json");
+    echo json_encode([
+        'Message' => 'Referral approved.',
+        'Player' => $player['nick'],
+        'Euro' => $euro,
+        'IP' => $ip,
+    ]);
+    return;
+}
+
+
+
 // Fetch common data
 $nust = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM nustatymai"));
 $new = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM news ORDER BY id DESC LIMIT 1"));
@@ -208,62 +264,3 @@ $adsSms = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM sms_reklama ORDE
 <script src="js/main.js"></script>
 </body>
 </html>
-
-<?php
-}
-
-if ($id === 'referral') {
-    $siteApiKey = getenv('WAP_GAMES_API_KEY');
-
-    $apiKey = isset($_GET['api_key']) ? preg_replace("/[^A-Za-z0-9- ]/", '', $_GET['api_key']) : null;
-    if (!$apiKey) {
-        header("Content-Type: application/json");
-        http_response_code(422);
-        echo json_encode(['Message' => 'Missing api_key.']);
-        return;
-    }
-
-    if ($apiKey !== $siteApiKey) {
-        header("Content-Type: application/json");
-        http_response_code(422);
-        echo json_encode(['Message' => 'Incorrect api_key.', 'api_key' => $apiKey]);
-        return;
-    }
-
-    $ip = isset($_GET['ip']) ? preg_replace("/[^A-Za-z0-9. ]/", '', $_GET['ip']) : null;
-    if (!$ip) {
-        header("Content-Type: application/json");
-        http_response_code(422);
-        echo json_encode(['Message' => 'Missing IP parameter.']);
-        return;
-    }
-
-    $player = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM zaidejai WHERE ip='$ip' LIMIT 1"));
-    if (!$player) {
-        header('Content-Type: application/json');
-        $data = [
-            'data' => ['Message' => 'Player by IP not found.', 'IP' => $ip],
-        ];
-
-        echo json_encode($data, true);
-        exit();
-    }
-
-    $euro = 3000;
-    mysqli_query($conn,"UPDATE zaidejai SET sms_litai=sms_litai+$euro WHERE nick='$player[nick]'");
-    $playerMessage = 'Tu paspaudei referral nuorodą už tai gauni: '. $euro.' euriukų, atmink nuorodą galima spausti kasdien po vieną karta. Nemokami euriukai? Gero žaidimo!';
-    mysqli_query($conn,"INSERT INTO pm SET gavejas='$player[nick]', what='SISTEMA', txt='$playerMessage', time='" . time() . "', nauj='NEW'")or die(mysqli_error());
-
-    $adminMessage = 'Žaidėjas: '. $player['nick'] . ' gavo '. $euro.', eur nes paspaudė atvedimo nuorodą iš IP: '. $ip;
-    mysqli_query($conn,"INSERT INTO pm SET gavejas='testas1', what='SISTEMA', txt='$adminMessage', time='" . time() . "', nauj='NEW'")or die(mysqli_error());
-
-    header("Content-Type: application/json");
-    echo json_encode([
-        'Message' => 'Referral approved.',
-        'Player' => $player['nick'],
-        'Euro' => $euro,
-        'IP' => $ip,
-    ]);
-    return;
-}
-?>
