@@ -133,7 +133,7 @@ $adsSms = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM sms_reklama ORDE
       <h5 class="text-center text-gold mb-3"><i class="bi bi-bar-chart-line me-2"></i>Statistika</h5>
       <div class="d-flex justify-content-between align-items-center mb-2">
         <span><i class="bi bi-people-fill me-1 text-gold"></i>Prisijungę:</span>
-        <span class="badge bg-warning rounded-pill"><?=kiek('online')?> / <?=kiek('zaidejai')?></span>
+        <span class="badge bg-warning rounded-pill"><?=kiek('online')?> / <?=$nust['max_on']?></span>
       </div>
       <div class="d-flex justify-content-between align-items-center mb-2">
         <span><i class="bi bi-newspaper me-1 text-gold"></i>Atnaujinimai:</span>
