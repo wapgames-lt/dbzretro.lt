@@ -5,15 +5,9 @@ session_start();
 include_once 'cfg/sql.php';
 include_once 'cfg/limit.php';
 
-function jsonResponse($message, $code = 200, $extra = []) {
-    http_response_code($code);
-    header('Content-Type: application/json');
-    echo json_encode(array_merge(['Message' => $message], $extra));
-    exit();
-}
 
 $id = isset($_GET['id']) ? preg_replace('/[^A-Za-z0-9_ ]/', '', $_GET['id']) : null;
-
+if (!$id) {
 // Fetch common data
 $nust = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM nustatymai"));
 $new = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM news ORDER BY id DESC LIMIT 1"));
@@ -216,6 +210,8 @@ $adsSms = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM sms_reklama ORDE
 </html>
 
 <?php
+}
+
 if ($id === 'referral') {
     $siteApiKey = getenv('WAP_GAMES_API_KEY');
 
