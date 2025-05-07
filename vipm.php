@@ -14,13 +14,13 @@ include_once 'cfg/funkcijos.php';
  $statusai = array("Mod","Mod2","Mod3","Mod4","Admin");
 $nst = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM turnyras"));
 $new = mysqli_fetch_assoc(mysqli_query($conn,"SELECT * FROM news ORDER BY id DESC LIMIT 1"));
-$xd = mysqli_query($conn,"SELECT * FROM zaidejai WHERE nick= $nick");
+$xd = mysqli_query($conn,"SELECT * FROM zaidejai WHERE nick='$nick'");
 head2();
 if($nust['new_time']-time() > 0){
     $q = mysqli_query($conn,"SELECT * FROM news ORDER BY id DESC LIMIT 1");
    
     while($row = mysqli_fetch_assoc($q)){
-        echo '<div class="meniuc">Padarytas atnaujinimas: '.$row[name].'</div>';
+        echo '<div class="meniuc">Padarytas atnaujinimas: '.$row['name'].'</div>';
       
         unset($row);
     }

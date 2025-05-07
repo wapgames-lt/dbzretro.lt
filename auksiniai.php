@@ -10,7 +10,7 @@ baneris();
 topbar();
 if($id == ""){
 	 online('Auksiniai');
-   top(Auksiniai);
+   top('Auksiniai');
     echo '<div class="meniuc">Jūsų saskaitoje: <b>'.sk($apie['auksiniai']).' <img src="img/coin.png"></b> auksinių.</div>
  ';
 	echo'
