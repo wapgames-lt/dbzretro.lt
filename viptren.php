@@ -20,7 +20,7 @@ if($nust['new_time']-time() > 0){
     $q = mysqli_query($conn,"SELECT * FROM news ORDER BY id DESC LIMIT 1");
    
     while($row = mysqli_fetch_assoc($q)){
-        echo '<div class="meniuc">Padarytas atnaujinimas: '.$row[name].'</div>';
+        echo '<div class="meniuc">Padarytas atnaujinimas: '.$row['name'].'</div>';
       
         unset($row);
     }
