@@ -1,11 +1,5 @@
 <?php
 
-use Carbon\Carbon;
-use Carbon\CarbonImmutable;
-use Carbon\CarbonInterface;
-use LegacyDbz\Players\DTO\Player;
-use LegacyDbz\Players\Services\CurrentPlayer;
-
 include_once __DIR__ . '/sql.php';
 
 $startTime = microtime(true);

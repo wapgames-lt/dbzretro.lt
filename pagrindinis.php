@@ -13,6 +13,7 @@ include_once __DIR__ . '/cfg/funkcijos.php';
 include_once(__DIR__ . '/cfg/limit.php');
 
 
+
 $prizas = $nust['sms_priz'];
 $prizas2 = round($nust['sms_priz']) / 2;
 $prizas3 = round($nust['sms_priz']) / 3;
@@ -815,42 +816,48 @@ if ($id == "") {
     <div class="info-content">
         <div class="info-column">
             <div class="info-item">
-                <a href="pagrindinis.php?id=apie&ka=' . $nick . '"></a>
+                <a href="pagrindinis.php?id=apie&ka=' . $nick . '">
                 <i class="fa-duotone fa-circle-info icon-info"></i>
                 <div class="info-item-text">Apie <b>' . statusas($nick) . '</b></div>
+                </a>
             </div>
             
             <div class="info-item">
-                <a href="meniu.php?id="></a>
+                <a href="meniu.php?id=">
                 <i class="fa-duotone fa-bars icon-menu"></i>
                 <div class="info-item-text">Mano meniu</div>
+                </a>
             </div>
             
             <div class="info-item">
-                <a href="vsaugykla.php?id="></a>
+                <a href="vsaugykla.php?id=">
                 <i class="fa-duotone fa-vault icon-vault"></i>
                 <div class="info-item-text"><b>Veikėjų saugykla</b></div>
                 <div class="badge">' . $apie['kiek_unikaliu'] . '/41</div>
+                </a>
             </div>
             
             <div class="info-item">
-                <a href="skill.php?id="></a>
+                <a href="skill.php?id=">
                 <i class="fa-duotone fa-sword icon-skills"></i>
                 <div class="info-item-text">Mano skillai</div>
+                </a>
             </div>
             
             <div class="info-item">
-                <a href="inv.php?id="></a>
+                <a href="inv.php?id=">
                 <i class="fa-duotone fa-bag-shopping icon-inventory"></i>
                 <div class="info-item-text">Inventorius</div>
+                </a>
             </div>
         </div>
         
         <div class="info-column">
             <div class="info-item">
-                <a href="pm.php?id="></a>
+                <a href="pm.php?id=">
                 <i class="fa-duotone fa-envelope icon-messages"></i>
                 <div class="info-item-text">Pm dežutė</div>
+                </a>
             </div>';
 
     if ($apie['majin'] - time() > 0) {
@@ -889,9 +896,10 @@ if ($id == "") {
             </div>
             
             <div class="info-item">
-                <a href="vipas.php?id="></a>
+                <a href="vipas.php?id=">
                 <i class="fa-duotone fa-crown icon-crown"></i>
-                <div class="info-item-text">VIP Privilegija</div>';
+                <div class="info-item-text">VIP Privilegija</div>
+                </a>';
 
     if ($inv['viplvl'] > 0) {
         echo '
