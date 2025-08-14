@@ -12,8 +12,6 @@ include_once __DIR__ . '/cfg/funkcijos.php';
 // wap gay protection
 include_once(__DIR__ . '/cfg/limit.php');
 
-
-
 $prizas = $nust['sms_priz'];
 $prizas2 = round($nust['sms_priz']) / 2;
 $prizas3 = round($nust['sms_priz']) / 3;
@@ -26,17 +24,18 @@ if ($nust['new_time'] - time() > 0) {
     $q = mysqli_query($conn, "SELECT * FROM news ORDER BY id DESC LIMIT 1");
 
     while ($row = mysqli_fetch_assoc($q)) {
-        echo '<div class="notification-card">
+        echo '
+        <div class="notification-card">
             <div class="notification-header">
                 <i class="fa-duotone fa-newspaper"></i> Atnaujinimas
             </div>
-            <div class="notification-body">
-                <div class="notification-icon">
+            <div class="notification-body" style="display: flex; align-items: center;">
+                <div class="notification-icon" style="margin-right: 15px;">
                     <i class="fa-duotone fa-code-branch icon-info"></i>
                 </div>
                 <div class="notification-content">
                     <div class="notification-title">Padarytas atnaujinimas:</div>
-                    ' . $row['name'] . '
+                    <div class="notification-text">'.$row['name'].'</div>
                 </div>
             </div>
         </div>';
@@ -44,8 +43,6 @@ if ($nust['new_time'] - time() > 0) {
         unset($row);
     }
 }
-
-
 baneris();
 topbar();
 $partyInvitesRepository = new PartyInvitesRepository();
@@ -56,18 +53,19 @@ if ($firstPendingInvite) {
     $playerRepository = new PlayersRepository();
     $partyLeader = $playerRepository->findById($party->leader_id);
 
-    echo '<div class="notification-card">
+    echo '
+    <div class="notification-card">
         <div class="notification-header">
             <i class="fa-duotone fa-users-viewfinder"></i> Party Kvietimas
         </div>
-        <div class="notification-body">
-            <div class="notification-icon">
-                <i class="fa-duotone fa-user-group icon-team"></i>
+        <div class="notification-body" style="display: flex; align-items: center;">
+            <div class="notification-icon" style="margin-right: 15px;">
+                <i class="fa-duotone fa-user-group icon-success"></i>
             </div>
-            <div class="notification-content">
+            <div class="notification-content" style="flex-grow: 1;">
                 <div class="notification-title">Gavote pakvietimą į party:</div>
-                ' . $party->name() . ', lyderis: ' . $partyLeader->nick() . '
-                <div class="notification-actions">
+                <div class="notification-text">' . $party->name() . ', lyderis: ' . $partyLeader->nick() . '</div>
+                <div class="notification-actions" style="margin-top: 10px;">
                     <a href="/Dungeons/view/parties/party_invites.php?id=inviteeInvites" class="action-button">
                         <i class="fa-duotone fa-eye"></i> Peržiūrėti
                     </a>
@@ -82,19 +80,20 @@ $service = new \LegacyDbz\WorldBosses\Services\WorldBossService($repository);
 $boss = $service->get();
 if ($boss) {
     $bossConfig = $service->getBossConfig($boss->getBossId());
-    echo '<div class="notification-card boss-alert" style="margin: 0 auto; text-align: center;">
+    echo '
+    <div class="notification-card boss-alert">
         <div class="notification-header">
             <i class="fa-duotone fa-skull-crossbones"></i> World Boss Alert
         </div>
-        <div class="notification-body" style="display: flex; flex-direction: column; align-items: center;">
-            <div class="notification-icon">
-                <i class="fa-duotone fa-dragon icon-worldboss"></i>
+        <div class="notification-body" style="text-align: center;">
+            <div class="notification-icon" style="margin-bottom: 15px;">
+                <i class="fa-duotone fa-dragon icon-danger"></i>
             </div>
             <div class="notification-content">
                 <div class="notification-title">World Boss pasirodė!</div>
-                <span class="highlight">' . $bossConfig['name'] . '</span> laukia kovos
-                <div class="notification-actions" style="justify-content: center;">
-                    <a href="worldbosses/view/index.php" class="action-button" style="margin: 0 auto;">
+                <div class="notification-text"><span class="highlight">' . $bossConfig['name'] . '</span> laukia kovos</div>
+                <div class="notification-actions" style="margin-top: 15px;">
+                    <a href="worldbosses/view/index.php" class="action-button">
                         <i class="fa-duotone fa-sword"></i> Pulti bosą
                     </a>
                 </div>
@@ -109,18 +108,18 @@ if ($boss) {
     $remainingTime = $timeDifference->format('%h h %i min %s sec');
 
     echo '
-    <div class="notification-card" style="margin: 0 auto; text-align: center;">
+    <div class="notification-card">
         <div class="notification-header">
             <i class="fa-duotone fa-timer"></i> World Boss Atvykimas
         </div>
-        <div class="notification-body" style="display: flex; flex-direction: column; align-items: center;">
-            <div class="notification-icon">
-                <i class="fa-duotone fa-clock icon-timer"></i>
+        <div class="notification-body" style="text-align: center;">
+            <div class="notification-icon" style="margin-bottom: 15px;">
+                <i class="fa-duotone fa-clock icon-warning"></i>
             </div>
             <div class="notification-content">
                 <div class="notification-title">World boss greitai pasirodys:</div>
                 <div class="countdown">
-                    <i class="fa-duotone fa-hourglass-half"></i> ' . $remainingTime . '
+                    <i class="fa-duotone fa-hourglass-half"></i> <span class="highlight">' . $remainingTime . '</span>
                 </div>
             </div>
         </div>
@@ -134,25 +133,26 @@ if ($legendaryBoss) {
     $legendaryBossService = new \LegacyDbz\LegendaryBosses\Services\LegendaryBossService($legendaryBossRepository);
     $legendaryBossConfig = $legendaryBossService->getBossConfig($legendaryBoss->getBossId());
 
-    echo '<div class="notification-card boss-alert" style="margin: 0 auto; text-align: center;">
+    echo '
+    <div class="notification-card boss-alert">
         <div class="notification-header">
             <i class="fa-duotone fa-crown"></i> Legendary Boss Alert
         </div>
-        <div class="notification-body" style="display: flex; flex-direction: column; align-items: center;">
-            <div class="notification-icon">
+        <div class="notification-body" style="text-align: center;">
+            <div class="notification-icon" style="margin-bottom: 15px;">
                 <i class="fa-duotone fa-dragon icon-legendary"></i>
             </div>
             <div class="notification-content">
                 <div class="notification-title">Legendary Boss pasirodė!</div>
-                <span class="highlight">' . $legendaryBossConfig['name'] . '</span> laukia kovos
-                <div class="notification-actions" style="justify-content: center;">
+                <div class="notification-text"><span class="highlight">' . $legendaryBossConfig['name'] . '</span> laukia kovos</div>
+                <div class="notification-actions" style="margin-top: 15px;">
                     <a href="LegendaryBosses/view/index.php" class="action-button">
                         <i class="fa-duotone fa-sword"></i> Pulti bosą
                     </a>
-                 </div>
+                </div>
+            </div>
         </div>
-    </div>
-</div>';
+    </div>';
 
     echo '<script>
         let audio = new Audio("LegendaryBosses/assets/sounds/boss_spawned.mp3");
@@ -162,68 +162,68 @@ if ($legendaryBoss) {
 
 $newMissions = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM user_daily_mission WHERE user_id = $apie[id] AND status='new' AND DATE(created_at) = '$date'"));
 if (!$newMissions) {
-    echo '<div class="notification-card" style="text-align: center;">
+    echo '
+    <div class="notification-card">
         <div class="notification-header">
             <i class="fa-duotone fa-scroll-old"></i> Dienos Misija
         </div>
-        <div class="notification-body" style="display: flex; flex-direction: column; align-items: center;">
-            <div class="notification-icon">
-                <i class="fa-duotone fa-scroll icon-mission"></i>
+        <div class="notification-body" style="text-align: center;">
+            <div class="notification-icon" style="margin-bottom: 15px;">
+                <i class="fa-duotone fa-scroll icon-info"></i>
             </div>
             <div class="notification-content">
                 <div class="notification-title">Nauja dienos misija laukia tavęs!</div>
-                Įvykdyk misiją ir gauk apdovanojimą
-                <div class="notification-actions">
-                    <a href="mission/daily/view/index.php?id=getMission" class="action-button" style="margin: 0 auto;">
+                <div class="notification-text">Įvykdyk misiją ir gauk apdovanojimą</div>
+                <div class="notification-actions" style="margin-top: 15px;">
+                    <a href="mission/daily/view/index.php?id=getMission" class="action-button">
                         <i class="fa-duotone fa-pen-to-square"></i> Gauti misiją
                     </a>
                 </div>
+            </div>
         </div>
-    </div>
-</div>    </div>
-        </div>
-    </div>
-</div>';
+    </div>';
 }
 
 $chests = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM player_chest_drops WHERE player_id = '$apie[id]' AND opened_at IS NULL AND expires_at > NOW()"));
 if ($chests) {
-    echo '<div class="notification-card" style="text-align: center;">
+    echo '
+    <div class="notification-card">
         <div class="notification-header">
             <i class="fa-duotone fa-treasure-chest"></i> Neatidaryta Skrynia
         </div>
-        <div class="notification-body" style="display: flex; flex-direction: column; align-items: center;">
-            <div class="notification-icon">
-                <i class="fa-duotone fa-chest icon-chest"></i>
+        <div class="notification-body" style="text-align: center;">
+            <div class="notification-icon" style="margin-bottom: 15px;">
+                <i class="fa-duotone fa-chest icon-warning"></i>
             </div>
             <div class="notification-content">
                 <div class="notification-title">Turite neatidarytų skrynių!</div>
-                Atidaryk skrynią ir atrask lobį viduje
-                <div class="notification-actions">
-                    <a href="pagrindinis.php?id=chests" class="action-button" style="margin: 0 auto;">
+                <div class="notification-text">Atidaryk skrynią ir atrask lobį viduje</div>
+                <div class="notification-actions" style="margin-top: 15px;">
+                    <a href="pagrindinis.php?id=chests" class="action-button">
                         <i class="fa-duotone fa-key"></i> Atidaryti skrynias
                     </a>
                 </div>
             </div>
-        </br>
+        </div>
     </div>';
 }
 
 if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM kvietimai_i_komanda WHERE nick2='$nick'")) > 0) {
     $team_pakv = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM kvietimai_i_komanda WHERE nick2='$nick'"));
 
-    echo '<div class="notification-card" style="text-align: center;">
+    echo '
+    <div class="notification-card">
         <div class="notification-header">
             <i class="fa-duotone fa-users"></i> Komandos Kvietimas
         </div>
-        <div class="notification-body" style="display: flex; flex-direction: column; align-items: center;">
-            <div class="notification-icon" style="margin: 0 auto;">
-                <i class="fa-duotone fa-people-group icon-team"></i>
+        <div class="notification-body" style="text-align: center;">
+            <div class="notification-icon" style="margin-bottom: 15px;">
+                <i class="fa-duotone fa-people-group icon-success"></i>
             </div>
-            <div class="notification-content"  style="text-align: center;">
+            <div class="notification-content">
                 <div class="notification-title">Esi kviečiamas į komandą!</div>
-                Komanda: <span class="highlight">' . $team_pakv['team'] . '</span>
-                <div class="notification-actions" style="justify-content: center;">
+                <div class="notification-text">Komanda: <span class="highlight">' . $team_pakv['team'] . '</span></div>
+                <div class="notification-actions" style="justify-content: center; margin-top: 15px;">
                     <a href="komanda.php?id=priimti&ka=' . $team_pakv['team'] . '" class="action-button accept">
                         <i class="fa-duotone fa-check"></i> Priimti
                     </a>
@@ -238,19 +238,20 @@ if (mysqli_num_rows(mysqli_query($conn, "SELECT * FROM kvietimai_i_komanda WHERE
 
 $voteCount = mysqli_fetch_row(mysqli_query($conn, "SELECT COUNT(*) FROM bals"))[0];
 if ($voteCount && mysqli_num_rows(mysqli_query($conn, "SELECT * FROM b_rez WHERE nick ='$nick' && bals_id ='1'")) == 0) {
-    echo '<div class="notification-card" style="text-align: center;">
+    echo '
+    <div class="notification-card">
         <div class="notification-header">
             <i class="fa-duotone fa-ballot-check"></i> Balsavimas
         </div>
-        <div class="notification-body" style="display: flex; flex-direction: column; align-items: center;">
-            <div class="notification-icon" style="margin: 0 auto;">
-                <i class="fa-duotone fa-vote-yea icon-vote"></i>
+        <div class="notification-body" style="text-align: center;">
+            <div class="notification-icon" style="margin-bottom: 15px;">
+                <i class="fa-duotone fa-vote-yea icon-primary"></i>
             </div>
             <div class="notification-content">
                 <div class="notification-title">Naujas balsavimas!</div>
-                Tavo balsas svarbus bendruomenei
-                <div class="notification-actions" style="justify-content: center;">
-                    <a href="balsavimai.php" class="action-button" style="margin: 0 auto;">
+                <div class="notification-text">Tavo balsas svarbus bendruomenei</div>
+                <div class="notification-actions" style="justify-content: center; margin-top: 15px;">
+                    <a href="balsavimai.php" class="action-button">
                         <i class="fa-duotone fa-ballot"></i> Balsuoti
                     </a>
                 </div>
@@ -387,26 +388,29 @@ if ($id == "") {
 
     // Tournament section with better design
     if ($nst['trn_busena'] == 0 && mysqli_num_rows(mysqli_query($conn, "SELECT * FROM user WHERE kovu_trn='+'")) < 8) {
-        echo '<div class="tournament-card">
-            <div class="tournament-header">
+        echo '
+        <div class="notification-card">
+            <div class="notification-header">
                 <i class="fa-duotone fa-trophy-star"></i>
                 <span>Kovų turnyras</span>
             </div>
-            <div class="tournament-body">
-                <div class="tournament-status">
-                    <i class="fa-duotone fa-users"></i>
-                    <div class="status-text">
-                        <span>Iki turnyro pradžios trūksta</span>
-                        <div class="missing-count">' . (8 - mysqli_num_rows(mysqli_query($conn, "SELECT * FROM user WHERE kovu_trn='+'"))) . ' dalyvių</div>
+            <div class="notification-body">
+                <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                    <div class="notification-icon" style="margin-right: 15px;">
+                        <i class="fa-duotone fa-users icon-warning"></i>
+                    </div>
+                    <div class="notification-content">
+                        <div class="notification-title">Iki turnyro pradžios trūksta</div>
+                        <div class="notification-text highlight">' . (8 - mysqli_num_rows(mysqli_query($conn, "SELECT * FROM user WHERE kovu_trn='+'"))) . ' dalyvių</div>
                     </div>
                 </div>
-                <a href="trn.php?id=reg" class="tournament-button">
-                    <i class="fa-duotone fa-pen-to-square"></i> Registruotis į turnyrą
-                </a>
-              </div>
+                <div class="notification-actions">
+                    <a href="trn.php?id=reg" class="action-button">
+                        <i class="fa-duotone fa-pen-to-square"></i> Registruotis į turnyrą
+                    </a>
+                </div>
             </div>
-        </div>
-    </div>';
+        </div>';
     } elseif ($nst['trn_busena'] == 1) {
         echo '<div class="tournament-card">
             <div class="tournament-header">
@@ -545,7 +549,7 @@ if ($id == "") {
         </div>
     </div>';
 
-    // Topic section with improved design
+    // Topic sekcija su tvarkingu, žaidimų forumams būdingu išdėstymu, išlaikant esamą dizainą ir klases
     echo '<div class="topics-container">
         <div class="topics-header">
             <i class="fa-duotone fa-comment-dots"></i>
@@ -558,32 +562,40 @@ if ($id == "") {
             <span>Topic rašymas išjungtas!</span>
         </div>';
     } else {
-        echo '<div class="topics-list" style="text-align:center;">';
+        echo '<div class="topics-list" style="display: flex; flex-direction: column; gap: 15px;">';
         $q = mysqli_query($conn, "SELECT * FROM topic ORDER BY id DESC LIMIT 3");
         while ($rr = mysqli_fetch_assoc($q)) {
             $nr++;
             $goott = '';
             if ($apie['statusas'] == 'Admin' || $apie['statusas'] == 'Mod' || $apie['statusas'] == 'Mod2' || $apie['statusas'] == 'Mod3' || $apie['statusas'] == 'Mod4') {
-                $goott = '<a href="?id=exit&ka=' . $rr['id'] . '" class="delete-topic"><i class="fa-duotone fa-trash-can"></i></a>';
+                $goott = '<a href="?id=exit&ka=' . $rr['id'] . '" class="delete-topic" style="margin-left:10px;"><i class="fa-duotone fa-trash-can"></i></a>';
             }
             $topicDate = createFromTimestamp($rr['time'])->diffForHumans();
-            echo '<div class="topic-item" style="text-align:center;">
-                <div class="topic-content">' . smile($rr['message']) . '</div>
-                <div class="topic-meta" style="justify-content:center;">
-                    <div class="topic-author">
-                        <i class="fa-duotone fa-user"></i>
-                        <a href="?id=apie&ka=' . $rr['kas'] . '">' . statusas($rr['kas']) . '</a>
+
+            // Tvarkingas išdėstymas: avataras, autorius, laikas, žinutė, veiksmai
+            echo '<div class="topic-item" style="display: flex; align-items: flex-start; background: #23272b; border-radius: 8px; padding: 12px 16px; box-shadow: 0 2px 6px rgba(0,0,0,0.08);">
+                <div class="topic-author" style="display: flex; flex-direction: column; align-items: center; min-width: 70px; margin-right: 18px;">
+                    <i class="fa-duotone fa-user" style="font-size: 32px; color: #6c8cff;"></i>
+                    <a href="?id=apie&ka=' . $rr['kas'] . '" style="font-weight: bold; color: #fff; text-decoration: none; margin-top: 4px;">' . statusas($rr['kas']) . '</a>
+                </div>
+                <div class="topic-main" style="flex:1; display: flex; flex-direction: column;">
+                    <div class="topic-meta" style="display: flex; align-items: center; justify-content: space-between;">
+                        <div class="topic-time" style="color: #aaa; font-size: 13px;">
+                            <i class="fa-duotone fa-clock"></i> ' . $topicDate . '
+                        </div>
+                        <div class="topic-actions" style="display: flex; align-items: center;">
+                            ' . $goott . '
+                        </div>
                     </div>
-                    <div class="topic-time">
-                        <i class="fa-duotone fa-clock"></i> ' . $topicDate . '
+                    <div class="topic-content" style="margin-top: 8px; text-align: left; color: #e2e2e2; font-size: 16px;">
+                        ' . smile($rr['message']) . '
                     </div>
-                    ' . $goott . '
                 </div>
             </div>';
         }
         unset($nr);
         echo '</div>
-        <div class="topics-actions" style="justify-content:center;">
+        <div class="topics-actions" style="display: flex; justify-content: center; gap: 12px; margin-top: 18px;">
             <a href="pagrindinis.php?id=keisti" class="action-button">
                 <i class="fa-duotone fa-pen-to-square"></i> Keisti
             </a>
@@ -676,12 +688,12 @@ if ($id == "") {
         </div>
         <div class="competition-items">';
     $compItems = [
-        ['?id=dtop', 'fa-trophy', 'Veiksmų TOP', sk($nust['dtop_priz']) . ' <img src="img/bicons/vipt.png" />'],
-        ['s_top.php', 'fa-trophy-star', 'Savaitės veiksmų TOP', sk($nust['savdtop_priz']) . ' <img src="img/bicons/euro.png" /> ir ' . sk($nust['savdtop_priz2']) . ' <img src="img/bicons/vipt.png" />'],
-        ['bendravimo.php', 'fa-comments', 'Bendravimo TOP', sk($nust['bendravimo_priz']) . ' <img src="img/bicons/euro.png" /> ir ' . sk($nust['bendravimo_priz2']) . ' <img src="img/bicons/vipt.png" />'],
-        ['kasimotop.php', 'fa-pickaxe', 'Kasimo TOP', sk($nust['kasimo_priz']) . ' Kasimo LVL'],
-        ['playerDailyMissionTop.php', 'fa-scroll-old', 'Legendinių misijų TOP', sk($nust['daily_mission_reward']) . ' <img src="img/bicons/cash.png" />'],
-        ['pintop.php?id=', 'fa-coins', 'Surinktų pinigų TOP', '']
+            ['?id=dtop', 'fa-trophy', 'Veiksmų TOP', sk($nust['dtop_priz']) . ' <img src="img/bicons/vipt.png" />'],
+            ['s_top.php', 'fa-trophy-star', 'Savaitės veiksmų TOP', sk($nust['savdtop_priz']) . ' <img src="img/bicons/euro.png" /> ir ' . sk($nust['savdtop_priz2']) . ' <img src="img/bicons/vipt.png" />'],
+            ['bendravimo.php', 'fa-comments', 'Bendravimo TOP', sk($nust['bendravimo_priz']) . ' <img src="img/bicons/euro.png" /> ir ' . sk($nust['bendravimo_priz2']) . ' <img src="img/bicons/vipt.png" />'],
+            ['kasimotop.php', 'fa-pickaxe', 'Kasimo TOP', sk($nust['kasimo_priz']) . ' Kasimo LVL'],
+            ['playerDailyMissionTop.php', 'fa-scroll-old', 'Legendinių misijų TOP', sk($nust['daily_mission_reward']) . ' <img src="img/bicons/cash.png" />'],
+            ['pintop.php?id=', 'fa-coins', 'Surinktų pinigų TOP', '']
     ];
     foreach ($compItems as $item) {
         echo '<a href="' . $item[0] . '" class="competition-item" style="justify-content:center; flex-direction:column; text-align:center;">
@@ -1487,18 +1499,18 @@ if ($id == "funkcijosm") {
         }
         $potara = $apie['potara'] == '+' ? '<img class="item"src="img/potara.png"/>' : '<img class="item"src="img/empty.png"/>';
         echo '
-            <table class="box"><tr><td>' . $radar . '</a></td><td rowspan="3" colspan="2"><img src="img/veikejai/' . $inf['veikejas'] . '-' . $inf['trans'] . '.png" alt="' . $inf['veikejas'] . ' "/></a></td>	</td>
-                    <td>' . $ki . '</a>					</td>
+            <table class="box"><tr><td>' . $radar . '</a></td><td rowspan="3" colspan="2"><img src="img/veikejai/' . $inf['veikejas'] . '-' . $inf['trans'] . '.png" alt="' . $inf['veikejas'] . ' "/></a></td> </td>
+                    <td>' . $ki . '</a>                 </td>
                 </tr>
                 <tr>
-                    <td>' . $lazdele . '</a>				</td>
-                    <td>' . $potara . '</a>		</td>
+                    <td>' . $lazdele . '</a>                </td>
+                    <td>' . $potara . '</a>     </td>
                 </tr>
                 <tr>
-                    <td>' . $kate . '</a>	</td>
+                    <td>' . $kate . '</a>   </td>
                     
                 
-                <td>' . $giras . '</a>				</td>
+                <td>' . $giras . '</a>              </td>
                 </tr>
         
 
@@ -1692,18 +1704,18 @@ $ico<a href='?id=komentarai&ka=" . $inf['nick'] . "'>Jūsų komentarai</a><br/>
 
 
                 echo '
-            <table class="box"><tr><td>' . $radar . '</a></td><td rowspan="3" colspan="2"><img src="img/veikejai/' . $inf['veikejas'] . '-' . $inf['trans'] . '.png" alt="' . $inf['veikejas'] . ' "/> </a></td>	</td>
-                                        <td>' . $ki . '</a>					</td>
+            <table class="box"><tr><td>' . $radar . '</a></td><td rowspan="3" colspan="2"><img src="img/veikejai/' . $inf['veikejas'] . '-' . $inf['trans'] . '.png" alt="' . $inf['veikejas'] . ' "/> </a></td>    </td>
+                                        <td>' . $ki . '</a>                 </td>
                 </tr>
                 <tr>
-                    <td>' . $lazdele . '</a>				</td>
-                    <td>' . $potara . '</a>		</td>
+                    <td>' . $lazdele . '</a>                </td>
+                    <td>' . $potara . '</a>     </td>
                 </tr>
                 <tr>
-                    <td>' . $kate . '</a>	</td>
+                    <td>' . $kate . '</a>   </td>
                     
                 
-                <td>' . $giras . '</a>				</td>
+                <td>' . $giras . '</a>              </td>
                 </tr>
         
 
@@ -1722,28 +1734,28 @@ $ico<a href='?id=komentarai&ka=" . $inf['nick'] . "'>Jūsų komentarai</a><br/>
 <div class="tooltip">Nėra</div></div>';
                 if ($inf['sword'] === 'Super money sword') {
                     $userSword =
-                        ' <div class="slot">
+                            ' <div class="slot">
     <img src="img/equipment/super_money_sword.png" alt="Super Money Sword">
     <div class="tooltip">Super money sword</div>
     </div>';
                 }
                 if ($inf['sword'] === 'Infinity sword') {
                     $userSword =
-                        ' <div class="slot">
+                            ' <div class="slot">
     <img src="img/equipment/infinity_sword.png" alt="Infinity Sword">
     <div class="tooltip">Infinity sword</div>
     </div>';
                 }
                 if ($inf['sword'] === 'Atgimimo sword') {
                     $userSword =
-                        ' <div class="slot">
+                            ' <div class="slot">
     <img src="img/equipment/revival_sword.png" alt="Atgimimo Sword">
     <div class="tooltip">Atgimimo sword</div>
     </div>';
                 }
                 if ($inf['sword'] === 'Mirties sword') {
                     $userSword =
-                        ' <div class="slot">
+                            ' <div class="slot">
     <img src="img/equipment/death_sword.png" alt="Mirties Sword">
     <div class="tooltip">Mirties sword</div>
     </div>';
@@ -1828,7 +1840,7 @@ $ico<a href='?id=komentarai&ka=" . $inf['nick'] . "'>Jūsų komentarai</a><br/>
                         echo '' . $ico2 . '       <b> IP: </b>' . $inf['ip'] . ' | ' . salys($inf['ip']) . '<br />';
                     }
                     echo '    </div>';
-                    echo '    	<div class="meniuc"><b>Šis žaidėjas yra užsislaptinęs savo informaciją</b></div>
+                    echo '      <div class="meniuc"><b>Šis žaidėjas yra užsislaptinęs savo informaciją</b></div>
         ';
                 } else {
                     echo '<div class="up" > <b>Pagrindinė informacija:</b></div> 
@@ -1974,7 +1986,7 @@ Turi <b>LVL</b> kasimo: <b>' . skaicius($inf['kasimolvl']) . '</b>
                     }
 
 
-                    if (laikass($inf['vip'] - time(), 1) > 1) {
+                    if (laikass((int)$inf['vip'] - time(), 1) > 1) {
                         echo "" . $ico . "  Šis žaidėjas turi <b>VIP Privilegija</b>";
                     }
 
@@ -2800,7 +2812,7 @@ if ($id == 'kom_del') {
             echo 'Kvarco rūdos: ' . $chestContent['amount'];
             mysqli_query($conn, "UPDATE inv SET kvarcas=kvarcas+'$chestContent[amount]' WHERE nick='$nick' ");
             $message .= ' Gavo: ' . $chestContent['amount'] . ' kvarco rūdos.';
-            $discordMessage = 'Žaidėjui ' . $nick . 'iš dėžės iškrito ' . $chestContent['amount'] . ' kvarco rūdos!';
+            $discordMessage = 'Žaidėjui ' . $nick . ' iš dėžės iškrito ' . $chestContent['amount'] . ' kvarco rūdos!';
             sendDiscordMessage($discordMessage);
         }
         if ($chestContent['name'] === 'deathArmour') {
@@ -2987,10 +2999,10 @@ Mėnulio pilnatis buna nuo 23.00 val. iki 24.00 val.<br />
             echo '<div class="meniuc">' . $ka . ' Neturi 40 lygio!</div>';
         } elseif ($receiver->ip() === currentPlayer()->ip()) {
             logWarning('Player transfering to player with same IP!', [
-                'receiver_ip' => $receiver->ip(),
-                'current_player_ip' => currentPlayer()->ip(),
-                'current_player_nick' => currentPlayer()->nick(),
-                'receiver_nick' => $receiver->nick(),
+                    'receiver_ip' => $receiver->ip(),
+                    'current_player_ip' => currentPlayer()->ip(),
+                    'current_player_nick' => currentPlayer()->nick(),
+                    'receiver_nick' => $receiver->nick(),
             ]);
             echo '<div class="meniuc">Įvyko klaida!</div>';
         } elseif ($kieks < 1) {
@@ -3062,11 +3074,11 @@ if ($id == 'pakvietimai') {
 if ($id == 'pervedimai') {
     top('Pervedimai');
     online('Pervedimai');
-    echo '<div class="meniu">' . $ico . '	Turi pinigų: ' . sk($apie['litai']) . '</br>
-    ' . $ico . '	Turi eurų: ' . sk($apie['sms_litai']) . '</br>
-    ' . $ico . '	Turi VIP TICKET: ' . sk($apie['vipticket']) . '</br>
-        ' . $ico . '	Turi kreditų: ' . sk($apie['kred']) . '</br>
-    ' . $ico . '	Turi auksinių: ' . sk($apie['auksiniai']) . '</div>
+    echo '<div class="meniu">' . $ico . '   Turi pinigų: ' . sk($apie['litai']) . '</br>
+    ' . $ico . '    Turi eurų: ' . sk($apie['sms_litai']) . '</br>
+    ' . $ico . '    Turi VIP TICKET: ' . sk($apie['vipticket']) . '</br>
+        ' . $ico . '    Turi kreditų: ' . sk($apie['kred']) . '</br>
+    ' . $ico . '    Turi auksinių: ' . sk($apie['auksiniai']) . '</div>
     
     ';
     echo '<div class="meniuc">
@@ -3554,7 +3566,7 @@ if ($id == 'stat') {
 <option value="Geri pasnekovai">Geri pasnekovai</option>
 <option value="Giminaitis">Giminaitis</option>
 <option value="Mano meilė">Mano meile</option>
-</select>	<br/>
+</select>   <br/>
 <input type="submit" value="Nustatyti"></form>
 
 </div>
