@@ -11,6 +11,10 @@ $username = getenv('DB_USERNAME');
 $password = getenv('DB_PASSWORD');
 $database = getenv('DB_DATABASE');
 
+if (!$username) {
+    throw new RuntimeException('Please set DB_USERNAME');
+}
+
 Db::connect($hostname, $database, $username, $password);
 
 $conn = mysqli_connect($hostname, $username, $password, $database);
