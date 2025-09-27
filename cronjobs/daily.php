@@ -1,7 +1,13 @@
 <?php
 
-include_once '../cfg/sql.php';
-include_once '../cfg/config.php';
+include_once __DIR__ . '/../cfg/sql.php';
+include_once __DIR__ . '/../cfg/config.php';
+
+if (PHP_SAPI !== 'cli') {
+    \LegacyDbz\Core\Logger::logInfo('WAP gay trying to run cron jobs from the browser.');
+
+    exit('Running cron jobs from browser is not good practice');
+}
 
 \LegacyDbz\Core\Logger::logInfo('Cron job started in file: ' . basename(__FILE__));
 
