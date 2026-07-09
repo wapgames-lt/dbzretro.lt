@@ -3680,7 +3680,7 @@ Pupos: <br /><input type="text" name="kiek_pupu" /><br />
                     mysqli_query($conn, "UPDATE zaidejai SET sms_litai=sms_litai+'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Davė tau '.$kiekis.' eurų! ";
+                    $txt = "$nick Davė tau " . $kiekis . " eurų! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . $kiekis . ' eurų!</div>';
                 }
@@ -3690,7 +3690,7 @@ Pupos: <br /><input type="text" name="kiek_pupu" /><br />
                     mysqli_query($conn, "UPDATE zaidejai SET bitcoin=bitcoin+'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Davė tau '.$kiekis.' BitCoin! ";
+                    $txt = "$nick Davė tau " . $kiekis . " BitCoin! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . $kiekis . ' BitCoin!</div>';
                 }
@@ -3701,7 +3701,7 @@ Pupos: <br /><input type="text" name="kiek_pupu" /><br />
                     mysqli_query($conn, "UPDATE zaidejai SET kred=kred+'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Davė tau '.$kiekis.' Kreditų! ";
+                    $txt = "$nick Davė tau " . $kiekis . " Kreditų! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . $kiekis . ' Kreditų!</div>';
                 }
@@ -3711,7 +3711,7 @@ Pupos: <br /><input type="text" name="kiek_pupu" /><br />
                     mysqli_query($conn, "UPDATE zaidejai SET auksiniai=auksiniai+'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Davė tau '.$kiekis.' auksinių! ";
+                    $txt = "$nick Davė tau " . $kiekis . " auksinių! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . $kiekis . ' auksinių!</div>';
                 }
@@ -3722,7 +3722,7 @@ Pupos: <br /><input type="text" name="kiek_pupu" /><br />
                     mysqli_query($conn, "UPDATE inv SET unikalus=unikalus+'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Davė tau '.$kiekis.' pasiekimų taškų! ";
+                    $txt = "$nick Davė tau " . $kiekis . " pasiekimų taškų! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . $kiekis . ' pasiekimų taškų!</div>';
                 }
@@ -3733,7 +3733,7 @@ Pupos: <br /><input type="text" name="kiek_pupu" /><br />
                     mysqli_query($conn, "UPDATE zaidejai SET litai=litai+'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' pinigų! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " pinigų! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' pinigų!</div>';
                 }
@@ -3743,7 +3743,7 @@ Pupos: <br /><input type="text" name="kiek_pupu" /><br />
                     mysqli_query($conn, "UPDATE zaidejai SET jega=jega+'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' jegos! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " jegos! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' jegos!</div>';
                 }
@@ -3753,7 +3753,7 @@ Pupos: <br /><input type="text" name="kiek_pupu" /><br />
                     mysqli_query($conn, "UPDATE zaidejai SET gynyba=gynyba+'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' gynybos! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " gynybos! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' gynybos!</div>';
                 }
@@ -3764,7 +3764,7 @@ Pupos: <br /><input type="text" name="kiek_pupu" /><br />
                     mysqli_query($conn, "UPDATE zaidejai SET pliusai=pliusai+'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' pliusų! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " pliusų! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' pliusų!</div>';
                 }
@@ -3775,7 +3775,7 @@ Pupos: <br /><input type="text" name="kiek_pupu" /><br />
                     mysqli_query($conn, "UPDATE zaidejai SET dailyp=dailyp+'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' Daily tasku! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " Daily tasku! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' Daily tasku!</div>';
                 }
@@ -3786,7 +3786,7 @@ Pupos: <br /><input type="text" name="kiek_pupu" /><br />
                     mysqli_query($conn, "UPDATE zaidejai SET kasimolvl=kasimolvl+'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' Kasimi Lvl! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " Kasimi Lvl! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' Kasimo LVL!</div>';
                 }
@@ -3797,7 +3797,7 @@ Pupos: <br /><input type="text" name="kiek_pupu" /><br />
                     mysqli_query($conn, "UPDATE zaidejai SET botas=botas+'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' Botas Cash! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " Botas Cash! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='" . mysqli_real_escape_string($conn, $txt) . "', `time`='" . time() . "', nauj='NEW', gavejas='" . mysqli_real_escape_string($conn, $kam) . "'");
 
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' Botas Cash!</div>';
@@ -3891,7 +3891,7 @@ Kiek pridėsite eurų<small></small>:<br />
                     mysqli_query($conn, "UPDATE zaidejai SET sms_litai=sms_litai-'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Atėmė iš tavęs '.$kiekis.' eurų! ";
+                    $txt = "$nick Atėmė iš tavęs " . $kiekis . " eurų! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Atėmei ' . $kam . '  ' . $kiekis . ' eurų!</div>';
                 }
@@ -3901,7 +3901,7 @@ Kiek pridėsite eurų<small></small>:<br />
                     mysqli_query($conn, "UPDATE zaidejai SET bitcoin=bitcoin-'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Atėmė iš tavęs '.$kiekis.' BitCoin! ";
+                    $txt = "$nick Atėmė iš tavęs " . $kiekis . " BitCoin! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Atėmei ' . $kam . '  ' . $kiekis . ' BitCoin!</div>';
 
@@ -3913,7 +3913,7 @@ Kiek pridėsite eurų<small></small>:<br />
                     mysqli_query($conn, "UPDATE zaidejai SET kred=kred-'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Atėmė iš tavęs '.$kiekis.' Kreditų! ";
+                    $txt = "$nick Atėmė iš tavęs " . $kiekis . " Kreditų! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Atėmei ' . $kam . '  ' . $kiekis . ' Kreditų!</div>';
                 }
@@ -3923,7 +3923,7 @@ Kiek pridėsite eurų<small></small>:<br />
                     mysqli_query($conn, "UPDATE zaidejai SET auksiniai=auksiniai-'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Atėmė iš tavęs '.$kiekis.' auksinių! ";
+                    $txt = "$nick Atėmė iš tavęs " . $kiekis . " auksinių! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Atėmei ' . $kam . '  ' . $kiekis . ' auksinių!</div>';
                 }
@@ -3934,7 +3934,7 @@ Kiek pridėsite eurų<small></small>:<br />
                     mysqli_query($conn, "UPDATE inv SET unikalus=unikalus-'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Atėmė iš tavęs '.$kiekis.' pasiekimų taškų! ";
+                    $txt = "$nick Atėmė iš tavęs " . $kiekis . " pasiekimų taškų! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Atėmei ' . $kam . '  ' . $kiekis . ' pasiekimų taškų!</div>';
                 }
@@ -3945,7 +3945,7 @@ Kiek pridėsite eurų<small></small>:<br />
                     mysqli_query($conn, "UPDATE zaidejai SET litai=litai-'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Atėmė iš tavęs '.skaicius($kiekis).' pinigų! ";
+                    $txt = "$nick Atėmė iš tavęs " . skaicius($kiekis) . " pinigų! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Atėmei ' . $kam . '  ' . skaicius($kiekis) . ' pinigų!</div>';
                 }
@@ -3955,7 +3955,7 @@ Kiek pridėsite eurų<small></small>:<br />
                     mysqli_query($conn, "UPDATE zaidejai SET jega=jega-'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Atėmė iš tavęs '.skaicius($kiekis).' jegos! ";
+                    $txt = "$nick Atėmė iš tavęs " . skaicius($kiekis) . " jegos! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Atėmei ' . $kam . '  ' . skaicius($kiekis) . ' jegos!</div>';
                 }
@@ -3965,7 +3965,7 @@ Kiek pridėsite eurų<small></small>:<br />
                     mysqli_query($conn, "UPDATE zaidejai SET gynyba=gynyba-'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Atėmė iš tavęs '.skaicius($kiekis).' gynybos! ";
+                    $txt = "$nick Atėmė iš tavęs " . skaicius($kiekis) . " gynybos! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Atėmei ' . $kam . '  ' . skaicius($kiekis) . ' gynybos!</div>';
                 }
@@ -3976,7 +3976,7 @@ Kiek pridėsite eurų<small></small>:<br />
                     mysqli_query($conn, "UPDATE zaidejai SET pliusai=pliusai-'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Atėmė iš tavęs '.skaicius($kiekis).' pliusų! ";
+                    $txt = "$nick Atėmė iš tavęs " . skaicius($kiekis) . " pliusų! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Atėmei ' . $kam . '  ' . skaicius($kiekis) . ' pliusų!</div>';
                 }
@@ -4023,7 +4023,7 @@ Kiek atimsite <small></small>:<br />
                     mysqli_query($conn, "UPDATE inv SET tobulas=tobulas+'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Davė tau '.$kiekis.' kario tobulėjimo! ";
+                    $txt = "$nick Davė tau " . $kiekis . " kario tobulėjimo! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . $kiekis . ' kario tobulėjimo!</div>';
                 }
@@ -4033,7 +4033,7 @@ Kiek atimsite <small></small>:<br />
                     mysqli_query($conn, "UPDATE inv SET naikinti=naikinti+'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Davė tau '.$kiekis.' galios naikinimo! ";
+                    $txt = "$nick Davė tau " . $kiekis . " galios naikinimo! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . $kiekis . ' naikinimo galios!</div>';
                 }
@@ -4044,7 +4044,7 @@ Kiek atimsite <small></small>:<br />
                     mysqli_query($conn, "UPDATE inv SET angelwing=angelwing+'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Davė tau '.$kiekis.' angelo sparnų! ";
+                    $txt = "$nick Davė tau " . $kiekis . " angelo sparnų! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . $kiekis . ' angelo sparnų!</div>';
                 }
@@ -4054,7 +4054,7 @@ Kiek atimsite <small></small>:<br />
                     mysqli_query($conn, "UPDATE inv SET Microshem=Microshem+'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Davė tau '.$kiekis.' mikroskemų! ";
+                    $txt = "$nick Davė tau " . $kiekis . " mikroskemų! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . $kiekis . ' mikroskemų!</div>';
                 }
@@ -4065,7 +4065,7 @@ Kiek atimsite <small></small>:<br />
                     mysqli_query($conn, "UPDATE inv SET Fusionfail=Fusionfail+'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Davė tau '.$kiekis.' fusion fail! ";
+                    $txt = "$nick Davė tau " . $kiekis . " fusion fail! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . $kiekis . ' fusion fail!</div>';
                 }
@@ -4076,7 +4076,7 @@ Kiek atimsite <small></small>:<br />
                     mysqli_query($conn, "UPDATE inv SET sayiantail=sayiantail+'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' sayan tail! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " sayan tail! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' sayan tail!</div>';
                 }
@@ -4086,7 +4086,7 @@ Kiek atimsite <small></small>:<br />
                     mysqli_query($conn, "UPDATE inv SET Stone=Stone+'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' stone! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " stone! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' stone!</div>';
                 }
@@ -4096,7 +4096,7 @@ Kiek atimsite <small></small>:<br />
                     mysqli_query($conn, "UPDATE inv SET Soul=Soul+'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' soul! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " soul! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' soul!</div>';
                 }
@@ -4107,7 +4107,7 @@ Kiek atimsite <small></small>:<br />
                     mysqli_query($conn, "UPDATE inv SET Energystone=Energystone+'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' energy stone! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " energy stone! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' energy stone!</div>';
                 }
@@ -4118,7 +4118,7 @@ Kiek atimsite <small></small>:<br />
                     mysqli_query($conn, "UPDATE inv SET Pragarovaisius=Pragarovaisius+'$kiekis' WHERE nick='$nick' ");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' pragaro vaisius! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " pragaro vaisius! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' pragaro vaisius!</div>';
                 }
@@ -4128,7 +4128,7 @@ Kiek atimsite <small></small>:<br />
                     mysqli_query($conn, "UPDATE inv SET Majinsroll=Majinsroll+'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' majin scroll! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " majin scroll! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' majin scroll!</div>';
                 }
@@ -4139,7 +4139,7 @@ Kiek atimsite <small></small>:<br />
                     mysqli_query($conn, "UPDATE inv SET Goldstone=Goldstone+'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' gold stone! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " gold stone! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' gold stone!</div>';
                 }
@@ -4149,7 +4149,7 @@ Kiek atimsite <small></small>:<br />
                     mysqli_query($conn, "UPDATE inv SET Magicball=Magicball+'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' magic ball! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " magic ball! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' magic ball!</div>';
                 }
@@ -4160,7 +4160,7 @@ Kiek atimsite <small></small>:<br />
                     mysqli_query($conn, "UPDATE inv SET Powerstone=Powerstone+'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' power stone! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " power stone! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' power stone!</div>';
                 }
@@ -4171,7 +4171,7 @@ Kiek atimsite <small></small>:<br />
                     mysqli_query($conn, "UPDATE inv SET Pupos=Pupos+'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' pupu! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " pupu! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' pupu!</div>';
                 }
@@ -4182,7 +4182,7 @@ Kiek atimsite <small></small>:<br />
                     mysqli_query($conn, "UPDATE inv SET Malkos=Malkos+'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' malku! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " malku! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' malku!</div>';
                 }
@@ -4193,7 +4193,7 @@ Kiek atimsite <small></small>:<br />
                     mysqli_query($conn, "UPDATE inv SET Zuvis=Zuvis+'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' žuvų! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " žuvų! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' žuvų!</div>';
                 }
@@ -4203,7 +4203,7 @@ Kiek atimsite <small></small>:<br />
                     mysqli_query($conn, "UPDATE inv SET ki=ki+'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' ki matuokli! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " ki matuokli! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' ki matuokli!</div>';
                 }
@@ -4213,7 +4213,7 @@ Kiek atimsite <small></small>:<br />
                     mysqli_query($conn, "UPDATE inv SET radaras=radaras+'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' radara! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " radara! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' radara!</div>';
                 }
@@ -4224,7 +4224,7 @@ Kiek atimsite <small></small>:<br />
                     mysqli_query($conn, "UPDATE zaidejai SET sword='Trankso kardas' WHERE nick='$kam'");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' Trankso karda! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " Trankso karda! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' Trankso karda!</div>';
                 }
@@ -4235,7 +4235,7 @@ Kiek atimsite <small></small>:<br />
                     mysqli_query($conn, "UPDATE zaidejai SET armor='Vedzito sarvai' WHERE nick='$kam'");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' Vedzito sarvus! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " Vedzito sarvus! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' Vedzito sarvus!</div>';
                 }
@@ -4247,7 +4247,7 @@ Kiek atimsite <small></small>:<br />
                     mysqli_query($conn, "UPDATE inv SET  laivas=laivas+'1' WHERE nick='$kam'");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' Kosmini laiva! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " Kosmini laiva! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' Kosmini laiva!</div>';
                 }
@@ -4260,7 +4260,7 @@ Kiek atimsite <small></small>:<br />
                     mysqli_query($conn, "UPDATE zaidejai SET sword='Time sword' WHERE nick='$kam'");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' Time sword! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " Time sword! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' Time sword!</div>';
                 }
@@ -4271,7 +4271,7 @@ Kiek atimsite <small></small>:<br />
                     mysqli_query($conn, "UPDATE zaidejai SET armor='Time armor' WHERE nick='$kam'");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' Time armor! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " Time armor! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' Time armor!</div>';
                 }
@@ -4283,7 +4283,7 @@ Kiek atimsite <small></small>:<br />
                     mysqli_query($conn, "UPDATE zaidejai SET sword='Money sword' WHERE nick='$kam'");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' Money sword! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " Money sword! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' Money sword!</div>';
                 }
@@ -4294,7 +4294,7 @@ Kiek atimsite <small></small>:<br />
                     mysqli_query($conn, "UPDATE zaidejai SET sword='Super money sword' WHERE nick='$kam'");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' Super money sword! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " Super money sword! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' Super money sword!</div>';
                 }
@@ -4306,7 +4306,7 @@ Kiek atimsite <small></small>:<br />
                     mysqli_query($conn, "UPDATE zaidejai SET sword='Vieno kircio sword' WHERE nick='$kam'");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' Vieno kirčio kardą! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " Vieno kirčio kardą! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' Vieno kirčio kardą!</div>';
                 }
@@ -4317,7 +4317,7 @@ Kiek atimsite <small></small>:<br />
                     mysqli_query($conn, "UPDATE zaidejai SET sword='Galios sword' WHERE nick='$kam'");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' Galios kardą! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " Galios kardą! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' Galios kardą!</div>';
                 }
@@ -4328,7 +4328,7 @@ Kiek atimsite <small></small>:<br />
                     mysqli_query($conn, "UPDATE zaidejai SET armor='Money' WHERE nick='$kam'");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' Money sword! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " Money sword! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' Money sword!</div>';
                 }
@@ -4339,7 +4339,7 @@ Kiek atimsite <small></small>:<br />
                     mysqli_query($conn, "UPDATE zaidejai SET armor='Super money armor' WHERE nick='$kam'");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' Super money sword! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " Super money sword! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' Super money sword!</div>';
                 }
@@ -4350,7 +4350,7 @@ Kiek atimsite <small></small>:<br />
                     mysqli_query($conn, "UPDATE zaidejai SET armor='Vieno kircio armor' WHERE nick='$kam'");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' Vieno kircio armor! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " Vieno kircio armor! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' vieno kircio armor!</div>';
                 }
@@ -4362,7 +4362,7 @@ Kiek atimsite <small></small>:<br />
                     mysqli_query($conn, "UPDATE zaidejai SET armor='Galios armor' WHERE nick='$kam'");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' Galios armor! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " Galios armor! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' Galios armor!</div>';
                 }
@@ -4374,7 +4374,7 @@ Kiek atimsite <small></small>:<br />
                     mysqli_query($conn, "UPDATE zaidejai SET armor='Infinity armor' WHERE nick='$kam'");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' Infinity armor! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " Infinity armor! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' Infinity armor!</div>';
                 }
@@ -4385,7 +4385,7 @@ Kiek atimsite <small></small>:<br />
                     mysqli_query($conn, "UPDATE zaidejai SET sword='Infinity sword' WHERE nick='$kam'");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' Infinity sword! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " Infinity sword! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' Infinity sword!</div>';
                 }
@@ -4397,7 +4397,7 @@ Kiek atimsite <small></small>:<br />
                     mysqli_query($conn, "UPDATE zaidejai SET amuletas='Super amulet' WHERE nick='$kam'");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' Super amulet! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " Super amulet! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' Super amulet!</div>';
                 }
@@ -4407,7 +4407,7 @@ Kiek atimsite <small></small>:<br />
                     mysqli_query($conn, "UPDATE inv SET Super_amulet_item=Super_amulet_item+'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' Super amulet item! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " Super amulet item! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' Super amulet item!</div>';
                 }
@@ -4418,7 +4418,7 @@ Kiek atimsite <small></small>:<br />
                     mysqli_query($conn, "UPDATE inv SET dball=dball+'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' Drakono rutuliu! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " Drakono rutuliu! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' Drakono rutuliu!</div>';
                 }
@@ -4428,7 +4428,7 @@ Kiek atimsite <small></small>:<br />
                     mysqli_query($conn, "UPDATE zaidejai SET vipticket=vipticket+'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' Vip ticket! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " Vip ticket! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' VIP Ticket!</div>';
                 }
@@ -4438,7 +4438,7 @@ Kiek atimsite <small></small>:<br />
                     mysqli_query($conn, "UPDATE inv SET naikinimo_amulet_item=naikinimo_amulet_item+'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' Naikinimo Amulet Item! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " Naikinimo Amulet Item! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' Naikinimo Amulet Item!</div>';
                 }
@@ -4450,7 +4450,7 @@ Kiek atimsite <small></small>:<br />
                     mysqli_query($conn, "UPDATE zaidejai SET amuletas='Naikinimo amulet' WHERE nick='$kam'");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' Naikinimo amulet! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " Naikinimo amulet! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' Naikinimo amulet!</div>';
                 }
@@ -4460,7 +4460,7 @@ Kiek atimsite <small></small>:<br />
                     mysqli_query($conn, "UPDATE zaidejai SET critical=critical+'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' Kritinio lygio! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " Kritinio lygio! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' Kritinio lygio!</div>';
                 }
@@ -4471,7 +4471,7 @@ Kiek atimsite <small></small>:<br />
                     mysqli_query($conn, "UPDATE inv SET critical=critical+'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' Kritinio lygio! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " Kritinio lygio! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' Kritinio lygio!</div>';
                 }
@@ -4481,7 +4481,7 @@ Kiek atimsite <small></small>:<br />
                     mysqli_query($conn, "UPDATE inv SET ad16=ad16+'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' AD16 item! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " AD16 item! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' AD16 item!</div>';
                 }
@@ -4491,7 +4491,7 @@ Kiek atimsite <small></small>:<br />
                     mysqli_query($conn, "UPDATE inv SET ad17=ad17+'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' AD17 item! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " AD17 item! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' AD17 item!</div>';
                 }
@@ -4501,7 +4501,7 @@ Kiek atimsite <small></small>:<br />
                     mysqli_query($conn, "UPDATE inv SET ad18=ad18+'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' AD18 item! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " AD18 item! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' AD18 item!</div>';
                 }
@@ -4511,7 +4511,7 @@ Kiek atimsite <small></small>:<br />
                     mysqli_query($conn, "UPDATE inv SET ad19=ad19+'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' AD19 item! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " AD19 item! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' AD19 item!</div>';
                 }
@@ -4521,7 +4521,7 @@ Kiek atimsite <small></small>:<br />
                     mysqli_query($conn, "UPDATE inv SET ad20=ad20+'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' AD20 item! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " AD20 item! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' AD20 item!</div>';
                 }
@@ -4531,7 +4531,7 @@ Kiek atimsite <small></small>:<br />
                     mysqli_query($conn, "UPDATE inv SET ad16kard=ad16kard+'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' AD16 karda! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " AD16 karda! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' AD16 karda!</div>';
                 }
@@ -4541,7 +4541,7 @@ Kiek atimsite <small></small>:<br />
                     mysqli_query($conn, "UPDATE inv SET ad17kard=ad17kard+'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' AD17 karda! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " AD17 karda! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' AD17 karda!</div>';
                 }
@@ -4551,7 +4551,7 @@ Kiek atimsite <small></small>:<br />
                     mysqli_query($conn, "UPDATE inv SET ad18kard=ad18kard+'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' AD18 karda! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " AD18 karda! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' AD18 karda!</div>';
                 }
@@ -4561,7 +4561,7 @@ Kiek atimsite <small></small>:<br />
                     mysqli_query($conn, "UPDATE inv SET ad19kard=ad19kard+'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' AD19 karda! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " AD19 karda! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' AD19 karda!</div>';
                 }
@@ -4571,7 +4571,7 @@ Kiek atimsite <small></small>:<br />
                     mysqli_query($conn, "UPDATE inv SET ad20kard=ad20kard+'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' AD20 karda! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " AD20 karda! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' AD20 karda!</div>';
                 }
@@ -4581,7 +4581,7 @@ Kiek atimsite <small></small>:<br />
                     mysqli_query($conn, "UPDATE inv SET ad16sarv=ad16sarv+'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' AD16 sarvus! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " AD16 sarvus! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' AD16 sarvus!</div>';
                 }
@@ -4591,7 +4591,7 @@ Kiek atimsite <small></small>:<br />
                     mysqli_query($conn, "UPDATE inv SET ad17sarv=ad17sarv+'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' AD17 sarvus! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " AD17 sarvus! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' AD17 sarvus!</div>';
                 }
@@ -4601,7 +4601,7 @@ Kiek atimsite <small></small>:<br />
                     mysqli_query($conn, "UPDATE inv SET ad18sarv=ad18sarv+'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' AD18 sarvus! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " AD18 sarvus! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' AD18 sarvus!</div>';
                 }
@@ -4611,7 +4611,7 @@ Kiek atimsite <small></small>:<br />
                     mysqli_query($conn, "UPDATE inv SET ad19sarv=ad19sarv+'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' AD19 sarvus! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " AD19 sarvus! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' AD19 sarvus!</div>';
                 }
@@ -4621,7 +4621,7 @@ Kiek atimsite <small></small>:<br />
                     mysqli_query($conn, "UPDATE inv SET ad20sarv=ad20sarv+'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' AD20 sarvus! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " AD20 sarvus! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' AD20 sarvus!</div>';
                 }
@@ -4631,7 +4631,7 @@ Kiek atimsite <small></small>:<br />
                     mysqli_query($conn, "UPDATE inv SET ad16amulet=ad16amulet+'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' AD16 amulet! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " AD16 amulet! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' AD16 amulet!</div>';
                 }
@@ -4642,7 +4642,7 @@ Kiek atimsite <small></small>:<br />
                     mysqli_query($conn, "UPDATE inv SET ad17amulet=ad17amulet+'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' AD17 amulet! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " AD17 amulet! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' AD17 amulet!</div>';
                 }
@@ -4652,7 +4652,7 @@ Kiek atimsite <small></small>:<br />
                     mysqli_query($conn, "UPDATE inv SET ad18amulet=ad18amulet+'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' AD18 amulet! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " AD18 amulet! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' AD18 amulet!</div>';
                 }
@@ -4662,7 +4662,7 @@ Kiek atimsite <small></small>:<br />
                     mysqli_query($conn, "UPDATE inv SET ad19amulet=ad19amulet+'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' AD19 amulet! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " AD19 amulet! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' AD19 amulet!</div>';
                 }
@@ -4672,7 +4672,7 @@ Kiek atimsite <small></small>:<br />
                     mysqli_query($conn, "UPDATE inv SET ad20amulet=ad20amulet+'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' AD20 amulet! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " AD20 amulet! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' AD20 amulet!</div>';
                 }
@@ -4682,7 +4682,7 @@ Kiek atimsite <small></small>:<br />
                     mysqli_query($conn, "UPDATE inv SET event1=event1+'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' Roziu! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " Roziu! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' Roziu!</div>';
                 }
@@ -4692,7 +4692,7 @@ Kiek atimsite <small></small>:<br />
                     mysqli_query($conn, "UPDATE inv SET event2=event2+'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' Lapeliai! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " Lapeliai! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' Lapeliai!</div>';
                 }
@@ -4703,7 +4703,7 @@ Kiek atimsite <small></small>:<br />
                     mysqli_query($conn, "UPDATE inv SET event3=event3+'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' Vysniu! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " Vysniu! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' Vysniu!</div>';
                 }
@@ -4713,7 +4713,7 @@ Kiek atimsite <small></small>:<br />
                     mysqli_query($conn, "UPDATE inv SET event4=event4+'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' Drugeliu! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " Drugeliu! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' Drugeliu!</div>';
                 }
@@ -4723,7 +4723,7 @@ Kiek atimsite <small></small>:<br />
                     mysqli_query($conn, "UPDATE inv SET mirties_sword=mirties_sword+'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' Mirties sword! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " Mirties sword! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' Mirties sword!</div>';
                 }
@@ -4733,7 +4733,7 @@ Kiek atimsite <small></small>:<br />
                     mysqli_query($conn, "UPDATE inv SET mirties_armor=mirties_armor+'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' Mirties armor! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " Mirties armor! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' Mirties armor!</div>';
                 }
@@ -4743,7 +4743,7 @@ Kiek atimsite <small></small>:<br />
                     mysqli_query($conn, "UPDATE inv SET mirties_amulet=mirties_amulet+'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' Mirties amulet! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " Mirties amulet! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' Mirties amulet!</div>';
                 }
@@ -4766,7 +4766,7 @@ Kiek atimsite <small></small>:<br />
                     mysqli_query($conn, "UPDATE inv SET atgimimo_armor=atgimimo_armor+'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' Atgimimo Armor! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " Atgimimo Armor! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' Atgimimo Armor!</div>';
                 }
@@ -4776,7 +4776,7 @@ Kiek atimsite <small></small>:<br />
                     mysqli_query($conn, "UPDATE inv SET atgimimo_amulet=atgimimo_amulet+'$kiekis' WHERE nick='$kam' ");
 
 
-                    $txt = "$nick Davė tau '.skaicius($kiekis).' Atgimimo amulet! ";
+                    $txt = "$nick Davė tau " . skaicius($kiekis) . " Atgimimo amulet! ";
                     mysqli_query($conn, "INSERT INTO pm SET what='SISTEMA', txt='$txt', time='" . time() . "', nauj='NEW', gavejas='$kam' ");
                     echo '<div class="meniuc">Atlikta! Davei ' . $kam . '  ' . skaicius($kiekis) . ' Atgimimo amulet!</div>';
                 }
